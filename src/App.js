@@ -1,9 +1,18 @@
 import React from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { LandingPageContainer } from './components/pages/LandingPage/';
 
 const App = () => {
   return (
     <div className="App">
-      <h1>HI</h1>
+      <Switch>
+        <Route
+          exact
+          path={['/', '/login', '/register', '/signup']}
+          component={() => <LandingPageContainer />}
+        />
+        <Route path="/" component={() => <Redirect to="/" />} />
+      </Switch>
     </div>
   );
 };

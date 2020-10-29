@@ -1,5 +1,4 @@
 import React from 'react';
-import './modal.scss';
 
 const Modal = ({ component: Component, visible, setVisible, ...props }) => {
   const closeModal = () => {

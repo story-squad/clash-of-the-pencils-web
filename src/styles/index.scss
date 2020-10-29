@@ -6,3 +6,8 @@
 @import './mixins.scss';
 
 // Google Font Imports
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Source+Sans+Pro:wght@400;500;600;700;900&display=swap');
+
+// Component Stylesheets
+@import './components/landingPage.scss';
+@import './components/modal.scss';
