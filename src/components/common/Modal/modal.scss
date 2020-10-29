@@ -1,0 +1,43 @@
+.custom-modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1000;
+  opacity: 1;
+  transition: all 0.5s ease-in-out 0s;
+  background-color: #0004;
+  overflow-y: scroll;
+
+  &.hidden {
+    opacity: 0;
+    transition: all 0.5s ease-in-out 0.2s;
+    z-index: -1;
+  }
+
+  .custom-modal {
+    position: relative;
+    width: 80vw;
+    margin: 2rem auto;
+    padding: 2rem 1rem;
+    background: white;
+    box-shadow: 5px 5px 15px #333;
+
+    .close-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 1.5rem;
+      line-height: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      z-index: 20;
+      padding: 1.75vh;
+
+      &:hover {
+        text-shadow: 0 0 3px #999;
+      }
+    }
+  }
+}
