@@ -1,0 +1,26 @@
+// Set box-sizing globally for consisten behavior
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+// Set the app container to fill the screen
+html,
+body,
+#root {
+  min-height: 100vh;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+// Variables
+$text-font: "Source Sans Pro", sans-serif;
+$display-font: "Bangers", sans-serif;
+
+// Colors
+$turquoise: #6CEAE6;
+$conifer: #B5D33D;
+$burnt-sienna: #EB7D5B;
+$bright-sun: #FED23F;
+$boston-blue: #429CB5;

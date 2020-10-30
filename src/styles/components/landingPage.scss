@@ -1,0 +1,93 @@
+.landing-page {
+  display: flex;
+  flex-flow: row nowrap;
+  min-height: 100vh;
+  background: url('../../assets/storysquad.svg');
+  background-size: cover;
+  background-position: 50%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  .splash {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $text-font;
+    h1 {
+      font-family: $display-font;
+      font-size: 2rem;
+    }
+  }
+  form {
+    width: 40%;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 5vh 2.5vw 1.5vh;
+    font-family: $text-font;
+    background-color: #fff5;
+    height: 100vh;
+    overflow-y: scroll;
+    @media screen  and (min-height: 650px) {
+      @include hide-scroll;
+    }
+    &.login-form {
+      justify-content: center;
+    }
+
+    h2 {
+      font-size: 3rem;
+      font-weight: 600;
+      text-align: center;
+      @media screen and (max-width: 600px) {
+        font-size: 2.5rem;
+      }
+      @media screen and (max-width: 350px) {
+        font-size: 2rem;
+      }
+      @media screen and (max-height: 350px) {
+        font-size: 2.5rem;
+      }
+    }
+
+    label {
+      display: flex;
+      flex-flow: column nowrap;
+      margin-top: 2.5vh;
+      font-size: 1.5rem;
+      text-align: center;
+
+      input {
+        margin-top: 1vh;
+        @include input-field;
+      }
+    }
+    & > input {
+      margin: 2.5vh 5vw;
+      @include button($boston-blue, #fff);
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    div {
+      font-weight: 600;
+      font-size: 1.3rem;
+      text-align: center;
+      line-height: 1.5rem;
+      a {
+        font-size: 1.5rem;
+        color: $boston-blue;
+      }
+      .text-button {
+        color: $boston-blue;
+      }
+      &.tos {
+        margin-bottom: 2.5vh;
+        font-weight: 400;
+      }
+    }
+    button {
+      margin: 2.5vh 5vw;
+      @include button($bright-sun, #000);
+      font-size: 1.5rem;
+    }
+  }
+}
