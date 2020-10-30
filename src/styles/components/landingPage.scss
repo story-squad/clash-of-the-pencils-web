@@ -27,7 +27,7 @@
     background-color: #fff5;
     height: 100vh;
     overflow-y: scroll;
-    @media screen  and (min-height: 650px) {
+    @media screen and (min-height: 650px) {
       @include hide-scroll;
     }
     &.login-form {
@@ -63,7 +63,7 @@
     }
     & > input {
       margin: 2.5vh 5vw;
-      @include button($boston-blue, #fff);
+      @include button($boston-blue, #fff, 2vh 2vw);
       font-size: 1.5rem;
       font-weight: 600;
     }
@@ -86,8 +86,17 @@
     }
     button {
       margin: 2.5vh 5vw;
-      @include button($bright-sun, #000);
+      @include button($bright-sun, #000, 2vh 2vw);
       font-size: 1.5rem;
+    }
+  }
+  .signup-success {
+    text-align: center;
+    @include paragraph(1.5rem);
+
+    button {
+      margin-top: 1vh;
+      @include button($conifer, #000);
     }
   }
 }

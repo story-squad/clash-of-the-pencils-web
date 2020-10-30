@@ -6,12 +6,16 @@ interface ComponentProps {
 
 interface ModalProps {
   component: React.ComponentType<ComponentProps>;
+  closable?: boolean;
+  centered?: boolean;
   visible: boolean;
   setVisible: React.Dispatch<boolean>;
 }
 
 const Modal = ({
   component: Component,
+  closable = true,
+  centered = false,
   visible,
   setVisible,
   ...props
@@ -21,14 +25,18 @@ const Modal = ({
   };
   return (
     <div
-      className={`custom-modal-wrapper${visible ? '' : ' hidden'}`}
-      onClick={() => setVisible(false)}
+      className={`modal-wrapper${visible ? '' : ' hidden'}${
+        centered ? ' centered' : ''
+      }`}
+      onClick={closable ? () => setVisible(false) : () => null}
     >
-      <div className="custom-modal" onClick={(e) => e.stopPropagation()}>
+      <div className="modal" onClick={(e) => e.stopPropagation()}>
         <Component setVisible={setVisible} {...props} />
-        <div className="close-button" onClick={closeModal}>
-          &times;
-        </div>
+        {closable && (
+          <div className="close-button" onClick={closeModal}>
+            &times;
+          </div>
+        )}
       </div>
     </div>
   );

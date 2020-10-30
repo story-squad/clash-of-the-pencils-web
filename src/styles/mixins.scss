@@ -19,8 +19,14 @@
   @include placeholder(#999);
 }
 
-@mixin button($bgcolor, $font-color, $border-width: 0, $border-color: #000) {
-  padding: 2vh 2vw;
+@mixin button(
+  $bgcolor,
+  $font-color,
+  $padding: 1vh 2vw,
+  $border-width: 0,
+  $border-color: #000
+) {
+  padding: $padding;
   color: $font-color;
   background-color: $bgcolor;
   cursor: pointer;
@@ -40,4 +46,10 @@
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+@mixin paragraph($size: 1rem) {
+  font-family: $text-font;
+  font-size: $size;
+  line-height: $size + 1rem;
 }
