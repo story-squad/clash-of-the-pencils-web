@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SignupForm = (props) => {
+const SignupForm = (): React.ReactElement => {
   return (
     <form>
       <h2>Sign Up!</h2>
