@@ -19,15 +19,23 @@
   @include placeholder(#999);
 }
 
-@mixin button($bgcolor, $font-color) {
+@mixin button($bgcolor, $font-color, $border-width: 0, $border-color: #000) {
   padding: 2vh 2vw;
   color: $font-color;
   background-color: $bgcolor;
   cursor: pointer;
-  border: none;
+  border: $border-width solid $border-color;
   border-radius: 5px;
   font-family: $text-font;
   &:hover {
     background-color: darken($bgcolor, 5%);
+  }
+}
+
+@mixin hide-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display:none;
   }
 }

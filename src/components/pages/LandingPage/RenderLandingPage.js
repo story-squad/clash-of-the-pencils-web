@@ -1,6 +1,9 @@
 import React from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+
 import Splash from './LandingSplash';
+import LoginForm from './LoginForm';
+import SignupForm from './SignupForm';
 
 const LandingPage = (props) => {
   return (
@@ -28,36 +31,6 @@ const LandingPage = (props) => {
         />
       </Switch>
     </div>
-  );
-};
-
-const LoginForm = (props) => {
-  return (
-    <form>
-      <legend>Log In!</legend>
-      <label>
-        <input placeholder="Email" />
-      </label>
-      <label>
-        <input placeholder="Password" type="password" />
-      </label>
-      <input type="submit" value="Submit" />
-      <div>
-        Don't have an account?<br />
-        <Link to='/register'>Sign Up Here!</Link>
-      </div>
-      <button>Just Voting</button>
-    </form>
-  );
-};
-
-const SignupForm = (props) => {
-  return (
-    <form>
-      <fieldset>
-        <legend>Sign Up!</legend>
-      </fieldset>
-    </form>
   );
 };
 
