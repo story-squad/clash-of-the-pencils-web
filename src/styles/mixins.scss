@@ -27,8 +27,10 @@
   border: $border-width solid $border-color;
   border-radius: 5px;
   font-family: $text-font;
+  transition: all 0.2s ease-in;
   &:hover {
-    background-color: darken($bgcolor, 5%);
+    background-color: darken($bgcolor, 7.5%);
+    transition: all 0.2s ease-in;
   }
 }
 
@@ -36,6 +38,6 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
   &::-webkit-scrollbar {
-    display:none;
+    display: none;
   }
 }

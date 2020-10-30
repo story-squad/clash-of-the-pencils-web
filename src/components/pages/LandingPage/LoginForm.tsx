@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const LoginForm = (props) => {
+const LoginForm: React.FC = () => {
   return (
     <form className="login-form">
       <h2>Log In!</h2>
@@ -13,7 +13,7 @@ const LoginForm = (props) => {
       </label>
       <input type="submit" value="Log In" />
       <div>
-        Don't have an account?
+        Don&apos;t have an account?
         <br />
         <Link to="/register">Sign Up Here!</Link>
       </div>

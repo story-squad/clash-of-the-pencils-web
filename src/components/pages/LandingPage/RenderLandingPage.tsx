@@ -5,7 +5,7 @@ import Splash from './LandingSplash';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 
-const LandingPage = (props) => {
+const LandingPage = (): React.ReactElement => {
   return (
     <div className="landing-page">
       <Switch>

@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from './reportWebVitals.tsx';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import App from './App';
+import App from './App.tsx';
 import './styles/index.scss';
 
 ReactDOM.render(
@@ -13,7 +13,7 @@ ReactDOM.render(
       <App />
     </Router>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function

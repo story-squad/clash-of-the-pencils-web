@@ -1,6 +1,21 @@
 import React from 'react';
 
-const Modal = ({ component: Component, visible, setVisible, ...props }) => {
+interface ComponentProps {
+  setVisible: React.Dispatch<boolean>;
+}
+
+interface ModalProps {
+  component: React.ComponentType<ComponentProps>;
+  visible: boolean;
+  setVisible: React.Dispatch<boolean>;
+}
+
+const Modal = ({
+  component: Component,
+  visible,
+  setVisible,
+  ...props
+}: ModalProps): React.ReactElement => {
   const closeModal = () => {
     setVisible(false);
   };
@@ -18,5 +33,4 @@ const Modal = ({ component: Component, visible, setVisible, ...props }) => {
     </div>
   );
 };
-
 export default Modal;

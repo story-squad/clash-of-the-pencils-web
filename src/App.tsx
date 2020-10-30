@@ -1,8 +1,8 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { LandingPageContainer } from './components/pages/LandingPage/';
+import { LandingPageContainer } from './components/pages/LandingPage';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <div className="App">
       <Switch>
