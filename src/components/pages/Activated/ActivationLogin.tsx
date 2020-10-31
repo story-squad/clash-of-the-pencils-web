@@ -22,7 +22,11 @@ export const Activation = (): React.ReactElement => {
         })
         .catch(() => {
           setStatus('Activation failed. Redirecting to login...');
+          setTimeout(() => push('/'), 2000);
         });
+    } else {
+      setStatus('No activation code provided. Redirecting to login...');
+      setTimeout(() => push('/'), 2000);
     }
   }, []);
 
