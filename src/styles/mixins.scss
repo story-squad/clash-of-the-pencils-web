@@ -40,6 +40,19 @@
   }
 }
 
+@mixin text-button($color, $darken-amt: 15%, $shadow-color: #666) {
+  color: $color;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease-in;
+  &:active,
+  &:hover {
+    color: darken($color, $darken-amt);
+    text-shadow: 0 0 2px $shadow-color;
+    transition: all 0.25s ease-in;
+  }
+}
+
 @mixin hide-scroll {
   scrollbar-width: none;
   -ms-overflow-style: none;

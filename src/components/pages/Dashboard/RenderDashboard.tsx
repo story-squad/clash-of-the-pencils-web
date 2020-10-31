@@ -1,20 +1,12 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { clearToken } from '../../../utils';
+import { Header } from '../../common';
 
 const RenderDashboard = (): React.ReactElement => {
-  const { push } = useHistory();
   return (
-    <div className="dashboard">
-      <button
-        onClick={() => {
-          clearToken();
-          push('/');
-        }}
-      >
-        Log Out
-      </button>
-    </div>
+    <>
+      <Header />
+      <div className="dashboard"></div>
+    </>
   );
 };
 
