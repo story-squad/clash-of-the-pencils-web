@@ -140,6 +140,11 @@
       }
       .text-button {
         color: $boston-blue;
+        cursor: pointer;
+        white-space: nowrap;
+        @media screen and (max-width: 350px) {
+          white-space: normal;
+        }
       }
       &.tos {
         margin-bottom: 2.5vh;

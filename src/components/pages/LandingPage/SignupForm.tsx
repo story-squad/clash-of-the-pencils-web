@@ -16,11 +16,20 @@ const initialFormState = {
 
 const SignupForm = (): React.ReactElement => {
   const [form, setForm] = useState(initialFormState);
-  const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showModal, setShowModal] = useState(false);
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Check that all fields have content
+    if (
+      Object.values(form).filter((val) => val.length <= 0).length >
+      (parseInt(form.ageStr) < 13 ? 0 : 1)
+    ) {
+      setError('Fields cannot be empty!');
+      return;
+    }
 
     // Check if passwords match
     if (form.password !== form.confirm) {
@@ -44,11 +53,10 @@ const SignupForm = (): React.ReactElement => {
         setShowModal(true);
       })
       .catch((err: auth.AxiosError) => {
-        console.log(err.response?.data);
         if (err.response?.data) {
           setError(err.response.data.error);
         } else {
-          setError('An unknown error occured. Please try again.');
+          setError('An unknown error occurred. Please try again.');
         }
       });
   };
@@ -112,7 +120,7 @@ const SignupForm = (): React.ReactElement => {
         {error && <div className="error">{error}</div>}
         <input type="submit" value="Sign Up" onClick={onSubmit} />
         <div className="tos">
-          By signing up with our site, you are agreeing to our&nbsp;
+          By signing up with our site, you are agreeing to our{' '}
           <span className="text-button">Terms & Conditions</span>.
         </div>
         <div>

@@ -40,16 +40,17 @@ export const login = async (credentials: LoginBody): Promise<AxiosResponse> => {
     const { data } = await axiosWithoutAuth().get(
       `/email/activation/${credentials.email}`,
     );
-    if (!data.validated) {
-      return Promise.reject('validation');
-    } else {
+    console.log({ data });
+    if (data.validated && !data.validated) {
+      return Promise.reject('You must validate your email before login.');
+    } else if (data.validated) {
       return axiosWithoutAuth().post('/email/login', credentials);
+    } else {
+      return Promise.reject('An unknown error occurred. Please try again.');
     }
   } catch (err) {
     console.log({ err });
-    return Promise.reject(
-      err.message === 'validation' ? 'validation' : 'unknown',
-    );
+    return Promise.reject('An unknown error occurred. Please try again.');
   }
 };
 

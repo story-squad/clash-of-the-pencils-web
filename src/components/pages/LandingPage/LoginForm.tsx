@@ -10,19 +10,33 @@ const initialFormState = {
 
 const LoginForm: React.FC = () => {
   const [form, setForm] = useState(initialFormState);
+  const [error, setError] = useState<string | null>(null);
   const { push } = useHistory();
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Check for empty fields
+    if (form.email.length <= 0 || form.password.length <= 0) {
+      setError('Fields cannot be empty!');
+      return;
+    }
+
     auth
       .login(form)
       .then((res) => {
-        console.log('SUCC', res.data);
         setToken(res.data.token);
         push('/dashboard');
       })
-      .catch((err) => {
+      .catch((err: auth.AxiosError | string) => {
         console.log({ err });
+        if (typeof err === 'string') {
+          setError(err);
+        } else if (err.response?.data) {
+          setError(err.response.data.error);
+        } else {
+          setError('An unknown error occurred. Please try again.');
+        }
       });
   };
 
@@ -47,6 +61,7 @@ const LoginForm: React.FC = () => {
           type="password"
         />
       </label>
+      {error && <div className="error">{error}</div>}
       <input type="submit" value="Log In" onClick={onSubmit} />
       <div>
         Don&apos;t have an account?
