@@ -41,6 +41,7 @@ const LoginForm: React.FC = () => {
   };
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setError(null);
     setForm((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,

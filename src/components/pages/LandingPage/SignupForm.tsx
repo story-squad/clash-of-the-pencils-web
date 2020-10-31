@@ -44,6 +44,11 @@ const SignupForm = (): React.ReactElement => {
       return;
     }
 
+    if (parseInt(form.ageStr) === NaN) {
+      setError('Age must be a number.');
+      return;
+    }
+
     // Format form data for API call body
     const credentials = auth.formatSignupBody(form);
     auth
@@ -62,6 +67,7 @@ const SignupForm = (): React.ReactElement => {
   };
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setError(null);
     setForm((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
