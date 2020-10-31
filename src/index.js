@@ -7,6 +7,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App.tsx';
 import './styles/index.scss';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>

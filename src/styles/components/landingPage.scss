@@ -7,17 +7,63 @@
   background-position: 50%;
   background-attachment: fixed;
   background-repeat: no-repeat;
+
+  // LEFT SIDE OF THE PAGE
   .splash {
     width: 60%;
     display: flex;
-    align-items: center;
+    flex-flow: column nowrap;
     justify-content: center;
+    align-items: stretch;
     font-family: $text-font;
+    padding: 2vh 2vw;
+    .b {
+      font-weight: 700;
+    }
     h1 {
       font-family: $display-font;
-      font-size: 2rem;
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      color: $boston-blue;
+      text-align: center;
+      @media screen and (max-width: 400px) {
+        font-size: 2rem;
+      }
+    }
+    h2 {
+      font-family: $text-font;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      @media screen and (max-width: 400px) {
+        font-size: 1.7rem;
+        margin-bottom: 1rem;
+      }
+    }
+    h3 {
+      font-family: $display-font;
+      font-size: 2.3rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: $boston-blue;
+      @media screen and (max-width: 400px) {
+        font-size: 1.5rem;
+      }
+    }
+    ul {
+      width: 80%;
+      margin: 0 auto;
+      @media screen and (max-width: 400px) {
+        width: 90%;
+      }
+      li {
+        font-size: 1.5rem;
+        margin-bottom: 2vh;
+      }
     }
   }
+
+  // RIGHT SIDE OF THE PAGE, Login/Signup forms
   form {
     width: 40%;
     display: flex;
@@ -25,28 +71,33 @@
     padding: 5vh 2.5vw 1.5vh;
     font-family: $text-font;
     background-color: #fff5;
-    height: 100vh;
-    overflow-y: scroll;
-    @media screen and (min-height: 650px) {
-      @include hide-scroll;
-    }
+    min-height: 100vh;
+    // Make the login form align vertically on the page
     &.login-form {
       justify-content: center;
     }
 
+    // Form title scaling down
     h2 {
       font-size: 3rem;
       font-weight: 600;
       text-align: center;
+      @media screen and (max-height: 350px) {
+        font-size: 2.5rem;
+      }
       @media screen and (max-width: 600px) {
         font-size: 2.5rem;
       }
       @media screen and (max-width: 350px) {
         font-size: 2rem;
       }
-      @media screen and (max-height: 350px) {
-        font-size: 2.5rem;
+      @media screen and (max-width: 250px) {
+        font-size: 1.5rem;
       }
+    }
+    .error {
+      margin-top: 1vh;
+      color: #fc0036;
     }
 
     label {
@@ -61,12 +112,23 @@
         @include input-field;
       }
     }
-    & > input {
+    // Mixin for the specific styles for the buttons on this page
+    @mixin spbtn($bgcolor, $txtcolor, $padding) {
+      @include button($bgcolor, $txtcolor, $padding);
       margin: 2.5vh 5vw;
-      @include button($boston-blue, #fff, 2vh 2vw);
       font-size: 1.5rem;
+      @media screen and (max-width: 300px) {
+        margin: 2.5vh 1vw;
+        font-size: 1rem;
+      }
+    }
+
+    // Form button input
+    & > input {
+      @include spbtn($boston-blue, #fff, 2vh 2vw);
       font-weight: 600;
     }
+    // DIVs in the form
     div {
       font-weight: 600;
       font-size: 1.3rem;
@@ -78,6 +140,11 @@
       }
       .text-button {
         color: $boston-blue;
+        cursor: pointer;
+        white-space: nowrap;
+        @media screen and (max-width: 350px) {
+          white-space: normal;
+        }
       }
       &.tos {
         margin-bottom: 2.5vh;
@@ -85,11 +152,11 @@
       }
     }
     button {
-      margin: 2.5vh 5vw;
-      @include button($bright-sun, #000, 2vh 2vw);
-      font-size: 1.5rem;
+      @include spbtn($bright-sun, #000, 2vh 2vw);
     }
   }
+
+  // Success message styling for modal
   .signup-success {
     text-align: center;
     @include paragraph(1.5rem);

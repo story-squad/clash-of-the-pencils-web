@@ -1,14 +1,19 @@
 import { axiosWithoutAuth } from './axiosWithConfig';
 import { AxiosResponse } from 'axios';
+export type { AxiosError } from 'axios';
 
 interface SignupBody {
   email: string;
   username: string;
   password: string;
   parentEmail: string;
-  age?: number;
+  age: number;
 }
-interface SignupFormState extends SignupBody {
+interface SignupFormState {
+  email: string;
+  username: string;
+  password: string;
+  parentEmail: string;
   ageStr: string;
   confirm: string;
 }
@@ -35,16 +40,15 @@ export const login = async (credentials: LoginBody): Promise<AxiosResponse> => {
     const { data } = await axiosWithoutAuth().get(
       `/email/activation/${credentials.email}`,
     );
-    if (!data.validated) {
-      return Promise.reject('validation');
+    console.log({ data });
+    if (data.validated && !data.validated) {
+      return Promise.reject('You must validate your email before login.');
     } else {
       return axiosWithoutAuth().post('/email/login', credentials);
     }
   } catch (err) {
     console.log({ err });
-    return Promise.reject(
-      err.message === 'validation' ? 'validation' : 'unknown',
-    );
+    return Promise.reject('An unknown error occurred. Please try again.');
   }
 };
 

@@ -33,10 +33,10 @@
   border: $border-width solid $border-color;
   border-radius: 5px;
   font-family: $text-font;
-  transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in-out;
   &:hover {
     background-color: darken($bgcolor, 7.5%);
-    transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in-out;
   }
 }
 
