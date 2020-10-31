@@ -43,10 +43,8 @@ export const login = async (credentials: LoginBody): Promise<AxiosResponse> => {
     console.log({ data });
     if (data.validated && !data.validated) {
       return Promise.reject('You must validate your email before login.');
-    } else if (data.validated) {
-      return axiosWithoutAuth().post('/email/login', credentials);
     } else {
-      return Promise.reject('An unknown error occurred. Please try again.');
+      return axiosWithoutAuth().post('/email/login', credentials);
     }
   } catch (err) {
     console.log({ err });
