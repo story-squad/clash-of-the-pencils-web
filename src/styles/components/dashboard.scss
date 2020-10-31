@@ -1,0 +1,6 @@
+.dashboard {
+  color: blue;
+  button {
+    @include button($conifer, #fff);
+  }
+}

@@ -6,9 +6,13 @@ interface SignupBody {
   username: string;
   password: string;
   parentEmail: string;
-  age?: number;
+  age: number;
 }
-interface SignupFormState extends SignupBody {
+interface SignupFormState {
+  email: string;
+  username: string;
+  password: string;
+  parentEmail: string;
   ageStr: string;
   confirm: string;
 }

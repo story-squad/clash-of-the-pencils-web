@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { auth } from '../../../api';
 import { setToken } from '../../../utils';
+import { Modal } from '../../common';
 
 export const Activation = (): React.ReactElement => {
+  const [status, setStatus] = useState('');
   const { push } = useHistory();
   const { pathname } = useLocation();
 
@@ -14,21 +16,29 @@ export const Activation = (): React.ReactElement => {
       auth
         .activatedLogin(activationCode)
         .then((res) => {
-          // setToken(res.data.token);
-          // push('/register');
-          console.log(res.data);
+          setToken(res.data.token);
+          setStatus('You are now being redirected...');
+          setTimeout(() => push('/dashboard'), 2000);
         })
-        .catch((err) => {
-          console.log({ err });
+        .catch(() => {
+          setStatus('Activation failed. Redirecting to login...');
         });
     }
   }, []);
 
   return (
-    <div>
-      <h1>some stuff</h1>
-    </div>
+    <Modal
+      visible={true}
+      setVisible={() => null}
+      component={() => <ActivationMessage text={status} />}
+      centered={true}
+      closable={false}
+    />
   );
+};
+
+const ActivationMessage = ({ text }: { text: string }) => {
+  return <p className="activation">{text}</p>;
 };
 
 export default Activation;

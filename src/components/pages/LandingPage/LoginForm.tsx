@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { auth } from '../../../api';
+import { setToken } from '../../../utils';
 
 const initialFormState = {
   email: '',
@@ -9,6 +10,7 @@ const initialFormState = {
 
 const LoginForm: React.FC = () => {
   const [form, setForm] = useState(initialFormState);
+  const { push } = useHistory();
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,6 +18,8 @@ const LoginForm: React.FC = () => {
       .login(form)
       .then((res) => {
         console.log('SUCC', res.data);
+        setToken(res.data.token);
+        push('/dashboard');
       })
       .catch((err) => {
         console.log({ err });
