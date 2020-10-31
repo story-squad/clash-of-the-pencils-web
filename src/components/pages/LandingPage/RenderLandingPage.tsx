@@ -14,7 +14,7 @@ const LandingPage = (): React.ReactElement => {
           path={['/', '/login']}
           component={() => (
             <>
-              <Splash component={() => <h1>Welcome to Story Squad!</h1>} />
+              <Splash isLogin={true} />
               <LoginForm />
             </>
           )}
@@ -24,7 +24,7 @@ const LandingPage = (): React.ReactElement => {
           path={['/register', '/signup']}
           component={() => (
             <>
-              <Splash component={() => <h1>Welcome to Story Squad!</h1>} />
+              <Splash isLogin={false} />
               <SignupForm />
             </>
           )}
