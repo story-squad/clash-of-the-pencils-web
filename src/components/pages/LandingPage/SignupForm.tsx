@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { auth } from '../../../api';
+import { validatePassword } from '../../../utils';
 import { Modal } from '../../common';
 import SignupSuccess from './SignupSuccess';
 
@@ -16,17 +17,39 @@ const initialFormState = {
 const SignupForm = (): React.ReactElement => {
   const [form, setForm] = useState(initialFormState);
   const [showModal, setShowModal] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Check if passwords match
+    if (form.password !== form.confirm) {
+      setError('Passwords must match!');
+      return;
+    }
+
+    if (!validatePassword(form.password)) {
+      setError(
+        'Password must be between 8 and 32 characters and contain both letters and numbers.',
+      );
+      return;
+    }
+
+    // Format form data for API call body
     const credentials = auth.formatSignupBody(form);
     auth
       .signup(credentials)
       .then(() => {
+        setError(null);
         setShowModal(true);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((err: auth.AxiosError) => {
+        console.log(err.response?.data);
+        if (err.response?.data) {
+          setError(err.response.data.error);
+        } else {
+          setError('An unknown error occured. Please try again.');
+        }
       });
   };
 
@@ -86,6 +109,7 @@ const SignupForm = (): React.ReactElement => {
             />
           </label>
         )}
+        {error && <div className="error">{error}</div>}
         <input type="submit" value="Sign Up" onClick={onSubmit} />
         <div className="tos">
           By signing up with our site, you are agreeing to our&nbsp;

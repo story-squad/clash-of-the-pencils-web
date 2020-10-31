@@ -1,5 +1,6 @@
 import { axiosWithoutAuth } from './axiosWithConfig';
 import { AxiosResponse } from 'axios';
+export type { AxiosError } from 'axios';
 
 interface SignupBody {
   email: string;

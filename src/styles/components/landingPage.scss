@@ -82,6 +82,9 @@
       font-size: 3rem;
       font-weight: 600;
       text-align: center;
+      @media screen and (max-height: 350px) {
+        font-size: 2.5rem;
+      }
       @media screen and (max-width: 600px) {
         font-size: 2.5rem;
       }
@@ -91,9 +94,10 @@
       @media screen and (max-width: 250px) {
         font-size: 1.5rem;
       }
-      @media screen and (max-height: 350px) {
-        font-size: 2.5rem;
-      }
+    }
+    .error {
+      margin-top: 1vh;
+      color: #fc0036;
     }
 
     label {
