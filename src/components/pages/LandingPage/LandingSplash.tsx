@@ -1,12 +1,15 @@
 import React from 'react';
-import { getInCurTimeZone, makeMoment } from '../../../utils';
+import moment from 'moment';
+
+import { getInCurTimeZone } from '../../../utils';
 
 interface SplashProps {
   isLogin: boolean;
 }
 
-const makeFormattedTime = (h: number, m: number): string => {
-  return getInCurTimeZone(makeMoment(h, m)).format('h:mm A');
+const makeFormattedTime = (time: string): string => {
+  const d = moment().format('YYYY-MM-DD');
+  return getInCurTimeZone(d + ' ' + time).format('h:mm A');
 };
 
 const timeList = [
@@ -15,15 +18,15 @@ const timeList = [
     text: 'Sign in to get the new story-writing prompt and start scribbling',
   },
   {
-    title: makeFormattedTime(12, 0),
+    title: makeFormattedTime('19:00'),
     text: 'The deadline to upload your single-page story',
   },
   {
-    title: makeFormattedTime(12, 30),
+    title: makeFormattedTime('19:30'),
     text: 'Finalists are announced and popular voting begins',
   },
   {
-    title: makeFormattedTime(15, 0),
+    title: makeFormattedTime('22:00'),
     text: 'The winner of the popular vote gets crowned!',
   },
 ];
