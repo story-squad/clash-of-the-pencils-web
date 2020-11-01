@@ -1,4 +1,4 @@
-import moment, { Moment } from 'moment';
+import moment from 'moment';
 
 // export const getInCurTimeZone = (time: Moment): Moment => {
 //   const timeInUTC = time.utc();
@@ -7,6 +7,10 @@ import moment, { Moment } from 'moment';
 //   return timeInUTC.add(localOffset, 'h').subtract(dstOffset, 'h');
 // };
 
-export const getInCurTimeZone = (dt: string): Moment => {
-  return moment(dt).utc(true).local();
+export const formatUTCToLocalTimestring = (time: string): string => {
+  const d = moment().format('YYYY-MM-DD');
+  return moment(d + ' ' + time)
+    .utc(true)
+    .local()
+    .format('h:mm A');
 };
