@@ -6,9 +6,9 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1vh 2vw;
-  font-family: $display-font;
   h2 {
     font-size: 3rem;
+    font-family: $display-font;
     color: #fff;
     a {
       @include text-button(#fff);
@@ -19,6 +19,7 @@ header {
     a,
     span {
       font-size: 2rem;
+      font-family: $display-font;
       padding: 1vh 0 1vh 2vw;
       @include text-button(#fff);
     }
