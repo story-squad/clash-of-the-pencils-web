@@ -22,6 +22,9 @@ header {
       font-family: $display-font;
       padding: 1vh 0 1vh 2vw;
       @include text-button(#fff);
+      &.current {
+        text-decoration: underline;
+      }
     }
   }
 
