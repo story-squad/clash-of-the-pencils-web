@@ -7,6 +7,7 @@ import { LandingPage } from './components/pages/LandingPage';
 import { Activation } from './components/pages/Activated';
 import { Dashboard } from './components/pages/Dashboard';
 import { SubmissionPage } from './components/pages/SubmissionPage';
+import { VotingPage } from './components/pages/VotingPage';
 
 const App: React.FC = () => {
   return (
@@ -23,6 +24,7 @@ const App: React.FC = () => {
         {/* Private Routes */}
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/submission" component={SubmissionPage} />
+        <PrivateRoute path="/voting" component={VotingPage} />
 
         {/* Fallback Redirect to Dashboard */}
         <Route path="/" component={() => <Redirect to="/dashboard" />} />
