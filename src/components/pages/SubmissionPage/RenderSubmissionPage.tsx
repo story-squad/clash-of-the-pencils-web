@@ -1,10 +1,12 @@
 import React from 'react';
+import { Header } from '../../common';
 
 const RenderSubmissionPage = (): React.ReactElement => {
   return (
-    <div className="submission-page">
-      <h2>Submissions</h2>
-    </div>
+    <>
+      <Header />
+      <div className="submission-page"></div>
+    </>
   );
 };
 

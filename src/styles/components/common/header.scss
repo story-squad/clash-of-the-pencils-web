@@ -1,5 +1,5 @@
 header {
-  height: 10vh;
+  height: $header-height;
   background: $boston-blue;
   display: flex;
   flex-flow: row nowrap;
