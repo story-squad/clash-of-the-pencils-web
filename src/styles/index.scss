@@ -9,8 +9,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Source+Sans+Pro:wght@400;500;600;700;900&display=swap');
 
 // Component Stylesheets
-@import './components/landingPage.scss';
-@import './components/dashboard.scss';
+@import './components/pages/landingPage.scss';
+@import './components/pages/dashboard.scss';
 
 // Common Components
-@import './components/modal.scss';
+@import './components/common/modal.scss';
+@import './components/common/header.scss';

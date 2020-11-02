@@ -1,3 +1,11 @@
+@mixin bg-img {
+  background: url('../assets/storysquad.svg');
+  background-size: cover;
+  background-position: 50%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
 @mixin placeholder($color) {
   &::placeholder {
     color: $color;
@@ -37,6 +45,18 @@
   &:hover {
     background-color: darken($bgcolor, 7.5%);
     transition: all 0.2s ease-in-out;
+  }
+}
+
+@mixin text-button($color, $darken-amt: 15%) {
+  color: $color;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease-in;
+  &:active,
+  &:hover {
+    color: darken($color, $darken-amt);
+    transition: all 0.25s ease-in;
   }
 }
 

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import { auth } from '../../../api';
-import { validatePassword } from '../../../utils';
+import { validateSignup } from '../../../utils';
+
 import { Modal } from '../../common';
 import SignupSuccess from './SignupSuccess';
 
@@ -19,33 +21,10 @@ const SignupForm = (): React.ReactElement => {
   const [error, setError] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
 
-    // Check that all fields have content
-    if (
-      Object.values(form).filter((val) => val.length <= 0).length >
-      (parseInt(form.ageStr) < 13 ? 0 : 1)
-    ) {
-      setError('Fields cannot be empty!');
-      return;
-    }
-
-    // Check if passwords match
-    if (form.password !== form.confirm) {
-      setError('Passwords must match!');
-      return;
-    }
-
-    if (!validatePassword(form.password)) {
-      setError(
-        'Password must be between 8 and 32 characters and contain both letters and numbers.',
-      );
-      return;
-    }
-
-    if (parseInt(form.ageStr) === NaN) {
-      setError('Age must be a number.');
+    if (!validateSignup(form, setError)) {
       return;
     }
 

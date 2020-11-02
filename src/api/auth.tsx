@@ -9,7 +9,7 @@ interface SignupBody {
   parentEmail: string;
   age: number;
 }
-interface SignupFormState {
+export interface SignupFormState {
   email: string;
   username: string;
   password: string;

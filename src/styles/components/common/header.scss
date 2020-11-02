@@ -1,0 +1,31 @@
+header {
+  height: 10vh;
+  background: $boston-blue;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1vh 2vw;
+  h2 {
+    font-size: 3rem;
+    font-family: $display-font;
+    color: #fff;
+    a {
+      @include text-button(#fff);
+    }
+  }
+
+  nav {
+    a,
+    span {
+      font-size: 2rem;
+      font-family: $display-font;
+      padding: 1vh 0 1vh 2vw;
+      @include text-button(#fff);
+    }
+  }
+
+  button {
+    @include button($conifer, #fff);
+  }
+}
