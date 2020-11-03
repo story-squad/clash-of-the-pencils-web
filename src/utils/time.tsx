@@ -44,7 +44,7 @@ const schedule = {
   interimEnd: makeScheduleTime(3, 30),
 };
 
-type eventTime = 'SUBMIT' | 'DELIB' | 'VOTE' | 'STREAM' | 'NONE';
+export type eventTime = 'SUBMIT' | 'DELIB' | 'VOTE' | 'STREAM' | 'NONE';
 export const getCurrentEvent = (time?: Moment): eventTime => {
   if (!time) time = moment();
   const now = time.utc().valueOf();
