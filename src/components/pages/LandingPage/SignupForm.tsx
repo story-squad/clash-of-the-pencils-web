@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { auth } from '../../../api';
+import { Auth } from '../../../api';
 import { validateSignup } from '../../../utils';
 
 import { Modal } from '../../common';
@@ -29,14 +29,13 @@ const SignupForm = (): React.ReactElement => {
     }
 
     // Format form data for API call body
-    const credentials = auth.formatSignupBody(form);
-    auth
-      .signup(credentials)
+    const credentials = Auth.formatSignupBody(form);
+    Auth.signup(credentials)
       .then(() => {
         setError(null);
         setShowModal(true);
       })
-      .catch((err: auth.AxiosError) => {
+      .catch((err: Auth.AxiosError) => {
         if (err.response?.data) {
           setError(err.response.data.error);
         } else {

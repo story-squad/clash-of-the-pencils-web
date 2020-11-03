@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import { auth } from '../../../api';
+import { Auth } from '../../../api';
 import { setToken } from '../../../utils';
 import { Modal } from '../../common';
 
@@ -13,8 +13,7 @@ export const Activation = (): React.ReactElement => {
     const activationCode = pathname.split('/activated/')[1];
 
     if (activationCode) {
-      auth
-        .activatedLogin(activationCode)
+      Auth.activatedLogin(activationCode)
         .then((res) => {
           setToken(res.data.token);
           setStatus('You are now being redirected...');

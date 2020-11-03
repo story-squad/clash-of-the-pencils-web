@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { auth } from '../../../api';
+import { Auth } from '../../../api';
 import { setToken } from '../../../utils';
 
 const initialFormState = {
@@ -22,13 +22,12 @@ const LoginForm: React.FC = () => {
       return;
     }
 
-    auth
-      .login(form)
+    Auth.login(form)
       .then((res) => {
         setToken(res.data.token);
         push('/dashboard');
       })
-      .catch((err: auth.AxiosError | string) => {
+      .catch((err: Auth.AxiosError | string) => {
         console.log({ err });
         if (typeof err === 'string') {
           setError(err);
