@@ -5,7 +5,7 @@ import RenderWinnersPage from './RenderWinnersPage';
 const WinnersPageContainer: React.FC = () => {
   return (
     <>
-      <AccessControl page="NONE" />
+      <AccessControl event="NONE" />
       <RenderWinnersPage />
     </>
   );

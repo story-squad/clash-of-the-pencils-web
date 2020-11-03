@@ -5,7 +5,7 @@ import RenderSubmissionPage from './RenderSubmissionPage';
 const SubmissionPageContainer: React.FC = () => {
   return (
     <>
-      <AccessControl page="SUBMIT" />
+      <AccessControl event="SUBMIT" />
       <RenderSubmissionPage />
     </>
   );

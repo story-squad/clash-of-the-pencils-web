@@ -5,7 +5,7 @@ import RenderStreamPage from './RenderStreamPage';
 const StreamPageContainer: React.FC = () => {
   return (
     <>
-      <AccessControl page="STREAM" />
+      <AccessControl event="STREAM" />
       <RenderStreamPage />
     </>
   );

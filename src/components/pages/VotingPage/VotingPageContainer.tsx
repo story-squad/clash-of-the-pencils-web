@@ -5,7 +5,7 @@ import RenderVotingPage from './RenderVotingPage';
 const VotingPageContainer: React.FC = () => {
   return (
     <>
-      <AccessControl page="VOTE" />
+      <AccessControl event="VOTE" />
       <RenderVotingPage />
     </>
   );
