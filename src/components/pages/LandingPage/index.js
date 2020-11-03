@@ -1,1 +1,1 @@
-export { default as LandingPageContainer } from './LandingPageContainer.tsx';
+export { default as LandingPage } from './LandingPageContainer.tsx';

@@ -15,12 +15,15 @@ html {
 }
 
 // Variables
-$text-font: "Source Sans Pro", sans-serif;
-$display-font: "Bangers", sans-serif;
+$text-font: 'Source Sans Pro', sans-serif;
+$display-font: 'Bangers', sans-serif;
 
 // Colors
-$turquoise: #6CEAE6;
-$conifer: #B5D33D;
-$burnt-sienna: #EB7D5B;
-$bright-sun: #FED23F;
-$boston-blue: #429CB5;
+$turquoise: #6ceae6;
+$conifer: #b5d33d;
+$burnt-sienna: #eb7d5b;
+$bright-sun: #fed23f;
+$boston-blue: #429cb5;
+
+$header-height: 10vh;
+$body-height: 100vh - $header-height;
