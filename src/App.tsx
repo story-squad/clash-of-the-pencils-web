@@ -8,6 +8,8 @@ import { Activation } from './components/pages/Activated';
 import { Dashboard } from './components/pages/Dashboard';
 import { SubmissionPage } from './components/pages/SubmissionPage';
 import { VotingPage } from './components/pages/VotingPage';
+import { WinnersPage } from './components/pages/WinnersPage';
+import { StreamPage } from './components/pages/StreamPage';
 
 const App: React.FC = () => {
   return (
@@ -25,6 +27,8 @@ const App: React.FC = () => {
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/submission" component={SubmissionPage} />
         <PrivateRoute path="/voting" component={VotingPage} />
+        <PrivateRoute path="/winners" component={WinnersPage} />
+        <PrivateRoute path="/stream" component={StreamPage} />
 
         {/* Fallback Redirect to Dashboard */}
         <Route path="/" component={() => <Redirect to="/dashboard" />} />
