@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { getToken } from './tokenHelpers';
 
 interface PrivateRouteProps {
+  path: string;
   component: React.ComponentType;
 }
 
@@ -14,7 +15,7 @@ export const PrivateRoute = ({
     <Route
       {...props}
       render={() => {
-        if (getToken()) return <Component {...props} />;
+        if (getToken()) return <Component />;
         else return <Redirect to="/" />;
       }}
     />
