@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import reportWebVitals from './reportWebVitals.tsx';
+import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 
-import App from './App.tsx';
+import App from './App';
 import './styles/index.scss';
 
 import dotenv from 'dotenv';

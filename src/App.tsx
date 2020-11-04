@@ -1,6 +1,5 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { PrivateRoute } from './utils';
 
 // Route Components
 import { LandingPage } from './components/pages/LandingPage';
@@ -10,6 +9,7 @@ import { SubmissionPage } from './components/pages/SubmissionPage';
 import { VotingPage } from './components/pages/VotingPage';
 import { WinnersPage } from './components/pages/WinnersPage';
 import { StreamPage } from './components/pages/StreamPage';
+import { PrivateRoute } from './components/common';
 
 const App: React.FC = () => {
   return (

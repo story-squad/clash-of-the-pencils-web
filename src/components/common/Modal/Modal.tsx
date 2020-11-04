@@ -1,17 +1,5 @@
 import React from 'react';
 
-interface ComponentProps {
-  setVisible: React.Dispatch<boolean>;
-}
-
-interface ModalProps {
-  component: React.ComponentType<ComponentProps>;
-  closable?: boolean;
-  centered?: boolean;
-  visible: boolean;
-  setVisible: React.Dispatch<boolean>;
-}
-
 const Modal = ({
   component: Component,
   closable = true,
@@ -41,4 +29,16 @@ const Modal = ({
     </div>
   );
 };
+
+interface ModalProps {
+  component: React.ComponentType<ComponentProps>;
+  closable?: boolean;
+  centered?: boolean;
+  visible: boolean;
+  setVisible: React.Dispatch<boolean>;
+}
+interface ComponentProps {
+  setVisible: React.Dispatch<boolean>;
+}
+
 export default Modal;

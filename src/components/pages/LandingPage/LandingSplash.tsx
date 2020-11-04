@@ -1,29 +1,6 @@
 import React from 'react';
 import { formatUTCToLocalTimestring } from '../../../utils';
 
-interface SplashProps {
-  isLogin: boolean;
-}
-
-const timeList = [
-  {
-    title: 'Every Morning (7 days a week!)',
-    text: 'Sign in to get the new story-writing prompt and start scribbling',
-  },
-  {
-    title: formatUTCToLocalTimestring('20:00'),
-    text: 'The deadline to upload your single-page story',
-  },
-  {
-    title: formatUTCToLocalTimestring('20:30'),
-    text: 'Finalists are announced and popular voting begins',
-  },
-  {
-    title: formatUTCToLocalTimestring('23:00'),
-    text: 'The winner of the popular vote gets crowned!',
-  },
-];
-
 const Splash = ({ isLogin }: SplashProps): React.ReactElement => {
   return (
     <div className="splash">
@@ -58,5 +35,28 @@ const SignupSplash = () => {
     </>
   );
 };
+
+interface SplashProps {
+  isLogin: boolean;
+}
+
+const timeList = [
+  {
+    title: 'Every Morning (7 days a week!)',
+    text: 'Sign in to get the new story-writing prompt and start scribbling',
+  },
+  {
+    title: formatUTCToLocalTimestring('20:00'),
+    text: 'The deadline to upload your single-page story',
+  },
+  {
+    title: formatUTCToLocalTimestring('20:30'),
+    text: 'Finalists are announced and popular voting begins',
+  },
+  {
+    title: formatUTCToLocalTimestring('23:00'),
+    text: 'The winner of the popular vote gets crowned!',
+  },
+];
 
 export default Splash;

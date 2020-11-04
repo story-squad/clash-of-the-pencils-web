@@ -1,6 +1,6 @@
-import { SignupFormState } from '../api/auth';
+import { SignupFormState } from '../../api/auth';
 
-export const validateSignup = (
+const validateSignup = (
   form: SignupFormState,
   setError: (err: string | null) => void,
 ): boolean => {
@@ -54,3 +54,5 @@ const validatePassword = (pass: string): boolean => {
     return true;
   }
 };
+
+export default validateSignup;
