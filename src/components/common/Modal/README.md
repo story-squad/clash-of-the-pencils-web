@@ -14,8 +14,8 @@ The `Modal` is a `HoC`, which is any component that takes another component as a
 
 The Modal is used in more or less the same way:
 
-```html
-<Modal component="{ComponentName}" />
+```jsx
+<Modal component={ComponentName} />
 ```
 
 ## Properties
