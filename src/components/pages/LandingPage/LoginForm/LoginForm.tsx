@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Auth } from '../../../api';
-import { token } from '../../../utils';
+import { Auth } from '../../../../api';
+import { token } from '../../../../utils';
 
 const initialFormState = {
   email: '',

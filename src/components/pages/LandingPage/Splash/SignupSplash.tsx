@@ -1,24 +1,7 @@
 import React from 'react';
-import { time } from '../../../utils';
+import { time } from '../../../../utils';
 
-const Splash = ({ isLogin }: SplashProps): React.ReactElement => {
-  return (
-    <div className="splash">
-      <h1>Story Squad</h1>
-      {isLogin ? <LoginSplash /> : <SignupSplash />}
-    </div>
-  );
-};
-
-const LoginSplash = () => {
-  return (
-    <h2>
-      Sign in for the <span className="b">Free Daily Story Contest!</span>
-    </h2>
-  );
-};
-
-const SignupSplash = () => {
+const SignupSplash = (): React.ReactElement => {
   return (
     <>
       <h2>
@@ -35,10 +18,6 @@ const SignupSplash = () => {
     </>
   );
 };
-
-interface SplashProps {
-  isLogin: boolean;
-}
 
 const format = 'h:mm A';
 
@@ -61,4 +40,4 @@ const timeList = [
   },
 ];
 
-export default Splash;
+export default SignupSplash;
