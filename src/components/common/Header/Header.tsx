@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, Link, useHistory } from 'react-router-dom';
-import { clearToken } from '../../../utils';
-import { getCurrentEvent } from '../../../utils/time';
+import { token } from '../../../utils';
+import { time } from '../../../utils';
 
 interface HeaderProps {
   title?: string;
@@ -22,7 +22,7 @@ const Header = ({ title = 'Story Squad' }: HeaderProps): React.ReactElement => {
   const [timedRoute, setTimedRoute] = useState<null | RouteData>(null);
 
   useEffect(() => {
-    switch (getCurrentEvent()) {
+    switch (time.getCurrentEvent()) {
       case 'SUBMIT':
         setTimedRoute(submitRoute);
         return;
@@ -42,7 +42,7 @@ const Header = ({ title = 'Story Squad' }: HeaderProps): React.ReactElement => {
   }, []);
 
   const logout = () => {
-    clearToken();
+    token.clear();
     push('/');
   };
 

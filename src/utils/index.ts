@@ -1,3 +1,3 @@
-export { getToken, setToken, clearToken } from './tokenHelpers';
 export { validateSignup } from './validateSignup';
-export { formatUTCToLocalTimestring } from './time';
+export { time } from './time';
+export { token } from './token';

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Auth } from '../../../api';
-import { setToken } from '../../../utils';
+import { token } from '../../../utils';
 
 const initialFormState = {
   email: '',
@@ -24,7 +24,7 @@ const LoginForm: React.FC = () => {
 
     Auth.login(form)
       .then((res) => {
-        setToken(res.data.token);
+        token.set(res.data.token);
         push('/dashboard');
       })
       .catch((err: Auth.AxiosError | string) => {
