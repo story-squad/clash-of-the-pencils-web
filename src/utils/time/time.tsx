@@ -10,32 +10,19 @@ export const utcToLocal = (hour: number, minute: number): Moment => {
 };
 
 // Schedule
-/**
- * Takes a time
- * @param hour integer of the UTC hour
- * @param minute integer of the UTC minutes
- */
-const makeScheduleTime = (hour: number, minute: number): number => {
-  // Create a UTC timecode based on the passed in hour and minute
-  const now = moment.utc().hour(hour).minute(minute);
-  // Subtract an hour during DST for consistency against UTC
-  const dstAdjusted = now.subtract(moment().isDST() ? 1 : 0, 'h');
-  // Return a unix timecode
-  return dstAdjusted.valueOf();
-};
 
 // Store UTC timecodes in the schedule object
 const schedule = {
-  subStart: makeScheduleTime(3, 30),
-  subEnd: makeScheduleTime(20, 0),
-  delibStart: makeScheduleTime(20, 0),
-  delibEnd: makeScheduleTime(20, 30),
-  voteStart: makeScheduleTime(20, 30),
-  voteEnd: makeScheduleTime(23, 0),
-  streamStart: makeScheduleTime(23, 30),
-  streamEnd: makeScheduleTime(24, 0),
-  interimStart: makeScheduleTime(0, 0),
-  interimEnd: makeScheduleTime(3, 30),
+  subStart: utcToLocal(3, 30).valueOf(),
+  subEnd: utcToLocal(20, 0).valueOf(),
+  delibStart: utcToLocal(20, 0).valueOf(),
+  delibEnd: utcToLocal(20, 30).valueOf(),
+  voteStart: utcToLocal(20, 30).valueOf(),
+  voteEnd: utcToLocal(23, 0).valueOf(),
+  streamStart: utcToLocal(23, 30).valueOf(),
+  streamEnd: utcToLocal(24, 0).valueOf(),
+  interimStart: utcToLocal(0, 0).valueOf(),
+  interimEnd: utcToLocal(3, 30).valueOf(),
 };
 
 export type eventTime = 'SUBMIT' | 'DELIB' | 'VOTE' | 'STREAM' | 'NONE';
