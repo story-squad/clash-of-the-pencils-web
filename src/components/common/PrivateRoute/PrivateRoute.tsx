@@ -1,12 +1,13 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { getToken } from './tokenHelpers';
+import { getToken } from '../../../utils/tokenHelpers';
 
 interface PrivateRouteProps {
+  path: string;
   component: React.ComponentType;
 }
 
-export const PrivateRoute = ({
+const PrivateRoute = ({
   component: Component,
   ...props
 }: PrivateRouteProps): React.ReactElement => {
@@ -14,9 +15,11 @@ export const PrivateRoute = ({
     <Route
       {...props}
       render={() => {
-        if (getToken()) return <Component {...props} />;
+        if (getToken()) return <Component />;
         else return <Redirect to="/" />;
       }}
     />
   );
 };
+
+export default PrivateRoute;
