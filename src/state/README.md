@@ -107,7 +107,7 @@ state
     |-- selectors.ts
 ```
 
-- Example `index.js` file:
+- Example `index.ts` file:
 
 ```ts
 // Atom exports
