@@ -11,10 +11,10 @@
     @include sidebar(#aaa);
     display: flex;
     flex-flow: column nowrap;
-    padding: 2vh;
+    padding: 5vh;
 
     .sub-card {
-      margin-bottom: 2vh;
+      margin-bottom: 5vh;
     }
   }
 }
