@@ -1,3 +1,2 @@
-export { validateSignup } from './validateSignup';
-export { time } from './time';
-export { token } from './token';
+export * as time from './time';
+export * as token from './token';

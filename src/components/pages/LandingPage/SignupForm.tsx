@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Auth } from '../../../api';
-import { validateSignup } from '../../../utils';
 
 import { Modal } from '../../common';
 import SignupSuccess from './SignupSuccess';
@@ -23,10 +22,6 @@ const SignupForm = (): React.ReactElement => {
 
   const onSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
-
-    if (!validateSignup(form, setError)) {
-      return;
-    }
 
     // Format form data for API call body
     const credentials = Auth.formatSignupBody(form);
