@@ -4,7 +4,7 @@ This folder contains two directories that split our component architecture into 
 
 ## Common Components
 
-These are meant to be fairly non-specialized so that they can be used in various palces across the application.
+These are meant to be fairly non-specialized so that they can be used in various places across the application.
 
 ## Page Components
 
