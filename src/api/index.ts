@@ -1,4 +1,3 @@
-import * as Auth from './auth';
-import * as Sub from './submissions';
-
-export { Auth, Sub };
+// import * as Auth from './auth';
+export * as Submissions from './Submissions';
+export * as Auth from './Auth';

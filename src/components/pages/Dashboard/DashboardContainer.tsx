@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Sub } from '../../../api';
+import { Submissions } from '../../../api';
 import { Loader } from '../../common';
 import RenderDashboard from './RenderDashboard';
 
 const Dashboard: React.FC = () => {
-  const [picList, setPicList] = useState<Sub.SubItem[]>([]);
+  const [picList, setPicList] = useState<Submissions.SubItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    Sub.getRecentSubsByChild(0)
+    Submissions.getRecentSubsByChild(0)
       .then(({ data }) => {
         setTimeout(() => {
           setPicList(data);
