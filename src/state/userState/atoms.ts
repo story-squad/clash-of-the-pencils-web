@@ -8,7 +8,7 @@ export interface User {
 }
 
 // Initial userState when app is launched
-const initState: null = null;
+const initState = null;
 
 export const userState: Recoil.RecoilState<User | null> = atom<User | null>({
   key: 'userState',
