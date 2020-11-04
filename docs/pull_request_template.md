@@ -4,5 +4,7 @@
 
 * [ ] task to implement the feature
 * [ ] another task
+* [ ] notes on existing tests or plans to test
+* [ ] any known problems and plans to solve them 
 
 ----Any other thoughts...----
