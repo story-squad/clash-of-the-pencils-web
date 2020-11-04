@@ -1,0 +1,16 @@
+.loader {
+  min-height: $body-height;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column nowrap;
+  [class^='css-'] {
+    // This sets the loader component colors
+    border-color: $boston-blue;
+  }
+  .message {
+    margin-top: 2.5vh;
+    font-family: $text-font;
+    font-size: 1.5rem;
+  }
+}

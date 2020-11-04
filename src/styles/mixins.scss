@@ -73,3 +73,10 @@
   font-size: $size;
   line-height: $size + 1rem;
 }
+
+@mixin sidebar($accent) {
+  width: $sidebar-width;
+  height: $body-height;
+  border-left: 1px solid $accent;
+  overflow-y: scroll;
+}

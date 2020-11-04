@@ -1,3 +1,20 @@
 .dashboard {
   min-height: $body-height;
+  display: flex;
+  flex-flow: row nowrap;
+
+  .content {
+    width: 100vw - $sidebar-width;
+  }
+
+  .sidebar {
+    @include sidebar(#aaa);
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 5vh;
+
+    .sub-card {
+      margin-bottom: 5vh;
+    }
+  }
 }
