@@ -1,5 +1,153 @@
 .landing-page {
-  display: flex;
   min-height: 100vh;
   background-color: $dark-blue;
+
+  // Header
+  .landing-header {
+    background-color: $jade;
+    padding: 1rem 5vw;
+    color: $white;
+
+    h2 {
+      font-family: $display-font;
+      font-size: 2.4rem;
+    }
+
+    svg {
+      font-size: 2.4rem;
+      cursor: pointer;
+      color: $white;
+      transition: all 0.15s ease-in;
+      &:hover {
+        transition: all 0.15s ease-in;
+        color: darken($white, 10%);
+      }
+    }
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    position: relative;
+    z-index: 3;
+    overflow-x: hidden;
+  }
+
+  // Nav Menu Styling/Animation
+  .nav-menu {
+    height: 0;
+    position: relative;
+    z-index: 2;
+
+    .menu-container {
+      // Use these for spacing to maintain animation
+      $font-size: 1.7rem; // font size
+      $vertical-padding: 1rem; // space between menu items
+      $menu-item-count: 4; // number of items in menu
+
+      position: absolute;
+      bottom: auto;
+      top: 0;
+      right: 0;
+      transition: all 0.5s ease-in-out;
+      &.hidden {
+        // Uses the variables to calculate position for animation
+        top: -2 * $menu-item-count * $vertical-padding - $menu-item-count *
+          $font-size - 0.2rem; // the extra .0 is for visual consistency
+        transition: all 0.5s ease-in-out;
+      }
+
+      display: flex;
+      flex-flow: column nowrap;
+      border-radius: 0 0 0 4px;
+      overflow: hidden;
+
+      font-family: $text-font;
+      font-size: 1.7rem;
+      font-weight: 500;
+      a {
+        color: $white;
+        text-decoration: none;
+      }
+
+      .menu-item {
+        padding: $vertical-padding 2rem;
+        transition: all 0.2s ease-in-out;
+        background-color: $blue;
+        text-align: center;
+
+        &:hover {
+          cursor: pointer;
+          background-color: darken($blue, 10%);
+          transition: all 0.2s ease-in-out;
+        }
+
+        &:last-of-type {
+          padding-bottom: $vertical-padding + 0.2rem;
+        }
+      }
+    }
+  }
+
+  // Page Styling
+  h1 {
+    font-family: $display-font;
+    color: $white;
+    font-size: 3.6rem;
+    text-align: center;
+  }
+
+  p {
+    margin: 2rem auto;
+    font-family: $text-font;
+    color: $white;
+    font-size: 1.8rem;
+    line-height: 2.5rem;
+  }
+
+  // Consistent Padding is OP
+  .info-page,
+  form {
+    padding: 2rem 5vw;
+  }
+
+  // Form
+  form {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    .server-error {
+      color: $red;
+      font-family: $display-font;
+      text-shadow: 0 4px 4px #0005;
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+    .form-input {
+      width: 100%;
+    }
+    .text {
+      width: 100%;
+      font-size: 1.4rem;
+      color: $white;
+      font-family: $text-font;
+      margin: 0 0 2rem;
+      line-height: 2rem;
+      a,
+      .text-button {
+        color: $white;
+        transition: all 0.15s ease-in;
+        text-decoration: underline;
+        cursor: pointer;
+        &:hover {
+          color: darken($white, 15%);
+          transition: all 0.15s ease-in;
+        }
+      }
+    }
+
+    input[type='submit'] {
+      @include button($orange);
+      margin: 1rem auto;
+    }
+  }
 }

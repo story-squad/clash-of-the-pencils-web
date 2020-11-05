@@ -4,3 +4,4 @@ export { PrivateRoute } from './PrivateRoute';
 export { AccessControl } from './AccessControl';
 export { SubCard } from './SubCard';
 export { Loader } from './Loader';
+export { Input } from './Input';
