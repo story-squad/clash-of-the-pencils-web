@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { time } from '../../../../utils';
 
 const Info = (): React.ReactElement => {
@@ -7,9 +8,12 @@ const Info = (): React.ReactElement => {
       <h1>How It Works</h1>
       {timeList.map((li, i) => (
         <p key={i}>
-          {li.title}: {li.text}
+          <span className="title">{li.title}</span>: {li.text}
         </p>
       ))}
+      <p>
+        Unleash your creativity and <Link to="/signup">Sign Up</Link> today!
+      </p>
     </div>
   );
 };
