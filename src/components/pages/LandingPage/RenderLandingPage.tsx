@@ -9,25 +9,12 @@ const LandingPage = (): React.ReactElement => {
   return (
     <div className="landing-page">
       <Switch>
-        <Route
-          exact
-          path={['/', '/login']}
-          component={() => (
-            <>
-              <Splash isLogin={true} />
-              <Login />
-            </>
-          )}
-        />
+        <Route exact path="/" component={() => <Splash isLogin={false} />} />
+        <Route exact path="/login" component={() => <Login />} />
         <Route
           exact
           path={['/register', '/signup']}
-          component={() => (
-            <>
-              <Splash isLogin={false} />
-              <Signup />
-            </>
-          )}
+          component={() => <Signup />}
         />
       </Switch>
     </div>
