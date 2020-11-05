@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Splash from './LandingSplash';
-import LoginForm from './LoginForm';
-import SignupForm from './SignupForm';
+import { Splash } from './Splash';
+import { Login } from './LoginForm';
+import { Signup } from './SignupForm';
 
 const LandingPage = (): React.ReactElement => {
   return (
@@ -15,7 +15,7 @@ const LandingPage = (): React.ReactElement => {
           component={() => (
             <>
               <Splash isLogin={true} />
-              <LoginForm />
+              <Login />
             </>
           )}
         />
@@ -25,7 +25,7 @@ const LandingPage = (): React.ReactElement => {
           component={() => (
             <>
               <Splash isLogin={false} />
-              <SignupForm />
+              <Signup />
             </>
           )}
         />
