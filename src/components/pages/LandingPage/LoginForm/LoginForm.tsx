@@ -1,68 +1,61 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Auth } from '../../../../api';
 import { token } from '../../../../utils';
 
-const initialFormState = {
-  email: '',
-  password: '',
-};
+import { useForm, SubmitHandler } from 'react-hook-form';
 
 const LoginForm: React.FC = () => {
-  const [form, setForm] = useState(initialFormState);
-  const [error, setError] = useState<string | null>(null);
+  const { register, handleSubmit, errors, setError, clearErrors } = useForm();
   const { push } = useHistory();
 
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const formError = (message: string): void =>
+    setError('form', { type: 'manual', message });
 
-    // Check for empty fields
-    if (form.email.length <= 0 || form.password.length <= 0) {
-      setError('Fields cannot be empty!');
-      return;
-    }
-
-    Auth.login(form)
+  const onSubmit: SubmitHandler<Auth.LoginBody> = (data) => {
+    console.log(data);
+    Auth.login(data)
       .then((res) => {
         token.set(res.data.token);
         push('/dashboard');
       })
-      .catch((err: Auth.AxiosError | string) => {
+      .catch((err: Auth.AxiosError) => {
         console.log({ err });
-        if (typeof err === 'string') {
-          setError(err);
-        } else if (err.response?.data) {
-          setError(err.response.data.error);
+        if (err.response?.data) {
+          formError(err.response.data.error);
         } else {
-          setError('An unknown error occurred. Please try again.');
+          formError('An error occurred while attempting to log in.');
         }
       });
   };
 
-  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setError(null);
-    setForm((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  useEffect(() => {
+    console.log(errors);
+    if (errors.password || errors.email) formError('Fields cannot be empty!');
+  }, [errors]);
 
   return (
-    <form className="login-form">
+    <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
       <h2>Log In!</h2>
       <label>
-        <input onChange={changeHandler} name="email" placeholder="Email" />
+        <input
+          ref={register({ required: 'Please enter your email!' })}
+          name="email"
+          placeholder="Email"
+          className={errors.email ? 'error' : undefined}
+        />
       </label>
       <label>
         <input
-          onChange={changeHandler}
+          ref={register({ required: 'Please enter your password!' })}
           name="password"
           placeholder="Password"
           type="password"
+          className={errors.password ? 'error' : undefined}
         />
       </label>
-      {error && <div className="error">{error}</div>}
-      <input type="submit" value="Log In" onClick={onSubmit} />
+      {errors.form && <div className="error">{errors.form.message}</div>}
+      <input type="submit" value="Log In" onClick={() => clearErrors('form')} />
       <div>
         Don&apos;t have an account?
         <br />

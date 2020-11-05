@@ -25,6 +25,10 @@
   color: #000;
   font-family: $text-font;
   @include placeholder(#999);
+
+  &.error {
+    border-color: #f00;
+  }
 }
 
 @mixin button(
