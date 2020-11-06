@@ -1,6 +1,6 @@
 # Input
 
-The input component was designed to be a consistent way to display input fields in HTML forms. It displays label text, the input field, and an error message when one is available, and uses its own stylesheet to ensure consisten styling across apps.
+The input component was designed to be a consistent way to display input fields in HTML forms. It displays label text, the input field, and an error message when one is available, and uses its own stylesheet to ensure consistent styling across apps.
 
 ## Properties
 
@@ -14,7 +14,7 @@ It also takes the `register` property, which can be destructured from the `useFo
 
 > `const { register, errors } = useForm();`
 
-- `register` - a funciton that connects your input to the form state
+- `register` - a function that connects your input to the form state
 - `errors` - an object containing all of a form's current errors
 
 Optionally, you can pass in a `rules` object, which contains the validation rules of that input field:

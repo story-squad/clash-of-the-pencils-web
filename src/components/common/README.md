@@ -18,7 +18,7 @@ The components should NOT be imported from their named folders:
 
 ## File Structure
 
-Each folder in `common/` should be capitalized, as it should be an isolated component module. As with any module, best practice is to export anything you'd like to use elsewhere form an `index` file. As such, each Component folder should follow this pattern:
+Each folder in `common/` should be capitalized, as it should be an isolated component module. As with any module, best practice is to export anything you'd like to use elsewhere from an `index` file. As such, each Component folder should follow this pattern:
 
 ```text
 common/
