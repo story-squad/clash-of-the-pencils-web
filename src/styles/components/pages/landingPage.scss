@@ -127,16 +127,11 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    padding: 3rem 2rem;
 
     & > div {
-      max-width: 600px;
+      max-width: 800px;
       width: 100%;
-    }
-
-    .thought-bubble {
-      @media screen and (min-width: $mid) {
-        margin-top: 5rem;
-      }
     }
 
     .flex-wrapper {
@@ -196,13 +191,20 @@
     .info-wrapper {
       display: flex;
       flex-flow: column nowrap;
+      align-items: center;
+      width: 100%;
 
       p {
+        max-width: 400px;
         font-weight: 300;
         .title {
           font-weight: 400;
           color: $orange;
         }
+      }
+      a {
+        @include button($orange);
+        font-size: 2.4rem;
       }
     }
   }

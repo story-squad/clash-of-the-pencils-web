@@ -1,11 +1,9 @@
 // Dragon Image
 .dragon-boi {
-  display: flex;
-  flex-flow: column nowrap;
-
   img {
-    // dragon boi
-    max-width: 241px;
+    width: 100%;
+    min-width: 240px;
+    max-width: 400px;
   }
 }
 
@@ -57,6 +55,7 @@
 .landing-splash {
   padding: 3rem 2rem;
   background-color: $ltblue;
+  flex-grow: 1;
   & + * {
     padding: 3rem 2rem;
     @media screen and (min-width: $tablet) {

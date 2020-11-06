@@ -18,9 +18,8 @@ const Info = (): React.ReactElement => {
             <span className="title">{li.title}</span>: {li.text}
           </p>
         ))}
-        <p>
-          Unleash your creativity and <Link to="/signup">Sign Up</Link> today!
-        </p>
+        <p>Unleash your creativity and sign up today!</p>
+        <Link to="/signup">Create Account</Link>
       </div>
     </div>
   );
