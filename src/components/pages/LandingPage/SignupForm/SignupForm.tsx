@@ -40,14 +40,14 @@ const SignupForm = (): React.ReactElement => {
 
   return (
     <>
-      <Modal
-        visible={showModal}
-        setVisible={setShowModal}
-        component={SignupSuccess}
-        closable={false}
-        centered={true}
-      />
       <div className="landing-form">
+        <Modal
+          visible={showModal}
+          setVisible={setShowModal}
+          component={SignupSuccess}
+          closable={false}
+          centered={true}
+        />
         <div className="landing-splash">
           <ThoughtBubble />
           <DragonBoi />

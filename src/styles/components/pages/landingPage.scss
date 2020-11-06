@@ -89,11 +89,7 @@
       }
 
       .menu-item {
-        order: 1;
         &.login-button {
-          @media screen and (min-width: $tablet) {
-            order: 2;
-          }
           @media screen and (min-width: $large) {
             margin-left: 7.5rem;
           }
