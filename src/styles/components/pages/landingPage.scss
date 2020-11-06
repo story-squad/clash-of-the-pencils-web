@@ -103,21 +103,109 @@
     line-height: 2.5rem;
     a {
       color: $white;
+      font-weight: 500;
     }
   }
 
   // Consistent Padding is OP
   .info-page,
+  .home-page,
   form {
     padding: 2rem 5vw;
   }
 
+  // Home Page
+  .home-page {
+    display: flex;
+    flex-flow: column nowrap;
+
+    @mixin bubble($diff) {
+      background-color: $white;
+      border: 2px solid $charcoal;
+      border-radius: 25vw;
+      box-shadow: 0 $diff 4px #0005;
+    }
+
+    .thought-bubble {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: $text-font;
+      padding: 2.5rem 3rem;
+      font-size: 1.3rem;
+      line-height: 1.7rem;
+      @include bubble(4px);
+    }
+
+    .thought-trail-1 {
+      width: 55%;
+      margin-top: 1.4rem;
+      display: flex;
+      flex-flow: row-reverse nowrap;
+
+      .bubble {
+        padding: 0.85rem;
+        @include bubble(2px);
+      }
+    }
+
+    .thought-trail-2 {
+      width: 45%;
+      margin-top: 1rem;
+      display: flex;
+      flex-flow: row-reverse nowrap;
+
+      .bubble {
+        padding: 0.55rem;
+        @include bubble(1px);
+      }
+    }
+
+    img {
+      // dragon boi
+      width: 241px;
+    }
+
+    .links {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-evenly;
+      margin: 3rem 0;
+      a {
+        color: $white;
+        font-size: 3.6rem;
+        font-family: $display-font;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+          color: darken($white, 15%);
+          transition: all 0.2s ease-in-out;
+        }
+      }
+    }
+
+    .learn-more {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      a {
+        @include button($blue, $padding: 1rem 5rem 0.8rem);
+        text-decoration: none;
+        font-size: 2.4rem;
+      }
+    }
+  }
+
   // Info Page
   .info-page {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+
     p {
       font-weight: 300;
       .title {
         font-weight: 400;
+        color: $orange;
       }
     }
   }
