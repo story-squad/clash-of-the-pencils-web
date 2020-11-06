@@ -1,10 +1,14 @@
 # Recoil - Global State Management
 
+> In this project we are using `Recoil.js` for our global/shared state management.
+
 ## What is `Recoil`?
 
 `Recoil` is a global state management library for `React` still in development by the team at Facebook. It has been opened up to the public and is available for use in other projects. It is only compatible with `Functional Components`. It cannot be used by `Class Components` currently. Some features that are in development are unstable and are not recommended for use. `Recoil` provides a simple yet powerful solution to implementing a global state management setup in your applications.
 
-Find out more about `Recoil` <a href="https://recoiljs.org/" target="_blank">here</a>
+- Find out more about `Recoil` <a href="https://recoiljs.org/" target="_blank">here</a>
+
+- An official `Recoil` tutorial project can be found <a href="https://recoiljs.org/docs/basic-tutorial/intro" target="_blank">here</a>
 
 ---
 
@@ -107,7 +111,7 @@ state
     |-- selectors.ts
 ```
 
-- Example `index.js` file:
+- Example `index.ts` file:
 
 ```ts
 // Atom exports
