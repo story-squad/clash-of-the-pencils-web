@@ -1,0 +1,139 @@
+// Dragon Image
+.dragon-boi {
+  display: flex;
+  flex-flow: column nowrap;
+
+  img {
+    // dragon boi
+    max-width: 241px;
+  }
+}
+
+// Thought Bubble
+.thought-bubble {
+  @mixin bubble($diff) {
+    background-color: $white;
+    border: 2px solid $charcoal;
+    border-radius: 25vw;
+    box-shadow: 0 $diff 4px #0005;
+  }
+  .text-bubble {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: $text-font;
+    padding: 2.5rem 3rem;
+    font-size: 1.7rem;
+    line-height: 2.2rem;
+    @include bubble(4px);
+    @media screen and (min-width: $mid) {
+      font-size: 2.5rem;
+      line-height: 3.3rem;
+    }
+  }
+  .thought-trail-1 {
+    width: 55%;
+    margin-top: 1.4rem;
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    .bubble {
+      padding: 0.85rem;
+      @include bubble(2px);
+    }
+  }
+  .thought-trail-2 {
+    width: 45%;
+    margin-top: 1rem;
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    .bubble {
+      padding: 0.55rem;
+      @include bubble(1px);
+    }
+  }
+}
+
+// Controls the left-hand splash display on landing page
+.landing-splash {
+  padding: 3rem 2rem;
+  background-color: $ltblue;
+  & + * {
+    padding: 3rem 2rem;
+    @media screen and (min-width: $tablet) {
+      max-width: 400px;
+    }
+  }
+
+  display: none;
+  @media screen and (min-width: $tablet) {
+    display: block;
+  }
+  .text-bubble {
+    font-size: 2rem;
+    line-height: 2.3rem;
+  }
+}
+
+.landing-form {
+  // Login/Signup Forms
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: stretch;
+
+  form {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 100%;
+    .server-error {
+      color: $red;
+      font-family: $display-font;
+      text-shadow: 0 4px 4px #0005;
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+    .form-input {
+      width: 100%;
+    }
+    .text {
+      width: 100%;
+      font-size: 1.4rem;
+      color: $white;
+      font-family: $text-font;
+      margin: 0 0 2rem;
+      line-height: 2rem;
+      a,
+      .text-button {
+        color: $white;
+        transition: all 0.15s ease-in;
+        text-decoration: underline;
+        cursor: pointer;
+        &:hover {
+          color: darken($white, 15%);
+          transition: all 0.15s ease-in;
+        }
+      }
+    }
+
+    input[type='submit'] {
+      @include button($orange);
+      margin: 1rem auto;
+      font-size: 2.4rem;
+    }
+  }
+
+  // Modal for Signup
+  .modal {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    p {
+      color: $charcoal;
+      margin-top: 0;
+    }
+    button {
+      @include button($orange);
+      margin: 0 auto;
+    }
+  }
+}

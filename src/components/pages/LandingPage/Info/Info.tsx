@@ -1,19 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { time } from '../../../../utils';
+import { DragonBoi } from '../../DragonBoi';
+import { ThoughtBubble } from '../ThoughtBubble';
 
 const Info = (): React.ReactElement => {
   return (
     <div className="info-page">
-      <h1>How It Works</h1>
-      {timeList.map((li, i) => (
-        <p key={i}>
-          <span className="title">{li.title}</span>: {li.text}
+      <div className="landing-splash">
+        <ThoughtBubble />
+        <DragonBoi />
+      </div>
+      <div className="info-wrapper">
+        <h1>How It Works</h1>
+        {timeList.map((li, i) => (
+          <p key={i}>
+            <span className="title">{li.title}</span>: {li.text}
+          </p>
+        ))}
+        <p>
+          Unleash your creativity and <Link to="/signup">Sign Up</Link> today!
         </p>
-      ))}
-      <p>
-        Unleash your creativity and <Link to="/signup">Sign Up</Link> today!
-      </p>
+      </div>
     </div>
   );
 };
