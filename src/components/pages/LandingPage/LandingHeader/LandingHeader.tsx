@@ -23,6 +23,11 @@ const LandingHeader = (): React.ReactElement => {
             </Link>
           </div>
           <div className="menu-item">
+            <Link to="/" onClick={() => setShowMenu(false)}>
+              Vote
+            </Link>
+          </div>
+          <div className="menu-item login-button">
             <Link to="/login" onClick={() => setShowMenu(false)}>
               Login
             </Link>
