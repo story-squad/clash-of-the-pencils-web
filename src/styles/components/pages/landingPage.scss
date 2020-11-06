@@ -36,7 +36,7 @@
     flex-flow: row nowrap;
     justify-content: space-between;
     position: relative;
-    z-index: 3;
+    z-index: 5;
     overflow-x: hidden;
 
     @media screen and (min-width: $tablet) {
@@ -48,7 +48,7 @@
   .nav-menu {
     height: 0;
     position: relative;
-    z-index: 2;
+    z-index: 4;
 
     // Make the body element (element immediately after nav) fill the screen
     & + div {
