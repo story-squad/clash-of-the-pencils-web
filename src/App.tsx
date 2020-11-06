@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import ReactGA from 'react-ga';
 
 // Route Components
 import { LandingPage } from './components/pages/LandingPage';
@@ -12,6 +13,14 @@ import { StreamPage } from './components/pages/StreamPage';
 import { PrivateRoute } from './components/common';
 
 const App: React.FC = () => {
+  //this side effect should run on every page change. It will stream user data to our google analytics account to be used for later optimization
+  //initialize the Google Analytics data stream as soon as the App mounts
+  useEffect(() => {
+    ReactGA.initialize('UA-182257985-3');
+    //Report Page View
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
+
   return (
     <div className="App">
       <Switch>
