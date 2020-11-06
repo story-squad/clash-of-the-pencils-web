@@ -18,7 +18,7 @@ const App: React.FC = () => {
         {/* Public Routes */}
         <Route
           exact
-          path={['/', '/login', '/register', '/signup']}
+          path={['/', '/login', '/register', '/signup', '/info']}
           component={() => <LandingPage />}
         />
         <Route path="/activated/:token" component={Activation} />

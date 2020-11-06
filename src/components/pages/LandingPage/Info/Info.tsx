@@ -1,21 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { time } from '../../../../utils';
 
-const SignupSplash = (): React.ReactElement => {
+const Info = (): React.ReactElement => {
   return (
-    <>
-      <h2>
-        Sign up for our <span className="b">Free Daily Story Contest!</span>
-      </h2>
-      <h3>How It Works</h3>
-      <ul>
-        {timeList.map((li, i) => (
-          <li key={i}>
-            <span className="b">{li.title}:</span> {li.text}
-          </li>
-        ))}
-      </ul>
-    </>
+    <div className="info-page">
+      <h1>How It Works</h1>
+      {timeList.map((li, i) => (
+        <p key={i}>
+          <span className="title">{li.title}</span>: {li.text}
+        </p>
+      ))}
+      <p>
+        Unleash your creativity and <Link to="/signup">Sign Up</Link> today!
+      </p>
+    </div>
   );
 };
 
@@ -39,5 +38,4 @@ const timeList = [
     text: 'The winner of the popular vote gets crowned!',
   },
 ];
-
-export default SignupSplash;
+export default Info;

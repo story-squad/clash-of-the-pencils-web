@@ -1,165 +1,253 @@
 .landing-page {
-  display: flex;
-  flex-flow: row nowrap;
   min-height: 100vh;
-  @include bg-img;
+  background-color: $dark-blue;
 
-  // LEFT SIDE OF THE PAGE
-  .splash {
-    width: 60%;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: stretch;
-    font-family: $text-font;
-    padding: 2vh 2vw;
-    .b {
-      font-weight: 700;
-    }
-    h1 {
-      font-family: $display-font;
-      font-size: 4rem;
-      margin-bottom: 1rem;
-      color: $boston-blue;
-      text-align: center;
-      @media screen and (max-width: 400px) {
-        font-size: 2rem;
-      }
-    }
+  // Header
+  .landing-header {
+    background-color: $jade;
+    padding: 1rem 5vw;
+    color: $white;
+
     h2 {
-      font-family: $text-font;
-      font-size: 2.5rem;
-      text-align: center;
-      margin-bottom: 2rem;
-      @media screen and (max-width: 400px) {
-        font-size: 1.7rem;
-        margin-bottom: 1rem;
-      }
-    }
-    h3 {
       font-family: $display-font;
-      font-size: 2.3rem;
-      text-align: center;
-      margin-bottom: 1rem;
-      color: $boston-blue;
-      @media screen and (max-width: 400px) {
-        font-size: 1.5rem;
+      font-size: 2.4rem;
+    }
+
+    svg {
+      font-size: 2.4rem;
+      cursor: pointer;
+      color: $white;
+      transition: all 0.15s ease-in;
+      &:hover {
+        transition: all 0.15s ease-in;
+        color: darken($white, 10%);
       }
     }
-    ul {
-      width: 80%;
-      margin: 0 auto;
-      @media screen and (max-width: 400px) {
-        width: 90%;
-      }
-      li {
-        font-size: 1.5rem;
-        margin-bottom: 2vh;
-      }
-    }
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    position: relative;
+    z-index: 3;
+    overflow-x: hidden;
   }
 
-  // RIGHT SIDE OF THE PAGE, Login/Signup forms
-  form {
-    width: 40%;
-    display: flex;
-    flex-flow: column nowrap;
-    padding: 5vh 2.5vw 1.5vh;
-    font-family: $text-font;
-    background-color: #fff5;
-    min-height: 100vh;
-    // Make the login form align vertically on the page
-    &.login-form {
-      justify-content: center;
-    }
+  // Nav Menu Styling/Animation
+  .nav-menu {
+    height: 0;
+    position: relative;
+    z-index: 2;
 
-    // Form title scaling down
-    h2 {
-      font-size: 3rem;
-      font-weight: 600;
-      text-align: center;
-      @media screen and (max-height: 350px) {
-        font-size: 2.5rem;
-      }
-      @media screen and (max-width: 600px) {
-        font-size: 2.5rem;
-      }
-      @media screen and (max-width: 350px) {
-        font-size: 2rem;
-      }
-      @media screen and (max-width: 250px) {
-        font-size: 1.5rem;
-      }
-    }
-    .error {
-      margin-top: 1vh;
-      color: #fc0036;
-    }
+    .menu-container {
+      // Use these for spacing to maintain animation
+      $font-size: 1.7rem; // font size
+      $vertical-padding: 1rem; // space between menu items
+      $menu-item-count: 4; // number of items in menu
 
-    label {
+      position: absolute;
+      bottom: auto;
+      top: 0;
+      right: 0;
+      transition: all 0.5s ease-in-out;
+      &.hidden {
+        // Uses the variables to calculate position for animation
+        top: -2 * $menu-item-count * $vertical-padding - $menu-item-count *
+          $font-size - 0.2rem; // the extra .0 is for visual consistency
+        transition: all 0.5s ease-in-out;
+      }
+
       display: flex;
       flex-flow: column nowrap;
-      margin-top: 2.5vh;
-      font-size: 1.5rem;
-      text-align: center;
+      border-radius: 0 0 0 4px;
+      overflow: hidden;
 
-      input {
-        margin-top: 1vh;
-        @include input-field;
-      }
-    }
-    // Mixin for the specific styles for the buttons on this page
-    @mixin spbtn($bgcolor, $txtcolor, $padding) {
-      @include button($bgcolor, $txtcolor, $padding);
-      margin: 2.5vh 5vw;
-      font-size: 1.5rem;
-      @media screen and (max-width: 300px) {
-        margin: 2.5vh 1vw;
-        font-size: 1rem;
-      }
-    }
+      .menu-item a {
+        font-family: $text-font;
+        font-size: $font-size;
+        line-height: $font-size - 0.2rem;
+        font-weight: 500;
+        display: block;
+        color: $white;
+        text-decoration: none;
+        padding: $vertical-padding 2rem;
+        transition: all 0.2s ease-in-out;
+        background-color: $blue;
+        text-align: center;
 
-    // Form button input
-    & > input {
-      @include spbtn($boston-blue, #fff, 2vh 2vw);
-      font-weight: 600;
-    }
-    // DIVs in the form
-    div {
-      font-weight: 600;
-      font-size: 1.3rem;
-      text-align: center;
-      line-height: 1.5rem;
-      a {
-        font-size: 1.5rem;
-        color: $boston-blue;
-      }
-      .text-button {
-        color: $boston-blue;
-        cursor: pointer;
-        white-space: nowrap;
-        @media screen and (max-width: 350px) {
-          white-space: normal;
+        &:hover {
+          cursor: pointer;
+          background-color: darken($blue, 10%);
+          transition: all 0.2s ease-in-out;
+        }
+
+        &:last-of-type {
+          padding-bottom: $vertical-padding + 0.2rem;
         }
       }
-      &.tos {
-        margin-bottom: 2.5vh;
-        font-weight: 400;
-      }
-    }
-    button {
-      @include spbtn($bright-sun, #000, 2vh 2vw);
     }
   }
 
-  // Success message styling for modal
-  .signup-success {
+  // Page Styling
+  h1 {
+    font-family: $display-font;
+    color: $white;
+    font-size: 3.6rem;
     text-align: center;
-    @include paragraph(1.5rem);
+  }
 
-    button {
-      margin-top: 1vh;
-      @include button($conifer, #000);
+  p {
+    margin: 2rem auto;
+    font-family: $text-font;
+    color: $white;
+    font-size: 1.8rem;
+    line-height: 2.5rem;
+    a {
+      color: $white;
+      font-weight: 500;
+    }
+  }
+
+  // Consistent Padding is OP
+  .info-page,
+  .home-page,
+  form {
+    padding: 2rem 5vw;
+  }
+
+  // Home Page
+  .home-page {
+    display: flex;
+    flex-flow: column nowrap;
+
+    @mixin bubble($diff) {
+      background-color: $white;
+      border: 2px solid $charcoal;
+      border-radius: 25vw;
+      box-shadow: 0 $diff 4px #0005;
+    }
+
+    .thought-bubble {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: $text-font;
+      padding: 2.5rem 3rem;
+      font-size: 1.3rem;
+      line-height: 1.7rem;
+      @include bubble(4px);
+    }
+
+    .thought-trail-1 {
+      width: 55%;
+      margin-top: 1.4rem;
+      display: flex;
+      flex-flow: row-reverse nowrap;
+
+      .bubble {
+        padding: 0.85rem;
+        @include bubble(2px);
+      }
+    }
+
+    .thought-trail-2 {
+      width: 45%;
+      margin-top: 1rem;
+      display: flex;
+      flex-flow: row-reverse nowrap;
+
+      .bubble {
+        padding: 0.55rem;
+        @include bubble(1px);
+      }
+    }
+
+    img {
+      // dragon boi
+      width: 241px;
+    }
+
+    .links {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-evenly;
+      margin: 3rem 0;
+      a {
+        color: $white;
+        font-size: 3.6rem;
+        font-family: $display-font;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+          color: darken($white, 15%);
+          transition: all 0.2s ease-in-out;
+        }
+      }
+    }
+
+    .learn-more {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      a {
+        @include button($blue, $padding: 1rem 5rem 0.8rem);
+        text-decoration: none;
+        font-size: 2.4rem;
+      }
+    }
+  }
+
+  // Info Page
+  .info-page {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+
+    p {
+      font-weight: 300;
+      .title {
+        font-weight: 400;
+        color: $orange;
+      }
+    }
+  }
+
+  // Form
+  form {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    .server-error {
+      color: $red;
+      font-family: $display-font;
+      text-shadow: 0 4px 4px #0005;
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+    .form-input {
+      width: 100%;
+    }
+    .text {
+      width: 100%;
+      font-size: 1.4rem;
+      color: $white;
+      font-family: $text-font;
+      margin: 0 0 2rem;
+      line-height: 2rem;
+      a,
+      .text-button {
+        color: $white;
+        transition: all 0.15s ease-in;
+        text-decoration: underline;
+        cursor: pointer;
+        &:hover {
+          color: darken($white, 15%);
+          transition: all 0.15s ease-in;
+        }
+      }
+    }
+
+    input[type='submit'] {
+      @include button($orange);
+      margin: 1rem auto;
     }
   }
 }
