@@ -8,13 +8,15 @@ const SignupSuccess: React.FC = () => {
     push('/');
   };
   return (
-    <p className="signup-success">
-      Thanks for signing up!
-      <br />
-      Check your email for a verification link to log in.
-      <br />
+    <>
+      <p className="signup-success">
+        Thanks for signing up!
+        <br />
+        Check your email for a verification link to log in.
+        <br />
+      </p>
       <button onClick={clickHandler}>Home</button>
-    </p>
+    </>
   );
 };
 
