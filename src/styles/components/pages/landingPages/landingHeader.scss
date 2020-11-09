@@ -10,7 +10,9 @@
   }
 
   svg {
+    // This is the hanburger menu icon, which can be styled as if it's text
     @media screen and (min-width: $tablet) {
+      // Hide the icon on larger screen sizes, as the menu is never hidden so the button is not needed
       display: none;
     }
     font-size: 2.4rem;
@@ -23,14 +25,18 @@
     }
   }
 
+  // Position the title and hanburger icon at opposite ends of the header
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+
+  // Position the header in FRONT of the nav menu for animation purposes
   position: relative;
   z-index: 5;
   overflow-x: hidden;
 
   @media screen and (min-width: $tablet) {
+    // At higher screen sizes, move the header position back so the nav manu can show on top of it
     z-index: 1;
   }
 }
