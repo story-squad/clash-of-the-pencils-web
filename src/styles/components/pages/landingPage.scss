@@ -1,11 +1,16 @@
+// Import Styles for DragonBoi
+@import './landingElements.scss';
+
 .landing-page {
   min-height: 100vh;
   background-color: $dark-blue;
+  display: flex;
+  flex-flow: column nowrap;
 
   // Header
   .landing-header {
-    background-color: $jade;
-    padding: 1rem 5vw;
+    background-color: $orange;
+    padding: 1rem 2rem;
     color: $white;
 
     h2 {
@@ -14,6 +19,9 @@
     }
 
     svg {
+      @media screen and (min-width: $tablet) {
+        display: none;
+      }
       font-size: 2.4rem;
       cursor: pointer;
       color: $white;
@@ -28,21 +36,30 @@
     flex-flow: row nowrap;
     justify-content: space-between;
     position: relative;
-    z-index: 3;
+    z-index: 5;
     overflow-x: hidden;
+
+    @media screen and (min-width: $tablet) {
+      z-index: 1;
+    }
   }
 
   // Nav Menu Styling/Animation
   .nav-menu {
     height: 0;
     position: relative;
-    z-index: 2;
+    z-index: 4;
+
+    // Make the body element (element immediately after nav) fill the screen
+    & + div {
+      flex-grow: 1;
+    }
 
     .menu-container {
       // Use these for spacing to maintain animation
       $font-size: 1.7rem; // font size
       $vertical-padding: 1rem; // space between menu items
-      $menu-item-count: 4; // number of items in menu
+      $menu-item-count: 5; // number of items in menu
 
       position: absolute;
       bottom: auto;
@@ -52,8 +69,11 @@
       &.hidden {
         // Uses the variables to calculate position for animation
         top: -2 * $menu-item-count * $vertical-padding - $menu-item-count *
-          $font-size - 0.2rem; // the extra .0 is for visual consistency
+          $font-size - 0.2rem; // the extra .2 is for visual consistency
         transition: all 0.5s ease-in-out;
+        @media screen and (min-width: $tablet) {
+          top: unset;
+        }
       }
 
       display: flex;
@@ -61,27 +81,50 @@
       border-radius: 0 0 0 4px;
       overflow: hidden;
 
-      .menu-item a {
-        font-family: $text-font;
-        font-size: $font-size;
-        line-height: $font-size - 0.2rem;
-        font-weight: 500;
-        display: block;
-        color: $white;
-        text-decoration: none;
-        padding: $vertical-padding 2rem;
-        transition: all 0.2s ease-in-out;
-        background-color: $blue;
-        text-align: center;
+      @media screen and (min-width: $tablet) {
+        top: unset;
+        bottom: 0.2rem;
+        right: 0.5rem;
+        flex-flow: row nowrap;
+      }
 
-        &:hover {
-          cursor: pointer;
-          background-color: darken($blue, 10%);
-          transition: all 0.2s ease-in-out;
+      .menu-item {
+        &.login-button {
+          @media screen and (min-width: $large) {
+            margin-left: 7.5rem;
+          }
         }
+        a {
+          font-family: $text-font;
+          font-size: $font-size;
+          line-height: $font-size - 0.2rem;
+          font-weight: 500;
+          display: block;
+          color: $white;
+          text-decoration: none;
+          padding: $vertical-padding 2rem;
+          transition: all 0.2s ease-in-out;
+          background-color: $orange;
+          text-align: center;
 
-        &:last-of-type {
-          padding-bottom: $vertical-padding + 0.2rem;
+          @media screen and (min-width: $tablet) {
+            padding: $vertical-padding 1.5rem;
+          }
+
+          &:hover {
+            cursor: pointer;
+            background-color: darken($orange, 10%);
+            transition: all 0.2s ease-in-out;
+
+            @media screen and (min-width: $tablet) {
+              background-color: $orange;
+              text-shadow: 0 2px 6px #0009;
+            }
+          }
+
+          &:last-of-type {
+            padding-bottom: $vertical-padding + 0.2rem;
+          }
         }
       }
     }
@@ -104,93 +147,71 @@
     a {
       color: $white;
       font-weight: 500;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        color: darken($white, 15%);
+        transition: all 0.2s ease-in-out;
+      }
     }
-  }
-
-  // Consistent Padding is OP
-  .info-page,
-  .home-page,
-  form {
-    padding: 2rem 5vw;
   }
 
   // Home Page
   .home-page {
     display: flex;
     flex-flow: column nowrap;
+    align-items: center;
+    padding: 3rem 2rem;
 
-    @mixin bubble($diff) {
-      background-color: $white;
-      border: 2px solid $charcoal;
-      border-radius: 25vw;
-      box-shadow: 0 $diff 4px #0005;
+    & > div {
+      max-width: 800px;
+      width: 100%;
     }
 
-    .thought-bubble {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: $text-font;
-      padding: 2.5rem 3rem;
-      font-size: 1.3rem;
-      line-height: 1.7rem;
-      @include bubble(4px);
-    }
-
-    .thought-trail-1 {
-      width: 55%;
-      margin-top: 1.4rem;
-      display: flex;
-      flex-flow: row-reverse nowrap;
-
-      .bubble {
-        padding: 0.85rem;
-        @include bubble(2px);
-      }
-    }
-
-    .thought-trail-2 {
-      width: 45%;
-      margin-top: 1rem;
-      display: flex;
-      flex-flow: row-reverse nowrap;
-
-      .bubble {
-        padding: 0.55rem;
-        @include bubble(1px);
-      }
-    }
-
-    img {
-      // dragon boi
-      width: 241px;
-    }
-
-    .links {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-evenly;
-      margin: 3rem 0;
-      a {
-        color: $white;
-        font-size: 3.6rem;
-        font-family: $display-font;
-        transition: all 0.2s ease-in-out;
-        &:hover {
-          color: darken($white, 15%);
-          transition: all 0.2s ease-in-out;
-        }
-      }
-    }
-
-    .learn-more {
+    .flex-wrapper {
       display: flex;
       flex-flow: column nowrap;
       align-items: center;
-      a {
-        @include button($blue, $padding: 1rem 5rem 0.8rem);
-        text-decoration: none;
-        font-size: 2.4rem;
+
+      @media screen and (min-width: $mid) {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .links {
+        display: flex;
+        flex-flow: column nowrap;
+        max-width: 330px;
+        width: 100%;
+
+        p {
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: space-evenly;
+          margin: 3rem 0;
+          width: 100%;
+
+          a {
+            color: $white;
+            font-size: 3.6rem;
+            font-family: $display-font;
+            transition: all 0.2s ease-in-out;
+            &:hover {
+              color: darken($white, 15%);
+              transition: all 0.2s ease-in-out;
+            }
+          }
+        }
+
+        .learn-more {
+          display: flex;
+          flex-flow: column nowrap;
+          align-items: center;
+          a {
+            @include button($jade, $padding: 1rem 5rem 0.8rem);
+            text-decoration: none;
+            font-size: 2.4rem;
+          }
+        }
       }
     }
   }
@@ -198,56 +219,27 @@
   // Info Page
   .info-page {
     display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-around;
-
-    p {
-      font-weight: 300;
-      .title {
-        font-weight: 400;
-        color: $orange;
-      }
-    }
-  }
-
-  // Form
-  form {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    .server-error {
-      color: $red;
-      font-family: $display-font;
-      text-shadow: 0 4px 4px #0005;
-      font-size: 2.4rem;
-      margin-bottom: 1rem;
-    }
-    .form-input {
+    flex-flow: row nowrap;
+    justify-content: stretch;
+    .info-wrapper {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
       width: 100%;
-    }
-    .text {
-      width: 100%;
-      font-size: 1.4rem;
-      color: $white;
-      font-family: $text-font;
-      margin: 0 0 2rem;
-      line-height: 2rem;
-      a,
-      .text-button {
-        color: $white;
-        transition: all 0.15s ease-in;
-        text-decoration: underline;
-        cursor: pointer;
-        &:hover {
-          color: darken($white, 15%);
-          transition: all 0.15s ease-in;
+
+      p {
+        max-width: 400px;
+        font-weight: 300;
+        .title {
+          font-weight: 400;
+          color: $orange;
         }
       }
-    }
-
-    input[type='submit'] {
-      @include button($orange);
-      margin: 1rem auto;
+      a {
+        @include button($orange);
+        font-size: 2.4rem;
+        text-decoration: none;
+      }
     }
   }
 }

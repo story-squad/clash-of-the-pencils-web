@@ -23,8 +23,13 @@ const LandingHeader = (): React.ReactElement => {
             </Link>
           </div>
           <div className="menu-item">
-            <Link to="/login" onClick={() => setShowMenu(false)}>
-              Login
+            <Link to="/" onClick={() => setShowMenu(false)}>
+              Vote
+            </Link>
+          </div>
+          <div className="menu-item">
+            <Link to="/info" onClick={() => setShowMenu(false)}>
+              Learn More
             </Link>
           </div>
           <div className="menu-item">
@@ -32,9 +37,9 @@ const LandingHeader = (): React.ReactElement => {
               Signup
             </Link>
           </div>
-          <div className="menu-item">
-            <Link to="/info" onClick={() => setShowMenu(false)}>
-              How It Works
+          <div className="menu-item login-button">
+            <Link to="/login" onClick={() => setShowMenu(false)}>
+              Login
             </Link>
           </div>
         </div>
