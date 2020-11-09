@@ -12,23 +12,20 @@ export const utcToLocal = (hour: number, minute: number): Moment => {
 // Schedule
 
 // Store UTC timecodes in the schedule object
-const schedule = {
-  subStart: utcToLocal(3, 30).valueOf(),
-  subEnd: utcToLocal(20, 0).valueOf(),
-  delibStart: utcToLocal(20, 0).valueOf(),
-  delibEnd: utcToLocal(20, 30).valueOf(),
-  voteStart: utcToLocal(20, 30).valueOf(),
-  voteEnd: utcToLocal(23, 0).valueOf(),
-  streamStart: utcToLocal(23, 30).valueOf(),
-  streamEnd: utcToLocal(24, 0).valueOf(),
-  interimStart: utcToLocal(0, 0).valueOf(),
-  interimEnd: utcToLocal(3, 30).valueOf(),
+const schedule: { [key: string]: Moment } = {
+  subStart: utcToLocal(3, 30),
+  subEnd: utcToLocal(20, 0),
+  delibStart: utcToLocal(20, 0),
+  delibEnd: utcToLocal(20, 30),
+  voteStart: utcToLocal(20, 30),
+  voteEnd: utcToLocal(23, 0),
+  streamStart: utcToLocal(23, 30),
+  streamEnd: utcToLocal(24, 0),
 };
 
 export type eventTime = 'SUBMIT' | 'DELIB' | 'VOTE' | 'STREAM' | 'NONE';
-export const getCurrentEvent = (time?: Moment): eventTime => {
-  if (!time) time = moment();
-  const now = time.utc().valueOf();
+export const getCurrentEvent = (now?: Moment): eventTime => {
+  if (!now) now = moment.utc();
   if (now >= schedule.subStart && now < schedule.subEnd) {
     return 'SUBMIT';
   } else if (now >= schedule.delibStart && now < schedule.delibEnd) {
