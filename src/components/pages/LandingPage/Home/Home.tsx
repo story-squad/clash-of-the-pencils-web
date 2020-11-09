@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { DragonBoi } from '../../DragonBoi';
+import { DragonBoi } from '../DragonBoi';
 import { ThoughtBubble } from '../ThoughtBubble';
 
 const Home = (): React.ReactElement => {

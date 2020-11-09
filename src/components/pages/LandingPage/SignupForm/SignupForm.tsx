@@ -4,7 +4,7 @@ import { Auth } from '../../../../api';
 import { Input, Modal } from '../../../common';
 import SignupSuccess from './SignupSuccess';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { DragonBoi } from '../../DragonBoi';
+import { DragonBoi } from '../DragonBoi';
 import { ThoughtBubble } from '../ThoughtBubble';
 
 const SignupForm = (): React.ReactElement => {

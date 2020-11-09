@@ -5,7 +5,7 @@ import { token } from '../../../../utils';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Input } from '../../../common';
-import { DragonBoi } from '../../DragonBoi';
+import { DragonBoi } from '../DragonBoi';
 import { ThoughtBubble } from '../ThoughtBubble';
 
 const LoginForm: React.FC = () => {
