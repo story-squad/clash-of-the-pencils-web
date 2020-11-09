@@ -1,0 +1,40 @@
+// Import Styles for DragonBoi
+@import './dragonBoi.scss';
+@import './thoughtBubble.scss';
+@import './landingSplash.scss';
+@import './landingForms.scss';
+@import './homePage.scss';
+@import './infoPage.scss';
+@import './landingHeader.scss';
+
+.landing-page {
+  min-height: 100vh;
+  background-color: $dark-blue;
+  display: flex;
+  flex-flow: column nowrap;
+
+  // General Page Styling
+  h1 {
+    font-family: $display-font;
+    color: $white;
+    font-size: 3.6rem;
+    text-align: center;
+  }
+
+  p {
+    margin: 2rem auto;
+    font-family: $text-font;
+    color: $white;
+    font-size: 1.8rem;
+    line-height: 2.5rem;
+    a {
+      color: $white;
+      font-weight: 500;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        color: darken($white, 15%);
+        transition: all 0.2s ease-in-out;
+      }
+    }
+  }
+}
