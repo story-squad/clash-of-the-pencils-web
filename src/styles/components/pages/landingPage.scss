@@ -238,6 +238,7 @@
       a {
         @include button($orange);
         font-size: 2.4rem;
+        text-decoration: none;
       }
     }
   }
