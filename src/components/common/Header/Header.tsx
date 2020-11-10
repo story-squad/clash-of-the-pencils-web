@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MdMenu } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
-const Header = ({ menuItems }: HeaderProps): React.ReactElement => {
+const Header = ({ menuItems = [] }: HeaderProps): React.ReactElement => {
   const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = () => {
@@ -41,7 +41,7 @@ const MenuItem = (props: MenuItemProps) => {
 };
 
 interface HeaderProps {
-  menuItems: MenuItemProps[];
+  menuItems?: MenuItemProps[];
 }
 
 interface MenuItemProps {

@@ -28,7 +28,6 @@
   transition: all 0.2s ease-in-out;
   box-shadow: 0 4px 4px #0003;
   &:hover {
-    color: darken($font-color, 7.5%);
     background-color: darken($bgcolor, 5%);
     transition: all 0.2s ease-in-out;
   }

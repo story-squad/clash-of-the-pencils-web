@@ -21,7 +21,7 @@ const Loader = ({ message = 'Loading' }: LoaderProps): React.ReactElement => {
 
   return (
     <div className="loader">
-      <Header menuItems={[]} />
+      <Header />
       <div className="loader-body">
         <ClimbingBoxLoader loading={true} />
         <div className="message">
