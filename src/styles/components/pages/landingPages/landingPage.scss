@@ -5,14 +5,8 @@
 @import './landingForms.scss';
 @import './homePage.scss';
 @import './infoPage.scss';
-@import './landingHeader.scss';
 
 .landing-page {
-  min-height: 100vh;
-  background-color: $dark-blue;
-  display: flex;
-  flex-flow: column nowrap;
-
   // General Page Styling
   // Consistently display landing page headers/paragraphs/links
   h1 {

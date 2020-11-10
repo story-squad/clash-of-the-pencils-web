@@ -1,16 +1,23 @@
 .loader {
-  min-height: $body-height;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-flow: column nowrap;
-  [class^='css-'] {
-    // This sets the loader component colors
-    border-color: $boston-blue;
-  }
-  .message {
-    margin-top: 2.5vh;
-    font-family: $text-font;
-    font-size: 1.5rem;
+  .loader-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column nowrap;
+    background-color: $dark-blue;
+    [class^='css-'] {
+      // This sets the loader component colors
+      border-color: $jade;
+      &:first-child {
+        // Set the square to orange
+        border-color: $orange;
+      }
+    }
+    .message {
+      margin-top: 2.5vh;
+      font-family: $text-font;
+      font-size: 1.5rem;
+      color: $white;
+    }
   }
 }

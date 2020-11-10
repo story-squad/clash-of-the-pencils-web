@@ -1,4 +1,5 @@
 import React from 'react';
+import { nav } from '../../../config';
 import { Header, SubCard } from '../../common';
 
 interface RenderDashboardProps {
@@ -9,17 +10,17 @@ const RenderDashboard = ({
   picList,
 }: RenderDashboardProps): React.ReactElement => {
   return (
-    <>
-      <Header />
+    <div>
+      <Header menuItems={nav.siteNavItems} />
       <div className="dashboard">
-        <div className="content"></div>
+        <div className="content">some content</div>
         <div className="sidebar">
           {picList.map((pic, i) => (
             <SubCard key={i} {...pic} />
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
