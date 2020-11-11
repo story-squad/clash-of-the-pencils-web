@@ -10,10 +10,13 @@ const RenderDashboard = ({
   picList,
 }: RenderDashboardProps): React.ReactElement => {
   return (
-    <div>
+    <div className="dashboard-container">
       <Header menuItems={nav.siteNavItems} />
       <div className="dashboard">
-        <div className="sidebar">
+        <div
+          className="sidebar"
+          style={{ maxHeight: `${window.innerHeight - 44}px` }}
+        >
           <h2>My Stories</h2>
           <div className="story-list">
             {picList.map((pic, i) => (
@@ -36,12 +39,12 @@ const PromptBox = (props: PromptBoxProps): React.ReactElement => {
       <h3>Here is today&apos;s prompt:</h3>
       <p>{props.prompt}</p>
       <div className="prompt-footer">
-        <div className="streak">
+        {/* <div className="streak">
           <h3>Hot Streak:</h3>
           <span className="flames">
             {[...new Array(props.streak)].map(() => '(f)')}
           </span>
-        </div>
+        </div> */}
         <button>Submit Your Story</button>
       </div>
     </div>

@@ -3,15 +3,31 @@
   flex-flow: column nowrap;
   align-items: stretch;
 
+  @media screen and (min-width: $large) {
+    flex-flow: row nowrap;
+    align-items: stretch;
+  }
+
   .content {
     flex-grow: 1;
     padding: 2rem;
+
+    @media screen and (min-width: $large) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   .sidebar {
     display: flex;
     flex-flow: column nowrap;
     background-color: $seafoam;
+
+    @media screen and (min-width: $large) {
+      order: 2;
+      overflow-y: scroll;
+    }
 
     h2 {
       font-family: $display-font;
@@ -25,17 +41,33 @@
       min-width: 100%;
       display: flex;
       flex-flow: row nowrap;
-      align-content: flex-start;
       overflow-x: scroll;
       padding: 1rem 2rem;
 
+      @media screen and (min-width: $large) {
+        padding: 2rem 3.5rem;
+      }
+
+      @media screen and (min-width: $large) {
+        flex-flow: column nowrap;
+        overflow-x: unset;
+      }
+
       .sub-card {
-        &:not(:last-of-type) {
-          margin-right: 2rem;
+        margin-right: 2rem;
+
+        @media screen and (min-width: $large) {
+          margin-right: 0;
+          margin-bottom: 3rem;
         }
+
         img {
           width: 10rem;
           max-width: unset;
+
+          @media screen and (min-width: $large) {
+            width: 17.5rem;
+          }
         }
       }
     }
@@ -47,6 +79,8 @@
   padding: 2rem;
   color: $charcoal;
   box-shadow: 0 4px 4px #000;
+  max-width: 60rem;
+  margin: 0 auto;
 
   h2 {
     color: $orange;
