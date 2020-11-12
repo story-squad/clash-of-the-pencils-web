@@ -1,6 +1,6 @@
 export const siteNavItems = [
   { link: '/dashboard', text: 'Dashboard' },
-  { link: '/dashboard', text: 'Voting Station' },
+  { link: '/vote', text: 'Voting Station' },
   { link: '/dashboard', text: 'Announcements' },
   { link: '/dashboard', text: 'My Profile' },
   { link: '/dashboard', text: 'Sign Out' },

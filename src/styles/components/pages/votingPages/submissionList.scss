@@ -1,0 +1,30 @@
+.submission-list {
+  display: flex;
+  flex-flow: column nowrap;
+  .submission-item {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: 1rem;
+
+    .sub-card {
+      margin-right: 1rem;
+      img {
+        height: 12.5rem;
+      }
+    }
+
+    .sub-info {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-evenly;
+      p {
+        font-family: $display-font;
+        font-size: 2.4rem;
+        color: $white;
+        .alt {
+          color: $jade;
+        }
+      }
+    }
+  }
+}

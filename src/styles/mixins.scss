@@ -31,6 +31,10 @@
     background-color: darken($bgcolor, 5%);
     transition: all 0.2s ease-in-out;
   }
+  &:disabled {
+    background-color: #c4c4c4;
+    cursor: not-allowed;
+  }
 }
 
 @mixin text-button($color, $darken-amt: 15%) {
