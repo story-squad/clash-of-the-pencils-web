@@ -3,8 +3,24 @@
   box-shadow: 0 0 5px #333;
   display: flex;
   border: 1px solid black;
+  cursor: pointer;
 
   img {
     max-width: 100%;
+  }
+
+  .modal {
+    cursor: auto;
+    .modal-image {
+      width: 100%;
+      display: flex;
+      flex-flow: row nowrap;
+      img {
+        margin-top: 1rem;
+        height: unset !important;
+        width: unset !important;
+        max-width: 100% !important;
+      }
+    }
   }
 }
