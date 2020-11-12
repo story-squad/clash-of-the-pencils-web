@@ -27,20 +27,16 @@ $large: 800px;
 $blue: #3884ff;
 $orange: #f66700;
 $jade: #00b67d;
+$seafoam: #34c9ad;
 $dark-blue: #40537f;
 $white: #ffffff;
 $charcoal: #343434;
 $red: #f64141;
 $ltblue: #85c7f2;
 
-// Colors
-$turquoise: #6ceae6;
-$conifer: #b5d33d;
-$burnt-sienna: #eb7d5b;
-$bright-sun: #fed23f;
-$boston-blue: #429cb5;
-
-// Global Formatting
-$header-height: 10vh;
-$body-height: 100vh - $header-height;
-$sidebar-width: 25vw;
+.App > div {
+  min-height: 100vh;
+  background-color: $dark-blue;
+  display: flex;
+  flex-flow: column nowrap;
+}

@@ -28,7 +28,6 @@
   transition: all 0.2s ease-in-out;
   box-shadow: 0 4px 4px #0003;
   &:hover {
-    color: darken($font-color, 7.5%);
     background-color: darken($bgcolor, 5%);
     transition: all 0.2s ease-in-out;
   }
@@ -58,11 +57,4 @@
   font-family: $text-font;
   font-size: $size;
   line-height: $size + 1rem;
-}
-
-@mixin sidebar($accent) {
-  width: $sidebar-width;
-  height: $body-height;
-  border-left: 1px solid $accent;
-  overflow-y: scroll;
 }

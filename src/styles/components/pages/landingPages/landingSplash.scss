@@ -1,0 +1,21 @@
+// Controls the left-hand splash display on landing page
+.landing-splash {
+  padding: 3rem 2rem;
+  background-color: $ltblue;
+  flex-grow: 1;
+  & + * {
+    padding: 3rem 2rem;
+    @media screen and (min-width: $tablet) {
+      max-width: 400px;
+    }
+  }
+
+  display: none;
+  @media screen and (min-width: $tablet) {
+    display: block;
+  }
+  .text-bubble {
+    font-size: 2rem;
+    line-height: 2.3rem;
+  }
+}

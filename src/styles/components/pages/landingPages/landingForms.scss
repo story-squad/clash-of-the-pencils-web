@@ -1,0 +1,63 @@
+.landing-form {
+  // Login/Signup Forms
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: stretch;
+
+  form {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 100%;
+    .server-error {
+      color: $red;
+      font-family: $display-font;
+      text-shadow: 0 4px 4px #0005;
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+    .form-input {
+      width: 100%;
+    }
+    .text {
+      width: 100%;
+      font-size: 1.4rem;
+      color: $white;
+      font-family: $text-font;
+      margin: 0 0 2rem;
+      line-height: 2rem;
+      a,
+      .text-button {
+        color: $white;
+        transition: all 0.15s ease-in;
+        text-decoration: underline;
+        cursor: pointer;
+        &:hover {
+          color: darken($white, 15%);
+          transition: all 0.15s ease-in;
+        }
+      }
+    }
+
+    input[type='submit'] {
+      @include button($orange);
+      margin: 1rem auto;
+      font-size: 2.4rem;
+    }
+  }
+
+  // Modal for Signup
+  .modal {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    p {
+      color: $charcoal;
+      margin-top: 0;
+    }
+    button {
+      @include button($orange);
+      margin: 0 auto;
+    }
+  }
+}

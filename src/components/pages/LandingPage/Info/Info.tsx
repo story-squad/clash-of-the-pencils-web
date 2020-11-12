@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { time } from '../../../../utils';
-import { DragonBoi } from '../../DragonBoi';
+import { DragonBoi } from '../DragonBoi';
 import { ThoughtBubble } from '../ThoughtBubble';
 
 const Info = (): React.ReactElement => {

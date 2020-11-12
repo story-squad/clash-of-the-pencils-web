@@ -9,12 +9,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 // Component Stylesheets
-@import './components/pages/landingPage.scss';
+@import './components/pages/landingPages/landingPage.scss';
 @import './components/pages/dashboard.scss';
-@import './components/pages/submissionPage.scss';
-@import './components/pages/votingPage.scss';
-@import './components/pages/winnersPage.scss';
-@import './components/pages/streamPage.scss';
 
 // Common Components
 @import './components/common/modal.scss';

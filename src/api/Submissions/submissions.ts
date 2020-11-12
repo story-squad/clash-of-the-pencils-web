@@ -11,7 +11,7 @@ export const getRecentSubsByChild = (
   // ): Promise<AxiosResponse<SubItem[]>> => { // I think this will work?
 ): Promise<{ data: SubItem[] }> => {
   console.log(childId);
-  const picList = [...new Array(5)].map(() => ({
+  const picList = [...new Array(10)].map(() => ({
     src:
       'https://artprojectsforkids.org/wp-content/uploads/2020/05/Penguin.jpg',
   }));
