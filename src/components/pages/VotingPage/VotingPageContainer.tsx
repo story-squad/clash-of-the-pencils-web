@@ -1,15 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { Submissions } from '../../../api';
+import { top3 } from '../../../state';
+import { Loader } from '../../common';
 import { CastVote } from './CastVote';
 import { ReadSubmissions } from './ReadSubmissions';
 
 const VotingPageContainer = (): React.ReactElement => {
-  const [hasRead, setHasRead] = useState(false);
+  const setTop3 = useSetRecoilState(top3.top3State);
+  const top3List = useRecoilValue(top3.top3State);
+  const finishedReading = useRecoilValue(top3.finishedReading);
 
-  return hasRead ? (
-    <CastVote />
-  ) : (
-    <ReadSubmissions markAsRead={() => setHasRead(true)} />
-  );
+  useEffect(() => {
+    Submissions.getTop3Subs()
+      .then((res) => {
+        setTimeout(() => {
+          setTop3(res.data);
+        }, 750);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  if (top3List) {
+    return finishedReading ? <CastVote /> : <ReadSubmissions />;
+  } else {
+    return <Loader />;
+  }
 };
 
 export default VotingPageContainer;

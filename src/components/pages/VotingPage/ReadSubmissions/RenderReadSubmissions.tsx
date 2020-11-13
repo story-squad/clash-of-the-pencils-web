@@ -1,12 +1,14 @@
 import React from 'react';
-import { Submissions } from '../../../../api';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { nav } from '../../../../config';
+import { top3 } from '../../../../state';
 import { Header } from '../../../common';
-import SubmissionList from './SubmissionList';
+import ReadTop3 from './ReadTop3';
 
-const RenderReadSubmissions = (
-  props: RenderReadSubmissionsProps,
-): React.ReactElement => {
+const RenderReadSubmissions = (): React.ReactElement => {
+  const readCount = useRecoilValue(top3.getReadCount);
+  const setFinishedReading = useSetRecoilState(top3.finishedReading);
+
   return (
     <div>
       <Header menuItems={nav.siteNavItems} />
@@ -16,19 +18,16 @@ const RenderReadSubmissions = (
           <p>Voting is simple!</p>
           <p className="instructions">
             <span className="alt">First</span>, click on each of the stories to
-            read them.
-          </p>
-          <p className="instructions">
-            <span className="alt">Then</span>, click the orange button to begin
-            voting.
+            read them. <span className="alt">Then</span>, click the orange
+            button to begin voting.
           </p>
         </div>
-        <SubmissionList
-          list={props.list}
-          incrementCount={props.incrementCount}
-        />
+        <ReadTop3 />
         <div className="button-container">
-          <button disabled={props.readCount < 3} onClick={props.markAsRead}>
+          <button
+            disabled={readCount < 3}
+            onClick={() => setFinishedReading(true)}
+          >
             Start Voting
           </button>
         </div>
@@ -36,12 +35,5 @@ const RenderReadSubmissions = (
     </div>
   );
 };
-
-interface RenderReadSubmissionsProps {
-  list: Submissions.SubItem[];
-  readCount: number;
-  incrementCount: (index: number) => void;
-  markAsRead: () => void;
-}
 
 export default RenderReadSubmissions;
