@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
+
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { Submissions } from '../../../api';
 import { top3 } from '../../../state';
+import { Submissions } from '../../../api';
+
 import { Loader } from '../../common';
 import { CastVote } from './CastVote';
 import { ReadSubmissions } from './ReadSubmissions';

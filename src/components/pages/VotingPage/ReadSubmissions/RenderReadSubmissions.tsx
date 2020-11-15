@@ -1,8 +1,10 @@
 import React from 'react';
+
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { nav } from '../../../../config';
 import { top3 } from '../../../../state';
+
 import { Header } from '../../../common';
+import { nav } from '../../../../config';
 import ReadTop3 from './ReadTop3';
 
 const RenderReadSubmissions = (): React.ReactElement => {

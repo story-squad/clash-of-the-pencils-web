@@ -1,8 +1,10 @@
 import React from 'react';
-import { Submissions } from '../../../../api';
-import { SubCard } from '../../../common';
+
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { top3 } from '../../../../state';
+import { Submissions } from '../../../../api';
+
+import { SubCard } from '../../../common';
 
 const ReadTop3 = (): React.ReactElement => {
   const top3List = useRecoilValue(top3.top3State);

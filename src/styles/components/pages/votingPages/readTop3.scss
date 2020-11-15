@@ -1,0 +1,67 @@
+.submission-list {
+  display: flex;
+  flex-flow: column nowrap;
+
+  @media screen and (min-width: $tablet) {
+    flex-flow: row nowrap;
+  }
+
+  @media screen and (min-width: $large) {
+    width: 80%;
+    background-color: $jade;
+  }
+
+  .submission-item {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+
+    @media screen and (min-width: $mid) {
+      align-items: stretch;
+    }
+
+    @media screen and (min-width: $tablet) {
+      flex-flow: column nowrap;
+      align-items: center;
+      &:not(:last-of-type) {
+        margin-right: 1rem;
+      }
+    }
+
+    .sub-card {
+      margin-right: 1rem;
+      max-width: 40%;
+
+      @media screen and (min-width: $tablet) {
+        max-width: 100%;
+        margin-right: 0;
+      }
+    }
+
+    .sub-info {
+      flex-grow: 1;
+
+      @media screen and (min-width: $mid) {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+      }
+
+      @media screen and (min-width: $tablet) {
+        text-align: center;
+      }
+
+      p {
+        font-family: $display-font;
+        font-size: 2.4rem;
+        color: $white;
+        margin: 1rem 0;
+        .alt {
+          color: $seafoam;
+        }
+      }
+    }
+  }
+}
