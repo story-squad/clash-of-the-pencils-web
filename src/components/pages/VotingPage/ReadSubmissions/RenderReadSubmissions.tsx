@@ -14,7 +14,7 @@ const RenderReadSubmissions = (): React.ReactElement => {
   return (
     <div>
       <Header menuItems={nav.siteNavItems} />
-      <div className="read-submissions">
+      <div className="voting-page">
         <div className="top-text">
           <h2>Welcome to the Voting Station!</h2>
           <p>Voting is simple!</p>

@@ -1,4 +1,4 @@
-.read-submissions {
+.voting-page {
   padding: 2rem;
   .top-text {
     text-align: center;
@@ -20,6 +20,11 @@
         line-height: 2.8rem;
         .alt {
           color: $red;
+          text-shadow: 0 2px 2px #0005;
+        }
+        .alt-2 {
+          color: $seafoam;
+          text-shadow: 0 2px 2px #0005;
         }
       }
     }
