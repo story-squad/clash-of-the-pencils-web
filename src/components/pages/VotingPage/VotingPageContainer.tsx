@@ -9,9 +9,9 @@ import { CastVote } from './CastVote';
 import { ReadSubmissions } from './ReadSubmissions';
 
 const VotingPageContainer = (): React.ReactElement => {
-  const setTop3 = useSetRecoilState(top3.top3State);
-  const top3List = useRecoilValue(top3.top3State);
-  const finishedReading = useRecoilValue(top3.finishedReading);
+  const setTop3 = useSetRecoilState(top3.top3List);
+  const top3List = useRecoilValue(top3.top3List);
+  const finishedReading = useRecoilValue(top3.hasFinishedReadingState);
 
   useEffect(() => {
     Submissions.getTop3Subs()

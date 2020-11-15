@@ -9,7 +9,7 @@ import ReadTop3 from './ReadTop3';
 
 const RenderReadSubmissions = (): React.ReactElement => {
   const readCount = useRecoilValue(top3.getReadCount);
-  const setFinishedReading = useSetRecoilState(top3.finishedReading);
+  const setFinishedReading = useSetRecoilState(top3.hasFinishedReadingState);
 
   return (
     <div>

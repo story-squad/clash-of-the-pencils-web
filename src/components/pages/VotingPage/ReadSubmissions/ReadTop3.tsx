@@ -7,8 +7,8 @@ import { Submissions } from '../../../../api';
 import { SubCard } from '../../../common';
 
 const ReadTop3 = (): React.ReactElement => {
-  const top3List = useRecoilValue(top3.top3State);
-  const [viewed, setViewed] = useRecoilState(top3.readState);
+  const top3List = useRecoilValue(top3.top3List);
+  const [viewed, setViewed] = useRecoilState(top3.hasReadState);
 
   const markIndexRead = (index: number) => {
     if (!viewed[index]) {
@@ -21,7 +21,7 @@ const ReadTop3 = (): React.ReactElement => {
   };
 
   return (
-    <div className="submission-list">
+    <div className="read-top-3">
       {top3List &&
         top3List.map((item, i) => (
           <SubmissionItem
@@ -47,11 +47,11 @@ const SubmissionItem = (
       />
       <div className="sub-info">
         <p>
-          <span className="alt">Username : </span>
+          <span className="alt">Username: </span>
           {props.username}
         </p>
         <p>
-          <span className="alt">Age : </span>
+          <span className="alt">Age: </span>
           {props.age}
         </p>
       </div>

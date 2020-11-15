@@ -1,18 +1,18 @@
 import { atom } from 'recoil';
 import { Submissions } from '../../api';
 
-export const top3State = atom<Submissions.SubItem[] | null>({
-  key: 'top3',
+export const top3List = atom<Submissions.SubItem[] | null>({
+  key: 'top3List',
   default: null,
 });
 
-const initialReadState = [false, false, false];
-export const readState = atom<boolean[]>({
-  key: 'readState',
-  default: initialReadState,
+const initialHasReadState = [false, false, false];
+export const hasReadState = atom<boolean[]>({
+  key: 'hasRead',
+  default: initialHasReadState,
 });
 
-export const finishedReading = atom<boolean>({
-  key: 'finishedReading',
+export const hasFinishedReadingState = atom<boolean>({
+  key: 'hasFinishedReading',
   default: false,
 });

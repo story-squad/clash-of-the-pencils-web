@@ -1,14 +1,19 @@
-.submission-list {
+.read-top-3 {
   display: flex;
   flex-flow: column nowrap;
+  margin: 2rem auto;
 
   @media screen and (min-width: $tablet) {
+    background-color: $jade;
     flex-flow: row nowrap;
+    justify-content: space-evenly;
+    padding: 2rem 3rem;
+    margin: 3rem auto;
   }
 
   @media screen and (min-width: $large) {
     width: 80%;
-    background-color: $jade;
+    padding: 4rem;
   }
 
   .submission-item {
@@ -22,10 +27,14 @@
     }
 
     @media screen and (min-width: $tablet) {
+      margin-bottom: 0;
       flex-flow: column nowrap;
       align-items: center;
       &:not(:last-of-type) {
-        margin-right: 1rem;
+        margin-right: 2rem;
+        @media screen and (min-width: $large) {
+          margin-right: 3.2rem;
+        }
       }
     }
 
@@ -60,6 +69,14 @@
         margin: 1rem 0;
         .alt {
           color: $seafoam;
+          @media screen and (min-width: $tablet) {
+            color: $orange;
+            text-shadow: 0 2px 2px #0009;
+          }
+        }
+
+        @media screen and (min-width: $tablet) {
+          margin: 1.6rem 0 0;
         }
       }
     }
