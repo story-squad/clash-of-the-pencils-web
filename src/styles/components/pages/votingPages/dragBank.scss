@@ -1,0 +1,36 @@
+.drag-bank {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 2rem auto;
+  @media screen and (min-width: $tablet) {
+    padding: 3rem 3rem 1rem;
+    background-color: $seafoam;
+    border-radius: 5px;
+    box-shadow: 0 4px 4px #0005;
+    -moz-box-shadow: 0 4px 4px #0005;
+  }
+
+  .voting-item {
+    &:not(:last-of-type) {
+      margin-right: 2rem;
+      @media screen and (min-width: $tablet) {
+        margin-right: 3rem;
+      }
+    }
+
+    .sub-card {
+    }
+
+    .sub-info {
+      p {
+        margin-top: 0.4rem;
+        @include paragraph(1.2rem);
+        text-align: center;
+        color: $white;
+        @media screen and (min-width: $tablet) {
+          margin-top: 1rem;
+        }
+      }
+    }
+  }
+}

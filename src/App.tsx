@@ -1,11 +1,12 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { PrivateRoute } from './utils';
+import { PrivateRoute, Signout } from './components/common';
 
 // Route Components
-import { LandingPageContainer } from './components/pages/LandingPage';
-import { Dashboard } from './components/pages/Dashboard';
+import { LandingPage } from './components/pages/LandingPage';
 import { Activation } from './components/pages/Activated';
+import { Dashboard } from './components/pages/Dashboard';
+import { VotingPage } from './components/pages/VotingPage';
 
 const App: React.FC = () => {
   return (
@@ -14,13 +15,15 @@ const App: React.FC = () => {
         {/* Public Routes */}
         <Route
           exact
-          path={['/', '/login', '/register', '/signup']}
-          component={() => <LandingPageContainer />}
+          path={['/', '/login', '/register', '/signup', '/info']}
+          component={() => <LandingPage />}
         />
         <Route path="/activated/:token" component={Activation} />
+        <Route path={['/logout', '/signout']} component={Signout} />
 
         {/* Private Routes */}
         <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/vote" component={VotingPage} />
 
         {/* Fallback Redirect to Dashboard */}
         <Route path="/" component={() => <Redirect to="/dashboard" />} />

@@ -1,0 +1,26 @@
+// Info Page
+.info-page {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: stretch;
+  .info-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 100%;
+
+    p {
+      max-width: 400px;
+      font-weight: 300;
+      .title {
+        font-weight: 400;
+        color: $orange;
+      }
+    }
+    a {
+      @include button($orange);
+      font-size: 2.4rem;
+      text-decoration: none;
+    }
+  }
+}

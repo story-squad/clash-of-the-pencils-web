@@ -1,16 +1,6 @@
 import React from 'react';
 
-interface ComponentProps {
-  setVisible: React.Dispatch<boolean>;
-}
-
-interface ModalProps {
-  component: React.ComponentType<ComponentProps>;
-  closable?: boolean;
-  centered?: boolean;
-  visible: boolean;
-  setVisible: React.Dispatch<boolean>;
-}
+import { MdClose } from 'react-icons/md';
 
 const Modal = ({
   component: Component,
@@ -34,11 +24,23 @@ const Modal = ({
         <Component setVisible={setVisible} {...props} />
         {closable && (
           <div className="close-button" onClick={closeModal}>
-            &times;
+            <MdClose />
           </div>
         )}
       </div>
     </div>
   );
 };
+
+interface ModalProps {
+  component: React.ComponentType<ComponentProps>;
+  closable?: boolean;
+  centered?: boolean;
+  visible: boolean;
+  setVisible: React.Dispatch<boolean>;
+}
+interface ComponentProps {
+  setVisible: React.Dispatch<boolean>;
+}
+
 export default Modal;

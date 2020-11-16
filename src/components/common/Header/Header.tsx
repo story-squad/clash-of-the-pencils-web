@@ -1,36 +1,57 @@
-import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { clearToken } from '../../../utils';
+import React, { useState } from 'react';
+import { MdMenu } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
-interface HeaderProps {
-  title?: string;
-}
+const Header = ({ menuItems = [] }: HeaderProps): React.ReactElement => {
+  const [showMenu, setShowMenu] = useState(false);
 
-const Header = ({ title = 'Story Squad' }: HeaderProps): React.ReactElement => {
-  const { push } = useHistory();
-
-  const logout = () => {
-    clearToken();
-    push('/');
+  const toggleMenu = () => {
+    setShowMenu((cur) => !cur);
   };
 
   return (
-    <header>
-      <h2>
-        <Link to="/dashboard">{title}</Link>
-      </h2>
-      <nav>
-        <Link to="/dashboard">Dashboard</Link>
-        <Link to="/dashboard">Submit a Story</Link>
-        <Link to="/dashboard">Vote</Link>
-        <Link to="/dashboard">View Top 3</Link>
-        <Link to="/dashboard">View Winners</Link>
-        <span className="logout" onClick={logout}>
-          Log Out
-        </span>
-      </nav>
-    </header>
+    <>
+      <header>
+        <h2>Story Squad</h2>
+        <MdMenu
+          className={menuItems.length <= 0 ? 'hidden' : ''}
+          onClick={toggleMenu}
+        />
+      </header>
+      <div className="menu-container">
+        <div className={`nav-menu${showMenu ? '' : ' hidden'}`}>
+          {menuItems.map((item, i) => (
+            <MenuItem
+              key={i}
+              {...item}
+              clickHandler={() => setShowMenu(false)}
+            />
+          ))}
+        </div>
+      </div>
+    </>
   );
 };
+
+const MenuItem = (props: MenuItemProps) => {
+  return (
+    <div className={`menu-item${props.primary ? ' primary' : ''}`}>
+      <Link to={props.link} onClick={props.clickHandler}>
+        {props.text}
+      </Link>
+    </div>
+  );
+};
+
+interface HeaderProps {
+  menuItems?: MenuItemProps[];
+}
+
+interface MenuItemProps {
+  link: string;
+  text: string;
+  primary?: boolean;
+  clickHandler?: () => void | null;
+}
 
 export default Header;

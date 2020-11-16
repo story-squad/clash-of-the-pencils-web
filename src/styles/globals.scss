@@ -15,12 +15,28 @@ html {
 }
 
 // Variables
-$text-font: "Source Sans Pro", sans-serif;
-$display-font: "Bangers", sans-serif;
+$text-font: 'Oswald', sans-serif;
+$display-font: 'Bangers', sans-serif;
 
-// Colors
-$turquoise: #6CEAE6;
-$conifer: #B5D33D;
-$burnt-sienna: #EB7D5B;
-$bright-sun: #FED23F;
-$boston-blue: #429CB5;
+// Media Query Sizes
+$mid: 500px;
+$tablet: 650px;
+$large: 800px;
+
+// NEW COLORS
+$blue: #3884ff;
+$orange: #f66700;
+$jade: #00b67d;
+$seafoam: #34c9ad;
+$dark-blue: #40537f;
+$white: #ffffff;
+$charcoal: #343434;
+$red: #f64141;
+$ltblue: #85c7f2;
+
+.App > div {
+  min-height: 100vh;
+  background-color: $dark-blue;
+  display: flex;
+  flex-flow: column nowrap;
+}

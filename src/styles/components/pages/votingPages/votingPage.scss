@@ -1,0 +1,46 @@
+@import './readTop3.scss';
+@import './dragBank.scss';
+@import './dropBank.scss';
+
+.voting-page {
+  padding: 2rem;
+  .top-text {
+    text-align: center;
+    h2 {
+      font-size: 2.4rem;
+      font-family: $display-font;
+      color: $white;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-family: $text-font;
+      font-size: 1.8rem;
+      color: $white;
+      margin-bottom: 2rem;
+      &.instructions {
+        font-family: $display-font;
+        font-size: 2.4rem;
+        margin-bottom: 1rem;
+        line-height: 2.8rem;
+        .alt {
+          color: $red;
+          text-shadow: 0 2px 2px #0005;
+        }
+        .alt-2 {
+          color: $seafoam;
+          text-shadow: 0 2px 2px #0005;
+        }
+      }
+    }
+  }
+  .button-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    margin-top: 2rem;
+    button {
+      @include button($orange);
+      font-size: 2.4rem;
+    }
+  }
+}

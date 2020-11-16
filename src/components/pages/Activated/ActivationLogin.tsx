@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import { auth } from '../../../api';
-import { setToken } from '../../../utils';
+import { Auth } from '../../../api';
+import { token } from '../../../utils';
 import { Modal } from '../../common';
 
 export const Activation = (): React.ReactElement => {
@@ -13,10 +13,9 @@ export const Activation = (): React.ReactElement => {
     const activationCode = pathname.split('/activated/')[1];
 
     if (activationCode) {
-      auth
-        .activatedLogin(activationCode)
+      Auth.activatedLogin(activationCode)
         .then((res) => {
-          setToken(res.data.token);
+          token.set(res.data.token);
           setStatus('You are now being redirected...');
           setTimeout(() => push('/dashboard'), 2000);
         })
