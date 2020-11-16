@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Submissions } from '../../../api';
 import { Modal } from '../Modal';
 
+import { BsArrowsFullscreen } from 'react-icons/bs';
+
 interface SubCardProps {
   src: string;
   alt?: string;
@@ -28,7 +30,8 @@ const SubCard = ({
         component={() => <ModalImage src={src} alt={alt} />}
         closable={true}
       />
-      <img src={src} alt={alt} onClick={modalOpenHandler} />
+      <img src={src} alt={alt} />
+      <BsArrowsFullscreen onClick={modalOpenHandler} />
     </div>
   );
 };

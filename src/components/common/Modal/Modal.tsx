@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { MdClose } from 'react-icons/md';
+
 const Modal = ({
   component: Component,
   closable = true,
@@ -22,7 +24,7 @@ const Modal = ({
         <Component setVisible={setVisible} {...props} />
         {closable && (
           <div className="close-button" onClick={closeModal}>
-            &times;
+            <MdClose />
           </div>
         )}
       </div>

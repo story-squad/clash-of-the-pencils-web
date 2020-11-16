@@ -5,6 +5,7 @@ import { top3 } from '../../../../state';
 import { Submissions } from '../../../../api';
 
 import { SubCard } from '../../../common';
+import { ReactComponent as GreenCheck } from '../../../../assets/green-check.svg';
 
 const ReadTop3 = (): React.ReactElement => {
   const top3List = useRecoilValue(top3.top3List);
@@ -22,21 +23,21 @@ const ReadTop3 = (): React.ReactElement => {
 
   return (
     <div className="read-top-3">
-      {top3List &&
-        top3List.map((item, i) => (
-          <SubmissionItem
-            key={i}
-            {...item}
-            // Call markIndexRead on the current index
-            markIndexRead={() => markIndexRead(i)}
-          />
-        ))}
+      {top3List?.map((item, i) => (
+        <SubmissionItem
+          key={i}
+          {...item}
+          // Call markIndexRead on the current index
+          markIndexRead={() => markIndexRead(i)}
+          read={viewed[i]}
+        />
+      ))}
     </div>
   );
 };
 
 const SubmissionItem = (
-  props: Submissions.SubItem & { markIndexRead: () => void },
+  props: Submissions.SubItem & { markIndexRead: () => void; read: boolean },
 ): React.ReactElement => {
   return (
     <div className="submission-item">
@@ -45,6 +46,9 @@ const SubmissionItem = (
         alt={props.alt}
         onModalOpen={props.markIndexRead}
       />
+      <div className={`check${props.read ? ' finished' : ''}`}>
+        <GreenCheck />
+      </div>
       <div className="sub-info">
         <p>
           <span className="alt">Username: </span>
