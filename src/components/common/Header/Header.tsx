@@ -13,7 +13,10 @@ const Header = ({ menuItems = [] }: HeaderProps): React.ReactElement => {
     <>
       <header>
         <h2>Story Squad</h2>
-        <MdMenu onClick={toggleMenu} />
+        <MdMenu
+          className={menuItems.length <= 0 ? 'hidden' : ''}
+          onClick={toggleMenu}
+        />
       </header>
       <div className="menu-container">
         <div className={`nav-menu${showMenu ? '' : ' hidden'}`}>

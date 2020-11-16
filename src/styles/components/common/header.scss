@@ -10,6 +10,9 @@ header {
   }
 
   svg {
+    &.hidden {
+      display: none;
+    }
     // This is the hanburger menu icon, which can be styled as if it's text
     @media screen and (min-width: $tablet) {
       // Hide the icon on larger screen sizes, as the menu is never hidden so the button is not needed

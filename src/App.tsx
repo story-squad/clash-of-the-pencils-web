@@ -1,11 +1,12 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import { PrivateRoute, Signout } from './components/common';
 
 // Route Components
 import { LandingPage } from './components/pages/LandingPage';
 import { Activation } from './components/pages/Activated';
 import { Dashboard } from './components/pages/Dashboard';
-import { PrivateRoute } from './components/common';
+import { VotingPage } from './components/pages/VotingPage';
 
 const App: React.FC = () => {
   return (
@@ -18,9 +19,11 @@ const App: React.FC = () => {
           component={() => <LandingPage />}
         />
         <Route path="/activated/:token" component={Activation} />
+        <Route path={['/logout', '/signout']} component={Signout} />
 
         {/* Private Routes */}
         <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/vote" component={VotingPage} />
 
         {/* Fallback Redirect to Dashboard */}
         <Route path="/" component={() => <Redirect to="/dashboard" />} />

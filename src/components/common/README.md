@@ -29,11 +29,11 @@ common/
 |   |-- README.md <- Component How-To
 |
 |-- ComponentName/
-|   |-- index.ts
-|   |-- ComponentName.tsx
-|   |-- someHelperFile.tsx    <- Any helpers that are only used
-|   |-- anotherHelperFile.tsx    by this component can go here!
-|   |-- README.md
+    |-- index.ts
+    |-- ComponentName.tsx
+    |-- someHelperFile.tsx    <- Any helpers that are only used
+    |-- anotherHelperFile.tsx    by this component can go here!
+    |-- README.md
 ```
 
 ### Example `index.ts`
