@@ -3,7 +3,7 @@ export const siteNavItems = [
   { link: '/vote', text: 'Voting Station' },
   { link: '/dashboard', text: 'Announcements' },
   { link: '/dashboard', text: 'My Profile' },
-  { link: '/dashboard', text: 'Sign Out' },
+  { link: '/signout', text: 'Sign Out' },
 ];
 
 export const landingNavItems = [

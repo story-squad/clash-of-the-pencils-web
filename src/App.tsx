@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { PrivateRoute } from './components/common';
+import { PrivateRoute, Signout } from './components/common';
 
 // Route Components
 import { LandingPage } from './components/pages/LandingPage';
@@ -19,6 +19,7 @@ const App: React.FC = () => {
           component={() => <LandingPage />}
         />
         <Route path="/activated/:token" component={Activation} />
+        <Route path={['/logout', '/signout']} component={Signout} />
 
         {/* Private Routes */}
         <PrivateRoute path="/dashboard" component={Dashboard} />

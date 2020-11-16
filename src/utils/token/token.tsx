@@ -11,7 +11,8 @@ const tokenName: string = process.env.TOKEN_KEY || 'token';
  * If the token has expired or there is no token, the token is cleared and
  * you're sent back to the landing page.
  */
-export const get = (): string | null => {
+type flags = 'userId' | 'userEmail' | null;
+export const get = (flag: flags = null): string | number | null => {
   // Read the token in from localStorage
   const token = localStorage.getItem(tokenName);
   // If it's empty, return null
@@ -22,6 +23,11 @@ export const get = (): string | null => {
     const decodedToken: DecodedToken = jwt_decode(token);
     // If the token is expired, we will also throw an error
     if (Date.now() >= decodedToken.exp * 1000) throw new Error();
+
+    // If a flag is specified, return the correct data
+    if (flag === 'userId') return decodedToken.id;
+    if (flag === 'userEmail') return decodedToken.username;
+
     // Otherwise, we return the token
     return token;
   } catch (err) {
