@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Header } from '../../../common';
 import { nav } from '../../../../config';
+import { DragBank } from '../DragBank';
+import { DropContainers } from '../DropBank';
 
 const RenderCastVotes = (): React.ReactElement => {
   const submitVotes = () => null;
@@ -23,6 +25,8 @@ const RenderCastVotes = (): React.ReactElement => {
             on the bottom to <span className="alt">submit</span>!
           </p>
         </div>
+        <DragBank />
+        <DropContainers />
         <div className="button-container">
           <button disabled={true} onClick={submitVotes}>
             Vote

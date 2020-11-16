@@ -9,6 +9,9 @@
     justify-content: space-evenly;
     padding: 2rem 3rem;
     margin: 3rem auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 4px #0005;
+    -moz-box-shadow: 0 4px 4px #0005;
   }
 
   @media screen and (min-width: $large) {
