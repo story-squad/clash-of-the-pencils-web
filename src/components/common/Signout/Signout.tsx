@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import { user } from '../../../state';
+import { clearState } from '../../../state';
 import { token } from '../../../utils';
 import { Loader } from '../Loader';
 
 const Signout = (): React.ReactElement => {
   const { push } = useHistory();
-  const setUserId = useSetRecoilState(user.userId);
+  const clearRecoilState = useSetRecoilState(clearState.all);
 
   useEffect(() => {
     setTimeout(() => {
-      setUserId(null);
+      clearRecoilState(null);
       token.clear();
       push('/');
     }, 1000);
