@@ -1,47 +1,38 @@
 # Recoil - Global State Management
 
-> In this project we are using `Recoil.js` for our global/shared state management.
+## Introduction
 
-## What is `Recoil`?
+Recoil is a global state management library for `React` still in development by the team at Facebook. It has been opened up to the public and is available for use in other projects. It is only compatible with `Functional Components`. It cannot be used by `Class Components` currently. Some features that are in development are unstable and are not recommended for use. Recoil provides a simple yet powerful solution to implementing a global state management setup in your applications.
 
-`Recoil` is a global state management library for `React` still in development by the team at Facebook. It has been opened up to the public and is available for use in other projects. It is only compatible with `Functional Components`. It cannot be used by `Class Components` currently. Some features that are in development are unstable and are not recommended for use. `Recoil` provides a simple yet powerful solution to implementing a global state management setup in your applications.
+- Find out more about Recoil [here](https://recoiljs.org/)
 
-- Find out more about `Recoil` <a href="https://recoiljs.org/" target="_blank">here</a>
+- An official Recoil tutorial project can be found [here](https://recoiljs.org/docs/basic-tutorial/intro)
 
-- An official `Recoil` tutorial project can be found <a href="https://recoiljs.org/docs/basic-tutorial/intro" target="_blank">here</a>
+## Using Recoil
 
----
-
-## Using `Recoil`
-
-`Recoil` state is divided into 2 main categories:
-
----
+Recoil state is divided into 2 main categories:
 
 ### `Atoms`
 
-> A piece of global state that can be accessed by any component in the app
+A piece of global state that can be accessed by any component in the app through the use of hooks.
 
-- Example `Atom`
+#### Atom Example
 
 ```ts
 import { atom } from 'recoil';
 
-export const myAtom = atom({
-  // key must be unique
-  key: 'myAtom',
-  // initial value when the app loads or is refreshed
-  default: initialAtomValue,
+const initialAtomValue<AtomType> = someValue;
+export const myAtom = atom<null | AtomType>({
+  key: 'myAtom', // key must be unique
+  default: initialAtomValue, // initial state
 });
 ```
 
----
-
 ### `Selectors`
 
-> Derived global state. Think of this as an atom that has been passed into a pure function to return a new value
+Derived global state. Think of this as an atom that has been passed into a pure function to return a new value.
 
-- Example `Selector`
+#### Selector Example
 
 ```ts
 import { selector } from 'recoil';
@@ -59,11 +50,9 @@ export const mySelector = selector({
 });
 ```
 
----
+`Atoms` can be "subscribed" to by components using one of several Recoil Hooks in a manner similar to the `useState` Hook in `React`.
 
-`Atoms` can be "subscribed" to by components using one of several `Recoil` Hooks in a manner similar to the `useState` Hook in `React`.
-
-- Example `Component`
+#### Hook Example
 
 ```tsx
 import React from 'react';
@@ -84,39 +73,79 @@ const MyComponent = () => {
 export default MyComponent;
 ```
 
----
+```ts
+// Only need the value? There's a hook for that, too!
+const myAtomValue = useRecoilValue(myAtom);
 
-There are other `Hooks` available that allow you to fine tune how your app performs with the global state changes. If a component needs to set the state but doesn't need to read the value `Recoil` provides a hook to do that. The advantage with this setup is the component setting the state will not be subscribed to state changes and will not be re-rendered when this state changes. In a large component tree structure this means the app will be more performant as only the components that need to re-render will.
+// Only need the setter function? We got you covered!
+const setMyAtom = useSetRecoilState(myAtom);
+```
 
----
+If a component needs to set the state but doesn't need to read the value, just use the `useSetRecoilState` hook~ The advantage with this setup is the component setting the state will not be subscribed to state changes and will not be re-rendered when this state changes. In a large component tree structure this means the app will be more performant as it can reduce unnecessary re-renders.
 
 ## File Structure
 
 For this project please follow the outlined structure for file orginization. For each global state item, create a named folder within `state/`. Inside of this folder add an `index.js`, `atoms.js` and `selectors.js` as needed. The index file will simply contain exports for all of this state's atoms and selectors.
 
-- Example Folder Structure:
+### Example Folder Structure
 
-```
-state
+```text
+state/
+|-- index.ts <- This file exposes all atoms/selectors as named modules
 |
-|-- headerTitle
+|-- dataState/
 |   |
-|   |-- index.ts
-|   |-- atoms.ts
+|   |-- index.ts          <- Modules must have an index
+|   |-- dataAtoms.ts      <- All related atoms should be grouped
+|   |-- dataSelectors.ts  <- As should all related selectors
 |
-|-- userState
+|-- userState/            <- Named: dataNameState where dataName = 'user'
     |
     |-- index.ts
-    |-- atoms.ts
-    |-- selectors.ts
+    |-- userAtoms.ts      <- Named: dataNameAtoms where dataName = 'user
+    |-- userSelectors.ts  <- Named: dataNameSelectors
 ```
 
-- Example `index.ts` file:
+### Example Module Exports
 
 ```ts
-// Atom exports
-export { atom1, atom2, atom3 } from './atoms';
+/* /state/userState/userAtoms.ts */
+export const userId = atom<number | null>({ ... });
 
-// Selector exports
-export { selector1, selector2, selector3 } from './selectors';
+/* /state/userState/userSelectors.ts */
+export const userIdSelector = selector<number>({ ... });
+
+/* /state/userState/index.ts */
+export * from './userAtoms';
+export * from './userSelectors';
+
+/* /state/index.ts */
+export * as user from './userState';
 ```
+
+### Example Module Imports
+
+```tsx
+import React from 'react';
+
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { user } from '../state';
+
+const Component = (): React.ReactElement => {
+  // To call the Atom
+  const [userId, setUserId] = useRecoilState(user.userId);
+  // To read the Selector value
+  const userIdSelector = useRecoilValue(user.userIdSelector);
+
+  return (
+    ...
+  )
+}
+
+export default Component
+```
+
+> Notice how the module is exported as a named group of atoms/selectors: all information related to the state of the user should be in the `user` module:
+>
+> - `user.userId`
+> - `user.userIdSelector`
