@@ -1,9 +1,14 @@
 @import './readTop3.scss';
-@import './dragBank.scss';
 @import './dropBank.scss';
+@import './dragonBank.scss';
 
 .voting-page {
   padding: 2rem;
+
+  @media screen and (min-width: $large) {
+    padding: 3rem 10%;
+  }
+
   .top-text {
     text-align: center;
     h2 {
@@ -41,6 +46,17 @@
     button {
       @include button($orange);
       font-size: 2.4rem;
+
+      &.small {
+        font-size: 1.8rem;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        svg {
+          margin-right: 0.5rem;
+        }
+      }
     }
   }
 }

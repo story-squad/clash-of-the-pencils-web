@@ -1,76 +1,44 @@
 .drop-bank {
   display: flex;
-  flex-flow: column nowrap;
-
+  flex-flow: row nowrap;
+  margin: 2rem auto;
   @media screen and (min-width: $tablet) {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    padding: 1rem;
+    padding: 3rem 3rem 1rem;
     background-color: $seafoam;
     border-radius: 5px;
     box-shadow: 0 4px 4px #0005;
     -moz-box-shadow: 0 4px 4px #0005;
   }
 
-  .drop-container {
-    border-radius: 16px;
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: center;
-    padding: 2rem;
-
-    @media screen and (min-width: $tablet) {
-      flex-flow: column nowrap;
-      background: unset !important;
-      width: 33%;
-    }
-
-    // This handles the backgrounds on the mobile view
-    background-color: #fff9;
-    &.active {
-      &:nth-child(1) {
-        background: linear-gradient(
-          180deg,
-          #ffd43c 19.27%,
-          #ff8f28 51.56%,
-          #ffd43c 79.17%
-        );
-      }
-      &:nth-child(2) {
-        background: linear-gradient(
-          180deg,
-          #dddcdc 0%,
-          #8d8989 51.56%,
-          #dddcdc 100%
-        );
-      }
-      &:nth-child(3) {
-        background: linear-gradient(
-          180deg,
-          #ffda79 0%,
-          #9d7100 51.04%,
-          #ffda79 100%
-        );
-      }
-    }
-
-    p {
-      color: $dark-blue;
-      font-family: $display-font;
-      font-size: 2.4rem;
-      text-decoration: underline;
-
+  .voting-item {
+    &:not(:last-of-type) {
+      margin-right: 1rem;
       @media screen and (min-width: $tablet) {
+        margin-right: 3rem;
+      }
+    }
+
+    .sub-info {
+      p {
+        margin-top: 1rem;
+        font-size: 1.2rem;
+        font-family: $display-font;
+        text-align: center;
         color: $white;
-        text-decoration: none;
-      }
-    }
+        @media screen and (min-width: $tablet) {
+          font-size: 1.8rem;
+        }
 
-    img {
-      width: 50%;
-      @media screen and (min-width: $tablet) {
-        width: 100%;
+        .alt {
+          color: $jade;
+          @media screen and (min-width: $tablet) {
+            color: $bright-blue;
+          }
+        }
+
+        @media screen and (min-width: $tablet) {
+          margin-top: 1rem;
+        }
       }
     }
   }

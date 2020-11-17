@@ -7,12 +7,14 @@ import { BsArrowsFullscreen } from 'react-icons/bs';
 interface SubCardProps {
   src: string;
   alt?: string;
+  canPreview?: boolean;
   onModalOpen?: () => void;
 }
 
 const SubCard = ({
   src,
   alt = '',
+  canPreview = true,
   onModalOpen = () => null,
 }: SubCardProps): React.ReactElement => {
   const [showModal, setShowModal] = useState(false);
@@ -31,7 +33,7 @@ const SubCard = ({
         closable={true}
       />
       <img src={src} alt={alt} />
-      <BsArrowsFullscreen onClick={modalOpenHandler} />
+      {canPreview && <BsArrowsFullscreen onClick={modalOpenHandler} />}
     </div>
   );
 };
