@@ -40,6 +40,7 @@
   transition: all 0.2s ease-in-out;
   @include drop-shadow(#0003);
   text-decoration: none;
+  text-align: center;
   &:hover {
     background-color: darken($bgcolor, 5%);
     transition: all 0.2s ease-in-out;
