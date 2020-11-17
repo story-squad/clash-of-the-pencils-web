@@ -1,12 +1,22 @@
 import React from 'react';
 
+import { useSetRecoilState } from 'recoil';
+import { top3 } from '../../../../state';
+
 import { Header } from '../../../common';
 import { nav } from '../../../../config';
-import { DragBank } from '../DragBank';
-import { DropContainers } from '../DropBank';
+import { DropBank } from '../DropBank';
+import { DragonBank } from '../DragonBank';
+import { AiOutlineArrowLeft as Left } from 'react-icons/ai';
 
 const RenderCastVotes = (): React.ReactElement => {
+  const setHasRead = useSetRecoilState(top3.hasFinishedReadingState);
+
   const submitVotes = () => null;
+
+  const backToRead = () => {
+    setHasRead(false);
+  };
 
   return (
     <div>
@@ -25,8 +35,14 @@ const RenderCastVotes = (): React.ReactElement => {
             on the bottom to <span className="alt">submit</span>!
           </p>
         </div>
-        <DragBank />
-        <DropContainers />
+        <div className="button-container">
+          <button className="small" onClick={backToRead}>
+            <Left />
+            Go Back
+          </button>
+        </div>
+        <DragonBank />
+        <DropBank />
         <div className="button-container">
           <button disabled={true} onClick={submitVotes}>
             Vote
