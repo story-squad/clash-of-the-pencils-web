@@ -13,7 +13,6 @@ const LoginForm: React.FC = () => {
   const { push } = useHistory();
 
   const onSubmit: SubmitHandler<Auth.LoginBody> = (data) => {
-    console.log(data);
     Auth.login(data)
       .then((res) => {
         token.set(res.data.token);

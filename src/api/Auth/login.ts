@@ -6,7 +6,6 @@ export const login = async (credentials: LoginBody): Promise<AxiosResponse> => {
     const { data } = await axiosWithoutAuth().get(
       `/email/activation/${credentials.email}`,
     );
-    console.log({ data });
     if (data.validated && !data.validated) {
       return Promise.reject('You must validate your email before login.');
     } else {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { user } from '../../../state';
@@ -14,21 +14,24 @@ const PrivateRoute = ({
   ...props
 }: PrivateRouteProps): React.ReactElement => {
   const [userId, setUserId] = useRecoilState(user.userId);
+  const [username, setUsername] = useRecoilState(user.username);
+  const userToken = useMemo(() => token.get(), []);
+
+  useEffect(() => {
+    if (!userId) {
+      const id = token.get('userId');
+      if (typeof id === 'number') setUserId(id);
+    }
+    if (!username) {
+      const usr = token.get('username');
+      if (typeof usr === 'string') setUsername(usr);
+    }
+  }, []);
 
   return (
     <Route
       {...props}
-      render={() => {
-        // If user is already being tracked in recoil state, proceed
-        if (userId) return <Component />;
-
-        // Otherwise attempt to load user ID
-        const id = token.get('userId');
-        if (typeof id === 'number') {
-          setUserId(id);
-          return <Component />;
-        } else return <Redirect to="/" />;
-      }}
+      render={() => (userId || userToken ? <Component /> : <Redirect to="/" />)}
     />
   );
 };
