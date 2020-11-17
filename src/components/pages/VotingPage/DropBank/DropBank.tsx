@@ -4,13 +4,17 @@ import { Submissions } from '../../../../api';
 import { top3 } from '../../../../state';
 import { SubCard } from '../../../common';
 
+import { DropZone } from '../DropZone';
+
 const DropBank = (): React.ReactElement => {
   const top3List = useRecoilValue(top3.top3List);
 
   return (
     <div className="drop-bank">
       {top3List?.map((item, i) => (
-        <VotingItem key={i} {...item} />
+        <DropZone key={i} id={`sub-${i + 1}`}>
+          <VotingItem key={i} {...item} />
+        </DropZone>
       ))}
     </div>
   );
