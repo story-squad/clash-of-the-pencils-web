@@ -1,14 +1,20 @@
 import React from 'react';
 import { Droppable, DroppableProvided } from 'react-beautiful-dnd';
 
-const DropZone = ({ id, children }: DropZoneProps): React.ReactElement => {
+const DropZone = ({
+  id,
+  isDropDisabled,
+  children,
+}: DropZoneProps): React.ReactElement => {
   return (
-    <Droppable droppableId={id}>
+    <Droppable
+      droppableId={id}
+      direction="horizontal"
+      isDropDisabled={isDropDisabled}
+    >
       {(provided: DroppableProvided) => (
         <div
-          style={{
-            border: '2px dashed red',
-          }}
+          className="drop-zone"
           ref={provided.innerRef}
           {...provided.droppableProps}
         >
@@ -22,6 +28,7 @@ const DropZone = ({ id, children }: DropZoneProps): React.ReactElement => {
 
 interface DropZoneProps {
   id: string;
+  isDropDisabled: boolean;
   children: React.ReactElement;
 }
 
