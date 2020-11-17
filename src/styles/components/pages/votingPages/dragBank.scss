@@ -6,8 +6,7 @@
     padding: 3rem 3rem 1rem;
     background-color: $seafoam;
     border-radius: 5px;
-    box-shadow: 0 4px 4px #0005;
-    -moz-box-shadow: 0 4px 4px #0005;
+    @include drop-shadow;
   }
 
   .voting-item {

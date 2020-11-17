@@ -38,7 +38,8 @@
   font-family: $display-font;
   font-size: 1.5rem;
   transition: all 0.2s ease-in-out;
-  box-shadow: 0 4px 4px #0003;
+  @include drop-shadow(#0003);
+  text-decoration: none;
   &:hover {
     background-color: darken($bgcolor, 5%);
     transition: all 0.2s ease-in-out;
@@ -47,6 +48,11 @@
     background-color: #c4c4c4;
     cursor: not-allowed;
   }
+}
+
+@mixin drop-shadow($color: #0005) {
+  box-shadow: 0 4px 4px $color;
+  -moz-box-shadow: 0 4px 4px $color;
 }
 
 @mixin text-button($color, $darken-amt: 15%) {

@@ -3,7 +3,7 @@
   background-color: $white;
   padding: 2rem;
   color: $charcoal;
-  box-shadow: 0 4px 4px #000;
+  @include drop-shadow;
   max-width: 60rem;
   margin: 0 auto;
 

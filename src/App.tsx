@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { PrivateRoute, Signout } from './components/common';
+import { ComingSoon, PrivateRoute, Signout } from './components/common';
 
 // Route Components
 import { LandingPage } from './components/pages/LandingPage';
@@ -24,6 +24,8 @@ const App: React.FC = () => {
         {/* Private Routes */}
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/vote" component={VotingPage} />
+
+        <PrivateRoute path="/comingsoon" component={ComingSoon} />
 
         {/* Fallback Redirect to Dashboard */}
         <Route path="/" component={() => <Redirect to="/dashboard" />} />

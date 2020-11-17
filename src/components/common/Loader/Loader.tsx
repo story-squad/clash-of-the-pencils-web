@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ClimbingBoxLoader } from 'react-spinners';
+import { nav } from '../../../config';
 import { Header } from '../Header';
 
 interface LoaderProps {
@@ -21,7 +22,7 @@ const Loader = ({ message = 'Loading' }: LoaderProps): React.ReactElement => {
 
   return (
     <div className="loader">
-      <Header />
+      <Header menuItems={nav.siteNavItems} />
       <div className="loader-body">
         <ClimbingBoxLoader loading={true} />
         <div className="message">
