@@ -8,7 +8,9 @@ const PromptBox = (): React.ReactElement => {
   const username = useRecoilValue(user.username);
 
   useEffect(() => {
-    if (!prompt)
+    console.log('hit');
+    if (!prompt) {
+      console.log('hit2');
       Prompts.getCurrent()
         .then(({ data }) => {
           setPrompt(data.prompt);
@@ -16,6 +18,7 @@ const PromptBox = (): React.ReactElement => {
         .catch((err) => {
           console.log(err);
         });
+    }
   }, []);
 
   return (
