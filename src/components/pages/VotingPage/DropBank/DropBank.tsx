@@ -5,25 +5,37 @@ import { top3 } from '../../../../state';
 import { SubCard } from '../../../common';
 
 import { DropZone } from '../DropZone';
+import { dragons } from '../DragonBank/DragonBank';
 
-const DropBank = (): React.ReactElement => {
+const DropBank = (props: any): React.ReactElement => {
   const top3List = useRecoilValue(top3.top3List);
 
   return (
     <div className="drop-bank">
       {top3List?.map((item, i) => (
-        <DropZone key={i} id={`sub-${i + 1}`}>
-          <VotingItem key={i} {...item} />
-        </DropZone>
+        <VotingItem
+          key={i}
+          {...item}
+          dropZoneId={`sub-${i + 1}`}
+          DnDState={props.DnDState}
+        />
       ))}
     </div>
   );
 };
 
-const VotingItem = (props: Submissions.SubItem) => {
+const VotingItem = (props: VotingItemProps) => {
   return (
     <div className="voting-item">
-      <SubCard src={props.src} alt={props.alt} canPreview={false} />
+      <DropZone
+        id={props.dropZoneId}
+        isDropDisabled={!props.DnDState[props.dropZoneId].isEmpty}
+      >
+        <>
+          <SubCard src={props.src} alt={props.alt} canPreview={false} />
+          {dragons[props.DnDState[props.dropZoneId].contents]}
+        </>
+      </DropZone>
       <div className="sub-info">
         <p>
           <span className="alt">{props.username}</span> {props?.age}
@@ -32,5 +44,10 @@ const VotingItem = (props: Submissions.SubItem) => {
     </div>
   );
 };
+
+interface VotingItemProps extends Submissions.SubItem {
+  dropZoneId: string;
+  DnDState: any;
+}
 
 export default DropBank;
