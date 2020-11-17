@@ -4,6 +4,11 @@
 
 .voting-page {
   padding: 2rem;
+
+  @media screen and (min-width: $large) {
+    padding: 2rem 10%;
+  }
+
   .top-text {
     text-align: center;
     h2 {
