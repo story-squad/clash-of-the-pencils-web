@@ -10,12 +10,6 @@ interface RenderDashboardProps {
 const RenderDashboard = ({
   picList,
 }: RenderDashboardProps): React.ReactElement => {
-  // The following values should be loaded from BE
-  const prompt = {
-    username: 'CatLady',
-    prompt: 'You are a super hero, and there is a town that needs saving.',
-    streak: 3,
-  };
   return (
     <div className="dashboard-container">
       <Header menuItems={nav.siteNavItems} />
@@ -32,7 +26,7 @@ const RenderDashboard = ({
           </div>
         </div>
         <div className="content">
-          <PromptBox {...prompt} />
+          <PromptBox />
         </div>
       </div>
     </div>
