@@ -22,7 +22,7 @@ const Modal = ({
       onClick={closable ? () => setVisible(false) : () => null}
     >
       <div
-        className={`modal${className && ' ' + className}`}
+        className={`modal${className ? ' ' + className : ''}`}
         onClick={(e) => e.stopPropagation()}
       >
         <Component setVisible={setVisible} {...props} />

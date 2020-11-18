@@ -27,6 +27,7 @@ The modal has other properties to help make it more interactive:
 - `setVisible` - setState function
 - `closable` - boolean _(optional, default `true`)_
 - `centered` - boolean _(optional, default `false`)_
+- `className` - string _(optional)_
 
 ### Example Use In Component
 
@@ -68,3 +69,7 @@ if `closable` is `false`, the modal can only be closed by calling `setVisible(fa
 ### `centered`
 
 If `true`, the modal will be centered on the screen using flexbox. If false, it will still be horizontally centered, but will be rendered near the top of the screen with some padding.
+
+### `className`
+
+All this does is adds custom JSX `classNames` to a modal for more specific styling needs.
