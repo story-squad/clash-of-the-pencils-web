@@ -67,14 +67,14 @@ const SignupForm = (): React.ReactElement => {
             label="First Name"
             errors={errors}
             register={register}
-            rules={{ required: 'First Name is required!' }}
+            rules={{ required: 'First name is required!' }}
           />
           <Input
             name="lastName"
             label="Last Name"
             errors={errors}
             register={register}
-            rules={{ required: 'Last Name is required!' }}
+            rules={{ required: 'Last name is required!' }}
           />
           <Input
             name="username"
