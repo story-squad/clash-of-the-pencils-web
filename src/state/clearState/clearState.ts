@@ -1,5 +1,6 @@
 import { selector } from 'recoil';
 import { top3List, hasFinishedReadingState, hasReadState } from '../top3State';
+import { DnDContainerState } from '../DnDState';
 import { list } from '../pastSubsState';
 import { userId } from '../userState';
 
@@ -9,6 +10,7 @@ export const all = selector<null>({
   get: () => null,
   set: ({ reset }) => {
     reset(top3List);
+    reset(DnDContainerState);
     reset(hasFinishedReadingState);
     reset(hasReadState);
     reset(list);
