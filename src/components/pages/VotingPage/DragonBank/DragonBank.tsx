@@ -1,27 +1,30 @@
 import React from 'react';
+import { useRecoilValue } from 'recoil';
+import { DnD } from '../../../../state';
 import DraggableDragon from './DraggableDragon';
 import { DropZone } from '../DropZone';
 
-const DragonBank = (props: any): React.ReactElement => {
+const DragonBank = (): React.ReactElement => {
+  const DnDState = useRecoilValue(DnD.DnDContainerState);
   return (
     <div className="dragon-bank">
       <DropZone
         id="vote-1"
-        isDropDisabled={props.DnDState['vote-1'].isEmpty ? false : true}
+        isDropDisabled={DnDState['vote-1'].isEmpty ? false : true}
       >
-        {dragons[props.DnDState['vote-1'].contents]}
+        {dragons[DnDState['vote-1'].contents]}
       </DropZone>
       <DropZone
         id="vote-2"
-        isDropDisabled={props.DnDState['vote-2'].isEmpty ? false : true}
+        isDropDisabled={DnDState['vote-2'].isEmpty ? false : true}
       >
-        {dragons[props.DnDState['vote-2'].contents]}
+        {dragons[DnDState['vote-2'].contents]}
       </DropZone>
       <DropZone
         id="vote-3"
-        isDropDisabled={props.DnDState['vote-3'].isEmpty ? false : true}
+        isDropDisabled={DnDState['vote-3'].isEmpty ? false : true}
       >
-        {dragons[props.DnDState['vote-3'].contents]}
+        {dragons[DnDState['vote-3'].contents]}
       </DropZone>
     </div>
   );

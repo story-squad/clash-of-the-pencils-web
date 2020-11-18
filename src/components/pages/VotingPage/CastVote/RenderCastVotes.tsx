@@ -9,7 +9,7 @@ import { DropBank } from '../DropBank';
 import { DragonBank } from '../DragonBank';
 import { AiOutlineArrowLeft as Left } from 'react-icons/ai';
 
-const RenderCastVotes = (props: any): React.ReactElement => {
+const RenderCastVotes = (): React.ReactElement => {
   const setHasRead = useSetRecoilState(top3.hasFinishedReadingState);
 
   const submitVotes = () => null;
@@ -41,19 +41,10 @@ const RenderCastVotes = (props: any): React.ReactElement => {
             Go Back
           </button>
         </div>
-        <DragonBank DnDState={props.DnDState} />
-        <DropBank DnDState={props.DnDState} />
+        <DragonBank />
+        <DropBank />
         <div className="button-container">
-          <button
-            disabled={
-              props.DnDState['sub-1'].isEmpty ||
-              props.DnDState['sub-2'].isEmpty ||
-              props.DnDState['sub-3'].isEmpty
-                ? true
-                : false
-            }
-            onClick={submitVotes}
-          >
+          <button disabled={true} onClick={submitVotes}>
             Vote
           </button>
         </div>
@@ -61,5 +52,11 @@ const RenderCastVotes = (props: any): React.ReactElement => {
     </div>
   );
 };
+
+// props.DnDState['sub-1'].isEmpty ||
+// props.DnDState['sub-2'].isEmpty ||
+// props.DnDState['sub-3'].isEmpty
+//   ? true
+//   : false;
 
 export default RenderCastVotes;

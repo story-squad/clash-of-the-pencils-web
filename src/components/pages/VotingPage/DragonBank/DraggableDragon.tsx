@@ -25,6 +25,21 @@ const DraggableDragon = ({
           {...provided.dragHandleProps}
         >
           <img src={wasDragged ? emptyDragon : dragonBoi} alt={`${place}`} />
+          <p
+            style={{
+              position: 'absolute',
+              top: '40%',
+              left: '48%',
+              backgroundColor: 'white',
+              border: '2px solid black',
+              color: 'black',
+              fontSize: '3rem',
+              fontWeight: 'bold',
+              padding: '5%',
+            }}
+          >
+            {place}
+          </p>
         </div>
       )}
     </Draggable>
