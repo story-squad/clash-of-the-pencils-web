@@ -9,7 +9,7 @@ interface ContainerState {
   isEmpty: boolean;
 }
 
-const initDnDContainerState: DnDContainerState = {
+export const initDnDContainerState: DnDContainerState = {
   'sub-1': { contents: '', isEmpty: true },
   'sub-2': { contents: '', isEmpty: true },
   'sub-3': { contents: '', isEmpty: true },
