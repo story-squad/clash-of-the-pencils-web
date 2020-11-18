@@ -61,6 +61,21 @@ const SignupForm = (): React.ReactElement => {
           {errors.form && (
             <div className="server-error">{errors.form.message}</div>
           )}
+          {/* not sending first or last to back end at this time */}
+          <Input
+            name="firstName"
+            label="First Name"
+            errors={errors}
+            register={register}
+            rules={{ required: 'First Name is required!' }}
+          />
+          <Input
+            name="lastName"
+            label="Last Name"
+            errors={errors}
+            register={register}
+            rules={{ required: 'Last Name is required!' }}
+          />
           <Input
             name="username"
             label="Username"
