@@ -25,6 +25,7 @@ const DraggableDragon = ({
           {...provided.dragHandleProps}
         >
           <img src={wasDragged ? emptyDragon : dragonBoi} alt={`${place}`} />
+          {/* <p> element is a placeholder used during development */}
           <p
             style={{
               position: 'absolute',

@@ -27,10 +27,12 @@ const RenderCastVotes = (): React.ReactElement => {
     setHasRead(false);
   };
 
-  // Resets the vote choices to starting positions
+  /**
+   * Resets the vote choices to starting positions
+   */
   const resetVotes = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
+  ): void => {
     event.preventDefault();
     // Hooks cannot be used inside event handlers so we aren't able
     // to simply reset by using useResetRecoilState hook

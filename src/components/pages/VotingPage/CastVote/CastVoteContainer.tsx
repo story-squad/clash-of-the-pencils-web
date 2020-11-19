@@ -6,7 +6,10 @@ import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 const CastVoteContainer = (): React.ReactElement => {
   const [DnDState, setDnDState] = useRecoilState(DnD.DnDContainerState);
-  const onDragEnd = (result: DropResult) => {
+  /**
+   * Callback required by DragDropContext to update state after a user ends a drag event
+   */
+  const onDragEnd = (result: DropResult): void => {
     const { source, destination, draggableId } = result;
     // if the draggable was dropped outside a droppable we don't need to do anything so return
     if (!destination) {
