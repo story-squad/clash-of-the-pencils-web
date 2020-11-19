@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { top3, DnD } from '../../../../state';
 
 import { Header } from '../../../common';
@@ -15,8 +15,12 @@ import {
 const RenderCastVotes = (): React.ReactElement => {
   const setHasRead = useSetRecoilState(top3.hasFinishedReadingState);
   const [DnDState, SetDnDState] = useRecoilState(DnD.DnDContainerState);
+  const voteSubmission = useRecoilValue(DnD.voteSubmissionState);
 
-  const submitVotes = () => null;
+  const submitVotes = () => {
+    console.log(voteSubmission);
+    alert('We got your vote!');
+  };
 
   const backToRead = () => {
     setHasRead(false);
@@ -37,16 +41,12 @@ const RenderCastVotes = (): React.ReactElement => {
       <Header menuItems={nav.siteNavItems} />
       <div className="voting-page">
         <div className="top-text">
-          <h2>Welcome to Dragon Drop!</h2>
-          <p>We make voting simple and fun!</p>
+          <h2>Welcome to</h2>
+          <h1>Dragon Drop!</h1>
           <p className="instructions">
-            <span className="alt">Think</span> about the stories you just read,{' '}
-            <span className="alt">then vote</span>! Drag your favorite story
-            into <span className="alt-2">1st</span> place, then{' '}
-            <span className="alt-2">2nd</span>, then{' '}
-            <span className="alt-2">3rd</span>!{' '}
-            <span className="alt">After</span> you vote, click the Vote button
-            on the bottom to <span className="alt">submit</span>!
+            <span className="alt vote">Vote</span> by dragging the Drag-N-Drop
+            Dragons onto your favorite story below.{' '}
+            <span className="alt">Then</span> click the vote button!
           </p>
         </div>
         <div className="button-container">
@@ -63,6 +63,7 @@ const RenderCastVotes = (): React.ReactElement => {
         <DropBank />
         <div className="button-container">
           <button
+            // disable the vote button if any of the submission containers don't have a vote
             disabled={
               DnDState['sub-1'].isEmpty ||
               DnDState['sub-2'].isEmpty ||
