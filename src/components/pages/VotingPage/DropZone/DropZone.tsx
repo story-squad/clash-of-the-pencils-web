@@ -11,9 +11,9 @@ const DropZone = ({
   children,
 }: DropZoneProps): React.ReactElement => {
   /**
-   * returns a class name to the dropzone based of the DnD snapshot
+   * returns a class name to the drop zone based on the DnD snapshot
    * to conditionally change the background color of the drop zone
-   * for user feed back
+   * for user feed back during a drag
    */
   const returnClassName = (snapshot: DroppableStateSnapshot): string => {
     // returns class name for styling background color
