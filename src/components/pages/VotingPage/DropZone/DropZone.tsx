@@ -42,6 +42,9 @@ const DropZone = ({
           {...provided.droppableProps}
         >
           {children}
+          {/* React Beautiful DnD wants to have this placeholder, but it was causing styling issues. 
+          I left it commented out to solve that. In a dev environment you will get warnings in the 
+          console that won't be displayed in production as a result */}
           {/* {provided.placeholder} */}
         </div>
       )}
