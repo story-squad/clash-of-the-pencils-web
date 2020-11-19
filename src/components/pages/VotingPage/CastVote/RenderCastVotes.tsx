@@ -8,6 +8,7 @@ import { nav } from '../../../../config';
 import { DropBank } from '../DropBank';
 import { DragonBank } from '../DragonBank';
 import { AiOutlineArrowLeft as Left } from 'react-icons/ai';
+import ConvertKitForm from 'convertkit-react';
 
 const RenderCastVotes = (): React.ReactElement => {
   const setHasRead = useSetRecoilState(top3.hasFinishedReadingState);
@@ -24,11 +25,9 @@ const RenderCastVotes = (): React.ReactElement => {
     return null;
   };
 
-  //
   const submitVotes = () => {
     // updated the voted state to True
     setVoted(true);
-    console.log('I FIRED');
     return null;
   };
 
@@ -38,7 +37,7 @@ const RenderCastVotes = (): React.ReactElement => {
 
   return (
     <div>
-      <Header menuItems={nav.siteNavItems} />
+      <Header menuItems={userId ? nav.siteNavItems : nav.landingNavItems} />
       <div className="voting-page">
         <div className="top-text">
           <h2>Welcome to Dragon Drop!</h2>
@@ -67,15 +66,24 @@ const RenderCastVotes = (): React.ReactElement => {
           </button>
         </div>
       </div>
-      {
+      {!userId && (
         <Modal
-          component={() => <p>I WORK</p>}
+          component={() => (
+            <>
+              <h1>Find Out Who Wins!</h1>
+              <ConvertKitForm
+                className="ck-fm"
+                formId={1826783}
+                hideName={true}
+              />
+            </>
+          )}
           visible={voted}
           setVisible={() => {
             setVoted(false);
           }}
         />
-      }
+      )}
     </div>
   );
 };
