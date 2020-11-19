@@ -23,7 +23,8 @@ const App: React.FC = () => {
 
         {/* Private Routes */}
         <PrivateRoute path="/dashboard" component={Dashboard} />
-        <PrivateRoute path="/vote" component={VotingPage} />
+        {/* TODO - CHANGE BACK TO A PRIVATE ROUTE */}
+        <Route path="/vote" component={VotingPage} />
 
         <PrivateRoute path="/comingsoon" component={ComingSoon} />
 
