@@ -1,12 +1,20 @@
+.drop-bank,
 .dragon-bank {
   .drop-zone {
     position: relative;
-    width: 32%;
+    padding: 10px;
+    border: 3px dashed red;
+    transition: all 0.3s ease-in-out;
+  }
+  .drag-from {
+    background-color: #87ceeb;
+  }
+  .drag-over {
+    background-color: #ffa500;
   }
 }
-
-.drop-bank {
+.dragon-bank {
   .drop-zone {
-    position: relative;
+    width: 32%;
   }
 }
