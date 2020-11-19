@@ -18,6 +18,7 @@ const RenderCastVotes = (): React.ReactElement => {
   const voteSubmission = useRecoilValue(DnD.voteSubmissionState);
 
   const submitVotes = () => {
+    // API call goes in here
     console.log(voteSubmission);
     alert('We got your vote!');
   };
