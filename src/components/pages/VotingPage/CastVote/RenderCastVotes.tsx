@@ -5,10 +5,11 @@ import { top3, user } from '../../../../state';
 
 import { Header, Modal } from '../../../common';
 import { nav } from '../../../../config';
+import EmailCollectionForm from './EmailCollectionForm';
+import { AiOutlineArrowLeft as Left } from 'react-icons/ai';
+
 import { DropBank } from '../DropBank';
 import { DragonBank } from '../DragonBank';
-import { AiOutlineArrowLeft as Left } from 'react-icons/ai';
-import EmailCollectionForm from './EmailCollectionForm';
 
 const RenderCastVotes = (): React.ReactElement => {
   const setHasRead = useSetRecoilState(top3.hasFinishedReadingState);

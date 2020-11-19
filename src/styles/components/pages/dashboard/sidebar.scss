@@ -11,9 +11,10 @@
   h2 {
     font-family: $display-font;
     color: $white;
-    font-size: 2.4rem;
-    padding: 1rem 2rem 0;
+    font-size: 3.2rem;
+    padding: 2rem 2rem 0;
     text-align: center;
+    text-shadow: 0 2px 2px #0005;
   }
 
   .story-list {
@@ -52,6 +53,16 @@
           max-width: 100%;
         }
       }
+    }
+  }
+
+  & div:not(.story-list) {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .coming-soon p {
+      font-size: 1.8rem;
     }
   }
 }

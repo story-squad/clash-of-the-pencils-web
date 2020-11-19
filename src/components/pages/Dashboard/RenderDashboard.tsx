@@ -1,11 +1,13 @@
 import React from 'react';
 import { nav } from '../../../config';
-import { Header, SubCard } from '../../common';
+import { ComingSoon, Header, SubCard } from '../../common';
 import { PromptBox } from './PromptBox';
 
 interface RenderDashboardProps {
   picList: { src: string; alt?: string }[];
 }
+
+const showPicList = false;
 
 const RenderDashboard = ({
   picList,
@@ -19,11 +21,15 @@ const RenderDashboard = ({
           style={{ maxHeight: `${window.innerHeight - 44}px` }}
         >
           <h2>My Stories</h2>
-          <div className="story-list">
-            {picList.map((pic, i) => (
-              <SubCard key={i} {...pic} />
-            ))}
-          </div>
+          {showPicList ? (
+            <div className="story-list">
+              {picList.map((pic, i) => (
+                <SubCard key={i} {...pic} />
+              ))}
+            </div>
+          ) : (
+            <ComingSoon fullPage={false} />
+          )}
         </div>
         <div className="content">
           <PromptBox />

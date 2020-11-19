@@ -4,20 +4,25 @@ import { Link } from 'react-router-dom';
 import { nav } from '../../../config';
 import { Header } from '../Header';
 
-const ComingSoon = (): React.ReactElement => {
+const ComingSoon = ({
+  fullPage = true,
+}: ComingSoonProps): React.ReactElement => {
   return (
     <div>
-      <Header menuItems={nav.siteNavItems} />
+      {fullPage && <Header menuItems={nav.siteNavItems} />}
       <div className="coming-soon">
         <p>
-          This page is currently under construction.
-          <br />
-          Check back later!
+          This {fullPage ? 'page' : 'feature'} is currently under construction.
         </p>
-        <Link to="/dashboard">Back to Dashboard</Link>
+        <p>Check back later!</p>
+        {fullPage && <Link to="/dashboard">Back to Dashboard</Link>}
       </div>
     </div>
   );
 };
+
+interface ComingSoonProps {
+  fullPage?: boolean;
+}
 
 export default ComingSoon;
