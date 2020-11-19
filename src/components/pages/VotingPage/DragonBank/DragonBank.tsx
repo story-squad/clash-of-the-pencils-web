@@ -3,6 +3,7 @@ import { useRecoilValue } from 'recoil';
 import { DnD } from '../../../../state';
 import DraggableDragon from './DraggableDragon';
 import { DropZone } from '../DropZone';
+import emptyDragon from '../../../../assets/dragon-outline.png';
 
 const DragonBank = (): React.ReactElement => {
   const DnDState = useRecoilValue(DnD.DnDContainerState);
@@ -12,19 +13,46 @@ const DragonBank = (): React.ReactElement => {
         id="vote-1"
         isDropDisabled={DnDState['vote-1'].isEmpty ? false : true}
       >
-        {dragons[DnDState['vote-1'].contents]}
+        <>
+          {/* if the drop zone is empty then render an empty dragon image otherwise null */}
+          {DnDState['vote-1'].isEmpty ? (
+            <div className="empty-dragon">
+              <img src={emptyDragon} alt="dragon outline" />
+            </div>
+          ) : null}
+          {/* render the matching Draggable Dragon based on which award is in the container state*/}
+          {dragons[DnDState['vote-1'].contents]}
+        </>
       </DropZone>
       <DropZone
         id="vote-2"
         isDropDisabled={DnDState['vote-2'].isEmpty ? false : true}
       >
-        {dragons[DnDState['vote-2'].contents]}
+        <>
+          {/* if the drop zone is empty then render an empty dragon image otherwise null */}
+          {DnDState['vote-2'].isEmpty ? (
+            <div className="empty-dragon">
+              <img src={emptyDragon} alt="dragon outline" />
+            </div>
+          ) : null}
+          {/* render the matching Draggable Dragon based on which award is in the container state*/}
+          {dragons[DnDState['vote-2'].contents]}
+        </>
       </DropZone>
       <DropZone
         id="vote-3"
         isDropDisabled={DnDState['vote-3'].isEmpty ? false : true}
       >
-        {dragons[DnDState['vote-3'].contents]}
+        <>
+          {/* if the drop zone is empty then render an empty dragon image otherwise null */}
+          {DnDState['vote-3'].isEmpty ? (
+            <div className="empty-dragon">
+              <img src={emptyDragon} alt="dragon outline" />
+            </div>
+          ) : null}
+          {/* render the matching Draggable Dragon based on which award is in the container state*/}
+          {dragons[DnDState['vote-3'].contents]}
+        </>
       </DropZone>
     </div>
   );
@@ -33,7 +61,7 @@ const DragonBank = (): React.ReactElement => {
 export interface DragonList {
   [key: string]: JSX.Element;
 }
-
+// dictionary used to conditionally render the appropriate Draggable Dragon
 export const dragons: DragonList = {
   'award-1': <DraggableDragon id="award-1" index={0} place={1} />,
   'award-2': <DraggableDragon id="award-2" index={0} place={2} />,
