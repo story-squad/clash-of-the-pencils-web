@@ -62,11 +62,13 @@ const RenderCastVotes = (): React.ReactElement => {
       </div>
       {!userId && (
         <Modal
+          className="email"
           component={EmailCollectionForm}
           visible={voted}
           setVisible={() => {
             setVoted(false);
           }}
+          centered={true}
         />
       )}
     </div>
