@@ -29,9 +29,9 @@ const SubmissionForm = (props: SubmissionFormProps): React.ReactElement => {
       setLoading(true);
       try {
         // ALL GOOD TO UPLOAD!
-        console.log('BRO');
         const base64Image = await upload.toBase64(file);
         if (!base64Image) {
+          setError('Error occurred. Try again later.');
           // Error!
           return;
         }
@@ -83,7 +83,7 @@ const SubmissionForm = (props: SubmissionFormProps): React.ReactElement => {
         ) : (
           // Once the submission is done, show a button.
           <>
-            <p>Submission successful!</p>
+            <div className="success">Submission successful!</div>
             <button onClick={props.closeModal}>Back to Dashboard</button>
           </>
         )}

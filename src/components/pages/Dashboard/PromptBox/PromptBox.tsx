@@ -11,9 +11,7 @@ const PromptBox = (): React.ReactElement => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    console.log('hit');
     if (!prompt) {
-      console.log('hit2');
       Prompts.getCurrent()
         .then(({ data }) => {
           setPrompt(data.prompt);

@@ -9,7 +9,7 @@ export const siteNavItems = [
 export const landingNavItems = [
   { link: '/', text: 'Home' },
   { link: '/info', text: 'Learn More' },
-  { link: '/', text: 'Vote' },
+  { link: '/vote', text: 'Vote' },
   { link: '/signup', text: 'Sign Up' },
   { link: '/login', text: 'Sign In' },
 ];

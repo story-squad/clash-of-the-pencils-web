@@ -8,7 +8,7 @@ import { nav } from '../../../../config';
 import { DropBank } from '../DropBank';
 import { DragonBank } from '../DragonBank';
 import { AiOutlineArrowLeft as Left } from 'react-icons/ai';
-import ConvertKitForm from 'convertkit-react';
+import EmailCollectionForm from './EmailCollectionForm';
 
 const RenderCastVotes = (): React.ReactElement => {
   const setHasRead = useSetRecoilState(top3.hasFinishedReadingState);
@@ -18,12 +18,6 @@ const RenderCastVotes = (): React.ReactElement => {
 
   //check if a user has voted
   const [voted, setVoted] = useState(false);
-
-  // Get non-user voter emails from modal
-  // basic functionality
-  const getEmails = () => {
-    return null;
-  };
 
   const submitVotes = () => {
     // updated the voted state to True
@@ -68,16 +62,7 @@ const RenderCastVotes = (): React.ReactElement => {
       </div>
       {!userId && (
         <Modal
-          component={() => (
-            <>
-              <h1>Find Out Who Wins!</h1>
-              <ConvertKitForm
-                className="ck-fm"
-                formId={1826783}
-                hideName={true}
-              />
-            </>
-          )}
+          component={EmailCollectionForm}
           visible={voted}
           setVisible={() => {
             setVoted(false);

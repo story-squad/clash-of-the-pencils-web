@@ -50,6 +50,12 @@
       }
     }
 
+    .success {
+      margin-bottom: 2rem;
+      font-family: $display-font;
+      font-size: 1.8rem;
+    }
+
     .error {
       color: $red;
       font-family: $display-font;
