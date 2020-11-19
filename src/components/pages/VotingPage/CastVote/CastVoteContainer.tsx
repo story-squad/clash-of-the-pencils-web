@@ -2,10 +2,23 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import { DnD } from '../../../../state/';
 import RenderCastVotes from './RenderCastVotes';
-import { DragDropContext, DropResult } from 'react-beautiful-dnd';
+import { DragDropContext, DragStart, DropResult } from 'react-beautiful-dnd';
 
 const CastVoteContainer = (): React.ReactElement => {
   const [DnDState, setDnDState] = useRecoilState(DnD.DnDContainerState);
+  /**
+   * Call back used by React Beautiful DnD to update state at the beggining of a drag event.
+   * This is being used to render the dragon outline image when a user starts dragging a dragon
+   */
+  const onDragStart = (start: DragStart) => {
+    // get the source drop zone
+    const { source } = start;
+    // update state of the source drop zone to show as empty
+    setDnDState({
+      ...DnDState,
+      [source.droppableId]: { ...DnDState[source.droppableId], isEmpty: true },
+    });
+  };
   /**
    * Callback required by DragDropContext to update state after a user ends a drag event
    */
@@ -21,8 +34,14 @@ const CastVoteContainer = (): React.ReactElement => {
       source.droppableId === destination.droppableId &&
       source.index === destination.index
     ) {
-      //we don't need to do anything so return
-      return;
+      // update state to show the drop zone is once again occupied
+      setDnDState({
+        ...DnDState,
+        [source.droppableId]: {
+          ...DnDState[source.droppableId],
+          isEmpty: false,
+        },
+      });
     }
     // ref to destination state object
     const finish = DnDState[destination.droppableId];
@@ -51,7 +70,7 @@ const CastVoteContainer = (): React.ReactElement => {
     }
   };
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
+    <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
       <RenderCastVotes />
     </DragDropContext>
   );
