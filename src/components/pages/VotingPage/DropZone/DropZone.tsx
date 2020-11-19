@@ -1,25 +1,48 @@
 import React from 'react';
-import { Droppable, DroppableProvided } from 'react-beautiful-dnd';
+import {
+  Droppable,
+  DroppableProvided,
+  DroppableStateSnapshot,
+} from 'react-beautiful-dnd';
 
 const DropZone = ({
   id,
   isDropDisabled,
   children,
 }: DropZoneProps): React.ReactElement => {
+  /**
+   * returns a class name to the dropzone based of the DnD snapshot
+   * to conditionally change the background color of the drop zone
+   * for user feed back
+   */
+  const returnClassName = (snapshot: DroppableStateSnapshot): string => {
+    // returns class name for styling background color
+    // if the drop zone is being dragged over
+    if (snapshot.isDraggingOver) {
+      return 'drop-zone drag-over';
+    }
+    // returns class name for styling background colo
+    // if the drop zone is being dragged from but not over
+    if (snapshot.draggingFromThisWith) {
+      return 'drop-zone drag-from';
+    }
+    // default class name with no background color styling
+    return 'drop-zone';
+  };
   return (
     <Droppable
       droppableId={id}
       direction="horizontal"
       isDropDisabled={isDropDisabled}
     >
-      {(provided: DroppableProvided) => (
+      {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => (
         <div
-          className="drop-zone"
+          className={returnClassName(snapshot)}
           ref={provided.innerRef}
           {...provided.droppableProps}
         >
           {children}
-          {provided.placeholder}
+          {/* {provided.placeholder} */}
         </div>
       )}
     </Droppable>
