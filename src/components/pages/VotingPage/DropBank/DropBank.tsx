@@ -27,16 +27,16 @@ const VotingItem = (props: VotingItemProps) => {
         id={props.dropZoneId}
         isDropDisabled={!DnDState[props.dropZoneId].isEmpty}
       >
-        <>
+        <div>
           <SubCard src={props.src} alt={props.alt} canPreview={false} />
+          <div className="sub-info">
+            <p>
+              <span className="alt">{props.username}</span> {props?.age}
+            </p>
+          </div>
           {dragons[DnDState[props.dropZoneId].contents]}
-        </>
+        </div>
       </DropZone>
-      <div className="sub-info">
-        <p>
-          <span className="alt">{props.username}</span> {props?.age}
-        </p>
-      </div>
     </div>
   );
 };
