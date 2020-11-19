@@ -4,7 +4,7 @@ import { axiosWithAuth } from '../axiosWithConfig';
 export interface SubItem {
   src: string;
   alt?: string;
-  username?: string;
+  username: string;
   age?: number;
 }
 

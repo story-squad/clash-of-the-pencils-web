@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { useRecoilState } from 'recoil';
-import { histogram } from '../../../state';
+import { results } from '../../../state';
 
 import createPlotyComponent from 'react-plotly.js/factory';
 import { PlotParams } from 'react-plotly.js';
@@ -15,7 +15,7 @@ const histoConfig: PlotParams['config'] = {
 };
 
 const Histogram = (): React.ReactElement => {
-  const [histData, setHistData] = useRecoilState(histogram.values);
+  const [histData, setHistData] = useRecoilState(results.histogram);
   const [loadError, setLoadError] = useState<boolean>(false);
 
   useEffect(() => {
