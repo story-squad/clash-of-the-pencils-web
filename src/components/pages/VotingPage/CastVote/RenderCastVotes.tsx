@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { useSetRecoilState } from 'recoil';
-import { top3 } from '../../../../state';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { top3, user } from '../../../../state';
 
-import { Header } from '../../../common';
+import { Header, Modal } from '../../../common';
 import { nav } from '../../../../config';
 import { DropBank } from '../DropBank';
 import { DragonBank } from '../DragonBank';
@@ -12,7 +12,25 @@ import { AiOutlineArrowLeft as Left } from 'react-icons/ai';
 const RenderCastVotes = (): React.ReactElement => {
   const setHasRead = useSetRecoilState(top3.hasFinishedReadingState);
 
-  const submitVotes = () => null;
+  // grab the user id from recoil to ensure we are logged in
+  const userId = useRecoilValue(user.userId);
+
+  //check if a user has voted
+  const [voted, setVoted] = useState(false);
+
+  // Get non-user voter emails from modal
+  // basic functionality
+  const getEmails = () => {
+    return null;
+  };
+
+  //
+  const submitVotes = () => {
+    // updated the voted state to True
+    setVoted(true);
+    console.log('I FIRED');
+    return null;
+  };
 
   const backToRead = () => {
     setHasRead(false);
@@ -44,11 +62,20 @@ const RenderCastVotes = (): React.ReactElement => {
         <DragonBank />
         <DropBank />
         <div className="button-container">
-          <button disabled={true} onClick={submitVotes}>
+          <button disabled={false} onClick={submitVotes}>
             Vote
           </button>
         </div>
       </div>
+      {
+        <Modal
+          component={() => <p>I WORK</p>}
+          visible={voted}
+          setVisible={() => {
+            setVoted(false);
+          }}
+        />
+      }
     </div>
   );
 };
