@@ -2,19 +2,7 @@ import { axiosWithoutAuth } from '../axiosWithConfig';
 import { AxiosResponse } from 'axios';
 
 export const login = async (credentials: LoginBody): Promise<AxiosResponse> => {
-  try {
-    const { data } = await axiosWithoutAuth().get(
-      `/email/activation/${credentials.email}`,
-    );
-    if (data.validated && !data.validated) {
-      return Promise.reject('You must validate your email before login.');
-    } else {
-      return axiosWithoutAuth().post('/email/login', credentials);
-    }
-  } catch (err) {
-    console.log({ err });
-    return Promise.reject('An unknown error occurred. Please try again.');
-  }
+  return axiosWithoutAuth().post('/email/login', credentials);
 };
 
 export const activatedLogin = (token: string): Promise<AxiosResponse> => {

@@ -1,5 +1,5 @@
-// import { AxiosResponse } from 'axios';
-// import { axiosWithAuth } from './axiosWithConfig';
+import { AxiosResponse } from 'axios';
+import { axiosWithAuth } from '../axiosWithConfig';
 
 export interface SubItem {
   src: string;
@@ -31,4 +31,10 @@ export const getTop3Subs = (): Promise<{ data: SubItem[] }> => {
   const subList = makeSubList(3);
 
   return Promise.resolve({ data: subList });
+};
+
+export const uploadSubmission = (
+  reqBody: FormData,
+): Promise<AxiosResponse<unknown>> => {
+  return axiosWithAuth().post('/upload', reqBody);
 };

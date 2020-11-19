@@ -9,7 +9,6 @@ const Modal = ({
   visible,
   setVisible,
   className,
-  ...props
 }: ModalProps): React.ReactElement => {
   const closeModal = () => {
     setVisible(false);
@@ -25,7 +24,7 @@ const Modal = ({
         className={`modal${className ? ' ' + className : ''}`}
         onClick={(e) => e.stopPropagation()}
       >
-        <Component setVisible={setVisible} {...props} />
+        <Component />
         {closable && (
           <div className="close-button" onClick={closeModal}>
             <MdClose />
@@ -37,15 +36,12 @@ const Modal = ({
 };
 
 interface ModalProps {
-  component: React.ComponentType<ComponentProps>;
+  component: React.ComponentType;
   closable?: boolean;
   centered?: boolean;
   visible: boolean;
   setVisible: React.Dispatch<boolean>;
   className?: string;
-}
-interface ComponentProps {
-  setVisible: React.Dispatch<boolean>;
 }
 
 export default Modal;

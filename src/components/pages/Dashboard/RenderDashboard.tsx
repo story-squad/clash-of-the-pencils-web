@@ -1,7 +1,7 @@
 import React from 'react';
 import { nav } from '../../../config';
 import { Header, SubCard } from '../../common';
-import PromptBox from './PromptBox';
+import { PromptBox } from './PromptBox';
 
 interface RenderDashboardProps {
   picList: { src: string; alt?: string }[];

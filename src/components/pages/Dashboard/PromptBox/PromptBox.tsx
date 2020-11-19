@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { Prompts } from '../../../api';
-import { prompts, user } from '../../../state';
+import { Prompts } from '../../../../api';
+import { prompts, user } from '../../../../state';
+import { Modal } from '../../../common';
+import SubmissionForm from './SubmissionForm';
 
 const PromptBox = (): React.ReactElement => {
   const [prompt, setPrompt] = useRecoilState(prompts.currentPrompt);
   const username = useRecoilValue(user.username);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     console.log('hit');
@@ -21,8 +24,15 @@ const PromptBox = (): React.ReactElement => {
     }
   }, []);
 
+  const toggleModal = () => setShowModal((cur) => !cur);
+
   return (
     <div className="prompt-box">
+      <Modal
+        component={() => <SubmissionForm closeModal={toggleModal} />}
+        visible={showModal}
+        setVisible={setShowModal}
+      />
       <h2>Hey, {username}!</h2>
       {prompt ? (
         <>
@@ -39,7 +49,7 @@ const PromptBox = (): React.ReactElement => {
             {[...new Array(props.streak)].map(() => '(f)')}
           </span>
         </div> */}
-        <button>Submit Your Story</button>
+        <button onClick={toggleModal}>Submit Your Story</button>
       </div>
     </div>
   );
