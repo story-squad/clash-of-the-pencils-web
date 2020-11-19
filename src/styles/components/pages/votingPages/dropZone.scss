@@ -3,14 +3,15 @@
   .drop-zone {
     position: relative;
     padding: 10px;
-    border: 3px dashed red;
+    border-radius: 5px;
+    //border: 3px dashed red;
     transition: all 0.3s ease-in-out;
   }
   .drag-from {
-    background-color: #87ceeb;
+    background-color: $ltblue;
   }
   .drag-over {
-    background-color: #ffa500;
+    background-color: $lt-orange;
   }
 }
 .dragon-bank {
