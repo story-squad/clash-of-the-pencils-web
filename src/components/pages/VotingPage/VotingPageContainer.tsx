@@ -15,15 +15,18 @@ const VotingPageContainer = (): React.ReactElement => {
   const setLoadingError = useSetRecoilState(apiError.global);
 
   useEffect(() => {
-    setLoadingError(null);
-    Submissions.getTop3Subs()
-      .then((res) => {
-        setTop3(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoadingError(err.message);
-      });
+    if (!top3List) {
+      setLoadingError(null);
+      Submissions.getTop3Subs()
+        .then((res) => {
+          setLoadingError(null);
+          setTop3(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoadingError(err.message);
+        });
+    }
   }, []);
 
   if (top3List) {

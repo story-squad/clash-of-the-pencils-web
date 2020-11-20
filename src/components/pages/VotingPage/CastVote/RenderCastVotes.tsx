@@ -36,12 +36,13 @@ const RenderCastVotes = (): React.ReactElement => {
         console.log(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        console.log({ err });
         setError('Could not submit vote. Please try again later.');
       });
   };
 
   const backToRead = () => {
+    setError(null);
     setHasRead(false);
   };
 

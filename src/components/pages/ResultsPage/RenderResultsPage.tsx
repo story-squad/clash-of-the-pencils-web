@@ -39,7 +39,7 @@ const WinnerBubble = (props: WinnerBubbleProps): React.ReactElement => {
     <div className="winner-bubble">
       <h3>Today We Celebrate:</h3>
       <h2>{props.winnerName}</h2>
-      <div className="flames">FLAMES GO HERE</div>
+      <div className="flames">&#128293; &#128293; &#128293;</div>
     </div>
   );
 };

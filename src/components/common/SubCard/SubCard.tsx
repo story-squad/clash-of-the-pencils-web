@@ -10,9 +10,9 @@ interface SubCardProps extends Submissions.SubItem {
 }
 
 const SubCard = ({
-  image,
   canPreview = true,
   onModalOpen = () => null,
+  ...sub
 }: SubCardProps): React.ReactElement => {
   const [showModal, setShowModal] = useState(false);
 
@@ -26,16 +26,16 @@ const SubCard = ({
       <Modal
         visible={showModal}
         setVisible={setShowModal}
-        component={() => <ModalImage image={image} />}
+        component={() => <ModalImage {...sub} />}
         closable={true}
       />
-      <img src={image} alt="" />
+      <img src={sub.image} alt="" />
       {canPreview && <BsArrowsFullscreen onClick={modalOpenHandler} />}
     </div>
   );
 };
 
-const ModalImage = (props: Pick<Submissions.SubItem, 'image'>) => {
+const ModalImage = (props: Submissions.SubItem) => {
   return (
     <div className="modal-image">
       <img src={props.image} alt="" />
