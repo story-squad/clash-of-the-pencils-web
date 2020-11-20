@@ -29,9 +29,9 @@ const RenderCastVotes = (): React.ReactElement => {
     // API call goes in here
     // updated the voted state to True
     setVoted(true);
-    return null;
     console.log(voteSubmission);
     alert('We got your vote!');
+    return null;
   };
 
   // Get non-user voter emails from modal

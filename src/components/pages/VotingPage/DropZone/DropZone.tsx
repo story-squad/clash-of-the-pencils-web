@@ -10,25 +10,6 @@ const DropZone = ({
   isDropDisabled,
   children,
 }: DropZoneProps): React.ReactElement => {
-  /**
-   * returns a class name to the drop zone based on the DnD snapshot
-   * to conditionally change the background color of the drop zone
-   * for user feed back during a drag
-   */
-  const returnClassName = (snapshot: DroppableStateSnapshot): string => {
-    // returns class name for styling background color
-    // if the drop zone is being dragged over
-    if (snapshot.isDraggingOver) {
-      return 'drop-zone drag-over';
-    }
-    // returns class name for styling background colo
-    // if the drop zone is being dragged from but not over
-    if (snapshot.draggingFromThisWith) {
-      return 'drop-zone drag-from';
-    }
-    // default class name with no background color styling
-    return 'drop-zone';
-  };
   return (
     <Droppable
       droppableId={id}
@@ -37,7 +18,9 @@ const DropZone = ({
     >
       {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => (
         <div
-          className={returnClassName(snapshot)}
+          className={`drop-zone${snapshot.isDraggingOver ? ' drag-over' : ''}${
+            snapshot.draggingFromThisWith ? ' drag-over' : ''
+          }`}
           ref={provided.innerRef}
           {...provided.droppableProps}
         >
