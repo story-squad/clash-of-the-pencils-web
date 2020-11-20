@@ -6,6 +6,7 @@ import { Header, SubCard } from '../../common';
 import { ThoughtBubble } from '../../common/ThoughtBubble';
 
 import dragonBoi from '../../../assets/dragon-boi.svg';
+import celebration from '../../../assets/celebration-station.png';
 
 const RenderResultsPage = (): React.ReactElement => {
   const winner = useRecoilValue(results.winner);
@@ -13,8 +14,9 @@ const RenderResultsPage = (): React.ReactElement => {
   return (
     <div>
       <Header menuItems={nav.siteNavItems} />
-      {winner && (
-        <div className="results-page">
+      <div className="results-page">
+        <img src={celebration} alt="Celebration Station" />
+        {winner && (
           <div className="celebration">
             <ThoughtBubble
               render={() => <WinnerBubble winnerName={winner.username} />}
@@ -28,8 +30,8 @@ const RenderResultsPage = (): React.ReactElement => {
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

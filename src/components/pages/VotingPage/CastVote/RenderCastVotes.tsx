@@ -15,6 +15,8 @@ import {
 } from 'react-icons/ai';
 import { Voting } from '../../../../api';
 
+import dragonDropText from '../../../../assets/dragon-drop.png';
+
 const RenderCastVotes = (): React.ReactElement => {
   const setHasRead = useSetRecoilState(top3.hasFinishedReadingState);
   const resetDnD = useResetRecoilState(DnD.DnDContainerState);
@@ -63,7 +65,7 @@ const RenderCastVotes = (): React.ReactElement => {
       <div className="voting-page">
         <div className="top-text">
           <h2>Welcome to</h2>
-          <h1>Dragon Drop!</h1>
+          <img src={dragonDropText} alt="Dragon Drop" />
           <p className="instructions">
             <span className="alt">Vote</span> by dragging the Drag-N-Drop
             Dragons onto your favorite story below.{' '}

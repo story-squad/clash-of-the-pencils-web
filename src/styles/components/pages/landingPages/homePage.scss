@@ -5,6 +5,11 @@
   align-items: center;
   padding: 3rem 2rem;
 
+  & > img {
+    max-width: 800px;
+    margin-bottom: 1rem;
+  }
+
   & > div {
     max-width: 800px;
     width: 100%;
