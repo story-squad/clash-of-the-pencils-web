@@ -1,5 +1,11 @@
-import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import {
+  Redirect,
+  Route,
+  Switch,
+  useHistory,
+  useLocation,
+} from 'react-router-dom';
 import { ComingSoon, PrivateRoute, Signout } from './components/common';
 
 // Route Components
@@ -10,6 +16,14 @@ import { Dashboard } from './components/pages/Dashboard';
 import { ResultsPage } from './components/pages/ResultsPage';
 
 const App: React.FC = () => {
+  const { push } = useHistory();
+  const location = useLocation();
+  useEffect(() => {
+    const params = location.search;
+    const index = params.indexOf('=') + 1;
+    const newPath = params.slice(index);
+    push('/' + newPath);
+  }, []);
   return (
     <div className="App">
       <Switch>

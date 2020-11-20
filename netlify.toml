@@ -1,0 +1,29 @@
+[[redirects]]
+  from = "/vote"
+  to = "/index.html"
+  status = 200
+  query = {path = "vote"}
+
+[[redirects]]
+  from = "/dashboard"
+  to = "/index.html"
+  status = 200
+  query = {path = "dashboard"}
+
+[[redirects]]
+  from = "/results"
+  to = "/index.html"
+  status = 200
+  query = {path = "results"}
+
+[[redirects]]
+  from = "/comingsoon"
+  to = "/index.html"
+  status = 200
+  query = {path = "comingsoon"}
+
+# Fallback redirect
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
