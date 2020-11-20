@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { useRecoilValue } from 'recoil';
-import { prompts } from '../../../../state';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { prompts, submitModal } from '../../../../state';
 
 import { Submissions } from '../../../../api';
 import { upload } from '../../../../utils';
@@ -9,19 +9,17 @@ import { upload } from '../../../../utils';
 import { BarLoader } from 'react-spinners';
 
 const SubmissionForm = (props: SubmissionFormProps): React.ReactElement => {
-  const [file, setFile] = useState<null | File>(null);
-  const [preview, setPreview] = useState<null | string>(null);
+  const [file, setFile] = useRecoilState(submitModal.selected);
+  const [preview, setPreview] = useRecoilState(submitModal.preview);
+  const [error, setError] = useRecoilState(submitModal.error);
+  const [loading, setLoading] = useRecoilState(submitModal.loading);
+  const [complete, setComplete] = useRecoilState(submitModal.success);
   const promptId = useRecoilValue(prompts.promptId);
-  const [error, setError] = useState<null | string>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [complete, setComplete] = useState<boolean>(false);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!file) {
       setError('No image selected!');
-    } else if (!upload.isValidImage(file)) {
-      setError('Upload must be an image!');
     } else if (!promptId) {
       // Couldn't load prompt info, please reset
       setError('Error occurred. Try again later.');
@@ -50,10 +48,17 @@ const SubmissionForm = (props: SubmissionFormProps): React.ReactElement => {
   };
 
   const fileSelection = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      if (e.target.files[0]) {
-        setFile(e.target.files[0]);
-        setPreview(URL.createObjectURL(e.target.files[0]));
+    const fileList = e.target.files;
+    if (fileList) {
+      const selection = fileList[0];
+      if (selection) {
+        if (!upload.isValidImage(selection)) {
+          setError('Upload must be an image!');
+        } else {
+          setError(null);
+          setFile(selection);
+          setPreview(URL.createObjectURL(selection));
+        }
       }
     }
   };

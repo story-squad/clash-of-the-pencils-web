@@ -30,6 +30,7 @@ const PromptBox = (): React.ReactElement => {
         component={() => <SubmissionForm closeModal={toggleModal} />}
         visible={showModal}
         setVisible={setShowModal}
+        centered
       />
       <h2>Hey, {username}!</h2>
       {prompt ? (
