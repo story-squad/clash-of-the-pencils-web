@@ -34,12 +34,6 @@ const RenderCastVotes = (): React.ReactElement => {
     return null;
   };
 
-  // Get non-user voter emails from modal
-  // basic functionality
-  const getEmails = () => {
-    return null;
-  };
-
   const backToRead = () => {
     setHasRead(false);
   };
