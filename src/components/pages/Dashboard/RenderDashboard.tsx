@@ -4,7 +4,7 @@ import { nav } from '../../../config';
 import { ComingSoon, Header, Histogram, SubCard } from '../../common';
 import { PromptBox } from './PromptBox';
 
-import todaysPrompt from '../../../assets/todays-prompt.png';
+import todaysPrompt from '../../../assets/todays-story-prompt.png';
 
 interface RenderDashboardProps {
   picList: Submissions.SubItem[];

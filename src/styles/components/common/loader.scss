@@ -14,10 +14,15 @@
       }
     }
     .message {
+      padding: 1rem;
       margin-top: 2.5vh;
       font-family: $text-font;
       font-size: 1.5rem;
       color: $white;
+      &.error {
+        font-size: 2rem;
+        margin-top: 0;
+      }
     }
     a {
       @include button($orange);

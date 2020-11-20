@@ -37,12 +37,17 @@ const Histogram = (): React.ReactElement => {
       {histData ? (
         // Histogram loaded, display it
         <>
+          <p>Here’s how our robots scored your story! &#129302;</p>
           <Plot {...histData} config={histoConfig} />
+          <p>
+            Hint: Our robots love to read stories with lots of dialogue, vivid
+            descriptions, and satisfying endings.
+          </p>
         </>
       ) : loadError ? (
         // No histogram, error on load
         <>
-          <div className="message">Score not available</div>
+          <div className="message">Today&apos;s score not available</div>
         </>
       ) : (
         // No histogram, no error, still loading!
@@ -53,5 +58,62 @@ const Histogram = (): React.ReactElement => {
     </div>
   );
 };
+
+// const graph: { data: Plotly.Data[]; layout: Partial<Plotly.Layout> } = {
+//   data: [
+//     {
+//       hoverinfo: 'none',
+//       line: {
+//         color: '#EB7E5B',
+//         width: 7,
+//       },
+//       marker: {
+//         color: '#FED23E',
+//         size: 18,
+//         symbol: 'star',
+//       },
+//       mode: 'text+lines+markers',
+//       type: 'scatter',
+//       x: [1, 2, 3],
+//       y: [34, 44, 54],
+//     },
+//   ],
+//   layout: {
+//     plot_bgcolor: '#6CEAE6',
+//     title: {
+//       font: {
+//         family: 'PT Sans Narrow',
+//         size: 25,
+//       },
+//       text: "Kelley's Squad Score Over Time",
+//       x: 0.5,
+//       y: 0.95,
+//     },
+//     xaxis: {
+//       showgrid: false,
+//       ticks: 'inside',
+//       tickvals: [1, 2, 3],
+//       title: {
+//         font: {
+//           family: 'PT Sans Narrow',
+//           size: 20,
+//         },
+//         text: 'Week Number',
+//       },
+//       zeroline: false,
+//     },
+//     yaxis: {
+//       showgrid: false,
+//       showticklabels: false,
+//       title: {
+//         font: {
+//           family: 'PT Sans Narrow',
+//           size: 20,
+//         },
+//         text: 'Squad Score',
+//       },
+//     },
+//   },
+// };
 
 export default Histogram;
