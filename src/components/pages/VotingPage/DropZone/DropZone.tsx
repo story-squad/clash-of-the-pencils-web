@@ -19,7 +19,7 @@ const DropZone = ({
       {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => (
         <div
           className={`drop-zone${snapshot.isDraggingOver ? ' drag-over' : ''}${
-            snapshot.draggingFromThisWith ? ' drag-over' : ''
+            snapshot.draggingFromThisWith ? ' drag-from' : ''
           }`}
           ref={provided.innerRef}
           {...provided.droppableProps}
