@@ -26,7 +26,9 @@ const App: React.FC = () => {
         res.token ? '/' + res.token : ''
       }`;
       console.log(newPath, res);
-      // push(`/${res.path ? res.path : ''}${res.token ? '/' + res.token : ''}`);
+      setTimeout(() => {
+        push(newPath);
+      }, 10000);
     }
   }, []);
   return (
