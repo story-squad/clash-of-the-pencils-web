@@ -23,7 +23,8 @@ const App: React.FC = () => {
 
         {/* Private Routes */}
         <PrivateRoute path="/dashboard" component={Dashboard} />
-        <PrivateRoute path="/vote" component={VotingPage} />
+        {/* TODO - CHANGE BACK TO A PRIVATE ROUTE */}
+        <Route path="/vote" component={VotingPage} />
 
         {/* Fallback Redirect to Dashboard */}
         <Route path="/" component={() => <Redirect to="/dashboard" />} />
