@@ -3,11 +3,6 @@
   flex-flow: column nowrap;
   background-color: $seafoam;
 
-  @media screen and (min-width: $large) {
-    order: 2;
-    overflow-y: scroll;
-  }
-
   h2 {
     font-family: $display-font;
     color: $white;

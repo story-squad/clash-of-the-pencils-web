@@ -2,7 +2,8 @@ import { atom } from 'recoil';
 import { PlotParams } from 'react-plotly.js';
 import { Submissions } from '../../api';
 
-export const histogram = atom<null | PlotParams>({
+export type HistData = Pick<PlotParams, 'data' | 'layout'>;
+export const histogram = atom<null | HistData>({
   key: 'histogramValues',
   default: null,
 });

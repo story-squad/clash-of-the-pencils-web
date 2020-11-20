@@ -7,6 +7,8 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { DragonBoi } from '../DragonBoi';
 import { ThoughtBubble } from '../../../common/ThoughtBubble';
 
+import squadUp from '../../../../assets/squad-up.png';
+
 const SignupForm = (): React.ReactElement => {
   const {
     register,
@@ -49,11 +51,13 @@ const SignupForm = (): React.ReactElement => {
           centered={true}
         />
         <div className="landing-splash">
-          <ThoughtBubble />
+          <ThoughtBubble
+            render={() => <>#SquadGoals! Sign up and start writing today!</>}
+          />
           <DragonBoi />
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h1>Squad Up!</h1>
+          <img src={squadUp} alt="Squad Up!" />
           <p>
             A Story Squad account is free! Please fill out the information below
             to get started.

@@ -1,10 +1,13 @@
 import React from 'react';
+import { Submissions } from '../../../api';
 import { nav } from '../../../config';
-import { ComingSoon, Header, SubCard } from '../../common';
+import { ComingSoon, Header, Histogram, SubCard } from '../../common';
 import { PromptBox } from './PromptBox';
 
+import todaysPrompt from '../../../assets/todays-prompt.png';
+
 interface RenderDashboardProps {
-  picList: { src: string; alt?: string }[];
+  picList: Submissions.SubItem[];
 }
 
 const showPicList = false;
@@ -16,10 +19,7 @@ const RenderDashboard = ({
     <div className="dashboard-container">
       <Header menuItems={nav.siteNavItems} />
       <div className="dashboard">
-        <div
-          className="sidebar"
-          style={{ maxHeight: `${window.innerHeight - 44}px` }}
-        >
+        <div className="sidebar">
           <h2>My Stories</h2>
           {showPicList ? (
             <div className="story-list">
@@ -32,7 +32,9 @@ const RenderDashboard = ({
           )}
         </div>
         <div className="content">
+          <img src={todaysPrompt} alt="Today's Story Prompt" />
           <PromptBox />
+          <Histogram />
         </div>
       </div>
     </div>

@@ -6,6 +6,13 @@
   @include drop-shadow;
   max-width: 60rem;
   margin: 0 auto;
+  position: relative;
+
+  & > .info-hover-tip {
+    top: 1rem;
+    right: 1rem;
+    color: $blue;
+  }
 
   h2 {
     color: $orange;

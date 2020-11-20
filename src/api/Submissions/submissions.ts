@@ -2,39 +2,24 @@ import { AxiosResponse } from 'axios';
 import { axiosWithAuth } from '../axiosWithConfig';
 
 export interface SubItem {
-  src: string;
-  alt?: string;
+  id: number;
+  userId: number;
   username: string;
-  age?: number;
+  image: string;
+  pages?: string;
 }
 
-const makeSubList = (numSubs: number): SubItem[] => {
-  return [...new Array(numSubs)].map(() => ({
-    src:
-      'https://artprojectsforkids.org/wp-content/uploads/2020/05/Penguin.jpg',
-    username: 'Catlady',
-    age: 5,
-  }));
+export const getRecentSubsByChild = (): Promise<AxiosResponse<SubItem[]>> => {
+  return axiosWithAuth().get('/upload/mystories');
 };
 
-export const getRecentSubsByChild = (
-  childId: number,
-  // ): Promise<AxiosResponse<SubItem[]>> => { // I think this will work?
-): Promise<{ data: SubItem[] }> => {
-  console.log(childId);
-  const picList = makeSubList(10);
-
-  return Promise.resolve({ data: picList });
-};
-
-export const getTop3Subs = (): Promise<{ data: SubItem[] }> => {
-  const subList = makeSubList(3);
-
-  return Promise.resolve({ data: subList });
+export const getTop3Subs = (): Promise<AxiosResponse<SubItem[]>> => {
+  return axiosWithAuth().get('/ranking');
 };
 
 export const uploadSubmission = (
   reqBody: FormData,
 ): Promise<AxiosResponse<unknown>> => {
+  // TODO
   return axiosWithAuth().post('/upload', reqBody);
 };

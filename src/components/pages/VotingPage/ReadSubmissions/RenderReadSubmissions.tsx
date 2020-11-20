@@ -7,6 +7,8 @@ import { Header } from '../../../common';
 import { nav } from '../../../../config';
 import ReadTop3 from './ReadTop3';
 
+import votingStation from '../../../../assets/voting-booth.png';
+
 const RenderReadSubmissions = (): React.ReactElement => {
   const readCount = useRecoilValue(top3.getReadCount);
   const setFinishedReading = useSetRecoilState(top3.hasFinishedReadingState);
@@ -19,8 +21,7 @@ const RenderReadSubmissions = (): React.ReactElement => {
       <Header menuItems={userId ? nav.siteNavItems : nav.landingNavItems} />
       <div className="voting-page">
         <div className="top-text">
-          <h2>Welcome to the Voting Station!</h2>
-          <p>Voting is simple!</p>
+          <img src={votingStation} alt="Voting Booth" />
           <p className="instructions">
             <span className="alt">First</span>, click on each of the stories to
             read them. <span className="alt">Then</span>, click the orange

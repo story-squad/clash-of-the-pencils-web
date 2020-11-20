@@ -19,22 +19,19 @@ const DropBank = (): React.ReactElement => {
   );
 };
 
-const VotingItem = (props: VotingItemProps) => {
+const VotingItem = ({ dropZoneId, ...sub }: VotingItemProps) => {
   const DnDState = useRecoilValue(DnD.DnDContainerState);
   return (
     <div className="voting-item">
-      <DropZone
-        id={props.dropZoneId}
-        isDropDisabled={!DnDState[props.dropZoneId].isEmpty}
-      >
+      <DropZone id={dropZoneId} isDropDisabled={!DnDState[dropZoneId].isEmpty}>
         <div>
-          <SubCard src={props.src} alt={props.alt} canPreview={false} />
+          <SubCard {...sub} canPreview={false} />
           <div className="sub-info">
             <p>
-              <span className="alt">{props.username}</span> {props?.age}
+              <span className="alt">{sub.username}</span>
             </p>
           </div>
-          {dragons[DnDState[props.dropZoneId].contents]}
+          {dragons[DnDState[dropZoneId].contents]}
         </div>
       </DropZone>
     </div>

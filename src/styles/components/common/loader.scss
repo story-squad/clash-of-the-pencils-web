@@ -19,5 +19,10 @@
       font-size: 1.5rem;
       color: $white;
     }
+    a {
+      @include button($orange);
+      font-size: 2.4rem;
+      margin-top: 2rem;
+    }
   }
 }

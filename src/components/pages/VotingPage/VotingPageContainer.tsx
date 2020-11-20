@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { top3 } from '../../../state';
+import { apiError, top3 } from '../../../state';
 import { Submissions } from '../../../api';
 
 import { Loader } from '../../common';
@@ -12,17 +12,21 @@ const VotingPageContainer = (): React.ReactElement => {
   const setTop3 = useSetRecoilState(top3.top3List);
   const top3List = useRecoilValue(top3.top3List);
   const finishedReading = useRecoilValue(top3.hasFinishedReadingState);
+  const setLoadingError = useSetRecoilState(apiError.global);
 
   useEffect(() => {
-    Submissions.getTop3Subs()
-      .then((res) => {
-        setTimeout(() => {
+    if (!top3List) {
+      setLoadingError(null);
+      Submissions.getTop3Subs()
+        .then((res) => {
+          setLoadingError(null);
           setTop3(res.data);
-        }, 750);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoadingError(err.message);
+        });
+    }
   }, []);
 
   if (top3List) {

@@ -1,18 +1,33 @@
-// .prompt-box {
-//   .modal-wrapper {
-//     .modal {
-//       background-color: $ltblue;
-//     }
-//   }
-// }
+.prompt-box {
+  .modal-wrapper {
+    .modal {
+      background-color: $ltblue;
+      position: relative;
+
+      & > .info-hover-tip {
+        top: 1rem;
+        left: 1rem;
+        color: $blue;
+      }
+    }
+  }
+}
 
 .submission-form {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
   h2 {
-    color: black;
+    color: $white;
     font-family: $display-font;
-    font-size: 2.4rem;
+    font-size: 3.2rem;
     text-align: center;
     margin-bottom: 2rem;
+    @media screen and (max-height: 500px) {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
   }
 
   form {
@@ -31,6 +46,9 @@
       img {
         max-width: 100%;
         max-height: 50vh;
+        @media screen and (max-height: 500px) {
+          max-height: 35vh;
+        }
       }
       .loader {
         position: absolute;
@@ -50,35 +68,54 @@
       }
     }
 
-    .success {
-      margin-bottom: 2rem;
-      font-family: $display-font;
-      font-size: 1.8rem;
-    }
-
     .error {
       color: $red;
       font-family: $display-font;
       font-size: 1.8rem;
-      margin-bottom: 2rem;
-      text-shadow: 0 2px 2px #0005;
+      margin-bottom: 1.5rem;
+      @media screen and (max-height: 500px) {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
     }
 
     label {
       @include button($blue);
       font-size: 1.8rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
+      @media screen and (max-height: 500px) {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
 
       &.selected {
         @include button($jade);
         font-size: 1.8rem;
+        @media screen and (max-height: 500px) {
+          font-size: 1.2rem;
+          margin-bottom: 0.5rem;
+        }
       }
     }
-
-    button {
-      @include button($orange);
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
+  }
+  .success {
+    margin-bottom: 2rem;
+    font-family: $display-font;
+    color: $dark-blue;
+    text-shadow: 0 2px 2px #0005;
+    font-size: 1.8rem;
+    @media screen and (max-height: 500px) {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+  button {
+    @include button($orange);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    @media screen and (max-height: 500px) {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
     }
   }
 }

@@ -27,6 +27,9 @@
       color: $red;
       margin-bottom: 1rem;
     }
+    img {
+      margin-bottom: 1rem;
+    }
     p {
       font-family: $text-font;
       font-size: 1.8rem;
@@ -50,6 +53,14 @@
         }
       }
     }
+  }
+  .error {
+    font-family: $display-font;
+    color: $red;
+    text-shadow: 0 2px 2px #0005;
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+    text-align: center;
   }
   .button-container {
     display: flex;
