@@ -1,29 +1,68 @@
 [[redirects]]
-  from = "/vote"
-  to = "/index.html"
-  status = 200
-  query = {path = "vote"}
+from = "/login"
+to = "/index.html"
+status = 200
+query = { path = "login" }
 
 [[redirects]]
-  from = "/dashboard"
-  to = "/index.html"
-  status = 200
-  query = {path = "dashboard"}
+from = "/register"
+to = "/index.html"
+status = 200
+query = { path = "register" }
 
 [[redirects]]
-  from = "/results"
-  to = "/index.html"
-  status = 200
-  query = {path = "results"}
+from = "/signup"
+to = "/index.html"
+status = 200
+query = { path = "signup" }
 
 [[redirects]]
-  from = "/comingsoon"
-  to = "/index.html"
-  status = 200
-  query = {path = "comingsoon"}
+from = "/info"
+to = "/index.html"
+status = 200
+query = { path = "info" }
+
+[[redirects]]
+from = "/logout"
+to = "/index.html"
+status = 200
+query = { path = "logout" }
+
+[[redirects]]
+from = "/signout"
+to = "/index.html"
+status = 200
+query = { path = "signout" }
+
+[[redirects]]
+from = "/vote"
+to = "/index.html"
+status = 200
+query = { path = "vote" }
+
+[[redirects]]
+from = "/dashboard"
+to = "/index.html"
+status = 200
+query = { path = "dashboard" }
+
+[[redirects]]
+from = "/results"
+to = "/index.html"
+status = 200
+query = { path = "results" }
+
+[[redirects]]
+from = "/comingsoon"
+to = "/index.html"
+status = 200
+query = { path = "comingsoon" }
+
+[[redirects]]
+from = "/activation"
 
 # Fallback redirect
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+from = "/*"
+to = "/index.html"
+status = 200

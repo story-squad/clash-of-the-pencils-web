@@ -19,10 +19,11 @@ const App: React.FC = () => {
   const { push } = useHistory();
   const location = useLocation();
   useEffect(() => {
-    const params = location.search;
-    const index = params.indexOf('=') + 1;
-    const newPath = params.slice(index);
-    push('/' + newPath);
+    const query = location.search.slice(1);
+    const res = queryParser(query);
+    if (res && res.path) {
+      push(`/${res.path ? res.path : ''}${res.token ? '/' + res.token : ''}`);
+    }
   }, []);
   return (
     <div className="App">
@@ -49,5 +50,20 @@ const App: React.FC = () => {
     </div>
   );
 };
+
+const queryParser = (query: string) => {
+  if (query === '') return;
+  const params = query.split('&');
+  const res: QueryParserResponse = {};
+  for (const param of params) {
+    const [key, value] = param.split('=');
+    res[key] = value;
+  }
+  return res;
+};
+
+interface QueryParserResponse {
+  [key: string]: string;
+}
 
 export default App;

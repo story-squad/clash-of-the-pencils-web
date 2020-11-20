@@ -5,7 +5,7 @@ import { token } from '../../../utils';
 import { Modal } from '../../common';
 
 export const Activation = (): React.ReactElement => {
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('Attempting to activate...');
   const { push } = useHistory();
   const { pathname } = useLocation();
 
