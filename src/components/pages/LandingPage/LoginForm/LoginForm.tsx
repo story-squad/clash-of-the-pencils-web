@@ -8,6 +8,8 @@ import { Input } from '../../../common';
 import { DragonBoi } from '../DragonBoi';
 import { ThoughtBubble } from '../../../common/ThoughtBubble';
 
+import welcomeBack from '../../../../assets/welcome-back.png';
+
 const LoginForm: React.FC = () => {
   const { register, handleSubmit, errors, setError, clearErrors } = useForm();
   const { push } = useHistory();
@@ -34,8 +36,8 @@ const LoginForm: React.FC = () => {
         <DragonBoi />
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h1>Welcome Back!</h1>
-        <p>Hey! Thanks for coming back. Please sign in below.</p>
+        <img src={welcomeBack} alt="Welcome Back" />
+        <p>Hey! Sign in below to get back into the game.</p>
         {errors.form && (
           <div className="server-error">{errors.form.message}</div>
         )}

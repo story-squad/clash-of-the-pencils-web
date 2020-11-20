@@ -1,18 +1,27 @@
 // Controls the left-hand splash display on landing page
 .landing-splash {
-  padding: 3rem 2rem;
-  background-color: $ltblue;
+  padding: 3rem;
+  background-color: $seafoam;
   flex-grow: 1;
+
   & + * {
-    padding: 3rem 2rem;
+    // This sets styling of the right-hand components on landing page
+    padding: 3rem;
     @media screen and (min-width: $tablet) {
-      max-width: 400px;
+      max-width: 450px;
     }
   }
 
+  // Hide the splash on the left until you reach tablet size
   display: none;
   @media screen and (min-width: $tablet) {
     display: block;
+
+    &.flex-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
   .text-bubble {
     font-size: 2rem;
