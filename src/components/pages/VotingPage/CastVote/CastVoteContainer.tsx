@@ -5,9 +5,7 @@ import RenderCastVotes from './RenderCastVotes';
 import { DragDropContext, DragStart, DropResult } from 'react-beautiful-dnd';
 
 const CastVoteContainer = (): React.ReactElement => {
-  const [DnDState, setDnDState] = useRecoilState<DnD.DnDContainerState>(
-    DnD.DnDContainerState,
-  );
+  const [DnDState, setDnDState] = useRecoilState(DnD.DnDContainerState);
   /**
    * Callback used by React Beautiful DnD to update state at the beginning of a drag event.
    * This is being used to render the dragon outline image when a user starts dragging a dragon
