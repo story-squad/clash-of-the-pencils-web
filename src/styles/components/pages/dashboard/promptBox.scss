@@ -12,6 +12,9 @@
     top: 1rem;
     right: 1rem;
     color: $blue;
+    &:hover {
+      color: darken($blue, 10%);
+    }
   }
 
   h2 {

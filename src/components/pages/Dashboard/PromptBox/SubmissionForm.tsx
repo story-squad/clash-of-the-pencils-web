@@ -10,7 +10,7 @@ import { BarLoader } from 'react-spinners';
 import { InfoHoverTip } from '../../../common';
 
 const submissionInstructions =
-  "First, read the sentence. Then, write a one-page story by hand. \
+  "First, read the prompt. Then, write a one-page story by hand. \
   When you're done, take a picture and upload it to our site. \
   Happy writing!";
 
