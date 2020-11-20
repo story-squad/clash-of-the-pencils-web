@@ -7,6 +7,12 @@ import { Submissions } from '../../../../api';
 import { upload } from '../../../../utils';
 
 import { BarLoader } from 'react-spinners';
+import { InfoHoverTip } from '../../../common';
+
+const submissionInstructions =
+  "First, read the sentence. Then, write a one-page story by hand. \
+  When you're done, take a picture and upload it to our site. \
+  Happy writing!";
 
 const SubmissionForm = (props: SubmissionFormProps): React.ReactElement => {
   const [file, setFile] = useRecoilState(submitModal.selected);
@@ -70,37 +76,40 @@ const SubmissionForm = (props: SubmissionFormProps): React.ReactElement => {
   };
 
   return (
-    <div className="submission-form">
-      <h2>Submit a Story</h2>
-      <form onSubmit={onSubmit}>
-        {preview && (
-          <div className="preview">
-            <img src={preview} alt="Upload preview" />
-            <div className={`loader${loading ? ' visible' : ''}`}>
-              <BarLoader />
+    <>
+      <InfoHoverTip tip={submissionInstructions} position="center" />
+      <div className="submission-form">
+        <h2>Submit a Story</h2>
+        <form onSubmit={onSubmit}>
+          {preview && (
+            <div className="preview">
+              <img src={preview} alt="Upload preview" />
+              <div className={`loader${loading ? ' visible' : ''}`}>
+                <BarLoader />
+              </div>
             </div>
-          </div>
-        )}
-        {error && <div className="error">{error}</div>}
-        {!complete && (
-          // If the submission hasn't been processed successfully
+          )}
+          {error && <div className="error">{error}</div>}
+          {!complete && (
+            // If the submission hasn't been processed successfully
+            <>
+              <label className={file ? 'selected' : ''}>
+                {file ? 'Change Picture' : 'Select a Picture'}
+                <input type="file" onChange={fileSelection} hidden />
+              </label>
+              <button type="submit">Submit</button>
+            </>
+          )}
+        </form>
+        {complete && (
+          // Once the submission is done, show a button.
           <>
-            <label className={file ? 'selected' : ''}>
-              {file ? 'Change Picture' : 'Select a Picture'}
-              <input type="file" onChange={fileSelection} hidden />
-            </label>
-            <button type="submit">Submit</button>
+            <div className="success">Submission successful!</div>
+            <button onClick={props.closeModal}>Back to Dashboard</button>
           </>
         )}
-      </form>
-      {complete && (
-        // Once the submission is done, show a button.
-        <>
-          <div className="success">Submission successful!</div>
-          <button onClick={props.closeModal}>Back to Dashboard</button>
-        </>
-      )}
-    </div>
+      </div>
+    </>
   );
 };
 

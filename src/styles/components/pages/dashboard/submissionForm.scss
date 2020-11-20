@@ -2,6 +2,13 @@
   .modal-wrapper {
     .modal {
       background-color: $ltblue;
+      position: relative;
+
+      & > .info-hover-tip {
+        top: 1rem;
+        left: 1rem;
+        color: $blue;
+      }
     }
   }
 }

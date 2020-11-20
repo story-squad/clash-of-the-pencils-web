@@ -7,9 +7,15 @@
   flex-flow: column nowrap;
   align-items: stretch;
 
-  @media screen and (min-width: $large) {
+  @media screen and (min-width: $tablet) {
     flex-flow: row nowrap;
     align-items: stretch;
+    img {
+      display: block;
+    }
+    .sidebar {
+      order: 2;
+    }
   }
 
   .content {
@@ -20,6 +26,7 @@
 
     img {
       margin-bottom: 1.5rem;
+      display: none;
     }
 
     .prompt-box {
@@ -41,11 +48,10 @@
       }
 
       .message {
-        padding: 2rem;
+        padding: 2rem 4rem;
         font-size: 2.4rem;
         font-family: $display-font;
-        color: $red;
-        text-shadow: 0 2px 2px #0005;
+        color: $jade;
       }
     }
   }

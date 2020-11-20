@@ -9,3 +9,4 @@ export { Signout } from './Signout';
 export { ComingSoon } from './ComingSoon';
 export { Histogram } from './Histogram';
 export { ThoughtBubble } from './ThoughtBubble';
+export { InfoHoverTip } from './InfoHoverTip';
