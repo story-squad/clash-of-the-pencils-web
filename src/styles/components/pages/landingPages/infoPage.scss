@@ -6,18 +6,40 @@
   .info-wrapper {
     display: flex;
     flex-flow: column nowrap;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
 
     p {
       max-width: 400px;
       font-weight: 300;
+      margin: 2rem 0;
       .title {
-        font-weight: 400;
+        font-weight: 500;
         color: $orange;
       }
+
+      &:first-of-type {
+        font-weight: 600;
+        a {
+          color: $orange;
+          transition: all 0.15s ease-in;
+          &:hover {
+            color: darken($orange, 10%);
+            transition: all 0.15s ease-in;
+          }
+        }
+      }
+
+      &:last-of-type {
+        font-family: $display-font;
+        color: $jade;
+        font-size: 3.2rem;
+        line-height: 3.8rem;
+        text-align: center;
+      }
     }
-    a {
+    & > a {
+      margin: 0 auto;
       @include button($orange);
       font-size: 2.4rem;
       text-decoration: none;

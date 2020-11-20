@@ -6,14 +6,15 @@ import { token } from '../../../../utils';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Input } from '../../../common';
 import { DragonBoi } from '../DragonBoi';
-import { ThoughtBubble } from '../ThoughtBubble';
+import { ThoughtBubble } from '../../../common/ThoughtBubble';
+
+import welcomeBack from '../../../../assets/welcome-back.png';
 
 const LoginForm: React.FC = () => {
   const { register, handleSubmit, errors, setError, clearErrors } = useForm();
   const { push } = useHistory();
 
   const onSubmit: SubmitHandler<Auth.LoginBody> = (data) => {
-    console.log(data);
     Auth.login(data)
       .then((res) => {
         token.set(res.data.token);
@@ -31,12 +32,12 @@ const LoginForm: React.FC = () => {
   return (
     <div className="landing-form">
       <div className="landing-splash">
-        <ThoughtBubble />
+        <ThoughtBubble render={() => <>Welcome back!</>} />
         <DragonBoi />
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h1>Welcome Back!</h1>
-        <p>Hey! Thanks for coming back. Please sign in below.</p>
+        <img src={welcomeBack} alt="Welcome Back" />
+        <p>Hey! Sign in below to get back into the game.</p>
         {errors.form && (
           <div className="server-error">{errors.form.message}</div>
         )}

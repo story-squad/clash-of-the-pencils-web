@@ -10,6 +10,18 @@
   }
 }
 
+@mixin word-wrap() {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
 @mixin button(
   $bgcolor: $blue,
   $font-color: $white,
@@ -26,7 +38,9 @@
   font-family: $display-font;
   font-size: 1.5rem;
   transition: all 0.2s ease-in-out;
-  box-shadow: 0 4px 4px #0003;
+  @include drop-shadow(#0003);
+  text-decoration: none;
+  text-align: center;
   &:hover {
     background-color: darken($bgcolor, 5%);
     transition: all 0.2s ease-in-out;
@@ -35,6 +49,11 @@
     background-color: #c4c4c4;
     cursor: not-allowed;
   }
+}
+
+@mixin drop-shadow($color: #0005) {
+  box-shadow: 0 4px 4px $color;
+  -moz-box-shadow: 0 4px 4px $color;
 }
 
 @mixin text-button($color, $darken-amt: 15%) {
@@ -61,4 +80,15 @@
   font-family: $text-font;
   font-size: $size;
   line-height: $size + 1rem;
+}
+
+@mixin text-input() {
+  border: 4px solid $jade;
+  border-radius: 4px;
+  color: #000;
+  font-family: $text-font;
+  padding: 0.5rem;
+  @include placeholder(#999);
+  position: relative;
+  z-index: 3;
 }

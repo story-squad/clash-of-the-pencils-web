@@ -9,6 +9,9 @@
     flex-flow: column nowrap;
     align-items: center;
     width: 100%;
+    img {
+      width: 100%;
+    }
     .server-error {
       color: $red;
       font-family: $display-font;

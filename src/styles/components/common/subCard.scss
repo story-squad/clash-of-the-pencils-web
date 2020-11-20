@@ -1,6 +1,6 @@
 .sub-card {
   max-width: 100%;
-  box-shadow: 0 0 5px #333;
+  @include drop-shadow;
   display: flex;
   border: 1px solid black;
   position: relative;
@@ -34,7 +34,6 @@
   }
 
   .modal {
-    cursor: auto;
     .modal-image {
       width: 100%;
       display: flex;

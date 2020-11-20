@@ -36,31 +36,34 @@ const ReadTop3 = (): React.ReactElement => {
   );
 };
 
-const SubmissionItem = (
-  props: Submissions.SubItem & { markIndexRead: () => void; read: boolean },
-): React.ReactElement => {
+const SubmissionItem = ({
+  markIndexRead,
+  read,
+  ...sub
+}: SubmissionItemComponentProps): React.ReactElement => {
   return (
     <div className="submission-item">
-      <SubCard
-        src={props.src}
-        alt={props.alt}
-        onModalOpen={props.markIndexRead}
-      />
-      <div className={`check${props.read ? ' finished' : ''}`}>
+      <SubCard {...sub} onModalOpen={markIndexRead} />
+      <div className={`check${read ? ' finished' : ''}`}>
         <GreenCheck />
       </div>
       <div className="sub-info">
         <p>
           <span className="alt">Username: </span>
-          {props.username}
+          {sub.username}
         </p>
-        <p>
+        {/* <p>
           <span className="alt">Age: </span>
           {props.age}
-        </p>
+        </p> */}
       </div>
     </div>
   );
 };
+
+interface SubmissionItemComponentProps extends Submissions.SubItem {
+  markIndexRead: () => void;
+  read: boolean;
+}
 
 export default ReadTop3;

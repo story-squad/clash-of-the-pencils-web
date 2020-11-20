@@ -1,0 +1,35 @@
+.modal-wrapper .modal.email {
+  background-color: $ltblue;
+}
+
+.email-collection {
+  h2 {
+    font-size: 3.2rem;
+    font-family: $display-font;
+    color: $white;
+    margin: 1rem 0 2rem;
+    text-shadow: 0 2px 2px #0005;
+  }
+
+  form {
+    display: flex;
+    flex-flow: column nowrap;
+
+    label {
+      font-family: $display-font;
+      color: $dark-blue;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    input {
+      @include text-input();
+      margin-bottom: 1rem;
+    }
+
+    button {
+      @include button($orange);
+      font-size: 2.4rem;
+    }
+  }
+}

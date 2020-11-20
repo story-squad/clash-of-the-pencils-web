@@ -1,38 +1,40 @@
 import React from 'react';
+import { Submissions } from '../../../api';
 import { nav } from '../../../config';
-import { Header, SubCard } from '../../common';
-import PromptBox from './PromptBox';
+import { ComingSoon, Header, Histogram, SubCard } from '../../common';
+import { PromptBox } from './PromptBox';
+
+import todaysPrompt from '../../../assets/todays-prompt.png';
 
 interface RenderDashboardProps {
-  picList: { src: string; alt?: string }[];
+  picList: Submissions.SubItem[];
 }
+
+const showPicList = false;
 
 const RenderDashboard = ({
   picList,
 }: RenderDashboardProps): React.ReactElement => {
-  // The following values should be loaded from BE
-  const prompt = {
-    username: 'CatLady',
-    prompt: 'You are a super hero, and there is a town that needs saving.',
-    streak: 3,
-  };
   return (
     <div className="dashboard-container">
       <Header menuItems={nav.siteNavItems} />
       <div className="dashboard">
-        <div
-          className="sidebar"
-          style={{ maxHeight: `${window.innerHeight - 44}px` }}
-        >
+        <div className="sidebar">
           <h2>My Stories</h2>
-          <div className="story-list">
-            {picList.map((pic, i) => (
-              <SubCard key={i} {...pic} />
-            ))}
-          </div>
+          {showPicList ? (
+            <div className="story-list">
+              {picList.map((pic, i) => (
+                <SubCard key={i} {...pic} />
+              ))}
+            </div>
+          ) : (
+            <ComingSoon fullPage={false} />
+          )}
         </div>
         <div className="content">
-          <PromptBox {...prompt} />
+          <img src={todaysPrompt} alt="Today's Story Prompt" />
+          <PromptBox />
+          <Histogram />
         </div>
       </div>
     </div>

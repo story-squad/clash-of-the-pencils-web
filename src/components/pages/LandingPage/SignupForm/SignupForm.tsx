@@ -5,7 +5,9 @@ import { Input, Modal } from '../../../common';
 import SignupSuccess from './SignupSuccess';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { DragonBoi } from '../DragonBoi';
-import { ThoughtBubble } from '../ThoughtBubble';
+import { ThoughtBubble } from '../../../common/ThoughtBubble';
+
+import squadUp from '../../../../assets/squad-up.png';
 
 const SignupForm = (): React.ReactElement => {
   const {
@@ -49,11 +51,13 @@ const SignupForm = (): React.ReactElement => {
           centered={true}
         />
         <div className="landing-splash">
-          <ThoughtBubble />
+          <ThoughtBubble
+            render={() => <>#SquadGoals! Sign up and start writing today!</>}
+          />
           <DragonBoi />
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h1>Squad Up!</h1>
+          <img src={squadUp} alt="Squad Up!" />
           <p>
             A Story Squad account is free! Please fill out the information below
             to get started.
@@ -61,6 +65,21 @@ const SignupForm = (): React.ReactElement => {
           {errors.form && (
             <div className="server-error">{errors.form.message}</div>
           )}
+          {/* not sending first or last to back end at this time */}
+          <Input
+            name="firstName"
+            label="First Name"
+            errors={errors}
+            register={register}
+            rules={{ required: 'First name is required!' }}
+          />
+          <Input
+            name="lastName"
+            label="Last Name"
+            errors={errors}
+            register={register}
+            rules={{ required: 'Last name is required!' }}
+          />
           <Input
             name="username"
             label="Username"

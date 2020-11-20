@@ -1,0 +1,58 @@
+@import './sidebar.scss';
+@import './promptBox.scss';
+@import './submissionForm.scss';
+
+.dashboard {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+
+  @media screen and (min-width: $tablet) {
+    flex-flow: row nowrap;
+    align-items: stretch;
+    img {
+      display: block;
+    }
+    .sidebar {
+      order: 2;
+    }
+  }
+
+  .content {
+    flex-grow: 1;
+    padding: 2rem;
+    display: flex;
+    flex-flow: column nowrap;
+
+    img {
+      margin-bottom: 1.5rem;
+      display: none;
+    }
+
+    .prompt-box {
+      margin-bottom: 4rem;
+    }
+
+    .histogram {
+      max-width: 65vw;
+      margin: 0 auto 2rem;
+      background-color: white;
+
+      @include drop-shadow;
+      border-radius: 5px;
+      overflow: hidden;
+
+      .js-plotly-plot {
+        width: 100% !important;
+        display: block !important;
+      }
+
+      .message {
+        padding: 2rem 4rem;
+        font-size: 2.4rem;
+        font-family: $display-font;
+        color: $jade;
+      }
+    }
+  }
+}
