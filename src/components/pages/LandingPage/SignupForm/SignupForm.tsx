@@ -51,7 +51,9 @@ const SignupForm = (): React.ReactElement => {
           centered={true}
         />
         <div className="landing-splash">
-          <ThoughtBubble />
+          <ThoughtBubble
+            render={() => <>#SquadGoals! Sign up and start writing today!</>}
+          />
           <DragonBoi />
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>

@@ -15,12 +15,38 @@
   .content {
     flex-grow: 1;
     padding: 2rem;
+    display: flex;
+    flex-flow: column nowrap;
 
-    @media screen and (min-width: $large) {
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content: center;
-      align-items: center;
+    img {
+      margin-bottom: 1.5rem;
+    }
+
+    .prompt-box {
+      margin-bottom: 4rem;
+    }
+
+    .histogram {
+      max-width: 65vw;
+      margin: 0 auto 2rem;
+      background-color: white;
+
+      @include drop-shadow;
+      border-radius: 5px;
+      overflow: hidden;
+
+      .js-plotly-plot {
+        width: 100% !important;
+        display: block !important;
+      }
+
+      .message {
+        padding: 2rem;
+        font-size: 2.4rem;
+        font-family: $display-font;
+        color: $red;
+        text-shadow: 0 2px 2px #0005;
+      }
     }
   }
 }

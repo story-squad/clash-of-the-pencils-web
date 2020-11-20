@@ -42,7 +42,7 @@ const Histogram = (): React.ReactElement => {
       ) : loadError ? (
         // No histogram, error on load
         <>
-          <div className="message">Error loading graph</div>
+          <div className="message">Error loading graph :(</div>
         </>
       ) : (
         // No histogram, no error, still loading!

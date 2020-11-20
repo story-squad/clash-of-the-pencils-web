@@ -32,7 +32,7 @@ const LoginForm: React.FC = () => {
   return (
     <div className="landing-form">
       <div className="landing-splash">
-        <ThoughtBubble />
+        <ThoughtBubble render={() => <>Welcome back!</>} />
         <DragonBoi />
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
