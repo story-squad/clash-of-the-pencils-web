@@ -38,7 +38,7 @@ const SubCard = ({
   );
 };
 
-const ModalImage = (props: Submissions.SubItem) => {
+const ModalImage = (props: Omit<Submissions.SubItem, 'username'>) => {
   return (
     <div className="modal-image">
       <img src={props.src} alt={props.alt} />
