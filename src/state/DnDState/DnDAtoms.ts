@@ -1,10 +1,10 @@
 import { atom } from 'recoil';
 
-interface DnDContainerState {
+export interface DnDContainerState {
   [key: string]: ContainerState;
 }
 
-interface ContainerState {
+export interface ContainerState {
   contents: string;
   isEmpty: boolean;
 }
