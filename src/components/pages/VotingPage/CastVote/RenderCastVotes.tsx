@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { top3, DnD } from '../../../../state';
 
 import { Header } from '../../../common';
@@ -11,11 +11,13 @@ import {
   AiOutlineArrowLeft as Left,
   AiOutlineReload as Reload,
 } from 'react-icons/ai';
+import { useResetRecoilState } from 'recoil';
 
 const RenderCastVotes = (): React.ReactElement => {
   const setHasRead = useSetRecoilState(top3.hasFinishedReadingState);
-  const [DnDState, SetDnDState] = useRecoilState(DnD.DnDContainerState);
+  const resetDnD = useResetRecoilState(DnD.DnDContainerState);
   const voteSubmission = useRecoilValue(DnD.voteSubmissionState);
+  const disableButton = useRecoilValue(DnD.disableVoteButton);
 
   const submitVotes = () => {
     // API call goes in here
@@ -34,9 +36,7 @@ const RenderCastVotes = (): React.ReactElement => {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ): void => {
     event.preventDefault();
-    // Hooks cannot be used inside event handlers so we aren't able
-    // to simply reset by using useResetRecoilState hook
-    SetDnDState(DnD.initDnDContainerState);
+    resetDnD();
   };
 
   return (
@@ -57,7 +57,7 @@ const RenderCastVotes = (): React.ReactElement => {
             <Left />
             Go Back
           </button>
-          <button className="small" onClick={(e) => resetVotes(e)}>
+          <button className="small" onClick={resetVotes}>
             <Reload />
             Reset Votes
           </button>
@@ -67,13 +67,7 @@ const RenderCastVotes = (): React.ReactElement => {
         <div className="button-container">
           <button
             // disable the vote button if any of the submission containers don't have a vote
-            disabled={
-              DnDState['sub-1'].isEmpty ||
-              DnDState['sub-2'].isEmpty ||
-              DnDState['sub-3'].isEmpty
-                ? true
-                : false
-            }
+            disabled={disableButton}
             onClick={submitVotes}
           >
             Vote

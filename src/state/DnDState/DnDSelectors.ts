@@ -30,3 +30,15 @@ export const voteSubmissionState = selector({
     ];
   },
 });
+
+export const disableVoteButton = selector<boolean>({
+  key: 'disableVoteButton',
+  get: ({ get }) => {
+    const DnDState = get(DnDContainerState);
+    return (
+      DnDState['sub-1'].isEmpty ||
+      DnDState['sub-2'].isEmpty ||
+      DnDState['sub-3'].isEmpty
+    );
+  },
+});
