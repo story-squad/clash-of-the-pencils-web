@@ -11,6 +11,7 @@ export const Activation = (): React.ReactElement => {
 
   useEffect(() => {
     const activationCode = pathname.split('/activated/')[1];
+    console.log({ activationCode });
 
     if (activationCode) {
       Auth.activatedLogin(activationCode)
