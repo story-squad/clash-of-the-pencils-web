@@ -31,7 +31,7 @@ const PromptBox = (): React.ReactElement => {
 
   return (
     <div className="prompt-box">
-      <InfoHoverTip tip={submissionInstructions} position="center" />
+      <InfoHoverTip tip={submissionInstructions} position="left" />
       <Modal
         component={() => <SubmissionForm closeModal={toggleModal} />}
         visible={showModal}
