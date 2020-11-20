@@ -21,6 +21,7 @@ const RenderCastVotes = (): React.ReactElement => {
   const disableButton = useRecoilValue(DnD.disableVoteButton);
   // grab the user id from recoil to ensure we are logged in
   const userId = useRecoilValue(user.userId);
+  const top3list = useRecoilValue(top3.top3List);
 
   //check if a user has voted
   const [voted, setVoted] = useState(false);
@@ -29,7 +30,10 @@ const RenderCastVotes = (): React.ReactElement => {
     // API call goes in here
     // updated the voted state to True
     setVoted(true);
-    console.log(voteSubmission);
+    console.log(
+      voteSubmission,
+      top3list?.map((x) => x.id),
+    );
     alert('We got your vote!');
     return null;
   };

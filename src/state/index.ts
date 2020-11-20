@@ -6,3 +6,4 @@ export * as prompts from './promptState';
 export * as results from './resultsState';
 export * as DnD from './DnDState';
 export * as submitModal from './submitModalState';
+export * as apiError from './apiErrorState';

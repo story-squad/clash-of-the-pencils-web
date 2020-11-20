@@ -1,10 +1,11 @@
 import React from 'react';
+import { Submissions } from '../../../api';
 import { nav } from '../../../config';
 import { ComingSoon, Header, SubCard } from '../../common';
 import { PromptBox } from './PromptBox';
 
 interface RenderDashboardProps {
-  picList: { src: string; alt?: string }[];
+  picList: Submissions.SubItem[];
 }
 
 const showPicList = false;

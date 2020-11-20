@@ -12,9 +12,11 @@ const ResultsPageContainer = (): React.ReactElement => {
   useEffect(() => {
     if (!winner)
       setWinner({
-        src:
+        image:
           'https://artprojectsforkids.org/wp-content/uploads/2020/05/Penguin.jpg',
         username: 'Catlady',
+        userId: 1,
+        id: 1,
       });
   }, []);
 

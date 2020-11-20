@@ -41,7 +41,13 @@ const SubmissionForm = (props: SubmissionFormProps): React.ReactElement => {
         await Submissions.uploadSubmission(reqBody);
         setComplete(true);
       } catch (err) {
-        setError('Error occurred. Try again later.');
+        if (err?.response?.data?.error) {
+          if (err.response.data.error === 'Transcription error')
+            setError('Picture must be of written text');
+          else setError(err.response.data.error);
+        } else {
+          setError('An error occurred. Try again later');
+        }
       }
       setLoading(false);
     }
@@ -76,7 +82,7 @@ const SubmissionForm = (props: SubmissionFormProps): React.ReactElement => {
           </div>
         )}
         {error && <div className="error">{error}</div>}
-        {!complete ? (
+        {!complete && (
           // If the submission hasn't been processed successfully
           <>
             <label className={file ? 'selected' : ''}>
@@ -85,14 +91,15 @@ const SubmissionForm = (props: SubmissionFormProps): React.ReactElement => {
             </label>
             <button type="submit">Submit</button>
           </>
-        ) : (
-          // Once the submission is done, show a button.
-          <>
-            <div className="success">Submission successful!</div>
-            <button onClick={props.closeModal}>Back to Dashboard</button>
-          </>
         )}
       </form>
+      {complete && (
+        // Once the submission is done, show a button.
+        <>
+          <div className="success">Submission successful!</div>
+          <button onClick={props.closeModal}>Back to Dashboard</button>
+        </>
+      )}
     </div>
   );
 };

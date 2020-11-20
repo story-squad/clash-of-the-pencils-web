@@ -7,6 +7,10 @@
 }
 
 .submission-form {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
   h2 {
     color: $white;
     font-family: $display-font;
@@ -57,22 +61,11 @@
       }
     }
 
-    .success {
-      margin-bottom: 2rem;
-      font-family: $display-font;
-      font-size: 1.8rem;
-      @media screen and (max-height: 500px) {
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
-      }
-    }
-
     .error {
       color: $red;
       font-family: $display-font;
       font-size: 1.8rem;
-      margin-bottom: 2rem;
-      text-shadow: 0 2px 2px #0005;
+      margin-bottom: 1.5rem;
       @media screen and (max-height: 500px) {
         font-size: 1.2rem;
         margin-bottom: 0.5rem;
@@ -82,7 +75,7 @@
     label {
       @include button($blue);
       font-size: 1.8rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       @media screen and (max-height: 500px) {
         font-size: 1.2rem;
         margin-bottom: 0.5rem;
@@ -97,15 +90,25 @@
         }
       }
     }
-
-    button {
-      @include button($orange);
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      @media screen and (max-height: 500px) {
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
-      }
+  }
+  .success {
+    margin-bottom: 2rem;
+    font-family: $display-font;
+    color: $dark-blue;
+    text-shadow: 0 2px 2px #0005;
+    font-size: 1.8rem;
+    @media screen and (max-height: 500px) {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+  button {
+    @include button($orange);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    @media screen and (max-height: 500px) {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
     }
   }
 }

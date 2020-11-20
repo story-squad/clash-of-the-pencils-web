@@ -24,7 +24,7 @@ const RenderResultsPage = (): React.ReactElement => {
                 <img src={dragonBoi} alt="1st place dragon" />
               </div>
               <div className="sub">
-                <SubCard src={winner.src} />
+                <SubCard {...winner} />
               </div>
             </div>
           </div>

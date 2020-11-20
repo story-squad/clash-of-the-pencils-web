@@ -1,19 +1,28 @@
 import { AxiosResponse } from 'axios';
 import { axiosWithAuth } from '../axiosWithConfig';
 
+// export interface SubItem {
+//   src: string;
+//   alt?: string;
+//   username: string;
+//   age?: number;
+// }
+
 export interface SubItem {
-  src: string;
-  alt?: string;
+  id: number;
+  userId: number;
   username: string;
-  age?: number;
+  image: string;
+  pages?: string;
 }
 
 const makeSubList = (numSubs: number): SubItem[] => {
-  return [...new Array(numSubs)].map(() => ({
-    src:
+  return [...new Array(numSubs)].map((x, i) => ({
+    image:
       'https://artprojectsforkids.org/wp-content/uploads/2020/05/Penguin.jpg',
     username: 'Catlady',
-    age: 5,
+    id: i,
+    userId: i * 2,
   }));
 };
 
@@ -33,8 +42,13 @@ export const getTop3Subs = (): Promise<{ data: SubItem[] }> => {
   return Promise.resolve({ data: subList });
 };
 
+// export const getTop3Subs = (): Promise<AxiosResponse<SubItem[]>> => {
+//   return axiosWithAuth().get('/ranking');
+// };
+
 export const uploadSubmission = (
   reqBody: FormData,
 ): Promise<AxiosResponse<unknown>> => {
+  // TODO
   return axiosWithAuth().post('/upload', reqBody);
 };

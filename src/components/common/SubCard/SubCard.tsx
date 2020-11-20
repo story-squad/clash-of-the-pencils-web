@@ -4,16 +4,13 @@ import { Modal } from '../Modal';
 
 import { BsArrowsFullscreen } from 'react-icons/bs';
 
-interface SubCardProps {
-  src: string;
-  alt?: string;
+interface SubCardProps extends Submissions.SubItem {
   canPreview?: boolean;
   onModalOpen?: () => void;
 }
 
 const SubCard = ({
-  src,
-  alt = '',
+  image,
   canPreview = true,
   onModalOpen = () => null,
 }: SubCardProps): React.ReactElement => {
@@ -29,19 +26,19 @@ const SubCard = ({
       <Modal
         visible={showModal}
         setVisible={setShowModal}
-        component={() => <ModalImage src={src} alt={alt} />}
+        component={() => <ModalImage image={image} />}
         closable={true}
       />
-      <img src={src} alt={alt} />
+      <img src={image} alt="" />
       {canPreview && <BsArrowsFullscreen onClick={modalOpenHandler} />}
     </div>
   );
 };
 
-const ModalImage = (props: Omit<Submissions.SubItem, 'username'>) => {
+const ModalImage = (props: Pick<Submissions.SubItem, 'image'>) => {
   return (
     <div className="modal-image">
-      <img src={props.src} alt={props.alt} />
+      <img src={props.image} alt="" />
     </div>
   );
 };
