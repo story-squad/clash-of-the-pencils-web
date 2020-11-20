@@ -5,7 +5,7 @@ import { Input, Modal } from '../../../common';
 import SignupSuccess from './SignupSuccess';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { DragonBoi } from '../DragonBoi';
-import { ThoughtBubble } from '../ThoughtBubble';
+import { ThoughtBubble } from '../../../common/ThoughtBubble';
 
 const SignupForm = (): React.ReactElement => {
   const {
@@ -67,14 +67,14 @@ const SignupForm = (): React.ReactElement => {
             label="First Name"
             errors={errors}
             register={register}
-            rules={{ required: 'First Name is required!' }}
+            rules={{ required: 'First name is required!' }}
           />
           <Input
             name="lastName"
             label="Last Name"
             errors={errors}
             register={register}
-            rules={{ required: 'Last Name is required!' }}
+            rules={{ required: 'Last name is required!' }}
           />
           <Input
             name="username"

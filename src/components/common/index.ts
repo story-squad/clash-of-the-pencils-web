@@ -6,3 +6,6 @@ export { SubCard } from './SubCard';
 export { Loader } from './Loader';
 export { Input } from './Input';
 export { Signout } from './Signout';
+export { ComingSoon } from './ComingSoon';
+export { Histogram } from './Histogram';
+export { ThoughtBubble } from './ThoughtBubble';

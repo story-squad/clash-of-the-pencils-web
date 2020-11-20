@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { ClimbingBoxLoader } from 'react-spinners';
+import { useRecoilValue } from 'recoil';
+import { user } from '../../../state';
+
 import { Header } from '../Header';
+import { nav } from '../../../config';
+import { ClimbingBoxLoader } from 'react-spinners';
 
 interface LoaderProps {
   message?: string;
@@ -8,6 +12,7 @@ interface LoaderProps {
 
 const Loader = ({ message = 'Loading' }: LoaderProps): React.ReactElement => {
   const [dots, setDots] = useState('');
+  const userId = useRecoilValue(user.userId);
 
   useEffect(() => {
     const dotTimer = setInterval(() => {
@@ -21,7 +26,7 @@ const Loader = ({ message = 'Loading' }: LoaderProps): React.ReactElement => {
 
   return (
     <div className="loader">
-      <Header />
+      <Header menuItems={userId ? nav.siteNavItems : nav.landingNavItems} />
       <div className="loader-body">
         <ClimbingBoxLoader loading={true} />
         <div className="message">

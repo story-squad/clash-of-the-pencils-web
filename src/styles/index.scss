@@ -10,8 +10,9 @@
 
 // Component Stylesheets
 @import './components/pages/landingPages/landingPage.scss';
-@import './components/pages/dashboard.scss';
+@import './components/pages/dashboard/dashboard.scss';
 @import './components/pages/votingPages/votingPage.scss';
+@import './components/pages/resultsPage/resultsPage.scss';
 
 // Common Components
 @import './components/common/modal.scss';
@@ -19,3 +20,4 @@
 @import './components/common/subCard.scss';
 @import './components/common/loader.scss';
 @import './components/common/input.scss';
+@import './components/common/comingSoon.scss';

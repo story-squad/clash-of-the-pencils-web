@@ -4,14 +4,13 @@
   margin: 2rem auto;
 
   @media screen and (min-width: $tablet) {
-    background-color: $jade;
+    background-color: $seafoam;
     flex-flow: row nowrap;
     justify-content: space-evenly;
-    padding: 2rem 3rem;
     margin: 3rem auto;
     border-radius: 5px;
-    box-shadow: 0 4px 4px #0005;
-    -moz-box-shadow: 0 4px 4px #0005;
+    @include drop-shadow;
+    padding: 2rem 3rem;
   }
 
   @media screen and (min-width: $large) {
@@ -108,8 +107,7 @@
         .alt {
           color: $seafoam;
           @media screen and (min-width: $tablet) {
-            color: $orange;
-            text-shadow: 0 2px 2px #0005;
+            color: $bright-blue;
           }
         }
 

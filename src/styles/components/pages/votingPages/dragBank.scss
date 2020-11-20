@@ -1,0 +1,35 @@
+.drag-bank {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 2rem auto;
+  @media screen and (min-width: $tablet) {
+    padding: 3rem 3rem 1rem;
+    background-color: $jade;
+    border-radius: 5px;
+    @include drop-shadow;
+  }
+
+  .voting-item {
+    &:not(:last-of-type) {
+      margin-right: 2rem;
+      @media screen and (min-width: $tablet) {
+        margin-right: 3rem;
+      }
+    }
+
+    .sub-card {
+    }
+
+    .sub-info {
+      p {
+        margin-top: 0.4rem;
+        @include paragraph(1.2rem);
+        text-align: center;
+        color: $white;
+        @media screen and (min-width: $tablet) {
+          margin-top: 1rem;
+        }
+      }
+    }
+  }
+}

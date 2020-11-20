@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { useSetRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { top3, user, DnD } from '../../../../state';
 
 import { Header, Modal } from '../../../common';
 import { nav } from '../../../../config';
+import EmailCollectionForm from './EmailCollectionForm';
+
 import { DropBank } from '../DropBank';
 import { DragonBank } from '../DragonBank';
 import {
   AiOutlineArrowLeft as Left,
   AiOutlineReload as Reload,
 } from 'react-icons/ai';
-import { useResetRecoilState } from 'recoil';
-import ConvertKitForm from 'convertkit-react';
 
 const RenderCastVotes = (): React.ReactElement => {
   const setHasRead = useSetRecoilState(top3.hasFinishedReadingState);
@@ -85,20 +85,13 @@ const RenderCastVotes = (): React.ReactElement => {
       </div>
       {!userId && (
         <Modal
-          component={() => (
-            <>
-              <h1>Find Out Who Wins!</h1>
-              <ConvertKitForm
-                className="ck-fm"
-                formId={1826783}
-                hideName={true}
-              />
-            </>
-          )}
+          className="email"
+          component={EmailCollectionForm}
           visible={voted}
           setVisible={() => {
             setVoted(false);
           }}
+          centered={true}
         />
       )}
     </div>

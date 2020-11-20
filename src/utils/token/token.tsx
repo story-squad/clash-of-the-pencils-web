@@ -11,7 +11,7 @@ const tokenName: string = process.env.TOKEN_KEY || 'token';
  * If the token has expired or there is no token, the token is cleared and
  * you're sent back to the landing page.
  */
-type flags = 'userId' | 'userEmail' | null;
+type flags = 'userId' | 'username' | 'userEmail' | null;
 export const get = (flag: flags = null): string | number | null => {
   // Read the token in from localStorage
   const token = localStorage.getItem(tokenName);
@@ -26,7 +26,8 @@ export const get = (flag: flags = null): string | number | null => {
 
     // If a flag is specified, return the correct data
     if (flag === 'userId') return decodedToken.id;
-    if (flag === 'userEmail') return decodedToken.username;
+    if (flag === 'username') return decodedToken.username;
+    if (flag === 'userEmail') return decodedToken.email;
 
     // Otherwise, we return the token
     return token;
@@ -58,4 +59,5 @@ export interface DecodedToken {
   iat: number;
   id: number;
   username: string;
+  email: string;
 }

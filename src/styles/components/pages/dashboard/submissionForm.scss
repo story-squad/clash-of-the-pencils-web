@@ -1,0 +1,84 @@
+// .prompt-box {
+//   .modal-wrapper {
+//     .modal {
+//       background-color: $ltblue;
+//     }
+//   }
+// }
+
+.submission-form {
+  h2 {
+    color: black;
+    font-family: $display-font;
+    font-size: 2.4rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  form {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+
+    .preview {
+      border: 1px solid #000;
+      border-radius: 5px;
+      @include drop-shadow;
+      margin-bottom: 2rem;
+      position: relative;
+      display: flex;
+      overflow: hidden;
+      img {
+        max-width: 100%;
+        max-height: 50vh;
+      }
+      .loader {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        display: none;
+        &.visible {
+          display: flex;
+        }
+        [class^='css'] {
+          [class^='css'] {
+            background-color: $jade;
+          }
+        }
+      }
+    }
+
+    .success {
+      margin-bottom: 2rem;
+      font-family: $display-font;
+      font-size: 1.8rem;
+    }
+
+    .error {
+      color: $red;
+      font-family: $display-font;
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      text-shadow: 0 2px 2px #0005;
+    }
+
+    label {
+      @include button($blue);
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+
+      &.selected {
+        @include button($jade);
+        font-size: 1.8rem;
+      }
+    }
+
+    button {
+      @include button($orange);
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+  }
+}
