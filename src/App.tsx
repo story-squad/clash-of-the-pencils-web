@@ -22,7 +22,13 @@ const App: React.FC = () => {
     const query = location.search.slice(1);
     const res = queryParser(query);
     if (res && res.path) {
-      push(`/${res.path ? res.path : ''}${res.token ? '/' + res.token : ''}`);
+      const newPath = `/${res.path ? res.path : ''}${
+        res.token ? '/' + res.token : ''
+      }`;
+      console.log(newPath, res);
+      setTimeout(() => {
+        push(newPath);
+      }, 10000);
     }
   }, []);
   return (
