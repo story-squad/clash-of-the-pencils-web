@@ -1,26 +1,45 @@
 import React from 'react';
+import { Draggable, DraggableProvided } from 'react-beautiful-dnd';
 
-// Current emptyDragon is the wrong shape/color
-import emptyDragon from '../../../../assets/empty-dragon.svg';
-import dragonBoi from '../../../../assets/dragon-boi.svg';
+import firstDragon from '../../../../assets/first-place-dragon.png';
+import secondDragon from '../../../../assets/second-place-dragon.png';
+import thirdDragon from '../../../../assets/third-place-dragon.png';
 
 const DraggableDragon = ({
   place,
+  id,
+  index,
 }: DraggableDragonProps): React.ReactElement => {
-  // Later this needs to be replaced with a recoil selector that checks if
-  // this place has been chosen already, and conditionally renders a clear or
-  // a full dragon based off of that
-  const wasDragged = false;
-
   return (
-    <div className="draggable-dragon">
-      <img src={wasDragged ? emptyDragon : dragonBoi} alt={`${place}`} />
-    </div>
+    <Draggable draggableId={id} index={index}>
+      {(provided: DraggableProvided) => (
+        <div
+          className="draggable-dragon"
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          <img src={DragonImageList[place]} alt={`${place}`} />
+        </div>
+      )}
+    </Draggable>
   );
 };
 
 interface DraggableDragonProps {
   place: number;
+  id: string;
+  index: number;
 }
+
+interface DragonList {
+  [key: number]: string;
+}
+
+const DragonImageList: DragonList = {
+  1: firstDragon,
+  2: secondDragon,
+  3: thirdDragon,
+};
 
 export default DraggableDragon;

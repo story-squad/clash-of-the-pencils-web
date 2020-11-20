@@ -2,6 +2,7 @@
 @import './dropBank.scss';
 @import './dragonBank.scss';
 @import './emailCollection.scss';
+@import './dropZone.scss';
 
 .voting-page {
   padding: 2rem;
@@ -12,10 +13,18 @@
 
   .top-text {
     text-align: center;
+    h1,
+    h2 {
+      font-family: $display-font;
+    }
+    h1 {
+      font-size: 4.8rem;
+      color: $white;
+      margin-bottom: 2rem;
+    }
     h2 {
       font-size: 2.4rem;
-      font-family: $display-font;
-      color: $white;
+      color: $red;
       margin-bottom: 1rem;
     }
     p {
@@ -28,6 +37,9 @@
         font-size: 2.4rem;
         margin-bottom: 1rem;
         line-height: 2.8rem;
+        .vote {
+          font-size: 3.6rem;
+        }
         .alt {
           color: $red;
           text-shadow: 0 2px 2px #0005;
@@ -41,11 +53,12 @@
   }
   .button-container {
     display: flex;
-    flex-flow: column nowrap;
+    justify-content: center;
     align-items: center;
     margin-top: 2rem;
     button {
       @include button($orange);
+      margin: 0 2rem;
       font-size: 2.4rem;
 
       &.small {
