@@ -58,12 +58,6 @@ to = "/index.html"
 status = 200
 query = { path = "comingsoon" }
 
-[[redirects]]
-from = "/activated"
-to = "/index.html"
-status = 200
-query = { path = "activated", token = ":token" }
-
 # Fallback redirect
 [[redirects]]
 from = "/*"
