@@ -77,7 +77,7 @@ const SubmissionForm = (props: SubmissionFormProps): React.ReactElement => {
 
   return (
     <>
-      <InfoHoverTip tip={submissionInstructions} position="center" />
+      <InfoHoverTip tip={submissionInstructions} position="right" />
       <div className="submission-form">
         <h2>Submit a Story</h2>
         <form onSubmit={onSubmit}>
