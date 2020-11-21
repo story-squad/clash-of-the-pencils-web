@@ -1,12 +1,11 @@
-/activated token=:token  /activated  200
-/login                   /login      200
-/register                /register   200
-/signup                  /signup     200
-/info                    /info       200
-/logout                  /logout     200
-/signout                 /signout    200
-/vote                    /vote       200
-/dashboard               /dashboard  200
-/results                 /results    200
-/comingsoon              /comingsoon 200
-/*                       /index.html 200
+/login      /login      302
+/register   /register   302
+/signup     /signup     302
+/info       /info       302
+/logout     /logout     302
+/signout    /signout    302
+/vote       /vote       302
+/dashboard  /dashboard  302
+/results    /results    302
+/comingsoon /comingsoon 302
+/*          /index.html 302
