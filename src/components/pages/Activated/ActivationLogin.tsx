@@ -7,10 +7,10 @@ import { Modal } from '../../common';
 export const Activation = (): React.ReactElement => {
   const [status, setStatus] = useState('Attempting to activate...');
   const { push } = useHistory();
-  const { pathname } = useLocation();
+  const { search } = useLocation();
 
   useEffect(() => {
-    const activationCode = pathname.split('/activated/')[1];
+    const activationCode = search.slice(1).split('=')[1];
     console.log({ activationCode });
 
     if (activationCode) {

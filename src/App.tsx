@@ -19,7 +19,7 @@ const App: React.FC = () => {
           path={['/', '/login', '/register', '/signup', '/info']}
           component={() => <LandingPage />}
         />
-        <Route path="/activated/:token" component={Activation} />
+        <Route path="/activated" component={Activation} />
         <Route path={['/logout', '/signout']} component={Signout} />
         <Route path="/vote" component={VotingPage} />
 
