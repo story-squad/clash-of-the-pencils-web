@@ -7,26 +7,26 @@ import { Modal } from '../../common';
 export const Activation = (): React.ReactElement => {
   const [status, setStatus] = useState('Attempting to activate...');
   const { push } = useHistory();
-  const { search } = useLocation();
+  const { search, pathname } = useLocation();
 
   useEffect(() => {
     const activationCode = search.slice(1).split('=')[1];
-    console.log({ activationCode });
+    console.log({ activationCode, search, pathname });
 
     if (activationCode) {
       Auth.activatedLogin(activationCode)
         .then((res) => {
           token.set(res.data.token);
           setStatus('You are now being redirected...');
-          setTimeout(() => push('/dashboard'), 2000);
+          setTimeout(() => push('/dashboard'), 20000);
         })
         .catch(() => {
           setStatus('Activation failed. Redirecting to login...');
-          setTimeout(() => push('/'), 2000);
+          setTimeout(() => push('/'), 20000);
         });
     } else {
       setStatus('No activation code provided. Redirecting to login...');
-      setTimeout(() => push('/'), 2000);
+      setTimeout(() => push('/'), 20000);
     }
   }, []);
 

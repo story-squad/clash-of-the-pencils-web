@@ -1,5 +1,0 @@
-[[redirects]]
-from = "/activated"
-to = "/activated"
-status = 302
-query = { token = ":token" }
