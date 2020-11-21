@@ -12,8 +12,8 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     Submissions.getRecentSubsByChild()
-      .then(({ data }) => {
-        setList(data);
+      .then((subList) => {
+        setList(subList);
       })
       .catch((err) => {
         console.log(err);

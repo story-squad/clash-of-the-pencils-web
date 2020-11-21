@@ -29,7 +29,7 @@ const SubCard = ({
         component={() => <ModalImage {...sub} />}
         closable={true}
       />
-      <img src={sub.image} alt="" />
+      <img src={sub.src} alt="" />
       {canPreview && <BsArrowsFullscreen onClick={modalOpenHandler} />}
     </div>
   );
@@ -38,7 +38,7 @@ const SubCard = ({
 const ModalImage = (props: Submissions.SubItem) => {
   return (
     <div className="modal-image">
-      <img src={props.image} alt="" />
+      <img src={props.src} alt="" />
     </div>
   );
 };

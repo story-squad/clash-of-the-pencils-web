@@ -7,10 +7,10 @@ import { Submissions } from '../../../api';
 import { Loader } from '../../common';
 import { CastVote } from './CastVote';
 import { ReadSubmissions } from './ReadSubmissions';
+import { useRecoilState } from 'recoil';
 
 const VotingPageContainer = (): React.ReactElement => {
-  const setTop3 = useSetRecoilState(top3.top3List);
-  const top3List = useRecoilValue(top3.top3List);
+  const [top3List, setTop3] = useRecoilState(top3.top3List);
   const finishedReading = useRecoilValue(top3.hasFinishedReadingState);
   const setLoadingError = useSetRecoilState(apiError.global);
 
@@ -18,9 +18,9 @@ const VotingPageContainer = (): React.ReactElement => {
     if (!top3List) {
       setLoadingError(null);
       Submissions.getTop3Subs()
-        .then((res) => {
+        .then((top3Subs) => {
           setLoadingError(null);
-          setTop3(res.data);
+          setTop3(top3Subs);
         })
         .catch((err) => {
           console.log(err);

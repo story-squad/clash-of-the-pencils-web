@@ -15,9 +15,9 @@ const ResultsPageContainer = (): React.ReactElement => {
     if (!winner) {
       setLoadingError(null);
       Submissions.getWinner()
-        .then((res) => {
+        .then((sub) => {
           setLoadingError(null);
-          setWinner(res.data);
+          setWinner(sub);
         })
         .catch((err) => {
           console.log({ err });
