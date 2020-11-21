@@ -1,1 +1,12 @@
-/activated token=:token /activated/:token 200
+/activated token=:token  /activated/:token 200
+/login                   /login            200
+/register                /register         200
+/signup                  /signup           200
+/info                    /info             200
+/logout                  /logout           200
+/signout                 /signout          200
+/vote                    /vote             200
+/dashboard               /dashboard        200
+/results                 /results          200
+/comingsoon              /comingsoon       200
+/*                       /index.html       200
