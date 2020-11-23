@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react';
+
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { Prompts } from '../../../../api';
-import { tooltips } from '../../../../config';
 import { prompts, user } from '../../../../state';
+
+import { Prompts } from '../../../../api';
+
 import { InfoHoverTip, Modal } from '../../../common';
+import { tooltips } from '../../../../config';
 import SubmissionForm from './SubmissionForm';
 
 const PromptBox = (): React.ReactElement => {
+  const [showModal, setShowModal] = useState(false);
+
   const [prompt, setPrompt] = useRecoilState(prompts.currentPrompt);
   const username = useRecoilValue(user.username);
-  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (!prompt) {

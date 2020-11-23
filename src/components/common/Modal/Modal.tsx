@@ -9,6 +9,7 @@ const Modal = ({
   visible,
   setVisible,
   className,
+  title = 'test title',
 }: ModalProps): React.ReactElement => {
   const closeModal = () => {
     setVisible(false);
@@ -24,12 +25,17 @@ const Modal = ({
         className={`modal${className ? ' ' + className : ''}`}
         onClick={(e) => e.stopPropagation()}
       >
-        <Component />
-        {closable && (
-          <div className="close-button" onClick={closeModal}>
-            <MdClose />
-          </div>
-        )}
+        <div className="modal-header">
+          <div className="modal-title">{title}</div>
+          {closable && (
+            <div className="close-button" onClick={closeModal}>
+              <MdClose />
+            </div>
+          )}
+        </div>
+        <div className="modal-content">
+          <Component />
+        </div>
       </div>
     </div>
   );
@@ -42,6 +48,7 @@ interface ModalProps {
   visible: boolean;
   setVisible: React.Dispatch<boolean>;
   className?: string;
+  title?: string;
 }
 
 export default Modal;

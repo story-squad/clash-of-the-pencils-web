@@ -16,7 +16,6 @@
     align-items: center;
     .modal {
       width: auto;
-      padding: 2rem;
     }
   }
 
@@ -28,23 +27,47 @@
 
   .modal {
     cursor: auto;
-    position: relative;
     width: 80vw;
     margin: 2rem auto;
-    padding: 2.4rem 1rem 1rem;
     background: white;
     box-shadow: 5px 5px 15px #333;
     border-radius: 5px;
+    overflow: hidden;
 
-    .close-button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      font-size: 1.5rem;
-      line-height: 1rem;
-      cursor: pointer;
-      z-index: 20;
-      padding: 1rem;
+    .modal-header {
+      height: 4rem;
+      padding: 0.8rem 1rem;
+      background-color: $orange;
+      position: relative;
+
+      .modal-title {
+        font-size: 2.4rem;
+        line-height: 2.4rem;
+        color: $white;
+        font-family: $display-font;
+        text-align: center;
+      }
+
+      .close-button {
+        position: absolute;
+        right: 0.8rem;
+        top: 0.8rem;
+        font-size: 1.6rem;
+        cursor: pointer;
+        z-index: 20;
+        padding: 0.4rem 0.4rem 0.2rem;
+        color: $white;
+        border-radius: 3px;
+        transition: all 1s ease-in;
+        &:hover {
+          background-color: #0002;
+          transition: all 1s ease-in;
+        }
+      }
+    }
+
+    .modal-content {
+      padding: 2rem;
     }
   }
 }
