@@ -3,8 +3,14 @@
   @include drop-shadow;
   display: flex;
   position: relative;
+
+  min-width: 10rem;
   height: 10rem;
   max-width: 10rem;
+  @media screen and (min-width: $tablet) {
+    height: 20rem;
+    max-width: 20rem;
+  }
 
   background-size: cover;
   background-position: top center;
@@ -44,7 +50,6 @@
       flex-flow: row nowrap;
       justify-content: center;
       img {
-        margin-top: 1rem;
         height: unset !important;
         width: unset !important;
         max-width: 100% !important;

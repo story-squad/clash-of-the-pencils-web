@@ -28,6 +28,7 @@ const SubCard = ({
         setVisible={setShowModal}
         component={() => <ModalImage {...sub} />}
         closable={true}
+        title={sub.username}
       />
       {canPreview && <BsArrowsFullscreen onClick={modalOpenHandler} />}
     </div>

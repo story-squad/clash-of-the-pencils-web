@@ -41,30 +41,32 @@ const PromptBox = (): React.ReactElement => {
       />
       <h2>Hey, {username}!</h2>
       {prompt ? (
-        prompt.active ? (
-          !prompt.submitted ? (
+        <>
+          {prompt.active ? (
             <>
               <h3>Here is today&apos;s prompt:</h3>
               <p>{prompt.prompt}</p>
             </>
           ) : (
-            <p>You have already submitted today.</p>
-          )
-        ) : (
-          <p>Submissions are currently closed.</p>
-        )
+            <p>Submissions are currently closed.</p>
+          )}
+          <div className="prompt-footer">
+            {/* <div className="streak">
+          <h3>Hot Streak:</h3>
+          <span className="flames">
+          {[...new Array(props.streak)].map(() => '(f)')}
+          </span>
+        </div> */}
+            <button onClick={toggleModal} disabled={prompt.submitted}>
+              {prompt.submitted
+                ? 'You have already submitted today'
+                : 'Submit Your Story'}
+            </button>
+          </div>
+        </>
       ) : (
         <p>Loading prompt...</p>
       )}
-      <div className="prompt-footer">
-        {/* <div className="streak">
-          <h3>Hot Streak:</h3>
-          <span className="flames">
-            {[...new Array(props.streak)].map(() => '(f)')}
-          </span>
-        </div> */}
-        <button onClick={toggleModal}>Submit Your Story</button>
-      </div>
     </div>
   );
 };

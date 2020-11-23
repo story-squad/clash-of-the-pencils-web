@@ -10,6 +10,7 @@
   background-color: #0004;
   overflow-y: scroll;
   cursor: pointer;
+
   &.centered {
     display: flex;
     justify-content: center;
@@ -32,8 +33,12 @@
     background: white;
     box-shadow: 5px 5px 15px #333;
     border-radius: 5px;
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
 
     .modal-header {
+      width: 100%;
       height: 4rem;
       padding: 0.8rem 3.6rem;
       background-color: $jade;

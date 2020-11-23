@@ -47,7 +47,7 @@
     }
   }
 
-  & div:not(.story-list) {
+  & > div:not(.story-list) {
     flex-grow: 1;
     display: flex;
     justify-content: center;
