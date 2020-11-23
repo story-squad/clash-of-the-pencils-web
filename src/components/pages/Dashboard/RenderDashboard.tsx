@@ -23,6 +23,11 @@ const RenderDashboard = ({
             {picList.map((pic, i) => (
               <SubCard key={i} {...pic} />
             ))}
+            {picList.length === 0 && (
+              <div className="message">
+                You don&apos;t have any past submissions. Check back later!
+              </div>
+            )}
           </div>
         </div>
         <div className="content">
