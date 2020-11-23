@@ -19,7 +19,7 @@ const PromptBox = (): React.ReactElement => {
     if (!prompt) {
       Prompts.getCurrent()
         .then(({ data }) => {
-          setPrompt(data.prompt);
+          setPrompt(data);
         })
         .catch((err) => {
           console.log(err);

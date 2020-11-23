@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { prompts, submitModal } from '../../../../state';
+import { useRecoilState } from 'recoil';
+import { submitModal } from '../../../../state';
 
 import { Submissions } from '../../../../api';
 import { upload } from '../../../../utils';
@@ -20,15 +20,11 @@ const SubmissionForm = (props: SubmissionFormProps): React.ReactElement => {
   const [error, setError] = useRecoilState(submitModal.error);
   const [loading, setLoading] = useRecoilState(submitModal.loading);
   const [complete, setComplete] = useRecoilState(submitModal.success);
-  const promptId = useRecoilValue(prompts.promptId);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!file) {
       setError('No image selected!');
-    } else if (!promptId) {
-      // Couldn't load prompt info, please reset
-      setError('Error occurred. Try again later.');
     } else {
       setLoading(true);
       try {
@@ -41,7 +37,6 @@ const SubmissionForm = (props: SubmissionFormProps): React.ReactElement => {
         }
         const reqBody = new FormData();
         reqBody.append('image', file);
-        reqBody.append('promptId', promptId.toString());
         reqBody.append('base64Image', base64Image.toString());
 
         await Submissions.uploadSubmission(reqBody);
