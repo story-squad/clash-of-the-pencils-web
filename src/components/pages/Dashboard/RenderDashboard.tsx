@@ -1,7 +1,7 @@
 import React from 'react';
 import { Submissions } from '../../../api';
 import { nav } from '../../../config';
-import { ComingSoon, Header, Histogram, SubCard } from '../../common';
+import { ComingSoon, Header, SubCard } from '../../common';
 import { PromptBox } from './PromptBox';
 
 import todaysPrompt from '../../../assets/todays-story-prompt.png';
@@ -34,7 +34,6 @@ const RenderDashboard = ({
         <div className="content">
           <img src={todaysPrompt} alt="Today's Story Prompt" />
           <PromptBox />
-          <Histogram />
         </div>
       </div>
     </div>

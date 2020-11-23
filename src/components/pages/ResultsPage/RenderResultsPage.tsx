@@ -1,9 +1,10 @@
 import React from 'react';
+
 import { useRecoilValue } from 'recoil';
-import { nav } from '../../../config';
 import { results } from '../../../state';
-import { Header, SubCard } from '../../common';
-import { ThoughtBubble } from '../../common/ThoughtBubble';
+
+import { Header, Histogram, SubCard, ThoughtBubble } from '../../common';
+import { nav } from '../../../config';
 
 import dragonBoi from '../../../assets/dragon-boi.svg';
 import celebration from '../../../assets/celebration-station.png';
@@ -31,6 +32,7 @@ const RenderResultsPage = (): React.ReactElement => {
             </div>
           </div>
         )}
+        <Histogram />
       </div>
     </div>
   );

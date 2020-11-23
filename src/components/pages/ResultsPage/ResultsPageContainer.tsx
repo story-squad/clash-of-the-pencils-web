@@ -26,7 +26,8 @@ const ResultsPageContainer = (): React.ReactElement => {
     }
   }, []);
 
-  return winner ? <RenderResultsPage /> : <Loader message="Loading Winner" />;
+  // return winner ? <RenderResultsPage /> : <Loader message="Loading Winner" />;
+  return <RenderResultsPage />;
 };
 
 export default ResultsPageContainer;
