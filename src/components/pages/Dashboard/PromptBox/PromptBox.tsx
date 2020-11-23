@@ -36,10 +36,18 @@ const PromptBox = (): React.ReactElement => {
       />
       <h2>Hey, {username}!</h2>
       {prompt ? (
-        <>
-          <h3>Here is today&apos;s prompt:</h3>
-          <p>{prompt.prompt}</p>
-        </>
+        prompt.active ? (
+          !prompt.submitted ? (
+            <>
+              <h3>Here is today&apos;s prompt:</h3>
+              <p>{prompt.prompt}</p>
+            </>
+          ) : (
+            <p>You have already submitted today.</p>
+          )
+        ) : (
+          <p>Submissions are currently closed.</p>
+        )
       ) : (
         <p>Loading prompt...</p>
       )}
