@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { Prompts } from '../../../../api';
+import { tooltips } from '../../../../config';
 import { prompts, user } from '../../../../state';
 import { InfoHoverTip, Modal } from '../../../common';
 import SubmissionForm from './SubmissionForm';
-
-const submissionInstructions =
-  "First, read the prompt. Then, write a one-page story by hand. \
-  When you're done, take a picture and upload it to our site. \
-  Happy writing!";
 
 const PromptBox = (): React.ReactElement => {
   const [prompt, setPrompt] = useRecoilState(prompts.currentPrompt);
@@ -31,7 +27,7 @@ const PromptBox = (): React.ReactElement => {
 
   return (
     <div className="prompt-box">
-      <InfoHoverTip tip={submissionInstructions} position="left" />
+      <InfoHoverTip tip={tooltips.subInstructions} position="left" />
       <Modal
         component={() => <SubmissionForm closeModal={toggleModal} />}
         visible={showModal}
