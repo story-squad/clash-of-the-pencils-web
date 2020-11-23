@@ -16,15 +16,11 @@
     min-width: 100%;
     display: flex;
     flex-flow: row nowrap;
+    align-content: flex-start;
     overflow-x: scroll;
     padding: 2rem 2rem;
-    padding-right: 6rem;
 
-    @media screen and (min-width: $large) {
-      padding: 2rem 3.5rem;
-    }
-
-    @media screen and (min-width: $large) {
+    @media screen and (min-width: $tablet) {
       flex-flow: column nowrap;
       overflow-x: unset;
     }
@@ -34,7 +30,7 @@
         margin-right: 2rem;
       }
 
-      @media screen and (min-width: $large) {
+      @media screen and (min-width: $tablet) {
         margin-right: 0 !important;
         margin-bottom: 3rem;
       }
@@ -43,7 +39,7 @@
         width: 10rem;
         max-width: unset;
 
-        @media screen and (min-width: $large) {
+        @media screen and (min-width: $tablet) {
           width: 17.5rem;
           max-width: 100%;
         }

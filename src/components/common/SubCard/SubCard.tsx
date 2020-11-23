@@ -22,14 +22,13 @@ const SubCard = ({
   };
 
   return (
-    <div className="sub-card">
+    <div className="sub-card" style={{ backgroundImage: `url(${sub.src})` }}>
       <Modal
         visible={showModal}
         setVisible={setShowModal}
         component={() => <ModalImage {...sub} />}
         closable={true}
       />
-      <img src={sub.src} alt="" />
       {canPreview && <BsArrowsFullscreen onClick={modalOpenHandler} />}
     </div>
   );

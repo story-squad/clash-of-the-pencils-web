@@ -10,7 +10,7 @@ interface RenderDashboardProps {
   picList: Submissions.SubItem[];
 }
 
-const showPicList = false;
+const showPicList = true;
 
 const RenderDashboard = ({
   picList,
