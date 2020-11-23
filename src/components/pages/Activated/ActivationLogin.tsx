@@ -36,6 +36,7 @@ export const Activation = (): React.ReactElement => {
       component={() => <ActivationMessage text={status} />}
       centered={true}
       closable={false}
+      title="Success!"
     />
   );
 };
