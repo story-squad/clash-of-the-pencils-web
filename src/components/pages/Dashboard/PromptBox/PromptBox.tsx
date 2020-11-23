@@ -37,6 +37,7 @@ const PromptBox = (): React.ReactElement => {
         visible={showModal}
         setVisible={setShowModal}
         centered
+        title="Submit a Story"
       />
       <h2>Hey, {username}!</h2>
       {prompt ? (

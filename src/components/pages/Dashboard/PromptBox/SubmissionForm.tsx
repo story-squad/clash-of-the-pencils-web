@@ -70,7 +70,7 @@ const SubmissionForm = (props: SubmissionFormProps): React.ReactElement => {
     <>
       <InfoHoverTip tip={tooltips.subInstructions} position="right" />
       <div className="submission-form">
-        <h2>Submit a Story</h2>
+        {/* <h2>Submit a Story</h2> */}
         <form onSubmit={onSubmit}>
           {preview && (
             <div className="preview">

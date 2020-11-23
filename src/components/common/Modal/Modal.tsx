@@ -9,7 +9,7 @@ const Modal = ({
   visible,
   setVisible,
   className,
-  title = 'test title',
+  title = '',
 }: ModalProps): React.ReactElement => {
   const closeModal = () => {
     setVisible(false);

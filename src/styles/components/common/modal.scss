@@ -32,13 +32,13 @@
     background: white;
     box-shadow: 5px 5px 15px #333;
     border-radius: 5px;
-    overflow: hidden;
 
     .modal-header {
       height: 4rem;
-      padding: 0.8rem 1rem;
-      background-color: $orange;
+      padding: 0.8rem 3.6rem;
+      background-color: $jade;
       position: relative;
+      border-radius: 5px 5px 0 0;
 
       .modal-title {
         font-size: 2.4rem;
@@ -46,6 +46,7 @@
         color: $white;
         font-family: $display-font;
         text-align: center;
+        text-shadow: 0 2px 2px #0003;
       }
 
       .close-button {
@@ -58,10 +59,11 @@
         padding: 0.4rem 0.4rem 0.2rem;
         color: $white;
         border-radius: 3px;
-        transition: all 1s ease-in;
+        transition: all 0.2s ease-in;
         &:hover {
-          background-color: #0002;
-          transition: all 1s ease-in;
+          background-color: #00000019;
+          color: darken($white, 10%);
+          transition: all 0.2s ease-in;
         }
       }
     }
