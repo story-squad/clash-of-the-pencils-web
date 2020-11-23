@@ -1,11 +1,5 @@
-import React, { useEffect } from 'react';
-import {
-  Redirect,
-  Route,
-  Switch,
-  useHistory,
-  useLocation,
-} from 'react-router-dom';
+import React from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { ComingSoon, PrivateRoute, Signout } from './components/common';
 
 // Route Components
@@ -16,21 +10,6 @@ import { Dashboard } from './components/pages/Dashboard';
 import { ResultsPage } from './components/pages/ResultsPage';
 
 const App: React.FC = () => {
-  const { push } = useHistory();
-  const location = useLocation();
-  useEffect(() => {
-    const query = location.search.slice(1);
-    const res = queryParser(query);
-    if (res && res.path) {
-      const newPath = `/${res.path ? res.path : ''}${
-        res.token ? '/' + res.token : ''
-      }`;
-      console.log(newPath, res);
-      setTimeout(() => {
-        push(newPath);
-      }, 10000);
-    }
-  }, []);
   return (
     <div className="App">
       <Switch>
@@ -40,7 +19,7 @@ const App: React.FC = () => {
           path={['/', '/login', '/register', '/signup', '/info']}
           component={() => <LandingPage />}
         />
-        <Route path="/activated/:token" component={Activation} />
+        <Route path="/activated" component={Activation} />
         <Route path={['/logout', '/signout']} component={Signout} />
         <Route path="/vote" component={VotingPage} />
 
@@ -56,20 +35,19 @@ const App: React.FC = () => {
     </div>
   );
 };
+// const queryParser = (query: string) => {
+//   if (query === '') return;
+//   const params = query.split('&');
+//   const res: QueryParserResponse = {};
+//   for (const param of params) {
+//     const [key, value] = param.split('=');
+//     res[key] = value;
+//   }
+//   return res;
+// };
 
-const queryParser = (query: string) => {
-  if (query === '') return;
-  const params = query.split('&');
-  const res: QueryParserResponse = {};
-  for (const param of params) {
-    const [key, value] = param.split('=');
-    res[key] = value;
-  }
-  return res;
-};
-
-interface QueryParserResponse {
-  [key: string]: string;
-}
+// interface QueryParserResponse {
+//   [key: string]: string;
+// }
 
 export default App;

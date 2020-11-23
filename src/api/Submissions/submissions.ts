@@ -1,20 +1,21 @@
 import { AxiosResponse } from 'axios';
 import { axiosWithAuth } from '../axiosWithConfig';
+import { getImageFromS3, SubItem } from './imageLoader';
 
-export interface SubItem {
-  id: number;
-  userId: number;
-  username: string;
-  image: string;
-  pages?: string;
-}
-
-export const getRecentSubsByChild = (): Promise<AxiosResponse<SubItem[]>> => {
-  return axiosWithAuth().get('/upload/mystories');
+export const getRecentSubsByChild = async (): Promise<SubItem[]> => {
+  const { data }: AxiosResponse<SubItem[]> = await axiosWithAuth().get(
+    '/upload/mystories',
+  );
+  const processedStories = data.map((sub) => getImageFromS3(sub));
+  return Promise.all(processedStories);
 };
 
-export const getTop3Subs = (): Promise<AxiosResponse<SubItem[]>> => {
-  return axiosWithAuth().get('/ranking');
+export const getTop3Subs = async (): Promise<SubItem[]> => {
+  const { data }: AxiosResponse<SubItem[]> = await axiosWithAuth().get(
+    '/ranking',
+  );
+  const processedStories = data.map((sub) => getImageFromS3(sub));
+  return Promise.all(processedStories);
 };
 
 export const uploadSubmission = (
