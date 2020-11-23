@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { DragonBoi } from '../DragonBoi';
-import { ThoughtBubble } from '../../../common/ThoughtBubble';
+import { ThoughtBubble } from '../../../common';
 
 import landingText from '../../../../assets/landing-text.png';
 

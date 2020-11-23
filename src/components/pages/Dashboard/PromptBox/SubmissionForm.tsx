@@ -1,18 +1,14 @@
 import React from 'react';
 
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { prompts, submitModal } from '../../../../state';
+import { useRecoilState } from 'recoil';
+import { submitModal } from '../../../../state';
 
 import { Submissions } from '../../../../api';
 import { upload } from '../../../../utils';
 
 import { BarLoader } from 'react-spinners';
 import { InfoHoverTip } from '../../../common';
-
-const submissionInstructions =
-  "First, read the prompt. Then, write a one-page story by hand. \
-  When you're done, take a picture and upload it to our site. \
-  Happy writing!";
+import { tooltips } from '../../../../config';
 
 const SubmissionForm = (props: SubmissionFormProps): React.ReactElement => {
   const [file, setFile] = useRecoilState(submitModal.selected);
@@ -20,15 +16,11 @@ const SubmissionForm = (props: SubmissionFormProps): React.ReactElement => {
   const [error, setError] = useRecoilState(submitModal.error);
   const [loading, setLoading] = useRecoilState(submitModal.loading);
   const [complete, setComplete] = useRecoilState(submitModal.success);
-  const promptId = useRecoilValue(prompts.promptId);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!file) {
       setError('No image selected!');
-    } else if (!promptId) {
-      // Couldn't load prompt info, please reset
-      setError('Error occurred. Try again later.');
     } else {
       setLoading(true);
       try {
@@ -41,7 +33,6 @@ const SubmissionForm = (props: SubmissionFormProps): React.ReactElement => {
         }
         const reqBody = new FormData();
         reqBody.append('image', file);
-        reqBody.append('promptId', promptId.toString());
         reqBody.append('base64Image', base64Image.toString());
 
         await Submissions.uploadSubmission(reqBody);
@@ -77,7 +68,7 @@ const SubmissionForm = (props: SubmissionFormProps): React.ReactElement => {
 
   return (
     <>
-      <InfoHoverTip tip={submissionInstructions} position="right" />
+      <InfoHoverTip tip={tooltips.subInstructions} position="right" />
       <div className="submission-form">
         <h2>Submit a Story</h2>
         <form onSubmit={onSubmit}>

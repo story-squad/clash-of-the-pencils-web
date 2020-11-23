@@ -35,51 +35,5 @@
     .prompt-box {
       margin-bottom: 4rem;
     }
-
-    .histogram {
-      max-width: 100%;
-      margin: 0 auto 2rem;
-      background-color: $jade;
-      padding: 2rem;
-      @include drop-shadow;
-      overflow: hidden;
-
-      @media screen and (min-width: $tablet) {
-        max-width: 60vw;
-      }
-
-      p {
-        font-family: $text-font;
-        color: $white;
-        &:first-of-type {
-          font-size: 2.4rem;
-          line-height: 2.8rem;
-          text-align: center;
-        }
-        &:last-of-type {
-          font-size: 1.6rem;
-          line-height: 2rem;
-          font-style: italic;
-          font-weight: 300;
-        }
-      }
-
-      .js-plotly-plot {
-        margin: 2rem 0;
-        width: 100% !important;
-        display: block !important;
-        border-radius: 5px;
-        border: 2px solid $orange;
-        overflow: hidden;
-        @include drop-shadow;
-      }
-
-      .message {
-        padding: 0 2rem;
-        font-size: 2.4rem;
-        font-family: $display-font;
-        color: $white;
-      }
-    }
   }
 }

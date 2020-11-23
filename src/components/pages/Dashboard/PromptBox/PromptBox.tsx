@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { Prompts } from '../../../../api';
+import { tooltips } from '../../../../config';
 import { prompts, user } from '../../../../state';
 import { InfoHoverTip, Modal } from '../../../common';
 import SubmissionForm from './SubmissionForm';
-
-const submissionInstructions =
-  "First, read the prompt. Then, write a one-page story by hand. \
-  When you're done, take a picture and upload it to our site. \
-  Happy writing!";
 
 const PromptBox = (): React.ReactElement => {
   const [prompt, setPrompt] = useRecoilState(prompts.currentPrompt);
@@ -19,7 +15,7 @@ const PromptBox = (): React.ReactElement => {
     if (!prompt) {
       Prompts.getCurrent()
         .then(({ data }) => {
-          setPrompt(data.prompt);
+          setPrompt(data);
         })
         .catch((err) => {
           console.log(err);
@@ -31,7 +27,7 @@ const PromptBox = (): React.ReactElement => {
 
   return (
     <div className="prompt-box">
-      <InfoHoverTip tip={submissionInstructions} position="left" />
+      <InfoHoverTip tip={tooltips.subInstructions} position="left" />
       <Modal
         component={() => <SubmissionForm closeModal={toggleModal} />}
         visible={showModal}
@@ -40,10 +36,18 @@ const PromptBox = (): React.ReactElement => {
       />
       <h2>Hey, {username}!</h2>
       {prompt ? (
-        <>
-          <h3>Here is today&apos;s prompt:</h3>
-          <p>{prompt.prompt}</p>
-        </>
+        prompt.active ? (
+          !prompt.submitted ? (
+            <>
+              <h3>Here is today&apos;s prompt:</h3>
+              <p>{prompt.prompt}</p>
+            </>
+          ) : (
+            <p>You have already submitted today.</p>
+          )
+        ) : (
+          <p>Submissions are currently closed.</p>
+        )
       ) : (
         <p>Loading prompt...</p>
       )}
