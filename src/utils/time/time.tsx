@@ -42,21 +42,38 @@ export const schedule: scheduleObjectType = {
   },
 };
 
+/**
+ * This function returns an `active` property which, if `true`, means that an
+ * event is currently happening and the `timeUntil` value is the time until the
+ * event ENDS, not begins. If `active` is false, `timeUntil` is the amount of
+ * time until the event begins. `timeUntil` is the amount of time IN SECONDS.
+ *
+ * When using this function, don't pass in a second parameter. The `now` param
+ * is there for testing purposes only.
+ */
 export const getTimeUntilEvent = (
   event: eventType,
   now?: Moment,
-): { active: boolean; timeUntil: Moment } => {
-  if (!now) now = moment();
+): { active: boolean; timeUntil: number } => {
+  if (!now) now = moment.utc();
 
   // Check if the event is CURRENTLY happening
   const active = now > schedule[event].start && now < schedule[event].end;
 
-  // If the event IS happening, return the time until the END time,
-  // else return the time until the START time
-  return {
-    active,
-    timeUntil: timeElapsed(now, schedule[event][active ? 'end' : 'start']),
-  };
+  // If the event IS happening, calculate the time until the END time,
+  // else calculate the time until the START time
+  const difference = timeElapsed(
+    now,
+    schedule[event][active ? 'end' : 'start'],
+  );
+
+  // Calculate seconds until event begins/ends based on calculated difference
+  const timeUntil =
+    difference.seconds() + // read in actual seconds
+    difference.minutes() * 60 + // add seconds from minutes
+    difference.hours() * 60 * 60; // add seconds from hours
+
+  return { active, timeUntil };
 };
 
 /**
