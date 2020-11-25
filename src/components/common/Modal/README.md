@@ -8,6 +8,28 @@ The modal can be closed by clicking on the `X` in the top-right corner (not show
 
 When opened and closed, the modal will slowly fade in and out using CSS transitions and careful z-indexing. Recklessly z-indexing your page elements may affect these animations.
 
+## HUGE UPDATE Needs More Documentation
+
+Putting this here for now in lieu of a real documentation refactor
+
+All components passed into a modal by callback receive the closeModal function:
+
+```ts
+<Modal.Component component={RenderedComponent} />
+```
+
+To render a component instead by callback, read the props passed in:
+
+```ts
+<Modal.Component component={(props) => <RenderedComponent {...props} />} />
+```
+
+When you need the given closeModal function, just extend the props for your component to satisfy TypeScript:
+
+```ts
+interface RenderedComponentProps extends Modal.ModalComponentProps {}
+```
+
 ## Higher-Order Component (HoC)
 
 The `Modal` is a `HoC`, which is any component that takes another component as a property, like the `component` prop on a `<Route />`.
