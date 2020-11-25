@@ -29,7 +29,7 @@ type scheduleObjectType = {
 
 export const schedule: scheduleObjectType = {
   submit: {
-    start: utcToLocal(3, 30),
+    start: utcToLocal(1, 30),
     end: utcToLocal(20, 0),
   },
   vote: {
@@ -43,22 +43,16 @@ export const schedule: scheduleObjectType = {
 };
 
 /**
- * This function returns an `active` property which, if `true`, means that an
- * event is currently happening and the `timeUntil` value is the time until the
- * event ENDS, not begins. If `active` is false, `timeUntil` is the amount of
- * time until the event begins. `timeUntil` is the amount of time IN SECONDS.
  *
- * When using this function, don't pass in a second parameter. The `now` param
- * is there for testing purposes only.
  */
 export const getTimeUntilEvent = (
   event: eventType,
   now?: Moment,
-): { active: boolean; timeUntil: number } => {
+): { active: boolean; timeUntil: TimeUntilItem } => {
   if (!now) now = moment.utc();
 
   // Check if the event is CURRENTLY happening
-  const active = now > schedule[event].start && now < schedule[event].end;
+  const active = now >= schedule[event].start && now < schedule[event].end;
 
   // If the event IS happening, calculate the time until the END time,
   // else calculate the time until the START time
@@ -68,10 +62,11 @@ export const getTimeUntilEvent = (
   );
 
   // Calculate seconds until event begins/ends based on calculated difference
-  const timeUntil =
+  const timeUntil = secondsToTime(
     difference.seconds() + // read in actual seconds
-    difference.minutes() * 60 + // add seconds from minutes
-    difference.hours() * 60 * 60; // add seconds from hours
+      difference.minutes() * 60 + // add seconds from minutes
+      difference.hours() * 60 * 60, // add seconds from hours
+  );
 
   return { active, timeUntil };
 };
@@ -85,4 +80,17 @@ const timeElapsed = (start: Moment, end: Moment): Moment => {
   if (end < start) end.add(1, 'day'); // This accounts for crossing over midnight
   const diff = moment.duration(end.diff(start));
   return moment.utc(+diff);
+};
+
+export interface TimeUntilItem {
+  h: number;
+  m: number;
+  s: number;
+}
+
+const secondsToTime = (sec: number): TimeUntilItem => {
+  const h = Math.floor(sec / 60 / 60);
+  const m = Math.floor(sec / 60 - h * 60);
+  const s = sec - h * 3600 - m * 60;
+  return { h, m, s };
 };
