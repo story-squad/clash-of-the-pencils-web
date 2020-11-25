@@ -11,6 +11,28 @@
     padding: 3rem 10%;
   }
 
+  .countdown-display {
+    padding: 2rem;
+    background-color: $white;
+    margin: 1rem auto;
+    @include drop-shadow;
+
+    h2 {
+      color: $jade;
+      font-size: 2.4rem;
+      font-family: $display-font;
+    }
+    p {
+      color: black;
+      @include paragraph(1.6rem);
+
+      .countdown {
+        color: $red;
+        font-family: $display-font;
+      }
+    }
+  }
+
   .top-text {
     text-align: center;
     h1,

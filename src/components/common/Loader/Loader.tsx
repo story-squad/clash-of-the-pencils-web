@@ -35,9 +35,7 @@ const Loader = ({ message = 'Loading' }: LoaderProps): React.ReactElement => {
       <div className="loader-body">
         {loadingError ? (
           <>
-            <div className="message error">
-              An error occured. Please try again later.
-            </div>
+            <div className="message error">{loadingError}</div>
             <Link to="/dashboard">Back to Dashboard</Link>
           </>
         ) : (

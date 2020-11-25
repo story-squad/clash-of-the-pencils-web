@@ -29,16 +29,16 @@ type scheduleObjectType = {
 
 export const schedule: scheduleObjectType = {
   submit: {
-    start: utcToLocal(-1, 30),
-    end: utcToLocal(20, 0),
+    start: utcToLocal(1, 30),
+    end: utcToLocal(22, 0),
   },
   vote: {
-    start: utcToLocal(20, 30),
-    end: utcToLocal(23, 0),
+    start: utcToLocal(22, 30),
+    end: utcToLocal(25, 0),
   },
   stream: {
-    start: utcToLocal(23, 0),
-    end: utcToLocal(23, 30),
+    start: utcToLocal(25, 0),
+    end: utcToLocal(25, 30),
   },
 };
 
