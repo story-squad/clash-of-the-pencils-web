@@ -2,7 +2,7 @@ import React from 'react';
 
 import { MdClose } from 'react-icons/md';
 
-const Modal = ({
+export const Component = ({
   component: Component,
   closable = true,
   centered = false,
@@ -34,7 +34,7 @@ const Modal = ({
           )}
         </div>
         <div className="modal-content">
-          <Component />
+          <Component closeModal={closeModal} />
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@ const Modal = ({
 };
 
 interface ModalProps {
-  component: React.ComponentType;
+  component: React.ComponentType<ModalComponentProps>;
   closable?: boolean;
   centered?: boolean;
   visible: boolean;
@@ -51,4 +51,6 @@ interface ModalProps {
   title?: string;
 }
 
-export default Modal;
+export interface ModalComponentProps {
+  closeModal: () => void;
+}

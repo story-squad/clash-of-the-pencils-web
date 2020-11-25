@@ -96,7 +96,7 @@ const RenderCastVotes = (): React.ReactElement => {
         </div>
       </div>
       {!userId && (
-        <Modal
+        <Modal.Component
           className="email"
           component={EmailCollectionForm}
           visible={voted}

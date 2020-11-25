@@ -23,7 +23,7 @@ const SubCard = ({
 
   return (
     <div className="sub-card" style={{ backgroundImage: `url(${sub.src})` }}>
-      <Modal
+      <Modal.Component
         visible={showModal}
         setVisible={setShowModal}
         component={() => <ModalImage {...sub} />}

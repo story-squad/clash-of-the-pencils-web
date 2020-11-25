@@ -30,7 +30,7 @@ export const Activation = (): React.ReactElement => {
   }, []);
 
   return (
-    <Modal
+    <Modal.Component
       visible={true}
       setVisible={() => null}
       component={() => <ActivationMessage text={status} />}
