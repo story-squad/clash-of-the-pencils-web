@@ -29,7 +29,7 @@ type scheduleObjectType = {
 
 export const schedule: scheduleObjectType = {
   submit: {
-    start: utcToLocal(1, 30),
+    start: utcToLocal(-1, 30),
     end: utcToLocal(20, 0),
   },
   vote: {
@@ -48,7 +48,7 @@ export const schedule: scheduleObjectType = {
 export const getTimeUntilEvent = (
   event: eventType,
   now?: Moment,
-): { active: boolean; timeUntil: TimeUntilItem } => {
+): { active: boolean; timeUntil: number } => {
   if (!now) now = moment.utc();
 
   // Check if the event is CURRENTLY happening
@@ -62,11 +62,10 @@ export const getTimeUntilEvent = (
   );
 
   // Calculate seconds until event begins/ends based on calculated difference
-  const timeUntil = secondsToTime(
+  const timeUntil =
     difference.seconds() + // read in actual seconds
-      difference.minutes() * 60 + // add seconds from minutes
-      difference.hours() * 60 * 60, // add seconds from hours
-  );
+    difference.minutes() * 60 + // add seconds from minutes
+    difference.hours() * 60 * 60; // add seconds from hours
 
   return { active, timeUntil };
 };
@@ -88,7 +87,7 @@ export interface TimeUntilItem {
   s: number;
 }
 
-const secondsToTime = (sec: number): TimeUntilItem => {
+export const secondsToTime = (sec: number): TimeUntilItem => {
   const h = Math.floor(sec / 60 / 60);
   const m = Math.floor(sec / 60 - h * 60);
   const s = sec - h * 3600 - m * 60;

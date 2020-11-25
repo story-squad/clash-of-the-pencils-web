@@ -1,7 +1,7 @@
 .prompt-box {
   @include word-wrap();
   background-color: $white;
-  padding: 2rem;
+  padding: 2rem 3rem;
   color: $charcoal;
   @include drop-shadow;
   max-width: 60rem;
@@ -34,12 +34,26 @@
 
   p {
     @include paragraph(1.8rem);
-    margin: 0 1rem;
+    margin: 0 1rem 1rem;
     text-align: center;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &.countdown-display {
+      color: $red;
+      font-family: $display-font;
+    }
+
+    span.countdown {
+      color: $red;
+      font-family: $display-font;
+    }
   }
 
   .prompt-footer {
-    margin-top: 2rem;
+    margin-top: 1rem;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;

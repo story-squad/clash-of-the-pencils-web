@@ -1,7 +1,7 @@
 import React from 'react';
 import { Submissions } from '../../../api';
 import { nav } from '../../../config';
-import { Countdown, Header, SubCard } from '../../common';
+import { Header, SubCard } from '../../common';
 import { PromptBox } from './PromptBox';
 
 import todaysPrompt from '../../../assets/todays-story-prompt.png';
@@ -32,7 +32,7 @@ const RenderDashboard = ({
         </div>
         <div className="content">
           <img src={todaysPrompt} alt="Today's Story Prompt" />
-          <Countdown.Component event="submit" component={() => <PromptBox />} />
+          <PromptBox />
         </div>
       </div>
     </div>

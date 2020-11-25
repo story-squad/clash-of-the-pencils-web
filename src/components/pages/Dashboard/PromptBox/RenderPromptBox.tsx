@@ -1,32 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { prompts, user } from '../../../../state';
 
-import { Prompts } from '../../../../api';
-
-import { InfoHoverTip, Modal } from '../../../common';
+import { Countdown, InfoHoverTip, Modal } from '../../../common';
 import { tooltips } from '../../../../config';
 import SubmissionForm from './SubmissionForm';
 
-const PromptBox = (): React.ReactElement => {
-  const [showModal, setShowModal] = useState(false);
-
-  const [prompt, setPrompt] = useRecoilState(prompts.currentPrompt);
+const RenderPromptBox = ({
+  DisplayCountdown,
+}: Countdown.CountdownComponentProps): React.ReactElement => {
   const username = useRecoilValue(user.username);
-
-  useEffect(() => {
-    if (!prompt) {
-      Prompts.getCurrent()
-        .then(({ data }) => {
-          setPrompt(data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, []);
-
+  const prompt = useRecoilValue(prompts.currentPrompt);
+  // Modal State Handlers
+  const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal((cur) => !cur);
 
   return (
@@ -41,22 +28,22 @@ const PromptBox = (): React.ReactElement => {
       />
       <h2>Hey, {username}!</h2>
       {prompt ? (
+        // If there is a prompt
         <>
           {prompt.active ? (
+            // If the existing prompt is active
             <>
               <h3>Here is today&apos;s prompt:</h3>
               <p>{prompt.prompt}</p>
             </>
           ) : (
+            // If the prompt is NOT active!
             <p>Submissions are currently closed.</p>
           )}
+          <p className="countdown-display">
+            <DisplayCountdown /> left to submit!
+          </p>
           <div className="prompt-footer">
-            {/* <div className="streak">
-          <h3>Hot Streak:</h3>
-          <span className="flames">
-          {[...new Array(props.streak)].map(() => '(f)')}
-          </span>
-        </div> */}
             <button onClick={toggleModal} disabled={prompt.submitted}>
               {prompt.submitted
                 ? 'You have already submitted today'
@@ -65,10 +52,10 @@ const PromptBox = (): React.ReactElement => {
           </div>
         </>
       ) : (
+        // If the prompt has not been loaded yet
         <p>Loading prompt...</p>
       )}
     </div>
   );
 };
-
-export default PromptBox;
+export default RenderPromptBox;

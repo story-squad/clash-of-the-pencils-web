@@ -8,8 +8,14 @@
   height: 10rem;
   max-width: 10rem;
   @media screen and (min-width: $tablet) {
+    height: 25vw;
+    max-width: 25vw;
+    width: 25vw;
+  }
+  @media screen and (min-width: $large) {
     height: 20rem;
     max-width: 20rem;
+    width: 20rem;
   }
 
   background-size: cover;
