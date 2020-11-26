@@ -1,18 +1,12 @@
 import React from 'react';
 
-import { useRecoilValue } from 'recoil';
-import { user } from '../../../state';
-
 import { Countdown, Header } from '../../common';
-import { nav } from '../../../config';
 import { time } from '../../../utils';
 
 const VotingClosed = (): React.ReactElement => {
-  const userId = useRecoilValue(user.userId);
-
   return (
     <div>
-      <Header menuItems={userId ? nav.siteNavItems : nav.landingNavItems} />
+      <Header />
       <div className="voting-page">
         <div className="countdown-display">
           <h2>Voting is currently closed!</h2>

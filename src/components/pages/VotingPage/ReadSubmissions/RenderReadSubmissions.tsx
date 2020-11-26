@@ -1,10 +1,9 @@
 import React from 'react';
 
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { top3, user } from '../../../../state';
+import { top3 } from '../../../../state';
 
 import { Countdown, Header } from '../../../common';
-import { nav } from '../../../../config';
 import ReadTop3 from './ReadTop3';
 
 import votingStation from '../../../../assets/voting-booth.png';
@@ -13,12 +12,9 @@ const RenderReadSubmissions = (): React.ReactElement => {
   const readCount = useRecoilValue(top3.getReadCount);
   const setFinishedReading = useSetRecoilState(top3.hasFinishedReadingState);
 
-  // grab the user id from recoil to ensure we are logged in
-  const userId = useRecoilValue(user.userId);
-
   return (
     <div>
-      <Header menuItems={userId ? nav.siteNavItems : nav.landingNavItems} />
+      <Header />
       <div className="voting-page">
         <div className="top-text">
           <img src={votingStation} alt="Voting Booth" />

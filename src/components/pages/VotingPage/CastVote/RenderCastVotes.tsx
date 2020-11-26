@@ -4,7 +4,6 @@ import { useSetRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { top3, user, dnd } from '../../../../state';
 
 import { Header, Modal } from '../../../common';
-import { nav } from '../../../../config';
 import EmailCollectionForm from './EmailCollectionForm';
 
 import { DropBank } from '../DropBank';
@@ -61,7 +60,7 @@ const RenderCastVotes = (): React.ReactElement => {
 
   return (
     <div>
-      <Header menuItems={userId ? nav.siteNavItems : nav.landingNavItems} />
+      <Header />
       <div className="voting-page">
         <div className="top-text">
           <h2>Welcome to</h2>

@@ -4,7 +4,6 @@ import { useRecoilValue } from 'recoil';
 import { results } from '../../../state';
 
 import { Header, Histogram, SubCard, ThoughtBubble } from '../../common';
-import { nav } from '../../../config';
 
 import dragonBoi from '../../../assets/dragon-boi.svg';
 import celebration from '../../../assets/celebration-station.png';
@@ -14,7 +13,7 @@ const RenderResultsPage = (): React.ReactElement => {
 
   return (
     <div>
-      <Header menuItems={nav.siteNavItems} />
+      <Header />
       <div className="results-page">
         <img src={celebration} alt="Celebration Station" />
         {winner && (

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { apiError, user } from '../../../state';
+import { useRecoilState } from 'recoil';
+import { apiError } from '../../../state';
 
 import { Header } from '../Header';
-import { nav } from '../../../config';
 import { ClimbingBoxLoader } from 'react-spinners';
 import { Link } from 'react-router-dom';
 
@@ -13,7 +12,6 @@ interface LoaderProps {
 
 const Loader = ({ message = 'Loading' }: LoaderProps): React.ReactElement => {
   const [dots, setDots] = useState('');
-  const userId = useRecoilValue(user.userId);
   const [loadingError, setLoadingError] = useRecoilState(apiError.global);
 
   useEffect(() => {
@@ -31,7 +29,7 @@ const Loader = ({ message = 'Loading' }: LoaderProps): React.ReactElement => {
 
   return (
     <div className="loader">
-      <Header menuItems={userId ? nav.siteNavItems : nav.landingNavItems} />
+      <Header />
       <div className="loader-body">
         {loadingError ? (
           <>

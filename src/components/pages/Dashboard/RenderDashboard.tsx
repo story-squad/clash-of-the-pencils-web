@@ -1,6 +1,5 @@
 import React from 'react';
 import { Submissions } from '../../../api';
-import { nav } from '../../../config';
 import { Header, SubCard } from '../../common';
 import { PromptBox } from './PromptBox';
 
@@ -15,7 +14,7 @@ const RenderDashboard = ({
 }: RenderDashboardProps): React.ReactElement => {
   return (
     <div className="dashboard-container">
-      <Header menuItems={nav.siteNavItems} />
+      <Header />
       <div className="dashboard">
         <div className="sidebar">
           <h2>My Stories</h2>
