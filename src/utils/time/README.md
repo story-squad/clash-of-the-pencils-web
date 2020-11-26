@@ -45,12 +45,12 @@ const secondsToTime = (seconds) => {
 
 > `secondsToTime` returns an object of type `TimeUntilItem`, which is also exported off of the module.
 
-This function is used by the `useCountdown` hook.
+This function is used by the [`useCountdown`](../../hooks/useCountdown) hook.
 
 ### `getTimeUntilEvent`
 
 This method is a bit more complicated to look at but perfoms a relatively simple task. It takes in an `eventType` as a parameter and returns the amount of time until that event begins. If the event is currently underway, it instead returns the amount of time until the end of the event.
 
-This method is also used by the `useCountdown` hook.
+This method is also used by the [`useCountdown`](../../hooks/useCountdown) hook.
 
 > `eventType` is a simple type object that contains the anmes of all tracked events.
