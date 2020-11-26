@@ -12,7 +12,6 @@ This hook takes only one parameter, and that is the `eventType` that you'd like 
 
 ```tsx
 import { useCountdown } from '../hooks';
-import { Countdown } from '../components/common';
 
 const Component = () => {
   // Typescript will suggest a value between the quotes!
@@ -20,13 +19,7 @@ const Component = () => {
 
   // If you want to know whether the voting event is currently active:
   const { active } = useCountdown('vote');
-
-  // If you want to render a countdown until submissions begin:
-  const { timeUntil } = useCountdown('submit');
-  return (
-    <Countdown timeUntil={timeUntil}>
-  )
-}
+};
 ```
 
 ## Under the Hood

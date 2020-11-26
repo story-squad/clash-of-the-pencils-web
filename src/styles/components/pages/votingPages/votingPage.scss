@@ -30,9 +30,18 @@
       color: black;
       @include paragraph(2rem);
 
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+
       .countdown {
         color: $red;
         font-family: $display-font;
+      }
+
+      .alt {
+        color: $jade;
+        font-weight: 500;
       }
     }
   }

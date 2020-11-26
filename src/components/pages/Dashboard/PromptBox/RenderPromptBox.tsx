@@ -6,13 +6,10 @@ import { prompts, user } from '../../../../state';
 import { Countdown, InfoHoverTip, Modal } from '../../../common';
 import { tooltips } from '../../../../config';
 import SubmissionForm from './SubmissionForm';
-import { useCountdown } from '../../../../hooks';
 
 const RenderPromptBox = (): React.ReactElement => {
   const username = useRecoilValue(user.username);
   const prompt = useRecoilValue(prompts.currentPrompt);
-
-  const { timeUntil } = useCountdown('submit');
 
   // Modal State Handlers
   const [showModal, setShowModal] = useState(false);
@@ -43,13 +40,11 @@ const RenderPromptBox = (): React.ReactElement => {
             <p>Submissions are currently closed.</p>
           )}
           <p className="countdown-display">
-            <Countdown timeUntil={timeUntil} /> left to submit!
+            <Countdown toEvent="submit" /> left to submit!
           </p>
           <div className="prompt-footer">
             <button onClick={toggleModal} disabled={prompt.submitted}>
-              {prompt.submitted
-                ? 'You have already submitted today'
-                : 'Submit Your Story'}
+              {prompt.submitted ? 'Submission Received!' : 'Submit Your Story'}
             </button>
           </div>
         </>

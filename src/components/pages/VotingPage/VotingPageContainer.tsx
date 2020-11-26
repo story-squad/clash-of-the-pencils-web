@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react';
 
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { apiError, top3, user } from '../../../state';
 import { Submissions } from '../../../api';
+import { time } from '../../../utils';
 
-import { Countdown, Header, Loader } from '../../common';
+import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
+import { apiError, top3 } from '../../../state';
+
+import { Loader } from '../../common';
 import { CastVote } from './CastVote';
 import { ReadSubmissions } from './ReadSubmissions';
-import { useRecoilState } from 'recoil';
-import { nav } from '../../../config';
-import { useCountdown } from '../../../hooks';
+import VotingClosed from './VotingClosed';
 
 const VotingPageContainer = (): React.ReactElement => {
   const [top3List, setTop3] = useRecoilState(top3.top3List);
   const finishedReading = useRecoilValue(top3.hasFinishedReadingState);
   const setLoadingError = useSetRecoilState(apiError.global);
-  const { active } = useCountdown('vote');
+  const { active } = time.getTimeUntilEvent('vote');
 
   useEffect(() => {
     if (active && !top3List) {
@@ -39,31 +39,12 @@ const VotingPageContainer = (): React.ReactElement => {
   }, [top3List]);
 
   if (!active) {
-    return <NotVotingTime />;
+    return <VotingClosed />;
   } else if (top3List) {
     return finishedReading ? <CastVote /> : <ReadSubmissions />;
   } else {
     return <Loader />;
   }
-};
-
-const NotVotingTime = (): React.ReactElement => {
-  const userId = useRecoilValue(user.userId);
-  const { timeUntil } = useCountdown('vote');
-
-  return (
-    <div>
-      <Header menuItems={userId ? nav.siteNavItems : nav.landingNavItems} />
-      <div className="voting-page">
-        <div className="countdown-display">
-          <h2>Voting is currently closed!</h2>
-          <p>
-            Check back in <Countdown timeUntil={timeUntil} /> to vote!
-          </p>
-        </div>
-      </div>
-    </div>
-  );
 };
 
 export default VotingPageContainer;

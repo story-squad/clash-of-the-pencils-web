@@ -8,12 +8,10 @@ import { nav } from '../../../../config';
 import ReadTop3 from './ReadTop3';
 
 import votingStation from '../../../../assets/voting-booth.png';
-import { useCountdown } from '../../../../hooks';
 
 const RenderReadSubmissions = (): React.ReactElement => {
   const readCount = useRecoilValue(top3.getReadCount);
   const setFinishedReading = useSetRecoilState(top3.hasFinishedReadingState);
-  const { timeUntil } = useCountdown('vote');
 
   // grab the user id from recoil to ensure we are logged in
   const userId = useRecoilValue(user.userId);
@@ -32,7 +30,7 @@ const RenderReadSubmissions = (): React.ReactElement => {
         </div>
         <div className="countdown-display">
           <p>
-            <Countdown timeUntil={timeUntil} /> left to vote!
+            <Countdown toEvent="vote" /> left to vote!
           </p>
         </div>
         <ReadTop3 />

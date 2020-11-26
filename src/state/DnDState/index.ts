@@ -1,2 +1,2 @@
-export * from './DnDAtoms';
-export * from './DnDSelectors';
+export * from './dndAtoms';
+export * from './dndSelectors';

@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-interface DnDState {
+interface DndState {
   [key: string]: ContainerState;
 }
 
@@ -9,7 +9,7 @@ interface ContainerState {
   isEmpty: boolean;
 }
 
-export const initDnDContainerState: DnDState = {
+export const initDndContainerState = {
   'sub-1': { contents: '', isEmpty: true },
   'sub-2': { contents: '', isEmpty: true },
   'sub-3': { contents: '', isEmpty: true },
@@ -18,7 +18,7 @@ export const initDnDContainerState: DnDState = {
   'vote-3': { contents: 'award-3', isEmpty: false },
 };
 
-export const DnDContainerState = atom<DnDState>({
-  key: 'DnDContainerState',
-  default: initDnDContainerState,
+export const dndContainerState = atom<DndState>({
+  key: 'dndContainerState',
+  default: initDndContainerState,
 });
