@@ -27,6 +27,12 @@ export const wrapper = (event: time.eventType): wrapperType => (
     ]);
 
     useEffect(() => {
+      console.log(
+        event,
+        time.getTimeUntilEvent(event).active,
+        time.schedule[event].start.format(),
+        time.schedule[event].end.format(),
+      );
       const countdown = setInterval(() => {
         setActive(time.getTimeUntilEvent(event).active);
         setSecondsLeft(time.getTimeUntilEvent(event).timeUntil);

@@ -3,13 +3,15 @@ import React from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { top3, user } from '../../../../state';
 
-import { Header } from '../../../common';
+import { Countdown, Header } from '../../../common';
 import { nav } from '../../../../config';
 import ReadTop3 from './ReadTop3';
 
 import votingStation from '../../../../assets/voting-booth.png';
 
-const RenderReadSubmissions = (): React.ReactElement => {
+const RenderReadSubmissions = (
+  props: Countdown.CountdownComponentProps,
+): React.ReactElement => {
   const readCount = useRecoilValue(top3.getReadCount);
   const setFinishedReading = useSetRecoilState(top3.hasFinishedReadingState);
 
@@ -26,6 +28,11 @@ const RenderReadSubmissions = (): React.ReactElement => {
             <span className="alt">First</span>, click on each of the stories to
             read them. <span className="alt">Then</span>, click the orange
             button to begin voting.
+          </p>
+        </div>
+        <div className="countdown-display">
+          <p>
+            <props.DisplayCountdown /> left to vote!
           </p>
         </div>
         <ReadTop3 />

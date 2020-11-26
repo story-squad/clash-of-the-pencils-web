@@ -26,7 +26,8 @@ const VotingPageContainer = (
             setLoadingError(null);
             setTop3(top3Subs);
           } else {
-            setLoadingError('Unable to find any submissions for today :(');
+            setTop3([]);
+            // setLoadingError('Unable to find any submissions for today :(');
           }
         })
         .catch((err) => {
@@ -39,7 +40,7 @@ const VotingPageContainer = (
   if (!props.active) {
     return <NotVotingTime {...props} />;
   } else if (top3List) {
-    return finishedReading ? <CastVote /> : <ReadSubmissions />;
+    return finishedReading ? <CastVote /> : <ReadSubmissions {...props} />;
   } else {
     return <Loader />;
   }

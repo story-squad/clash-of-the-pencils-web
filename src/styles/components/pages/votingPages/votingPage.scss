@@ -15,16 +15,20 @@
     padding: 2rem;
     background-color: $white;
     margin: 1rem auto;
+    max-width: 400px;
     @include drop-shadow;
+    text-align: center;
+    border: 3px solid $red;
 
     h2 {
       color: $jade;
       font-size: 2.4rem;
       font-family: $display-font;
+      margin-bottom: 1rem;
     }
     p {
       color: black;
-      @include paragraph(1.6rem);
+      @include paragraph(2rem);
 
       .countdown {
         color: $red;
