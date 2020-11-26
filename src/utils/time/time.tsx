@@ -1,5 +1,10 @@
 import moment, { Moment } from 'moment';
 
+/**
+ * Converts a desired hour/minute value in UTC to the user's local time.
+ * @param hour the UTC hour
+ * @param minute the UTC minute
+ */
 export const utcToLocal = (hour: number, minute: number): Moment => {
   return moment
     .utc()
@@ -19,14 +24,6 @@ export const utcToLocal = (hour: number, minute: number): Moment => {
  * To add tracking for another time-based event, MAKE SURE you add it to the
  * `eventType` type object _as well as_ the schedule object
  */
-export type eventType = 'submit' | 'vote' | 'stream';
-type scheduleObjectType = {
-  [key in eventType]: {
-    start: Moment;
-    end: Moment;
-  };
-};
-
 export const schedule: scheduleObjectType = {
   submit: {
     start: utcToLocal(1, 30),
@@ -42,8 +39,32 @@ export const schedule: scheduleObjectType = {
   },
 };
 
+/* Helper Functions */
 /**
+ * This function converts a given number of seconds into hour, minute,
+ * second format for easier display.
+ * @param sec the number of seconds to convert
+ */
+export const secondsToTime = (sec: number): TimeUntilItem => {
+  const h = Math.floor(sec / 60 / 60);
+  const m = Math.floor(sec / 60 - h * 60);
+  const s = sec - h * 3600 - m * 60;
+  return { h, m, s };
+};
+
+/**
+ * This function is used in conjunction with the `Countdown` component and the `useCountdown`
+ * hook to restrict certain features of the app based on the time of day.
  *
+ * You pass in the name of the event that you'd like to track, and the function calculates
+ * whether the event is currently `active`
+ *
+ * If `active`, the value in `timeUntil` will be the time until the event ends. If the event
+ * is NOT active, the value in `timeUntil` will be the time until the event begins.
+ *
+ * @param event the special key of the event you want to track
+ * @param now DO NOT use this except for testing purposes, this will set the current
+ * time in calculations to something other than the current time
  */
 export const getTimeUntilEvent = (
   event: eventType,
@@ -56,40 +77,53 @@ export const getTimeUntilEvent = (
 
   // If the event IS happening, calculate the time until the END time,
   // else calculate the time until the START time
-  const difference = timeElapsed(
+  const timeUntil = secondsElapsed(
     now,
     schedule[event][active ? 'end' : 'start'],
   );
-
-  // Calculate seconds until event begins/ends based on calculated difference
-  const timeUntil =
-    difference.seconds() + // read in actual seconds
-    difference.minutes() * 60 + // add seconds from minutes
-    difference.hours() * 60 * 60; // add seconds from hours
 
   return { active, timeUntil };
 };
 
 /**
- * Returns the amount of time elapsed from `start` to `end`
+ * Returns the amount of time elapsed from `start` to `end` in seconds
  * @param start the start time of the interval
  * @param end the end time of the interval
  */
-const timeElapsed = (start: Moment, end: Moment): Moment => {
+const secondsElapsed = (start: Moment, end: Moment): number => {
   if (end < start) end.add(1, 'day'); // This accounts for crossing over midnight
   const diff = moment.duration(end.diff(start));
-  return moment.utc(+diff);
+  const span = moment.utc(+diff);
+  return (
+    span.seconds() + // read in actual seconds
+    span.minutes() * 60 + // add seconds from minutes
+    span.hours() * 60 * 60
+  ); // add seconds from hours
 };
 
+/* Important Time Module Types */
+/**
+ * The `nametags` for time-based events we track using union syntax
+ */
+export type eventType = 'submit' | 'vote' | 'stream';
+
+/**
+ * An interface for a seconds value converted into hours, minutes, seconds
+ *
+ * ex: `{ h, m, s }`
+ */
 export interface TimeUntilItem {
   h: number;
   m: number;
   s: number;
 }
 
-export const secondsToTime = (sec: number): TimeUntilItem => {
-  const h = Math.floor(sec / 60 / 60);
-  const m = Math.floor(sec / 60 - h * 60);
-  const s = sec - h * 3600 - m * 60;
-  return { h, m, s };
+/**
+ * A type for the larger schedule object on which we track time-based events
+ */
+type scheduleObjectType = {
+  [key in eventType]: {
+    start: Moment;
+    end: Moment;
+  };
 };
