@@ -5,13 +5,14 @@ import { prompts, user } from '../../../../state';
 
 import { Prompts } from '../../../../api';
 
-import { Countdown } from '../../../common';
 import RenderPromptBox from './RenderPromptBox';
 
-const PromptBoxContainer = (
-  props: Countdown.CountdownComponentProps,
-): React.ReactElement => {
+import { Countdown } from '../../../common';
+import { useCountdown } from '../../../../hooks';
+
+const PromptBoxContainer = (): React.ReactElement => {
   const [prompt, setPrompt] = useRecoilState(prompts.currentPrompt);
+  const { active } = useCountdown('submit');
 
   useEffect(() => {
     if (!prompt) {
@@ -25,26 +26,22 @@ const PromptBoxContainer = (
     }
   }, []);
 
-  return props.active ? (
-    <RenderPromptBox {...props} />
-  ) : (
-    <NoSubmissionsBox {...props} />
-  );
+  return active ? <RenderPromptBox /> : <NoSubmissionsBox />;
 };
 
-const NoSubmissionsBox = ({
-  DisplayCountdown,
-}: Countdown.CountdownComponentProps): React.ReactElement => {
+const NoSubmissionsBox = (): React.ReactElement => {
+  const { timeUntil } = useCountdown('submit');
   const username = useRecoilValue(user.username);
+
   return (
     <div className="prompt-box inactive">
       <h2>Hey, {username}</h2>
       <h3>Submissions are closed!</h3>
       <p>
-        Check back in <DisplayCountdown /> for a new prompt!
+        Check back in <Countdown timeUntil={timeUntil} /> for a new prompt!
       </p>
     </div>
   );
 };
 
-export default Countdown.wrapper('submit')(PromptBoxContainer);
+export default PromptBoxContainer;

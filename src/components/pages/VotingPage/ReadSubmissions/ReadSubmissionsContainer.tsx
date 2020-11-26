@@ -1,11 +1,8 @@
 import React from 'react';
-import { Countdown } from '../../../common';
 import RenderReadSubmissions from './RenderReadSubmissions';
 
-const ReadSubmissionsContainer = (
-  props: Countdown.CountdownComponentProps,
-): React.ReactElement => {
-  return <RenderReadSubmissions {...props} />;
+const ReadSubmissionsContainer = (): React.ReactElement => {
+  return <RenderReadSubmissions />;
 };
 
 export default ReadSubmissionsContainer;

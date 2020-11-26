@@ -9,15 +9,16 @@ import { CastVote } from './CastVote';
 import { ReadSubmissions } from './ReadSubmissions';
 import { useRecoilState } from 'recoil';
 import { nav } from '../../../config';
+import { useCountdown } from '../../../hooks';
 
-const VotingPageContainer = (
-  props: Countdown.CountdownComponentProps,
-): React.ReactElement => {
+const VotingPageContainer = (): React.ReactElement => {
   const [top3List, setTop3] = useRecoilState(top3.top3List);
   const finishedReading = useRecoilValue(top3.hasFinishedReadingState);
   const setLoadingError = useSetRecoilState(apiError.global);
+  const { active } = useCountdown('vote');
+
   useEffect(() => {
-    if (props.active && !top3List) {
+    if (active && !top3List) {
       // Only load the top 3 if you haven't already AND it's voting time
       setLoadingError(null);
       Submissions.getTop3Subs()
@@ -37,19 +38,19 @@ const VotingPageContainer = (
     }
   }, [top3List]);
 
-  if (!props.active) {
-    return <NotVotingTime {...props} />;
+  if (!active) {
+    return <NotVotingTime />;
   } else if (top3List) {
-    return finishedReading ? <CastVote /> : <ReadSubmissions {...props} />;
+    return finishedReading ? <CastVote /> : <ReadSubmissions />;
   } else {
     return <Loader />;
   }
 };
 
-const NotVotingTime = ({
-  DisplayCountdown,
-}: Countdown.CountdownComponentProps): React.ReactElement => {
+const NotVotingTime = (): React.ReactElement => {
   const userId = useRecoilValue(user.userId);
+  const { timeUntil } = useCountdown('vote');
+
   return (
     <div>
       <Header menuItems={userId ? nav.siteNavItems : nav.landingNavItems} />
@@ -57,7 +58,7 @@ const NotVotingTime = ({
         <div className="countdown-display">
           <h2>Voting is currently closed!</h2>
           <p>
-            Check back in <DisplayCountdown /> to vote!
+            Check back in <Countdown timeUntil={timeUntil} /> to vote!
           </p>
         </div>
       </div>
@@ -65,4 +66,4 @@ const NotVotingTime = ({
   );
 };
 
-export default Countdown.wrapper('vote')(VotingPageContainer);
+export default VotingPageContainer;
