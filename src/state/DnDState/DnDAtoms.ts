@@ -9,7 +9,7 @@ interface ContainerState {
   isEmpty: boolean;
 }
 
-export const initDndContainerState = {
+export const initialDndState = {
   'sub-1': { contents: '', isEmpty: true },
   'sub-2': { contents: '', isEmpty: true },
   'sub-3': { contents: '', isEmpty: true },
@@ -20,5 +20,5 @@ export const initDndContainerState = {
 
 export const dndContainerState = atom<DndState>({
   key: 'dndContainerState',
-  default: initDndContainerState,
+  default: initialDndState,
 });

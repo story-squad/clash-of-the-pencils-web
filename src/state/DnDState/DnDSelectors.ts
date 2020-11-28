@@ -15,6 +15,7 @@ export const voteSubmissionState = selector<Vote[] | null>({
 
     if (!top3State) return null;
 
+    // Parse the top 3 state into the proper format for Vote items
     const response = top3State?.map((sub, i) => ({
       rank: parseInt(dndState[`sub-${i + 1}`].contents.slice(-1)),
       topthree_id: sub.id,
