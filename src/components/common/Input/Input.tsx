@@ -1,5 +1,5 @@
 import React from 'react';
-import { UseFormMethods, ValidationRules } from 'react-hook-form';
+import { UseFormMethods, RegisterOptions } from 'react-hook-form';
 
 const Input = ({
   name,
@@ -28,12 +28,13 @@ const Input = ({
   );
 };
 
-interface InputProps
-  extends Partial<Pick<UseFormMethods, 'register' | 'errors'>> {
+interface InputProps {
   name: string;
   label: string;
+  register: UseFormMethods['register'];
   type?: string;
-  rules?: ValidationRules;
+  rules?: RegisterOptions;
+  errors?: UseFormMethods['errors'];
 }
 
 export default Input;

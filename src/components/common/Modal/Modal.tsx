@@ -2,13 +2,14 @@ import React from 'react';
 
 import { MdClose } from 'react-icons/md';
 
-const Modal = ({
+export const Component = ({
   component: Component,
   closable = true,
   centered = false,
   visible,
   setVisible,
   className,
+  title = '',
 }: ModalProps): React.ReactElement => {
   const closeModal = () => {
     setVisible(false);
@@ -24,24 +25,32 @@ const Modal = ({
         className={`modal${className ? ' ' + className : ''}`}
         onClick={(e) => e.stopPropagation()}
       >
-        <Component />
-        {closable && (
-          <div className="close-button" onClick={closeModal}>
-            <MdClose />
-          </div>
-        )}
+        <div className="modal-header">
+          <div className="modal-title">{title}</div>
+          {closable && (
+            <div className="close-button" onClick={closeModal}>
+              <MdClose />
+            </div>
+          )}
+        </div>
+        <div className="modal-content">
+          <Component closeModal={closeModal} />
+        </div>
       </div>
     </div>
   );
 };
 
 interface ModalProps {
-  component: React.ComponentType;
+  component: React.ComponentType<ModalComponentProps>;
   closable?: boolean;
   centered?: boolean;
   visible: boolean;
   setVisible: React.Dispatch<boolean>;
   className?: string;
+  title?: string;
 }
 
-export default Modal;
+export interface ModalComponentProps {
+  closeModal: () => void;
+}

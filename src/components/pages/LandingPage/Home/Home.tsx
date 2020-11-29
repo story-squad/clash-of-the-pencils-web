@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { DragonBoi } from '../DragonBoi';
-import { ThoughtBubble } from '../../../common';
 
 import landingText from '../../../../assets/landing-text.png';
 
@@ -9,7 +8,6 @@ const Home = (): React.ReactElement => {
   return (
     <div className="home-page">
       <img src={landingText} alt="Unleash your creativity!" />
-      <ThoughtBubble />
       <div className="flex-wrapper">
         <DragonBoi />
         <div className="links">

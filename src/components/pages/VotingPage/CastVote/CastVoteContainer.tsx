@@ -1,11 +1,11 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { DnD } from '../../../../state/';
+import { dnd } from '../../../../state/';
 import RenderCastVotes from './RenderCastVotes';
 import { DragDropContext, DragStart, DropResult } from 'react-beautiful-dnd';
 
 const CastVoteContainer = (): React.ReactElement => {
-  const [DnDState, setDnDState] = useRecoilState(DnD.DnDContainerState);
+  const [dndState, setDndState] = useRecoilState(dnd.dndContainerState);
   /**
    * Callback used by React Beautiful DnD to update state at the beginning of a drag event.
    * This is being used to render the dragon outline image when a user starts dragging a dragon
@@ -14,9 +14,9 @@ const CastVoteContainer = (): React.ReactElement => {
     // get the source drop zone
     const { source } = start;
     // update state of the source drop zone to show as empty
-    setDnDState({
-      ...DnDState,
-      [source.droppableId]: { ...DnDState[source.droppableId], isEmpty: true },
+    setDndState({
+      ...dndState,
+      [source.droppableId]: { ...dndState[source.droppableId], isEmpty: true },
     });
   };
   /**
@@ -27,10 +27,10 @@ const CastVoteContainer = (): React.ReactElement => {
     // if the draggable was dropped outside a droppable we don't need to do anything so return
     if (!destination) {
       // update state to show the drop zone is once again occupied
-      setDnDState({
-        ...DnDState,
+      setDndState({
+        ...dndState,
         [source.droppableId]: {
-          ...DnDState[source.droppableId],
+          ...dndState[source.droppableId],
           isEmpty: false,
         },
       });
@@ -43,16 +43,16 @@ const CastVoteContainer = (): React.ReactElement => {
         source.index === destination.index
       ) {
         // update state to show the drop zone is once again occupied
-        setDnDState({
-          ...DnDState,
+        setDndState({
+          ...dndState,
           [source.droppableId]: {
-            ...DnDState[source.droppableId],
+            ...dndState[source.droppableId],
             isEmpty: false,
           },
         });
       }
       // ref to destination state object
-      const finish = DnDState[destination.droppableId];
+      const finish = dndState[destination.droppableId];
       // if we have a destination and the destination contents are also empty we need
       // to update state so the re-render will reflect the new placement of the elements
       if (finish.isEmpty) {
@@ -67,9 +67,9 @@ const CastVoteContainer = (): React.ReactElement => {
           isEmpty: false,
         };
         // update state with new state object
-        setDnDState({
+        setDndState({
           // copy in the existing state object
-          ...DnDState,
+          ...dndState,
           // update the source contents
           [source.droppableId]: newStart,
           // update the destination contents

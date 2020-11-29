@@ -2,29 +2,45 @@
   max-width: 100%;
   @include drop-shadow;
   display: flex;
-  border: 1px solid black;
   position: relative;
 
-  img {
-    max-width: 100%;
+  min-width: 10rem;
+  height: 10rem;
+  max-width: 10rem;
+  @media screen and (min-width: $tablet) {
+    height: 25vw;
+    max-width: 25vw;
+    width: 25vw;
+  }
+  @media screen and (min-width: $large) {
+    height: 20rem;
+    max-width: 20rem;
+    width: 20rem;
   }
 
+  background-size: cover;
+  background-position: top center;
+
   & > svg {
-    opacity: 0.35;
+    opacity: 0.65;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 0.4rem;
+    right: 0.4rem;
     cursor: pointer;
+    border-radius: 5px;
 
     padding: 0.6rem;
     height: 2.8rem;
     width: 2.8rem;
 
-    @media screen and (min-width: $mid) {
+    @media screen and (min-width: $tablet) {
       padding: 0.8rem;
       height: 3.6rem;
       width: 3.6rem;
     }
+
+    background-color: #0005;
+    color: #fffc;
 
     transition: all 0.3s ease-in;
     &:hover {
@@ -40,7 +56,6 @@
       flex-flow: row nowrap;
       justify-content: center;
       img {
-        margin-top: 1rem;
         height: unset !important;
         width: unset !important;
         max-width: 100% !important;

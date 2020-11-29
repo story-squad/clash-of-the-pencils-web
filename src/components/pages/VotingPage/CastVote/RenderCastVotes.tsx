@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 
 import { useSetRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
-import { top3, user, DnD } from '../../../../state';
+import { top3, user, dnd } from '../../../../state';
 
 import { Header, Modal } from '../../../common';
-import { nav } from '../../../../config';
 import EmailCollectionForm from './EmailCollectionForm';
 
 import { DropBank } from '../DropBank';
@@ -19,9 +18,9 @@ import dragonDropText from '../../../../assets/dragon-drop.png';
 
 const RenderCastVotes = (): React.ReactElement => {
   const setHasRead = useSetRecoilState(top3.hasFinishedReadingState);
-  const resetDnD = useResetRecoilState(DnD.DnDContainerState);
-  const voteSubmission = useRecoilValue(DnD.voteSubmissionState);
-  const disableButton = useRecoilValue(DnD.disableVoteButton);
+  const resetDnd = useResetRecoilState(dnd.dndContainerState);
+  const voteSubmission = useRecoilValue(dnd.voteSubmissionState);
+  const disableButton = useRecoilValue(dnd.disableVoteButton);
   // grab the user id from recoil to ensure we are logged in
   const userId = useRecoilValue(user.userId);
   const [error, setError] = useState<null | string>(null);
@@ -56,12 +55,12 @@ const RenderCastVotes = (): React.ReactElement => {
   ): void => {
     event.preventDefault();
     setError(null);
-    resetDnD();
+    resetDnd();
   };
 
   return (
     <div>
-      <Header menuItems={userId ? nav.siteNavItems : nav.landingNavItems} />
+      <Header />
       <div className="voting-page">
         <div className="top-text">
           <h2>Welcome to</h2>
@@ -96,7 +95,7 @@ const RenderCastVotes = (): React.ReactElement => {
         </div>
       </div>
       {!userId && (
-        <Modal
+        <Modal.Component
           className="email"
           component={EmailCollectionForm}
           visible={voted}

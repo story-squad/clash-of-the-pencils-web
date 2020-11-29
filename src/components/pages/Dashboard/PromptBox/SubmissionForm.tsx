@@ -7,10 +7,12 @@ import { Submissions } from '../../../../api';
 import { upload } from '../../../../utils';
 
 import { BarLoader } from 'react-spinners';
-import { InfoHoverTip } from '../../../common';
+import { InfoHoverTip, Modal } from '../../../common';
 import { tooltips } from '../../../../config';
 
-const SubmissionForm = (props: SubmissionFormProps): React.ReactElement => {
+const SubmissionForm = (
+  props: Modal.ModalComponentProps,
+): React.ReactElement => {
   const [file, setFile] = useRecoilState(submitModal.selected);
   const [preview, setPreview] = useRecoilState(submitModal.preview);
   const [error, setError] = useRecoilState(submitModal.error);
@@ -70,7 +72,7 @@ const SubmissionForm = (props: SubmissionFormProps): React.ReactElement => {
     <>
       <InfoHoverTip tip={tooltips.subInstructions} position="right" />
       <div className="submission-form">
-        <h2>Submit a Story</h2>
+        {/* <h2>Submit a Story</h2> */}
         <form onSubmit={onSubmit}>
           {preview && (
             <div className="preview">
@@ -103,9 +105,5 @@ const SubmissionForm = (props: SubmissionFormProps): React.ReactElement => {
     </>
   );
 };
-
-interface SubmissionFormProps {
-  closeModal: () => void;
-}
 
 export default SubmissionForm;

@@ -43,7 +43,7 @@ const SignupForm = (): React.ReactElement => {
   return (
     <>
       <div className="landing-form">
-        <Modal
+        <Modal.Component
           visible={showModal}
           setVisible={setShowModal}
           component={SignupSuccess}

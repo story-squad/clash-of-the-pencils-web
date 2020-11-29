@@ -4,14 +4,6 @@
   background-color: $seafoam;
   flex-grow: 1;
 
-  & + * {
-    // This sets styling of the right-hand components on landing page
-    padding: 3rem;
-    @media screen and (min-width: $tablet) {
-      max-width: 450px;
-    }
-  }
-
   // Hide the splash on the left until you reach tablet size
   display: none;
   @media screen and (min-width: $tablet) {
