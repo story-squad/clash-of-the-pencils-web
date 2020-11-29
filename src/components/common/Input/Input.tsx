@@ -1,5 +1,5 @@
 import React from 'react';
-import { UseFormMethods, RegisterOptions } from 'react-hook-form';
+import { RegisterOptions, UseFormMethods } from 'react-hook-form';
 
 const Input = ({
   name,

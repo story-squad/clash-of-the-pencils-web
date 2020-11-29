@@ -1,5 +1,4 @@
 import React from 'react';
-
 import dragonBoi from '../../../../assets/dragon-boi.svg';
 
 const DragonBoi = (): React.ReactElement => {
