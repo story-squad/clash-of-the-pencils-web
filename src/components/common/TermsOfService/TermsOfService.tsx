@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import TosMarkdown from './TOS.md';
+import TosMarkdown from '../../../assets/TOS.md';
 
 const TermsOfService = (): React.ReactElement => {
   const [tos, setTos] = useState('');
