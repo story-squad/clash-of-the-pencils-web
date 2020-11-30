@@ -1,9 +1,8 @@
 import React from 'react';
 import { Submissions } from '../../../api';
+import todaysPrompt from '../../../assets/img/todays-story-prompt.png';
 import { Header, SubCard } from '../../common';
 import { PromptBox } from './PromptBox';
-
-import todaysPrompt from '../../../assets/todays-story-prompt.png';
 
 interface RenderDashboardProps {
   picList: Submissions.SubItem[];
