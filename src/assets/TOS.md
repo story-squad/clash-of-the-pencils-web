@@ -56,12 +56,12 @@ We may collect, hold, use and disclose information for the following purposes an
 
 We may disclose personal information to:
 
-- third party service providers for the purpose of enabling them to provide their services, including (without limitation) IT service providers, data storage, hosting and server providers, ad networks, analytics, error loggers, debt collectors, maintenance or problem-solving providers, marketing or advertising providers, professional advisors and payment systems operators
-- our employees, contractors and/or related entities
-- sponsors or promoters of any competition we run
-- credit reporting agencies, courts, tribunals and regulatory authorities, in the event you fail to pay for goods or services we have provided to you
-- courts, tribunals, regulatory authorities and law enforcement officers, as required by law, in connection with any actual or prospective legal proceedings, or in order to establish, exercise or defend our legal rights
-- third parties, including agents or sub-contractors, who assist us in providing information, products, services or direct marketing to you
+- Third party service providers for the purpose of enabling them to provide their services, including (without limitation) IT service providers, data storage, hosting and server providers, ad networks, analytics, error loggers, debt collectors, maintenance or problem-solving providers, marketing or advertising providers, professional advisors and payment systems operators
+- Our employees, contractors and/or related entities
+- Sponsors or promoters of any competition we run
+- Credit reporting agencies, courts, tribunals and regulatory authorities, in the event you fail to pay for goods or services we have provided to you
+- Courts, tribunals, regulatory authorities and law enforcement officers, as required by law, in connection with any actual or prospective legal proceedings, or in order to establish, exercise or defend our legal rights
+- Third parties, including agents or sub-contractors, who assist us in providing information, products, services or direct marketing to you
 
 ## 5. International Transfers of Personal Information
 

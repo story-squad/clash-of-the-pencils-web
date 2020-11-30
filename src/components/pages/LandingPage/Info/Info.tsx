@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import howItWorks from '../../../../assets/img/how-it-works.png';
+import creativity from '../../../../assets/img/unleash-creativity-image.png';
 import { time } from '../../../../utils';
-
-import howItWorks from '../../../../assets/how-it-works.png';
-import creativity from '../../../../assets/unleash-creativity-image.png';
 
 const Info = (): React.ReactElement => {
   return (

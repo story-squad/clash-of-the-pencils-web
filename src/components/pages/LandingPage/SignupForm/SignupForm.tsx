@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { Auth } from '../../../../api';
-import squadUp from '../../../../assets/squad-up.png';
+import squadUp from '../../../../assets/img/squad-up.png';
 import { Input, Modal, ThoughtBubble } from '../../../common';
 import { DragonBoi } from '../DragonBoi';
 import SignupSuccess from './SignupSuccess';
