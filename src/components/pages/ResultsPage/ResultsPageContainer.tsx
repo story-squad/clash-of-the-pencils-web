@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
-
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { apiError, results } from '../../../state';
-
-import RenderResultsPage from './RenderResultsPage';
-import { Loader } from '../../common';
 import { Submissions } from '../../../api';
+import { apiError, results } from '../../../state';
+import RenderResultsPage from './RenderResultsPage';
+import ResultsClosed from './ResultsClosed';
 
 const ResultsPageContainer = (): React.ReactElement => {
   const [winner, setWinner] = useRecoilState(results.winner);
@@ -26,7 +24,7 @@ const ResultsPageContainer = (): React.ReactElement => {
     }
   }, []);
 
-  return winner ? <RenderResultsPage /> : <Loader message="Loading Winner" />;
+  return winner ? <RenderResultsPage /> : <ResultsClosed />;
 };
 
 export default ResultsPageContainer;

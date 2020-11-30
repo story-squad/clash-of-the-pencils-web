@@ -1,12 +1,9 @@
 import React from 'react';
-
 import { useRecoilValue } from 'recoil';
-import { results } from '../../../state';
-
-import { Header, Histogram, SubCard, ThoughtBubble } from '../../common';
-
-import dragonBoi from '../../../assets/dragon-boi.svg';
 import celebration from '../../../assets/celebration-station.png';
+import dragonBoi from '../../../assets/dragon-boi.svg';
+import { results } from '../../../state';
+import { Header, Histogram, SubCard, ThoughtBubble } from '../../common';
 
 const RenderResultsPage = (): React.ReactElement => {
   const winner = useRecoilValue(results.winner);

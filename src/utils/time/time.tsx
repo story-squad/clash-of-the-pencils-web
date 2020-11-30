@@ -37,6 +37,11 @@ export const schedule: scheduleObjectType = {
     start: utcToLocal(25, 0),
     end: utcToLocal(25, 30),
   },
+  announce: {
+    start: utcToLocal(25, 30),
+    // will need to update this end time to "tomorrow" if we plan on showing it for a specific time frame
+    end: utcToLocal(25, 30),
+  },
 };
 
 /* Helper Functions */
@@ -105,7 +110,7 @@ const secondsElapsed = (start: Moment, end: Moment): number => {
 /**
  * The `nametags` for time-based events we track using union syntax
  */
-export type eventType = 'submit' | 'vote' | 'stream';
+export type eventType = 'submit' | 'vote' | 'stream' | 'announce';
 
 /**
  * An interface for a seconds value converted into hours, minutes, seconds
