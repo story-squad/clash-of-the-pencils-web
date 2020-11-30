@@ -1,9 +1,9 @@
 import React from 'react';
+
 import { useRecoilValue } from 'recoil';
-import { nav } from '../../../config';
 import { results } from '../../../state';
-import { Header, SubCard } from '../../common';
-import { ThoughtBubble } from '../../common/ThoughtBubble';
+
+import { Header, Histogram, SubCard, ThoughtBubble } from '../../common';
 
 import dragonBoi from '../../../assets/dragon-boi.svg';
 import celebration from '../../../assets/celebration-station.png';
@@ -13,7 +13,7 @@ const RenderResultsPage = (): React.ReactElement => {
 
   return (
     <div>
-      <Header menuItems={nav.siteNavItems} />
+      <Header />
       <div className="results-page">
         <img src={celebration} alt="Celebration Station" />
         {winner && (
@@ -31,6 +31,7 @@ const RenderResultsPage = (): React.ReactElement => {
             </div>
           </div>
         )}
+        <Histogram />
       </div>
     </div>
   );

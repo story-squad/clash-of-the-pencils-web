@@ -8,6 +8,10 @@ The modal can be closed by clicking on the `X` in the top-right corner (not show
 
 When opened and closed, the modal will slowly fade in and out using CSS transitions and careful z-indexing. Recklessly z-indexing your page elements may affect these animations.
 
+## Modal Export
+
+The component is exported alongside a helper interface to extend when wrapping a component. To use the component, use the JSX tag `<Modal.Component>`. To use the props interface, use `Modal.ModalComponentProps`.
+
 ## Higher-Order Component (HoC)
 
 The `Modal` is a `HoC`, which is any component that takes another component as a property, like the `component` prop on a `<Route />`.
@@ -15,7 +19,29 @@ The `Modal` is a `HoC`, which is any component that takes another component as a
 The Modal is used in more or less the same way:
 
 ```jsx
-<Modal component={ComponentName} />
+<Modal.Component component={ComponentName} />
+```
+
+All components passed into a modal by callback receive the closeModal function:
+
+```tsx
+<Modal.Component component={RenderedComponent} />
+```
+
+To render a component instead by callback (especially when you want to pass other props into that inner component), read the props passed into the callback function:
+
+```tsx
+<Modal.Component
+  component={(props) => <RenderedComponent {...props} otherProp={value} />}
+/>
+```
+
+When you need the given closeModal function, just extend the props for your component to satisfy TypeScript:
+
+```ts
+interface RenderedComponentProps extends Modal.ModalComponentProps {
+  otherProp: any;
+}
 ```
 
 ## Properties
@@ -23,6 +49,7 @@ The Modal is used in more or less the same way:
 The modal has other properties to help make it more interactive:
 
 - `component` - a valid React component to render
+- `title` - a string to render in the modal header
 - `visible` - boolean
 - `setVisible` - setState function
 - `closable` - boolean _(optional, default `true`)_
@@ -37,6 +64,7 @@ const Component = () => {
   return (
     <div>
       <Modal
+        title="Some Title!"
         component={SomeComponent}
         visible={visible}
         setVisible={setVisible}
@@ -48,9 +76,9 @@ const Component = () => {
 }
 ```
 
-### `component`
+### `title`
 
-A valid React component to render to the Modal body. The component will be passed the `setVisible` function in case you wish to add custom modal close functionality.
+An optional title to be passed in that is displayed in the Modal header. If nothing is passed in, the title will default to an empty string and the modal will render with an empty header.
 
 ### `visible`
 

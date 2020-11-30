@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { MdMenu } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { nav } from '../../../config';
+import { user } from '../../../state';
 
-const Header = ({ menuItems = [] }: HeaderProps): React.ReactElement => {
+const Header = (): React.ReactElement => {
   const [showMenu, setShowMenu] = useState(false);
+  const userId = useRecoilValue(user.userId);
+
+  const menuItems = useMemo(
+    () => (userId ? nav.siteNavItems : nav.landingNavItems),
+    [userId],
+  );
 
   const toggleMenu = () => {
     setShowMenu((cur) => !cur);
@@ -42,10 +51,6 @@ const MenuItem = (props: MenuItemProps) => {
     </div>
   );
 };
-
-interface HeaderProps {
-  menuItems?: MenuItemProps[];
-}
 
 interface MenuItemProps {
   link: string;

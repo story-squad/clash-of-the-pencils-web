@@ -1,6 +1,6 @@
 import { selector } from 'recoil';
 import { top3List } from '../top3State';
-import { DnDContainerState } from './DnDAtoms';
+import { dndContainerState } from './dndAtoms';
 
 interface Vote {
   rank: number;
@@ -10,13 +10,14 @@ interface Vote {
 export const voteSubmissionState = selector<Vote[] | null>({
   key: 'voteSubmissionState',
   get: ({ get }) => {
-    const DnDState = get(DnDContainerState);
+    const dndState = get(dndContainerState);
     const top3State = get(top3List);
 
     if (!top3State) return null;
 
+    // Parse the top 3 state into the proper format for Vote items
     const response = top3State?.map((sub, i) => ({
-      rank: parseInt(DnDState[`sub-${i + 1}`].contents.slice(-1)),
+      rank: parseInt(dndState[`sub-${i + 1}`].contents.slice(-1)),
       topthree_id: sub.id,
     }));
 
@@ -27,11 +28,11 @@ export const voteSubmissionState = selector<Vote[] | null>({
 export const disableVoteButton = selector<boolean>({
   key: 'disableVoteButton',
   get: ({ get }) => {
-    const DnDState = get(DnDContainerState);
+    const dndState = get(dndContainerState);
     return (
-      DnDState['sub-1'].isEmpty ||
-      DnDState['sub-2'].isEmpty ||
-      DnDState['sub-3'].isEmpty
+      dndState['sub-1'].isEmpty ||
+      dndState['sub-2'].isEmpty ||
+      dndState['sub-3'].isEmpty
     );
   },
 });

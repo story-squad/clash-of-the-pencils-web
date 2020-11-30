@@ -5,12 +5,9 @@ export interface PromptItem {
   id: number;
   prompt: string;
   active: boolean;
-  topThree: boolean;
-  voting: boolean;
+  submitted: boolean;
 }
 
-export const getCurrent = (): Promise<
-  AxiosResponse<{ prompt: PromptItem }>
-> => {
+export const getCurrent = (): Promise<AxiosResponse<PromptItem>> => {
   return axiosWithAuth().get('/upload/prompt');
 };

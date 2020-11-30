@@ -4,7 +4,7 @@ import { getImageFromS3, SubItem } from './imageLoader';
 
 export const getRecentSubsByChild = async (): Promise<SubItem[]> => {
   const { data }: AxiosResponse<SubItem[]> = await axiosWithAuth().get(
-    '/upload/mystories',
+    '/upload/mytopstories',
   );
   const processedStories = data.map((sub) => getImageFromS3(sub));
   return Promise.all(processedStories);

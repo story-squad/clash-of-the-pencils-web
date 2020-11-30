@@ -1,1 +1,1 @@
-export { default as PromptBox } from './PromptBox';
+export { default as PromptBox } from './PromptBoxContainer';

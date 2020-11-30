@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { Auth } from '../../../../api';
-import { Input, Modal } from '../../../common';
-import SignupSuccess from './SignupSuccess';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { DragonBoi } from '../DragonBoi';
-import { ThoughtBubble } from '../../../common/ThoughtBubble';
-
 import squadUp from '../../../../assets/squad-up.png';
+import { Input, Modal, ThoughtBubble } from '../../../common';
+import { DragonBoi } from '../DragonBoi';
+import SignupSuccess from './SignupSuccess';
 
 const SignupForm = (): React.ReactElement => {
   const {
@@ -43,7 +41,7 @@ const SignupForm = (): React.ReactElement => {
   return (
     <>
       <div className="landing-form">
-        <Modal
+        <Modal.Component
           visible={showModal}
           setVisible={setShowModal}
           component={SignupSuccess}

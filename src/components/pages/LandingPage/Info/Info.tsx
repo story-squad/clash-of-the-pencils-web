@@ -37,23 +37,22 @@ const format = 'h:mm A';
 
 const timeList = [
   {
-    title: time.utcToLocal(20, 0).format(format),
+    title: time.schedule.submit.end.format(format),
     text: 'Daily Story Submission Deadline',
   },
   {
-    title: time.utcToLocal(20, 30).format(format),
+    title: time.schedule.vote.start.format(format),
     text: 'Top 3 Stories Announced.',
   },
   {
     title:
-      time.utcToLocal(20, 30).format(format) +
+      time.schedule.vote.start.format(format) +
       ' - ' +
-      time.utcToLocal(23, 0).format(format),
-    text:
-      "Voting (secret advantage: you can unlock 's story prompt after voting)",
+      time.schedule.vote.end.format(format),
+    text: 'Read 3 short stories and vote for your favorite',
   },
   {
-    title: time.utcToLocal(23, 0).format(format),
+    title: time.schedule.stream.start.format(format),
     text:
       "Winner of the popular vote gets crowned & tomorrow's story prompt announced!",
   },

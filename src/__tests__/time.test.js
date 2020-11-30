@@ -2,30 +2,30 @@ import { time } from '../utils';
 import moment from 'moment';
 
 describe('time module testing', () => {
-  describe('getCurrentEvent()', () => {
-    it('should return SUBMIT during sub hours', () => {
-      const subTime = moment.utc().hour(6);
-      expect(time.getCurrentEvent(subTime)).toBe('SUBMIT');
+  describe('getTimeUntilEvent()', () => {
+    const now = moment.utc('01:00:00.0', 'HH:mm:ss.S');
+    it('returns 0h30m until sub start at 1am UTC', () => {
+      const { active, timeUntil } = time.getTimeUntilEvent('submit', now);
+      expect(timeUntil.h).toBe(0);
+      expect(timeUntil.m).toBe(30);
+      expect(active).toBe(false);
     });
-    it('should return DELIB during delib hours', () => {
-      const delibTime = moment.utc().hour(20).minutes(15);
-      expect(time.getCurrentEvent(delibTime)).toBe('DELIB');
+    it('returns 19h30m until voting start at 1am UTC', () => {
+      const { active, timeUntil } = time.getTimeUntilEvent('vote', now);
+      expect(timeUntil.h).toBe(19);
+      expect(timeUntil.m).toBe(30);
+      expect(active).toBe(false);
     });
-    it('should return VOTE during voting hours', () => {
-      const voteTime = moment.utc().hour(20).minutes(30);
-      expect(time.getCurrentEvent(voteTime)).toBe('VOTE');
+    it('returns 22h until stream start at 1am UTC', () => {
+      const { active, timeUntil } = time.getTimeUntilEvent('stream', now);
+      expect(timeUntil.h).toBe(22);
+      expect(active).toBe(false);
     });
-    it('should return STREAM during stream hours', () => {
-      const delibTime = moment.utc().hour(23).minutes(59);
-      expect(time.getCurrentEvent(delibTime)).toBe('STREAM');
-    });
-    it('should return NONE during interim hours', () => {
-      const delibTime = moment.utc().hour(0);
-      expect(time.getCurrentEvent(delibTime)).toBe('NONE');
-    });
-    it('should return NONE during interim hours', () => {
-      const delibTime = moment.utc().hour(24);
-      expect(time.getCurrentEvent(delibTime)).toBe('NONE');
+    it('returns time until end (15h) when passed in a time during an event', () => {
+      const cur = moment.utc('05:00:00.0', 'HH:mm:ss.S');
+      const { active, timeUntil } = time.getTimeUntilEvent('submit', cur);
+      expect(timeUntil.h).toBe(15);
+      expect(active).toBe(true);
     });
   });
 });
