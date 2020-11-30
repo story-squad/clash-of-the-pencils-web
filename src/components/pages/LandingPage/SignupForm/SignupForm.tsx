@@ -155,7 +155,10 @@ const SignupForm = (): React.ReactElement => {
           )}
           <div className="text">
             By signing up with our site, you are agreeing to our{' '}
-            <span className="text-button">Terms & Conditions</span>.
+            <Link to="/tos" className="text-button" target="_blank">
+              Terms & Conditions
+            </Link>
+            .
           </div>
           <div className="text">
             Already have an account? <Link to="/login">Click Here</Link>
