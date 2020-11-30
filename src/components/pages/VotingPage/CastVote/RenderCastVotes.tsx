@@ -11,6 +11,7 @@ import { Header, Modal } from '../../../common';
 import { DragonBank } from '../DragonBank';
 import { DropBank } from '../DropBank';
 import EmailCollectionForm from './EmailCollectionForm';
+import SecretBonus from './SecretBonus';
 
 const RenderCastVotes = (): React.ReactElement => {
   const setHasRead = useSetRecoilState(top3.hasFinishedReadingState);
@@ -36,6 +37,7 @@ const RenderCastVotes = (): React.ReactElement => {
         console.log({ err });
         setError('Could not submit vote. Please try again later.');
       });
+    setVoted(true);
   };
 
   const backToRead = () => {
@@ -90,17 +92,15 @@ const RenderCastVotes = (): React.ReactElement => {
           </button>
         </div>
       </div>
-      {!userId && (
-        <Modal.Component
-          className="email"
-          component={EmailCollectionForm}
-          visible={voted}
-          setVisible={() => {
-            setVoted(false);
-          }}
-          centered={true}
-        />
-      )}
+      <Modal.Component
+        className={userId ? 'bonus' : 'email'}
+        component={userId ? SecretBonus : EmailCollectionForm}
+        visible={voted}
+        setVisible={() => {
+          setVoted(false);
+        }}
+        centered={true}
+      />
     </div>
   );
 };
