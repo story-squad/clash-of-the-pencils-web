@@ -26,7 +26,7 @@ export const utcToLocal = (hour: number, minute: number): Moment => {
  */
 export const schedule: scheduleObjectType = {
   submit: {
-    start: utcToLocal(20, 30),
+    start: utcToLocal(1, 30),
     end: utcToLocal(22, 0),
   },
   vote: {
