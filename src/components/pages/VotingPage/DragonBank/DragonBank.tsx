@@ -1,9 +1,9 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
+import emptyDragon from '../../../../assets/img/dragon-outline.png';
 import { dnd } from '../../../../state';
-import DraggableDragon from './DraggableDragon';
 import { DropZone } from '../DropZone';
-import emptyDragon from '../../../../assets/dragon-outline.png';
+import DraggableDragon from './DraggableDragon';
 
 const DragonBank = (): React.ReactElement => {
   const dndState = useRecoilValue(dnd.dndContainerState);

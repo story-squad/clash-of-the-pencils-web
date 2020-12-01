@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import landingText from '../../../../assets/img/landing-text.png';
 import { DragonBoi } from '../DragonBoi';
-
-import landingText from '../../../../assets/landing-text.png';
 
 const Home = (): React.ReactElement => {
   return (

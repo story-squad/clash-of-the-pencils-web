@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
-
-import { useSetRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
-import { top3, user, dnd } from '../../../../state';
-
-import { Header, Modal } from '../../../common';
-import EmailCollectionForm from './EmailCollectionForm';
-
-import { DropBank } from '../DropBank';
-import { DragonBank } from '../DragonBank';
 import {
   AiOutlineArrowLeft as Left,
   AiOutlineReload as Reload,
 } from 'react-icons/ai';
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { Voting } from '../../../../api';
-
-import dragonDropText from '../../../../assets/dragon-drop.png';
+import dragonDropText from '../../../../assets/img/dragon-drop.png';
+import { dnd, top3, user } from '../../../../state';
+import { Header, Modal } from '../../../common';
+import { DragonBank } from '../DragonBank';
+import { DropBank } from '../DropBank';
+import EmailCollectionForm from './EmailCollectionForm';
 
 const RenderCastVotes = (): React.ReactElement => {
   const setHasRead = useSetRecoilState(top3.hasFinishedReadingState);
