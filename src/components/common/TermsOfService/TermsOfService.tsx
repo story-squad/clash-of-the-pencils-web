@@ -3,16 +3,15 @@ import ReactMarkdown from 'react-markdown';
 import TosMarkdown from '../../../assets/TOS.md';
 
 const TermsOfService = (): React.ReactElement => {
-  const [tos, setTos] = useState<null | string>(null);
+  const [tos, setTos] = useState('');
 
   useEffect(() => {
-    if (!tos)
-      fetch(TosMarkdown)
-        .then((res) => res.text())
-        .then((text) => setTos(text))
-        .catch((err) => {
-          console.log('Cannot load ToS because ', { err });
-        });
+    fetch(TosMarkdown)
+      .then((res) => res.text())
+      .then((text) => setTos(text))
+      .catch((err) => {
+        console.log('Cannot load ToS because ', { err });
+      });
   }, []);
 
   return (
