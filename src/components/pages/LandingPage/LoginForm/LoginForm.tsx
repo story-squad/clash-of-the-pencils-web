@@ -1,14 +1,11 @@
 import React from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useHistory } from 'react-router-dom';
 import { Auth } from '../../../../api';
+import welcomeBack from '../../../../assets/img/welcome-back.png';
 import { token } from '../../../../utils';
-
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { Input } from '../../../common';
+import { Input, ThoughtBubble } from '../../../common';
 import { DragonBoi } from '../DragonBoi';
-import { ThoughtBubble } from '../../../common';
-
-import welcomeBack from '../../../../assets/welcome-back.png';
 
 const LoginForm: React.FC = () => {
   const { register, handleSubmit, errors, setError, clearErrors } = useForm();

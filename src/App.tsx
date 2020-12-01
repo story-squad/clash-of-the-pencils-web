@@ -1,13 +1,17 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { ComingSoon, PrivateRoute, Signout } from './components/common';
-
+import {
+  ComingSoon,
+  PrivateRoute,
+  Signout,
+  TermsOfService,
+} from './components/common';
+import { Activation } from './components/pages/Activated';
+import { Dashboard } from './components/pages/Dashboard';
 // Route Components
 import { LandingPage } from './components/pages/LandingPage';
-import { Activation } from './components/pages/Activated';
-import { VotingPage } from './components/pages/VotingPage';
-import { Dashboard } from './components/pages/Dashboard';
 import { ResultsPage } from './components/pages/ResultsPage';
+import { VotingPage } from './components/pages/VotingPage';
 
 const App: React.FC = () => {
   return (
@@ -22,6 +26,7 @@ const App: React.FC = () => {
         <Route path="/activated" component={Activation} />
         <Route path={['/logout', '/signout']} component={Signout} />
         <Route path="/vote" component={VotingPage} />
+        <Route path="/tos" component={TermsOfService} />
 
         {/* Private Routes */}
         <PrivateRoute path="/dashboard" component={Dashboard} />

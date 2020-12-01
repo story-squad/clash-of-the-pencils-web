@@ -1,12 +1,9 @@
 import React from 'react';
-
 import { useRecoilValue, useSetRecoilState } from 'recoil';
+import votingStation from '../../../../assets/img/voting-booth.png';
 import { top3 } from '../../../../state';
-
 import { Countdown, Header } from '../../../common';
 import ReadTop3 from './ReadTop3';
-
-import votingStation from '../../../../assets/voting-booth.png';
 
 const RenderReadSubmissions = (): React.ReactElement => {
   const readCount = useRecoilValue(top3.getReadCount);
