@@ -12,13 +12,14 @@ const ResultsClosed = (): React.ReactElement => {
           <p>
             Sorry you missed it :(
             <br />
-            Results will be displated every day at{' '}
+            Results will be displayed every day at{' '}
             <span className="alt">
               {time.schedule.announce.start.format('h:mm A')}
             </span>
           </p>
           <p>
-            Check back in <Countdown toEvent="announce" /> to see todays winner!
+            Check back in <Countdown toEvent="announce" /> to see today&apos;s{' '}
+            winner!
           </p>
         </div>
       </div>
