@@ -1,14 +1,11 @@
 import React from 'react';
-
-import { useRecoilState } from 'recoil';
-import { submitModal } from '../../../../state';
-
-import { Submissions } from '../../../../api';
-import { upload } from '../../../../utils';
-
 import { BarLoader } from 'react-spinners';
-import { InfoHoverTip, Modal } from '../../../common';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { Submissions } from '../../../../api';
 import { tooltips } from '../../../../config';
+import { prompts, submitModal } from '../../../../state';
+import { upload } from '../../../../utils';
+import { InfoHoverTip, Modal } from '../../../common';
 
 const SubmissionForm = (
   props: Modal.ModalComponentProps,
@@ -18,6 +15,8 @@ const SubmissionForm = (
   const [error, setError] = useRecoilState(submitModal.error);
   const [loading, setLoading] = useRecoilState(submitModal.loading);
   const [complete, setComplete] = useRecoilState(submitModal.success);
+
+  const markAsSubmitted = useSetRecoilState(prompts.setSubmitted);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,6 +38,7 @@ const SubmissionForm = (
 
         await Submissions.uploadSubmission(reqBody);
         setComplete(true);
+        markAsSubmitted(true);
       } catch (err) {
         if (err?.response?.data?.error) {
           if (err.response.data.error === 'Transcription error')
