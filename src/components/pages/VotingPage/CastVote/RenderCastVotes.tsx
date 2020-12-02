@@ -25,19 +25,24 @@ const RenderCastVotes = (): React.ReactElement => {
   //check if a user has voted
   const [voted, setVoted] = useState(false);
 
+  const [secretMessage, setSecretMessage] = useState<null | string>(null);
+
   const submitVotes = () => {
     setError(null);
     Voting.submit(voteSubmission)
       .then((res) => {
         // SUBMISSION SUCCESSFUL!
         setVoted(true);
-        console.log(res.data);
+        setSecretMessage(res.data.tomorrow.prompt);
       })
       .catch((err) => {
         console.log({ err });
         setError('Could not submit vote. Please try again later.');
+        setVoted(true);
+        setSecretMessage(
+          "This is the prompt for tomorrow omg it's really actually vrey interesting tell me about it",
+        );
       });
-    setVoted(true);
   };
 
   const backToRead = () => {
@@ -92,15 +97,21 @@ const RenderCastVotes = (): React.ReactElement => {
           </button>
         </div>
       </div>
-      <Modal.Component
-        className={userId ? 'bonus' : 'email'}
-        component={userId ? SecretBonus : EmailCollectionForm}
-        visible={voted}
-        setVisible={() => {
-          setVoted(false);
-        }}
-        centered={true}
-      />
+      {voted && secretMessage && (
+        <Modal.Component
+          className={userId ? 'bonus' : 'email'}
+          component={
+            userId
+              ? () => <SecretBonus secretMessage={secretMessage} />
+              : EmailCollectionForm
+          }
+          visible={voted}
+          setVisible={() => {
+            setVoted(false);
+          }}
+          centered={true}
+        />
+      )}
     </div>
   );
 };
