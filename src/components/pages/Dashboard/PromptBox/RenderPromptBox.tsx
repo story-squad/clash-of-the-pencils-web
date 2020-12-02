@@ -37,7 +37,7 @@ const RenderPromptBox = (): React.ReactElement => {
             // If the prompt is NOT active!
             <p>Submissions are currently closed.</p>
           )}
-          <p className="prompt-countdown">
+          <p className="countdown-display">
             <Countdown toEvent="submit" /> left to submit!
           </p>
           <div className="prompt-footer">
