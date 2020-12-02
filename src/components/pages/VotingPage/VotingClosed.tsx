@@ -1,13 +1,12 @@
 import React from 'react';
-
-import { Countdown, Header } from '../../common';
 import { time } from '../../../utils';
+import { Countdown, Header } from '../../common';
 
 const VotingClosed = (): React.ReactElement => {
   return (
     <div>
       <Header />
-      <div className="voting-page">
+      <div className="results-page">
         <div className="countdown-display">
           <h2>Voting is currently closed!</h2>
           <p>

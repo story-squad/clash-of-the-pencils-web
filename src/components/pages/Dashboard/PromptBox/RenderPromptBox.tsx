@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-
 import { useRecoilValue } from 'recoil';
-import { prompts, user } from '../../../../state';
-
-import { Countdown, InfoHoverTip, Modal } from '../../../common';
 import { tooltips } from '../../../../config';
+import { prompts, user } from '../../../../state';
+import { Countdown, InfoHoverTip, Modal } from '../../../common';
 import SubmissionForm from './SubmissionForm';
 
 const RenderPromptBox = (): React.ReactElement => {
@@ -39,7 +37,7 @@ const RenderPromptBox = (): React.ReactElement => {
             // If the prompt is NOT active!
             <p>Submissions are currently closed.</p>
           )}
-          <p className="countdown-display">
+          <p className="prompt-countdown">
             <Countdown toEvent="submit" /> left to submit!
           </p>
           <div className="prompt-footer">

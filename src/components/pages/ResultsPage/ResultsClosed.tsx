@@ -8,7 +8,7 @@ const ResultsClosed = (): React.ReactElement => {
       <Header />
       <div className="voting-page">
         <div className="countdown-display">
-          <h2>Results is currently closed!</h2>
+          <h2>Results are not available!</h2>
           <p>
             Sorry you missed it :(
             <br />
