@@ -26,16 +26,16 @@ export const utcToLocal = (hour: number, minute: number): Moment => {
  */
 export const schedule: scheduleObjectType = {
   submit: {
-    start: utcToLocal(1, 30),
-    end: utcToLocal(22, 0),
+    start: utcToLocal(1, 30), // should be 1, 30
+    end: utcToLocal(22, 0), // should be 22, 0
   },
   vote: {
-    start: utcToLocal(22, 30).subtract(1, 'day'),
-    end: utcToLocal(25, 0).subtract(1, 'day'),
+    start: utcToLocal(22, 30).subtract(1, 'day'), // should be 22, 30
+    end: utcToLocal(25, 0).subtract(1, 'day'), // should be 25, 0
   },
   stream: {
-    start: utcToLocal(25, 0),
-    end: utcToLocal(25, 30),
+    start: utcToLocal(25, 0), // should be 25, 0
+    end: utcToLocal(25, 30), // should be 25, 30
   },
   announce: {
     start: utcToLocal(25, 30),
