@@ -19,10 +19,17 @@ const LoginForm: React.FC = () => {
       })
       .catch((err: Auth.AxiosError) => {
         console.log({ err });
-        setError('form', {
-          type: 'manual',
-          message: 'Uh Oh! Login Unsuccessful',
-        });
+        if (err.response)
+          setError('form', {
+            type: 'manual',
+            message: err.response.data.error,
+          });
+        else {
+          setError('form', {
+            type: 'manual',
+            message: 'Uh oh! Login unsuccessful',
+          });
+        }
       });
   };
 
