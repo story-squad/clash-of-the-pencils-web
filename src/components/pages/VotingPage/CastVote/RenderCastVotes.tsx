@@ -38,10 +38,6 @@ const RenderCastVotes = (): React.ReactElement => {
       .catch((err) => {
         console.log({ err });
         setError('Could not submit vote. Please try again later.');
-        setVoted(true);
-        setSecretMessage(
-          "This is the prompt for tomorrow omg it's really actually vrey interesting tell me about it",
-        );
       });
   };
 
