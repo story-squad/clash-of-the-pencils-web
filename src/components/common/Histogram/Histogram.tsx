@@ -25,13 +25,6 @@ const Histogram = (): React.ReactElement => {
       });
   }, []);
 
-  useEffect(() => {
-    const body = document.getElementsByTagName('body')[0];
-    body.style.overflowY = 'scroll';
-  }, []);
-
-  useEffect(() => console.log(histData), [histData]);
-
   return histData ? (
     <RenderHistogram histData={histData} />
   ) : loadError ? (

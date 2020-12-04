@@ -42,7 +42,7 @@ export const schedule: scheduleObjectType = {
   },
   announce: {
     start: utcToLocal(1, 30), // should be 25, 30
-    end: utcToLocal(22, 0), // should be 22, 0 (tomorrow)
+    end: utcToLocal(24, 0), // should be 22, 0 (tomorrow)
   },
 };
 
