@@ -21,7 +21,18 @@ const Histogram = (): React.ReactElement => {
     setLoadError(false);
     Submissions.getHistogram()
       .then((res) => {
-        setHistData(res.data);
+        console.log({ res });
+        Reflect.deleteProperty(res.data.data[0], 'alignmentgroup');
+        Reflect.deleteProperty(res.data.data[0], 'offsetgroup');
+        Reflect.deleteProperty(res.data.layout, 'template');
+        setHistData({
+          data: res.data.data,
+          layout: {
+            ...res.data.layout,
+            height: 400,
+          },
+        });
+        // setHistData(res.data);
         setLoadError(false);
       })
       .catch((err) => {
@@ -31,13 +42,15 @@ const Histogram = (): React.ReactElement => {
       });
   }, []);
 
+  useEffect(() => console.log(histData), [histData]);
+
   return (
     <div className="histogram">
       {histData ? (
         // Histogram loaded, display it
         <>
           <p>Here’s how our robots scored your story! &#129302;</p>
-          <Plot {...histData} config={histoConfig} />
+          <Plot {...(histData ? histData : graph)} config={histoConfig} />
           <p>
             Hint: Our robots love to read stories with lots of dialogue, vivid
             descriptions, and satisfying endings.
@@ -58,61 +71,71 @@ const Histogram = (): React.ReactElement => {
   );
 };
 
-// const graph: { data: Plotly.Data[]; layout: Partial<Plotly.Layout> } = {
-//   data: [
-//     {
-//       hoverinfo: 'none',
-//       line: {
-//         color: '#EB7E5B',
-//         width: 7,
-//       },
-//       marker: {
-//         color: '#FED23E',
-//         size: 18,
-//         symbol: 'star',
-//       },
-//       mode: 'text+lines+markers',
-//       type: 'scatter',
-//       x: [1, 2, 3],
-//       y: [34, 44, 54],
-//     },
-//   ],
-//   layout: {
-//     plot_bgcolor: '#6CEAE6',
-//     title: {
-//       font: {
-//         family: 'PT Sans Narrow',
-//         size: 25,
-//       },
-//       text: "Kelley's Squad Score Over Time",
-//       x: 0.5,
-//       y: 0.95,
-//     },
-//     xaxis: {
-//       showgrid: false,
-//       ticks: 'inside',
-//       tickvals: [1, 2, 3],
-//       title: {
-//         font: {
-//           family: 'PT Sans Narrow',
-//           size: 20,
-//         },
-//         text: 'Week Number',
-//       },
-//       zeroline: false,
-//     },
-//     yaxis: {
-//       showgrid: false,
-//       showticklabels: false,
-//       title: {
-//         font: {
-//           family: 'PT Sans Narrow',
-//           size: 20,
-//         },
-//         text: 'Squad Score',
-//       },
-//     },
-//   },
-// };
+const graph: { data: Plotly.Data[]; layout: Partial<Plotly.Layout> } = {
+  data: [
+    {
+      hoverinfo: 'none',
+      legendgroup: '',
+      marker: { color: '#F66700', line: { color: '#2462D9', width: [6] } },
+      name: '',
+      orientation: 'v',
+      showlegend: false,
+      textposition: 'auto',
+      type: 'bar',
+      x: [120],
+      xaxis: 'x',
+      y: [1],
+      yaxis: 'y',
+    },
+  ],
+  layout: {
+    height: 400,
+    annotations: [
+      {
+        align: 'center',
+        arrowcolor: '#636363',
+        arrowhead: 5,
+        arrowsize: 1,
+        arrowwidth: 2,
+        ax: 70,
+        ay: -100,
+        bgcolor: '#FFFFFF',
+        borderpad: 4,
+        borderwidth: 0,
+        font: { color: 'black', family: 'PT Sans Narrow', size: 16 },
+        opacity: 1,
+        showarrow: true,
+        text: 'Your submission<br>(100th percentile)',
+        x: 120,
+        xref: 'x',
+        y: 0.2,
+        yref: 'paper',
+      },
+    ],
+    barmode: 'relative',
+    legend: { tracegroupgap: 0 },
+    margin: { t: 60 },
+    plot_bgcolor: '#34C9AD',
+    xaxis: {
+      anchor: 'y',
+      domain: [0, 1],
+      showticklabels: false,
+      title: {
+        font: { family: 'PT Sans Narrow', size: 20 },
+        text: 'Squad Score',
+      },
+    },
+    yaxis: {
+      anchor: 'x',
+      domain: [0, 1],
+      showgrid: false,
+      showticklabels: true,
+      title: {
+        font: { family: 'PT Sans Narrow', size: 20 },
+        text: 'Number of Stories',
+      },
+    },
+  },
+};
 
 export default Histogram;
