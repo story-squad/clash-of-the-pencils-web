@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import celebration from '../../../assets/img/celebration-station.png';
@@ -35,9 +36,10 @@ const RenderResultsPage = (): React.ReactElement => {
 };
 
 const WinnerBubble = (props: WinnerBubbleProps): React.ReactElement => {
+  const now = moment();
   return (
     <div className="winner-bubble">
-      <h3>Today We Celebrate:</h3>
+      <h3>{now.hour() < 17 ? "Yesterday's" : "Today's"} Winner:</h3>
       <h2>{props.winnerName}</h2>
       <div className="flames">&#128293; &#128293; &#128293;</div>
     </div>
