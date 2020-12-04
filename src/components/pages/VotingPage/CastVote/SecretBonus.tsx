@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import secretBonus from '../../../../assets/img/secret-bonus-red.png';
+import { Modal } from '../../../common';
 
 const SecretBonus = (props: SecretBonusProps): React.ReactElement => {
   const [timeLeft, setTimeLeft] = useState(60);
 
   useEffect(() => {
     const count = setInterval(() => {
-      setTimeLeft((cur) => cur - 1);
+      setTimeLeft((cur) => {
+        if (cur > 0) {
+          return cur - 1;
+        } else {
+          props.closeModal();
+          return 0;
+        }
+      });
     }, 1000);
 
     return () => clearInterval(count);
@@ -24,7 +32,7 @@ const SecretBonus = (props: SecretBonusProps): React.ReactElement => {
   );
 };
 
-interface SecretBonusProps {
+interface SecretBonusProps extends Modal.ModalComponentProps {
   secretMessage: string;
 }
 

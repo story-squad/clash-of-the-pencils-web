@@ -98,7 +98,9 @@ const RenderCastVotes = (): React.ReactElement => {
           className={userId ? 'bonus' : 'email'}
           component={
             userId
-              ? () => <SecretBonus secretMessage={secretMessage} />
+              ? (props) => (
+                  <SecretBonus {...props} secretMessage={secretMessage} />
+                )
               : EmailCollectionForm
           }
           visible={voted}
