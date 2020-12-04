@@ -1,5 +1,4 @@
 import { AxiosResponse } from 'axios';
-import { Prompts } from '..';
 import { axiosWithAuth } from '../axiosWithConfig';
 
 export const submit = (
@@ -9,6 +8,6 @@ export const submit = (
 };
 
 interface VotingResponse {
-  tomorrow: Prompts.PromptItem;
+  tomorrow: string;
   message: string;
 }
