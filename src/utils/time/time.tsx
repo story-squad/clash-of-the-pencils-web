@@ -39,7 +39,7 @@ export const schedule: scheduleObjectType = {
   },
   announce: {
     start: utcToLocal(25, 30), // should be 25, 30
-    end: utcToLocal(28, 59), // should be 28, 59
+    end: utcToLocal(22, 30).add(1, 'day'), // should be 22, 30 (tomorrow)
   },
 };
 
