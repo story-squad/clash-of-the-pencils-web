@@ -38,9 +38,8 @@ export const schedule: scheduleObjectType = {
     end: utcToLocal(25, 30), // should be 25, 30
   },
   announce: {
-    start: utcToLocal(25, 30),
-    // the end time needs to be decided amongst the team as to when we should stop showing the winner. should it reset at midnight?
-    end: utcToLocal(20, 30),
+    start: utcToLocal(25, 30), // should be 25, 30
+    end: utcToLocal(28, 59), // should be 28, 59
   },
 };
 
