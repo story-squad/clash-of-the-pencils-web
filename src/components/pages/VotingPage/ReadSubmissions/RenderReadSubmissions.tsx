@@ -21,7 +21,7 @@ const RenderReadSubmissions = (): React.ReactElement => {
             button to begin voting.
           </p>
         </div>
-        <div className="countdown-display">
+        <div className="countdown-closed-component">
           <p>
             <Countdown toEvent="vote" /> left to vote!
           </p>

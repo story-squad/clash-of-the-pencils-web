@@ -5,6 +5,7 @@
       position: relative;
 
       .info-hover-tip {
+        z-index: 100;
         top: 1rem;
         left: 1rem;
         color: $white;

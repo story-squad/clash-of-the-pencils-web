@@ -11,6 +11,7 @@ import { Header, Modal } from '../../../common';
 import { DragonBank } from '../DragonBank';
 import { DropBank } from '../DropBank';
 import EmailCollectionForm from './EmailCollectionForm';
+import SecretBonus from './SecretBonus';
 
 const RenderCastVotes = (): React.ReactElement => {
   const setHasRead = useSetRecoilState(top3.hasFinishedReadingState);
@@ -24,13 +25,15 @@ const RenderCastVotes = (): React.ReactElement => {
   //check if a user has voted
   const [voted, setVoted] = useState(false);
 
+  const [secretMessage, setSecretMessage] = useState<null | string>(null);
+
   const submitVotes = () => {
     setError(null);
     Voting.submit(voteSubmission)
       .then((res) => {
         // SUBMISSION SUCCESSFUL!
         setVoted(true);
-        console.log(res.data);
+        setSecretMessage(res.data.tomorrow.prompt);
       })
       .catch((err) => {
         console.log({ err });
@@ -90,10 +93,16 @@ const RenderCastVotes = (): React.ReactElement => {
           </button>
         </div>
       </div>
-      {!userId && (
+      {voted && secretMessage && (
         <Modal.Component
-          className="email"
-          component={EmailCollectionForm}
+          className={userId ? 'bonus' : 'email'}
+          component={
+            userId
+              ? (props) => (
+                  <SecretBonus {...props} secretMessage={secretMessage} />
+                )
+              : EmailCollectionForm
+          }
           visible={voted}
           setVisible={() => {
             setVoted(false);

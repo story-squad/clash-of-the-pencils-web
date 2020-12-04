@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { MdMenu } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { nav } from '../../../config';
 import { user } from '../../../state';
@@ -45,9 +45,13 @@ const Header = (): React.ReactElement => {
 const MenuItem = (props: MenuItemProps) => {
   return (
     <div className={`menu-item${props.primary ? ' primary' : ''}`}>
-      <Link to={props.link} onClick={props.clickHandler}>
+      <NavLink
+        to={props.link}
+        onClick={props.clickHandler}
+        activeClassName="active"
+      >
         {props.text}
-      </Link>
+      </NavLink>
     </div>
   );
 };
