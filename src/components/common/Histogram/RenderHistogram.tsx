@@ -1,9 +1,8 @@
-import Plotly from 'plotly.js';
 import React from 'react';
 import { PlotParams } from 'react-plotly.js';
 import createPlotlyComponent from 'react-plotly.js/factory';
 
-const Plot = createPlotlyComponent(Plotly);
+const Plot = createPlotlyComponent(window.Plotly);
 
 const RenderHistogram = ({ histData }: HistProps): React.ReactElement => {
   return (
