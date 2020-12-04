@@ -4,11 +4,14 @@
   padding: 2rem 3rem;
   color: $charcoal;
   @include drop-shadow;
-  min-width: 40rem;
-  max-width: 60rem;
   margin: 0 auto;
   position: relative;
   border: 4px solid $jade;
+
+  @media screen and (min-width: $mid) {
+    min-width: 35rem;
+    max-width: 60rem;
+  }
 
   & > .info-hover-tip {
     top: 1rem;
