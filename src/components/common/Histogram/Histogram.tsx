@@ -22,17 +22,7 @@ const Histogram = (): React.ReactElement => {
     Submissions.getHistogram()
       .then((res) => {
         console.log({ res });
-        Reflect.deleteProperty(res.data.data[0], 'alignmentgroup');
-        Reflect.deleteProperty(res.data.data[0], 'offsetgroup');
-        Reflect.deleteProperty(res.data.layout, 'template');
-        setHistData({
-          data: res.data.data,
-          layout: {
-            ...res.data.layout,
-            height: 400,
-          },
-        });
-        // setHistData(res.data);
+        setHistData(res.data);
         setLoadError(false);
       })
       .catch((err) => {
@@ -50,7 +40,8 @@ const Histogram = (): React.ReactElement => {
         // Histogram loaded, display it
         <>
           <p>Here’s how our robots scored your story! &#129302;</p>
-          <Plot {...(histData ? histData : graph)} config={histoConfig} />
+          <p>Squad</p>
+          <DisplayPlot {...histData} config={histoConfig} />
           <p>
             Hint: Our robots love to read stories with lots of dialogue, vivid
             descriptions, and satisfying endings.
@@ -69,6 +60,14 @@ const Histogram = (): React.ReactElement => {
       )}
     </div>
   );
+};
+
+const DisplayPlot = (props: {
+  data: Plotly.Data[];
+  layout: Partial<Plotly.Layout>;
+  config: Partial<Plotly.Config>;
+}) => {
+  return <Plot data={props.data} layout={props.layout} config={props.config} />;
 };
 
 const graph: { data: Plotly.Data[]; layout: Partial<Plotly.Layout> } = {

@@ -9,6 +9,32 @@
     margin-bottom: 2rem;
   }
 
+  .could-not-load {
+    max-width: 100%;
+    margin: 0 auto 2rem;
+    background-color: $jade;
+    padding: 2rem;
+    @include drop-shadow;
+    overflow: hidden;
+    color: $white;
+    text-align: center;
+
+    @media screen and (min-width: $tablet) {
+      max-width: 60vw;
+    }
+    .message {
+      font-family: $display-font;
+      font-size: 2.4rem;
+    }
+    p {
+      font-family: $text-font;
+      font-size: 1.6rem;
+      line-height: 2rem;
+      font-style: italic;
+      font-weight: 300;
+    }
+  }
+
   .celebration {
     display: flex;
     flex-flow: column nowrap;
@@ -43,6 +69,7 @@
         }
       }
     }
+
     .bottom {
       display: flex;
       flex-flow: row nowrap;

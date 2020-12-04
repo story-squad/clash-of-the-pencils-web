@@ -29,7 +29,7 @@ const RenderResultsPage = (): React.ReactElement => {
             </div>
           </div>
         ) : (
-          <div className="histogram">
+          <div className="could-not-load">
             <div className="message">Results not available &#128557;</div>
             <p>Check back later!</p>
           </div>
