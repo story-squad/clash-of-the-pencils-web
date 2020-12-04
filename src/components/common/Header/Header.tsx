@@ -46,6 +46,7 @@ const MenuItem = (props: MenuItemProps) => {
   return (
     <div className={`menu-item${props.primary ? ' primary' : ''}`}>
       <NavLink
+        exact
         to={props.link}
         onClick={props.clickHandler}
         activeClassName="active"

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-
+import { PlotParams } from 'react-plotly.js';
+import createPlotyComponent from 'react-plotly.js/factory';
 import { useRecoilState } from 'recoil';
+import { Submissions } from '../../../api';
 import { results } from '../../../state';
 
-import createPlotyComponent from 'react-plotly.js/factory';
-import { PlotParams } from 'react-plotly.js';
-import { Submissions } from '../../../api';
 const Plot = createPlotyComponent(window.Plotly);
 
 // Configuration options for the histogram
@@ -22,15 +21,18 @@ const Histogram = (): React.ReactElement => {
     setLoadError(false);
     Submissions.getHistogram()
       .then((res) => {
+        console.log({ res });
         setHistData(res.data);
         setLoadError(false);
       })
       .catch((err) => {
-        console.log(err);
+        console.log({ err });
         setHistData(null);
         setLoadError(true);
       });
   }, []);
+
+  useEffect(() => console.log(histData), [histData]);
 
   return (
     <div className="histogram">
@@ -38,7 +40,8 @@ const Histogram = (): React.ReactElement => {
         // Histogram loaded, display it
         <>
           <p>Here’s how our robots scored your story! &#129302;</p>
-          <Plot {...histData} config={histoConfig} />
+          <p>Squad</p>
+          <DisplayPlot {...histData} config={histoConfig} />
           <p>
             Hint: Our robots love to read stories with lots of dialogue, vivid
             descriptions, and satisfying endings.
@@ -59,58 +62,76 @@ const Histogram = (): React.ReactElement => {
   );
 };
 
+const DisplayPlot = (props: {
+  data: Plotly.Data[];
+  layout: Partial<Plotly.Layout>;
+  config: Partial<Plotly.Config>;
+}) => {
+  return <Plot data={props.data} layout={props.layout} config={props.config} />;
+};
+
 // const graph: { data: Plotly.Data[]; layout: Partial<Plotly.Layout> } = {
 //   data: [
 //     {
 //       hoverinfo: 'none',
-//       line: {
-//         color: '#EB7E5B',
-//         width: 7,
-//       },
-//       marker: {
-//         color: '#FED23E',
-//         size: 18,
-//         symbol: 'star',
-//       },
-//       mode: 'text+lines+markers',
-//       type: 'scatter',
-//       x: [1, 2, 3],
-//       y: [34, 44, 54],
+//       legendgroup: '',
+//       marker: { color: '#F66700', line: { color: '#2462D9', width: [6] } },
+//       name: '',
+//       orientation: 'v',
+//       showlegend: false,
+//       textposition: 'auto',
+//       type: 'bar',
+//       x: [120],
+//       xaxis: 'x',
+//       y: [1],
+//       yaxis: 'y',
 //     },
 //   ],
 //   layout: {
-//     plot_bgcolor: '#6CEAE6',
-//     title: {
-//       font: {
-//         family: 'PT Sans Narrow',
-//         size: 25,
+//     height: 400,
+//     annotations: [
+//       {
+//         align: 'center',
+//         arrowcolor: '#636363',
+//         arrowhead: 5,
+//         arrowsize: 1,
+//         arrowwidth: 2,
+//         ax: 70,
+//         ay: -100,
+//         bgcolor: '#FFFFFF',
+//         borderpad: 4,
+//         borderwidth: 0,
+//         font: { color: 'black', family: 'PT Sans Narrow', size: 16 },
+//         opacity: 1,
+//         showarrow: true,
+//         text: 'Your submission<br>(100th percentile)',
+//         x: 120,
+//         xref: 'x',
+//         y: 0.2,
+//         yref: 'paper',
 //       },
-//       text: "Kelley's Squad Score Over Time",
-//       x: 0.5,
-//       y: 0.95,
-//     },
+//     ],
+//     barmode: 'relative',
+//     legend: { tracegroupgap: 0 },
+//     margin: { t: 60 },
+//     plot_bgcolor: '#34C9AD',
 //     xaxis: {
-//       showgrid: false,
-//       ticks: 'inside',
-//       tickvals: [1, 2, 3],
-//       title: {
-//         font: {
-//           family: 'PT Sans Narrow',
-//           size: 20,
-//         },
-//         text: 'Week Number',
-//       },
-//       zeroline: false,
-//     },
-//     yaxis: {
-//       showgrid: false,
+//       anchor: 'y',
+//       domain: [0, 1],
 //       showticklabels: false,
 //       title: {
-//         font: {
-//           family: 'PT Sans Narrow',
-//           size: 20,
-//         },
+//         font: { family: 'PT Sans Narrow', size: 20 },
 //         text: 'Squad Score',
+//       },
+//     },
+//     yaxis: {
+//       anchor: 'x',
+//       domain: [0, 1],
+//       showgrid: false,
+//       showticklabels: true,
+//       title: {
+//         font: { family: 'PT Sans Narrow', size: 20 },
+//         text: 'Number of Stories',
 //       },
 //     },
 //   },
