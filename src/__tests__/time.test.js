@@ -1,5 +1,5 @@
-import { time } from '../utils';
 import moment from 'moment';
+import { time } from '../utils';
 
 describe('time module testing', () => {
   describe('getTimeUntilEvent()', () => {
@@ -26,6 +26,11 @@ describe('time module testing', () => {
       const { active, timeUntil } = time.getTimeUntilEvent('submit', cur);
       expect(timeUntil.h).toBe(15);
       expect(active).toBe(true);
+    });
+    it('returns (21h) time until announcements end', () => {
+      const { active, timeUntil } = time.getTimeUntilEvent('announce', now);
+      expect(timeUntil.h).toBe(21);
+      expect(active).toBe(true); // active should be true bc we want the announcements to show from 830pm EST to 530pm EST tomorrow
     });
   });
 });
