@@ -15,6 +15,7 @@ const Histogram = (): React.ReactElement => {
         Reflect.deleteProperty(res.data.data[0], 'alignmentgroup');
         Reflect.deleteProperty(res.data.data[0], 'offsetgroup');
         Reflect.deleteProperty(res.data.layout, 'template');
+        res.data.layout.height = 400;
         setHistData(res.data);
         setLoadError(false);
       })
