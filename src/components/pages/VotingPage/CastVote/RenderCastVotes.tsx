@@ -93,13 +93,16 @@ const RenderCastVotes = (): React.ReactElement => {
           </button>
         </div>
       </div>
-      {voted && secretMessage && (
+      {voted && (
         <Modal.Component
           className={userId ? 'bonus' : 'email'}
           component={
             userId
               ? (props) => (
-                  <SecretBonus {...props} secretMessage={secretMessage} />
+                  <SecretBonus
+                    {...props}
+                    secretMessage={secretMessage as string}
+                  />
                 )
               : EmailCollectionForm
           }
