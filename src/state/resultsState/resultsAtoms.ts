@@ -1,8 +1,7 @@
 import { atom } from 'recoil';
-import { PlotParams } from 'react-plotly.js';
 import { Submissions } from '../../api';
 
-export type HistData = Pick<PlotParams, 'data' | 'layout'>;
+export type HistData = { data: Plotly.Data[]; layout: Partial<Plotly.Layout> };
 export const histogram = atom<null | HistData>({
   key: 'histogramValues',
   default: null,

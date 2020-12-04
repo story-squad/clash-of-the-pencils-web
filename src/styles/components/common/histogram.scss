@@ -34,6 +34,20 @@
     border: 2px solid $orange;
     overflow: hidden;
     @include drop-shadow;
+    // .plot-container.plotly {
+    //   .user-select-none.svg-container {
+    //     height: 200px;
+    //     svg {
+    //       height: 200px;
+    //       & > * {
+    //         height: 200px;
+    //       }
+    //     }
+    //     .gl-container {
+    //       height: 200px;
+    //     }
+    //   }
+    // }
   }
 
   .message {

@@ -1,9 +1,10 @@
+import moment from 'moment';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import celebration from '../../../assets/img/celebration-station.png';
 import dragonBoi from '../../../assets/img/dragon-boi.svg';
 import { results } from '../../../state';
-import { Header, Histogram, SubCard, ThoughtBubble } from '../../common';
+import { Header, SubCard, ThoughtBubble } from '../../common';
 
 const RenderResultsPage = (): React.ReactElement => {
   const winner = useRecoilValue(results.winner);
@@ -13,7 +14,7 @@ const RenderResultsPage = (): React.ReactElement => {
       <Header />
       <div className="results-page">
         <img src={celebration} alt="Celebration Station" />
-        {winner && (
+        {winner ? (
           <div className="celebration">
             <ThoughtBubble
               render={() => <WinnerBubble winnerName={winner.username} />}
@@ -27,17 +28,23 @@ const RenderResultsPage = (): React.ReactElement => {
               </div>
             </div>
           </div>
+        ) : (
+          <div className="could-not-load">
+            <div className="message">Results not available &#128557;</div>
+            <p>Check back later!</p>
+          </div>
         )}
-        <Histogram />
+        {/* <Histogram /> */}
       </div>
     </div>
   );
 };
 
 const WinnerBubble = (props: WinnerBubbleProps): React.ReactElement => {
+  const now = moment();
   return (
     <div className="winner-bubble">
-      <h3>Today We Celebrate:</h3>
+      <h3>{now.hour() < 17 ? "Yesterday's" : "Today's"} Winner:</h3>
       <h2>{props.winnerName}</h2>
       <div className="flames">&#128293; &#128293; &#128293;</div>
     </div>
