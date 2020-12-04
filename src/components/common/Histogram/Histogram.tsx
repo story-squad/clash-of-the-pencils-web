@@ -70,71 +70,71 @@ const DisplayPlot = (props: {
   return <Plot data={props.data} layout={props.layout} config={props.config} />;
 };
 
-const graph: { data: Plotly.Data[]; layout: Partial<Plotly.Layout> } = {
-  data: [
-    {
-      hoverinfo: 'none',
-      legendgroup: '',
-      marker: { color: '#F66700', line: { color: '#2462D9', width: [6] } },
-      name: '',
-      orientation: 'v',
-      showlegend: false,
-      textposition: 'auto',
-      type: 'bar',
-      x: [120],
-      xaxis: 'x',
-      y: [1],
-      yaxis: 'y',
-    },
-  ],
-  layout: {
-    height: 400,
-    annotations: [
-      {
-        align: 'center',
-        arrowcolor: '#636363',
-        arrowhead: 5,
-        arrowsize: 1,
-        arrowwidth: 2,
-        ax: 70,
-        ay: -100,
-        bgcolor: '#FFFFFF',
-        borderpad: 4,
-        borderwidth: 0,
-        font: { color: 'black', family: 'PT Sans Narrow', size: 16 },
-        opacity: 1,
-        showarrow: true,
-        text: 'Your submission<br>(100th percentile)',
-        x: 120,
-        xref: 'x',
-        y: 0.2,
-        yref: 'paper',
-      },
-    ],
-    barmode: 'relative',
-    legend: { tracegroupgap: 0 },
-    margin: { t: 60 },
-    plot_bgcolor: '#34C9AD',
-    xaxis: {
-      anchor: 'y',
-      domain: [0, 1],
-      showticklabels: false,
-      title: {
-        font: { family: 'PT Sans Narrow', size: 20 },
-        text: 'Squad Score',
-      },
-    },
-    yaxis: {
-      anchor: 'x',
-      domain: [0, 1],
-      showgrid: false,
-      showticklabels: true,
-      title: {
-        font: { family: 'PT Sans Narrow', size: 20 },
-        text: 'Number of Stories',
-      },
-    },
-  },
-};
+// const graph: { data: Plotly.Data[]; layout: Partial<Plotly.Layout> } = {
+//   data: [
+//     {
+//       hoverinfo: 'none',
+//       legendgroup: '',
+//       marker: { color: '#F66700', line: { color: '#2462D9', width: [6] } },
+//       name: '',
+//       orientation: 'v',
+//       showlegend: false,
+//       textposition: 'auto',
+//       type: 'bar',
+//       x: [120],
+//       xaxis: 'x',
+//       y: [1],
+//       yaxis: 'y',
+//     },
+//   ],
+//   layout: {
+//     height: 400,
+//     annotations: [
+//       {
+//         align: 'center',
+//         arrowcolor: '#636363',
+//         arrowhead: 5,
+//         arrowsize: 1,
+//         arrowwidth: 2,
+//         ax: 70,
+//         ay: -100,
+//         bgcolor: '#FFFFFF',
+//         borderpad: 4,
+//         borderwidth: 0,
+//         font: { color: 'black', family: 'PT Sans Narrow', size: 16 },
+//         opacity: 1,
+//         showarrow: true,
+//         text: 'Your submission<br>(100th percentile)',
+//         x: 120,
+//         xref: 'x',
+//         y: 0.2,
+//         yref: 'paper',
+//       },
+//     ],
+//     barmode: 'relative',
+//     legend: { tracegroupgap: 0 },
+//     margin: { t: 60 },
+//     plot_bgcolor: '#34C9AD',
+//     xaxis: {
+//       anchor: 'y',
+//       domain: [0, 1],
+//       showticklabels: false,
+//       title: {
+//         font: { family: 'PT Sans Narrow', size: 20 },
+//         text: 'Squad Score',
+//       },
+//     },
+//     yaxis: {
+//       anchor: 'x',
+//       domain: [0, 1],
+//       showgrid: false,
+//       showticklabels: true,
+//       title: {
+//         font: { family: 'PT Sans Narrow', size: 20 },
+//         text: 'Number of Stories',
+//       },
+//     },
+//   },
+// };
 
 export default Histogram;
