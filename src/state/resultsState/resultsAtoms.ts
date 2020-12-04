@@ -4,7 +4,7 @@ import { Submissions } from '../../api';
 export type HistData = { data: Plotly.Data[]; layout: Partial<Plotly.Layout> };
 export const histogram = atom<null | HistData>({
   key: 'histogramValues',
-  default: null,
+  default: { data: [], layout: {} },
 });
 
 export const winner = atom<null | Submissions.SubItem>({

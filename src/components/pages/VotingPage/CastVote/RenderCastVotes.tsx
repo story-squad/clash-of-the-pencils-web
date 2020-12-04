@@ -17,13 +17,13 @@ const RenderCastVotes = (): React.ReactElement => {
   const setHasRead = useSetRecoilState(top3.hasFinishedReadingState);
   const resetDnd = useResetRecoilState(dnd.dndContainerState);
   const voteSubmission = useRecoilValue(dnd.voteSubmissionState);
-  const disableButton = useRecoilValue(dnd.disableVoteButton);
   // grab the user id from recoil to ensure we are logged in
   const userId = useRecoilValue(user.userId);
   const [error, setError] = useState<null | string>(null);
 
   //check if a user has voted
   const [voted, setVoted] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const [secretMessage, setSecretMessage] = useState<null | string>(null);
 
@@ -33,7 +33,8 @@ const RenderCastVotes = (): React.ReactElement => {
       .then((res) => {
         // SUBMISSION SUCCESSFUL!
         setVoted(true);
-        setSecretMessage(res.data.tomorrow.prompt);
+        setSecretMessage(res.data.tomorrow);
+        setShowModal(true);
       })
       .catch((err) => {
         console.log({ err });
@@ -86,26 +87,29 @@ const RenderCastVotes = (): React.ReactElement => {
         <div className="button-container">
           <button
             // disable the vote button if any of the submission containers don't have a vote
-            disabled={disableButton}
+            disabled={voted}
             onClick={submitVotes}
           >
             Vote
           </button>
         </div>
       </div>
-      {voted && secretMessage && (
+      {showModal && (
         <Modal.Component
           className={userId ? 'bonus' : 'email'}
           component={
             userId
               ? (props) => (
-                  <SecretBonus {...props} secretMessage={secretMessage} />
+                  <SecretBonus
+                    {...props}
+                    secretMessage={secretMessage as string}
+                  />
                 )
               : EmailCollectionForm
           }
-          visible={voted}
+          visible={showModal}
           setVisible={() => {
-            setVoted(false);
+            setShowModal(false);
           }}
           centered={true}
         />

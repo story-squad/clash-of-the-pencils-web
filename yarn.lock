@@ -9832,9 +9832,9 @@ react-markdown@^5.0.3:
     xtend "^4.0.1"
 
 react-plotly.js@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/react-plotly.js/-/react-plotly.js-2.5.0.tgz#779e489bbbd05deb373a63e918454587236d7c7f"
-  integrity sha512-nzir3uf+tFO1YXVUH5lFfD2plbDuZJXKrCO88KmRVnha2/zEhZBmZO8yS6GcRnLmSrhJkfmj6GTqWWvrJDBCBQ==
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/react-plotly.js/-/react-plotly.js-2.5.1.tgz#11182bf599ef11a0dbfcd171c6f5645535a2b486"
+  integrity sha512-Oya14whSHvPsYXdI0nHOGs1pZhMzV2edV7HAW1xFHD58Y73m/LbG2Encvyz1tztL0vfjph0JNhiwO8cGBJnlhg==
   dependencies:
     prop-types "^15.7.2"
 

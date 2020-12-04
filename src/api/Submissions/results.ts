@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
+import { HistData } from '../../state/resultsState';
 import { axiosWithAuth } from '../axiosWithConfig';
 import { getImageFromS3, SubItem } from './imageLoader';
-import { HistData } from '../../state/resultsState';
 
 export const getHistogram = (): Promise<AxiosResponse<HistData>> => {
   return axiosWithAuth().get('/ranking/histogram');
