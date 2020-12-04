@@ -27,9 +27,10 @@ describe('time module testing', () => {
       expect(timeUntil.h).toBe(15);
       expect(active).toBe(true);
     });
-    it('returns (21h) time until announcements end', () => {
+    it('returns (20h:30m) time until announcements end', () => {
       const { active, timeUntil } = time.getTimeUntilEvent('announce', now);
-      expect(timeUntil.h).toBe(21);
+      expect(timeUntil.h).toBe(20);
+      expect(timeUntil.m).toBe(30);
       expect(active).toBe(true); // active should be true bc we want the announcements to show from 830pm EST to 530pm EST tomorrow
     });
   });
