@@ -15,6 +15,7 @@ const Histogram = (): React.ReactElement => {
         Reflect.deleteProperty(res.data.data[0], 'alignmentgroup');
         Reflect.deleteProperty(res.data.data[0], 'offsetgroup');
         Reflect.deleteProperty(res.data.layout, 'template');
+        res.data.layout.height = 400;
         setHistData(res.data);
         setLoadError(false);
       })
@@ -24,13 +25,6 @@ const Histogram = (): React.ReactElement => {
         setLoadError(true);
       });
   }, []);
-
-  useEffect(() => {
-    const body = document.getElementsByTagName('body')[0];
-    body.style.overflowY = 'scroll';
-  }, []);
-
-  useEffect(() => console.log(histData), [histData]);
 
   return histData ? (
     <RenderHistogram histData={histData} />
