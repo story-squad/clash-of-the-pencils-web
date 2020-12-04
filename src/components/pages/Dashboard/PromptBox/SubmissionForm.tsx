@@ -70,7 +70,7 @@ const SubmissionForm = (
 
   return (
     <>
-      <InfoHoverTip tip={tooltips.subInstructions} position="right" />
+      <InfoHoverTip tip={tooltips.filetypes} position="right" />
       <div className="submission-form">
         {/* <h2>Submit a Story</h2> */}
         <form onSubmit={onSubmit}>

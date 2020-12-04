@@ -2,7 +2,6 @@ export const siteNavItems = [
   { link: '/dashboard', text: 'Dashboard' },
   { link: '/vote', text: 'Voting Station' },
   { link: '/results', text: 'Announcements' },
-  { link: '/comingsoon', text: 'My Profile' },
   { link: '/signout', text: 'Sign Out' },
 ];
 
