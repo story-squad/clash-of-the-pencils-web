@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-
+import { PlotParams } from 'react-plotly.js';
+import createPlotyComponent from 'react-plotly.js/factory';
 import { useRecoilState } from 'recoil';
+import { Submissions } from '../../../api';
 import { results } from '../../../state';
 
-import createPlotyComponent from 'react-plotly.js/factory';
-import { PlotParams } from 'react-plotly.js';
-import { Submissions } from '../../../api';
 const Plot = createPlotyComponent(window.Plotly);
 
 // Configuration options for the histogram
@@ -26,7 +25,7 @@ const Histogram = (): React.ReactElement => {
         setLoadError(false);
       })
       .catch((err) => {
-        console.log(err);
+        console.log({ err });
         setHistData(null);
         setLoadError(true);
       });
