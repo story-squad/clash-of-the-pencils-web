@@ -33,7 +33,7 @@ const RenderCastVotes = (): React.ReactElement => {
       .then((res) => {
         // SUBMISSION SUCCESSFUL!
         setVoted(true);
-        setSecretMessage(res.data.tomorrow.prompt);
+        setSecretMessage(res.data.tomorrow);
       })
       .catch((err) => {
         console.log({ err });
