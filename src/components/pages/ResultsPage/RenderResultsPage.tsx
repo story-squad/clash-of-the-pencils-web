@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil';
 import celebration from '../../../assets/img/celebration-station.png';
 import dragonBoi from '../../../assets/img/dragon-boi.svg';
 import { results } from '../../../state';
-import { Header, Histogram, SubCard, ThoughtBubble } from '../../common';
+import { Header, SubCard, ThoughtBubble } from '../../common';
 
 const RenderResultsPage = (): React.ReactElement => {
   const winner = useRecoilValue(results.winner);
@@ -34,7 +34,7 @@ const RenderResultsPage = (): React.ReactElement => {
             <p>Check back later!</p>
           </div>
         )}
-        <Histogram />
+        {/* <Histogram /> */}
       </div>
     </div>
   );
