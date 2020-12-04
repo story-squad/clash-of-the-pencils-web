@@ -23,6 +23,9 @@ export const utcToLocal = (hour: number, minute: number): Moment => {
  *
  * To add tracking for another time-based event, MAKE SURE you add it to the
  * `eventType` type object _as well as_ the schedule object
+ *
+ * For SOME REASON when crossing over midnight the times get all wonky, so BOTH
+ * times need to subtract 1 hour
  */
 export const schedule: scheduleObjectType = {
   submit: {
@@ -38,9 +41,8 @@ export const schedule: scheduleObjectType = {
     end: utcToLocal(25, 30), // should be 25, 30
   },
   announce: {
-    start: utcToLocal(25, 30),
-    // the end time needs to be decided amongst the team as to when we should stop showing the winner. should it reset at midnight?
-    end: utcToLocal(20, 30),
+    start: utcToLocal(1, 30), // should be 25, 30
+    end: utcToLocal(22, 0), // should be 22, 0 (tomorrow)
   },
 };
 
