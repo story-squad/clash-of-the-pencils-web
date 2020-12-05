@@ -33,8 +33,8 @@ export const schedule: scheduleObjectType = {
     end: utcToLocal(22, 0), // should be 22, 0
   },
   vote: {
-    start: utcToLocal(22, 30), // should be 22, 30
-    end: utcToLocal(1, 0).add(1, 'day'), // should be (1, 0)
+    start: utcToLocal(22, 30).subtract(1, 'day'), // should be 22, 30
+    end: utcToLocal(25, 0).subtract(1, 'day'), // should be (25, 0)
   },
   stream: {
     start: utcToLocal(25, 0), // should be 25, 0
