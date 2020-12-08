@@ -106,8 +106,7 @@ const SignupForm = (): React.ReactElement => {
                   return (
                     [/[A-Z]/, /[a-z]/, /[0-9]/].every((pattern) =>
                       pattern.test(value),
-                    ) ||
-                    'Password must contain at least 1 capital, 1 lowercase and 1 number'
+                    ) || 'Password must include at least 1 capital and 1 number'
                   );
                 },
                 // checks that entered password value is a minimum of 8 chars
@@ -135,8 +134,7 @@ const SignupForm = (): React.ReactElement => {
                   return (
                     [/[A-Z]/, /[a-z]/, /[0-9]/].every((pattern) =>
                       pattern.test(value),
-                    ) ||
-                    'Password must contain at least 1 each: capital, lowercase and a number'
+                    ) || 'Password must include at least 1 capital and 1 number'
                   );
                 },
                 // checks that entered password value is a minimum of 8 chars
