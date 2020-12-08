@@ -15,7 +15,7 @@ const SignupForm = (): React.ReactElement => {
     handleSubmit,
     clearErrors,
     setError,
-  } = useForm({ reValidateMode: 'onSubmit' });
+  } = useForm({ mode: 'onChange' });
   const [showModal, setShowModal] = useState(false);
 
   const onSubmit: SubmitHandler<Auth.SignupFormState> = (data): void => {
