@@ -72,13 +72,6 @@ const SignupForm = (): React.ReactElement => {
             rules={{ required: 'First name is required!' }}
           />
           <Input
-            name="lastName"
-            label="Last Name"
-            errors={errors}
-            register={register}
-            rules={{ required: 'Last name is required!' }}
-          />
-          <Input
             name="username"
             label="Username"
             errors={errors}
