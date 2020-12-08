@@ -129,8 +129,28 @@ const SignupForm = (): React.ReactElement => {
             register={register}
             rules={{
               required: 'Password confirmation is required!',
-              validate: (value) =>
-                value === watch('password') || "Passwords don't match!",
+              validate: {
+                // checks entered password value contains required characters
+                pattern: (value) => {
+                  return (
+                    [/[A-Z]/, /[a-z]/, /[0-9]/].every((pattern) =>
+                      pattern.test(value),
+                    ) ||
+                    'Password must contain at least 1 each: capital, lowercase and a number'
+                  );
+                },
+                // checks that entered password value is a minimum of 8 chars
+                minLength: (value) =>
+                  value.length >= 8 ||
+                  'Password must be at least 8 characters.',
+                // checks that entered password value is not greater than 32 chars
+                maxLength: (value) =>
+                  value.length <= 32 ||
+                  'Password must not be longer than 32 characters.',
+                // checks that the values in password and confirm inputs match
+                passwordsMatch: (value) =>
+                  value === watch('password') || "Passwords don't match!",
+              },
             }}
           />
           <Input
