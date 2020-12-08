@@ -86,6 +86,7 @@ const SignupForm = (): React.ReactElement => {
             rules={{
               required: 'Email is required!',
               pattern: {
+                // checks entered email string matches a valid email address pattern
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                 message: 'Please enter a valid email address',
               },
@@ -145,16 +146,19 @@ const SignupForm = (): React.ReactElement => {
               register={register}
               rules={{
                 validate: {
+                  // required field if the entered age is less than 13
                   required: (value) => {
                     if (parseInt(watch('ageStr')) < 13)
                       return value.length > 1 || 'Parent email is required!';
                     else return true;
                   },
+                  // checks the email and parent email to make sure they are different
                   differentEmail: (value) =>
                     value !== watch('email') ||
                     'Parent email must be different than email!',
                 },
                 pattern: {
+                  // checks entered parent email string matches a valid email address pattern
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                   message: 'Please enter a valid email address',
                 },
