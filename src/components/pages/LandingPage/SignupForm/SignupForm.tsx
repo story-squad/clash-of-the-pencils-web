@@ -73,7 +73,7 @@ const SignupForm = (): React.ReactElement => {
           />
           <Input
             name="username"
-            label="Username"
+            label="Codename"
             errors={errors}
             register={register}
             rules={{ required: 'Username is required!' }}
