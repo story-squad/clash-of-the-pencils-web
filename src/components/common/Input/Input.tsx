@@ -12,8 +12,9 @@ const Input = ({
 }: InputProps): React.ReactElement => {
   return (
     <div className={`form-input${errors[name] ? ' error' : ''}`}>
-      <label>{label} :</label>
+      <label htmlFor={name}>{label} :</label>
       <input
+        id={name}
         name={name}
         type={type || 'text'}
         ref={register && register(rules)}
