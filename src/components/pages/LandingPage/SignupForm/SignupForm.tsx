@@ -189,12 +189,29 @@ const SignupForm = (): React.ReactElement => {
               }}
             />
           )}
+          {/* need to refactor into a reusable component later */}
           <div className="text">
-            By signing up with our site, you are agreeing to our{' '}
-            <Link to="/tos" className="text-button" target="_blank">
-              Terms & Conditions
-            </Link>
+            <input
+              id="termsCheckbox"
+              name="termsCheckbox"
+              type="checkbox"
+              ref={register({ required: 'You must agree to the terms' })}
+            />{' '}
+            <label htmlFor="termsCheckbox">
+              I have read and agree to the{' '}
+              <Link to="/tos" className="text-button" target="_blank">
+                Terms & Conditions
+              </Link>
+            </label>
             .
+            <div
+              className={`form-input${errors.termsCheckbox ? ' error' : ''}`}
+            >
+              <div className="message">
+                <span className="red">*</span>{' '}
+                {errors.termsCheckbox ? errors.termsCheckbox.message : ''}
+              </div>
+            </div>
           </div>
           <div className="text">
             Already have an account? <Link to="/login">Click Here</Link>
