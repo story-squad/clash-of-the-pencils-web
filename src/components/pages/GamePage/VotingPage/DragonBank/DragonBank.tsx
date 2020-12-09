@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import emptyDragon from '../../../../assets/img/dragon-outline.png';
-import { dnd } from '../../../../state';
+import emptyDragon from '../../../../../assets/img/dragon-outline.png';
+import { dnd } from '../../../../../state';
 import { DropZone } from '../DropZone';
 import DraggableDragon from './DraggableDragon';
 

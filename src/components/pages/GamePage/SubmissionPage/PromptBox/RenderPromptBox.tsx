@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { tooltips } from '../../../../config';
-import { prompts, user } from '../../../../state';
-import { Countdown, InfoHoverTip, Modal } from '../../../common';
+import { tooltips } from '../../../../../config';
+import { prompts, user } from '../../../../../state';
+import { Countdown, InfoHoverTip, Modal } from '../../../../common';
 import SubmissionForm from './SubmissionForm';
 
 const RenderPromptBox = (): React.ReactElement => {
@@ -23,7 +23,7 @@ const RenderPromptBox = (): React.ReactElement => {
         centered
         title="Submit a Story"
       />
-      <h2>Hey, {username}!</h2>
+      <h2>Hey{username ? `, ${username}` : ' there'}!</h2>
       {prompt ? (
         // If there is a prompt
         <>

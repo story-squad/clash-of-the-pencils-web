@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { Submissions } from '../../../api';
-import { apiError, top3 } from '../../../state';
-import { time } from '../../../utils';
-import { Loader } from '../../common';
+import { Submissions } from '../../../../api';
+import { apiError, top3 } from '../../../../state';
+import { time } from '../../../../utils';
+import { Loader } from '../../../common';
 import { CastVote } from './CastVote';
 import { ReadSubmissions } from './ReadSubmissions';
 import VotingClosed from './VotingClosed';

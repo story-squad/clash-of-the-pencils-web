@@ -1,8 +1,8 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import { dnd } from '../../../../state/';
-import RenderCastVotes from './RenderCastVotes';
 import { DragDropContext, DragStart, DropResult } from 'react-beautiful-dnd';
+import { useRecoilState } from 'recoil';
+import { dnd } from '../../../../../state';
+import RenderCastVotes from './RenderCastVotes';
 
 const CastVoteContainer = (): React.ReactElement => {
   const [dndState, setDndState] = useRecoilState(dnd.dndContainerState);

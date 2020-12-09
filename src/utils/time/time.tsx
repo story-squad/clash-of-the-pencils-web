@@ -33,16 +33,16 @@ export const schedule: scheduleObjectType = {
     end: utcToLocal(22, 0), // should be 22, 0
   },
   vote: {
-    start: utcToLocal(22, 30).subtract(1, 'day'), // should be 22, 30
-    end: utcToLocal(25, 0).subtract(1, 'day'), // should be (25, 0)
+    start: utcToLocal(22, 30), // should be 22, 30
+    end: utcToLocal(1, 30), // should be (1, 30)
   },
   stream: {
-    start: utcToLocal(25, 0), // should be 25, 0
-    end: utcToLocal(25, 30), // should be 25, 30
+    start: utcToLocal(1, 0), // should be 1, 0
+    end: utcToLocal(1, 30), // should be 1, 30
   },
   announce: {
-    start: utcToLocal(1, 30), // should be 25, 30
-    end: utcToLocal(22, 0), // should be 22, 0 (tomorrow)
+    start: utcToLocal(1, 30), // should be 1 30
+    end: utcToLocal(22, 0), // should be 22, 0
   },
 };
 
@@ -55,7 +55,7 @@ export const schedule: scheduleObjectType = {
 export const secondsToTime = (sec: number): TimeUntilItem => {
   const h = Math.floor(sec / 60 / 60);
   const m = Math.floor(sec / 60 - h * 60);
-  const s = sec - h * 3600 - m * 60;
+  const s = sec - h * 60 * 60 - m * 60;
   return { h, m, s };
 };
 
@@ -78,16 +78,36 @@ export const getTimeUntilEvent = (
   now?: Moment,
 ): { active: boolean; timeUntil: number } => {
   if (!now) now = moment.utc();
-
-  // Check if the event is CURRENTLY happening
-  const active = now >= schedule[event].start && now < schedule[event].end;
+  const e = schedule[event];
 
   // If the event IS happening, calculate the time until the END time,
   // else calculate the time until the START time
-  const timeUntil = secondsElapsed(
-    now,
-    schedule[event][active ? 'end' : 'start'],
-  );
+  let timeUntil, active;
+  if (e.start > e.end) {
+    // The event crosses the midnight UTC barrier and we need special handling
+    active = now >= e.start || now < e.end;
+    if (active) {
+      // The event is currently active, so we need to check for the midnight barrier -
+      // if we're between midnight and end, just check the end
+      if (now < e.end) timeUntil = secondsElapsed(now, e.end);
+      // if we're between start and midnight, add a day to end for checks
+      else timeUntil = secondsElapsed(now, e.end.add(1, 'd'));
+    } else {
+      // we're inactive, so just find time until start
+      timeUntil = secondsElapsed(now, e.start);
+    }
+  } else {
+    // The event does NOT cross midnight UTC
+    active = now < e.end && now >= e.start;
+    if (active) {
+      // since the event doesn't cross midnight, just return end time while active
+      timeUntil = secondsElapsed(now, e.end);
+    } else {
+      // the inactive time crosses the midnight UTC barrier, so add extra checks
+      if (now >= e.end) timeUntil = secondsElapsed(now, e.start.add(1, 'd'));
+      else timeUntil = secondsElapsed(now, e.start);
+    }
+  }
 
   return { active, timeUntil };
 };

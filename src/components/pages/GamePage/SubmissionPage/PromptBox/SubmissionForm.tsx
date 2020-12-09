@@ -1,11 +1,11 @@
 import React from 'react';
 import { BarLoader } from 'react-spinners';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { Submissions } from '../../../../api';
-import { tooltips } from '../../../../config';
-import { prompts, submitModal } from '../../../../state';
-import { upload } from '../../../../utils';
-import { InfoHoverTip, Modal } from '../../../common';
+import { Submissions } from '../../../../../api';
+import { tooltips } from '../../../../../config';
+import { prompts, submitModal } from '../../../../../state';
+import { upload } from '../../../../../utils';
+import { InfoHoverTip, Modal } from '../../../../common';
 
 const SubmissionForm = (
   props: Modal.ModalComponentProps,

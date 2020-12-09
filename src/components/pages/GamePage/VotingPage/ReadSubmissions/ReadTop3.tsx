@@ -1,9 +1,9 @@
 import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { Submissions } from '../../../../api';
-import { ReactComponent as GreenCheck } from '../../../../assets/img/green-check.svg';
-import { top3 } from '../../../../state';
-import { SubCard } from '../../../common';
+import { Submissions } from '../../../../../api';
+import { ReactComponent as GreenCheck } from '../../../../../assets/img/green-check.svg';
+import { top3 } from '../../../../../state';
+import { SubCard } from '../../../../common';
 
 const ReadTop3 = (): React.ReactElement => {
   const top3List = useRecoilValue(top3.top3List);

@@ -1,10 +1,8 @@
 import React from 'react';
-
 import { useRecoilValue } from 'recoil';
-import { user } from '../../../../state';
-import { time } from '../../../../utils';
-
-import { Countdown } from '../../../common';
+import { user } from '../../../../../state';
+import { time } from '../../../../../utils';
+import { Countdown } from '../../../../common';
 
 const SubmissionsClosed = (): React.ReactElement => {
   const username = useRecoilValue(user.username);

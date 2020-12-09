@@ -1,11 +1,10 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { Submissions } from '../../../../api';
-import { top3, dnd } from '../../../../state';
-import { SubCard } from '../../../common';
-
-import { DropZone } from '../DropZone';
+import { Submissions } from '../../../../../api';
+import { dnd, top3 } from '../../../../../state';
+import { SubCard } from '../../../../common';
 import { dragons } from '../DragonBank/DragonBank';
+import { DropZone } from '../DropZone';
 
 const DropBank = (): React.ReactElement => {
   const top3List = useRecoilValue(top3.top3List);

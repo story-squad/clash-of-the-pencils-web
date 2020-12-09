@@ -1,6 +1,6 @@
 import React from 'react';
-import { time } from '../../../utils';
-import { Countdown, Header } from '../../common';
+import { time } from '../../../../utils';
+import { Countdown, Header } from '../../../common';
 
 const VotingClosed = (): React.ReactElement => {
   return (

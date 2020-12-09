@@ -1,17 +1,11 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import {
-  ComingSoon,
-  PrivateRoute,
-  Signout,
-  TermsOfService,
-} from './components/common';
+import { Signout, TermsOfService } from './components/common';
 import { Activation } from './components/pages/Activated';
-import { Dashboard } from './components/pages/Dashboard';
-// Route Components
+import { GamePage } from './components/pages/GamePage';
+import { VotingPage } from './components/pages/GamePage/VotingPage';
 import { LandingPage } from './components/pages/LandingPage';
 import { ResultsPage } from './components/pages/ResultsPage';
-import { VotingPage } from './components/pages/VotingPage';
 
 const App: React.FC = () => {
   return (
@@ -20,39 +14,23 @@ const App: React.FC = () => {
         {/* Public Routes */}
         <Route
           exact
-          path={['/', '/login', '/register', '/signup', '/info']}
+          path={['/', '/login', '/register', '/signup']}
           component={() => <LandingPage />}
         />
         <Route path="/activated" component={Activation} />
         <Route path={['/logout', '/signout']} component={Signout} />
         <Route path="/vote" component={VotingPage} />
         <Route path="/tos" component={TermsOfService} />
+        <Route path="/game" component={GamePage} />
+        <Route path="/results" component={ResultsPage} />
 
         {/* Private Routes */}
-        <PrivateRoute path="/dashboard" component={Dashboard} />
-        <PrivateRoute path="/results" component={ResultsPage} />
-
-        <PrivateRoute path="/comingsoon" component={() => <ComingSoon />} />
 
         {/* Fallback Redirect to Dashboard */}
-        <Route path="/" component={() => <Redirect to="/dashboard" />} />
+        <Route path="/" component={() => <Redirect to="/game" />} />
       </Switch>
     </div>
   );
 };
-// const queryParser = (query: string) => {
-//   if (query === '') return;
-//   const params = query.split('&');
-//   const res: QueryParserResponse = {};
-//   for (const param of params) {
-//     const [key, value] = param.split('=');
-//     res[key] = value;
-//   }
-//   return res;
-// };
-
-// interface QueryParserResponse {
-//   [key: string]: string;
-// }
 
 export default App;

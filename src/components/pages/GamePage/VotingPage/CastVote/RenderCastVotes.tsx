@@ -4,10 +4,10 @@ import {
   AiOutlineReload as Reload,
 } from 'react-icons/ai';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
-import { Voting } from '../../../../api';
-import dragonDropText from '../../../../assets/img/dragon-drop.png';
-import { dnd, top3, user } from '../../../../state';
-import { Header, Modal } from '../../../common';
+import { Voting } from '../../../../../api';
+import dragonDropText from '../../../../../assets/img/dragon-drop.png';
+import { dnd, top3, user } from '../../../../../state';
+import { Header, Modal } from '../../../../common';
 import { DragonBank } from '../DragonBank';
 import { DropBank } from '../DropBank';
 import EmailCollectionForm from './EmailCollectionForm';
