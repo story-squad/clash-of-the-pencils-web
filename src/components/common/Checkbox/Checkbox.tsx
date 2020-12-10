@@ -8,7 +8,7 @@ const Checkbox = ({
   rules = {},
   errors = {},
   ...rest
-}: InputProps): React.ReactElement => {
+}: CheckboxProps): React.ReactElement => {
   return (
     <div className="text">
       <input
@@ -30,7 +30,7 @@ const Checkbox = ({
   );
 };
 
-interface InputProps {
+interface CheckboxProps {
   name: string;
   label: React.ReactElement;
   register: UseFormMethods['register'];
