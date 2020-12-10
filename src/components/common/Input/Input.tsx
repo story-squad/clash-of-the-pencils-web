@@ -32,6 +32,15 @@ const Input = ({
         autoComplete="off"
         {...rest}
       />
+      {showPassword ? (
+        <button
+          className="show-hide-btn"
+          tabIndex={-1}
+          onClick={toggleHiddenPassword}
+        >
+          {`${inputType === 'password' ? 'Show' : 'Hide'}`}
+        </button>
+      ) : null}
       <div className="message">
         <span className="red">*</span>{' '}
         {errors[name] ? errors[name].message : ''}
