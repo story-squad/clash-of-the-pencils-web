@@ -109,21 +109,24 @@ const SignupForm = (): React.ReactElement => {
               required: 'Password is required!',
               validate: {
                 // checks entered password value contains required characters
-                pattern: (value) => {
+                includesCapital: (value) => {
+                  const pattern = /[A-Z]/;
                   return (
-                    [/[A-Z]/, /[a-z]/, /[0-9]/].every((pattern) =>
-                      pattern.test(value),
-                    ) || 'Password must include at least 1 capital and 1 number'
+                    pattern.test(value) ||
+                    'Password must include at least 1 capital letter'
+                  );
+                },
+                includesNumber: (value) => {
+                  const pattern = /[0-9]/;
+                  return (
+                    pattern.test(value) ||
+                    'Password must include at least 1 number'
                   );
                 },
                 // checks that entered password value is a minimum of 8 chars
-                minLength: (value) =>
-                  value.length >= 8 ||
-                  'Password must be at least 8 characters.',
-                // checks that entered password value is not greater than 32 chars
-                maxLength: (value) =>
-                  value.length <= 32 ||
-                  'Password must not be longer than 32 characters.',
+                checkLength: (value) =>
+                  (value.length >= 8 && value.length <= 32) ||
+                  'Password must be between 8 and 32 characters.',
               },
             }}
           />
