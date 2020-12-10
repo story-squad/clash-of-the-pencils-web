@@ -1,3 +1,4 @@
+export { Checkbox } from './Checkbox';
 export { ComingSoon } from './ComingSoon';
 export { Countdown } from './Countdown';
 export { Header } from './Header';
