@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { Auth } from '../../../../api';
 import squadUp from '../../../../assets/img/squad-up.png';
-import { Input, Modal, ThoughtBubble } from '../../../common';
+import { Checkbox, Input, Modal, ThoughtBubble } from '../../../common';
 import { DragonBoi } from '../DragonBoi';
 import SignupSuccess from './SignupSuccess';
 
@@ -188,30 +188,21 @@ const SignupForm = (): React.ReactElement => {
               }}
             />
           )}
-          {/* need to refactor into a reusable component later */}
-          <div className="text">
-            <input
-              id="termsCheckbox"
-              name="termsCheckbox"
-              type="checkbox"
-              ref={register({ required: 'You must agree to the terms' })}
-            />{' '}
-            <label htmlFor="termsCheckbox">
-              I have read and agree to the{' '}
-              <Link to="/tos" className="text-button" target="_blank">
-                Terms & Conditions
-              </Link>
-            </label>
-            .
-            <div
-              className={`form-input${errors.termsCheckbox ? ' error' : ''}`}
-            >
-              <div className="message">
-                <span className="red">*</span>{' '}
-                {errors.termsCheckbox ? errors.termsCheckbox.message : ''}
-              </div>
-            </div>
-          </div>
+          <Checkbox
+            name="termsCheckbox"
+            label={
+              <>
+                I have read and agree to the{' '}
+                <Link to="/tos" className="text-button" target="_blank">
+                  Terms & Conditions
+                </Link>
+                .
+              </>
+            }
+            errors={errors}
+            register={register}
+            rules={{ required: 'You must agree to the terms!' }}
+          />
           <div className="text">
             Already have an account? <Link to="/login">Click Here</Link>
           </div>
