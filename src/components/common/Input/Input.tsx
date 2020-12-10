@@ -8,6 +8,7 @@ const Input = ({
   type = 'text',
   rules = {},
   errors = {},
+  showPassword,
   ...rest
 }: InputProps): React.ReactElement => {
   return (
@@ -36,6 +37,7 @@ interface InputProps {
   type?: string;
   rules?: RegisterOptions;
   errors?: UseFormMethods['errors'];
+  showPassword?: boolean;
 }
 
 export default Input;
