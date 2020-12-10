@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RegisterOptions, UseFormMethods } from 'react-hook-form';
 
 const Input = ({
@@ -11,13 +11,23 @@ const Input = ({
   showPassword,
   ...rest
 }: InputProps): React.ReactElement => {
+  // store the type prop in state so that it can be changed to show/hide the value in a password input
+  const [inputType, setInputType] = useState(type);
+  /**
+   * Reveals or hides the value in a password input by toggling
+   * the 'type' on the input between 'text' and 'password'
+   */
+  const toggleHiddenPassword = (event: React.MouseEvent) => {
+    event.preventDefault();
+    inputType === 'password' ? setInputType('text') : setInputType('password');
+  };
   return (
     <div className={`form-input${errors[name] ? ' error' : ''}`}>
       <label htmlFor={name}>{label} :</label>
       <input
         id={name}
         name={name}
-        type={type || 'text'}
+        type={inputType}
         ref={register && register(rules)}
         autoComplete="off"
         {...rest}
