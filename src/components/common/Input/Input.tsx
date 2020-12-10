@@ -19,7 +19,7 @@ const Input = ({
    */
   const toggleHiddenPassword = (event: React.MouseEvent) => {
     event.preventDefault();
-    inputType === 'password' ? setInputType('text') : setInputType('password');
+    setInputType((prevType) => (prevType === 'password' ? 'text' : 'password'));
   };
   return (
     <div className={`form-input${errors[name] ? ' error' : ''}`}>
@@ -35,10 +35,10 @@ const Input = ({
       {showPassword ? (
         <button
           className="show-hide-btn"
-          tabIndex={-1}
+          tabIndex={-1} // Prevents button from being selected while tabbing
           onClick={toggleHiddenPassword}
         >
-          {`${inputType === 'password' ? 'Show' : 'Hide'}`}
+          {inputType === 'password' ? 'Show' : 'Hide'}
         </button>
       ) : null}
       <div className="message">

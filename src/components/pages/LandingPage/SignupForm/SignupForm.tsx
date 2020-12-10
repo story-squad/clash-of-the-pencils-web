@@ -7,6 +7,9 @@ import { Input, Modal, ThoughtBubble } from '../../../common';
 import { DragonBoi } from '../DragonBoi';
 import SignupSuccess from './SignupSuccess';
 
+// Regex to check if a string matches the shape of an email
+const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+
 const SignupForm = (): React.ReactElement => {
   const {
     register,
@@ -124,9 +127,12 @@ const SignupForm = (): React.ReactElement => {
                   );
                 },
                 // checks that entered password value is a minimum of 8 chars
-                checkLength: (value) =>
-                  (value.length >= 8 && value.length <= 32) ||
-                  'Password must be between 8 and 32 characters.',
+                checkLength: (value) => {
+                  return (
+                    (value.length >= 8 && value.length <= 32) ||
+                    'Password must be between 8 and 32 characters.'
+                  );
+                },
               },
             }}
           />
@@ -221,6 +227,3 @@ const SignupForm = (): React.ReactElement => {
 };
 
 export default SignupForm;
-
-// Regex to check if a string matches the shape of an email
-const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
