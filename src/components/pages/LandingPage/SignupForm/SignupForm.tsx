@@ -145,9 +145,10 @@ const SignupForm = (): React.ReactElement => {
             register={register}
             rules={{
               required: 'Password confirmation is required!',
-              validate: (value) =>
+              validate: (value) => {
                 // checks that the values in password and confirm inputs match
-                value === watch('password') || "Passwords don't match!",
+                return value === watch('password') || "Passwords don't match!";
+              },
             }}
           />
           <Input
@@ -176,9 +177,12 @@ const SignupForm = (): React.ReactElement => {
                     else return true;
                   },
                   // checks the email and parent email to make sure they are different
-                  differentEmail: (value) =>
-                    value !== watch('email') ||
-                    'Parent email must be different than email!',
+                  differentEmail: (value) => {
+                    return (
+                      value !== watch('email') ||
+                      'Parent email must be different than email!'
+                    );
+                  },
                 },
                 pattern: {
                   // ensures the entered parent email string matches a valid email address pattern
