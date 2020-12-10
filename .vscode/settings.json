@@ -4,5 +4,6 @@
     "source.fixAll.eslint": true,
     "source.organizeImports": true
   },
+  "prettier.enable": true,
   "typescript.tsdk": "node_modules\\typescript\\lib"
 }

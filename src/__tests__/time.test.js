@@ -64,5 +64,29 @@ describe('time module testing', () => {
       expect(subActive).toBe(false);
       expect(voteActive).toBe(true);
     });
+    it('returns 2h30m and active until vote end when passed in 23h UTC', () => {
+      const cur = moment.utc('23:00:00.0', 'HH:mm:ss.S');
+      const { active, timeUntil } = time.getTimeUntilEvent('vote', cur);
+      const formattedTime = time.secondsToTime(timeUntil);
+      expect(formattedTime.h).toBe(2);
+      expect(formattedTime.m).toBe(30);
+      expect(active).toBe(true);
+    });
+    it('returns 1h30m and active until vote end when passed in 0h UTC', () => {
+      const cur = moment.utc('0:00:00.0', 'HH:mm:ss.S');
+      const { active, timeUntil } = time.getTimeUntilEvent('vote', cur);
+      const formattedTime = time.secondsToTime(timeUntil);
+      expect(formattedTime.h).toBe(1);
+      expect(formattedTime.m).toBe(30);
+      expect(active).toBe(true);
+    });
+    it('returns 0h30m and active until vote end when passed in 1h UTC', () => {
+      const cur = moment.utc('1:00:00.0', 'HH:mm:ss.S');
+      const { active, timeUntil } = time.getTimeUntilEvent('vote', cur);
+      const formattedTime = time.secondsToTime(timeUntil);
+      expect(formattedTime.h).toBe(0);
+      expect(formattedTime.m).toBe(30);
+      expect(active).toBe(true);
+    });
   });
 });
