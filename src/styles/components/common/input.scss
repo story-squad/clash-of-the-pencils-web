@@ -41,4 +41,12 @@
       opacity: 1;
     }
   }
+
+  .show-hide-btn {
+    position: absolute;
+    top: 45%;
+    right: 2%;
+    z-index: 3;
+    cursor: 'pointer';
+  }
 }
