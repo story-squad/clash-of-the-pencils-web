@@ -9,6 +9,7 @@ const Input = ({
   rules = {},
   errors = {},
   showPassword,
+  placeholder = 'text',
   ...rest
 }: InputProps): React.ReactElement => {
   // store the type prop in state so that it can be changed to show/hide the value in a password input
@@ -30,6 +31,7 @@ const Input = ({
         type={inputType}
         ref={register && register(rules)}
         autoComplete="off"
+        placeholder={placeholder}
         {...rest}
       />
       {showPassword ? (
@@ -57,6 +59,7 @@ interface InputProps {
   rules?: RegisterOptions;
   errors?: UseFormMethods['errors'];
   showPassword?: boolean;
+  placeholder?: string;
 }
 
 export default Input;

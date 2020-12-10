@@ -83,13 +83,13 @@
 }
 
 @mixin text-input() {
-  border: 4px solid $jade;
-  border-radius: 4px;
-  background-color: $white;
-  color: #000;
+  border: none;
+  border-bottom: 2px solid $white;
+  background-color: transparent;
+  color: $white;
   font-family: $text-font;
   padding: 0.5rem;
-  @include placeholder(#999);
+  @include placeholder(#c4c4c4);
   position: relative;
   z-index: 3;
 }
