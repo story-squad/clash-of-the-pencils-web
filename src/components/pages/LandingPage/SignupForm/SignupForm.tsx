@@ -63,7 +63,7 @@ const SignupForm = (): React.ReactElement => {
           {errors.form && (
             <div className="server-error">{errors.form.message}</div>
           )}
-          {/* not sending first or last to back end at this time */}
+          {/* not sending first name to back end at this time */}
           <Input
             name="firstName"
             label="First Name"
@@ -76,7 +76,7 @@ const SignupForm = (): React.ReactElement => {
             label="Codename"
             errors={errors}
             register={register}
-            rules={{ required: 'Username is required!' }}
+            rules={{ required: 'Codename is required!' }}
           />
           <Input
             name="email"
@@ -86,8 +86,8 @@ const SignupForm = (): React.ReactElement => {
             rules={{
               required: 'Email is required!',
               pattern: {
-                // checks entered email string matches a valid email address pattern
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                // ensures the entered email string matches a valid email address pattern
+                value: emailPattern,
                 message: 'Please enter a valid email address',
               },
             }}
@@ -164,8 +164,8 @@ const SignupForm = (): React.ReactElement => {
                     'Parent email must be different than email!',
                 },
                 pattern: {
-                  // checks entered parent email string matches a valid email address pattern
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  // ensures the entered parent email string matches a valid email address pattern
+                  value: emailPattern,
                   message: 'Please enter a valid email address',
                 },
               }}
