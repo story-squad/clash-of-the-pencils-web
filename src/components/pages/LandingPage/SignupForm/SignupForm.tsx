@@ -92,6 +92,12 @@ const SignupForm = (): React.ReactElement => {
               },
             }}
           />
+          <ul className="text">
+            <li>Password requirements:</li>
+            <li>Between 8 and 32 characters</li>
+            <li>Includes at least 1 Capital</li>
+            <li>Includes at least 1 Number</li>
+          </ul>
           <Input
             name="password"
             label="Password"
