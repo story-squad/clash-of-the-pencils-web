@@ -102,6 +102,7 @@ const SignupForm = (): React.ReactElement => {
             name="password"
             label="Password"
             type="password"
+            showPassword
             errors={errors}
             register={register}
             rules={{
@@ -130,6 +131,7 @@ const SignupForm = (): React.ReactElement => {
             name="confirm"
             label="Confirm Password"
             type="password"
+            showPassword
             errors={errors}
             register={register}
             rules={{
