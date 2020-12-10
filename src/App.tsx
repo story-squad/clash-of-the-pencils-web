@@ -1,15 +1,16 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { Signout, TermsOfService } from './components/common';
+import { ReadTokenData, Signout, TermsOfService } from './components/common';
 import { Activation } from './components/pages/Activated';
 import { GamePage } from './components/pages/GamePage';
 import { VotingPage } from './components/pages/GamePage/VotingPage';
 import { LandingPage } from './components/pages/LandingPage';
 import { ResultsPage } from './components/pages/ResultsPage';
 
-const App: React.FC = () => {
+const App = (): React.ReactElement => {
   return (
     <div className="App">
+      <ReadTokenData />
       <Switch>
         {/* Public Routes */}
         <Route

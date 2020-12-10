@@ -9,8 +9,15 @@ const Header = (): React.ReactElement => {
   const [showMenu, setShowMenu] = useState(false);
   const userId = useRecoilValue(user.userId);
 
-  const menuItems = useMemo(
-    () => (userId ? nav.siteNavItems : nav.landingNavItems),
+  const menuItems = useMemo<nav.headerItems>(
+    () =>
+      userId
+        ? [...nav.navItems, { link: '/logout', text: 'Sign Out' }]
+        : [
+            ...nav.navItems,
+            { link: '/login', text: 'Sign In' },
+            { link: '/signup', text: 'Sign Up' },
+          ],
     [userId],
   );
 

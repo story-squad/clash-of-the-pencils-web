@@ -15,7 +15,7 @@ const LoginForm: React.FC = () => {
     Auth.login(data)
       .then((res) => {
         token.set(res.data.token);
-        push('/dashboard');
+        push('/game');
       })
       .catch((err: Auth.AxiosError) => {
         console.log({ err });

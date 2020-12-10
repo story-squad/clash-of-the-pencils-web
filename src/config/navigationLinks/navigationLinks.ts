@@ -1,12 +1,15 @@
-export const siteNavItems = [
+export const siteNavItems: headerItems = [
   { link: '/game', text: 'Dashboard' },
   { link: '/results', text: 'Announcements' },
   { link: '/signout', text: 'Sign Out' },
 ];
 
-export const landingNavItems = [
+export const navItems: headerItems = [
   { link: '/', text: 'Home' },
-  { link: '/vote', text: 'Vote' },
-  { link: '/signup', text: 'Sign Up' },
-  { link: '/login', text: 'Sign In' },
+  { link: '/play', text: 'Play' },
 ];
+
+export type headerItems = {
+  link: string;
+  text: string;
+}[];
