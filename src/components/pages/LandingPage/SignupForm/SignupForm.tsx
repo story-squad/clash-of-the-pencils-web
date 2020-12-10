@@ -210,3 +210,6 @@ const SignupForm = (): React.ReactElement => {
 };
 
 export default SignupForm;
+
+// Regex to check if a string matches the shape of an email
+const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
