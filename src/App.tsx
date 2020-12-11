@@ -14,6 +14,7 @@ import { ResultsPage } from './components/pages/ResultsPage';
 import { VotingPage } from './components/pages/VotingPage';
 
 const App: React.FC = () => {
+  console.log('pushing branch to drew');
   return (
     <div className="App">
       <Switch>
