@@ -10,11 +10,11 @@ import { Activation } from './components/pages/Activated';
 import { Dashboard } from './components/pages/Dashboard';
 // Route Components
 import { LandingPage } from './components/pages/LandingPage';
+import { Profile } from './components/pages/Profile';
 import { ResultsPage } from './components/pages/ResultsPage';
 import { VotingPage } from './components/pages/VotingPage';
 
 const App: React.FC = () => {
-  console.log('pushing branch to drew');
   return (
     <div className="App">
       <Switch>
@@ -28,6 +28,7 @@ const App: React.FC = () => {
         <Route path={['/logout', '/signout']} component={Signout} />
         <Route path="/vote" component={VotingPage} />
         <Route path="/tos" component={TermsOfService} />
+        <Route path="/profile" component={Profile} />
 
         {/* Private Routes */}
         <PrivateRoute path="/dashboard" component={Dashboard} />
