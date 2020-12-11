@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { Auth } from '../../../../api';
 import squadUp from '../../../../assets/img/squad-up.png';
-import { Checkbox, Input, Modal, ThoughtBubble } from '../../../common';
+import { Checkbox, Input, Modal } from '../../../common';
 import { DragonBoi } from '../DragonBoi';
 import SignupSuccess from './SignupSuccess';
 
@@ -52,9 +52,10 @@ const SignupForm = (): React.ReactElement => {
           centered={true}
         />
         <div className="landing-splash">
-          <ThoughtBubble
+          {/* Thought bubble will be changing soon */}
+          {/* <ThoughtBubble
             render={() => <>#SquadGoals! Sign up and start writing today!</>}
-          />
+          /> */}
           <DragonBoi />
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>

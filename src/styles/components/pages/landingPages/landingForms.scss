@@ -1,8 +1,12 @@
 .landing-form {
   // Login/Signup Forms
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: stretch;
+
+  @media screen and (min-width: $tablet) {
+    flex-direction: row;
+  }
 
   form {
     display: flex;

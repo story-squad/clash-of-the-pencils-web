@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { Auth } from '../../../../api';
 import welcomeBack from '../../../../assets/img/welcome-back.png';
 import { token } from '../../../../utils';
-import { Input, ThoughtBubble } from '../../../common';
+import { Input } from '../../../common';
 import { DragonBoi } from '../DragonBoi';
 
 const LoginForm: React.FC = () => {
@@ -35,8 +35,9 @@ const LoginForm: React.FC = () => {
 
   return (
     <div className="landing-form">
-      <div className="landing-splash">
-        <ThoughtBubble render={() => <>Welcome back!</>} />
+      <div className="landing-splash ">
+        {/* Thought bubble will be changing soon */}
+        {/* <ThoughtBubble render={() => <>Welcome back!</>} /> */}
         <DragonBoi />
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
