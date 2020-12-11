@@ -22,6 +22,10 @@
     .form-input {
       width: 100%;
     }
+
+    .text.login {
+      text-align: center;
+    }
     .text {
       width: 100%;
       font-size: 1.4rem;
@@ -29,6 +33,7 @@
       font-family: $text-font;
       margin: 0 0 2rem;
       line-height: 2rem;
+
       a,
       .text-button {
         color: $white;

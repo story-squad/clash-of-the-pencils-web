@@ -46,11 +46,12 @@ const LoginForm: React.FC = () => {
           <div className="server-error">{errors.form.message}</div>
         )}
         <Input
-          name="email"
-          label="Email"
+          name="Codename"
+          label="Codename"
           errors={errors}
           register={register}
-          rules={{ required: 'Please enter your email!' }}
+          rules={{ required: 'Please enter your codename!' }}
+          placeholder="Enter your codename"
         />
         <Input
           name="password"
@@ -59,15 +60,19 @@ const LoginForm: React.FC = () => {
           errors={errors}
           register={register}
           rules={{ required: 'Please enter a password!' }}
+          placeholder="Enter your password"
         />
-        <div className="text">
-          Need an account? <Link to="/register">Click Here.</Link>
-        </div>
         <input
           type="submit"
           value="Sign In"
           onClick={() => clearErrors('form')}
         />
+        <div className="text login">
+          Forgot your password? <Link to="/comingsoon">Click Here.</Link>
+        </div>
+        <div className="text login">
+          Need an account? <Link to="/register">Click Here.</Link>
+        </div>
       </form>
     </div>
   );

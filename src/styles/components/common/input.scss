@@ -43,6 +43,10 @@
   }
 
   .show-hide-btn {
+    @include text-button($white);
+    background-color: $orange;
+    border: none;
+    border-radius: 4px;
     position: absolute;
     top: 45%;
     right: 2%;

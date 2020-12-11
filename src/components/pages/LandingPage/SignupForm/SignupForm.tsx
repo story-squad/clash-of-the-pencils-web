@@ -66,20 +66,13 @@ const SignupForm = (): React.ReactElement => {
           {errors.form && (
             <div className="server-error">{errors.form.message}</div>
           )}
-          {/* not sending first name to back end at this time */}
           <Input
-            name="firstName"
-            label="First Name"
-            errors={errors}
-            register={register}
-            rules={{ required: 'First name is required!' }}
-          />
-          <Input
-            name="username"
+            name="codename"
             label="Codename"
             errors={errors}
             register={register}
             rules={{ required: 'Codename is required!' }}
+            placeholder="Enter your codename"
           />
           <Input
             name="email"
@@ -94,6 +87,7 @@ const SignupForm = (): React.ReactElement => {
                 message: 'Please enter a valid email address',
               },
             }}
+            placeholder="SuperWriter@storysquad.org"
           />
           <ul className="text">
             <li>Password requirements:</li>
@@ -135,6 +129,7 @@ const SignupForm = (): React.ReactElement => {
                 },
               },
             }}
+            placeholder="6 characters long, at least 1 number"
           />
           <Input
             name="confirm"
@@ -150,6 +145,7 @@ const SignupForm = (): React.ReactElement => {
                 return value === watch('password') || "Passwords don't match!";
               },
             }}
+            placeholder="Re-enter your password"
           />
           <Input
             name="ageStr"
@@ -160,6 +156,7 @@ const SignupForm = (): React.ReactElement => {
               required: 'Age is required!',
               validate: (value) => !!parseInt(value) || 'Age must be a number!',
             }}
+            placeholder="Enter your age"
           />
           {/* If the user is younger than 13, require a parent email */}
           {parseInt(watch('ageStr')) < 13 && (
@@ -190,6 +187,7 @@ const SignupForm = (): React.ReactElement => {
                   message: 'Please enter a valid email address',
                 },
               }}
+              placeholder="ParentSuperWriter@storysquad.org"
             />
           )}
           <Checkbox
