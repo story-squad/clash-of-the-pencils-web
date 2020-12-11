@@ -30,7 +30,6 @@ const RenderProfile = (): React.ReactElement => {
             register={register}
             rules={{ required: 'Please enter your old password' }}
           />
-
           <Input
             name="newpassword"
             label="New Password"
@@ -39,7 +38,6 @@ const RenderProfile = (): React.ReactElement => {
             register={register}
             rules={{ required: 'Please enter your new password' }}
           />
-
           <Input
             name="confirmpassword"
             label="Confirm New Password"
