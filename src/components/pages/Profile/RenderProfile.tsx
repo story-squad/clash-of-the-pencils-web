@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Input } from '../../common';
+import { useRecoilValue } from 'recoil';
+import { user } from '../../../state';
+import { Header, Input } from '../../common';
 
 const RenderProfile = (): React.ReactElement => {
   const { register, errors } = useForm();
   const [passwordFormVisible, setPasswordFormVisible] = useState(false);
+  const username = useRecoilValue(user.username);
 
   const toggleShowPasswordForm = () => {
     setPasswordFormVisible(!passwordFormVisible);
@@ -12,7 +15,8 @@ const RenderProfile = (): React.ReactElement => {
 
   return (
     <div className="profile-container">
-      <h1>Hello codename</h1>
+      <Header />
+      <h1>Hello {username}</h1>
 
       {/* 3 inputs: old password, new password x2, 1 button that says "edit password" >> 1 button "reset password" that will appear once edit password is clicked.  */}
 
