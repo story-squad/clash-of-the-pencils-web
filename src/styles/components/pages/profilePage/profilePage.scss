@@ -1,0 +1,10 @@
+.profile-container {
+  h1 {
+    font-size: 4rem;
+  }
+
+  button {
+    @include button($blue);
+    font-size: 2.4rem;
+  }
+}
