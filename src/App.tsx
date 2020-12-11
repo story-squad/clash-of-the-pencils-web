@@ -28,13 +28,13 @@ const App: React.FC = () => {
         <Route path={['/logout', '/signout']} component={Signout} />
         <Route path="/vote" component={VotingPage} />
         <Route path="/tos" component={TermsOfService} />
-        <Route path="/profile" component={Profile} />
 
         {/* Private Routes */}
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/results" component={ResultsPage} />
 
         <PrivateRoute path="/comingsoon" component={() => <ComingSoon />} />
+        <PrivateRoute path="/profile" component={Profile} />
 
         {/* Fallback Redirect to Dashboard */}
         <Route path="/" component={() => <Redirect to="/dashboard" />} />
