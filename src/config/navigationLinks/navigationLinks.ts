@@ -6,7 +6,7 @@ export const siteNavItems: headerItems = [
 
 export const navItems: headerItems = [
   { link: '/', text: 'Home' },
-  { link: '/play', text: 'Play' },
+  { link: '/game', text: 'Play' },
 ];
 
 export type headerItems = {

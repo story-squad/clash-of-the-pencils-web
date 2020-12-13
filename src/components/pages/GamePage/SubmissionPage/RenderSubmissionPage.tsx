@@ -1,15 +1,10 @@
 import React from 'react';
-import { Submissions } from '../../../../api';
 import todaysPrompt from '../../../../assets/img/todays-story-prompt.png';
-import { Header, Loader } from '../../../common';
+import { Header } from '../../../common';
 import { PromptBox } from './PromptBox';
 
-const RenderSubmissionPage = ({
-  list,
-}: RenderSubmissionPageProps): React.ReactElement => {
-  return !list ? (
-    <Loader />
-  ) : (
+const RenderSubmissionPage = (): React.ReactElement => {
+  return (
     <div className="submission-page-container">
       <Header />
       <div className="submission-page">
@@ -21,9 +16,5 @@ const RenderSubmissionPage = ({
     </div>
   );
 };
-
-interface RenderSubmissionPageProps {
-  list: Submissions.SubItem[];
-}
 
 export default RenderSubmissionPage;

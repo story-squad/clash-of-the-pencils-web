@@ -23,7 +23,7 @@ const RenderPromptBox = (): React.ReactElement => {
         centered
         title="Submit a Story"
       />
-      <h2>Hey{username ? `, ${username}` : ' there'}!</h2>
+      {username && <h2>Hey, {username}!</h2>}
       {prompt ? (
         // If there is a prompt
         <>
