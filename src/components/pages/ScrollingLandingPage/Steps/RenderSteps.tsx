@@ -22,10 +22,10 @@ const RenderSteps = (props: RenderStepsProps): React.ReactElement => {
 
   const circles = () => {
     const circles = [...new Array(numberOfSteps)].map((x, i) => {
-      if (i + 1 === props.stepNum) return <FaCircle />;
-      else return <FaRegCircle />;
+      if (i + 1 === props.stepNum) return <FaCircle key={i} />;
+      else return <FaRegCircle key={i} />;
     });
-    return <div className="circles">{circles.map((x) => x)}</div>;
+    return <div className="circles">{circles.map((c) => c)}</div>;
   };
 
   return (
