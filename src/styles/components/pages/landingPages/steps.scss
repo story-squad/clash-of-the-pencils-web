@@ -1,0 +1,14 @@
+.steps {
+  height: 100vh;
+  width: 100vh;
+
+  [class^='step-'] {
+    // this applies to all 'step-#' classes
+  }
+  .step-1 {
+  }
+  .step-2 {
+  }
+  .step-3 {
+  }
+}
