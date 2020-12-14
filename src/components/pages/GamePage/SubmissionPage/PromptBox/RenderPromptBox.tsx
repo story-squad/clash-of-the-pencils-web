@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { tooltips } from '../../../../../config';
 import { prompts, user } from '../../../../../state';
-import { Countdown, InfoHoverTip, Modal } from '../../../../common';
-import { Login } from '../../../LandingPage/LoginForm';
+import { AuthToggle, Countdown, InfoHoverTip, Modal } from '../../../../common';
 import SubmissionForm from './SubmissionForm';
 
 const RenderPromptBox = (): React.ReactElement => {
-  const username = useRecoilValue(user.username);
   const prompt = useRecoilValue(prompts.currentPrompt);
   const isLogged = useRecoilValue(user.isLoggedIn);
 
@@ -21,21 +19,19 @@ const RenderPromptBox = (): React.ReactElement => {
       <Modal.Component
         className="submissions"
         component={(props) =>
-          isLogged ? <SubmissionForm {...props} /> : <Login />
+          isLogged ? <SubmissionForm {...props} /> : <AuthToggle />
         }
         visible={showModal}
         setVisible={setShowModal}
-        centered
-        title={isLogged ? 'Submit a Story' : 'Log In'}
+        centered={isLogged}
+        title={isLogged ? 'Submit a Story' : ''}
       />
-      {username && <h2>Hey, {username}!</h2>}
       {prompt ? (
         // If there is a prompt
         <>
           {prompt.active ? (
             // If the existing prompt is active
             <>
-              <h3>Here is today&apos;s prompt:</h3>
               <p>{prompt.prompt}</p>
             </>
           ) : (

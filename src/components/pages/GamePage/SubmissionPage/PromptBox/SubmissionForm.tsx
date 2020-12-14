@@ -1,9 +1,9 @@
 import React from 'react';
 import { BarLoader } from 'react-spinners';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { Submissions } from '../../../../../api';
 import { tooltips } from '../../../../../config';
-import { prompts, submitModal } from '../../../../../state';
+import { prompts, submitModal, user } from '../../../../../state';
 import { upload } from '../../../../../utils';
 import { InfoHoverTip, Modal } from '../../../../common';
 
@@ -15,6 +15,7 @@ const SubmissionForm = (
   const [error, setError] = useRecoilState(submitModal.error);
   const [loading, setLoading] = useRecoilState(submitModal.loading);
   const [complete, setComplete] = useRecoilState(submitModal.success);
+  const username = useRecoilValue(user.username);
 
   const markAsSubmitted = useSetRecoilState(prompts.setSubmitted);
 
@@ -72,7 +73,7 @@ const SubmissionForm = (
     <>
       <InfoHoverTip tip={tooltips.filetypes} position="right" />
       <div className="submission-form">
-        {/* <h2>Submit a Story</h2> */}
+        {username && <h2>Hey, {username}!</h2>}
         <form onSubmit={onSubmit}>
           {preview && (
             <div className="preview">
