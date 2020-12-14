@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactScroller from 'react-page-scroller';
-import { Home } from '../LandingPage/Home';
+import { Home } from './Home';
+import { Steps } from './Steps';
 
 const ScrollingLandingPageContainer = (): React.ReactElement => {
   const [currentPage, setCurrentPage] = useState<number | null>(null);
@@ -14,8 +15,7 @@ const ScrollingLandingPageContainer = (): React.ReactElement => {
       customPageNumber={currentPage}
     >
       <Home />
-      <div>First thingy</div>
-      <div>Second Thingy</div>
+      <Steps />
     </ReactScroller>
   );
 };

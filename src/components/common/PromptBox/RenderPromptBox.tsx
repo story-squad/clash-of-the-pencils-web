@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { tooltips } from '../../../../../config';
-import { prompts, user } from '../../../../../state';
-import { AuthToggle, Countdown, InfoHoverTip, Modal } from '../../../../common';
+import { tooltips } from '../../../config';
+import { prompts, user } from '../../../state';
+import { AuthToggle } from '../AuthToggle';
+import { Countdown } from '../Countdown';
+import { InfoHoverTip } from '../InfoHoverTip';
+import { Modal } from '../Modal';
 import SubmissionForm from './SubmissionForm';
 
 const RenderPromptBox = (): React.ReactElement => {

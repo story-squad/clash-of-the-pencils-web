@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { Prompts } from '../../../../../api';
-import { prompts } from '../../../../../state';
-import { time } from '../../../../../utils';
+import { Prompts } from '../../../api';
+import { prompts } from '../../../state';
+import { time } from '../../../utils';
 import RenderPromptBox from './RenderPromptBox';
 import SubmissionsClosed from './SubmissionsClosed';
 
