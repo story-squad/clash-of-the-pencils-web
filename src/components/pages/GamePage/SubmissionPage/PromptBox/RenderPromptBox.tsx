@@ -3,11 +3,13 @@ import { useRecoilValue } from 'recoil';
 import { tooltips } from '../../../../../config';
 import { prompts, user } from '../../../../../state';
 import { Countdown, InfoHoverTip, Modal } from '../../../../common';
+import { Login } from '../../../LandingPage/LoginForm';
 import SubmissionForm from './SubmissionForm';
 
 const RenderPromptBox = (): React.ReactElement => {
   const username = useRecoilValue(user.username);
   const prompt = useRecoilValue(prompts.currentPrompt);
+  const isLogged = useRecoilValue(user.isLoggedIn);
 
   // Modal State Handlers
   const [showModal, setShowModal] = useState(false);
@@ -17,11 +19,14 @@ const RenderPromptBox = (): React.ReactElement => {
     <div className="prompt-box">
       <InfoHoverTip tip={tooltips.subInstructions} position="left" />
       <Modal.Component
-        component={(props) => <SubmissionForm {...props} />}
+        className="submissions"
+        component={(props) =>
+          isLogged ? <SubmissionForm {...props} /> : <Login />
+        }
         visible={showModal}
         setVisible={setShowModal}
         centered
-        title="Submit a Story"
+        title={isLogged ? 'Submit a Story' : 'Log In'}
       />
       {username && <h2>Hey, {username}!</h2>}
       {prompt ? (

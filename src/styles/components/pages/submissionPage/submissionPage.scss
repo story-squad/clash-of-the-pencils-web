@@ -7,28 +7,20 @@
   flex-flow: column nowrap;
   align-items: stretch;
 
-  @media screen and (min-width: $tablet) {
-    flex-flow: row nowrap;
-    align-items: stretch;
-    img {
-      display: block;
-    }
-    .sidebar {
-      order: 2;
-    }
-  }
-
   .content {
     flex-grow: 1;
     padding: 2rem;
     display: flex;
     flex-flow: column nowrap;
+    align-items: center;
 
-    img {
-      margin-bottom: 3rem;
-      display: none;
+    & > img {
+      display: block;
+      width: 800px;
+      max-width: 100%;
+      margin-bottom: 1rem;
       @media screen and (min-width: $tablet) {
-        display: block;
+        margin-bottom: 2rem;
       }
     }
 

@@ -33,6 +33,10 @@ export const schedule: scheduleObjectType = {
     start: utcToLocal(1, 30), // should be 1, 30
     end: utcToLocal(22, 0), // should be 22, 0
   },
+  offTime: {
+    start: utcToLocal(22, 0),
+    end: utcToLocal(22, 30),
+  },
   vote: {
     start: utcToLocal(22, 30), // should be 22, 30
     end: utcToLocal(1, 30), // should be (1, 30)

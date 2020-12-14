@@ -3,7 +3,7 @@ import { Moment } from 'moment';
 /**
  * The `nametags` for time-based events we track using union syntax
  */
-export type eventType = 'submit' | 'vote' | 'stream' | 'announce';
+export type eventType = 'submit' | 'vote' | 'stream' | 'announce' | 'offTime';
 
 /**
  * An interface for a seconds value converted into hours, minutes, seconds
