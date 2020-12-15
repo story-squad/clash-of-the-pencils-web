@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { RegisterOptions, UseFormMethods } from 'react-hook-form';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 const Input = ({
   name,
@@ -40,7 +41,11 @@ const Input = ({
           tabIndex={-1} // Prevents button from being selected while tabbing
           onClick={toggleHiddenPassword}
         >
-          {inputType === 'password' ? 'Show' : 'Hide'}
+          {inputType === 'password' ? (
+            <AiOutlineEye className="eye" />
+          ) : (
+            <AiOutlineEyeInvisible className="eye" />
+          )}
         </button>
       ) : null}
       <div className="message">

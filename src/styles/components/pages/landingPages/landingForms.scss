@@ -15,38 +15,52 @@
   form {
     display: flex;
     flex-flow: column nowrap;
-    // align-items: center;
-    align-items: stretch;
+    align-items: center;
     width: 100%;
 
-    @media screen and (min-width: $large) {
-      align-items: center;
+    img {
+      width: 100%;
+    }
+
+    .dragon-boi {
+      @media screen and (min-width: $large) {
+        position: fixed;
+        bottom: 3rem;
+        left: 3rem;
+      }
     }
 
     .inputs {
+      width: 100%;
+
+      @media screen and (min-width: $mid) {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+      }
+
       @media screen and (min-width: $large) {
         display: flex;
         flex-flow: row wrap;
         justify-content: space-evenly;
-        width: 100%;
+      }
+
+      .form-input {
+        width: 350px;
+        max-width: 100%;
+
+        @media screen and (min-width: $large) {
+          width: 33%;
+          padding: 1.5rem 1rem;
+        }
+
+        // The show/hide password icon
+        .eye {
+          font-size: 2rem;
+        }
       }
     }
 
-    .signup-bottom {
-      @media screen and (min-width: $large) {
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: center;
-      }
-    }
-
-    img {
-      width: 100%;
-
-      @media screen and (min-width: $large) {
-        width: 33%;
-      }
-    }
     .server-error {
       color: $red;
       font-family: $display-font;
@@ -54,16 +68,8 @@
       font-size: 2.4rem;
       margin-bottom: 1rem;
     }
-    .form-input {
-      width: 100%;
 
-      @media screen and (min-width: $large) {
-        width: 33%;
-        padding: 2%;
-      }
-    }
-
-    .text.login {
+    .text.change-form {
       text-align: center;
     }
     .text {

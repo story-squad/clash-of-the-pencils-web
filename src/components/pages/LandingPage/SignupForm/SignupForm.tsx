@@ -51,14 +51,8 @@ const SignupForm = (): React.ReactElement => {
           closable={false}
           centered={true}
         />
-        <div className="landing-splash">
-          {/* Thought bubble will be changing soon */}
-          {/* <ThoughtBubble
-            render={() => <>#SquadGoals! Sign up and start writing today!</>}
-          /> */}
-          <DragonBoi />
-        </div>
         <form onSubmit={handleSubmit(onSubmit)}>
+          <DragonBoi />
           <img src={squadUp} alt="Squad Up!" />
           <p>
             A Story Squad account is free! Please fill out the information below
@@ -69,7 +63,7 @@ const SignupForm = (): React.ReactElement => {
           )}
           <div className="inputs ">
             <Input
-              name="codename"
+              name="username"
               label="Codename"
               errors={errors}
               register={register}
@@ -103,12 +97,12 @@ const SignupForm = (): React.ReactElement => {
               }}
               placeholder="Enter your age"
             />
-            <ul className="text">
+            {/* <ul className="text">
               <li>Password requirements:</li>
               <li>Between 8 and 32 characters</li>
               <li>Includes at least 1 Capital</li>
               <li>Includes at least 1 Number</li>
-            </ul>
+            </ul> */}
             <Input
               name="password"
               label="Password"
@@ -198,7 +192,7 @@ const SignupForm = (): React.ReactElement => {
             )}
           </div>
 
-          <div className="signup-bottom">
+          <div className="text change-form">
             <Checkbox
               name="termsCheckbox"
               label={
@@ -214,10 +208,6 @@ const SignupForm = (): React.ReactElement => {
               register={register}
               rules={{ required: 'You must agree to the terms!' }}
             />
-
-            <div className="text">
-              Already have an account? <Link to="/login">Click Here</Link>
-            </div>
           </div>
 
           <input
@@ -225,6 +215,10 @@ const SignupForm = (): React.ReactElement => {
             value="Create Account"
             onClick={() => clearErrors('form')}
           />
+
+          <div className="text change-form">
+            Already have an account? <Link to="/login">Click Here</Link>
+          </div>
         </form>
       </div>
     </>

@@ -35,12 +35,8 @@ const LoginForm: React.FC = () => {
 
   return (
     <div className="landing-form">
-      <div className="landing-splash ">
-        {/* Thought bubble will be changing soon */}
-        {/* <ThoughtBubble render={() => <>Welcome back!</>} /> */}
-        <DragonBoi />
-      </div>
       <form onSubmit={handleSubmit(onSubmit)}>
+        <DragonBoi />
         <img src={welcomeBack} alt="Welcome Back" />
         <p>Hey! Sign in below to get back into the game.</p>
         {errors.form && (
@@ -48,12 +44,12 @@ const LoginForm: React.FC = () => {
         )}
         <div className="inputs">
           <Input
-            name="Codename"
+            name="email"
             label="Codename"
             errors={errors}
             register={register}
-            rules={{ required: 'Please enter your codename!' }}
-            placeholder="Enter your codename"
+            rules={{ required: 'Please enter your email!' }}
+            placeholder="Enter your email"
           />
           <Input
             name="password"
@@ -71,10 +67,10 @@ const LoginForm: React.FC = () => {
           value="Sign In"
           onClick={() => clearErrors('form')}
         />
-        <div className="text login">
+        <div className="text change-form">
           Forgot your password? <Link to="/comingsoon">Click Here.</Link>
         </div>
-        <div className="text login">
+        <div className="text change-form">
           Need an account? <Link to="/register">Click Here.</Link>
         </div>
       </form>
