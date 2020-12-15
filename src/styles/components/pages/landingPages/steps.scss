@@ -23,6 +23,21 @@
     margin: 0 auto 4rem;
   }
 
+  .dragon-boi {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    
+    &.right {
+      right: 2rem;
+      transform: scaleX(-1);
+    }
+
+    & img {
+      width: 50%;
+    }
+  }
+
   .circles {
     width: 100%;
     position: absolute;
@@ -44,30 +59,12 @@
 
   .step-1 {
     background: $jade;
-
-    .dragon-boi {
-      position: absolute;
-      bottom: 2rem;
-      left: 2rem;
-    }
   }
 
   .step-2 {
-    .dragon-boi {
-      position: absolute;
-      bottom: 2rem;
-      right: 2rem;
-      transform: scaleX(-1);
-    }
   }
 
   .step-3 {
     background: $seafoam;
-
-    .dragon-boi {
-      position: absolute;
-      bottom: 2rem;
-      left: 2rem;
-    }
   }
 }
