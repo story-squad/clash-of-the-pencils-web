@@ -19,8 +19,7 @@
   }
 
   .img-center {
-    display: block;
-    margin: 0 auto 4rem;
+    @include img-center();
   }
 
   .circles {
