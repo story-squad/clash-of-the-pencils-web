@@ -4,13 +4,13 @@
   position: relative;
 
   h2 {
-    margin: 2rem;
+    padding: 2rem;
     font-size: 4rem;
     color: white;
     font-family: $display-font;
   }
   h3 {
-    margin: 2rem;
+    padding: 2rem;
     font-size: 6rem;
     color: white;
     font-family: $display-font;
@@ -20,7 +20,7 @@
   .circles {
     width: 100%;
     position: absolute;
-    bottom: 4rem;
+    bottom: 2rem;
     display: flex;
     justify-content: center;
 
@@ -33,11 +33,14 @@
 
   [class^="step-"] {
     // this applies to all 'step-#' classes
+    height: 100vh;
   }
   .step-1 {
+    background: $jade;
+
     .dragon-boi {
       position: absolute;
-      bottom: 4rem;
+      bottom: 2rem;
     }
   }
   .step-2 {
