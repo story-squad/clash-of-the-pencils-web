@@ -1,9 +1,30 @@
 .steps {
   height: 100vh;
-  width: 100vh;
+  width: 100%;
+  position: relative;
 
-  [class^='step-'] {
+  .circles {
+    width: 100%;
+    position: absolute;
+    bottom: 4rem;
+    display: flex;
+    justify-content: center;
+
+    & svg {
+      color: white;
+      width: 4rem;
+      height: 4rem;
+    }
+  }
+
+  [class^="step-"] {
     // this applies to all 'step-#' classes
+    h2 {
+      margin: 2rem;
+      font-size: 4rem;
+      color: white;
+      font-family: $display-font;
+    }
   }
   .step-1 {
   }
