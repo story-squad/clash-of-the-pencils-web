@@ -24,6 +24,9 @@
     @media screen and (min-width: $tablet) {
       max-width: 350px;
     }
+    @media screen and (min-width: $large) {
+      max-width: 100%;
+    }
   }
 
   p {

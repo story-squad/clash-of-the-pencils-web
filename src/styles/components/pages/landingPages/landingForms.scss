@@ -8,13 +8,44 @@
     flex-direction: row;
   }
 
+  @media screen and (min-width: $large) {
+    flex-direction: column-reverse;
+  }
+
   form {
     display: flex;
     flex-flow: column nowrap;
-    align-items: center;
+    // align-items: center;
+    align-items: stretch;
     width: 100%;
+
+    @media screen and (min-width: $large) {
+      align-items: center;
+    }
+
+    .inputs {
+      @media screen and (min-width: $large) {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+        width: 100%;
+      }
+    }
+
+    .signup-bottom {
+      @media screen and (min-width: $large) {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+      }
+    }
+
     img {
       width: 100%;
+
+      @media screen and (min-width: $large) {
+        width: 33%;
+      }
     }
     .server-error {
       color: $red;
@@ -25,6 +56,11 @@
     }
     .form-input {
       width: 100%;
+
+      @media screen and (min-width: $large) {
+        width: 33%;
+        padding: 2%;
+      }
     }
 
     .text.login {

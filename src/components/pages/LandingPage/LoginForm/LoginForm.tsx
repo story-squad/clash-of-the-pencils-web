@@ -46,23 +46,26 @@ const LoginForm: React.FC = () => {
         {errors.form && (
           <div className="server-error">{errors.form.message}</div>
         )}
-        <Input
-          name="Codename"
-          label="Codename"
-          errors={errors}
-          register={register}
-          rules={{ required: 'Please enter your codename!' }}
-          placeholder="Enter your codename"
-        />
-        <Input
-          name="password"
-          label="Password"
-          type="password"
-          errors={errors}
-          register={register}
-          rules={{ required: 'Please enter a password!' }}
-          placeholder="Enter your password"
-        />
+        <div className="inputs">
+          <Input
+            name="Codename"
+            label="Codename"
+            errors={errors}
+            register={register}
+            rules={{ required: 'Please enter your codename!' }}
+            placeholder="Enter your codename"
+          />
+          <Input
+            name="password"
+            label="Password"
+            type="password"
+            errors={errors}
+            register={register}
+            rules={{ required: 'Please enter a password!' }}
+            placeholder="Enter your password"
+          />
+        </div>
+
         <input
           type="submit"
           value="Sign In"
