@@ -17,8 +17,12 @@
   }
 
   .how-it-works {
+    width: 100%;
     position: absolute;
-    bottom: 4rem;
+    bottom: 0;
+    font-size: 8rem;
+    color: white;
+    text-align: center;
   }
 
   .flex-wrapper {
