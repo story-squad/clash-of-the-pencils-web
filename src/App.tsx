@@ -4,7 +4,8 @@ import { ReadTokenData, Signout, TermsOfService } from './components/common';
 import { Activation } from './components/pages/Activated';
 import { GamePage } from './components/pages/GamePage';
 import { VotingPage } from './components/pages/GamePage/VotingPage';
-import { ResetEmailForm } from './components/pages/ResetPassword/EmailForm';
+import { ResetEmailForm } from './components/pages/ResetPassword/ResetEmailForm';
+import { PasswordResetForm } from './components/pages/ResetPassword/ResetPasswordForm';
 import { ResultsPage } from './components/pages/ResultsPage';
 import { Scroller } from './components/pages/ScrollingLandingPage';
 
@@ -23,6 +24,7 @@ const App = (): React.ReactElement => {
         <Route path="/results" component={ResultsPage} />
 
         <Route path="/reset" component={ResetEmailForm} />
+        <Route path="/passwordreset" component={PasswordResetForm} />
 
         {/* Fallback Redirect to Dashboard */}
         <Route path="/" component={() => <Redirect to="/game" />} />

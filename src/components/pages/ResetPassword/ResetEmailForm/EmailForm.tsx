@@ -11,7 +11,7 @@ const EmailForm: React.FC = () => {
     console.log('Form Submitted: ', e);
   };
 
-  // TODO - need error handlers,
+  // TODO - need error handlers, remove console log in onSubmit
 
   return (
     <div className="landing-form">
