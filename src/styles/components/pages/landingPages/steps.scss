@@ -23,21 +23,6 @@
     margin: 0 auto 4rem;
   }
 
-  .dragon-boi {
-    position: absolute;
-    bottom: 2rem;
-    left: 2rem;
-    
-    &.right {
-      right: 2rem;
-      transform: scaleX(-1);
-    }
-
-    & img {
-      width: 50%;
-    }
-  }
-
   .circles {
     width: 100%;
     position: absolute;
@@ -66,5 +51,34 @@
 
   .step-3 {
     background: $seafoam;
+  }
+
+  // Put dragon-boi on the left
+  .step-1,
+  .step-3 {
+    .dragon-boi {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+
+      & img {
+        width: 50%;
+      }
+    }
+  }
+
+  // Put dragon-boi on the right and flip
+  .step-2,
+  .step-4 {
+    .dragon-boi {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      transform: scaleX(-1);
+
+      & img {
+        width: 50%;
+      }
+    }
   }
 }
