@@ -9,12 +9,18 @@
     color: white;
     font-family: $display-font;
   }
+
   h3 {
     padding: 2rem;
     font-size: 6rem;
     color: white;
     font-family: $display-font;
     text-align: center;
+  }
+
+  .img-center {
+    display: block;
+    margin: 0 auto 4rem;
   }
 
   .circles {
@@ -35,6 +41,7 @@
     // this applies to all 'step-#' classes
     height: 100vh;
   }
+
   .step-1 {
     background: $jade;
 
@@ -44,6 +51,7 @@
       left: 2rem;
     }
   }
+
   .step-2 {
     .dragon-boi {
       position: absolute;
@@ -52,9 +60,10 @@
       transform: scaleX(-1);
     }
   }
+
   .step-3 {
     background: $seafoam;
-    
+
     .dragon-boi {
       position: absolute;
       bottom: 2rem;
