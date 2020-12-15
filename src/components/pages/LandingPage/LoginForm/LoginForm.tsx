@@ -1,21 +1,25 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useHistory } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 import { Auth } from '../../../../api';
 import welcomeBack from '../../../../assets/img/welcome-back.png';
+import { user } from '../../../../state';
 import { token } from '../../../../utils';
 import { Input, ThoughtBubble } from '../../../common';
 import { DragonBoi } from '../DragonBoi';
 
 const LoginForm: React.FC = () => {
   const { register, handleSubmit, errors, setError, clearErrors } = useForm();
+  const login = useSetRecoilState(user.isLoggedIn);
   const { push } = useHistory();
 
   const onSubmit: SubmitHandler<Auth.LoginBody> = (data) => {
     Auth.login(data)
       .then((res) => {
         token.set(res.data.token);
-        push('/dashboard');
+        login(true);
+        push('/game');
       })
       .catch((err: Auth.AxiosError) => {
         console.log({ err });

@@ -1,11 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-
+import { Header } from '../../common';
 import { Home } from './Home';
-import { Info } from './Info';
 import { Login } from './LoginForm';
 import { Signup } from './SignupForm';
-import { Header } from '../../common';
 
 const LandingPage = (): React.ReactElement => {
   return (
@@ -13,7 +11,6 @@ const LandingPage = (): React.ReactElement => {
       <Header />
       <Switch>
         <Route exact path="/" component={() => <Home />} />
-        <Route exact path="/info" component={() => <Info />} />
         <Route exact path="/login" component={() => <Login />} />
         <Route
           exact

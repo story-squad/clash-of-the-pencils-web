@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios';
 import { axiosWithAuth } from '../axiosWithConfig';
 
 export interface SubItem {
@@ -10,9 +11,12 @@ export interface SubItem {
 }
 
 export const getImageFromS3 = async (sub: SubItem): Promise<SubItem> => {
-  const res = await axiosWithAuth().get(`/upload/image/${sub.image}`, {
-    responseType: 'arraybuffer',
-  });
+  const res: AxiosResponse<ArrayBuffer> = await axiosWithAuth().get(
+    `/upload/image/${sub.image}`,
+    {
+      responseType: 'arraybuffer',
+    },
+  );
   const image = btoa(
     new Uint8Array(res.data).reduce(
       (data, byte) => data + String.fromCharCode(byte),
