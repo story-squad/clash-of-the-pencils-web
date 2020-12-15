@@ -41,10 +41,24 @@
     .dragon-boi {
       position: absolute;
       bottom: 2rem;
+      left: 2rem;
     }
   }
   .step-2 {
+    .dragon-boi {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      transform: scaleX(-1);
+    }
   }
   .step-3 {
+    background: $seafoam;
+    
+    .dragon-boi {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+    }
   }
 }
