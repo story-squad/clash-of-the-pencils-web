@@ -3,6 +3,22 @@
   width: 100%;
   padding-top: 4rem;
 
+  .button-container {
+    text-align: center;
+    margin: 2rem auto;
+
+    .link-button {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      a {
+        @include button($jade, $padding: 1rem 5rem 0.8rem);
+        text-decoration: none;
+        font-size: 2.4rem;
+      }
+    }
+  }
+
   .img-center {
     @include img-center();
   }
