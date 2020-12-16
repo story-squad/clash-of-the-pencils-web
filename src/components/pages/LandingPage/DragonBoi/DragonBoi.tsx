@@ -1,10 +1,10 @@
 import React from 'react';
-import dragonBoi from '../../../../assets/img/dragon-boi.svg';
+import { ReactComponent as Dragon } from '../../../../assets/img/dragon-boi.svg';
 
 const DragonBoi = (): React.ReactElement => {
   return (
     <div className="dragon-boi">
-      <img src={dragonBoi} alt="Dragon Boi" />
+      <Dragon className="dragon" />
     </div>
   );
 };

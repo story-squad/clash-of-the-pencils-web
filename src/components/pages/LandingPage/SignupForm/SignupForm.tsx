@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { Auth } from '../../../../api';
 import squadUp from '../../../../assets/img/squad-up.png';
-import { Checkbox, Input, Modal, ThoughtBubble } from '../../../common';
+import { Checkbox, Input, Modal } from '../../../common';
 import { DragonBoi } from '../DragonBoi';
 import SignupSuccess from './SignupSuccess';
 
@@ -51,13 +51,8 @@ const SignupForm = (): React.ReactElement => {
           closable={false}
           centered={true}
         />
-        <div className="landing-splash">
-          <ThoughtBubble
-            render={() => <>#SquadGoals! Sign up and start writing today!</>}
-          />
-          <DragonBoi />
-        </div>
         <form onSubmit={handleSubmit(onSubmit)}>
+          <DragonBoi />
           <img src={squadUp} alt="Squad Up!" />
           <p>
             A Story Squad account is free! Please fill out the information below
@@ -66,155 +61,164 @@ const SignupForm = (): React.ReactElement => {
           {errors.form && (
             <div className="server-error">{errors.form.message}</div>
           )}
-          {/* not sending first name to back end at this time */}
-          <Input
-            name="firstName"
-            label="First Name"
-            errors={errors}
-            register={register}
-            rules={{ required: 'First name is required!' }}
-          />
-          <Input
-            name="username"
-            label="Codename"
-            errors={errors}
-            register={register}
-            rules={{ required: 'Codename is required!' }}
-          />
-          <Input
-            name="email"
-            label="Email"
-            errors={errors}
-            register={register}
-            rules={{
-              required: 'Email is required!',
-              pattern: {
-                // ensures the entered email string matches a valid email address pattern
-                value: emailPattern,
-                message: 'Please enter a valid email address',
-              },
-            }}
-          />
-          <ul className="text">
-            <li>Password requirements:</li>
-            <li>Between 8 and 32 characters</li>
-            <li>Includes at least 1 Capital</li>
-            <li>Includes at least 1 Number</li>
-          </ul>
-          <Input
-            name="password"
-            label="Password"
-            type="password"
-            showPassword
-            errors={errors}
-            register={register}
-            rules={{
-              required: 'Password is required!',
-              validate: {
-                // checks entered password value contains required characters
-                includesCapital: (value) => {
-                  const pattern = /[A-Z]/;
-                  return (
-                    pattern.test(value) ||
-                    'Password must include at least 1 capital letter'
-                  );
-                },
-                includesNumber: (value) => {
-                  const pattern = /[0-9]/;
-                  return (
-                    pattern.test(value) ||
-                    'Password must include at least 1 number'
-                  );
-                },
-                // checks that entered password value is a minimum of 8 chars
-                checkLength: (value) => {
-                  return (
-                    (value.length >= 8 && value.length <= 32) ||
-                    'Password must be between 8 and 32 characters.'
-                  );
-                },
-              },
-            }}
-          />
-          <Input
-            name="confirm"
-            label="Confirm Password"
-            type="password"
-            showPassword
-            errors={errors}
-            register={register}
-            rules={{
-              required: 'Password confirmation is required!',
-              validate: (value) => {
-                // checks that the values in password and confirm inputs match
-                return value === watch('password') || "Passwords don't match!";
-              },
-            }}
-          />
-          <Input
-            name="ageStr"
-            label="Age"
-            errors={errors}
-            register={register}
-            rules={{
-              required: 'Age is required!',
-              validate: (value) => !!parseInt(value) || 'Age must be a number!',
-            }}
-          />
-          {/* If the user is younger than 13, require a parent email */}
-          {parseInt(watch('ageStr')) < 13 && (
+          <div className="inputs ">
             <Input
-              name="parentEmail"
-              label="Parent Email"
+              name="username"
+              label="Codename"
+              errors={errors}
+              register={register}
+              rules={{ required: 'Codename is required!' }}
+              placeholder="Enter your codename"
+            />
+            <Input
+              name="email"
+              label="Email"
               errors={errors}
               register={register}
               rules={{
+                required: 'Email is required!',
+                pattern: {
+                  // ensures the entered email string matches a valid email address pattern
+                  value: emailPattern,
+                  message: 'Please enter a valid email address.',
+                },
+              }}
+              placeholder="SuperWriter@storysquad.org"
+            />
+            <Input
+              name="ageStr"
+              label="Age"
+              errors={errors}
+              register={register}
+              rules={{
+                required: 'Age is required!',
+                validate: (value) =>
+                  !!parseInt(value) || 'Age must be a number!',
+              }}
+              placeholder="Enter your age"
+            />
+            {/* <ul className="text">
+              <li>Password requirements:</li>
+              <li>Between 8 and 32 characters</li>
+              <li>Includes at least 1 Capital</li>
+              <li>Includes at least 1 Number</li>
+            </ul> */}
+            <Input
+              name="password"
+              label="Password"
+              type="password"
+              showPassword
+              errors={errors}
+              register={register}
+              rules={{
+                required: 'Password is required!',
                 validate: {
-                  // required field if the entered age is less than 13
-                  required: (value) => {
-                    if (parseInt(watch('ageStr')) < 13)
-                      return value.length > 1 || 'Parent email is required!';
-                    else return true;
-                  },
-                  // checks the email and parent email to make sure they are different
-                  differentEmail: (value) => {
+                  // checks entered password value contains required characters
+                  includesCapital: (value) => {
+                    const pattern = /[A-Z]/;
                     return (
-                      value !== watch('email') ||
-                      'Parent email must be different than email!'
+                      pattern.test(value) ||
+                      'Password must include at least 1 capital letter.'
+                    );
+                  },
+                  includesNumber: (value) => {
+                    const pattern = /[0-9]/;
+                    return (
+                      pattern.test(value) ||
+                      'Password must include at least 1 number.'
+                    );
+                  },
+                  // checks that entered password value is a minimum of 8 chars
+                  checkLength: (value) => {
+                    return (
+                      (value.length >= 8 && value.length <= 32) ||
+                      'Password must be between 8 and 32 characters.'
                     );
                   },
                 },
-                pattern: {
-                  // ensures the entered parent email string matches a valid email address pattern
-                  value: emailPattern,
-                  message: 'Please enter a valid email address',
+              }}
+              placeholder="Create a safe password"
+            />
+            <Input
+              name="confirm"
+              label="Confirm Password"
+              type="password"
+              showPassword
+              errors={errors}
+              register={register}
+              rules={{
+                required: 'Password confirmation is required!',
+                validate: (value) => {
+                  // checks that the values in password and confirm inputs match
+                  return (
+                    value === watch('password') || "Passwords don't match!"
+                  );
                 },
               }}
+              placeholder="Re-enter your password"
             />
-          )}
-          <Checkbox
-            name="termsCheckbox"
-            label={
-              <>
-                I have read and agree to the{' '}
-                <Link to="/tos" className="text-button" target="_blank">
-                  Terms & Conditions
-                </Link>
-                .
-              </>
-            }
-            errors={errors}
-            register={register}
-            rules={{ required: 'You must agree to the terms!' }}
-          />
-          <div className="text">
-            Already have an account? <Link to="/login">Click Here</Link>
+
+            {/* If the user is younger than 13, require a parent email */}
+            {parseInt(watch('ageStr')) < 13 && (
+              <Input
+                name="parentEmail"
+                label="Parent Email"
+                errors={errors}
+                register={register}
+                rules={{
+                  validate: {
+                    // required field if the entered age is less than 13
+                    required: (value) => {
+                      if (parseInt(watch('ageStr')) < 13)
+                        return value.length > 1 || 'Parent email is required!';
+                      else return true;
+                    },
+                    // checks the email and parent email to make sure they are different
+                    differentEmail: (value) => {
+                      return (
+                        value !== watch('email') ||
+                        'Parent email must be different than email!'
+                      );
+                    },
+                  },
+                  pattern: {
+                    // ensures the entered parent email string matches a valid email address pattern
+                    value: emailPattern,
+                    message: 'Please enter a valid email address.',
+                  },
+                }}
+                placeholder="ParentSuperWriter@storysquad.org"
+              />
+            )}
           </div>
+
+          <div className="text change-form">
+            <Checkbox
+              name="termsCheckbox"
+              label={
+                <>
+                  I have read and agree to the{' '}
+                  <Link to="/tos" className="text-button" target="_blank">
+                    Terms & Conditions
+                  </Link>
+                  .
+                </>
+              }
+              errors={errors}
+              register={register}
+              rules={{ required: 'You must agree to the terms!' }}
+            />
+          </div>
+
           <input
             type="submit"
             value="Create Account"
             onClick={() => clearErrors('form')}
           />
+
+          <div className="text change-form">
+            Already have an account? <Link to="/login">Click Here</Link>
+          </div>
         </form>
       </div>
     </>
