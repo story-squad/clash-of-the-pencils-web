@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { Auth } from '../../../../api';
 import { getResetEmail } from '../../../../api/Auth';
 import { Input } from '../../../common';
@@ -9,9 +9,9 @@ const EmailForm: React.FC = () => {
   const { register, handleSubmit, errors, setError, clearErrors } = useForm();
 
   // onSubmit should send the users email a reset password link/token that has a 10 min timer
-  const onSubmit = (e: any) => {
-    console.log('Form Submitted: ', e);
-    const userEmail = e.email;
+  const onSubmit: SubmitHandler<{ email: string }> = (data) => {
+    console.log('Form Submitted: ');
+    const userEmail = data.email;
     getResetEmail(userEmail)
       .then(() => {
         clearErrors();

@@ -1,5 +1,9 @@
+import { parse } from 'query-string';
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useLocation } from 'react-router-dom';
+import { Auth } from '../../../../api';
+import { updatePassword } from '../../../../api/Auth';
 import { Input } from '../../../common';
 
 const PasswordResetForm: React.FC = () => {
@@ -15,9 +19,38 @@ const PasswordResetForm: React.FC = () => {
     mode: 'onChange',
   });
 
+  const location = useLocation();
+  const pathname = location.search;
+  console.log('params', parse(pathname));
+
   // onSubmit should send the users email a reset password link/token that has a 10 min timer
-  const onSubmit = (e: any) => {
-    console.log('Form Submitted: ', e);
+  const onSubmit: SubmitHandler<{
+    email: string;
+    code: string;
+    password: string;
+  }> = (data) => {
+    console.log('Form Submitted: ', data);
+
+    const userBody = {
+      email: data.email,
+      code: data.code,
+      password: data.password,
+    };
+
+    updatePassword(userBody)
+      .then(() => {
+        clearErrors();
+      })
+      .catch((err: Auth.AxiosError) => {
+        console.log({ err });
+        let message: string;
+        if (err.response?.data) {
+          message = err.response.data.error;
+        } else {
+          message = 'An unknown error occurred. Please try again.';
+        }
+        setError('form', { type: 'manual', message });
+      });
   };
 
   // TODO - need error handlers, remove console log in onSubmit
