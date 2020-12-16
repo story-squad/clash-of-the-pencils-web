@@ -1,6 +1,5 @@
 import React from 'react';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
-import { NavDirection } from './Steps/StepsContainer';
 
 const NavArrowButton = (props: NavArrowButtonProps): React.ReactElement => {
   const className = `nav-arrow-button ${props.navDirection}`;
@@ -16,6 +15,8 @@ const NavArrowButton = (props: NavArrowButtonProps): React.ReactElement => {
     </button>
   );
 };
+
+export type NavDirection = 'left' | 'right' | 'down' | 'up';
 
 interface NavArrowButtonProps {
   navDirection: NavDirection;
