@@ -4,5 +4,7 @@
     "source.fixAll.eslint": true,
     "source.organizeImports": true
   },
+  "prettier.enable": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "typescript.tsdk": "node_modules\\typescript\\lib"
 }

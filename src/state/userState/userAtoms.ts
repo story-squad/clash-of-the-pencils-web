@@ -1,5 +1,10 @@
 import { atom } from 'recoil';
 
+export const loginToken = atom<string | null>({
+  key: 'loginToken',
+  default: null,
+});
+
 export const userId = atom<number | null>({
   key: 'userId',
   default: null,

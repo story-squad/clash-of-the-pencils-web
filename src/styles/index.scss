@@ -11,7 +11,7 @@
 
 // Component Stylesheets
 @import './components/pages/landingPages/landingPage.scss';
-@import './components/pages/dashboard/dashboard.scss';
+@import './components/pages/submissionPage/submissionPage.scss';
 @import './components/pages/votingPages/votingPage.scss';
 @import './components/pages/resultsPage/resultsPage.scss';
 
@@ -26,3 +26,4 @@
 @import './components/common/histogram.scss';
 @import './components/common/termsOfService.scss';
 @import './components/common/countdown.scss';
+@import './components/common/authToggle.scss';
