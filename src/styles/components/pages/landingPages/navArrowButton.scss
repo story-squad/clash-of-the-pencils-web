@@ -4,13 +4,13 @@
   bottom: 0;
   background: none;
   border: none;
-  color: white;
+  color: $white;
   font-size: 4rem;
 
-  @media (min-width: 700px) {
+  @media (min-width: $tablet) {
     font-size: 6rem;
   }
-  
+
   &.left {
     left: -1rem;
   }

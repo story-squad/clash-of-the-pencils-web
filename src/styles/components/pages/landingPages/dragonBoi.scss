@@ -7,7 +7,7 @@
     max-height: 100px;
   }
 
-  @media (min-width: 500px) {
+  @media (min-width: $mid) {
     svg {
       min-width: 100px;
       max-width: 300px;

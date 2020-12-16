@@ -20,14 +20,14 @@
     width: 100%;
     position: absolute;
     bottom: 0;
-    color: white;
+    color: $white;
     text-align: center;
     font-size: 4rem;
 
-    @media (min-width: 700px) {
+    @media (min-width: $tablet) {
       font-size: 6rem;
     }
-    
+
     img {
       width: 60%;
     }

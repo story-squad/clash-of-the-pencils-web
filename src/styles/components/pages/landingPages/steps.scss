@@ -6,10 +6,10 @@
   h2 {
     padding: 2rem;
     font-size: 2rem;
-    color: white;
+    color: $white;
     font-family: $display-font;
 
-    @media (min-width: 700px) {
+    @media (min-width: $tablet) {
       font-size: 4rem;
     }
   }
@@ -17,7 +17,7 @@
   h3 {
     padding: 2rem;
     font-size: 2rem;
-    color: white;
+    color: $white;
     font-family: $display-font;
     text-align: center;
   }
@@ -34,18 +34,18 @@
     justify-content: center;
 
     svg {
-      color: white;
+      color: $white;
       width: 2rem;
       height: 2rem;
 
-      @media (min-width: 700px) {
+      @media (min-width: $tablet) {
         width: 3rem;
-      height: 3rem;
+        height: 3rem;
       }
     }
   }
 
-  [class^='step-'] {
+  [class^="step-"] {
     // this applies to all 'step-#' classes
     height: 100vh;
   }

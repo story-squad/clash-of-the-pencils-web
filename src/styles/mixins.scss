@@ -94,7 +94,7 @@
   padding: 0 3rem;
   max-height: 250px;
 
-  @media (min-width: 700px) {
+  @media (min-width: $tablet) {
     max-height: none;
     padding: 0 6rem;
   }
