@@ -28,6 +28,7 @@ const Home = (): React.ReactElement => {
         </div>
         <div className="how-it-works">
           <img src={howItWorks} alt="How it works" />
+          <br />
           <FaAngleDown />
         </div>
       </div>
