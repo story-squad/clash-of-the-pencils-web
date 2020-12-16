@@ -3,12 +3,11 @@ import { StepProps } from './RenderSteps';
 import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
 import submitPic from '../../../../assets/img/submit-a-pic.png';
 import writingArrowSubmit from '../../../../assets/img/writing-arrow-submit.png';
-import NavArrowButton from './NavArrowButton';
+import NavArrowButton from '../NavArrowButton';
 
 const Step4 = (props: StepProps): React.ReactElement => {
   return (
     <div className="step-4">
-      <h2>Step 4</h2>
       <img
         className="img-center"
         src={submitPic}

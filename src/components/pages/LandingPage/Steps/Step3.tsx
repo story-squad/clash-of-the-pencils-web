@@ -3,12 +3,11 @@ import { StepProps } from './RenderSteps';
 import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
 import scribbleDown from '../../../../assets/img/scribble-down.png';
 import writingStory from '../../../../assets/img/writing-story.png';
-import NavArrowButton from './NavArrowButton';
+import NavArrowButton from '../NavArrowButton';
 
 const Step3 = (props: StepProps): React.ReactElement => {
   return (
     <div className="step-3">
-      <h2>Step 3</h2>
       <img
         className="img-center"
         src={scribbleDown}
