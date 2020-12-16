@@ -120,7 +120,8 @@ header {
         margin-right: 1.5rem;
       }
     }
-    a {
+    a,
+    span.link {
       font-family: $text-font;
       font-size: $font-size;
       line-height: $font-size - 0.2rem;
