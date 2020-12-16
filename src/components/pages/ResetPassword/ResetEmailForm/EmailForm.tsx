@@ -1,5 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { Auth } from '../../../../api';
+import { getResetEmail } from '../../../../api/Auth';
 import { Input } from '../../../common';
 
 const EmailForm: React.FC = () => {
@@ -9,9 +11,24 @@ const EmailForm: React.FC = () => {
   // onSubmit should send the users email a reset password link/token that has a 10 min timer
   const onSubmit = (e: any) => {
     console.log('Form Submitted: ', e);
+    const userEmail = e.email;
+    getResetEmail(userEmail)
+      .then(() => {
+        clearErrors();
+      })
+      .catch((err: Auth.AxiosError) => {
+        console.log({ err });
+        let message: string;
+        if (err.response?.data) {
+          message = err.response.data.error;
+        } else {
+          message = 'An unknown error occurred. Please try again.';
+        }
+        setError('form', { type: 'manual', message });
+      });
   };
 
-  // TODO - need error handlers, remove console log in onSubmit
+  // TODO - error handlers, remove console log from onSubmit
 
   return (
     <div className="landing-form">

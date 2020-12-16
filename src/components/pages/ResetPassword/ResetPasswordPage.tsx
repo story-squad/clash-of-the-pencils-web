@@ -1,21 +1,26 @@
-import React, { useState } from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { Header } from '../../common';
 import { ResetEmailForm } from './ResetEmailForm';
 import { PasswordResetForm } from './ResetPasswordForm';
 
 const ResetPasswordPage = (): React.ReactElement => {
   // deconsturct our current route - provides us everything after http://localhost:3000/
-  const { url } = useRouteMatch();
-  console.log('URL: ', url);
+  const [showEmailForm, setShowEmailForm] = useState(true);
 
-  // state to test conditional rendering off of url
-  const [resetState, setResetState] = useState(true);
+  useEffect(() => {
+    if (showEmailForm) {
+      // render the email form
+      setShowEmailForm(true);
+    } else {
+      // render the password reset form
+      setShowEmailForm(false);
+    }
+  }, []);
 
   return (
     <div className="landing-page">
       <Header />
-      {resetState ? <ResetEmailForm /> : <PasswordResetForm />}
+      {showEmailForm ? <ResetEmailForm /> : <PasswordResetForm />}
     </div>
   );
 };
