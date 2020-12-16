@@ -16,6 +16,8 @@ It also takes the `register` property, which can be destructured from the `useFo
 
 - `register` - a funciton that connects your input to the form state
 - `errors` - an object containing all of a form's current errors
+- `placeholder` - a string containing placeholder text
+- `showPassword` - a function that toggles password view on and off
 
 Optionally, you can pass in a `rules` object, which contains the validation rules of that input field:
 

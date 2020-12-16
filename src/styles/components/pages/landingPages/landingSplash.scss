@@ -1,11 +1,9 @@
 // Controls the left-hand splash display on landing page
 .landing-splash {
   padding: 3rem;
-  background-color: $seafoam;
   flex-grow: 1;
 
-  // Hide the splash on the left until you reach tablet size
-  display: none;
+  // Splash is on the left until you reach tablet size
   @media screen and (min-width: $tablet) {
     display: block;
 

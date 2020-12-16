@@ -4,7 +4,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { InfoHoverTip, Modal } from '..';
 import { Submissions } from '../../../api';
 import { tooltips } from '../../../config';
-import { prompts, submitModal, user } from '../../../state';
+import { auth, prompts, submitModal } from '../../../state';
 import { upload } from '../../../utils';
 
 const SubmissionForm = (
@@ -15,7 +15,7 @@ const SubmissionForm = (
   const [error, setError] = useRecoilState(submitModal.error);
   const [loading, setLoading] = useRecoilState(submitModal.loading);
   const [complete, setComplete] = useRecoilState(submitModal.success);
-  const username = useRecoilValue(user.username);
+  const username = useRecoilValue(auth.username);
 
   const markAsSubmitted = useSetRecoilState(prompts.setSubmitted);
 

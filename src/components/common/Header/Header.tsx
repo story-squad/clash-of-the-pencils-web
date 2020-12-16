@@ -1,29 +1,37 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { MdMenu } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { user } from '../../../state';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { auth } from '../../../state';
 import { time } from '../../../utils';
 
 const Header = (): React.ReactElement => {
   const [showMenu, setShowMenu] = useState(false);
   const [gameActive, setGameActive] = useState(true);
-  const isLogged = useRecoilValue(user.isLoggedIn);
+  const isLogged = useRecoilValue(auth.isLoggedIn);
+
+  const setAuthOpen = useSetRecoilState(auth.authModalOpen);
+  const setAuthIsLogin = useSetRecoilState(auth.authModalIsLogin);
 
   const menuItems = useMemo<headerItems[]>(() => {
     const navItems = [{ link: '/', text: 'Home' }];
     if (gameActive) navItems.push({ link: '/game', text: 'Game' });
     if (isLogged) navItems.push({ link: '/logout', text: 'Sign Out' });
-    else
-      navItems.push(
-        { link: '/login', text: 'Sign In' },
-        { link: '/signup', text: 'Sign Up' },
-      );
     return navItems;
   }, [isLogged]);
 
   const toggleMenu = () => {
     setShowMenu((cur) => !cur);
+  };
+
+  const openLogin = () => {
+    setAuthOpen(true);
+    setAuthIsLogin(true);
+  };
+
+  const openSignup = () => {
+    setAuthOpen(true);
+    setAuthIsLogin(false);
   };
 
   useEffect(() => {
@@ -54,6 +62,20 @@ const Header = (): React.ReactElement => {
               clickHandler={() => setShowMenu(false)}
             />
           ))}
+          {!isLogged && (
+            <>
+              <div className="menu-item">
+                <span className="link" onClick={openLogin}>
+                  Sign In
+                </span>
+              </div>
+              <div className="menu-item">
+                <span className="link" onClick={openSignup}>
+                  Sign Up
+                </span>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>

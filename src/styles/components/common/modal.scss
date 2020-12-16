@@ -38,6 +38,9 @@
     position: relative;
 
     background-color: #fff;
+    &.dark-blue {
+      background-color: $dark-blue;
+    }
 
     .modal-header {
       width: 100%;

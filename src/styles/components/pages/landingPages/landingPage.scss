@@ -7,6 +7,7 @@
 @import './infoPage.scss';
 @import './activation.scss';
 @import './steps.scss';
+@import './votingInfo.scss';
 
 .landing-page {
   // General Page Styling
@@ -18,12 +19,15 @@
     text-align: center;
   }
 
-  .landing-splash + * {
+  form {
     // This sets styling of the right-hand components on landing page
     // ex: forms, how it works
     padding: 3rem;
-    @media screen and (min-width: $tablet) {
-      max-width: 350px;
+    // @media screen and (min-width: $tablet) {
+    //   max-width: 350px;
+    // }
+    @media screen and (min-width: $large) {
+      max-width: 100%;
     }
   }
 

@@ -1,14 +1,80 @@
 .steps {
   height: 100vh;
-  width: 100vh;
+  width: 100vw;
+  position: relative;
+
+  h2 {
+    padding: 2rem;
+    font-size: 4rem;
+    color: white;
+    font-family: $display-font;
+  }
+
+  h3 {
+    padding: 2rem;
+    font-size: 6rem;
+    color: white;
+    font-family: $display-font;
+    text-align: center;
+  }
+
+  .img-center {
+    @include img-center();
+  }
+
+  .circles {
+    width: 100%;
+    position: absolute;
+    bottom: 2rem;
+    display: flex;
+    justify-content: center;
+
+    svg {
+      color: white;
+      width: 4rem;
+      height: 4rem;
+    }
+  }
 
   [class^='step-'] {
     // this applies to all 'step-#' classes
+    height: 100vh;
   }
+
   .step-1 {
+    background: $jade;
   }
-  .step-2 {
-  }
+
   .step-3 {
+    background: $seafoam;
+  }
+
+  // Put dragon-boi on the left
+  .step-1,
+  .step-3 {
+    .dragon-boi {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+
+      img {
+        width: 50%;
+      }
+    }
+  }
+
+  // Put dragon-boi on the right and flip
+  .step-2,
+  .step-4 {
+    .dragon-boi {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      transform: scaleX(-1);
+
+      img {
+        width: 50%;
+      }
+    }
   }
 }

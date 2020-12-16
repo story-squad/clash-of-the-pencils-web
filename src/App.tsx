@@ -1,16 +1,22 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { ReadTokenData, Signout, TermsOfService } from './components/common';
+import {
+  AuthModal,
+  ReadTokenData,
+  Signout,
+  TermsOfService,
+} from './components/common';
 import { Activation } from './components/pages/Activated';
 import { GamePage } from './components/pages/GamePage';
 import { VotingPage } from './components/pages/GamePage/VotingPage';
+import { Scroller } from './components/pages/LandingPage';
 import { ResetPasswordPage } from './components/pages/ResetPassword';
 import { ResultsPage } from './components/pages/ResultsPage';
-import { Scroller } from './components/pages/ScrollingLandingPage';
 
 const App = (): React.ReactElement => {
   return (
     <div className="App">
+      <AuthModal />
       <ReadTokenData />
       <Switch>
         {/* Public Routes */}

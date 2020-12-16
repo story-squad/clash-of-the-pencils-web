@@ -1,1 +1,1 @@
-export { default as LandingPage } from './LandingPageContainer';
+export { default as Scroller } from './ScrollingLandingPageContainer';
