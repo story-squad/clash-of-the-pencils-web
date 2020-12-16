@@ -14,6 +14,7 @@ const ScrollingLandingPageContainer = (): React.ReactElement => {
       pageOnChange={changePage}
       onBeforePageScroll={beforePageChange}
       customPageNumber={currentPage}
+      renderAllPagesOnFirstRender
     >
       <Home />
       <Steps />

@@ -1,7 +1,7 @@
 import React from 'react';
+import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
 import submitPic from '../../../../assets/img/submit-a-pic.png';
 import writingArrowSubmit from '../../../../assets/img/writing-arrow-submit.png';
-import { DragonBoi } from '../Home/DragonBoi';
 
 const Step4 = (): React.ReactElement => {
   return (
@@ -17,7 +17,9 @@ const Step4 = (): React.ReactElement => {
         src={writingArrowSubmit}
         alt="Arrow pointing from hand-written story to a button with text: Submit Your Story"
       />
-      <DragonBoi />
+      <div className="dragon-boi">
+        <DragonBoi className="dragon" />
+      </div>
     </div>
   );
 };

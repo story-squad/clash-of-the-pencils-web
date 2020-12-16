@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { tooltips } from '../../../config';
-import { prompts, user } from '../../../state';
-import { AuthToggle } from '../AuthToggle';
+import { auth, prompts } from '../../../state';
 import { Countdown } from '../Countdown';
 import { InfoHoverTip } from '../InfoHoverTip';
 import { Modal } from '../Modal';
@@ -10,25 +9,29 @@ import SubmissionForm from './SubmissionForm';
 
 const RenderPromptBox = (): React.ReactElement => {
   const prompt = useRecoilValue(prompts.currentPrompt);
-  const isLogged = useRecoilValue(user.isLoggedIn);
+  const isLogged = useRecoilValue(auth.isLoggedIn);
+  const setAuthModalVisible = useSetRecoilState(auth.authModalOpen);
 
   // Modal State Handlers
   const [showModal, setShowModal] = useState(false);
-  const toggleModal = () => setShowModal((cur) => !cur);
+  const toggleModal = () => {
+    if (isLogged) setShowModal((cur) => !cur);
+    else setAuthModalVisible(true);
+  };
 
   return (
     <div className="prompt-box">
       <InfoHoverTip tip={tooltips.subInstructions} position="left" />
-      <Modal.Component
-        className="submissions"
-        component={(props) =>
-          isLogged ? <SubmissionForm {...props} /> : <AuthToggle />
-        }
-        visible={showModal}
-        setVisible={setShowModal}
-        centered={isLogged}
-        title={isLogged ? 'Submit a Story' : ''}
-      />
+      {isLogged && (
+        <Modal.Component
+          className="submissions"
+          component={(props) => <SubmissionForm {...props} />}
+          visible={showModal}
+          setVisible={setShowModal}
+          centered={isLogged}
+          title={isLogged ? 'Submit a Story' : ''}
+        />
+      )}
       {prompt ? (
         // If there is a prompt
         <>

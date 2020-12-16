@@ -19,3 +19,13 @@ export const email = atom<string | null>({
   key: 'userEmail',
   default: null,
 });
+
+export const authModalOpen = atom<boolean>({
+  key: 'authModalOpen',
+  default: false,
+});
+
+export const authModalIsLogin = atom<boolean>({
+  key: 'authModalIsLogin',
+  default: true,
+});

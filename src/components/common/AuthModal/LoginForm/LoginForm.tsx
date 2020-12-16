@@ -1,25 +1,25 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
+import { Input } from '../..';
 import { Auth } from '../../../../api';
+import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
 import welcomeBack from '../../../../assets/img/welcome-back.png';
-import { user } from '../../../../state';
+import { auth } from '../../../../state';
 import { token } from '../../../../utils';
-import { Input } from '../../../common';
-import { DragonBoi } from '../DragonBoi';
+import { Modal } from '../../Modal';
 
-const LoginForm: React.FC = () => {
+const LoginForm = (props: Modal.ModalComponentProps): React.ReactElement => {
   const { register, handleSubmit, errors, setError, clearErrors } = useForm();
-  const login = useSetRecoilState(user.isLoggedIn);
-  const { push } = useHistory();
+  const login = useSetRecoilState(auth.isLoggedIn);
 
   const onSubmit: SubmitHandler<Auth.LoginBody> = (data) => {
     Auth.login(data)
       .then((res) => {
         token.set(res.data.token);
         login(true);
-        push('/game');
+        props.closeModal();
       })
       .catch((err: Auth.AxiosError) => {
         console.log({ err });
@@ -40,7 +40,9 @@ const LoginForm: React.FC = () => {
   return (
     <div className="landing-form">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <DragonBoi />
+        <div className="dragon-boi">
+          <DragonBoi className="dragon" />
+        </div>
         <img src={welcomeBack} alt="Welcome Back" />
         <p>Hey! Sign in below to get back into the game.</p>
         {errors.form && (

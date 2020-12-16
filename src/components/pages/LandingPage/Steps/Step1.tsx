@@ -1,7 +1,7 @@
 import React from 'react';
+import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
 import dummyPrompt from '../../../../assets/img/dummy-prompt.png';
 import scopeOut from '../../../../assets/img/scope-out-prompt.png';
-import { DragonBoi } from '../Home/DragonBoi';
 
 const Step1 = (): React.ReactElement => {
   return (
@@ -17,7 +17,9 @@ const Step1 = (): React.ReactElement => {
         src={dummyPrompt}
         alt="Prompt: you're a super hero, and there is a town that needs saving."
       />
-      <DragonBoi />
+      <div className="dragon-boi">
+        <DragonBoi className="dragon" />
+      </div>
     </div>
   );
 };

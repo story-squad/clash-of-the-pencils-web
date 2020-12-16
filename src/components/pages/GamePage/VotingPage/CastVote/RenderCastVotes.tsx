@@ -6,7 +6,7 @@ import {
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { Voting } from '../../../../../api';
 import dragonDropText from '../../../../../assets/img/dragon-drop.png';
-import { dnd, top3, user } from '../../../../../state';
+import { auth, dnd, top3 } from '../../../../../state';
 import { Header, Modal } from '../../../../common';
 import { DragonBank } from '../DragonBank';
 import { DropBank } from '../DropBank';
@@ -18,7 +18,7 @@ const RenderCastVotes = (): React.ReactElement => {
   const resetDnd = useResetRecoilState(dnd.dndContainerState);
   const voteSubmission = useRecoilValue(dnd.voteSubmissionState);
   // grab the user id from recoil to ensure we are logged in
-  const userId = useRecoilValue(user.userId);
+  const userId = useRecoilValue(auth.userId);
   const [error, setError] = useState<null | string>(null);
 
   //check if a user has voted

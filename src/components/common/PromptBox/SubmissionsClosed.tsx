@@ -1,11 +1,11 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { Countdown } from '..';
-import { user } from '../../../state';
+import { auth } from '../../../state';
 import { time } from '../../../utils';
 
 const SubmissionsClosed = (): React.ReactElement => {
-  const username = useRecoilValue(user.username);
+  const username = useRecoilValue(auth.username);
 
   return (
     <div className="prompt-box inactive">

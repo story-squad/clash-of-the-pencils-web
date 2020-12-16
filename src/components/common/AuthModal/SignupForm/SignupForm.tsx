@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { Checkbox, Input, Modal } from '../..';
 import { Auth } from '../../../../api';
+import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
 import squadUp from '../../../../assets/img/squad-up.png';
-import { Checkbox, Input, Modal } from '../../../common';
-import { DragonBoi } from '../DragonBoi';
 import SignupSuccess from './SignupSuccess';
 
 // Regex to check if a string matches the shape of an email
 const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
-const SignupForm = (): React.ReactElement => {
+const SignupForm = (props: Modal.ModalComponentProps): React.ReactElement => {
   const {
     register,
     errors,
@@ -28,6 +28,7 @@ const SignupForm = (): React.ReactElement => {
       .then(() => {
         clearErrors();
         setShowModal(true);
+        props.closeModal();
       })
       .catch((err: Auth.AxiosError) => {
         console.log({ err });
@@ -52,7 +53,9 @@ const SignupForm = (): React.ReactElement => {
           centered={true}
         />
         <form onSubmit={handleSubmit(onSubmit)}>
-          <DragonBoi />
+          <div className="dragon-boi">
+            <DragonBoi className="dragon" />
+          </div>
           <img src={squadUp} alt="Squad Up!" />
           <p>
             A Story Squad account is free! Please fill out the information below
