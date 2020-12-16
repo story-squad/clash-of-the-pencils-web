@@ -3,6 +3,7 @@ import { NavDirection } from './StepsContainer';
 import { StepProps } from './RenderSteps';
 import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
 import pencilPaper from '../../../../assets/img/pencil-and-paper.png';
+import NavArrowButton from './NavArrowButton';
 
 const Step2 = (props: StepProps): React.ReactElement => {
   return (
@@ -17,6 +18,8 @@ const Step2 = (props: StepProps): React.ReactElement => {
       <div className="dragon-boi">
         <DragonBoi className="dragon" />
       </div>
+      <NavArrowButton navDirection={'left'} buttonNav={props.buttonNav} />
+      <NavArrowButton navDirection={'right'} buttonNav={props.buttonNav} />
     </div>
   );
 };
