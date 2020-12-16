@@ -41,7 +41,7 @@ const LoginForm = (props: Modal.ModalComponentProps): React.ReactElement => {
     <div className="landing-form">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="dragon-boi">
-          <DragonBoi className="dragon" />
+          <DragonBoi className="dragon login-dragon" />
         </div>
         <img src={welcomeBack} alt="Welcome Back" />
         <p>Hey! Sign in below to get back into the game.</p>
