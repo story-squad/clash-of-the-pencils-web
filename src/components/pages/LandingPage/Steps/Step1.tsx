@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavDirection } from './StepsContainer';
 import { StepProps } from './RenderSteps';
 import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
 import dummyPrompt from '../../../../assets/img/dummy-prompt.png';
