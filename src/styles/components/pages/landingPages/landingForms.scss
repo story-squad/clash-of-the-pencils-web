@@ -19,14 +19,20 @@
     width: 100%;
 
     img {
-      width: 100%;
+      width: 450px;
     }
 
     .dragon-boi {
-      @media screen and (min-width: $large) {
-        position: fixed;
-        bottom: 3rem;
-        left: 3rem;
+      max-height: 180px;
+      max-width: 200px;
+      .dragon {
+        max-height: 180px;
+        max-width: 200px;
+      }
+      @media screen and (min-width: $tablet) {
+        position: absolute;
+        bottom: 2rem;
+        left: 2rem;
       }
     }
 
