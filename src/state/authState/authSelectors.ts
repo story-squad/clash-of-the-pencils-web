@@ -1,6 +1,6 @@
 import { selector } from 'recoil';
 import { token } from '../../utils';
-import { email, loginToken, userId, username } from './userAtoms';
+import { email, loginToken, userId, username } from './authAtoms';
 
 export const isLoggedIn = selector<boolean>({
   key: 'loginSelector',
