@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import RenderSteps from './RenderSteps';
 
-type NavDirection = 'left' | 'right';
-
 const numberOfSteps = 4;
 
 const StepsContainer = (): React.ReactElement => {
@@ -31,5 +29,7 @@ const StepsContainer = (): React.ReactElement => {
 
   return <RenderSteps stepNum={stepNum} buttonNav={buttonNav} />;
 };
+
+export type NavDirection = 'left' | 'right';
 
 export default StepsContainer;
