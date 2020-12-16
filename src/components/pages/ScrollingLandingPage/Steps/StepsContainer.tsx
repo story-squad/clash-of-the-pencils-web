@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import RenderSteps from './RenderSteps';
 
-const numberOfSteps = 3;
+const numberOfSteps = 4;
 
 const StepsContainer = (): React.ReactElement => {
   const [stepNum, setStepNum] = useState<number>(1);
