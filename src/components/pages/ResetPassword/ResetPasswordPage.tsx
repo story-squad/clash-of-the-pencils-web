@@ -1,28 +1,50 @@
-import React, { useState } from 'react';
+import { parse } from 'query-string';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Header } from '../../common';
 import { ResetEmailForm } from './ResetEmailForm';
 import { PasswordResetForm } from './ResetPasswordForm';
 
 const ResetPasswordPage = (): React.ReactElement => {
-  // deconsturct our current route - provides us everything after http://localhost:3000/
-  //   const { url } = useRouteMatch();
-  //   console.log('URL: ', url);
-  const [showEmailForm, setShowEmailForm] = useState(false);
+  // state to be passed to the reset password form
+  const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [userCode, setUserCode] = useState<string | null>(null);
+  const [showEmailForm, setShowEmailForm] = useState(true);
 
-  // useEffect(() => {
-  //   if (url === '/reset') {
-  //     // render the email form
-  //     setShowEmailForm(true);
-  //   } else if (url === `/passwordreset?code=${code}&email=${email}`) {
-  //     // render the password reset form
-  //     setShowEmailForm(false);
-  //   }
-  // }, [url]);
+  // establish the URL / location in a varaible to use in our useEffect
+  const location = useLocation();
+  //   const { url } = useRouteMatch();
+
+  useEffect(() => {
+    const pathname = location.search;
+    const parsedUrl = parse(pathname);
+    if (typeof parsedUrl.email === 'string') {
+      setUserEmail(parsedUrl.email);
+    }
+    if (typeof parsedUrl.code === 'string') {
+      setUserCode(parsedUrl.code);
+    }
+  }, []);
+
+  // useeffect for reading url to redirect you to proper page
+  useEffect(() => {
+    // if the user code exists then set showEmail form to false
+    if (userCode && userEmail) {
+      setShowEmailForm(false);
+    }
+  }, [userEmail, userCode]);
 
   return (
     <div className="landing-page">
       <Header />
-      {showEmailForm ? <ResetEmailForm /> : <PasswordResetForm />}
+      {showEmailForm ? (
+        <ResetEmailForm />
+      ) : (
+        <PasswordResetForm
+          email={userEmail as string}
+          code={userCode as string}
+        />
+      )}
     </div>
   );
 };

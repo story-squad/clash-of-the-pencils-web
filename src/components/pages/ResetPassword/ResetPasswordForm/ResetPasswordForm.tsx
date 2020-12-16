@@ -1,12 +1,12 @@
-import { parse } from 'query-string';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useLocation } from 'react-router-dom';
 import { Auth } from '../../../../api';
 import { updatePassword } from '../../../../api/Auth';
 import { Input } from '../../../common';
 
-const PasswordResetForm: React.FC = () => {
+const PasswordResetForm = (
+  props: Omit<Auth.NewPasswordBody, 'password'>,
+): React.ReactElement => {
   // deconstruct our useForm() methods
   const {
     register,
@@ -19,27 +19,23 @@ const PasswordResetForm: React.FC = () => {
     mode: 'onChange',
   });
 
-  const location = useLocation();
-  const pathname = location.search;
-  console.log('params', parse(pathname));
-
   // onSubmit should send the users email a reset password link/token that has a 10 min timer
   const onSubmit: SubmitHandler<{
-    email: string;
-    code: string;
     password: string;
   }> = (data) => {
     console.log('Form Submitted: ', data);
 
     const userBody = {
-      email: data.email,
-      code: data.code,
+      email: props.email,
+      code: props.code,
       password: data.password,
     };
 
+    //TODO - redirect user?
     updatePassword(userBody)
       .then(() => {
         clearErrors();
+        // on success show modal
       })
       .catch((err: Auth.AxiosError) => {
         console.log({ err });

@@ -21,7 +21,6 @@ const App = (): React.ReactElement => {
         <Route path="/tos" component={TermsOfService} />
         <Route path="/game" component={GamePage} />
         <Route path="/results" component={ResultsPage} />
-
         <Route path="/reset" component={ResetPasswordPage} />
 
         {/* Fallback Redirect to Dashboard */}
