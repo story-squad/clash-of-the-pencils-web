@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaCircle, FaRegCircle } from 'react-icons/fa';
+import { NavDirection } from './StepsContainer';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
@@ -11,13 +12,13 @@ const RenderSteps = (props: RenderStepsProps): React.ReactElement => {
   const currentStep = () => {
     switch (props.stepNum) {
       case 1:
-        return <Step1 />;
+        return <Step1 buttonNav={props.buttonNav} />;
       case 2:
-        return <Step2 />;
+        return <Step2 buttonNav={props.buttonNav} />;
       case 3:
-        return <Step3 />;
+        return <Step3 buttonNav={props.buttonNav} />;
       case 4:
-        return <Step4 />;
+        return <Step4 buttonNav={props.buttonNav} />;
       default:
         return <StepError />;
     }
@@ -50,6 +51,11 @@ const StepError = (): React.ReactElement => {
 
 interface RenderStepsProps {
   stepNum: number;
+  buttonNav: (direction: NavDirection) => void;
+}
+
+export interface StepProps {
+  buttonNav: (direction: NavDirection) => void;
 }
 
 export default RenderSteps;
