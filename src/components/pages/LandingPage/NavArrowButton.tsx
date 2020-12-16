@@ -1,9 +1,27 @@
 import React from 'react';
-import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
+import {
+  FaAngleLeft,
+  FaAngleRight,
+  FaAngleUp,
+  FaAngleDown,
+} from 'react-icons/fa';
 
 const NavArrowButton = (props: NavArrowButtonProps): React.ReactElement => {
   const className = `nav-arrow-button ${props.navDirection}`;
   const ariaLabel = `Navigate ${props.navDirection}`;
+
+  const icon = () => {
+    switch (props.navDirection) {
+      case 'left':
+        return <FaAngleLeft />;
+      case 'right':
+        return <FaAngleRight />;
+      case 'up':
+        return <FaAngleUp />;
+      case 'down':
+        return <FaAngleDown />;
+    }
+  };
 
   return (
     <button
@@ -11,7 +29,7 @@ const NavArrowButton = (props: NavArrowButtonProps): React.ReactElement => {
       aria-label={ariaLabel}
       onClick={() => props.buttonNav(props.navDirection)}
     >
-      {props.navDirection === 'left' ? <FaAngleLeft /> : <FaAngleRight />}
+      {icon()}
     </button>
   );
 };
