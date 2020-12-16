@@ -80,7 +80,7 @@ const SignupForm = (): React.ReactElement => {
                 pattern: {
                   // ensures the entered email string matches a valid email address pattern
                   value: emailPattern,
-                  message: 'Please enter a valid email address',
+                  message: 'Please enter a valid email address.',
                 },
               }}
               placeholder="SuperWriter@storysquad.org"
@@ -118,14 +118,14 @@ const SignupForm = (): React.ReactElement => {
                     const pattern = /[A-Z]/;
                     return (
                       pattern.test(value) ||
-                      'Password must include at least 1 capital letter'
+                      'Password must include at least 1 capital letter.'
                     );
                   },
                   includesNumber: (value) => {
                     const pattern = /[0-9]/;
                     return (
                       pattern.test(value) ||
-                      'Password must include at least 1 number'
+                      'Password must include at least 1 number.'
                     );
                   },
                   // checks that entered password value is a minimum of 8 chars
@@ -137,7 +137,7 @@ const SignupForm = (): React.ReactElement => {
                   },
                 },
               }}
-              placeholder="6 characters long, at least 1 number"
+              placeholder="Create a safe password"
             />
             <Input
               name="confirm"
@@ -184,7 +184,7 @@ const SignupForm = (): React.ReactElement => {
                   pattern: {
                     // ensures the entered parent email string matches a valid email address pattern
                     value: emailPattern,
-                    message: 'Please enter a valid email address',
+                    message: 'Please enter a valid email address.',
                   },
                 }}
                 placeholder="ParentSuperWriter@storysquad.org"

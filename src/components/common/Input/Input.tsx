@@ -26,28 +26,30 @@ const Input = ({
   return (
     <div className={`form-input${errors[name] ? ' error' : ''}`}>
       <label htmlFor={name}>{label} :</label>
-      <input
-        id={name}
-        name={name}
-        type={inputType}
-        ref={register && register(rules)}
-        autoComplete="off"
-        placeholder={placeholder}
-        {...rest}
-      />
-      {showPassword ? (
-        <button
-          className="show-hide-btn"
-          tabIndex={-1} // Prevents button from being selected while tabbing
-          onClick={toggleHiddenPassword}
-        >
-          {inputType === 'password' ? (
-            <AiOutlineEye className="eye" />
-          ) : (
-            <AiOutlineEyeInvisible className="eye" />
-          )}
-        </button>
-      ) : null}
+      <div className="input-field">
+        <input
+          id={name}
+          name={name}
+          type={inputType}
+          ref={register && register(rules)}
+          autoComplete="off"
+          placeholder={placeholder}
+          {...rest}
+        />
+        {showPassword ? (
+          <button
+            className="show-hide-btn"
+            tabIndex={-1} // Prevents button from being selected while tabbing
+            onClick={toggleHiddenPassword}
+          >
+            {inputType === 'password' ? (
+              <AiOutlineEye />
+            ) : (
+              <AiOutlineEyeInvisible />
+            )}
+          </button>
+        ) : null}
+      </div>
       <div className="message">
         <span className="red">*</span>{' '}
         {errors[name] ? errors[name].message : ''}

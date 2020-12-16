@@ -20,7 +20,7 @@ export const getTimeUntilEvent = (
   event: eventType,
   now?: Moment,
 ): { active: boolean; timeUntil: number } => {
-  if (!now) now = moment.utc();
+  if (!now) now = moment.utc().add(2, 'h');
   const e = schedule[event];
   let timeUntil, active;
 
