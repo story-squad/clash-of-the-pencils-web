@@ -1,0 +1,17 @@
+.nav-arrow-button {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 6rem;
+
+  &.left {
+    left: 0;
+  }
+
+  &.right {
+    right: 0;
+  }
+}
