@@ -5,14 +5,18 @@
 
   h2 {
     padding: 2rem;
-    font-size: 4rem;
+    font-size: 2rem;
     color: white;
     font-family: $display-font;
+
+    @media (min-width: 700px) {
+      font-size: 4rem;
+    }
   }
 
   h3 {
     padding: 2rem;
-    font-size: 6rem;
+    font-size: 2rem;
     color: white;
     font-family: $display-font;
     text-align: center;
@@ -31,8 +35,13 @@
 
     svg {
       color: white;
-      width: 4rem;
-      height: 4rem;
+      width: 2rem;
+      height: 2rem;
+
+      @media (min-width: 700px) {
+        width: 3rem;
+      height: 3rem;
+      }
     }
   }
 
