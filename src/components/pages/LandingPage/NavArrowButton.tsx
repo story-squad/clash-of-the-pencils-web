@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
-import { NavDirection } from './StepsContainer';
+import { NavDirection } from './Steps/StepsContainer';
 
 const NavArrowButton = (props: NavArrowButtonProps): React.ReactElement => {
   const className = `nav-arrow-button ${props.navDirection}`;
