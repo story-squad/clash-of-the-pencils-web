@@ -1,8 +1,10 @@
 import React from 'react';
+import { NavDirection } from './StepsContainer';
+import { StepProps } from './RenderSteps';
 import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
 import pencilPaper from '../../../../assets/img/pencil-and-paper.png';
 
-const Step2 = (): React.ReactElement => {
+const Step2 = (props: StepProps): React.ReactElement => {
   return (
     <div className="step-2">
       <h2>Step 2</h2>
