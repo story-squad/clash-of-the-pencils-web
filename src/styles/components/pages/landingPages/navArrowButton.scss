@@ -18,4 +18,20 @@
   &.right {
     right: -1rem;
   }
+
+  &.up, &.down {
+    margin: auto;
+    left: 0;
+    right: 0;
+  }
+
+  &.up {
+    top: 0;
+    bottom: auto;
+  }
+
+  &.down {
+    top: auto;
+    bottom: 0;
+  }
 }
