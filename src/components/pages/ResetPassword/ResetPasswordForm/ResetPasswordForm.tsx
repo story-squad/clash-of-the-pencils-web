@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Auth } from '../../../../api';
 import { updatePassword } from '../../../../api/Auth';
@@ -7,6 +7,9 @@ import { Input } from '../../../common';
 const PasswordResetForm = (
   props: Omit<Auth.NewPasswordBody, 'password'>,
 ): React.ReactElement => {
+  //TODO create state to show modal
+  const [showModal, setShowModal] = useState(false);
+
   // deconstruct our useForm() methods
   const {
     register,
@@ -35,7 +38,7 @@ const PasswordResetForm = (
     updatePassword(userBody)
       .then(() => {
         clearErrors();
-        // on success show modal
+        setShowModal(true);
       })
       .catch((err: Auth.AxiosError) => {
         console.log({ err });

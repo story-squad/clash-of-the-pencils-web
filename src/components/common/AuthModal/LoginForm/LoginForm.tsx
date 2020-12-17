@@ -74,7 +74,10 @@ const LoginForm = (props: Modal.ModalComponentProps): React.ReactElement => {
           onClick={() => clearErrors('form')}
         />
         <div className="text change-form">
-          Forgot your password? <Link to="/comingsoon">Click Here.</Link>
+          Forgot your password?{' '}
+          <Link to="/reset" onClick={props.closeModal}>
+            Click Here.
+          </Link>
         </div>
         <div className="text change-form">
           Need an account? <Link to="/register">Click Here.</Link>
