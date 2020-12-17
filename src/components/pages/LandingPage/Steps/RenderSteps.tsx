@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaCircle, FaRegCircle } from 'react-icons/fa';
 import { NavDirection } from '../NavArrowButton';
+import NavArrowButton from '../NavArrowButton';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
@@ -34,8 +35,10 @@ const RenderSteps = (props: RenderStepsProps): React.ReactElement => {
 
   return (
     <div className="steps">
+      <NavArrowButton buttonNav={props.buttonNavY} navDirection="up" />
       {/* Step-by-step instructions go here! Should render based off of stepNum */}
       {currentStep()}
+      <NavArrowButton buttonNav={props.buttonNavY} navDirection="down" />
       {circles()}
     </div>
   );
@@ -52,6 +55,7 @@ const StepError = (): React.ReactElement => {
 interface RenderStepsProps {
   stepNum: number;
   buttonNavX: (direction: NavDirection) => void;
+  buttonNavY: (direction: NavDirection) => void;
 }
 
 export interface StepProps {
