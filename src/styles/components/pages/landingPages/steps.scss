@@ -13,6 +13,7 @@
 
   .img-center {
     @include img-center();
+    padding-top: 4rem;
   }
 
   .circles {
@@ -41,10 +42,6 @@
   [class^="step-"] {
     // this applies to all 'step-#' classes
     height: 100vh;
-
-    img {
-      padding-top: 4rem;
-    }
   }
 
   .step-1 {
