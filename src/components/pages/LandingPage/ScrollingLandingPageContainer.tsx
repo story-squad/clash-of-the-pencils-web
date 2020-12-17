@@ -25,7 +25,7 @@ const ScrollingLandingPageContainer = (): React.ReactElement => {
       renderAllPagesOnFirstRender
     >
       <Home buttonNav={buttonNavY} />
-      <Steps />
+      <Steps buttonNavY={buttonNavY} />
       <VotingInfo buttonNav={buttonNavY} />
     </ReactScroller>
   );
