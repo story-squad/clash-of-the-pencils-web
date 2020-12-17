@@ -28,8 +28,6 @@ const EmailForm: React.FC = () => {
       });
   };
 
-  // TODO - error handlers, remove console log from onSubmit
-
   return (
     <div className="landing-form">
       <form onSubmit={handleSubmit(onSubmit)}>

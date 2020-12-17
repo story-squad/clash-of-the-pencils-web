@@ -2,8 +2,8 @@ import { parse } from 'query-string';
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Header } from '../../common';
-import { ResetEmailForm } from './ResetEmailForm';
-import { PasswordResetForm } from './ResetPasswordForm';
+import { ResetEmailForm } from './EmailForm';
+import { PasswordResetForm } from './PasswordForm';
 
 const ResetPasswordPage = (): React.ReactElement => {
   // state to be passed to the reset password form

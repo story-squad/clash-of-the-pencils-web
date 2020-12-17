@@ -1,1 +1,1 @@
-export { default as ResetPasswordPage } from './ResetPasswordPage';
+export { default as ResetPasswordPage } from './ResetPasswordContainer';
