@@ -28,7 +28,13 @@ const StepsContainer = (props: StepsContainerProps): React.ReactElement => {
     }
   };
 
-  return <RenderSteps stepNum={stepNum} buttonNavX={buttonNavX} />;
+  return (
+    <RenderSteps
+      stepNum={stepNum}
+      buttonNavX={buttonNavX}
+      buttonNavY={props.buttonNavY}
+    />
+  );
 };
 
 interface StepsContainerProps {
