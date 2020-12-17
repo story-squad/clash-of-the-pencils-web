@@ -12,13 +12,13 @@ const RenderSteps = (props: RenderStepsProps): React.ReactElement => {
   const currentStep = () => {
     switch (props.stepNum) {
       case 1:
-        return <Step1 buttonNav={props.buttonNavLeftRight} />;
+        return <Step1 buttonNav={props.buttonNavX} />;
       case 2:
-        return <Step2 buttonNav={props.buttonNavLeftRight} />;
+        return <Step2 buttonNav={props.buttonNavX} />;
       case 3:
-        return <Step3 buttonNav={props.buttonNavLeftRight} />;
+        return <Step3 buttonNav={props.buttonNavX} />;
       case 4:
-        return <Step4 buttonNav={props.buttonNavLeftRight} />;
+        return <Step4 buttonNav={props.buttonNavX} />;
       default:
         return <StepError />;
     }
@@ -51,7 +51,7 @@ const StepError = (): React.ReactElement => {
 
 interface RenderStepsProps {
   stepNum: number;
-  buttonNavLeftRight: (direction: NavDirection) => void;
+  buttonNavX: (direction: NavDirection) => void;
 }
 
 export interface StepProps {

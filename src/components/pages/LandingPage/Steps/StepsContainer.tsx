@@ -20,7 +20,7 @@ const StepsContainer = (): React.ReactElement => {
     }
   };
 
-  const buttonNav = (direction: NavDirection) => {
+  const buttonNavX = (direction: NavDirection) => {
     if (direction === 'right') {
       setStepNum((cur) => cur + (cur < numberOfSteps ? 1 : 0));
     } else if (direction === 'left') {
@@ -28,7 +28,7 @@ const StepsContainer = (): React.ReactElement => {
     }
   };
 
-  return <RenderSteps stepNum={stepNum} buttonNav={buttonNav} />;
+  return <RenderSteps stepNum={stepNum} buttonNavX={buttonNavX} />;
 };
 
 export default StepsContainer;
