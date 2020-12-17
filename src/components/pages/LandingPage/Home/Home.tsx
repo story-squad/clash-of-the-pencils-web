@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
 import howItWorks from '../../../../assets/img/how-it-works.png';
 import landingText from '../../../../assets/img/landing-text.png';
+import { NavDirection } from '../NavArrowButton';
 import { Header } from '../../../common';
 
-const Home = (): React.ReactElement => {
+const Home = (props: HomeProps): React.ReactElement => {
   return (
     <>
       <Header />
@@ -35,5 +36,9 @@ const Home = (): React.ReactElement => {
     </>
   );
 };
+
+interface HomeProps {
+  buttonNav: (navDirection: NavDirection) => void;
+}
 
 export default Home;

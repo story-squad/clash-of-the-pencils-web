@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import voteFinalists from '../../../../assets/img/vote-on-finalists.png';
 import dragonDropDemo from '../../../../assets/img/dragon-drop-demo.png';
+import { NavDirection } from '../NavArrowButton';
 
-const VotingInfo = (): React.ReactElement => {
+const VotingInfo = (props: VotingInfoProps): React.ReactElement => {
   return (
     <div className="voting-info">
       <img
@@ -24,5 +25,9 @@ const VotingInfo = (): React.ReactElement => {
     </div>
   );
 };
+
+interface VotingInfoProps {
+  buttonNav: (navDirection: NavDirection) => void;
+}
 
 export default VotingInfo;
