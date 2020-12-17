@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactScroller from 'react-page-scroller';
-import { NavDirection } from './NavArrowButton';
 import { Home } from './Home';
+import { NavDirection } from './NavArrowButton';
 import { Steps } from './Steps';
 import { VotingInfo } from './VotingInfo';
 

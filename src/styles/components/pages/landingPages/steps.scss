@@ -22,6 +22,7 @@
     bottom: 5rem;
     display: flex;
     justify-content: center;
+    opacity: 0.5;
 
     @media (min-width: $tablet) {
       bottom: 7rem;
@@ -36,10 +37,14 @@
         width: 3rem;
         height: 3rem;
       }
+
+      &:not(:last-of-type) {
+        margin-right: 0.5rem;
+      }
     }
   }
 
-  [class^="step-"] {
+  [class^='step-'] {
     // this applies to all 'step-#' classes
     height: 100vh;
   }
