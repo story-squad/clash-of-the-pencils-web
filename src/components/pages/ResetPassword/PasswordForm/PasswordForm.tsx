@@ -2,15 +2,13 @@ import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Auth } from '../../../../api';
 import { updatePassword } from '../../../../api/Auth';
-import { Input } from '../../../common';
+import { Input, Modal } from '../../../common';
+import ResetSuccess from './ResetSuccess';
 
 const PasswordResetForm = (
   props: Omit<Auth.NewPasswordBody, 'password'>,
+  passwordProps: Modal.ModalComponentProps,
 ): React.ReactElement => {
-  //TODO create state to show modal
-  const [showModal, setShowModal] = useState(false);
-
-  // deconstruct our useForm() methods
   const {
     register,
     handleSubmit,
@@ -21,6 +19,7 @@ const PasswordResetForm = (
   } = useForm({
     mode: 'onChange',
   });
+  const [showModal, setShowModal] = useState(false);
 
   // onSubmit should send the users email a reset password link/token that has a 10 min timer
   const onSubmit: SubmitHandler<{
@@ -39,6 +38,7 @@ const PasswordResetForm = (
       .then(() => {
         clearErrors();
         setShowModal(true);
+        passwordProps.closeModal();
       })
       .catch((err: Auth.AxiosError) => {
         console.log({ err });
@@ -56,6 +56,13 @@ const PasswordResetForm = (
 
   return (
     <div className="landing-form">
+      <Modal.Component
+        visible={showModal}
+        setVisible={setShowModal}
+        component={ResetSuccess}
+        closable={true}
+        centered={true}
+      />
       <form onSubmit={handleSubmit(onSubmit)}>
         <ul className="text">
           <li>Password requirements:</li>
