@@ -10,7 +10,7 @@ const ScrollingLandingPageContainer = (): React.ReactElement => {
   const changePage = (newNum: number) => setCurrentPage(newNum);
   const beforePageChange = (newNum: number) => console.log(newNum);
 
-  const buttonNavUpDown = (navDirection: NavDirection) => {
+  const buttonNavY = (navDirection: NavDirection) => {
     if (navDirection === 'up') {
       changePage((currentPage ? currentPage : 0) - 1);
     } else if (navDirection === 'down')
