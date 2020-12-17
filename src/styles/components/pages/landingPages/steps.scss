@@ -3,29 +3,16 @@
   width: 100vw;
   position: relative;
 
-  h3 {
-    padding: 2rem;
-    font-size: 2rem;
-    color: $white;
-    font-family: $display-font;
-    text-align: center;
-  }
-
-  .img-center {
-    @include img-center();
-    padding-top: 4rem;
-  }
-
   .circles {
     width: 100%;
     position: absolute;
-    bottom: 5rem;
+    bottom: 4rem;
     display: flex;
     justify-content: center;
     opacity: 0.5;
 
     @media (min-width: $tablet) {
-      bottom: 7rem;
+      bottom: 6rem;
     }
 
     svg {
@@ -44,9 +31,48 @@
     }
   }
 
-  [class^='step-'] {
+  .flex-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+    height: 90vh;
+    padding: 0 4rem;
+
+    img {
+      max-width: 100%;
+    }
+
+    img:first-of-type {
+      max-height: 20vh;
+    }
+
+    img:nth-of-type(2) {
+      max-height: 39vh;
+    }
+  }
+
+  .dragon-boi {
+    width: 100vw;
+
+    &.right {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    img {
+      max-height: 30vh;
+    }
+  }
+
+  [class^="step-"] {
     // this applies to all 'step-#' classes
     height: 100vh;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
   }
 
   .step-1 {
@@ -55,36 +81,5 @@
 
   .step-3 {
     background: $seafoam;
-  }
-
-  // Put dragon-boi on the left
-  .step-1,
-  .step-3 {
-    .dragon-boi {
-      position: absolute;
-      bottom: 2rem;
-      left: 2rem;
-
-      svg {
-        width: 50%;
-        height: 50%;
-      }
-    }
-  }
-
-  // Put dragon-boi on the right and flip
-  .step-2,
-  .step-4 {
-    .dragon-boi {
-      position: absolute;
-      bottom: 2rem;
-      right: 2rem;
-      transform: scaleX(-1);
-
-      svg {
-        width: 50%;
-        height: 50%;
-      }
-    }
   }
 }
