@@ -42,7 +42,7 @@ const PasswordResetForm = (
         clearErrors();
         setShowModal(true);
         passwordProps.closeModal();
-        push('/login');
+        push('/');
       })
       .catch((err: Auth.AxiosError) => {
         console.log({ err });
@@ -59,7 +59,7 @@ const PasswordResetForm = (
   // TODO - need error handlers, remove console log in onSubmit
 
   return (
-    <div className="landing-form">
+    <div className="password-form-wrapper">
       <Modal.Component
         visible={showModal}
         setVisible={setShowModal}
@@ -67,12 +67,14 @@ const PasswordResetForm = (
         closable={true}
         centered={true}
       />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <ul className="text">
-          <li>Password requirements:</li>
-          <li>Between 8 and 32 characters</li>
-          <li>Includes at least 1 Capital</li>
-          <li>Includes at least 1 Number</li>
+      <form onSubmit={handleSubmit(onSubmit)} className="password-form">
+        <ul className="password-req-ul">
+          <li className="password-requirements-li">Password requirements</li>
+          <li className="password-form-li">Between 8 and 32 characters</li>
+          <li className="password-form-li">
+            Includes at least 1 capital letter
+          </li>
+          <li className="password-form-li">Includes at least 1 number</li>
         </ul>
         <Input
           name="password"
@@ -125,6 +127,7 @@ const PasswordResetForm = (
           }}
         />
         <input
+          className="password-submit-btn"
           type="submit"
           value="Reset Password"
           onClick={() => clearErrors('form')}

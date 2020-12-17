@@ -35,16 +35,18 @@ const ResetPasswordPage = (): React.ReactElement => {
   }, [userEmail, userCode]);
 
   return (
-    <div className="landing-page">
+    <div className="submission-page-container">
       <Header />
-      {showEmailForm ? (
-        <ResetEmailForm />
-      ) : (
-        <PasswordResetForm
-          email={userEmail as string}
-          code={userCode as string}
-        />
-      )}
+      <div className="landing-page">
+        {showEmailForm ? (
+          <ResetEmailForm />
+        ) : (
+          <PasswordResetForm
+            email={userEmail as string}
+            code={userCode as string}
+          />
+        )}
+      </div>
     </div>
   );
 };
