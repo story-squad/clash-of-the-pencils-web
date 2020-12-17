@@ -2,7 +2,8 @@
   height: 100vh;
   width: 100%;
   padding-top: 4rem;
-
+  position: relative;
+  
   .button-container {
     text-align: center;
     margin: 2rem auto;
@@ -21,5 +22,6 @@
 
   .img-center {
     @include img-center();
+    padding-top: 2rem;
   }
 }
