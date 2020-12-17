@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaAngleDown } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
 import howItWorks from '../../../../assets/img/how-it-works.png';
