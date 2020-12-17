@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 import { Auth } from '../../../../api';
 import { updatePassword } from '../../../../api/Auth';
 import { Input, Modal } from '../../../common';
@@ -21,6 +22,8 @@ const PasswordResetForm = (
   });
   const [showModal, setShowModal] = useState(false);
 
+  const { push } = useHistory();
+
   // onSubmit should send the users email a reset password link/token that has a 10 min timer
   const onSubmit: SubmitHandler<{
     password: string;
@@ -39,6 +42,7 @@ const PasswordResetForm = (
         clearErrors();
         setShowModal(true);
         passwordProps.closeModal();
+        push('/login');
       })
       .catch((err: Auth.AxiosError) => {
         console.log({ err });

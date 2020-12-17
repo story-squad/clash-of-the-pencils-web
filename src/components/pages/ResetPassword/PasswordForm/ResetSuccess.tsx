@@ -5,7 +5,7 @@ const ResetSuccess: React.FC = () => {
 
   const clickHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    push('/login');
+    // TODO - bring the Login Modal in bc we no longer have a /login route
   };
   return (
     <>
