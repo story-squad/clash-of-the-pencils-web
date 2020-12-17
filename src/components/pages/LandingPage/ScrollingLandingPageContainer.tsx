@@ -24,9 +24,9 @@ const ScrollingLandingPageContainer = (): React.ReactElement => {
       customPageNumber={currentPage}
       renderAllPagesOnFirstRender
     >
-      <Home />
+      <Home buttonNav={buttonNavY} />
       <Steps />
-      <VotingInfo />
+      <VotingInfo buttonNav={buttonNavY} />
     </ReactScroller>
   );
 };
