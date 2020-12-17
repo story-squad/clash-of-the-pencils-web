@@ -10,7 +10,7 @@ const Input = ({
   rules = {},
   errors = {},
   showPassword,
-  placeholder = 'text',
+  placeholder = '',
   ...rest
 }: InputProps): React.ReactElement => {
   // store the type prop in state so that it can be changed to show/hide the value in a password input
@@ -21,7 +21,7 @@ const Input = ({
    */
   const toggleHiddenPassword = (event: React.MouseEvent) => {
     event.preventDefault();
-    setInputType((prevType) => (prevType === 'password' ? 'text' : 'password'));
+    setInputType((prevType) => (prevType === 'password' ? '' : 'password'));
   };
   return (
     <div className={`form-input${errors[name] ? ' error' : ''}`}>
