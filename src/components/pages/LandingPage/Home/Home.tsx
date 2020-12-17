@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
 import howItWorks from '../../../../assets/img/how-it-works.png';
 import landingText from '../../../../assets/img/landing-text.png';
-import { NavDirection } from '../NavArrowButton';
+import NavArrowButton, { NavDirection } from '../NavArrowButton';
 import { Header } from '../../../common';
-import NavArrowButton from '../NavArrowButton';
 
 const Home = (props: HomeProps): React.ReactElement => {
   return (

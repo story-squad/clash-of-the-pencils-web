@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import voteFinalists from '../../../../assets/img/vote-on-finalists.png';
 import dragonDropDemo from '../../../../assets/img/dragon-drop-demo.png';
-import { NavDirection } from '../NavArrowButton';
+import NavArrowButton, { NavDirection } from '../NavArrowButton';
 
 const VotingInfo = (props: VotingInfoProps): React.ReactElement => {
   return (
@@ -12,6 +12,7 @@ const VotingInfo = (props: VotingInfoProps): React.ReactElement => {
         src={voteFinalists}
         alt="4. Vote on the three finalists to determine a winner and see your squad score."
       />
+      <NavArrowButton buttonNav={props.buttonNav} navDirection="up" />
       <img
         className="img-center"
         src={dragonDropDemo}
