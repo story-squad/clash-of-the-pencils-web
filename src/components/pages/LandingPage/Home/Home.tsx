@@ -6,6 +6,7 @@ import howItWorks from '../../../../assets/img/how-it-works.png';
 import landingText from '../../../../assets/img/landing-text.png';
 import { NavDirection } from '../NavArrowButton';
 import { Header } from '../../../common';
+import NavArrowButton from '../NavArrowButton';
 
 const Home = (props: HomeProps): React.ReactElement => {
   return (
@@ -29,9 +30,8 @@ const Home = (props: HomeProps): React.ReactElement => {
         </div>
         <div className="how-it-works">
           <img src={howItWorks} alt="How it works" />
-          <br />
-          <FaAngleDown />
         </div>
+        <NavArrowButton buttonNav={props.buttonNav} navDirection="down" />
       </div>
     </>
   );
