@@ -78,8 +78,9 @@ const PasswordResetForm = (
         </ul>
         <Input
           name="password"
-          label="Password"
+          label="New Password"
           type="password"
+          placeholder="enter new password"
           showPassword
           errors={errors}
           register={register}
@@ -113,8 +114,9 @@ const PasswordResetForm = (
         />
         <Input
           name="confirm"
-          label="Confirm Password"
+          label="Confirm New Password"
           type="password"
+          placeholder="confirm new password"
           showPassword
           errors={errors}
           register={register}
