@@ -28,7 +28,6 @@ const SubCard = ({
 };
 
 interface SubCardProps extends Submissions.SubItem {
-  src: string;
   canPreview?: boolean;
   onModalOpen?: () => void;
 }

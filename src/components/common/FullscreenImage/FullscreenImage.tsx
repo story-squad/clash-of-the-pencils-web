@@ -40,7 +40,6 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
 };
 
 interface FullscreenImageProps extends Submissions.SubItem {
-  src: string;
   isVisible: boolean;
   setIsVisible: React.Dispatch<SetStateAction<boolean>>;
 }
