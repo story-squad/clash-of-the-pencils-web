@@ -6,8 +6,8 @@ export interface SubItem {
   userId: number;
   username: string;
   image: string;
+  src: string;
   pages?: string;
-  src?: string;
 }
 
 export const getImageFromS3 = async (sub: SubItem): Promise<SubItem> => {
