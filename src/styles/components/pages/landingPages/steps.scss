@@ -17,12 +17,12 @@
 
     svg {
       color: $white;
-      width: 2rem;
-      height: 2rem;
+      width: 1.2rem;
+      height: 1.2rem;
 
       @media (min-width: $tablet) {
-        width: 3rem;
-        height: 3rem;
+        width: 1.6rem;
+        height: 1.6rem;
       }
 
       &:not(:last-of-type) {
