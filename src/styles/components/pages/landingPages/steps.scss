@@ -38,18 +38,21 @@
     align-items: center;
     flex-grow: 1;
     height: 90vh;
-    padding: 2rem 4rem 0;
+    padding: 2rem 2rem 0;
 
     img {
       max-width: 100%;
     }
 
+    // Header img
     img:first-of-type {
       max-height: 20vh;
     }
 
+    // Middle img
     img:nth-of-type(2) {
       max-height: 39vh;
+      padding: 0 2rem;
     }
   }
 
