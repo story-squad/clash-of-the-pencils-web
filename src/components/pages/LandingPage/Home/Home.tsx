@@ -12,7 +12,11 @@ const Home = (props: HomeProps): React.ReactElement => {
       <div className="home-page">
         <img src={landingText} alt="Unleash your creativity!" />
         <div className="dragon-boi">
-          <img src={hiImBlaze} className="dragon" />
+          <img
+            src={hiImBlaze}
+            className="dragon"
+            alt="Dragon saying 'Hi, I'm Blaze, and I can't wait to read your stories!'"
+          />
         </div>
         <div className="how-it-works">
           <img src={howItWorks} alt="How it works" />
