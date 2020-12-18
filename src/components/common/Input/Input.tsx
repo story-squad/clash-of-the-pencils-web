@@ -33,6 +33,7 @@ const Input = ({
           type={inputType}
           ref={register && register(rules)}
           autoComplete="off"
+          autoCapitalize="off"
           placeholder={placeholder}
           {...rest}
         />
@@ -58,7 +59,8 @@ const Input = ({
   );
 };
 
-interface InputProps {
+interface InputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
   name: string;
   label: string;
   register: UseFormMethods['register'];

@@ -2,6 +2,7 @@ export { AuthModal } from './AuthModal';
 export { Checkbox } from './Checkbox';
 export { ComingSoon } from './ComingSoon';
 export { Countdown } from './Countdown';
+export { FullscreenImage } from './FullscreenImage';
 export { Header } from './Header';
 export { Histogram } from './Histogram';
 export { InfoHoverTip } from './InfoHoverTip';
