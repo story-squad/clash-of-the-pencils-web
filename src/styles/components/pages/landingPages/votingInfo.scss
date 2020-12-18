@@ -2,10 +2,6 @@
   height: 100vh;
   width: 100vw;
   position: relative;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
 
   .flex-wrapper {
     display: flex;
@@ -13,8 +9,8 @@
     justify-content: space-between;
     align-items: center;
     flex-grow: 1;
-    height: 90vh;
-    padding: 2rem 2rem 0;
+    height: 100vh;
+    padding: 5vh 2rem;
 
     img {
       max-width: 100%;
@@ -42,7 +38,7 @@
       max-height: 40vh;
 
       @media (min-width: $large) {
-        min-height: 35vh;
+        min-height: 25vh;
         max-height: 45vh;
       }
     }
