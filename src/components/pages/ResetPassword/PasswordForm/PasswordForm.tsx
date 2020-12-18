@@ -20,7 +20,7 @@ const PasswordResetForm = (
   } = useForm({
     mode: 'onChange',
   });
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
 
   const { push } = useHistory();
 
@@ -66,6 +66,7 @@ const PasswordResetForm = (
         component={ResetSuccess}
         closable={true}
         centered={true}
+        title="Success!"
       />
       <form onSubmit={handleSubmit(onSubmit)} className="password-form">
         <ul className="password-req-ul">

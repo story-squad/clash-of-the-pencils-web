@@ -1,21 +1,17 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
 const ResetSuccess: React.FC = () => {
-  const { push } = useHistory();
-
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const clickHandler = (e: React.FormEvent) => {
     e.preventDefault();
+    setShowAuthModal(true);
     // TODO - bring the Login Modal in bc we no longer have a /login route
   };
   return (
     <>
-      <p className="signup-success">
-        Password Reset Successful!
-        <br />
-        Please log in to complete the reset process.
-        <br />
+      <div className="reset-success">
+        <p>Please log in to complete the reset process.</p>
         <button onCanPlayThrough={clickHandler}>Login</button>
-      </p>
+      </div>
     </>
   );
 };
