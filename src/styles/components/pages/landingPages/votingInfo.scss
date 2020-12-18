@@ -37,13 +37,18 @@
     bottom: 2rem;
     right: 2rem;
 
-    @media (min-width: $tablet) {
-      visibility: unset;
-    }
-
     img {
       min-height: 20vh;
       max-height: 40vh;
+
+      @media (min-width: $large) {
+        min-height: 35vh;
+        max-height: 45vh;
+      }
+    }
+
+    @media (min-width: $tablet) {
+      visibility: unset;
     }
   }
 
@@ -58,7 +63,7 @@
       a {
         @include button($orange, $padding: 1rem 5rem 0.8rem);
         text-decoration: none;
-        font-size: 3.0rem;
+        font-size: 3rem;
       }
     }
   }
