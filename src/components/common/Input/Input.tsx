@@ -38,6 +38,7 @@ const Input = ({
         />
         {showPassword ? (
           <button
+            type="button"
             className="show-hide-btn"
             tabIndex={-1} // Prevents button from being selected while tabbing
             onClick={toggleHiddenPassword}
