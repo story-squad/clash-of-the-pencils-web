@@ -1,9 +1,50 @@
 .voting-info {
   height: 100vh;
-  width: 100%;
-  padding-top: 4rem;
+  width: 100vw;
   position: relative;
-  
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+
+  .flex-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+    flex-grow: 1;
+    height: 90vh;
+    padding: 2rem 4rem 0;
+
+    img {
+      max-width: 100%;
+    }
+
+    img:first-of-type {
+      max-height: 20vh;
+    }
+
+    img:nth-of-type(2) {
+      max-height: 39vh;
+    }
+  }
+
+  .dragon-boi {
+    visibility: hidden;
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+
+    @media (min-width: $tablet) {
+      visibility: unset;
+    }
+
+    img {
+      min-height: 20vh;
+      max-height: 40vh;
+    }
+  }
+
   .button-container {
     text-align: center;
     margin: 2rem auto;
@@ -18,10 +59,5 @@
         font-size: 2.4rem;
       }
     }
-  }
-
-  .img-center {
-    @include img-center();
-    padding-top: 2rem;
   }
 }
