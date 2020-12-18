@@ -76,6 +76,7 @@ const SignupForm = (props: Modal.ModalComponentProps): React.ReactElement => {
             <Input
               name="email"
               label="Email"
+              type="email"
               errors={errors}
               register={register}
               rules={{

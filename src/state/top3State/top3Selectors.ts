@@ -13,7 +13,7 @@ export const getReadCount = selector<number>({
 // This hasn't been used yet, and is mostly here to serve as an example
 // of how to use the powerful selectorFamily syntax
 export const getTop3ByIndex = selectorFamily<
-  Submissions.SubItem | null, // The return value of the getter, subission or null
+  Submissions.SubItem | null, // The return value of the getter, submission or null
   number // The parameter passed into the getter, here a numbered array index
 >({
   key: 'top3ByIndex',

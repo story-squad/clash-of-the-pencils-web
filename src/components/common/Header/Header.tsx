@@ -16,6 +16,7 @@ const Header = (): React.ReactElement => {
   const menuItems = useMemo<headerItems[]>(() => {
     const navItems = [{ link: '/', text: 'Home' }];
     if (gameActive) navItems.push({ link: '/game', text: 'Game' });
+    navItems.push({ link: '/results', text: 'Results' });
     if (isLogged) navItems.push({ link: '/logout', text: 'Sign Out' });
     return navItems;
   }, [isLogged]);
