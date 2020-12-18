@@ -29,9 +29,8 @@ const EmailForm: React.FC = () => {
   };
 
   return (
-    <div className="landing-form">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <h3>Password Reset</h3>
+    <div className="password-form-wrapper">
+      <form className="email-form" onSubmit={handleSubmit(onSubmit)}>
         <p>Please enter your email to receive a reset link.</p>
         {errors.form && (
           <div className="server-error">{errors.form.message}</div>
@@ -39,11 +38,17 @@ const EmailForm: React.FC = () => {
         <Input
           name="email"
           label="Email"
+          placeholder="enter your email"
           errors={errors}
           register={register}
           rules={{ required: 'Please enter your email!' }}
         />
-        <input type="submit" value="Send" onClick={() => clearErrors('form')} />
+        <input
+          className="submit-email-btn"
+          type="submit"
+          value="Send"
+          onClick={() => clearErrors('form')}
+        />
       </form>
     </div>
   );
