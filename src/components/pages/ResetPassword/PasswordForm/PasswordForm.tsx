@@ -18,7 +18,7 @@ const PasswordForm = (
   } = useForm({
     mode: 'onChange',
   });
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   // onSubmit should send the users email a reset password link/token that has a 10 min timer
   const onSubmit: SubmitHandler<{
@@ -69,58 +69,62 @@ const PasswordForm = (
           </li>
           <li className="password-form-li">Includes at least 1 number</li>
         </ul>
-        <Input
-          name="password"
-          label="New Password"
-          type="password"
-          placeholder="enter new password"
-          showPassword
-          errors={errors}
-          register={register}
-          rules={{
-            required: 'Password is required!',
-            validate: {
-              // checks entered password value contains required characters
-              includesCapital: (value) => {
-                const pattern = /[A-Z]/;
-                return (
-                  pattern.test(value) ||
-                  'Password must include at least 1 capital letter'
-                );
+        <p className="password-form-input">
+          <Input
+            name="password"
+            label="New Password"
+            type="password"
+            placeholder="enter new password"
+            showPassword
+            errors={errors}
+            register={register}
+            rules={{
+              required: 'Password is required!',
+              validate: {
+                // checks entered password value contains required characters
+                includesCapital: (value) => {
+                  const pattern = /[A-Z]/;
+                  return (
+                    pattern.test(value) ||
+                    'Password must include at least 1 capital letter'
+                  );
+                },
+                includesNumber: (value) => {
+                  const pattern = /[0-9]/;
+                  return (
+                    pattern.test(value) ||
+                    'Password must include at least 1 number'
+                  );
+                },
+                // checks that entered password value is a minimum of 8 chars
+                checkLength: (value) => {
+                  return (
+                    (value.length >= 8 && value.length <= 32) ||
+                    'Password must be between 8 and 32 characters.'
+                  );
+                },
               },
-              includesNumber: (value) => {
-                const pattern = /[0-9]/;
-                return (
-                  pattern.test(value) ||
-                  'Password must include at least 1 number'
-                );
+            }}
+          />
+        </p>
+        <p className="password-form-input">
+          <Input
+            name="confirm"
+            label="Confirm New Password"
+            type="password"
+            placeholder="confirm new password"
+            showPassword
+            errors={errors}
+            register={register}
+            rules={{
+              required: 'Password confirmation is required!',
+              validate: (value) => {
+                // checks that the values in password and confirm inputs match
+                return value === watch('password') || "Passwords don't match!";
               },
-              // checks that entered password value is a minimum of 8 chars
-              checkLength: (value) => {
-                return (
-                  (value.length >= 8 && value.length <= 32) ||
-                  'Password must be between 8 and 32 characters.'
-                );
-              },
-            },
-          }}
-        />
-        <Input
-          name="confirm"
-          label="Confirm New Password"
-          type="password"
-          placeholder="confirm new password"
-          showPassword
-          errors={errors}
-          register={register}
-          rules={{
-            required: 'Password confirmation is required!',
-            validate: (value) => {
-              // checks that the values in password and confirm inputs match
-              return value === watch('password') || "Passwords don't match!";
-            },
-          }}
-        />
+            }}
+          />
+        </p>
         <input
           className="password-submit-btn"
           type="submit"
