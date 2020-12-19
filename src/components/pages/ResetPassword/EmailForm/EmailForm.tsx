@@ -35,14 +35,16 @@ const EmailForm: React.FC = () => {
         {errors.form && (
           <div className="server-error">{errors.form.message}</div>
         )}
-        <Input
-          name="email"
-          label="Email"
-          placeholder="enter your email"
-          errors={errors}
-          register={register}
-          rules={{ required: 'Please enter your email!' }}
-        />
+        <p className="email-form-input">
+          <Input
+            name="email"
+            label="Email"
+            placeholder="enter your email"
+            errors={errors}
+            register={register}
+            rules={{ required: 'Please enter your email!' }}
+          />
+        </p>
         <input
           className="submit-email-btn"
           type="submit"
