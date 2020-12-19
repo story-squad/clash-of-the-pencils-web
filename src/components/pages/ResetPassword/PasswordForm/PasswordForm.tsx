@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
 import { Auth } from '../../../../api';
 import { updatePassword } from '../../../../api/Auth';
 import { Input, Modal } from '../../../common';
 import ResetSuccess from './ResetSuccess';
 
-const PasswordResetForm = (
+const PasswordForm = (
   props: Omit<Auth.NewPasswordBody, 'password'>,
-  passwordProps: Modal.ModalComponentProps,
 ): React.ReactElement => {
   const {
     register,
@@ -21,8 +19,6 @@ const PasswordResetForm = (
     mode: 'onChange',
   });
   const [showModal, setShowModal] = useState(true);
-
-  const { push } = useHistory();
 
   // onSubmit should send the users email a reset password link/token that has a 10 min timer
   const onSubmit: SubmitHandler<{
@@ -41,8 +37,6 @@ const PasswordResetForm = (
       .then(() => {
         clearErrors();
         setShowModal(true);
-        passwordProps.closeModal();
-        push('/');
       })
       .catch((err: Auth.AxiosError) => {
         console.log({ err });
@@ -56,14 +50,12 @@ const PasswordResetForm = (
       });
   };
 
-  // TODO - need error handlers, remove console log in onSubmit
-
   return (
     <div className="password-form-wrapper">
       <Modal.Component
         visible={showModal}
         setVisible={setShowModal}
-        component={ResetSuccess}
+        component={(props) => <ResetSuccess {...props} />}
         closable={true}
         centered={true}
         title="Success!"
@@ -140,4 +132,4 @@ const PasswordResetForm = (
   );
 };
 
-export default PasswordResetForm;
+export default PasswordForm;
