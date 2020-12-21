@@ -20,9 +20,9 @@ const Home = (props: HomeProps): React.ReactElement => {
         </div>
         <div className="how-it-works">
           <img src={howItWorks} alt="How it works" />
+          <NavArrowButton buttonNav={props.buttonNav} navDirection="down" />
         </div>
       </div>
-      <NavArrowButton buttonNav={props.buttonNav} navDirection="down" />
     </div>
   );
 };

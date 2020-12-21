@@ -1,15 +1,16 @@
 // Home Page
 .home-page-wrapper {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-flow: column nowrap;
 
   .home-page {
+    min-height: -webkit-fill-available;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 2rem 50px;
+    padding: 2rem;
 
     & > img {
       max-width: 100%;
@@ -18,27 +19,18 @@
     }
 
     .dragon-boi {
+      margin: auto;
       .dragon {
         max-height: 40vh;
       }
     }
 
     .how-it-works {
-      bottom: 6rem;
-      color: $white;
-      img {
-        max-height: 7vh;
-      }
-    }
-
-    .flex-wrapper {
+      margin-top: auto;
       display: flex;
       flex-flow: column nowrap;
-      align-items: center;
-
-      @media screen and (min-width: $mid) {
-        flex-direction: row;
-        justify-content: space-between;
+      img {
+        max-height: 7vh;
       }
     }
   }
