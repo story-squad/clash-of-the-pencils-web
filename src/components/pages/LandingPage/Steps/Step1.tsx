@@ -8,21 +8,27 @@ import NavArrowButton from '../NavArrowButton';
 const Step1 = (props: StepProps): React.ReactElement => {
   return (
     <div className="step-1">
-      <div className="flex-wrapper">
-        <img src={scopeOut} alt="Scope out the prompt." />
-        <img
-          src={dummyPrompt}
-          alt="Prompt: you're a super hero, and there is a town that needs saving."
-        />
-        <div className="dragon-boi">
+      <div className="grid-wrapper">
+        <NavArrowButton navDirection={'up'} buttonNav={props.buttonNavY} />
+        <div className="container">
+          <img src={scopeOut} alt="Scope out the prompt." />
+        </div>
+        <div className="container">
+          <img
+            src={dummyPrompt}
+            alt="Prompt: you're a super hero, and there is a town that needs saving."
+          />
+          <NavArrowButton navDirection={'right'} buttonNav={props.buttonNavX} />
+        </div>
+        <div className="container">
           <img
             src={dragonReady}
             className="dragon"
             alt="dragon saying 'Ready?'"
           />
         </div>
+        <NavArrowButton navDirection={'down'} buttonNav={props.buttonNavY} />
       </div>
-      <NavArrowButton navDirection={'right'} buttonNav={props.buttonNav} />
     </div>
   );
 };
