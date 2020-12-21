@@ -5,8 +5,8 @@
 
   .circles {
     width: 100%;
-    position: absolute;
-    bottom: 4rem;
+    grid-column: 2;
+    align-self: flex-end;
     display: flex;
     justify-content: center;
     opacity: 0.7;

@@ -27,8 +27,8 @@ const Step2 = (props: StepProps): React.ReactElement => {
         </div>
         <div className="container">
           <img src={dragonSet} className="dragon" alt="dragon saying 'Set?'" />
+          {props.circles()}
         </div>
-
         <NavArrowButton navDirection={'down'} buttonNav={props.buttonNavY} />
       </div>
     </div>
