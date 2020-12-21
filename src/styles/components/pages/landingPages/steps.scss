@@ -5,6 +5,7 @@
 
   .circles {
     width: 100%;
+    grid-row: 1;
     grid-column: 2;
     align-self: flex-end;
     display: flex;
@@ -33,7 +34,7 @@
 
   .grid-wrapper {
     display: grid;
-    grid-template-rows: 5% 25% 40% 25% 5%;
+    grid-template-rows: 5% 25% auto 25% 5%;
     padding: 1rem;
     // Mobile fix, fill available height
     height: -webkit-fill-available;
@@ -44,7 +45,6 @@
     }
 
     .dragon {
-      max-height: 25vh;
       align-self: flex-end;
     }
 
@@ -83,6 +83,7 @@
 
       &:nth-of-type(3) {
         display: grid;
+        grid-template-rows: 100%;
         grid-template-columns: 30% auto 30%;
       }
     }
