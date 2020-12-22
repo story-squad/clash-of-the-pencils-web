@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import {
   FaAngleLeft,
   FaAngleRight,
@@ -9,6 +9,7 @@ import {
 const NavArrowButton = (props: NavArrowButtonProps): React.ReactElement => {
   const className = `nav-arrow-button ${props.navDirection}`;
   const ariaLabel = `Navigate ${props.navDirection}`;
+  const thisButton = createRef();
 
   const icon = () => {
     switch (props.navDirection) {
@@ -27,7 +28,11 @@ const NavArrowButton = (props: NavArrowButtonProps): React.ReactElement => {
     <button
       className={className}
       aria-label={ariaLabel}
-      onClick={() => props.buttonNav(props.navDirection)}
+      ref={thisButton as React.RefObject<HTMLButtonElement>}
+      onClick={() => {
+        props.buttonNav(props.navDirection);
+        (thisButton.current as HTMLElement).blur();
+      }}
     >
       {icon()}
     </button>
