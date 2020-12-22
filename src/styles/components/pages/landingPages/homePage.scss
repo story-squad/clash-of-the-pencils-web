@@ -1,36 +1,35 @@
 // Home Page
 .home-page-wrapper {
-  min-height: 100vh;
-  display: flex;
-  flex-flow: column nowrap;
+  height: 100vh;
 
-  .home-page {
-    min-height: -webkit-fill-available;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem;
+  .responsive-container {
+    height: -webkit-fill-available;
 
-    & > img {
-      max-width: 100%;
-      margin-bottom: 1rem;
-      max-height: 18vh;
-    }
+    .home-page {
+      height: 100%;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
 
-    .dragon-boi {
-      margin: auto;
+      & > img {
+        max-width: 100%;
+        margin-bottom: 1rem;
+        max-height: 18vh;
+      }
+
       .dragon {
         max-height: 40vh;
       }
-    }
 
-    .how-it-works {
-      margin-top: auto;
-      display: flex;
-      flex-flow: column nowrap;
-      img {
-        max-height: 7vh;
+      .how-it-works {
+        display: flex;
+        flex-flow: column nowrap;
+        margin-bottom: 2rem;
+        img {
+          max-height: 7vh;
+        }
       }
     }
   }
