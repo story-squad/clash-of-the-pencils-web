@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
@@ -29,6 +30,12 @@ const SignupForm = (props: Modal.ModalComponentProps): React.ReactElement => {
         clearErrors();
         setShowModal(true);
         props.closeModal();
+
+        // send Convert Kit the email address
+        axios.post('https://api.convertkit.com/v3/forms/1903505/subscribe', {
+          api_key: 'XQKhGHgAErXFZqxcM_lWRQ',
+          email: credentials.email,
+        });
       })
       .catch((err: Auth.AxiosError) => {
         console.log({ err });
@@ -67,11 +74,11 @@ const SignupForm = (props: Modal.ModalComponentProps): React.ReactElement => {
           <div className="inputs ">
             <Input
               name="username"
-              label="Codename"
+              label="Email"
               errors={errors}
               register={register}
-              rules={{ required: 'Codename is required!' }}
-              placeholder="Enter your codename"
+              rules={{ required: 'Email is required!' }}
+              placeholder="Enter your email"
             />
             <Input
               name="email"
