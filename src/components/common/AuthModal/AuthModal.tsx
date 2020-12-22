@@ -13,7 +13,7 @@ const AuthToggle = (props: Modal.ModalComponentProps): React.ReactElement => {
   };
 
   return (
-    <div className="auth-toggle">
+    <div className="auth-modal">
       <div className="auth-switcher">
         <span className={isLogin ? 'active' : ''} onClick={() => setForm(true)}>
           Log In

@@ -1,5 +1,6 @@
 .scoreboard {
   .scoreboard-header-row {
+    border-radius: 5px 5px 0 0;
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
@@ -15,9 +16,11 @@
     }
   }
   .scoreboard-body {
+    border: 1px solid #ccc3;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
     display: flex;
     flex-flow: column nowrap;
-    border-bottom: 1px solid #fff6;
 
     .scoreboard-row {
       display: flex;
@@ -35,7 +38,7 @@
         font-size: 1.4rem;
         padding: 1rem;
         &:not(:last-of-type) {
-          border-right: 1px solid #fff6;
+          border-right: 1px solid #ccc3;
         }
       }
     }

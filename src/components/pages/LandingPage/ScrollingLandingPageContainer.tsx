@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import ReactScroller from 'react-page-scroller';
-import { Scoreboard } from '../../common';
 import { Home } from './Home';
 import { NavDirection } from './NavArrowButton';
 import { Steps } from './Steps';
@@ -25,13 +24,13 @@ const ScrollingLandingPageContainer = (): React.ReactElement => {
       customPageNumber={currentPage}
       renderAllPagesOnFirstRender
     >
-      <Scoreboard
+      {/* <Scoreboard
         rows={[
           { score: 40, username: 'Brandon' },
           { score: 42, username: 'Brandon1' },
           { score: 44, username: 'Brandon2' },
         ]}
-      />
+      /> */}
       <Home buttonNav={buttonNavY} />
       <Steps buttonNavY={buttonNavY} />
       <VotingInfo buttonNav={buttonNavY} />
