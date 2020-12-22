@@ -1,16 +1,22 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { auth } from '../../../state';
 
 const SignupSuccess: React.FC = () => {
-  const { push } = useHistory();
+  const setSignupWasSuccessful = useSetRecoilState(auth.signupWasSuccessful);
+  const setAuthModalOpen = useSetRecoilState(auth.authModalOpen);
+
   const clickHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    push('/');
+    setAuthModalOpen(false);
+    setTimeout(() => {
+      setSignupWasSuccessful(false);
+    }, 1000);
   };
   return (
     <>
       <p className="signup-success">
-        Thanks for signing up!
+        -+9 Thanks for signing up!
         <br />
         Check your email for a verification link to log in.
         <br />
