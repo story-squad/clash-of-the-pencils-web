@@ -4,7 +4,6 @@ export { ComingSoon } from './ComingSoon';
 export { Countdown } from './Countdown';
 export { FullscreenImage } from './FullscreenImage';
 export { Header } from './Header';
-export { Histogram } from './Histogram';
 export { InfoHoverTip } from './InfoHoverTip';
 export { Input } from './Input';
 export { Loader } from './Loader';
