@@ -14,15 +14,11 @@ const SignupSuccess: React.FC = () => {
     }, 1000);
   };
   return (
-    <>
-      <p className="signup-success">
-        -+9 Thanks for signing up!
-        <br />
-        Check your email for a verification link to log in.
-        <br />
-      </p>
-      <button onClick={clickHandler}>Home</button>
-    </>
+    <div className="signup-success">
+      <p>Thanks for signing up!</p>
+      <p>Check your email for a verification link to log in.</p>
+      <button onClick={clickHandler}>Back to Site</button>
+    </div>
   );
 };
 

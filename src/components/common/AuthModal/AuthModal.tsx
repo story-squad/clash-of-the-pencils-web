@@ -8,17 +8,12 @@ import SignupSuccess from './SignupSuccess';
 
 const AuthToggle = (): React.ReactElement => {
   const [isLogin, setIsLogin] = useRecoilState(auth.authModalIsLogin);
-  const signupWasSuccessful = useRecoilValue(auth.signupWasSuccessful);
 
   const setForm = (isLogin: boolean) => {
     setIsLogin(isLogin);
   };
 
-  console.log({ signupWasSuccessful });
-
-  return signupWasSuccessful ? (
-    <SignupSuccess />
-  ) : (
+  return (
     <div className="auth-modal">
       <div className="auth-switcher">
         <span className={isLogin ? 'active' : ''} onClick={() => setForm(true)}>
@@ -38,10 +33,13 @@ const AuthToggle = (): React.ReactElement => {
 
 const AuthModal = (): React.ReactElement => {
   const [modalOpen, setModalOpen] = useRecoilState(auth.authModalOpen);
+  const signupWasSuccessful = useRecoilValue(auth.signupWasSuccessful);
+
   return (
     <Modal.Component
       className="dark-blue"
-      component={AuthToggle}
+      component={signupWasSuccessful ? SignupSuccess : AuthToggle}
+      centered={signupWasSuccessful}
       visible={modalOpen}
       setVisible={setModalOpen}
     />
