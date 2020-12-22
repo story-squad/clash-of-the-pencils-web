@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ClimbingBoxLoader } from 'react-spinners';
 import { useRecoilState } from 'recoil';
 import { apiError } from '../../../state';
-
 import { Header } from '../Header';
-import { ClimbingBoxLoader } from 'react-spinners';
-import { Link } from 'react-router-dom';
 
 interface LoaderProps {
   message?: string;
@@ -34,7 +33,7 @@ const Loader = ({ message = 'Loading' }: LoaderProps): React.ReactElement => {
         {loadingError ? (
           <>
             <div className="message error">{loadingError}</div>
-            <Link to="/dashboard">Back to Dashboard</Link>
+            <Link to="/">Back to Home</Link>
           </>
         ) : (
           <>

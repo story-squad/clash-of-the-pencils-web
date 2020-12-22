@@ -1,0 +1,46 @@
+.scoreboard {
+  .scoreboard-header-row {
+    border-radius: 5px 5px 0 0;
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    background-color: $orange;
+    .scoreboard-header {
+      width: 33%;
+      text-align: center;
+      font-family: $display-font;
+      color: $white;
+      font-size: 2rem;
+      padding: 1rem;
+    }
+  }
+  .scoreboard-body {
+    border: 1px solid #ccc3;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    display: flex;
+    flex-flow: column nowrap;
+
+    .scoreboard-row {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      &:nth-child(even) {
+        background-color: #ccc3;
+      }
+
+      .row-col {
+        width: 33%;
+        text-align: center;
+        font-family: $text-font;
+        color: $white;
+        font-size: 1.4rem;
+        padding: 1rem;
+        &:not(:last-of-type) {
+          border-right: 1px solid #ccc3;
+        }
+      }
+    }
+  }
+}

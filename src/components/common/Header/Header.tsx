@@ -12,6 +12,7 @@ const Header = (): React.ReactElement => {
 
   const setAuthOpen = useSetRecoilState(auth.authModalOpen);
   const setAuthIsLogin = useSetRecoilState(auth.authModalIsLogin);
+  const setSignupWasSuccessful = useSetRecoilState(auth.signupWasSuccessful);
 
   const menuItems = useMemo<headerItems[]>(() => {
     const navItems = [{ link: '/', text: 'Home' }];
@@ -28,11 +29,13 @@ const Header = (): React.ReactElement => {
   const openLogin = () => {
     setAuthOpen(true);
     setAuthIsLogin(true);
+    setSignupWasSuccessful(false);
   };
 
   const openSignup = () => {
     setAuthOpen(true);
     setAuthIsLogin(false);
+    setSignupWasSuccessful(false);
   };
 
   useEffect(() => {
