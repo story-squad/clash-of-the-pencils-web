@@ -22,12 +22,24 @@
       width: 450px;
     }
 
+    p {
+      margin: 2rem auto;
+      font-family: $text-font;
+      color: $charcoal;
+      font-size: 2rem;
+      line-height: 2.5rem;
+      cursor: default;
+    }
+
     .dragon-boi {
       max-height: 180px;
       max-width: 200px;
       .dragon {
         max-height: 180px;
         max-width: 200px;
+      }
+      .login-dragon {
+        padding-top: 1.5rem;
       }
       @media screen and (min-width: $tablet) {
         position: absolute;
@@ -73,6 +85,11 @@
 
     .text.change-form {
       text-align: center;
+      cursor: default;
+
+      .message {
+        color: red;
+      }
     }
     .text {
       width: 100%;

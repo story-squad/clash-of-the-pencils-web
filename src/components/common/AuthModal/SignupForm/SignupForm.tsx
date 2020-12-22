@@ -64,7 +64,7 @@ const SignupForm = (props: Modal.ModalComponentProps): React.ReactElement => {
           {errors.form && (
             <div className="server-error">{errors.form.message}</div>
           )}
-          <div className="inputs ">
+          <div className="inputs">
             <Input
               name="username"
               label="Codename"
