@@ -9,15 +9,24 @@
       max-width: 500px;
       margin: 0 auto 2rem;
       padding-bottom: 1rem;
-      border-bottom: 1px solid $white;
     }
 
     span {
+      width: 50%;
+      text-align: center;
+      color: #fffa;
+      transition: color 0.15s ease-in-out;
+      &:hover {
+        color: $white;
+        transition: color 0.15s ease-in-out;
+      }
+      cursor: pointer;
+      text-shadow: 0 2px 2px #0006;
       font-size: 2rem;
-      @include text-button($white);
-      font-family: $text-font;
+      font-family: $display-font;
       &.active {
-        @include text-button($orange);
+        color: $orange;
+        text-decoration: underline;
       }
     }
   }
