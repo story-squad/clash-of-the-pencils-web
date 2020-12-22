@@ -11,6 +11,7 @@ export { Loader } from './Loader';
 export { Modal } from './Modal';
 export { PromptBox } from './PromptBox';
 export { ReadTokenData } from './ReadTokenData';
+export { Scoreboard } from './Scoreboard';
 export { Signout } from './Signout';
 export { SubCard } from './SubCard';
 export { TermsOfService } from './TermsOfService';
