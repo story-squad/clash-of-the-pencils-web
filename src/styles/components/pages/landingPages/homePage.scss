@@ -3,6 +3,7 @@
   height: 100vh;
 
   .responsive-container {
+    // Mobile fix, fill available height
     height: -webkit-fill-available;
 
     .home-page {
