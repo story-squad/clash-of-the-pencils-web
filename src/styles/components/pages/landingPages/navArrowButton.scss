@@ -1,39 +1,18 @@
 .nav-arrow-button {
-  position: absolute;
-  top: 0;
-  bottom: 0;
   background: none;
   border: none;
   color: $white;
-  font-size: 4rem;
+  font-size: 5vh;
   cursor: pointer;
+  padding: 0;
 
-  @media (min-width: $tablet) {
-    font-size: 6rem;
+  &.up, &.down {
+    height: 7vh;
+    width: 100%;
   }
 
-  &.left {
-    left: -1rem;
-  }
-
-  &.right {
-    right: -1rem;
-  }
-
-  &.up,
-  &.down {
-    margin: auto;
-    left: 0;
-    right: 0;
-  }
-
-  &.up {
-    top: 0rem;
-    bottom: auto;
-  }
-
-  &.down {
-    top: auto;
-    bottom: -1rem;
+  &.left, &.right {
+    height: 100%;
+    width: 100%;
   }
 }

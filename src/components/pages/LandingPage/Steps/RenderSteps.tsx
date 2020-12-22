@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaCircle, FaRegCircle } from 'react-icons/fa';
-import NavArrowButton, { NavDirection } from '../NavArrowButton';
+import { NavDirection } from '../NavArrowButton';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
@@ -12,13 +12,37 @@ const RenderSteps = (props: RenderStepsProps): React.ReactElement => {
   const currentStep = () => {
     switch (props.stepNum) {
       case 1:
-        return <Step1 buttonNav={props.buttonNavX} />;
+        return (
+          <Step1
+            buttonNavX={props.buttonNavX}
+            buttonNavY={props.buttonNavY}
+            circles={circles}
+          />
+        );
       case 2:
-        return <Step2 buttonNav={props.buttonNavX} />;
+        return (
+          <Step2
+            buttonNavX={props.buttonNavX}
+            buttonNavY={props.buttonNavY}
+            circles={circles}
+          />
+        );
       case 3:
-        return <Step3 buttonNav={props.buttonNavX} />;
+        return (
+          <Step3
+            buttonNavX={props.buttonNavX}
+            buttonNavY={props.buttonNavY}
+            circles={circles}
+          />
+        );
       case 4:
-        return <Step4 buttonNav={props.buttonNavX} />;
+        return (
+          <Step4
+            buttonNavX={props.buttonNavX}
+            buttonNavY={props.buttonNavY}
+            circles={circles}
+          />
+        );
       default:
         return <StepError />;
     }
@@ -34,11 +58,8 @@ const RenderSteps = (props: RenderStepsProps): React.ReactElement => {
 
   return (
     <div className="steps">
-      <NavArrowButton buttonNav={props.buttonNavY} navDirection="up" />
       {/* Step-by-step instructions go here! Should render based off of stepNum */}
       {currentStep()}
-      <NavArrowButton buttonNav={props.buttonNavY} navDirection="down" />
-      {circles()}
     </div>
   );
 };
@@ -58,7 +79,9 @@ interface RenderStepsProps {
 }
 
 export interface StepProps {
-  buttonNav: (direction: NavDirection) => void;
+  buttonNavX: (direction: NavDirection) => void;
+  buttonNavY: (direction: NavDirection) => void;
+  circles: () => React.ReactElement;
 }
 
 export default RenderSteps;
