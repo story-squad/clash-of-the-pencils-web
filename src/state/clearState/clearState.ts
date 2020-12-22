@@ -4,7 +4,7 @@ import { email, loginToken, userId, username } from '../authState';
 import { dndContainerState } from '../dndState';
 import { list } from '../pastSubsState';
 import { currentPrompt } from '../promptState';
-import { histogram, winner } from '../resultsState';
+import { winner } from '../resultsState';
 import {
   error,
   loading,
@@ -30,7 +30,6 @@ export const all = selector<null>({
     reset(username);
     reset(global);
     reset(currentPrompt);
-    reset(histogram);
     reset(winner);
     reset(error);
     reset(loading);
