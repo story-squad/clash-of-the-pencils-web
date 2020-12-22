@@ -21,7 +21,7 @@ const Input = ({
    */
   const toggleHiddenPassword = (event: React.MouseEvent) => {
     event.preventDefault();
-    setInputType((prevType) => (prevType === 'password' ? '' : 'password'));
+    setInputType((prevType) => (prevType === 'password' ? 'text' : 'password'));
   };
   return (
     <div className={`form-input${errors[name] ? ' error' : ''}`}>
