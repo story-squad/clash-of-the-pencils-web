@@ -4,7 +4,6 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    border-bottom: 1px solid $white;
     background-color: $orange;
     .scoreboard-header {
       width: 33%;
@@ -13,20 +12,17 @@
       color: $white;
       font-size: 2rem;
       padding: 1rem;
-      &:not(:last-of-type) {
-        border-right: 1px solid $white;
-      }
     }
   }
   .scoreboard-body {
     display: flex;
     flex-flow: column nowrap;
+    border-bottom: 1px solid #fff6;
 
     .scoreboard-row {
       display: flex;
       flex-flow: row nowrap;
       justify-content: space-between;
-      border-bottom: 1px solid $white;
       &:nth-child(even) {
         background-color: #ccc3;
       }
@@ -39,7 +35,7 @@
         font-size: 1.4rem;
         padding: 1rem;
         &:not(:last-of-type) {
-          border-right: 1px solid $white;
+          border-right: 1px solid #fff6;
         }
       }
     }
