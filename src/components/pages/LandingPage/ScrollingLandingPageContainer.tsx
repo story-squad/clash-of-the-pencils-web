@@ -10,6 +10,17 @@ const ScrollingLandingPageContainer = (): React.ReactElement => {
   const changePage = (newNum: number) => setCurrentPage(newNum);
   const beforePageChange = (newNum: number) => console.log(newNum);
 
+  useEffect(() => {
+    window.addEventListener('resize', setWindowHeight);
+    return () => window.removeEventListener('resize', setWindowHeight);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('orientationchange', setWindowHeight);
+    return () =>
+      window.removeEventListener('orientationchange', setWindowHeight);
+  }, []);
+
   const buttonNavY = (navDirection: NavDirection) => {
     if (navDirection === 'up') {
       changePage((currentPage ? currentPage : 0) - 1);
@@ -18,11 +29,17 @@ const ScrollingLandingPageContainer = (): React.ReactElement => {
   };
 
   // Contains all refs of elements that need height resizing on window dimension change
-  const responsiveHeightRefs = useRef([]);
+  const responsiveHeightRefs = useRef<[HTMLElement] | []>([]);
 
-  useEffect(() => {
-    console.log(responsiveHeightRefs);
-  }, [responsiveHeightRefs]);
+  // Dynamically set height for all refs
+  const setWindowHeight = () => {
+    console.log(responsiveHeightRefs.current);
+    responsiveHeightRefs.current.forEach((element) => {
+      if (element) {
+        element.style.setProperty('height', `${window.innerHeight / 100}px`);
+      }
+    });
+  };
 
   return (
     <ReactScroller
