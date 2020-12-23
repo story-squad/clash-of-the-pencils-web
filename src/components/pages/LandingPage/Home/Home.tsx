@@ -7,7 +7,11 @@ import NavArrowButton, { NavDirection } from '../NavArrowButton';
 
 const Home = (props: HomeProps): React.ReactElement => {
   return (
-    <div className="home-page-wrapper" style={{ height: window.innerHeight }}>
+    <div
+      className="home-page-wrapper"
+      ref={(element) => props.responsiveHeightRefs.current.push(element)}
+      style={{ height: window.innerHeight }}
+    >
       <Header />
       <div className="home-page">
         <img src={landingText} alt="Unleash your creativity!" />
@@ -27,6 +31,7 @@ const Home = (props: HomeProps): React.ReactElement => {
 
 interface HomeProps {
   buttonNav: (navDirection: NavDirection) => void;
+  responsiveHeightRefs: React.RefObject<any>;
 }
 
 export default Home;

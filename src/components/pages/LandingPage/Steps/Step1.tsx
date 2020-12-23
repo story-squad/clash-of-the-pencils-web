@@ -7,7 +7,11 @@ import NavArrowButton from '../NavArrowButton';
 
 const Step1 = (props: StepProps): React.ReactElement => {
   return (
-    <div className="step-1" style={{ height: window.innerHeight }}>
+    <div
+      className="step-1"
+      ref={(element) => props.responsiveHeightRefs.current.push(element)}
+      style={{ height: window.innerHeight }}
+    >
       <div className="grid-wrapper" style={{ height: window.innerHeight }}>
         <NavArrowButton navDirection={'up'} buttonNav={props.buttonNavY} />
         <div className="container">

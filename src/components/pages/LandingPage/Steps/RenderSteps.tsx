@@ -14,6 +14,7 @@ const RenderSteps = (props: RenderStepsProps): React.ReactElement => {
       case 1:
         return (
           <Step1
+            responsiveHeightRefs={props.responsiveHeightRefs}
             buttonNavX={props.buttonNavX}
             buttonNavY={props.buttonNavY}
             circles={circles}
@@ -22,6 +23,7 @@ const RenderSteps = (props: RenderStepsProps): React.ReactElement => {
       case 2:
         return (
           <Step2
+            responsiveHeightRefs={props.responsiveHeightRefs}
             buttonNavX={props.buttonNavX}
             buttonNavY={props.buttonNavY}
             circles={circles}
@@ -30,6 +32,7 @@ const RenderSteps = (props: RenderStepsProps): React.ReactElement => {
       case 3:
         return (
           <Step3
+            responsiveHeightRefs={props.responsiveHeightRefs}
             buttonNavX={props.buttonNavX}
             buttonNavY={props.buttonNavY}
             circles={circles}
@@ -38,6 +41,7 @@ const RenderSteps = (props: RenderStepsProps): React.ReactElement => {
       case 4:
         return (
           <Step4
+            responsiveHeightRefs={props.responsiveHeightRefs}
             buttonNavX={props.buttonNavX}
             buttonNavY={props.buttonNavY}
             circles={circles}
@@ -57,7 +61,11 @@ const RenderSteps = (props: RenderStepsProps): React.ReactElement => {
   };
 
   return (
-    <div className="steps" style={{ height: window.innerHeight }}>
+    <div
+      className="steps"
+      ref={(element) => props.responsiveHeightRefs.current.push(element)}
+      style={{ height: window.innerHeight }}
+    >
       {/* Step-by-step instructions go here! Should render based off of stepNum */}
       {currentStep()}
     </div>
@@ -76,12 +84,14 @@ interface RenderStepsProps {
   stepNum: number;
   buttonNavX: (direction: NavDirection) => void;
   buttonNavY: (direction: NavDirection) => void;
+  responsiveHeightRefs: React.RefObject<any>;
 }
 
 export interface StepProps {
   buttonNavX: (direction: NavDirection) => void;
   buttonNavY: (direction: NavDirection) => void;
   circles: () => React.ReactElement;
+  responsiveHeightRefs: React.RefObject<any>;
 }
 
 export default RenderSteps;

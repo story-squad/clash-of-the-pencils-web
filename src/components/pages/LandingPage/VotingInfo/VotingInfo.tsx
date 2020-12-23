@@ -7,7 +7,11 @@ import NavArrowButton, { NavDirection } from '../NavArrowButton';
 
 const VotingInfo = (props: VotingInfoProps): React.ReactElement => {
   return (
-    <div className="voting-info" style={{ height: window.innerHeight }}>
+    <div
+      className="voting-info"
+      ref={(element) => props.responsiveHeightRefs.current.push(element)}
+      style={{ height: window.innerHeight }}
+    >
       <div className="flex-wrapper">
         <NavArrowButton buttonNav={props.buttonNav} navDirection="up" />
         <img
@@ -37,6 +41,7 @@ const VotingInfo = (props: VotingInfoProps): React.ReactElement => {
 
 interface VotingInfoProps {
   buttonNav: (navDirection: NavDirection) => void;
+  responsiveHeightRefs: React.RefObject<any>;
 }
 
 export default VotingInfo;
