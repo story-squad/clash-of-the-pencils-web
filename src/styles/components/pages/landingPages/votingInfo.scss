@@ -1,7 +1,52 @@
 .voting-info {
   height: 100vh;
-  width: 100%;
-  padding-top: 4rem;
+  width: 100vw;
+  position: relative;
+
+  .flex-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+    height: 100vh;
+    padding: 5vh 2rem;
+
+    img {
+      max-width: 100%;
+    }
+
+    // Header img
+    img:first-of-type {
+      max-height: 20vh;
+    }
+
+    // Middle img
+    img:nth-of-type(2) {
+      max-height: 39vh;
+    }
+  }
+
+  .dragon-boi {
+    visibility: hidden;
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+
+    img {
+      min-height: 20vh;
+      max-height: 40vh;
+
+      @media (min-width: $large) {
+        min-height: 25vh;
+        max-height: 45vh;
+      }
+    }
+
+    @media (min-width: $tablet) {
+      visibility: unset;
+    }
+  }
 
   .button-container {
     text-align: center;
@@ -12,14 +57,10 @@
       flex-flow: column nowrap;
       align-items: center;
       a {
-        @include button($jade, $padding: 1rem 5rem 0.8rem);
+        @include button($orange, $padding: 1rem 5rem 0.8rem);
         text-decoration: none;
-        font-size: 2.4rem;
+        font-size: 3rem;
       }
     }
-  }
-
-  .img-center {
-    @include img-center();
   }
 }

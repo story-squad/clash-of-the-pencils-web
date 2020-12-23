@@ -32,11 +32,13 @@ const Input = ({
           type={inputType}
           ref={register && register(rules)}
           autoComplete="off"
+          autoCapitalize="off"
           placeholder={placeholder}
           {...rest}
         />
         {showPassword ? (
           <button
+            type="button"
             className="show-hide-btn"
             tabIndex={-1} // Prevents button from being selected while tabbing
             onClick={toggleHiddenPassword}
@@ -57,7 +59,8 @@ const Input = ({
   );
 };
 
-interface InputProps {
+interface InputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
   name: string;
   label: string;
   register: UseFormMethods['register'];

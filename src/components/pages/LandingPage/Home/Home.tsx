@@ -1,38 +1,34 @@
 import React from 'react';
-import { FaAngleDown } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
+import hiImBlaze from '../../../../assets/img/hi-im-blaze.png';
 import howItWorks from '../../../../assets/img/how-it-works.png';
 import landingText from '../../../../assets/img/landing-text.png';
 import { Header } from '../../../common';
+import NavArrowButton, { NavDirection } from '../NavArrowButton';
 
-const Home = (): React.ReactElement => {
+const Home = (props: HomeProps): React.ReactElement => {
   return (
-    <>
+    <div className="home-page-wrapper">
       <Header />
       <div className="home-page">
         <img src={landingText} alt="Unleash your creativity!" />
-        <div className="flex-wrapper">
-          <div className="dragon-boi">
-            <DragonBoi className="dragon" />
-          </div>
-          <div className="links">
-            <p>
-              <Link to="/login">Log In</Link>
-              <Link to="/signup">Sign Up</Link>
-            </p>
-            <div className="link-button">
-              <Link to="/game">Get Started</Link>
-            </div>
-          </div>
+        <div className="dragon-boi">
+          <img
+            src={hiImBlaze}
+            className="dragon"
+            alt="Dragon saying 'Hi, I'm Blaze, and I can't wait to read your stories!'"
+          />
         </div>
         <div className="how-it-works">
           <img src={howItWorks} alt="How it works" />
-          <FaAngleDown />
         </div>
       </div>
-    </>
+      <NavArrowButton buttonNav={props.buttonNav} navDirection="down" />
+    </div>
   );
 };
+
+interface HomeProps {
+  buttonNav: (navDirection: NavDirection) => void;
+}
 
 export default Home;

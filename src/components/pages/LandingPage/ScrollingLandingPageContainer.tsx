@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactScroller from 'react-page-scroller';
 import { Home } from './Home';
+import { NavDirection } from './NavArrowButton';
 import { Steps } from './Steps';
 import { VotingInfo } from './VotingInfo';
 
@@ -9,6 +10,13 @@ const ScrollingLandingPageContainer = (): React.ReactElement => {
   const changePage = (newNum: number) => setCurrentPage(newNum);
   const beforePageChange = (newNum: number) => console.log(newNum);
 
+  const buttonNavY = (navDirection: NavDirection) => {
+    if (navDirection === 'up') {
+      changePage((currentPage ? currentPage : 0) - 1);
+    } else if (navDirection === 'down')
+      changePage((currentPage ? currentPage : 0) + 1);
+  };
+
   return (
     <ReactScroller
       pageOnChange={changePage}
@@ -16,9 +24,9 @@ const ScrollingLandingPageContainer = (): React.ReactElement => {
       customPageNumber={currentPage}
       renderAllPagesOnFirstRender
     >
-      <Home />
-      <Steps />
-      <VotingInfo />
+      <Home buttonNav={buttonNavY} />
+      <Steps buttonNavY={buttonNavY} />
+      <VotingInfo buttonNav={buttonNavY} />
     </ReactScroller>
   );
 };

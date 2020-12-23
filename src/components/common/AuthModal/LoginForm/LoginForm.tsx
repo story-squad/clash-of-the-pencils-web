@@ -52,6 +52,7 @@ const LoginForm = (props: Modal.ModalComponentProps): React.ReactElement => {
           <Input
             name="email"
             label="Codename"
+            type="email"
             errors={errors}
             register={register}
             rules={{ required: 'Please enter your email!' }}
