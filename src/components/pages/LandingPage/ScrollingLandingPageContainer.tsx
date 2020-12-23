@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import ReactScroller from 'react-page-scroller';
 import { Home } from './Home';
 import { NavDirection } from './NavArrowButton';
@@ -17,6 +17,13 @@ const ScrollingLandingPageContainer = (): React.ReactElement => {
       changePage((currentPage ? currentPage : 0) + 1);
   };
 
+  // Contains all refs of elements that need height resizing on window dimension change
+  const responsiveHeightRefs = useRef([]);
+
+  useEffect(() => {
+    console.log(responsiveHeightRefs);
+  }, [responsiveHeightRefs]);
+
   return (
     <ReactScroller
       pageOnChange={changePage}
@@ -31,9 +38,18 @@ const ScrollingLandingPageContainer = (): React.ReactElement => {
           { score: 44, username: 'Brandon2' },
         ]}
       /> */}
-      <Home buttonNav={buttonNavY} />
-      <Steps buttonNavY={buttonNavY} />
-      <VotingInfo buttonNav={buttonNavY} />
+      <Home
+        buttonNav={buttonNavY}
+        responsiveHeightRefs={responsiveHeightRefs}
+      />
+      <Steps
+        buttonNavY={buttonNavY}
+        responsiveHeightRefs={responsiveHeightRefs}
+      />
+      <VotingInfo
+        buttonNav={buttonNavY}
+        responsiveHeightRefs={responsiveHeightRefs}
+      />
     </ReactScroller>
   );
 };
