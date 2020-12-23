@@ -12,7 +12,11 @@ const Step1 = (props: StepProps): React.ReactElement => {
       ref={(element) => props.responsiveHeightRefs.current.push(element)}
       style={{ height: window.innerHeight }}
     >
-      <div className="grid-wrapper" style={{ height: window.innerHeight }}>
+      <div
+        className="grid-wrapper"
+        ref={(element) => props.responsiveHeightRefs.current.push(element)}
+        style={{ height: window.innerHeight }}
+      >
         <NavArrowButton navDirection={'up'} buttonNav={props.buttonNavY} />
         <div className="container">
           <img src={scopeOut} alt="Scope out the prompt." />
