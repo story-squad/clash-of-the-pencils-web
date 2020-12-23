@@ -33,7 +33,7 @@ const SignupForm = (props: Modal.ModalComponentProps): React.ReactElement => {
 
         // send Convert Kit the email address
         axios.post('https://api.convertkit.com/v3/forms/1903505/subscribe', {
-          api_key: 'XQKhGHgAErXFZqxcM_lWRQ',
+          api_key: process.env.REACT_APP_TEST,
           email: credentials.email,
         });
       })
@@ -74,11 +74,11 @@ const SignupForm = (props: Modal.ModalComponentProps): React.ReactElement => {
           <div className="inputs ">
             <Input
               name="username"
-              label="Email"
+              label="username"
               errors={errors}
               register={register}
-              rules={{ required: 'Email is required!' }}
-              placeholder="Enter your email"
+              rules={{ required: 'Username is required!' }}
+              placeholder="Enter your username"
             />
             <Input
               name="email"
