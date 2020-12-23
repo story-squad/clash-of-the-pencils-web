@@ -204,13 +204,6 @@ const SignupForm = (): React.ReactElement => {
         value="Create Account"
         onClick={() => clearErrors('form')}
       />
-
-      <div className="text">
-        Already have an account?{' '}
-        <Link className="text-button" to="/login">
-          Click Here
-        </Link>
-      </div>
     </form>
   );
 };
