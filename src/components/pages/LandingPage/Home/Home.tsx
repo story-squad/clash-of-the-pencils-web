@@ -1,4 +1,4 @@
-import React, { RefObject } from 'react';
+import React from 'react';
 import hiImBlaze from '../../../../assets/img/hi-im-blaze.png';
 import howItWorks from '../../../../assets/img/how-it-works.png';
 import landingText from '../../../../assets/img/landing-text.png';
