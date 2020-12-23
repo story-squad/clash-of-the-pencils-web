@@ -33,7 +33,7 @@ const SignupForm = (props: Modal.ModalComponentProps): React.ReactElement => {
 
         // send Convert Kit the email address
         axios.post('https://api.convertkit.com/v3/forms/1903505/subscribe', {
-          api_key: process.env.REACT_APP_TEST,
+          api_key: process.env.REACT_APP_CONVERTKIT_URL,
           email: credentials.email,
         });
       })
