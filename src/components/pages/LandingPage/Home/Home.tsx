@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { RefObject } from 'react';
 import hiImBlaze from '../../../../assets/img/hi-im-blaze.png';
 import howItWorks from '../../../../assets/img/how-it-works.png';
 import landingText from '../../../../assets/img/landing-text.png';
@@ -9,7 +9,11 @@ const Home = (props: HomeProps): React.ReactElement => {
   return (
     <div
       className="home-page-wrapper"
-      ref={(element) => props.responsiveHeightRefs.current.add(element)}
+      ref={(element) =>
+        (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
+          element as HTMLDivElement,
+        )
+      }
       style={{ height: window.innerHeight }}
     >
       <Header />
@@ -31,7 +35,7 @@ const Home = (props: HomeProps): React.ReactElement => {
 
 interface HomeProps {
   buttonNav: (navDirection: NavDirection) => void;
-  responsiveHeightRefs: React.RefObject<any>;
+  responsiveHeightRefs: React.RefObject<Set<HTMLDivElement>>;
 }
 
 export default Home;

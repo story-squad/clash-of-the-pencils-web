@@ -9,12 +9,20 @@ const Step3 = (props: StepProps): React.ReactElement => {
   return (
     <div
       className="step-3"
-      ref={(element) => props.responsiveHeightRefs.current.add(element)}
+      ref={(element) =>
+        (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
+          element as HTMLDivElement,
+        )
+      }
       style={{ height: window.innerHeight }}
     >
       <div
         className="grid-wrapper"
-        ref={(element) => props.responsiveHeightRefs.current.add(element)}
+        ref={(element) =>
+          (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
+            element as HTMLDivElement,
+          )
+        }
         style={{ height: window.innerHeight }}
       >
         <NavArrowButton navDirection={'up'} buttonNav={props.buttonNavY} />

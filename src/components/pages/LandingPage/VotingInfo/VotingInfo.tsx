@@ -9,12 +9,20 @@ const VotingInfo = (props: VotingInfoProps): React.ReactElement => {
   return (
     <div
       className="voting-info"
-      ref={(element) => props.responsiveHeightRefs.current.add(element)}
+      ref={(element) =>
+        (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
+          element as HTMLDivElement,
+        )
+      }
       style={{ height: window.innerHeight }}
     >
       <div
         className="flex-wrapper"
-        ref={(element) => props.responsiveHeightRefs.current.add(element)}
+        ref={(element) =>
+          (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
+            element as HTMLDivElement,
+          )
+        }
       >
         <NavArrowButton buttonNav={props.buttonNav} navDirection="up" />
         <img
@@ -44,7 +52,7 @@ const VotingInfo = (props: VotingInfoProps): React.ReactElement => {
 
 interface VotingInfoProps {
   buttonNav: (navDirection: NavDirection) => void;
-  responsiveHeightRefs: React.RefObject<any>;
+  responsiveHeightRefs: React.RefObject<Set<HTMLDivElement>>;
 }
 
 export default VotingInfo;

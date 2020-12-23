@@ -40,7 +40,7 @@ const StepsContainer = (props: StepsContainerProps): React.ReactElement => {
 
 interface StepsContainerProps {
   buttonNavY: (navDirection: NavDirection) => void;
-  responsiveHeightRefs: React.RefObject<any>;
+  responsiveHeightRefs: React.RefObject<Set<HTMLDivElement>>;
 }
 
 export default StepsContainer;
