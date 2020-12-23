@@ -12,7 +12,10 @@ const VotingInfo = (props: VotingInfoProps): React.ReactElement => {
       ref={(element) => props.responsiveHeightRefs.current.push(element)}
       style={{ height: window.innerHeight }}
     >
-      <div className="flex-wrapper">
+      <div
+        className="flex-wrapper"
+        ref={(element) => props.responsiveHeightRefs.current.push(element)}
+      >
         <NavArrowButton buttonNav={props.buttonNav} navDirection="up" />
         <img
           src={blazeWillRead}
