@@ -23,13 +23,13 @@ const ScrollingLandingPageContainer = (): React.ReactElement => {
   };
 
   // Contains all refs of elements that need height resizing on window dimension change
-  const responsiveHeightRefs = useRef<[HTMLElement] | []>([]);
+  const responsiveHeightRefs = useRef<Set<HTMLDivElement>>(new Set());
 
   // Dynamically set height for all refs
   const setWindowHeight = () => {
+    console.log(responsiveHeightRefs.current.size);
     responsiveHeightRefs.current.forEach((element) => {
       if (element) {
-        console.log(element);
         element.style.setProperty('height', `${window.innerHeight}px`);
       }
     });

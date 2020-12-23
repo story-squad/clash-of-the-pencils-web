@@ -1,20 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import blazeWillRead from '../../../../assets/img/blaze-will-read.png';
-import dragonSingle from '../../../../assets/img/dragon-single-page.png';
 import dragonDropDemo from '../../../../assets/img/dragon-drop-demo.png';
+import dragonSingle from '../../../../assets/img/dragon-single-page.png';
 import NavArrowButton, { NavDirection } from '../NavArrowButton';
 
 const VotingInfo = (props: VotingInfoProps): React.ReactElement => {
   return (
     <div
       className="voting-info"
-      ref={(element) => props.responsiveHeightRefs.current.push(element)}
+      ref={(element) => props.responsiveHeightRefs.current.add(element)}
       style={{ height: window.innerHeight }}
     >
       <div
         className="flex-wrapper"
-        ref={(element) => props.responsiveHeightRefs.current.push(element)}
+        ref={(element) => props.responsiveHeightRefs.current.add(element)}
       >
         <NavArrowButton buttonNav={props.buttonNav} navDirection="up" />
         <img

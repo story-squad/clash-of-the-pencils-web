@@ -63,7 +63,7 @@ const RenderSteps = (props: RenderStepsProps): React.ReactElement => {
   return (
     <div
       className="steps"
-      ref={(element) => props.responsiveHeightRefs.current.push(element)}
+      ref={(element) => props.responsiveHeightRefs.current.add(element)}
       style={{ height: window.innerHeight }}
     >
       {/* Step-by-step instructions go here! Should render based off of stepNum */}

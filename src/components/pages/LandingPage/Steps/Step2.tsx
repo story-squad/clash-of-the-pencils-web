@@ -1,20 +1,20 @@
 import React from 'react';
-import { StepProps } from './RenderSteps';
 import dragonSet from '../../../../assets/img/dragon-set.png';
 import getPaper from '../../../../assets/img/get-paper.png';
 import pencilPaper from '../../../../assets/img/pencil-and-paper.png';
 import NavArrowButton from '../NavArrowButton';
+import { StepProps } from './RenderSteps';
 
 const Step2 = (props: StepProps): React.ReactElement => {
   return (
     <div
       className="step-2"
-      ref={(element) => props.responsiveHeightRefs.current.push(element)}
+      ref={(element) => props.responsiveHeightRefs.current.add(element)}
       style={{ height: window.innerHeight }}
     >
       <div
         className="grid-wrapper"
-        ref={(element) => props.responsiveHeightRefs.current.push(element)}
+        ref={(element) => props.responsiveHeightRefs.current.add(element)}
         style={{ height: window.innerHeight }}
       >
         <NavArrowButton navDirection={'up'} buttonNav={props.buttonNavY} />

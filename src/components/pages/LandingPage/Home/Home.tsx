@@ -9,7 +9,7 @@ const Home = (props: HomeProps): React.ReactElement => {
   return (
     <div
       className="home-page-wrapper"
-      ref={(element) => props.responsiveHeightRefs.current.push(element)}
+      ref={(element) => props.responsiveHeightRefs.current.add(element)}
       style={{ height: window.innerHeight }}
     >
       <Header />

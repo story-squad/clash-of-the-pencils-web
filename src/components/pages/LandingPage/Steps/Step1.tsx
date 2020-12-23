@@ -1,20 +1,20 @@
 import React from 'react';
-import { StepProps } from './RenderSteps';
 import dragonReady from '../../../../assets/img/dragon-ready.png';
 import dummyPrompt from '../../../../assets/img/dummy-prompt.png';
 import scopeOut from '../../../../assets/img/scope-out-prompt.png';
 import NavArrowButton from '../NavArrowButton';
+import { StepProps } from './RenderSteps';
 
 const Step1 = (props: StepProps): React.ReactElement => {
   return (
     <div
       className="step-1"
-      ref={(element) => props.responsiveHeightRefs.current.push(element)}
+      ref={(element) => props.responsiveHeightRefs.current.add(element)}
       style={{ height: window.innerHeight }}
     >
       <div
         className="grid-wrapper"
-        ref={(element) => props.responsiveHeightRefs.current.push(element)}
+        ref={(element) => props.responsiveHeightRefs.current.add(element)}
         style={{ height: window.innerHeight }}
       >
         <NavArrowButton navDirection={'up'} buttonNav={props.buttonNavY} />
