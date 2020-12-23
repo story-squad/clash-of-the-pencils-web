@@ -27,7 +27,17 @@ const ScrollingLandingPageContainer = (): React.ReactElement => {
       {/* <Table
         headings={Submissions.ScoreboardHeadings}
         rows={Submissions.TestScoreboardData}
-      /> */}
+      />
+      <div>
+        <SubCard
+          id={1}
+          image="123432452342"
+          src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/landscaping-ideas-1582321830.jpg"
+          userId={5}
+          username="A Username"
+          rotation={0}
+        />
+      </div> */}
       <Home buttonNav={buttonNavY} />
       <Steps buttonNavY={buttonNavY} />
       <VotingInfo buttonNav={buttonNavY} />
