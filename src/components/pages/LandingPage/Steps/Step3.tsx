@@ -7,8 +7,8 @@ import NavArrowButton from '../NavArrowButton';
 
 const Step3 = (props: StepProps): React.ReactElement => {
   return (
-    <div className="step-3">
-      <div className="grid-wrapper">
+    <div className="step-3" style={{ height: window.innerHeight }}>
+      <div className="grid-wrapper" style={{ height: window.innerHeight }}>
         <NavArrowButton navDirection={'up'} buttonNav={props.buttonNavY} />
         <div className="container">
           <img src={scribbleDown} alt="Scribble down a 1-page story by hand." />

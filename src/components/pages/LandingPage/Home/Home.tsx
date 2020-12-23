@@ -7,20 +7,18 @@ import NavArrowButton, { NavDirection } from '../NavArrowButton';
 
 const Home = (props: HomeProps): React.ReactElement => {
   return (
-    <div className="home-page-wrapper">
-      <div className="responsive-container">
-        <Header />
-        <div className="home-page">
-          <img src={landingText} alt="Unleash your creativity!" />
-          <img
-            src={hiImBlaze}
-            className="dragon"
-            alt="Dragon saying 'Hi, I'm Blaze, and I can't wait to read your stories!'"
-          />
-          <div className="how-it-works">
-            <img src={howItWorks} alt="How it works" />
-            <NavArrowButton buttonNav={props.buttonNav} navDirection="down" />
-          </div>
+    <div className="home-page-wrapper" style={{ height: window.innerHeight }}>
+      <Header />
+      <div className="home-page">
+        <img src={landingText} alt="Unleash your creativity!" />
+        <img
+          src={hiImBlaze}
+          className="dragon"
+          alt="Dragon saying 'Hi, I'm Blaze, and I can't wait to read your stories!'"
+        />
+        <div className="how-it-works">
+          <img src={howItWorks} alt="How it works" />
+          <NavArrowButton buttonNav={props.buttonNav} navDirection="down" />
         </div>
       </div>
     </div>

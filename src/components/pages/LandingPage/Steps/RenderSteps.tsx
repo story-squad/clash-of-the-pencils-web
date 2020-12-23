@@ -57,7 +57,7 @@ const RenderSteps = (props: RenderStepsProps): React.ReactElement => {
   };
 
   return (
-    <div className="steps">
+    <div className="steps" style={{ height: window.innerHeight }}>
       {/* Step-by-step instructions go here! Should render based off of stepNum */}
       {currentStep()}
     </div>

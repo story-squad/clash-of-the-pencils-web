@@ -7,7 +7,7 @@ import NavArrowButton, { NavDirection } from '../NavArrowButton';
 
 const VotingInfo = (props: VotingInfoProps): React.ReactElement => {
   return (
-    <div className="voting-info">
+    <div className="voting-info" style={{ height: window.innerHeight }}>
       <div className="flex-wrapper">
         <NavArrowButton buttonNav={props.buttonNav} navDirection="up" />
         <img
