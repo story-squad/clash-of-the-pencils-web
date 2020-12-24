@@ -74,7 +74,7 @@ const SignupForm = (props: Modal.ModalComponentProps): React.ReactElement => {
           <div className="inputs ">
             <Input
               name="username"
-              label="codename"
+              label="Codename"
               errors={errors}
               register={register}
               rules={{ required: 'Codename is required!' }}
