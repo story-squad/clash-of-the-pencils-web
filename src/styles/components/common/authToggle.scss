@@ -1,0 +1,26 @@
+.auth-toggle {
+  .auth-switcher {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+
+    @media screen and (min-width: $tablet) {
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      border-bottom: 1px solid $white;
+    }
+
+    span {
+      font-size: 2rem;
+      padding: 2rem 8rem;
+      margin: 0 0;
+      @include text-button($white);
+      font-family: $text-font;
+      &.active {
+        @include text-button($charcoal);
+        background-color: $orange;
+        border-radius: 5px;
+      }
+    }
+  }
+}

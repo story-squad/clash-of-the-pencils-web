@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { MdClose } from 'react-icons/md';
 
 export const Component = ({
@@ -14,6 +13,7 @@ export const Component = ({
   const closeModal = () => {
     setVisible(false);
   };
+
   return (
     <div
       className={`modal-wrapper${visible ? '' : ' hidden'}${

@@ -1,11 +1,10 @@
 import { selector } from 'recoil';
-import { top3List, hasFinishedReadingState, hasReadState } from '../top3State';
+import { global } from '../apiErrorState';
+import { email, loginToken, userId, username } from '../authState';
 import { dndContainerState } from '../dndState';
 import { list } from '../pastSubsState';
-import { userId, email, username } from '../userState';
-import { global } from '../apiErrorState';
 import { currentPrompt } from '../promptState';
-import { histogram, winner } from '../resultsState';
+import { winner } from '../resultsState';
 import {
   error,
   loading,
@@ -13,12 +12,14 @@ import {
   selected,
   success,
 } from '../submitModalState';
+import { hasFinishedReadingState, hasReadState, top3List } from '../top3State';
 
 // This selector exists to clear all Recoil state on logout and should be updated as state grows
 export const all = selector<null>({
   key: 'clearState',
   get: () => null,
   set: ({ reset }) => {
+    reset(loginToken);
     reset(top3List);
     reset(dndContainerState);
     reset(hasFinishedReadingState);
@@ -29,7 +30,6 @@ export const all = selector<null>({
     reset(username);
     reset(global);
     reset(currentPrompt);
-    reset(histogram);
     reset(winner);
     reset(error);
     reset(loading);

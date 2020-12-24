@@ -1,0 +1,72 @@
+.voting-info {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+
+  .nav-arrow-button {
+    width: 100%;
+  }
+
+  .flex-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+    padding: 1rem 2rem;
+    height: 100vh;
+
+    img {
+      max-width: 100%;
+    }
+
+    // Header img
+    img:first-of-type {
+      margin-bottom: auto;
+      max-height: 20vh;
+    }
+
+    // Middle img
+    img:nth-of-type(2) {
+      margin-bottom: auto;
+      max-height: 39vh;
+    }
+  }
+
+  .dragon-boi {
+    visibility: hidden;
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+
+    img {
+      min-height: 20vh;
+      max-height: 40vh;
+
+      @media (min-width: $large) {
+        min-height: 25vh;
+        max-height: 45vh;
+      }
+    }
+
+    @media (min-width: $tablet) {
+      visibility: unset;
+    }
+  }
+
+  .button-container {
+    text-align: center;
+    margin: 2rem auto;
+
+    .link-button {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      a {
+        @include button($orange, $padding: 1rem 5rem 0.8rem);
+        text-decoration: none;
+        font-size: 3rem;
+      }
+    }
+  }
+}

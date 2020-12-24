@@ -1,26 +1,40 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import hiImBlaze from '../../../../assets/img/hi-im-blaze.png';
+import howItWorks from '../../../../assets/img/how-it-works.png';
 import landingText from '../../../../assets/img/landing-text.png';
-import { DragonBoi } from '../DragonBoi';
+import { Header } from '../../../common';
+import { FaAngleDown } from 'react-icons/fa';
 
-const Home = (): React.ReactElement => {
+const Home = (props: HomeProps): React.ReactElement => {
   return (
-    <div className="home-page">
-      <img src={landingText} alt="Unleash your creativity!" />
-      <div className="flex-wrapper">
-        <DragonBoi />
-        <div className="links">
-          <p>
-            <Link to="/login">Log In</Link>
-            <Link to="/signup">Sign Up</Link>
-          </p>
-          <div className="learn-more">
-            <Link to="/info">Learn More</Link>
-          </div>
+    <div
+      className="home-page-wrapper"
+      ref={(element) =>
+        (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
+          element as HTMLDivElement,
+        )
+      }
+      style={{ height: window.innerHeight }}
+    >
+      <Header />
+      <div className="home-page">
+        <img src={landingText} alt="Unleash your creativity!" />
+        <img
+          src={hiImBlaze}
+          className="dragon"
+          alt="Dragon saying 'Hi, I'm Blaze, and I can't wait to read your stories!'"
+        />
+        <div className="how-it-works">
+          <img src={howItWorks} alt="How it works" />
+          <FaAngleDown />
         </div>
       </div>
     </div>
   );
 };
+
+interface HomeProps {
+  responsiveHeightRefs: React.RefObject<Set<HTMLDivElement>>;
+}
 
 export default Home;

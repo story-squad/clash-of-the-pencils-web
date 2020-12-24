@@ -37,7 +37,7 @@ $red: #f64141;
 $ltblue: #85c7f2;
 $bright-blue: #2462d9;
 
-.App > div {
+.App > div:not(.modal-wrapper) {
   min-height: 100vh;
   background-color: $dark-blue;
   display: flex;
