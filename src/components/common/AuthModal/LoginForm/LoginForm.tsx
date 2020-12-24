@@ -47,7 +47,7 @@ const LoginForm = (): React.ReactElement => {
       <div className="inputs">
         <Input
           name="email"
-          label="Codename"
+          label="Email"
           type="email"
           errors={errors}
           register={register}
