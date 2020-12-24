@@ -1,9 +1,9 @@
-import React from 'react';
 import ConvertKitForm from 'convertkit-react';
+import React from 'react';
 
 const convertKitProps = {
   className: 'ck-fm',
-  formId: 1826783,
+  formId: 1831649,
   showLabels: true,
   emailLabel: 'Email',
   emailPlaceholder: null,

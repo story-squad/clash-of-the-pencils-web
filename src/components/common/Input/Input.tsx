@@ -10,7 +10,7 @@ const Input = ({
   rules = {},
   errors = {},
   showPassword,
-  placeholder = 'text',
+  placeholder = '',
   ...rest
 }: InputProps): React.ReactElement => {
   // store the type prop in state so that it can be changed to show/hide the value in a password input
@@ -28,7 +28,6 @@ const Input = ({
       <label htmlFor={name}>{label} :</label>
       <div className="input-field">
         <input
-          id={name}
           name={name}
           type={inputType}
           ref={register && register(rules)}
