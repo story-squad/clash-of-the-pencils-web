@@ -8,15 +8,13 @@ import NavArrowButton, { NavDirection } from '../NavArrowButton';
 const VotingInfo = (props: VotingInfoProps): React.ReactElement => {
   return (
     <div className="voting-info">
-      <NavArrowButton buttonNav={props.buttonNav} navDirection="up" />
       <div className="flex-wrapper">
+        <NavArrowButton buttonNav={props.buttonNav} navDirection="up" />
         <img
-          className="img-center"
           src={blazeWillRead}
           alt="4. Vote on the three finalists to determine a winner and see your squad score."
         />
         <img
-          className="img-center"
           src={dragonDropDemo}
           alt="Dragon Drop. Vote by dragging the drag-n-drop dragons onto your favorite story below, then click the button."
         />

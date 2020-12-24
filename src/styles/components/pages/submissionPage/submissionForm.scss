@@ -3,6 +3,10 @@
     position: relative;
     background-color: $dark-blue;
     border: 4px solid $jade;
+
+    .modal-header {
+      border-radius: 0;
+    }
     form {
       & > img {
         margin-bottom: 1.6rem;

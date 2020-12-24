@@ -9,7 +9,11 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
   };
 
   return props.isVisible ? (
-    <TransformWrapper>
+    <TransformWrapper
+      options={{
+        limitToBounds: false,
+      }}
+    >
       {({ zoomIn, zoomOut, resetTransform }: TransformProps) => (
         <div className="fullscreen-image">
           <div className="close-button">
@@ -17,7 +21,11 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
           </div>
           <div className="img-wrapper">
             <TransformComponent>
-              <img src={props.src} alt="Submission displayed fullscreen" />
+              <img
+                src={props.src}
+                alt="Submission displayed fullscreen"
+                className={`rotate-${props.rotation}`}
+              />
             </TransformComponent>
           </div>
           <div className="controls">
@@ -41,6 +49,7 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
 
 interface FullscreenImageProps extends Submissions.SubItem {
   src: string;
+  rotation: number;
   isVisible: boolean;
   setIsVisible: React.Dispatch<SetStateAction<boolean>>;
 }

@@ -1,44 +1,36 @@
 // Home Page
 .home-page-wrapper {
   height: 100vh;
-  display: flex;
-  flex-flow: column nowrap;
 
-  .home-page {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem 2rem 50px;
+  .responsive-container {
+    // Mobile fix, fill available height
+    height: -webkit-fill-available;
 
-    & > img {
-      max-width: 100%;
-      margin-bottom: 1rem;
-      max-height: 18vh;
-    }
+    .home-page {
+      height: 100%;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
 
-    .dragon-boi {
+      & > img {
+        max-width: 100%;
+        margin-bottom: 1rem;
+        max-height: 18vh;
+      }
+
       .dragon {
         max-height: 40vh;
       }
-    }
 
-    .how-it-works {
-      bottom: 6rem;
-      color: $white;
-      img {
-        max-height: 7vh;
-      }
-    }
-
-    .flex-wrapper {
-      display: flex;
-      flex-flow: column nowrap;
-      align-items: center;
-
-      @media screen and (min-width: $mid) {
-        flex-direction: row;
-        justify-content: space-between;
+      .how-it-works {
+        display: flex;
+        flex-flow: column nowrap;
+        margin-bottom: 2rem;
+        img {
+          max-height: 7vh;
+        }
       }
     }
   }
