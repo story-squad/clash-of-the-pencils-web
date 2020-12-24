@@ -151,24 +151,29 @@
         font-family: $text-font;
         margin: 0 0 2rem;
         line-height: 2rem;
+      }
+      .checkbox {
+        margin-bottom: 1rem;
+      }
 
-        a,
-        .text-button {
-          color: $white;
+      .text-button {
+        color: $white;
+        transition: all 0.15s ease-in;
+        text-decoration: underline;
+        cursor: pointer;
+        &:hover {
+          color: darken($white, 15%);
           transition: all 0.15s ease-in;
-          text-decoration: underline;
-          cursor: pointer;
-          &:hover {
-            color: darken($white, 15%);
-            transition: all 0.15s ease-in;
-          }
         }
       }
 
       input[type='submit'] {
         @include button($orange);
-        margin: 1rem auto;
+        margin: 1rem auto 3rem;
         font-size: 2.4rem;
+        &.login {
+          margin-top: 6rem;
+        }
       }
     }
 

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Home } from './Home';
 import { Steps } from './Steps';
 import { VotingInfo } from './VotingInfo';
@@ -24,13 +24,20 @@ const LandingPageContainer = (): React.ReactElement => {
 
   return (
     <div className="landing-page-container">
-      {/* <Scoreboard
-        rows={[
-          { score: 40, username: 'Brandon' },
-          { score: 42, username: 'Brandon1' },
-          { score: 44, username: 'Brandon2' },
-        ]}
-      /> */}
+      {/* <Table
+      headings={Submissions.ScoreboardHeadings}
+      rows={Submissions.TestScoreboardData}
+    />
+    <div>
+      <SubCard
+        id={1}
+        image="123432452342"
+        src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/landscaping-ideas-1582321830.jpg"
+        userId={5}
+        username="A Username"
+        rotation={0}
+      />
+    </div> */}
       <Home responsiveHeightRefs={responsiveHeightRefs} />
       <Steps responsiveHeightRefs={responsiveHeightRefs} />
       <VotingInfo responsiveHeightRefs={responsiveHeightRefs} />

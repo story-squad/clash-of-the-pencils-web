@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
@@ -29,6 +30,12 @@ const SignupForm = (): React.ReactElement => {
     Auth.signup(credentials)
       .then(() => {
         clearErrors();
+
+        // send Convert Kit the email address
+        axios.post('https://api.convertkit.com/v3/forms/1903505/subscribe', {
+          api_key: process.env.REACT_APP_CONVERTKIT_URL,
+          email: credentials.email,
+        });
         setSignupWasSuccessful(true);
       })
       .catch((err: Auth.AxiosError) => {
@@ -187,7 +194,7 @@ const SignupForm = (): React.ReactElement => {
         name="termsCheckbox"
         label={
           <>
-            I have read and agree to the{' '}
+            I have read and agree to the&nbsp;
             <Link to="/tos" className="text-button" target="_blank">
               Terms & Conditions
             </Link>
@@ -204,10 +211,6 @@ const SignupForm = (): React.ReactElement => {
         value="Create Account"
         onClick={() => clearErrors('form')}
       />
-
-      <div className="text">
-        Already have an account? <Link to="/login">Click Here</Link>
-      </div>
     </form>
   );
 };

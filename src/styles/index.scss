@@ -14,6 +14,9 @@
 @import './components/pages/submissionPage/submissionPage.scss';
 @import './components/pages/votingPages/votingPage.scss';
 @import './components/pages/resultsPage/resultsPage.scss';
+@import './components/pages/resetPasswordPages/passwordForm.scss';
+@import './components/pages/resetPasswordPages/emailForm.scss';
+@import './components/pages/resetPasswordPages/resetSuccess.scss';
 
 // Common Components
 @import './components/common/modal.scss';
@@ -27,4 +30,5 @@
 @import './components/common/countdown.scss';
 @import './components/common/authModal.scss';
 @import './components/common/fullscreenImage.scss';
-@import './components/common/scoreboard.scss';
+@import './components/common/table.scss';
+@import './components/common/checkbox.scss';
