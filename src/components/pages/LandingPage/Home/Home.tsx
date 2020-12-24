@@ -3,7 +3,6 @@ import hiImBlaze from '../../../../assets/img/hi-im-blaze.png';
 import howItWorks from '../../../../assets/img/how-it-works.png';
 import landingText from '../../../../assets/img/landing-text.png';
 import { Header } from '../../../common';
-import NavArrowButton, { NavDirection } from '../NavArrowButton';
 
 const Home = (props: HomeProps): React.ReactElement => {
   return (
@@ -26,7 +25,7 @@ const Home = (props: HomeProps): React.ReactElement => {
         />
         <div className="how-it-works">
           <img src={howItWorks} alt="How it works" />
-          <NavArrowButton buttonNav={props.buttonNav} navDirection="down" />
+          {/* Add icon */}
         </div>
       </div>
     </div>
@@ -34,7 +33,6 @@ const Home = (props: HomeProps): React.ReactElement => {
 };
 
 interface HomeProps {
-  buttonNav: (navDirection: NavDirection) => void;
   responsiveHeightRefs: React.RefObject<Set<HTMLDivElement>>;
 }
 

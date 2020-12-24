@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import blazeWillRead from '../../../../assets/img/blaze-will-read.png';
 import dragonDropDemo from '../../../../assets/img/dragon-drop-demo.png';
 import dragonSingle from '../../../../assets/img/dragon-single-page.png';
-import NavArrowButton, { NavDirection } from '../NavArrowButton';
 
 const VotingInfo = (props: VotingInfoProps): React.ReactElement => {
   return (
@@ -24,7 +23,6 @@ const VotingInfo = (props: VotingInfoProps): React.ReactElement => {
           )
         }
       >
-        <NavArrowButton buttonNav={props.buttonNav} navDirection="up" />
         <img
           src={blazeWillRead}
           alt="4. Vote on the three finalists to determine a winner and see your squad score."
@@ -51,7 +49,6 @@ const VotingInfo = (props: VotingInfoProps): React.ReactElement => {
 };
 
 interface VotingInfoProps {
-  buttonNav: (navDirection: NavDirection) => void;
   responsiveHeightRefs: React.RefObject<Set<HTMLDivElement>>;
 }
 

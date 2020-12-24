@@ -25,7 +25,6 @@ const Step2 = (props: StepProps): React.ReactElement => {
         }
         style={{ height: window.innerHeight }}
       >
-        <NavArrowButton navDirection={'up'} buttonNav={props.buttonNavY} />
         <div className="container">
           <img
             src={getPaper}
@@ -45,7 +44,6 @@ const Step2 = (props: StepProps): React.ReactElement => {
           <img src={dragonSet} className="dragon" alt="dragon saying 'Set?'" />
           {props.circles()}
         </div>
-        <NavArrowButton navDirection={'down'} buttonNav={props.buttonNavY} />
       </div>
     </div>
   );

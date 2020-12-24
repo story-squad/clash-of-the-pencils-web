@@ -16,7 +16,6 @@ const RenderSteps = (props: RenderStepsProps): React.ReactElement => {
           <Step1
             responsiveHeightRefs={props.responsiveHeightRefs}
             buttonNavX={props.buttonNavX}
-            buttonNavY={props.buttonNavY}
             circles={circles}
           />
         );
@@ -25,7 +24,6 @@ const RenderSteps = (props: RenderStepsProps): React.ReactElement => {
           <Step2
             responsiveHeightRefs={props.responsiveHeightRefs}
             buttonNavX={props.buttonNavX}
-            buttonNavY={props.buttonNavY}
             circles={circles}
           />
         );
@@ -34,7 +32,6 @@ const RenderSteps = (props: RenderStepsProps): React.ReactElement => {
           <Step3
             responsiveHeightRefs={props.responsiveHeightRefs}
             buttonNavX={props.buttonNavX}
-            buttonNavY={props.buttonNavY}
             circles={circles}
           />
         );
@@ -43,7 +40,6 @@ const RenderSteps = (props: RenderStepsProps): React.ReactElement => {
           <Step4
             responsiveHeightRefs={props.responsiveHeightRefs}
             buttonNavX={props.buttonNavX}
-            buttonNavY={props.buttonNavY}
             circles={circles}
           />
         );
@@ -87,13 +83,11 @@ const StepError = (): React.ReactElement => {
 interface RenderStepsProps {
   stepNum: number;
   buttonNavX: (direction: NavDirection) => void;
-  buttonNavY: (direction: NavDirection) => void;
   responsiveHeightRefs: React.RefObject<Set<HTMLDivElement>>;
 }
 
 export interface StepProps {
   buttonNavX: (direction: NavDirection) => void;
-  buttonNavY: (direction: NavDirection) => void;
   circles: () => React.ReactElement;
   responsiveHeightRefs: React.RefObject<Set<HTMLDivElement>>;
 }

@@ -25,7 +25,6 @@ const Step1 = (props: StepProps): React.ReactElement => {
         }
         style={{ height: window.innerHeight }}
       >
-        <NavArrowButton navDirection={'up'} buttonNav={props.buttonNavY} />
         <div className="container">
           <img src={scopeOut} alt="Scope out the prompt." />
         </div>
@@ -44,7 +43,6 @@ const Step1 = (props: StepProps): React.ReactElement => {
           />
           {props.circles()}
         </div>
-        <NavArrowButton navDirection={'down'} buttonNav={props.buttonNavY} />
       </div>
     </div>
   );
