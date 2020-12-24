@@ -7,6 +7,7 @@ export interface SubItem {
   username: string;
   image: string;
   src: string;
+  rotation: number;
   pages?: string;
 }
 

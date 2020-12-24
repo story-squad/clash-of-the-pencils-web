@@ -187,7 +187,7 @@ const SignupForm = (): React.ReactElement => {
         name="termsCheckbox"
         label={
           <>
-            I have read and agree to the{' '}
+            I have read and agree to the&nbsp;
             <Link to="/tos" className="text-button" target="_blank">
               Terms & Conditions
             </Link>
@@ -204,10 +204,6 @@ const SignupForm = (): React.ReactElement => {
         value="Create Account"
         onClick={() => clearErrors('form')}
       />
-
-      <div className="text">
-        Already have an account? <Link to="/login">Click Here</Link>
-      </div>
     </form>
   );
 };
