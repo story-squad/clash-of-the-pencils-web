@@ -1,7 +1,9 @@
 // Home Page
 .home-page-wrapper {
+  height: 100vh;
+
   .home-page {
-    height: 90%;
+    height: 100%;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
@@ -21,9 +23,13 @@
     .how-it-works {
       display: flex;
       flex-flow: column nowrap;
-      margin-bottom: 2rem;
+      align-items: center;
+      margin-bottom: 4rem;
+      color: $white;
+      font-size: 3rem;
       img {
         max-height: 7vh;
+        margin-bottom: 1rem;
       }
     }
   }
