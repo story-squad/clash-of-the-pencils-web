@@ -2,35 +2,34 @@
 .home-page-wrapper {
   height: 100vh;
 
-  .responsive-container {
-    // Mobile fix, fill available height
-    height: -webkit-fill-available;
+  .home-page {
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
 
-    .home-page {
-      height: 100%;
+    & > img {
+      max-width: 100%;
+      margin-bottom: 1rem;
+      max-height: 18vh;
+    }
+
+    .dragon {
+      max-height: 40vh;
+    }
+
+    .how-it-works {
       display: flex;
       flex-flow: column nowrap;
-      justify-content: space-between;
       align-items: center;
-      padding: 2rem;
-
-      & > img {
-        max-width: 100%;
+      margin-bottom: 4rem;
+      color: $white;
+      font-size: 3rem;
+      img {
+        max-height: 7vh;
         margin-bottom: 1rem;
-        max-height: 18vh;
-      }
-
-      .dragon {
-        max-height: 40vh;
-      }
-
-      .how-it-works {
-        display: flex;
-        flex-flow: column nowrap;
-        margin-bottom: 2rem;
-        img {
-          max-height: 7vh;
-        }
       }
     }
   }

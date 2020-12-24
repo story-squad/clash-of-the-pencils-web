@@ -1,5 +1,4 @@
 .steps {
-  height: 100vh;
   width: 100vw;
 
   .circles {
@@ -34,10 +33,9 @@
   .grid-wrapper {
     display: grid;
     // up arrow | header image | main image container | dragon/circle container | down arrow
-    grid-template-rows: 5% 25% auto 25% 5%;
-    padding: 1rem;
-    // Mobile fix, fill available height
-    height: -webkit-fill-available;
+    grid-template-rows: 22% auto 22%;
+    padding: 2rem 1rem;
+    max-height: 100vh;
 
     img {
       max-width: 100%;
@@ -47,7 +45,7 @@
     .dragon {
       align-self: flex-end;
       max-height: 22vh;
-      padding: 0 2rem;
+      padding-left: 2rem;
     }
 
     .container {
@@ -93,7 +91,6 @@
 
   [class^="step-"] {
     // this applies to all 'step-#' classes
-    height: 100vh;
   }
 
   .step-1 {

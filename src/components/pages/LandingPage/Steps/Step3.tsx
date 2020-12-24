@@ -1,15 +1,30 @@
 import React from 'react';
-import { StepProps } from './RenderSteps';
 import dragonGo from '../../../../assets/img/dragon-go.png';
 import scribbleDown from '../../../../assets/img/scribble-down.png';
 import writingStory from '../../../../assets/img/writing-story.png';
 import NavArrowButton from '../NavArrowButton';
+import { StepProps } from './RenderSteps';
 
 const Step3 = (props: StepProps): React.ReactElement => {
   return (
-    <div className="step-3">
-      <div className="grid-wrapper">
-        <NavArrowButton navDirection={'up'} buttonNav={props.buttonNavY} />
+    <div
+      className="step-3"
+      ref={(element) =>
+        (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
+          element as HTMLDivElement,
+        )
+      }
+      style={{ height: window.innerHeight }}
+    >
+      <div
+        className="grid-wrapper"
+        ref={(element) =>
+          (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
+            element as HTMLDivElement,
+          )
+        }
+        style={{ height: window.innerHeight }}
+      >
         <div className="container">
           <img src={scribbleDown} alt="Scribble down a 1-page story by hand." />
         </div>
@@ -22,7 +37,6 @@ const Step3 = (props: StepProps): React.ReactElement => {
           <img src={dragonGo} className="dragon" alt="dragon saying 'Go!'" />
           {props.circles()}
         </div>
-        <NavArrowButton navDirection={'down'} buttonNav={props.buttonNavY} />
       </div>
     </div>
   );

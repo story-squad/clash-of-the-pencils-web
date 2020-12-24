@@ -1,15 +1,30 @@
 import React from 'react';
-import { StepProps } from './RenderSteps';
 import dragonSet from '../../../../assets/img/dragon-set.png';
 import getPaper from '../../../../assets/img/get-paper.png';
 import pencilPaper from '../../../../assets/img/pencil-and-paper.png';
 import NavArrowButton from '../NavArrowButton';
+import { StepProps } from './RenderSteps';
 
 const Step2 = (props: StepProps): React.ReactElement => {
   return (
-    <div className="step-2">
-      <div className="grid-wrapper">
-        <NavArrowButton navDirection={'up'} buttonNav={props.buttonNavY} />
+    <div
+      className="step-2"
+      ref={(element) =>
+        (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
+          element as HTMLDivElement,
+        )
+      }
+      style={{ height: window.innerHeight }}
+    >
+      <div
+        className="grid-wrapper"
+        ref={(element) =>
+          (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
+            element as HTMLDivElement,
+          )
+        }
+        style={{ height: window.innerHeight }}
+      >
         <div className="container">
           <img
             src={getPaper}
@@ -29,7 +44,6 @@ const Step2 = (props: StepProps): React.ReactElement => {
           <img src={dragonSet} className="dragon" alt="dragon saying 'Set?'" />
           {props.circles()}
         </div>
-        <NavArrowButton navDirection={'down'} buttonNav={props.buttonNavY} />
       </div>
     </div>
   );
