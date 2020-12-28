@@ -99,7 +99,7 @@ const SubmissionForm = (
           // Once the submission is done, show a button.
           <>
             <div className="success">Submission successful!</div>
-            <button onClick={props.closeModal}>Back to Dashboard</button>
+            <button onClick={props.closeModal}>Back to Site</button>
           </>
         )}
       </div>

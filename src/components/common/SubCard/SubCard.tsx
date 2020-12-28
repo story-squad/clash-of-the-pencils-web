@@ -16,7 +16,11 @@ const SubCard = ({
   };
 
   return (
-    <div className="sub-card" style={{ backgroundImage: `url(${sub.src})` }}>
+    <div className="sub-card">
+      <div
+        className={`card-img rotate-${sub.rotation}`}
+        style={{ backgroundImage: `url(${sub.src})` }}
+      />
       <FullscreenImage
         {...sub}
         isVisible={showModal}
