@@ -29,3 +29,8 @@ export const authModalIsLogin = atom<boolean>({
   key: 'authModalIsLogin',
   default: true,
 });
+
+export const signupWasSuccessful = atom<boolean>({
+  key: 'signupWasSuccesful',
+  default: false,
+});

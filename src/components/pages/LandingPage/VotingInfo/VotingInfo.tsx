@@ -1,22 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import blazeWillRead from '../../../../assets/img/blaze-will-read.png';
-import dragonSingle from '../../../../assets/img/dragon-single-page.png';
 import dragonDropDemo from '../../../../assets/img/dragon-drop-demo.png';
-import NavArrowButton, { NavDirection } from '../NavArrowButton';
+import dragonSingle from '../../../../assets/img/dragon-single-page.png';
 
 const VotingInfo = (props: VotingInfoProps): React.ReactElement => {
   return (
-    <div className="voting-info">
-      <NavArrowButton buttonNav={props.buttonNav} navDirection="up" />
-      <div className="flex-wrapper">
+    <div
+      className="voting-info"
+      ref={(element) =>
+        (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
+          element as HTMLDivElement,
+        )
+      }
+      style={{ height: window.innerHeight }}
+    >
+      <div
+        className="flex-wrapper"
+        ref={(element) =>
+          (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
+            element as HTMLDivElement,
+          )
+        }
+      >
         <img
-          className="img-center"
           src={blazeWillRead}
           alt="4. Vote on the three finalists to determine a winner and see your squad score."
         />
         <img
-          className="img-center"
           src={dragonDropDemo}
           alt="Dragon Drop. Vote by dragging the drag-n-drop dragons onto your favorite story below, then click the button."
         />
@@ -38,7 +49,7 @@ const VotingInfo = (props: VotingInfoProps): React.ReactElement => {
 };
 
 interface VotingInfoProps {
-  buttonNav: (navDirection: NavDirection) => void;
+  responsiveHeightRefs: React.RefObject<Set<HTMLDivElement>>;
 }
 
 export default VotingInfo;

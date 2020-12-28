@@ -1,11 +1,12 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { auth } from '../../../state';
 import { Modal } from '../Modal';
 import { Login } from './LoginForm';
 import { Signup } from './SignupForm';
+import SignupSuccess from './SignupSuccess';
 
-const AuthToggle = (props: Modal.ModalComponentProps): React.ReactElement => {
+const AuthToggle = (): React.ReactElement => {
   const [isLogin, setIsLogin] = useRecoilState(auth.authModalIsLogin);
 
   const setForm = (isLogin: boolean) => {
@@ -13,7 +14,7 @@ const AuthToggle = (props: Modal.ModalComponentProps): React.ReactElement => {
   };
 
   return (
-    <div className="auth-toggle">
+    <div className="auth-modal">
       <div className="auth-switcher">
         <span className={isLogin ? 'active' : ''} onClick={() => setForm(true)}>
           Log In
@@ -25,23 +26,20 @@ const AuthToggle = (props: Modal.ModalComponentProps): React.ReactElement => {
           Sign Up
         </span>
       </div>
-      <div className="auth-form">
-        {isLogin ? (
-          <Login closeModal={props.closeModal} />
-        ) : (
-          <Signup closeModal={props.closeModal} />
-        )}
-      </div>
+      <div className="auth-form">{isLogin ? <Login /> : <Signup />}</div>
     </div>
   );
 };
 
 const AuthModal = (): React.ReactElement => {
   const [modalOpen, setModalOpen] = useRecoilState(auth.authModalOpen);
+  const signupWasSuccessful = useRecoilValue(auth.signupWasSuccessful);
+
   return (
     <Modal.Component
       className="dark-blue"
-      component={(props) => <AuthToggle {...props} />}
+      component={signupWasSuccessful ? SignupSuccess : AuthToggle}
+      centered={signupWasSuccessful}
       visible={modalOpen}
       setVisible={setModalOpen}
     />

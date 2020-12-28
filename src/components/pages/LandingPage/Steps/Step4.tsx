@@ -1,29 +1,48 @@
 import React from 'react';
-import { StepProps } from './RenderSteps';
 import dragonFire from '../../../../assets/img/dragon-fire.png';
 import submitPic from '../../../../assets/img/submit-a-pic.png';
 import writingArrowSubmit from '../../../../assets/img/writing-arrow-submit.png';
 import NavArrowButton from '../NavArrowButton';
+import { StepProps } from './RenderSteps';
 
 const Step4 = (props: StepProps): React.ReactElement => {
   return (
-    <div className="step-4">
-      <div className="flex-wrapper">
-        <img
-          className="img-center"
-          src={submitPic}
-          alt="Submit a pic of your story by the deadline"
-        />
-        <img
-          className="img-center"
-          src={writingArrowSubmit}
-          alt="Arrow pointing from hand-written story to a button with text: Submit Your Story"
-        />
-        <div className="dragon-boi right">
+    <div
+      className="step-4"
+      ref={(element) =>
+        (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
+          element as HTMLDivElement,
+        )
+      }
+      style={{ height: window.innerHeight }}
+    >
+      <div
+        className="grid-wrapper"
+        ref={(element) =>
+          (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
+            element as HTMLDivElement,
+          )
+        }
+        style={{ height: window.innerHeight }}
+      >
+        <div className="container">
+          <img
+            src={submitPic}
+            alt="Submit a pic of your story by the deadline"
+          />
+        </div>
+        <div className="container">
+          <NavArrowButton navDirection={'left'} buttonNav={props.buttonNavX} />
+          <img
+            src={writingArrowSubmit}
+            alt="Arrow pointing from hand-written story to a button with text: Submit Your Story"
+          />
+        </div>
+        <div className="container">
           <img src={dragonFire} className="dragon" alt="dragon saying 'Go!'" />
+          {props.circles()}
         </div>
       </div>
-      <NavArrowButton navDirection={'left'} buttonNav={props.buttonNav} />
     </div>
   );
 };

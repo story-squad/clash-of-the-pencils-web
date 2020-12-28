@@ -3,6 +3,10 @@
     position: relative;
     background-color: $dark-blue;
     border: 4px solid $jade;
+
+    .modal-header {
+      border-radius: 0;
+    }
     form {
       & > img {
         margin-bottom: 1.6rem;
@@ -115,7 +119,7 @@
   .success {
     margin-bottom: 2rem;
     font-family: $display-font;
-    color: $dark-blue;
+    color: $jade;
     text-shadow: 0 2px 2px #0005;
     font-size: 1.8rem;
     @media screen and (max-height: 500px) {
