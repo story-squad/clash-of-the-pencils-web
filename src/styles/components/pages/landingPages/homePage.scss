@@ -2,13 +2,25 @@
 .home-page-wrapper {
   height: 100vh;
 
+  header {
+    position: fixed;
+    width: 100%;
+  }
+
+  .nav-menu {
+    position: fixed;
+    @media screen and (min-width: $tablet) {
+      top: 0.3rem !important;
+    }
+  }
+
   .home-page {
     height: 100%;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem;
+    padding: 60px 2rem 3rem;
 
     & > img {
       max-width: 100%;
@@ -24,7 +36,6 @@
       display: flex;
       flex-flow: column nowrap;
       align-items: center;
-      margin-bottom: 4rem;
       color: $white;
       font-size: 5vh;
 
