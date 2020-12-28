@@ -1,6 +1,7 @@
 // Home Page
 .home-page-wrapper {
   height: 100vh;
+  margin-bottom: 2rem;
 
   header {
     position: fixed;
@@ -38,11 +39,16 @@
       flex-flow: column nowrap;
       align-items: center;
       color: $white;
-      font-size: 5vh;
+      // arrow icon size
+      font-size: 3rem;
+
+      @media (min-width: $tablet) {
+        font-size: 4rem;
+      }
 
       img {
         max-height: 7vh;
-        margin-bottom: 1rem;
+        margin: 2rem 0 0.5rem 0;
       }
     }
   }
