@@ -93,15 +93,14 @@
     // this applies to all 'step-#' classes
   }
 
-  .step-1 {
+  .step-1,
+  .step-3 {
     background: $jade;
   }
 
-  .step-3 {
+  .step-2,
+  .step-4 {
     background: $seafoam;
-  }
-
-  .step-2, .step-4 {
     // put dragon on the right side
     .dragon {
       grid-column: 3;
