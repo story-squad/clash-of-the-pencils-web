@@ -2,9 +2,13 @@
   background: none;
   border: none;
   color: $white;
-  font-size: 5vh;
   cursor: pointer;
   padding: 0;
   height: 100%;
   width: 100%;
+  font-size: 2rem;
+
+  @media (min-width: $mid) {
+    font-size: 4rem;
+  }
 }
