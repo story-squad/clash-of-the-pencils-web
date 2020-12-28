@@ -25,13 +25,13 @@ const Step2 = (props: StepProps): React.ReactElement => {
         }
         style={{ height: window.innerHeight }}
       >
-        <div className="container">
+        <div className="container top">
           <img
             src={getPaper}
             alt="Get a piece of paper and your lucky pencil."
           />
         </div>
-        <div className="container">
+        <div className="container middle">
           <NavArrowButton navDirection={'left'} buttonNav={props.buttonNavX} />
           <img
             className="img-center"
@@ -40,7 +40,7 @@ const Step2 = (props: StepProps): React.ReactElement => {
           />
           <NavArrowButton navDirection={'right'} buttonNav={props.buttonNavX} />
         </div>
-        <div className="container">
+        <div className="container bottom">
           <img src={dragonSet} className="dragon" alt="dragon saying 'Set?'" />
           {props.circles()}
         </div>

@@ -25,17 +25,17 @@ const Step1 = (props: StepProps): React.ReactElement => {
         }
         style={{ height: window.innerHeight }}
       >
-        <div className="container">
+        <div className="container top">
           <img src={scopeOut} alt="Scope out the prompt." />
         </div>
-        <div className="container">
+        <div className="container middle">
           <img
             src={dummyPrompt}
             alt="Prompt: you're a super hero, and there is a town that needs saving."
           />
           <NavArrowButton navDirection={'right'} buttonNav={props.buttonNavX} />
         </div>
-        <div className="container">
+        <div className="container bottom">
           <img
             className="dragon"
             src={dragonReady}

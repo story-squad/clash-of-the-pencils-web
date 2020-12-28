@@ -25,20 +25,20 @@ const Step4 = (props: StepProps): React.ReactElement => {
         }
         style={{ height: window.innerHeight }}
       >
-        <div className="container">
+        <div className="container top">
           <img
             src={submitPic}
             alt="Submit a pic of your story by the deadline"
           />
         </div>
-        <div className="container">
+        <div className="container middle">
           <NavArrowButton navDirection={'left'} buttonNav={props.buttonNavX} />
           <img
             src={writingArrowSubmit}
             alt="Arrow pointing from hand-written story to a button with text: Submit Your Story"
           />
         </div>
-        <div className="container">
+        <div className="container bottom">
           <img src={dragonFire} className="dragon" alt="dragon saying 'Go!'" />
           {props.circles()}
         </div>
