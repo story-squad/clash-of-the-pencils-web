@@ -1,6 +1,5 @@
 .sub-card {
   max-width: 100%;
-  @include drop-shadow;
   display: flex;
   position: relative;
 
@@ -20,6 +19,9 @@
   }
 
   .card-img {
+    border: 1px solid $charcoal;
+    border-radius: 5px;
+    @include drop-shadow;
     width: 100%;
     height: 100%;
     background-size: cover;

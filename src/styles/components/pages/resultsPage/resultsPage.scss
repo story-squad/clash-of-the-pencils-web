@@ -1,12 +1,12 @@
 .results-page {
   padding: 2rem;
-
-  @media screen and (min-width: $tablet) {
-    margin: 0 10%;
-  }
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 
   img {
-    margin-bottom: 2rem;
+    margin: 0 auto 2rem;
+    width: 800px;
   }
 
   .could-not-load {
@@ -39,8 +39,10 @@
     display: flex;
     flex-flow: column nowrap;
     padding: 2rem 3rem;
-    background-color: $seafoam;
-    border-radius: 5px;
+    background-color: $lt-orange;
+    border-radius: 30px;
+    border: 2px solid $charcoal;
+    max-width: 630px;
     @include drop-shadow;
 
     .thought-bubble {
@@ -50,21 +52,27 @@
         font-family: $display-font;
         text-align: center;
         h3 {
-          font-size: 1.8rem;
-          color: $blue;
-          margin-bottom: 0.5rem;
+          font-size: 1.4rem;
+          color: $charcoal;
         }
         h2 {
-          font-size: 2.4rem;
-          color: $orange;
-          margin-bottom: 0.5rem;
+          font-size: 2rem;
+          color: $jade;
+          margin: 0.5rem 0;
+        }
+        .flames {
+          font-size: 1.6rem;
         }
         @media screen and (min-width: $mid) {
           h3 {
-            font-size: 2.4rem;
+            font-size: 2rem;
           }
           h2 {
             font-size: 3.2rem;
+          }
+          .flames {
+            margin-top: 1rem;
+            font-size: 2rem;
           }
         }
       }
@@ -73,17 +81,75 @@
     .bottom {
       display: flex;
       flex-flow: row nowrap;
+      justify-content: space-evenly;
       .dragon {
-        width: 60%;
+        width: 40%;
+        @media screen and (min-width: $mid) {
+          width: 60%;
+        }
         img {
           width: 100%;
         }
       }
       .sub {
+        padding-left: 1rem;
         width: 38%;
-        padding: 4rem 2rem 2rem;
+        @media screen and (max-width: $tablet) {
+          .sub-card {
+            max-width: 30vw;
+            min-width: 30vw;
+            max-height: 30vw;
+            min-height: 30vw;
+          }
+        }
+        @media screen and (min-width: $mid) {
+          padding: 4rem 2rem 2rem;
+        }
         margin-left: 2%;
       }
+    }
+  }
+}
+
+.thought-bubble {
+  @mixin bubble($diff) {
+    background-color: $white;
+    border: 2px solid $charcoal;
+    border-radius: 25vw;
+    box-shadow: 0 $diff 4px #0005;
+  }
+  .text-bubble {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: $text-font;
+    padding: 2.5rem 1rem;
+    font-size: 1.7rem;
+    line-height: 2.2rem;
+    @include bubble(4px);
+    @media screen and (min-width: $mid) {
+      font-size: 2.5rem;
+      line-height: 3.3rem;
+    }
+  }
+  .thought-trail-1 {
+    width: 55%;
+    margin-top: 1.4rem;
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    .bubble {
+      padding: 0.85rem;
+      @include bubble(2px);
+    }
+  }
+  .thought-trail-2 {
+    width: 45%;
+    margin-top: 1rem;
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    .bubble {
+      padding: 0.55rem;
+      @include bubble(1px);
     }
   }
 }
