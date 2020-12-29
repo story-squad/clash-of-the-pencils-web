@@ -1,0 +1,29 @@
+.scoreboard {
+  padding: 2rem 0;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  background-color: $jade;
+
+  h3 {
+    color: $white;
+    font-family: $display-font;
+    font-size: 3.6rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 4px 4px #0006;
+  }
+
+  .table {
+    width: 90%;
+    border-radius: 10px;
+    @include drop-shadow;
+
+    .table-header {
+      font-size: 1.6rem;
+      @include bp(mid) {
+        font-size: 2rem;
+      }
+    }
+  }
+}

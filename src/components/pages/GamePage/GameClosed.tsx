@@ -1,24 +1,24 @@
 import React from 'react';
-import { time } from '../../../../utils';
-import { Countdown, Header } from '../../../common';
+import { time } from '../../../utils';
+import { Countdown, Header } from '../../common';
 
-const VotingClosed = (): React.ReactElement => {
+const GameClosed = (): React.ReactElement => {
   return (
     <div>
       <Header />
-      <div className="results-page">
+      <div className="closed-page">
         <div className="countdown-closed-component">
-          <h2>Voting is currently closed!</h2>
+          <h2>Submissions are currently closed!</h2>
           <p>
             Sorry you missed it :(
             <br />
-            Voting begins every day at{' '}
+            Voting begins at{' '}
             <span className="alt">
               {time.schedule.vote.start.format('h:mm A')}
             </span>
           </p>
           <p>
-            Check back in <Countdown toEvent="vote" /> to vote!
+            Check back in: <Countdown toEvent="vote" />
           </p>
         </div>
       </div>
@@ -26,4 +26,4 @@ const VotingClosed = (): React.ReactElement => {
   );
 };
 
-export default VotingClosed;
+export default GameClosed;

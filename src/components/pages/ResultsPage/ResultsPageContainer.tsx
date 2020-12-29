@@ -7,24 +7,26 @@ import RenderResultsPage from './RenderResultsPage';
 
 const ResultsPageContainer = (): React.ReactElement => {
   const [winner, setWinner] = useRecoilState(results.winner);
+  const [scoreboard, setScoreboard] = useRecoilState(results.scoreboard);
   const setLoadingError = useSetRecoilState(apiError.global);
 
   useEffect(() => {
-    if (!winner) {
-      setLoadingError(null);
-      Submissions.getWinner()
-        .then((sub) => {
-          setLoadingError(null);
-          setWinner(sub);
-        })
-        .catch((err) => {
-          console.log({ err });
-          setLoadingError(err.message);
-        });
-    }
+    setLoadingError(null);
+    // This needs to be refactored into the relative components
+    Promise.all([Submissions.getWinner(), Submissions.getScoreboard()])
+      .then(([sub, sb]) => {
+        console.log({ sub, sb });
+        setLoadingError(null);
+        setWinner(sub);
+        setScoreboard(sb);
+      })
+      .catch((err) => {
+        console.log({ err });
+        setLoadingError(err);
+      });
   }, []);
 
-  if (winner) {
+  if (winner || scoreboard) {
     return <RenderResultsPage />;
   } else {
     return <Loader />;

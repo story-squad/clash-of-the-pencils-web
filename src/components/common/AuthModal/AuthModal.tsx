@@ -6,7 +6,7 @@ import { Login } from './LoginForm';
 import { Signup } from './SignupForm';
 import SignupSuccess from './SignupSuccess';
 
-const AuthToggle = (): React.ReactElement => {
+const AuthToggle = (props: Modal.ModalComponentProps): React.ReactElement => {
   const [isLogin, setIsLogin] = useRecoilState(auth.authModalIsLogin);
 
   const setForm = (isLogin: boolean) => {
@@ -26,7 +26,9 @@ const AuthToggle = (): React.ReactElement => {
           Sign Up
         </span>
       </div>
-      <div className="auth-form">{isLogin ? <Login /> : <Signup />}</div>
+      <div className="auth-form">
+        {isLogin ? <Login {...props} /> : <Signup />}
+      </div>
     </div>
   );
 };
@@ -38,7 +40,11 @@ const AuthModal = (): React.ReactElement => {
   return (
     <Modal.Component
       className="dark-blue"
-      component={signupWasSuccessful ? SignupSuccess : AuthToggle}
+      component={
+        signupWasSuccessful
+          ? SignupSuccess
+          : (props) => <AuthToggle {...props} />
+      }
       centered={signupWasSuccessful}
       visible={modalOpen}
       setVisible={setModalOpen}
