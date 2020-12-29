@@ -34,12 +34,12 @@
     display: grid;
     // up arrow | header image | main image container | dragon/circle container | down arrow
     grid-template-rows: 22% auto 22%;
-    padding: 44px 0.5rem 3rem;
+    padding: 1rem 0.5rem 3rem;
     height: 100%;
     max-height: 100vh;
 
     @media (min-width: $mid) {
-      padding: 44px 2rem 3rem;
+      padding: 1rem 2rem 3rem;
     }
 
     img {

@@ -3,26 +3,13 @@
   height: 100vh;
   margin-bottom: 2rem;
 
-  header {
-    position: fixed;
-    width: 100%;
-  }
-
-  .nav-menu {
-    position: fixed;
-    @media screen and (min-width: $tablet) {
-      top: 0.3rem !important;
-      height: 42px;
-    }
-  }
-
   .home-page {
     height: 100%;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
     align-items: center;
-    padding: 60px 2rem 3rem;
+    padding: 3rem 2rem;
 
     & > img {
       max-width: 100%;
