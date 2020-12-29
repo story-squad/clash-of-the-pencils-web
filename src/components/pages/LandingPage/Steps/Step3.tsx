@@ -1,7 +1,7 @@
 import React from 'react';
 import dragonGo from '../../../../assets/img/dragon-go.png';
 import scribbleDown from '../../../../assets/img/scribble-down.png';
-import writingStory from '../../../../assets/img/writing-story.png';
+import writingStory from '../../../../assets/img/handwriting.gif';
 import NavArrowButton from '../NavArrowButton';
 import { StepProps } from './RenderSteps';
 
