@@ -15,15 +15,17 @@ const NavArrowButton = (props: NavArrowButtonProps): React.ReactElement => {
     }
   };
 
+  const handleClick = () => {
+    props.buttonNav(props.navDirection);
+    (thisButton.current as HTMLElement).blur();
+  };
+
   return (
     <button
       className={className}
       aria-label={ariaLabel}
       ref={thisButton as React.RefObject<HTMLButtonElement>}
-      onClick={() => {
-        props.buttonNav(props.navDirection);
-        (thisButton.current as HTMLElement).blur();
-      }}
+      onClick={handleClick}
     >
       {icon()}
     </button>
