@@ -1,6 +1,9 @@
 .drop-bank {
+  width: 80%;
+  max-width: 545px;
   display: flex;
   flex-flow: row nowrap;
+  justify-content: space-evenly;
   margin: 2rem auto;
   @media screen and (min-width: $tablet) {
     padding: 3rem 3rem 1rem;
@@ -10,10 +13,24 @@
   }
 
   .voting-item {
-    &:not(:last-of-type) {
-      margin-right: 1rem;
-      @media screen and (min-width: $tablet) {
-        margin-right: 3rem;
+    width: 100%;
+    max-width: 150px;
+
+    .sub-card {
+      width: 100%;
+
+      &::before {
+        display: block;
+        content: '';
+        width: 100%;
+        padding-top: 100%;
+      }
+      .card-img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
       }
     }
 
@@ -44,6 +61,7 @@
   .draggable-dragon {
     display: flex;
     position: absolute;
-    top: 2rem;
+    top: 1.5rem;
+    max-width: 150px;
   }
 }

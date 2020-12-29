@@ -7,53 +7,31 @@ import DraggableDragon from './DraggableDragon';
 
 const DragonBank = (): React.ReactElement => {
   const dndState = useRecoilValue(dnd.dndContainerState);
+  // array used to map over and create our 3 dragon slots. [0, 0, 0]
+  const voteSlots = new Array(3).fill(0);
   return (
     <div className="dragon-bank">
-      <DropZone
-        id="vote-1"
-        isDropDisabled={dndState['vote-1'].isEmpty ? false : true}
-      >
-        <>
-          {/* if the drop zone is empty then render an empty dragon image otherwise null */}
-          {dndState['vote-1'].isEmpty ? (
-            <div className="empty-dragon">
-              <img src={emptyDragon} alt="dragon outline" />
-            </div>
-          ) : null}
-          {/* render the matching Draggable Dragon based on which award is in the container state*/}
-          {dragons[dndState['vote-1'].contents]}
-        </>
-      </DropZone>
-      <DropZone
-        id="vote-2"
-        isDropDisabled={dndState['vote-2'].isEmpty ? false : true}
-      >
-        <>
-          {/* if the drop zone is empty then render an empty dragon image otherwise null */}
-          {dndState['vote-2'].isEmpty ? (
-            <div className="empty-dragon">
-              <img src={emptyDragon} alt="dragon outline" />
-            </div>
-          ) : null}
-          {/* render the matching Draggable Dragon based on which award is in the container state*/}
-          {dragons[dndState['vote-2'].contents]}
-        </>
-      </DropZone>
-      <DropZone
-        id="vote-3"
-        isDropDisabled={dndState['vote-3'].isEmpty ? false : true}
-      >
-        <>
-          {/* if the drop zone is empty then render an empty dragon image otherwise null */}
-          {dndState['vote-3'].isEmpty ? (
-            <div className="empty-dragon">
-              <img src={emptyDragon} alt="dragon outline" />
-            </div>
-          ) : null}
-          {/* render the matching Draggable Dragon based on which award is in the container state*/}
-          {dragons[dndState['vote-3'].contents]}
-        </>
-      </DropZone>
+      {voteSlots.map((slot, idx) => {
+        const slotNum = idx + 1;
+        return (
+          <DropZone
+            key={idx}
+            id={`vote-${slotNum}`}
+            isDropDisabled={dndState[`vote-${slotNum}`].isEmpty ? false : true}
+          >
+            <>
+              {/* if the drop zone is empty then render an empty dragon image otherwise null */}
+              {dndState[`vote-${slotNum}`].isEmpty ? (
+                <div className="empty-dragon">
+                  <img src={emptyDragon} width="150" alt="dragon outline" />
+                </div>
+              ) : null}
+              {/* render the matching Draggable Dragon based on which award is in the container state*/}
+              {dragons[dndState[`vote-${slotNum}`].contents]}
+            </>
+          </DropZone>
+        );
+      })}
     </div>
   );
 };

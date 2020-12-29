@@ -4,7 +4,6 @@
     position: relative;
     padding: 10px;
     border-radius: 5px;
-    //border: 3px dashed red;
     transition: all 0.3s ease-in-out;
   }
   .drag-from {
@@ -14,8 +13,7 @@
     background-color: $lt-orange;
   }
 }
-.dragon-bank {
-  .drop-zone {
-    width: 32%;
-  }
+
+.dragon-bank .drop-zone {
+  width: 33%;
 }
