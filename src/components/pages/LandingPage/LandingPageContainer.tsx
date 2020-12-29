@@ -41,6 +41,14 @@ const LandingPageContainer = (): React.ReactElement => {
         )}
         setVisible={() => null}
         visible={true}
+        centered
+      /> */}
+      {/* <Modal.Component
+        className="email"
+        component={EmailCollectionForm}
+        setVisible={() => null}
+        visible={true}
+        centered
       /> */}
       <Home responsiveHeightRefs={responsiveHeightRefs} />
       <Steps responsiveHeightRefs={responsiveHeightRefs} />

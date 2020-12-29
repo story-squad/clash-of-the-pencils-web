@@ -1,14 +1,29 @@
 .modal-wrapper .modal.email {
-  background-color: $ltblue;
+  background-color: $dark-blue;
 }
 
 .email-collection {
   h2 {
-    font-size: 3.2rem;
+    font-size: 2.4rem;
+    @include bp(mid) {
+      font-size: 3.6rem;
+    }
     font-family: $display-font;
-    color: $charcoal;
-    margin: 1rem 0 2rem;
+    color: $lt-orange;
+    margin: 1rem 0;
     text-shadow: 0 2px 2px #0005;
+    text-align: center;
+  }
+
+  p {
+    width: 300px;
+    max-width: 100%;
+    color: $white;
+    margin-bottom: 2rem;
+    font-weight: 300;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    font-family: $text-font;
   }
 
   form {
@@ -17,14 +32,15 @@
 
     label {
       font-family: $display-font;
-      color: $dark-blue;
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
+      color: $seafoam;
+      font-size: 2rem;
     }
 
     input {
       @include text-input();
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
+      width: 300px;
+      max-width: 100%;
     }
 
     button {
