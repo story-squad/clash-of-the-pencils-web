@@ -12,6 +12,7 @@ const ResultsPageContainer = (): React.ReactElement => {
 
   useEffect(() => {
     setLoadingError(null);
+    // This needs to be refactored into the relative components
     Promise.all([Submissions.getWinner(), Submissions.getScoreboard()])
       .then(([sub, sb]) => {
         console.log({ sub, sb });
