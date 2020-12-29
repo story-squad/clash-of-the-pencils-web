@@ -38,10 +38,12 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
                 className={`rotate-${props.rotation}`}
               />
             </TransformComponent>
-            <div className={`info${showInfo ? '' : ' hidden'}`}>
-              <h2>Story Prompt</h2>
-              <p>&ldquo;{props.prompt}&rdquo;</p>
-            </div>
+            {props.prompt && (
+              <div className={`info${showInfo ? '' : ' hidden'}`}>
+                <h2>Story Prompt</h2>
+                <p>&ldquo;{props.prompt}&rdquo;</p>
+              </div>
+            )}
           </div>
           <div className="controls">
             <button onClick={zoomOut} title="Zoom Out">
@@ -53,12 +55,14 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
             <button onClick={zoomIn} title="Zoom In">
               <MdZoomIn />
             </button>
-            <button
-              onClick={toggleInfo}
-              title={`${showInfo ? 'Hide' : 'Show'} Info`}
-            >
-              {showInfo ? <MdInfo /> : <MdInfoOutline />}
-            </button>
+            {props.prompt && (
+              <button
+                onClick={toggleInfo}
+                title={`${showInfo ? 'Hide' : 'Show'} Info`}
+              >
+                {showInfo ? <MdInfo /> : <MdInfoOutline />}
+              </button>
+            )}
           </div>
         </div>
       )}
