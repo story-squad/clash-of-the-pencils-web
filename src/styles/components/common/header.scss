@@ -4,8 +4,6 @@ header {
   padding: 1rem 2rem;
   color: $white;
 
-  // Create a box shadow to create seperation from the drop down nav menu
-
   h2 {
     font-family: $display-font;
     font-size: 2.4rem;
@@ -43,7 +41,6 @@ header {
   @media screen and (min-width: $tablet) {
     // At higher screen sizes, move the header position back so the nav manu can show on top of it
     z-index: 1;
-    box-shadow: none;
   }
 }
 
