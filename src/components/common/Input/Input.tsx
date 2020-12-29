@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { RegisterOptions, UseFormMethods } from 'react-hook-form';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 const Input = ({
   name,
@@ -9,6 +10,7 @@ const Input = ({
   rules = {},
   errors = {},
   showPassword,
+  placeholder = '',
   ...rest
 }: InputProps): React.ReactElement => {
   // store the type prop in state so that it can be changed to show/hide the value in a password input
@@ -24,23 +26,31 @@ const Input = ({
   return (
     <div className={`form-input${errors[name] ? ' error' : ''}`}>
       <label htmlFor={name}>{label} :</label>
-      <input
-        id={name}
-        name={name}
-        type={inputType}
-        ref={register && register(rules)}
-        autoComplete="off"
-        {...rest}
-      />
-      {showPassword ? (
-        <button
-          className="show-hide-btn"
-          tabIndex={-1} // Prevents button from being selected while tabbing
-          onClick={toggleHiddenPassword}
-        >
-          {inputType === 'password' ? 'Show' : 'Hide'}
-        </button>
-      ) : null}
+      <div className="input-field">
+        <input
+          name={name}
+          type={inputType}
+          ref={register && register(rules)}
+          autoComplete="off"
+          autoCapitalize="off"
+          placeholder={placeholder}
+          {...rest}
+        />
+        {showPassword ? (
+          <button
+            type="button"
+            className="show-hide-btn"
+            tabIndex={-1} // Prevents button from being selected while tabbing
+            onClick={toggleHiddenPassword}
+          >
+            {inputType === 'password' ? (
+              <AiOutlineEye />
+            ) : (
+              <AiOutlineEyeInvisible />
+            )}
+          </button>
+        ) : null}
+      </div>
       <div className="message">
         <span className="red">*</span>{' '}
         {errors[name] ? errors[name].message : ''}
@@ -49,7 +59,8 @@ const Input = ({
   );
 };
 
-interface InputProps {
+interface InputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
   name: string;
   label: string;
   register: UseFormMethods['register'];
@@ -57,6 +68,7 @@ interface InputProps {
   rules?: RegisterOptions;
   errors?: UseFormMethods['errors'];
   showPassword?: boolean;
+  placeholder?: string;
 }
 
 export default Input;

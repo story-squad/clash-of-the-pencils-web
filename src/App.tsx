@@ -1,60 +1,39 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import {
-  ComingSoon,
-  PrivateRoute,
+  AuthModal,
+  ReadTokenData,
   Signout,
   TermsOfService,
 } from './components/common';
 import { Activation } from './components/pages/Activated';
-import { Dashboard } from './components/pages/Dashboard';
-// Route Components
-import { LandingPage } from './components/pages/LandingPage';
-import { Profile } from './components/pages/Profile';
+import { GamePage } from './components/pages/GamePage';
+import { VotingPage } from './components/pages/GamePage/VotingPage';
+import { Scroller } from './components/pages/LandingPage';
+import { ResetPasswordPage } from './components/pages/ResetPassword';
 import { ResultsPage } from './components/pages/ResultsPage';
-import { VotingPage } from './components/pages/VotingPage';
 
-const App: React.FC = () => {
+const App = (): React.ReactElement => {
   return (
     <div className="App">
+      <AuthModal />
+      <ReadTokenData />
       <Switch>
         {/* Public Routes */}
-        <Route
-          exact
-          path={['/', '/login', '/register', '/signup', '/info']}
-          component={() => <LandingPage />}
-        />
+        <Route exact path="/" component={Scroller} />
         <Route path="/activated" component={Activation} />
         <Route path={['/logout', '/signout']} component={Signout} />
         <Route path="/vote" component={VotingPage} />
         <Route path="/tos" component={TermsOfService} />
-
-        {/* Private Routes */}
-        <PrivateRoute path="/dashboard" component={Dashboard} />
-        <PrivateRoute path="/results" component={ResultsPage} />
-
-        <PrivateRoute path="/comingsoon" component={() => <ComingSoon />} />
-        <PrivateRoute path="/profile" component={Profile} />
+        <Route path="/game" component={GamePage} />
+        <Route path="/results" component={ResultsPage} />
+        <Route path="/reset" component={ResetPasswordPage} />
 
         {/* Fallback Redirect to Dashboard */}
-        <Route path="/" component={() => <Redirect to="/dashboard" />} />
+        <Route path="/" component={() => <Redirect to="/game" />} />
       </Switch>
     </div>
   );
 };
-// const queryParser = (query: string) => {
-//   if (query === '') return;
-//   const params = query.split('&');
-//   const res: QueryParserResponse = {};
-//   for (const param of params) {
-//     const [key, value] = param.split('=');
-//     res[key] = value;
-//   }
-//   return res;
-// };
-
-// interface QueryParserResponse {
-//   [key: string]: string;
-// }
 
 export default App;

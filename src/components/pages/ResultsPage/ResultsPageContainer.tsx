@@ -2,37 +2,31 @@ import React, { useEffect } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { Submissions } from '../../../api';
 import { apiError, results } from '../../../state';
-import { time } from '../../../utils';
 import { Loader } from '../../common';
 import RenderResultsPage from './RenderResultsPage';
-import ResultsClosed from './ResultsClosed';
 
 const ResultsPageContainer = (): React.ReactElement => {
   const [winner, setWinner] = useRecoilState(results.winner);
+  const [scoreboard, setScoreboard] = useRecoilState(results.scoreboard);
   const setLoadingError = useSetRecoilState(apiError.global);
-  const { active } = time.getTimeUntilEvent('announce');
 
   useEffect(() => {
-    if (!winner) {
-      setLoadingError(null);
-      Submissions.getWinner()
-        .then((sub) => {
-          setLoadingError(null);
-          setWinner(sub);
-        })
-        .catch((err) => {
-          console.log({ err });
-          setLoadingError(err.message);
-        });
-    }
+    setLoadingError(null);
+    // This needs to be refactored into the relative components
+    Promise.all([Submissions.getWinner(), Submissions.getScoreboard()])
+      .then(([sub, sb]) => {
+        console.log({ sub, sb });
+        setLoadingError(null);
+        setWinner(sub);
+        setScoreboard(sb);
+      })
+      .catch((err) => {
+        console.log({ err });
+        setLoadingError(err);
+      });
   }, []);
 
-  // if we are NOT in the announcements time show results as closed
-  // if we are in the announcements time show the RenderResultsPage aka the celebration station
-  // otherwise we will show the loader
-  if (!active) {
-    return <ResultsClosed />;
-  } else if (active) {
+  if (winner || scoreboard) {
     return <RenderResultsPage />;
   } else {
     return <Loader />;

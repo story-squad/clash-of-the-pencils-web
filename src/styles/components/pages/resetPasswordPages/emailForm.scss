@@ -1,0 +1,24 @@
+.password-form-wrapper {
+  height: 100vh;
+
+  .email-form {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 50vh;
+    margin-top: 30px;
+  }
+
+  .submit-email-btn {
+    align-self: center;
+    @include button($orange);
+    font-size: 1.8rem;
+    @media screen and (max-height: 500px) {
+      font-size: 1.2rem;
+    }
+  }
+
+  .email-form-input {
+    width: 100%;
+    max-width: 500px;
+  }
+}

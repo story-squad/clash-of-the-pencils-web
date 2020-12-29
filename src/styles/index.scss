@@ -4,6 +4,7 @@
 // Import Global Variables/Mixins
 @import './globals.scss';
 @import './mixins.scss';
+@import './mediaQueries.scss';
 
 // Google Font Imports
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@100;200;300;400;500;600;700;800;900&display=swap');
@@ -11,10 +12,13 @@
 
 // Component Stylesheets
 @import './components/pages/landingPages/landingPage.scss';
-@import './components/pages/dashboard/dashboard.scss';
+@import './components/pages/submissionPage/submissionPage.scss';
 @import './components/pages/votingPages/votingPage.scss';
 @import './components/pages/resultsPage/resultsPage.scss';
-@import './components/pages/profilePage/profilePage.scss';
+@import './components/pages/resetPasswordPages/passwordForm.scss';
+@import './components/pages/resetPasswordPages/emailForm.scss';
+@import './components/pages/resetPasswordPages/resetSuccess.scss';
+@import './components/pages/gameClosed.scss';
 
 // Common Components
 @import './components/common/modal.scss';
@@ -24,6 +28,10 @@
 @import './components/common/input.scss';
 @import './components/common/comingSoon.scss';
 @import './components/common/infoHoverTip.scss';
-@import './components/common/histogram.scss';
 @import './components/common/termsOfService.scss';
 @import './components/common/countdown.scss';
+@import './components/common/authModal.scss';
+@import './components/common/fullscreenImage.scss';
+@import './components/common/table.scss';
+@import './components/common/checkbox.scss';
+@import './components/common/thoughtBubble.scss';

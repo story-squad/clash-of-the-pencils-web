@@ -1,65 +1,35 @@
 // Home Page
-.home-page {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  padding: 3rem 2rem;
+.home-page-wrapper {
+  height: 100vh;
 
-  & > img {
-    max-width: 100%;
-    width: 800px;
-    margin-bottom: 1rem;
-  }
-
-  & > div {
-    max-width: 800px;
-    width: 100%;
-  }
-
-  .flex-wrapper {
+  .home-page {
+    height: 100%;
     display: flex;
     flex-flow: column nowrap;
+    justify-content: space-between;
     align-items: center;
+    padding: 2rem;
 
-    @media screen and (min-width: $mid) {
-      flex-direction: row;
-      justify-content: space-between;
+    & > img {
+      max-width: 100%;
+      margin-bottom: 1rem;
+      max-height: 18vh;
     }
 
-    .links {
+    .dragon {
+      max-height: 40vh;
+    }
+
+    .how-it-works {
       display: flex;
       flex-flow: column nowrap;
-      max-width: 330px;
-      width: 100%;
-
-      p {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-evenly;
-        margin: 3rem 0;
-        width: 100%;
-
-        a {
-          color: $white;
-          font-size: 3.6rem;
-          font-family: $display-font;
-          transition: all 0.2s ease-in-out;
-          &:hover {
-            color: darken($white, 15%);
-            transition: all 0.2s ease-in-out;
-          }
-        }
-      }
-
-      .learn-more {
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
-        a {
-          @include button($jade, $padding: 1rem 5rem 0.8rem);
-          text-decoration: none;
-          font-size: 2.4rem;
-        }
+      align-items: center;
+      margin-bottom: 4rem;
+      color: $white;
+      font-size: 3rem;
+      img {
+        max-height: 7vh;
+        margin-bottom: 1rem;
       }
     }
   }

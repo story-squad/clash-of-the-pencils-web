@@ -119,13 +119,9 @@ header {
       @media screen and (min-width: $tablet) {
         margin-right: 1.5rem;
       }
-      // At larger screen sizes, add spacing between login and the rest of the menu
-      @media screen and (min-width: $large) {
-        margin-left: 5rem;
-        margin-right: 0.5rem;
-      }
     }
-    a {
+    a,
+    span.link {
       font-family: $text-font;
       font-size: $font-size;
       line-height: $font-size - 0.2rem;

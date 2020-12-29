@@ -1,22 +1,52 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { MdMenu } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { nav } from '../../../config';
-import { user } from '../../../state';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { auth } from '../../../state';
+import { time } from '../../../utils';
 
 const Header = (): React.ReactElement => {
   const [showMenu, setShowMenu] = useState(false);
-  const userId = useRecoilValue(user.userId);
+  const [gameActive, setGameActive] = useState(true);
+  const isLogged = useRecoilValue(auth.isLoggedIn);
 
-  const menuItems = useMemo(
-    () => (userId ? nav.siteNavItems : nav.landingNavItems),
-    [userId],
-  );
+  const setAuthOpen = useSetRecoilState(auth.authModalOpen);
+  const setAuthIsLogin = useSetRecoilState(auth.authModalIsLogin);
+  const setSignupWasSuccessful = useSetRecoilState(auth.signupWasSuccessful);
+
+  const menuItems = useMemo<headerItems[]>(() => {
+    const navItems = [{ link: '/', text: 'Home' }];
+    if (gameActive) navItems.push({ link: '/game', text: 'Game' });
+    navItems.push({ link: '/results', text: 'Results' });
+    if (isLogged) navItems.push({ link: '/logout', text: 'Sign Out' });
+    return navItems;
+  }, [isLogged]);
 
   const toggleMenu = () => {
     setShowMenu((cur) => !cur);
   };
+
+  const openLogin = () => {
+    setAuthOpen(true);
+    setAuthIsLogin(true);
+    setSignupWasSuccessful(false);
+  };
+
+  const openSignup = () => {
+    setAuthOpen(true);
+    setAuthIsLogin(false);
+    setSignupWasSuccessful(false);
+  };
+
+  useEffect(() => {
+    let gameTimer: NodeJS.Timeout;
+    if (!gameActive)
+      gameTimer = setInterval(() => {
+        setGameActive(time.getTimeUntilEvent('offTime').active);
+      }, 1000);
+
+    return () => clearInterval(gameTimer);
+  }, []);
 
   return (
     <>
@@ -36,6 +66,20 @@ const Header = (): React.ReactElement => {
               clickHandler={() => setShowMenu(false)}
             />
           ))}
+          {!isLogged && (
+            <>
+              <div className="menu-item">
+                <span className="link" onClick={openLogin}>
+                  Sign In
+                </span>
+              </div>
+              <div className="menu-item">
+                <span className="link" onClick={openSignup}>
+                  Sign Up
+                </span>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>
@@ -63,5 +107,10 @@ interface MenuItemProps {
   primary?: boolean;
   clickHandler?: () => void | null;
 }
+
+type headerItems = {
+  link: string;
+  text: string;
+};
 
 export default Header;

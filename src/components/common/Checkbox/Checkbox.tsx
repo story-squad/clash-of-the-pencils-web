@@ -10,27 +10,27 @@ const Checkbox = ({
   ...rest
 }: CheckboxProps): React.ReactElement => {
   return (
-    <div className="text">
-      <input
-        id={name}
-        name={name}
-        type="checkbox"
-        ref={register && register(rules)}
-        autoComplete="off"
-        {...rest}
-      />
-      <label htmlFor={name}> {label}</label>
-      <div className={`form-input${errors[name] ? ' error' : ''}`}>
-        <div className="message">
-          <span className="red">*</span>{' '}
-          {errors[name] ? errors[name].message : ''}
-        </div>
+    <div className={`checkbox${errors[name] ? ' error' : ''}`}>
+      <label htmlFor={name}>
+        <input
+          id={name}
+          name={name}
+          type="checkbox"
+          ref={register && register(rules)}
+          autoComplete="off"
+          {...rest}
+        />{' '}
+        {label}
+      </label>
+      <div className="message">
+        <span className="red">*</span>{' '}
+        {errors[name] ? errors[name].message : ''}
       </div>
     </div>
   );
 };
 
-interface CheckboxProps {
+interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
   label: React.ReactElement;
   register: UseFormMethods['register'];
