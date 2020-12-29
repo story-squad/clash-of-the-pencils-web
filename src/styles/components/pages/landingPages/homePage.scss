@@ -1,6 +1,7 @@
 // Home Page
 .home-page-wrapper {
   height: 100vh;
+  margin-bottom: 2rem;
 
   .home-page {
     height: 100%;
@@ -8,7 +9,7 @@
     flex-flow: column nowrap;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem;
+    padding: 3rem 2rem;
 
     & > img {
       max-width: 100%;
@@ -24,12 +25,17 @@
       display: flex;
       flex-flow: column nowrap;
       align-items: center;
-      margin-bottom: 4rem;
       color: $white;
+      // arrow icon size
       font-size: 3rem;
+
+      @media (min-width: $tablet) {
+        font-size: 4rem;
+      }
+
       img {
         max-height: 7vh;
-        margin-bottom: 1rem;
+        margin: 2rem 0 0.5rem 0;
       }
     }
   }

@@ -34,8 +34,13 @@
     display: grid;
     // up arrow | header image | main image container | dragon/circle container | down arrow
     grid-template-rows: 22% auto 22%;
-    padding: 2rem 1rem;
+    padding: 1rem 0.5rem 3rem;
+    height: 100%;
     max-height: 100vh;
+
+    @media (min-width: $mid) {
+      padding: 1rem 2rem 3rem;
+    }
 
     img {
       max-width: 100%;
@@ -45,33 +50,26 @@
     .dragon {
       align-self: flex-end;
       max-height: 22vh;
-      padding-left: 2rem;
+      @media (min-width: $mid) {
+        padding-left: 2rem;
+      }
     }
 
     .container {
       width: 100%;
       height: 100%;
 
-      &:first-of-type {
+      &.top {
         display: flex;
         justify-content: center;
         align-items: flex-start;
         padding: 1rem 0;
       }
 
-      // Middle content
-      &:nth-of-type(2) {
+      &.middle {
         display: grid;
         // left arrow | main image | right arrow
         grid-template-columns: 8% auto 8%;
-
-        .left {
-          justify-self: start;
-        }
-
-        .right {
-          justify-self: end;
-        }
 
         img {
           max-height: 38vh;
@@ -81,31 +79,30 @@
         }
       }
 
-      &:nth-of-type(3) {
+      &.bottom {
         display: grid;
         // left dragon | circles | right dragon
-        grid-template-columns: 30% auto 30%;
+        grid-template-columns: 35% auto 35%;
       }
     }
   }
 
-  [class^="step-"] {
-    // this applies to all 'step-#' classes
-  }
-
-  .step-1 {
+  .step-1,
+  .step-3 {
     background: $jade;
   }
 
-  .step-3 {
+  .step-2,
+  .step-4 {
     background: $seafoam;
-  }
-
-  .step-2, .step-4 {
     // put dragon on the right side
     .dragon {
       grid-column: 3;
       justify-self: end;
+
+      @media (min-width: $mid) {
+        padding-right: 2rem;
+      }
     }
   }
 }
