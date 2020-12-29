@@ -1,7 +1,14 @@
 .sub-card {
-  max-width: 100%;
+  width: 100%;
   display: flex;
   position: relative;
+
+  &::before {
+    display: block;
+    content: '';
+    width: 100%;
+    padding-top: 100%;
+  }
 
   .card-img {
     border: 1px solid $charcoal;
@@ -11,6 +18,12 @@
     height: 100%;
     background-size: cover;
     background-position: top center;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 
     &.rotate-180 {
       transform: rotate(-180deg);

@@ -1,7 +1,6 @@
 .drop-bank,
 .dragon-bank {
   .drop-zone {
-    width: 33%;
     position: relative;
     padding: 10px;
     border-radius: 5px;
@@ -13,4 +12,8 @@
   .drag-over {
     background-color: $lt-orange;
   }
+}
+
+.dragon-bank .drop-zone {
+  width: 33%;
 }

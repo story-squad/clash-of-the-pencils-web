@@ -1,6 +1,6 @@
 .drop-bank {
   width: 80%;
-  max-width: 730px;
+  max-width: 545px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-evenly;
@@ -13,6 +13,9 @@
   }
 
   .voting-item {
+    width: 100%;
+    max-width: 150px;
+
     .sub-info {
       p {
         margin-top: 1rem;
@@ -40,7 +43,7 @@
   .draggable-dragon {
     display: flex;
     position: absolute;
-    top: 2rem;
+    top: 1.5rem;
     max-width: 150px;
   }
 }
