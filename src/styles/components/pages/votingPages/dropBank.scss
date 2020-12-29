@@ -1,6 +1,9 @@
 .drop-bank {
+  width: 80%;
+  max-width: 730px;
   display: flex;
   flex-flow: row nowrap;
+  justify-content: space-evenly;
   margin: 2rem auto;
   @media screen and (min-width: $tablet) {
     padding: 3rem 3rem 1rem;
@@ -10,13 +13,6 @@
   }
 
   .voting-item {
-    &:not(:last-of-type) {
-      margin-right: 1rem;
-      @media screen and (min-width: $tablet) {
-        margin-right: 3rem;
-      }
-    }
-
     .sub-info {
       p {
         margin-top: 1rem;
@@ -45,5 +41,6 @@
     display: flex;
     position: absolute;
     top: 2rem;
+    max-width: 150px;
   }
 }
