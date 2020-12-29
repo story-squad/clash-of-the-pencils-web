@@ -16,15 +16,7 @@ const Step3 = (props: StepProps): React.ReactElement => {
       }
       style={{ height: window.innerHeight }}
     >
-      <div
-        className="grid-wrapper"
-        ref={(element) =>
-          (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
-            element as HTMLDivElement,
-          )
-        }
-        style={{ height: window.innerHeight }}
-      >
+      <div className="grid-wrapper">
         <div className="container top">
           <img src={scribbleDown} alt="Scribble down a 1-page story by hand." />
         </div>
