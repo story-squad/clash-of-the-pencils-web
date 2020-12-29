@@ -4,6 +4,7 @@
 // Import Global Variables/Mixins
 @import './globals.scss';
 @import './mixins.scss';
+@import './mediaQueries.scss';
 
 // Google Font Imports
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@100;200;300;400;500;600;700;800;900&display=swap');
@@ -17,6 +18,7 @@
 @import './components/pages/resetPasswordPages/passwordForm.scss';
 @import './components/pages/resetPasswordPages/emailForm.scss';
 @import './components/pages/resetPasswordPages/resetSuccess.scss';
+@import './components/pages/gameClosed.scss';
 
 // Common Components
 @import './components/common/modal.scss';
@@ -32,3 +34,4 @@
 @import './components/common/fullscreenImage.scss';
 @import './components/common/table.scss';
 @import './components/common/checkbox.scss';
+@import './components/common/thoughtBubble.scss';
