@@ -85,9 +85,4 @@
       }
     }
   }
-
-  .sub-card {
-    width: 100%;
-    @include aspect-ratio(1, 1);
-  }
 }
