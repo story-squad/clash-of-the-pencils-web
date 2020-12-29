@@ -115,7 +115,7 @@
     width: 100%;
     padding-top: ($height / $width) * 100%;
   }
-  > div {
+  & > div {
     position: absolute;
     top: 0;
     right: 0;
