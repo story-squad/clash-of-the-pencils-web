@@ -15,7 +15,6 @@ const LandingPageContainer = (): React.ReactElement => {
 
   // Dynamically set height for all refs
   const setWindowHeight = () => {
-    console.log(responsiveHeightRefs.current.size);
     responsiveHeightRefs.current.forEach((element) => {
       if (element) {
         element.style.setProperty('height', `${window.innerHeight}px`);

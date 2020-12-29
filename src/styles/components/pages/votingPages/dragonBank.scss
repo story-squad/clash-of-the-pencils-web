@@ -1,12 +1,12 @@
 .dragon-bank {
+  width: 80%;
+  max-width: 545px;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
-  margin: 3rem 0;
+  justify-content: space-evenly;
+  margin: 3rem auto;
 
   @media screen and (min-width: $tablet) {
-    width: 80%;
-    margin: 3rem auto;
     padding: 2rem;
     background-color: $seafoam;
     border-radius: 5px;
@@ -15,8 +15,8 @@
 
   .draggable-dragon {
     display: flex;
-    //width: 32%;
     outline: none;
+    max-width: 150px;
 
     img {
       width: 100%;

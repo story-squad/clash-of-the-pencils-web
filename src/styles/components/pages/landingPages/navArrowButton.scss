@@ -2,17 +2,13 @@
   background: none;
   border: none;
   color: $white;
-  font-size: 5vh;
   cursor: pointer;
   padding: 0;
+  height: 100%;
+  width: 100%;
+  font-size: 3rem;
 
-  &.up, &.down {
-    height: 7vh;
-    width: 100%;
-  }
-
-  &.left, &.right {
-    height: 100%;
-    width: 100%;
+  @media (min-width: $mid) {
+    font-size: 4rem;
   }
 }
