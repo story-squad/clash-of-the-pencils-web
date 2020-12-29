@@ -23,10 +23,11 @@ const SecretBonus = (props: SecretBonusProps): React.ReactElement => {
   return (
     <div className="secret-bonus">
       <img src={secretBonus} alt="Secret Bonus" />
-      <p>Get a head start on tomorrow&apos;s story:</p>
+      <h2>Get a head start on tomorrow&apos;s story:</h2>
       <p className="prompt">{props.secretMessage}</p>
+      <p className="cast">Your vote has been cast!</p>
       <p className="timer">
-        This message will self-destruct in <span>{timeLeft}</span> seconds!
+        This message will self&nbsp;destruct in <span>{timeLeft}</span> seconds!
       </p>
     </div>
   );
