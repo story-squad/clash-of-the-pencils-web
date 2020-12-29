@@ -3,21 +3,6 @@
   display: flex;
   position: relative;
 
-  min-width: 10rem;
-  height: 10rem;
-  max-width: 10rem;
-
-  @media screen and (min-width: $tablet) {
-    height: 25vw;
-    max-width: 25vw;
-    width: 25vw;
-  }
-  @media screen and (min-width: $large) {
-    height: 20rem;
-    max-width: 20rem;
-    width: 20rem;
-  }
-
   .card-img {
     border: 1px solid $charcoal;
     border-radius: 5px;

@@ -1,0 +1,38 @@
+.thought-bubble {
+  @mixin bubble($diff) {
+    background-color: $white;
+    border: 2px solid $charcoal;
+    border-radius: 25vw;
+    box-shadow: 0 $diff 4px #0005;
+  }
+  .text-bubble {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: $text-font;
+    padding: 2.5rem 1rem;
+    font-size: 1.7rem;
+    line-height: 2.2rem;
+    @include bubble(4px);
+  }
+  .thought-trail-1 {
+    width: 55%;
+    margin-top: 1rem;
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    .bubble {
+      padding: 0.85rem;
+      @include bubble(2px);
+    }
+  }
+  .thought-trail-2 {
+    width: 45%;
+    margin-top: 0.7rem;
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    .bubble {
+      padding: 0.55rem;
+      @include bubble(1px);
+    }
+  }
+}

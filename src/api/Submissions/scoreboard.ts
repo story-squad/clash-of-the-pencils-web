@@ -1,7 +1,24 @@
-export interface ScoreboardItem {
-  username: string;
-  score: number;
-}
+import { AxiosResponse } from 'axios';
+import { TableItem } from '../../components/common/Table/TableTypes';
+import { axiosWithoutAuth } from '../axiosWithConfig';
+
+export const getScoreboard = async (): Promise<ProcessedScoreboardItem[]> => {
+  const {
+    data,
+  }: AxiosResponse<ScoreboardItem[]> = await axiosWithoutAuth().get(
+    '/leaderboard',
+  );
+  return Promise.resolve(processScoreboardData(data));
+};
+
+export const processScoreboardData = (
+  data: ScoreboardItem[],
+): ProcessedScoreboardItem[] => {
+  return data.map((d, i) => ({
+    ...d,
+    placement: i + 1,
+  }));
+};
 
 export const ScoreboardHeadings = [
   { display: 'Placement', propName: 'placement' },
@@ -9,13 +26,11 @@ export const ScoreboardHeadings = [
   { display: 'Score', propName: 'score' },
 ];
 
-const preprocessedData = [
-  { username: 'User1', score: 40 },
-  { username: 'User2', score: 41 },
-  { username: 'User3', score: 42 },
-];
+export interface ScoreboardItem extends TableItem {
+  username: string;
+  score: number;
+}
 
-export const TestScoreboardData = preprocessedData.map((d, i) => ({
-  ...d,
-  placement: i + 1,
-}));
+export interface ProcessedScoreboardItem extends ScoreboardItem {
+  placement: number;
+}

@@ -24,10 +24,6 @@ const LandingPageContainer = (): React.ReactElement => {
 
   return (
     <div className="landing-page-container">
-      {/* <Table
-      headings={Submissions.ScoreboardHeadings}
-      rows={Submissions.TestScoreboardData}
-    /> */}
       {/* <div>
         <SubCard
           id={1}
