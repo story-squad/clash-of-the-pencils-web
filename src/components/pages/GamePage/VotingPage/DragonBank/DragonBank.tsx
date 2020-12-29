@@ -17,7 +17,7 @@ const DragonBank = (): React.ReactElement => {
           {/* if the drop zone is empty then render an empty dragon image otherwise null */}
           {dndState['vote-1'].isEmpty ? (
             <div className="empty-dragon">
-              <img src={emptyDragon} alt="dragon outline" />
+              <img src={emptyDragon} width="150" alt="dragon outline" />
             </div>
           ) : null}
           {/* render the matching Draggable Dragon based on which award is in the container state*/}
@@ -32,7 +32,7 @@ const DragonBank = (): React.ReactElement => {
           {/* if the drop zone is empty then render an empty dragon image otherwise null */}
           {dndState['vote-2'].isEmpty ? (
             <div className="empty-dragon">
-              <img src={emptyDragon} alt="dragon outline" />
+              <img src={emptyDragon} width="150" alt="dragon outline" />
             </div>
           ) : null}
           {/* render the matching Draggable Dragon based on which award is in the container state*/}
@@ -47,7 +47,7 @@ const DragonBank = (): React.ReactElement => {
           {/* if the drop zone is empty then render an empty dragon image otherwise null */}
           {dndState['vote-3'].isEmpty ? (
             <div className="empty-dragon">
-              <img src={emptyDragon} alt="dragon outline" />
+              <img src={emptyDragon} width="150" alt="dragon outline" />
             </div>
           ) : null}
           {/* render the matching Draggable Dragon based on which award is in the container state*/}
