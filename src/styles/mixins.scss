@@ -106,7 +106,8 @@
   }
 }
 
-@mixin aspect-ratio($width, $height) {
+@mixin aspect-ratio($containerWidth: 100%, $width: 1, $height: 1) {
+  width: $containerWidth;
   position: relative;
 
   &::before {
@@ -115,7 +116,7 @@
     width: 100%;
     padding-top: ($height / $width) * 100%;
   }
-  & > div {
+  & > div:not(.fullscreen-image) {
     position: absolute;
     top: 0;
     right: 0;
