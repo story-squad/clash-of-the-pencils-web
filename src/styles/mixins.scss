@@ -22,7 +22,13 @@
   hyphens: auto;
 }
 
-@mixin button($bgcolor: $blue, $font-color: $white, $padding: 0.75rem 5rem, $border-width: 0, $border-color: #000) {
+@mixin button(
+  $bgcolor: $blue,
+  $font-color: $white,
+  $padding: 0.75rem 5rem,
+  $border-width: 0,
+  $border-color: #000
+) {
   padding: $padding;
   color: $font-color;
   background-color: $bgcolor;
@@ -97,5 +103,24 @@
   @media (min-width: $tablet) {
     max-height: none;
     padding: auto 6rem;
+  }
+}
+
+@mixin aspect-ratio($containerWidth: 100%, $width: 1, $height: 1) {
+  width: $containerWidth;
+  position: relative;
+
+  &::before {
+    display: block;
+    content: '';
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  & > div:not(.fullscreen-image) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
   }
 }
