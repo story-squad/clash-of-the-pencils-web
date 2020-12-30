@@ -3,10 +3,11 @@ import { useRecoilState } from 'recoil';
 import { Prompts } from '../../../api';
 import { prompts } from '../../../state';
 import { time } from '../../../utils';
+import { PromptBoxProps } from './PromptBoxTypes';
 import RenderPromptBox from './RenderPromptBox';
 import SubmissionsClosed from './SubmissionsClosed';
 
-const PromptBoxContainer = (): React.ReactElement => {
+const PromptBoxContainer = (props: PromptBoxProps): React.ReactElement => {
   const [prompt, setPrompt] = useRecoilState(prompts.currentPrompt);
   const { active } = time.getTimeUntilEvent('submit');
 
@@ -23,7 +24,7 @@ const PromptBoxContainer = (): React.ReactElement => {
     }
   }, []);
 
-  return active ? <RenderPromptBox /> : <SubmissionsClosed />;
+  return active ? <RenderPromptBox {...props} /> : <SubmissionsClosed />;
 };
 
 export default PromptBoxContainer;
