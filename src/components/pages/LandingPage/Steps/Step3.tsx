@@ -18,7 +18,12 @@ const Step3 = (props: StepProps): React.ReactElement => {
     >
       <div className="grid-wrapper">
         <div className="container top">
-          <img src={scribbleDown} alt="Scribble down a 1-page story by hand." />
+          <div
+            className="background-img"
+            style={{ backgroundImage: `url(${scribbleDown})` }}
+            aria-role="img"
+            aria-label="Scribble down a 1-page story by hand."
+          />
         </div>
         <div className="container middle">
           <NavArrowButton navDirection={'left'} buttonNav={props.buttonNavX} />

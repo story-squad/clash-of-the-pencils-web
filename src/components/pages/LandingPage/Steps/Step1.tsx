@@ -21,7 +21,12 @@ const Step1 = (props: StepProps): React.ReactElement => {
     >
       <div className="grid-wrapper">
         <div className="container top">
-          <img src={scopeOut} alt="Scope out the prompt." />
+          <div
+            className="background-img"
+            style={{ backgroundImage: `url(${scopeOut})` }}
+            aria-role="img"
+            aria-label="Scope out the prompt."
+          />
         </div>
         <div className="container middle">
           {active ? (

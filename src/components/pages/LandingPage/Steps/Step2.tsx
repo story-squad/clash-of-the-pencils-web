@@ -18,9 +18,11 @@ const Step2 = (props: StepProps): React.ReactElement => {
     >
       <div className="grid-wrapper">
         <div className="container top">
-          <img
-            src={getPaper}
-            alt="Get a piece of paper and your lucky pencil."
+          <div
+            className="background-img"
+            style={{ backgroundImage: `url(${getPaper})` }}
+            aria-role="img"
+            aria-label="Get a piece of paper and your lucky pencil."
           />
         </div>
         <div className="container middle">

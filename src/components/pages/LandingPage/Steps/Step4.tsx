@@ -18,9 +18,11 @@ const Step4 = (props: StepProps): React.ReactElement => {
     >
       <div className="grid-wrapper">
         <div className="container top">
-          <img
-            src={submitPic}
-            alt="Submit a pic of your story by the deadline"
+          <div
+            className="background-img"
+            style={{ backgroundImage: `url(${submitPic})` }}
+            aria-role="img"
+            aria-label="Submit a pic of your story by the deadline"
           />
         </div>
         <div className="container middle">
