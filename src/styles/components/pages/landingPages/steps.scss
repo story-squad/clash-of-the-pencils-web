@@ -74,7 +74,11 @@
       &.middle {
         display: grid;
         // left arrow | main image | right arrow
-        grid-template-columns: 8% auto 8%;
+        grid-template-columns: 12% auto 12%;
+
+        @media (min-width: $mid) {
+          grid-template-columns: 8% auto 8%;
+        }
 
         img,
         .prompt-box {
