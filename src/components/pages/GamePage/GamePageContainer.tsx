@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { time } from '../../../utils';
-import { ReadTokenData } from '../../common';
+import { ReadTokenData, SEO } from '../../common';
 import GameClosed from './GameClosed';
 import { SubmissionPage } from './SubmissionPage';
 import VotingPageContainer from './VotingPage/VotingPageContainer';
@@ -22,6 +22,7 @@ const GamePageContainer = (): React.ReactElement => {
   return (
     <>
       <ReadTokenData />
+      <SEO title="Play Game" path="/game" />
       {isSubmit ? (
         <SubmissionPage />
       ) : isVote ? (

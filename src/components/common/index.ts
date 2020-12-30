@@ -10,6 +10,7 @@ export { Loader } from './Loader';
 export { Modal } from './Modal';
 export { PromptBox } from './PromptBox';
 export { ReadTokenData } from './ReadTokenData';
+export { SEO } from './SEO';
 export { Signout } from './Signout';
 export { SubCard } from './SubCard';
 export { Table } from './Table';

@@ -1,4 +1,5 @@
 import React from 'react';
+import { SEO } from '../../common';
 import { Home } from './Home';
 import { Steps } from './Steps';
 import { VotingInfo } from './VotingInfo';
@@ -6,6 +7,7 @@ import { VotingInfo } from './VotingInfo';
 const LandingPageContainer = (): React.ReactElement => {
   return (
     <div className="landing-page-container">
+      <SEO title="Home" />
       {/* <div>
         <SubCard
           id={1}

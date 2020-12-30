@@ -88,7 +88,7 @@ header {
   &.hidden {
     // Uses the variables to calculate position for animation
     top: -2 * $menu-item-count * $vertical-padding - $menu-item-count *
-      $font-size - 0.2rem; // the extra .2 is for visual consistency
+      $font-size - 0.5rem; // the extra .2 is for visual consistency
     transition: all 0.5s ease-in-out;
     @media screen and (min-width: $tablet) {
       // At tablet width or greater, prevent the menu from being hidden

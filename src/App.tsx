@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import {
   AuthModal,
   ReadTokenData,
+  SEO,
   Signout,
   TermsOfService,
 } from './components/common';
@@ -16,6 +17,7 @@ import { ResultsPage } from './components/pages/ResultsPage';
 const App = (): React.ReactElement => {
   return (
     <div className="App">
+      <SEO />
       <AuthModal />
       <ReadTokenData />
       <Switch>
