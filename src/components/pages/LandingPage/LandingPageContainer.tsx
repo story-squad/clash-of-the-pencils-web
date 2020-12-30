@@ -1,26 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Home } from './Home';
 import { Steps } from './Steps';
 import { VotingInfo } from './VotingInfo';
 
 const LandingPageContainer = (): React.ReactElement => {
-  useEffect(() => {
-    window.addEventListener('resize', setWindowHeight);
-    return () => window.removeEventListener('resize', setWindowHeight);
-  }, []);
-
-  // Contains all refs of elements that need height resizing on window dimension change
-  const responsiveHeightRefs = useRef<Set<HTMLDivElement>>(new Set());
-
-  // Dynamically set height for all refs
-  const setWindowHeight = () => {
-    responsiveHeightRefs.current.forEach((element) => {
-      if (element) {
-        element.style.setProperty('height', `${window.innerHeight}px`);
-      }
-    });
-  };
-
   return (
     <div className="landing-page-container">
       {/* <div>
@@ -52,9 +35,9 @@ const LandingPageContainer = (): React.ReactElement => {
         visible={true}
         centered
       /> */}
-      <Home responsiveHeightRefs={responsiveHeightRefs} />
-      <Steps responsiveHeightRefs={responsiveHeightRefs} />
-      <VotingInfo responsiveHeightRefs={responsiveHeightRefs} />
+      <Home />
+      <Steps />
+      <VotingInfo />
     </div>
   );
 };

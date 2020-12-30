@@ -4,25 +4,10 @@ import blazeWillRead from '../../../../assets/img/blaze-will-read.png';
 import dragonDropDemo from '../../../../assets/img/dragon-drop-demo.png';
 import dragonSingle from '../../../../assets/img/dragon-single-page.png';
 
-const VotingInfo = (props: VotingInfoProps): React.ReactElement => {
+const VotingInfo = (): React.ReactElement => {
   return (
-    <div
-      className="voting-info"
-      ref={(element) =>
-        (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
-          element as HTMLDivElement,
-        )
-      }
-      style={{ height: window.innerHeight }}
-    >
-      <div
-        className="flex-wrapper"
-        ref={(element) =>
-          (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
-            element as HTMLDivElement,
-          )
-        }
-      >
+    <div className="voting-info">
+      <div className="flex-wrapper">
         <img
           src={blazeWillRead}
           alt="4. Vote on the three finalists to determine a winner and see your squad score."
@@ -46,9 +31,5 @@ const VotingInfo = (props: VotingInfoProps): React.ReactElement => {
     </div>
   );
 };
-
-interface VotingInfoProps {
-  responsiveHeightRefs: React.RefObject<Set<HTMLDivElement>>;
-}
 
 export default VotingInfo;

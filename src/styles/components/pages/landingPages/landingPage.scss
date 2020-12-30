@@ -9,6 +9,10 @@
 .landing-page {
   // General Page Styling
   // Consistently display landing page headers/paragraphs/links
+
+  & > div {
+    height: 100vh;
+  }
   h1 {
     font-family: $display-font;
     color: $white;

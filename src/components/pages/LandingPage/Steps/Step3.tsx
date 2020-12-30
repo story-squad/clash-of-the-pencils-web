@@ -1,21 +1,13 @@
 import React from 'react';
 import dragonGo from '../../../../assets/img/dragon-go.png';
-import scribbleDown from '../../../../assets/img/scribble-down.png';
 import writingStory from '../../../../assets/img/handwriting.gif';
+import scribbleDown from '../../../../assets/img/scribble-down.png';
 import NavArrowButton from '../NavArrowButton';
 import { StepProps } from './RenderSteps';
 
 const Step3 = (props: StepProps): React.ReactElement => {
   return (
-    <div
-      className="step-3"
-      ref={(element) =>
-        (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
-          element as HTMLDivElement,
-        )
-      }
-      style={{ height: window.innerHeight }}
-    >
+    <div className="step-3">
       <div className="grid-wrapper">
         <div className="container top">
           <img src={scribbleDown} alt="Scribble down a 1-page story by hand." />

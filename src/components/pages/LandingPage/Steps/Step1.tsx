@@ -7,15 +7,7 @@ import { StepProps } from './RenderSteps';
 
 const Step1 = (props: StepProps): React.ReactElement => {
   return (
-    <div
-      className="step-1"
-      ref={(element) =>
-        (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
-          element as HTMLDivElement,
-        )
-      }
-      style={{ height: window.innerHeight }}
-    >
+    <div className="step-1">
       <div className="grid-wrapper">
         <div className="container top">
           <img src={scopeOut} alt="Scope out the prompt." />

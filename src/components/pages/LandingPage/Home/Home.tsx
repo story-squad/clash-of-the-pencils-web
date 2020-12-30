@@ -1,21 +1,13 @@
 import React from 'react';
+import { FaAngleDown } from 'react-icons/fa';
 import hiImBlaze from '../../../../assets/img/hi-im-blaze.png';
 import howItWorks from '../../../../assets/img/how-it-works.png';
 import landingText from '../../../../assets/img/landing-text.png';
 import { Header } from '../../../common';
-import { FaAngleDown } from 'react-icons/fa';
 
-const Home = (props: HomeProps): React.ReactElement => {
+const Home = (): React.ReactElement => {
   return (
-    <div
-      className="home-page-wrapper"
-      ref={(element) =>
-        (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
-          element as HTMLDivElement,
-        )
-      }
-      style={{ height: window.innerHeight }}
-    >
+    <div className="home-page-wrapper">
       <Header />
       <div className="home-page">
         <img src={landingText} alt="Unleash your creativity!" />
@@ -32,9 +24,5 @@ const Home = (props: HomeProps): React.ReactElement => {
     </div>
   );
 };
-
-interface HomeProps {
-  responsiveHeightRefs: React.RefObject<Set<HTMLDivElement>>;
-}
 
 export default Home;

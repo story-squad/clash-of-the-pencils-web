@@ -11,7 +11,6 @@ const numberOfSteps = 4;
 const RenderSteps = (props: RenderStepsProps): React.ReactElement => {
   const currentStep = () => {
     const stepsProps = {
-      responsiveHeightRefs: props.responsiveHeightRefs,
       buttonNavX: props.buttonNavX,
       circles: circles,
     };
@@ -38,15 +37,7 @@ const RenderSteps = (props: RenderStepsProps): React.ReactElement => {
   };
 
   return (
-    <div
-      className="steps"
-      ref={(element) =>
-        (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
-          element as HTMLDivElement,
-        )
-      }
-      style={{ height: window.innerHeight }}
-    >
+    <div className="steps">
       {/* Step-by-step instructions go here! Should render based off of stepNum */}
       {currentStep()}
     </div>
@@ -61,17 +52,14 @@ const StepError = (): React.ReactElement => {
   );
 };
 
-interface RenderStepsProps extends BaseStepProps {
+interface RenderStepsProps {
   stepNum: number;
-}
-
-export interface StepProps extends BaseStepProps {
-  circles: () => React.ReactElement;
-}
-
-interface BaseStepProps {
   buttonNavX: (direction: NavDirection) => void;
-  responsiveHeightRefs: React.RefObject<Set<HTMLDivElement>>;
+}
+
+export interface StepProps {
+  circles: () => React.ReactElement;
+  buttonNavX: (direction: NavDirection) => void;
 }
 
 export default RenderSteps;
