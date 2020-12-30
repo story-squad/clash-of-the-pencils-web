@@ -10,39 +10,20 @@ const numberOfSteps = 4;
 
 const RenderSteps = (props: RenderStepsProps): React.ReactElement => {
   const currentStep = () => {
+    const stepsProps = {
+      responsiveHeightRefs: props.responsiveHeightRefs,
+      buttonNavX: props.buttonNavX,
+      circles: circles,
+    };
     switch (props.stepNum) {
       case 1:
-        return (
-          <Step1
-            responsiveHeightRefs={props.responsiveHeightRefs}
-            buttonNavX={props.buttonNavX}
-            circles={circles}
-          />
-        );
+        return <Step1 {...stepsProps} />;
       case 2:
-        return (
-          <Step2
-            responsiveHeightRefs={props.responsiveHeightRefs}
-            buttonNavX={props.buttonNavX}
-            circles={circles}
-          />
-        );
+        return <Step2 {...stepsProps} />;
       case 3:
-        return (
-          <Step3
-            responsiveHeightRefs={props.responsiveHeightRefs}
-            buttonNavX={props.buttonNavX}
-            circles={circles}
-          />
-        );
+        return <Step3 {...stepsProps} />;
       case 4:
-        return (
-          <Step4
-            responsiveHeightRefs={props.responsiveHeightRefs}
-            buttonNavX={props.buttonNavX}
-            circles={circles}
-          />
-        );
+        return <Step4 {...stepsProps} />;
       default:
         return <StepError />;
     }
@@ -80,15 +61,16 @@ const StepError = (): React.ReactElement => {
   );
 };
 
-interface RenderStepsProps {
+interface RenderStepsProps extends BaseStepProps {
   stepNum: number;
-  buttonNavX: (direction: NavDirection) => void;
-  responsiveHeightRefs: React.RefObject<Set<HTMLDivElement>>;
 }
 
-export interface StepProps {
-  buttonNavX: (direction: NavDirection) => void;
+export interface StepProps extends BaseStepProps {
   circles: () => React.ReactElement;
+}
+
+interface BaseStepProps {
+  buttonNavX: (direction: NavDirection) => void;
   responsiveHeightRefs: React.RefObject<Set<HTMLDivElement>>;
 }
 
