@@ -36,10 +36,21 @@ const LandingPageContainer = (): React.ReactElement => {
       {/* <Modal.Component
         className="bonus"
         component={(props) => (
-          <SecretBonus secretMessage="Wtf bruv" {...props} />
+          <SecretBonus
+            secretMessage="Wtf bruv this is a decent length prompt suitable for testing."
+            {...props}
+          />
         )}
         setVisible={() => null}
         visible={true}
+        centered
+      /> */}
+      {/* <Modal.Component
+        className="email"
+        component={EmailCollectionForm}
+        setVisible={() => null}
+        visible={true}
+        centered
       /> */}
       <Home responsiveHeightRefs={responsiveHeightRefs} />
       <Steps responsiveHeightRefs={responsiveHeightRefs} />

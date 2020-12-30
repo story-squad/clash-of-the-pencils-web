@@ -1,7 +1,7 @@
 .sub-card {
   max-width: 100%;
   display: flex;
-  position: relative;
+  @include aspect-ratio();
 
   .card-img {
     border: 1px solid $charcoal;

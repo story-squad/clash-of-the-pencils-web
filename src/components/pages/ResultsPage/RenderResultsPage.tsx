@@ -1,8 +1,8 @@
 import React from 'react';
 import celebration from '../../../assets/img/celebration-station.png';
 import { Header } from '../../common';
-import Celebration from './Celebration';
-import Scoreboard from './Scoreboard';
+import { Celebration } from './Celebration';
+import { Scoreboard } from './Scoreboard';
 
 const RenderResultsPage = (): React.ReactElement => {
   return (

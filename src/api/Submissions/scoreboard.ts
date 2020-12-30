@@ -15,7 +15,8 @@ export const processScoreboardData = (
   data: ScoreboardItem[],
 ): ProcessedScoreboardItem[] => {
   return data.map((d, i) => ({
-    ...d,
+    username: d.username,
+    score: Math.round(d.score),
     placement: i + 1,
   }));
 };
