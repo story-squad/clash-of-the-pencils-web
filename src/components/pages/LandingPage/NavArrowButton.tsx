@@ -1,10 +1,5 @@
 import React, { createRef } from 'react';
-import {
-  FaAngleLeft,
-  FaAngleRight,
-  FaAngleUp,
-  FaAngleDown,
-} from 'react-icons/fa';
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
 const NavArrowButton = (props: NavArrowButtonProps): React.ReactElement => {
   const className = `nav-arrow-button ${props.navDirection}`;
@@ -17,11 +12,12 @@ const NavArrowButton = (props: NavArrowButtonProps): React.ReactElement => {
         return <FaAngleLeft />;
       case 'right':
         return <FaAngleRight />;
-      case 'up':
-        return <FaAngleUp />;
-      case 'down':
-        return <FaAngleDown />;
     }
+  };
+
+  const handleClick = () => {
+    props.buttonNav(props.navDirection);
+    (thisButton.current as HTMLElement).blur();
   };
 
   return (
@@ -29,17 +25,14 @@ const NavArrowButton = (props: NavArrowButtonProps): React.ReactElement => {
       className={className}
       aria-label={ariaLabel}
       ref={thisButton as React.RefObject<HTMLButtonElement>}
-      onClick={() => {
-        props.buttonNav(props.navDirection);
-        (thisButton.current as HTMLElement).blur();
-      }}
+      onClick={handleClick}
     >
       {icon()}
     </button>
   );
 };
 
-export type NavDirection = 'left' | 'right' | 'down' | 'up';
+export type NavDirection = 'left' | 'right';
 
 interface NavArrowButtonProps {
   navDirection: NavDirection;

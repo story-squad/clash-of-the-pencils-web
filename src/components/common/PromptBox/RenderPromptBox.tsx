@@ -5,9 +5,13 @@ import { auth, prompts } from '../../../state';
 import { Countdown } from '../Countdown';
 import { InfoHoverTip } from '../InfoHoverTip';
 import { Modal } from '../Modal';
+import { PromptBoxProps } from './PromptBoxTypes';
 import SubmissionForm from './SubmissionForm';
 
-const RenderPromptBox = (): React.ReactElement => {
+const RenderPromptBox = ({
+  hideSubmitButton = false,
+  showHeader = false,
+}: PromptBoxProps): React.ReactElement => {
   const prompt = useRecoilValue(prompts.currentPrompt);
   const isLogged = useRecoilValue(auth.isLoggedIn);
   const setAuthModalVisible = useSetRecoilState(auth.authModalOpen);
@@ -35,6 +39,7 @@ const RenderPromptBox = (): React.ReactElement => {
       {prompt ? (
         // If there is a prompt
         <>
+          {showHeader && <h2>Today&apos;s Prompt</h2>}
           {prompt.active ? (
             // If the existing prompt is active
             <>
@@ -48,9 +53,13 @@ const RenderPromptBox = (): React.ReactElement => {
             <Countdown toEvent="submit" /> left to submit!
           </p>
           <div className="prompt-footer">
-            <button onClick={toggleModal} disabled={prompt.submitted}>
-              {prompt.submitted ? 'Submission Received!' : 'Submit Your Story'}
-            </button>
+            {!hideSubmitButton && (
+              <button onClick={toggleModal} disabled={prompt.submitted}>
+                {prompt.submitted
+                  ? 'Submission Received!'
+                  : 'Submit Your Story'}
+              </button>
+            )}
           </div>
         </>
       ) : (

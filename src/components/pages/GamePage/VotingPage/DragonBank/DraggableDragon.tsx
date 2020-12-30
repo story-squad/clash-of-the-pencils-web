@@ -18,7 +18,7 @@ const DraggableDragon = ({
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <img src={DragonImageList[place]} alt={`${place}`} />
+          <img src={DragonImageList[place]} width="150" alt={`${place}`} />
         </div>
       )}
     </Draggable>

@@ -1,12 +1,20 @@
 import React from 'react';
 
-const CouldNotLoad = (): React.ReactElement => {
+const CouldNotLoad = ({
+  error,
+  className,
+}: CouldNotLoadProps): React.ReactElement => {
   return (
-    <div className="could-not-load">
-      <div className="message">Data not available &#128557;</div>
+    <div className={`could-not-load${className ? ' ' + className : ''}`}>
+      <div className="message">{error} &#128557;</div>
       <p>Check back later!</p>
     </div>
   );
 };
+
+interface CouldNotLoadProps {
+  error: string;
+  className?: string;
+}
 
 export default CouldNotLoad;

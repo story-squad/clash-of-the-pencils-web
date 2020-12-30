@@ -103,6 +103,14 @@ header {
   // Add a rounder edge to the mobile menu
   border-radius: 0 0 0 4px;
   overflow: hidden;
+  // Width = 100% on mobile so that left handed users and single handed users have an easier way to access the nav menu
+  width: 100%;
+
+  @media screen and (min-width: $mid) {
+    // Min-width will allow the nav menu to be a small drop down in the top right hand corner of the page to conserve space
+    // which will only be present on desktops & tablets
+    width: unset;
+  }
 
   // Change the menu at larger screens to be positioned inside of the header by making the
   // flexbox flow into a row rather than a column, and positioning the menu to the bottom
@@ -136,10 +144,13 @@ header {
       padding: $vertical-padding 2rem $vertical-padding + 0.2rem; // add slightly more space on the bottoms
       transition: all 0.2s ease-in-out;
 
+      border-top: 1px solid #0003;
+
       @media screen and (min-width: $tablet) {
         // Lower the left/right padding when the menu is a row
         padding: $vertical-padding 0;
         margin-left: 1.5rem;
+        border-top: none;
       }
       @media screen and (min-width: $large) {
         padding: $vertical-padding 1rem;

@@ -36,10 +36,9 @@ const VotingInfo = (props: VotingInfoProps): React.ReactElement => {
             <Link to="/game">Get Started</Link>
           </div>
         </div>
-        <div className="dragon-boi right">
+        <div className="dragon">
           <img
             src={dragonSingle}
-            className="dragon"
             alt="dragon saying 'A single handwritten page? Sounds easy enough!'"
           />
         </div>
