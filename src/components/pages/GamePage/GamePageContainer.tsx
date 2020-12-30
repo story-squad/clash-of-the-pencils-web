@@ -6,12 +6,12 @@ import { SubmissionPage } from './SubmissionPage';
 import VotingPageContainer from './VotingPage/VotingPageContainer';
 
 const GamePageContainer = (): React.ReactElement => {
-  const [isSubmit, setIsSubmit] = useState(false);
-  const [isVote, setIsVote] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(
+    time.getTimeUntilEvent('submit').active,
+  );
+  const [isVote, setIsVote] = useState(time.getTimeUntilEvent('vote').active);
 
   useEffect(() => {
-    setIsSubmit(time.getTimeUntilEvent('submit').active);
-    setIsVote(time.getTimeUntilEvent('vote').active);
     const timeChecker = setInterval(() => {
       setIsSubmit(time.getTimeUntilEvent('submit').active);
       setIsVote(time.getTimeUntilEvent('vote').active);
