@@ -20,7 +20,7 @@ const Step1 = (props: StepProps): React.ReactElement => {
       style={{ height: window.innerHeight }}
     >
       <div className="grid-wrapper">
-        <div className="container top">
+        <div className="container top step-one-top">
           <div
             className="background-img"
             style={{ backgroundImage: `url(${scopeOut})` }}
