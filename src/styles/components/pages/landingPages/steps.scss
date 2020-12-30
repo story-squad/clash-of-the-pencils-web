@@ -34,13 +34,9 @@
     display: grid;
     // header image | main image container | dragon/circle container
     grid-template-rows: 25% auto 25%;
-    padding: 1rem 0.5rem 3rem;
+    padding: 3rem 0;
     height: 100%;
     max-height: 100vh;
-
-    @media (min-width: $mid) {
-      padding: 1rem 2rem 3rem;
-    }
 
     img {
       max-width: 100%;
@@ -58,8 +54,13 @@
       height: 100%;
 
       &.top {
-        max-width: 60rem;
-        margin: 2rem auto;
+        margin: 0 auto;
+        padding: 0 2vw;
+        max-width: 100rem;
+
+        &.step-one-top {
+          max-width: 60rem;
+        }
 
         .background-img {
           height: 100%;
@@ -97,6 +98,7 @@
       }
 
       &.bottom {
+        padding: 0 2vw;
         display: grid;
         // left dragon | circles | right dragon
         grid-template-columns: 35% auto 35%;
