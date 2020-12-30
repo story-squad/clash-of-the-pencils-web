@@ -37,7 +37,7 @@ const ResetPasswordPage = (): React.ReactElement => {
   return (
     <div className="submission-page-container">
       <Header />
-      <div className="landing-page">
+      <div className="landing-page-container">
         {showEmailForm ? (
           <ResetEmailForm />
         ) : (

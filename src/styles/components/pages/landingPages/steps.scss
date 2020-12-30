@@ -71,14 +71,9 @@
         // left arrow | main image | right arrow
         grid-template-columns: 8% auto 8%;
 
-<<<<<<< HEAD
-        img {
-          max-height: 50vh;
-=======
         img,
         .prompt-box {
-          max-height: 38vh;
->>>>>>> 0c1516d9788e96f445e298dd6b100b2632a6ff9e
+          max-height: 50vh;
           grid-column: 2;
           justify-self: center;
           align-self: center;
