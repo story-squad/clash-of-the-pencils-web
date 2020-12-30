@@ -26,7 +26,12 @@ const Step3 = (props: StepProps): React.ReactElement => {
           <NavArrowButton navDirection={'right'} buttonNav={props.buttonNavX} />
         </div>
         <div className="container bottom">
-          <img src={dragonGo} className="dragon" alt="dragon saying 'Go!'" />
+          <div
+            className="dragon"
+            style={{ backgroundImage: `url(${dragonGo})` }}
+            aria-role="img"
+            aria-label="dragon saying 'Go!'"
+          />
           {props.circles()}
         </div>
       </div>

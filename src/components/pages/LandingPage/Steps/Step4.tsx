@@ -31,7 +31,12 @@ const Step4 = (props: StepProps): React.ReactElement => {
           />
         </div>
         <div className="container bottom">
-          <img src={dragonFire} className="dragon" alt="dragon saying 'Go!'" />
+          <div
+            className="dragon"
+            style={{ backgroundImage: `url(${dragonFire})` }}
+            aria-role="img"
+            aria-label="dragon saying 'handwritten stories are 🔥🔥🔥.'"
+          />
           {props.circles()}
         </div>
       </div>

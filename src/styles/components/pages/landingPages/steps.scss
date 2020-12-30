@@ -33,7 +33,7 @@
   .grid-wrapper {
     display: grid;
     // header image | main image container | dragon/circle container
-    grid-template-rows: 22% auto 22%;
+    grid-template-rows: 25% auto 25%;
     padding: 1rem 0.5rem 3rem;
     height: 100%;
     max-height: 100vh;
@@ -48,11 +48,9 @@
     }
 
     .dragon {
-      align-self: flex-end;
-      max-height: 22vh;
-      @media (min-width: $mid) {
-        padding-left: 2rem;
-      }
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position-y: bottom;
     }
 
     .container {
@@ -98,11 +96,7 @@
     // put dragon on the right side
     .dragon {
       grid-column: 3;
-      justify-self: end;
-
-      @media (min-width: $mid) {
-        padding-right: 2rem;
-      }
+      background-position-x: right;
     }
   }
 }

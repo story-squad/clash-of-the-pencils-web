@@ -28,10 +28,11 @@ const Step1 = (props: StepProps): React.ReactElement => {
           <NavArrowButton navDirection={'right'} buttonNav={props.buttonNavX} />
         </div>
         <div className="container bottom">
-          <img
+          <div
             className="dragon"
-            src={dragonReady}
-            alt="dragon saying 'Ready?'"
+            style={{ backgroundImage: `url(${dragonReady})` }}
+            aria-role="img"
+            aria-label="dragon saying 'Ready?'"
           />
           {props.circles()}
         </div>
