@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import { SubCard } from '../../common';
 import { Home } from './Home';
 import { Steps } from './Steps';
 import { VotingInfo } from './VotingInfo';
@@ -24,7 +23,7 @@ const LandingPageContainer = (): React.ReactElement => {
 
   return (
     <div className="landing-page-container">
-      <div>
+      {/* <div>
         <SubCard
           id={1}
           image="123432452342"
@@ -34,7 +33,7 @@ const LandingPageContainer = (): React.ReactElement => {
           rotation={0}
           prompt="Wtf bruv this is a decent length prompt suitable for testing."
         />
-      </div>
+      </div> */}
       {/* <Modal.Component
         className="bonus"
         component={(props) => (
