@@ -1,6 +1,7 @@
 .drag-bank {
   display: flex;
   flex-flow: row nowrap;
+  justify-content: space-evenly;
   margin: 2rem auto;
   @media screen and (min-width: $tablet) {
     padding: 3rem 3rem 1rem;
@@ -10,16 +11,6 @@
   }
 
   .voting-item {
-    &:not(:last-of-type) {
-      margin-right: 2rem;
-      @media screen and (min-width: $tablet) {
-        margin-right: 3rem;
-      }
-    }
-
-    .sub-card {
-    }
-
     .sub-info {
       p {
         margin-top: 0.4rem;

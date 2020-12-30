@@ -1,89 +1,67 @@
 .results-page {
-  padding: 2rem;
+  padding: 1rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 
-  @media screen and (min-width: $tablet) {
-    margin: 0 10%;
+  & > img {
+    // The Celebration Image
+    margin: 1rem auto 2rem;
+    width: 800px;
   }
-
-  img {
-    margin-bottom: 2rem;
-  }
-
-  .could-not-load {
-    max-width: 100%;
-    margin: 0 auto 2rem;
-    background-color: $jade;
-    padding: 2rem;
-    @include drop-shadow;
-    overflow: hidden;
-    color: $white;
-    text-align: center;
-
-    @media screen and (min-width: $tablet) {
-      max-width: 60vw;
-    }
-    .message {
-      font-family: $display-font;
-      font-size: 2.4rem;
-    }
-    p {
-      font-family: $text-font;
-      font-size: 1.6rem;
-      line-height: 2rem;
-      font-style: italic;
-      font-weight: 300;
-    }
-  }
-
-  .celebration {
+  .results-modules {
+    width: 100%;
     display: flex;
-    flex-flow: column nowrap;
-    padding: 2rem 3rem;
-    background-color: $seafoam;
-    border-radius: 5px;
-    @include drop-shadow;
+    flex-flow: row wrap;
+    align-items: stretch;
+    justify-content: space-evenly;
 
-    .thought-bubble {
-      margin-bottom: 1rem;
+    @include bp(mid) {
+      padding: 1rem;
+    }
 
-      .winner-bubble {
-        font-family: $display-font;
-        text-align: center;
-        h3 {
+    & > div {
+      max-width: 500px;
+      width: 100%;
+      margin-bottom: 2rem;
+      padding: 2rem;
+      border-radius: 10px;
+      @include drop-shadow;
+
+      &.loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        p {
+          color: $white;
+          font-family: $display-font;
           font-size: 1.8rem;
-          color: $blue;
-          margin-bottom: 0.5rem;
+          margin-bottom: 1rem;
+          text-shadow: 0 2px 2px #0006;
         }
-        h2 {
-          font-size: 2.4rem;
-          color: $orange;
-          margin-bottom: 0.5rem;
-        }
-        @media screen and (min-width: $mid) {
-          h3 {
-            font-size: 2.4rem;
-          }
-          h2 {
-            font-size: 3.2rem;
+        [class^='css-'] {
+          [class^='css-'] {
+            // This sets the loader component colors
+            background-color: $white;
+            @include drop-shadow(#0006);
           }
         }
+      }
+
+      @include bp(large) {
+        width: 49%;
+        &:nth-of-type(odd):not(:last-of-type) {
+          margin-right: 1rem;
+        }
+      }
+
+      &.full-width {
+        width: 100%;
       }
     }
 
-    .bottom {
-      display: flex;
-      flex-flow: row nowrap;
-      .dragon {
-        width: 60%;
-        img {
-          width: 100%;
-        }
-      }
-      .sub {
-        width: 38%;
-        padding: 4rem 2rem 2rem;
-        margin-left: 2%;
-      }
-    }
+    @import './celebration.scss';
+    @import './scoreboard.scss';
+    @import './couldNotLoad.scss';
   }
 }

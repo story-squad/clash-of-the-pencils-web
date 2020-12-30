@@ -1,5 +1,6 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { Input } from '../..';
 import { Auth } from '../../../../api';
@@ -7,8 +8,9 @@ import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.s
 import welcomeBack from '../../../../assets/img/welcome-back.png';
 import { auth } from '../../../../state';
 import { token } from '../../../../utils';
+import { Modal } from '../../Modal';
 
-const LoginForm = (): React.ReactElement => {
+const LoginForm = (props: Modal.ModalComponentProps): React.ReactElement => {
   const { register, handleSubmit, errors, setError, clearErrors } = useForm();
   const login = useSetRecoilState(auth.isLoggedIn);
   const setAuthModalOpen = useSetRecoilState(auth.authModalOpen);
@@ -71,6 +73,14 @@ const LoginForm = (): React.ReactElement => {
         value="Sign In"
         onClick={() => clearErrors('form')}
       />
+
+      <div className="text">
+        Forgot your password?{' '}
+        <Link to="/reset" onClick={props.closeModal} className="text-button">
+          Click Here
+        </Link>
+        .
+      </div>
     </form>
   );
 };

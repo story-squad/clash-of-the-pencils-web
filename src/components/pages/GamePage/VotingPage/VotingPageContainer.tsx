@@ -2,20 +2,17 @@ import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { Submissions } from '../../../../api';
 import { apiError, top3 } from '../../../../state';
-import { time } from '../../../../utils';
 import { Loader } from '../../../common';
 import { CastVote } from './CastVote';
 import { ReadSubmissions } from './ReadSubmissions';
-import VotingClosed from './VotingClosed';
 
 const VotingPageContainer = (): React.ReactElement => {
   const [top3List, setTop3] = useRecoilState(top3.top3List);
   const finishedReading = useRecoilValue(top3.hasFinishedReadingState);
   const setLoadingError = useSetRecoilState(apiError.global);
-  const { active } = time.getTimeUntilEvent('vote');
 
   useEffect(() => {
-    if (active && !top3List) {
+    if (!top3List) {
       // Only load the top 3 if you haven't already AND it's voting time
       setLoadingError(null);
       Submissions.getTop3Subs()
@@ -35,9 +32,7 @@ const VotingPageContainer = (): React.ReactElement => {
     }
   }, [top3List]);
 
-  if (!active) {
-    return <VotingClosed />;
-  } else if (top3List) {
+  if (top3List) {
     return finishedReading ? <CastVote /> : <ReadSubmissions />;
   } else {
     return <Loader />;
