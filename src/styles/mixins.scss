@@ -106,7 +106,8 @@
   }
 }
 
-@mixin aspect-ratio($width, $height) {
+@mixin aspect-ratio($containerWidth: 100%, $width: 1, $height: 1) {
+  width: $containerWidth;
   position: relative;
 
   &::before {
