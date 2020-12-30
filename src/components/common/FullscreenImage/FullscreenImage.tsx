@@ -1,12 +1,23 @@
-import React, { SetStateAction } from 'react';
-import { MdClose, MdZoomIn, MdZoomOut, MdZoomOutMap } from 'react-icons/md';
+import React, { SetStateAction, useState } from 'react';
+import {
+  MdClose,
+  MdInfo,
+  MdInfoOutline,
+  MdZoomIn,
+  MdZoomOut,
+  MdZoomOutMap,
+} from 'react-icons/md';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import { Submissions } from '../../../api';
 
 const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
+  const [showInfo, setShowInfo] = useState(true);
+
   const closeModal = () => {
     props.setIsVisible(false);
   };
+
+  const toggleInfo = () => setShowInfo((cur) => !cur);
 
   return props.isVisible ? (
     <TransformWrapper
@@ -27,17 +38,31 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
                 className={`rotate-${props.rotation}`}
               />
             </TransformComponent>
+            {props.prompt && (
+              <div className={`info${showInfo ? '' : ' hidden'}`}>
+                <h2>Story Prompt</h2>
+                <p>&ldquo;{props.prompt}&rdquo;</p>
+              </div>
+            )}
           </div>
           <div className="controls">
-            <button onClick={zoomOut}>
+            <button onClick={zoomOut} title="Zoom Out">
               <MdZoomOut />
             </button>
-            <button onClick={resetTransform}>
+            <button onClick={resetTransform} title="Reset Image">
               <MdZoomOutMap />
             </button>
-            <button onClick={zoomIn}>
+            <button onClick={zoomIn} title="Zoom In">
               <MdZoomIn />
             </button>
+            {props.prompt && (
+              <button
+                onClick={toggleInfo}
+                title={`${showInfo ? 'Hide' : 'Show'} Info`}
+              >
+                {showInfo ? <MdInfo /> : <MdInfoOutline />}
+              </button>
+            )}
           </div>
         </div>
       )}
@@ -50,6 +75,8 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
 interface FullscreenImageProps extends Submissions.SubItem {
   src: string;
   rotation: number;
+  prompt: string;
+  username: string;
   isVisible: boolean;
   setIsVisible: React.Dispatch<SetStateAction<boolean>>;
 }
