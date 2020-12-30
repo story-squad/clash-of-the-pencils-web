@@ -3,7 +3,6 @@ import hiImBlaze from '../../../../assets/img/hi-im-blaze.png';
 import howItWorks from '../../../../assets/img/how-it-works-arrow.png';
 import landingText from '../../../../assets/img/landing-text.png';
 import { Header } from '../../../common';
-import { FaAngleDown } from 'react-icons/fa';
 
 const Home = (props: HomeProps): React.ReactElement => {
   return (
