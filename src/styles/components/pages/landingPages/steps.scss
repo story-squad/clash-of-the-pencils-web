@@ -32,7 +32,7 @@
 
   .grid-wrapper {
     display: grid;
-    // up arrow | header image | main image container | dragon/circle container | down arrow
+    // header image | main image container | dragon/circle container
     grid-template-rows: 22% auto 22%;
     padding: 44px 0.5rem 3rem;
     height: 100%;
