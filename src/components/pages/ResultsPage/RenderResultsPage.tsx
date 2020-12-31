@@ -1,5 +1,5 @@
 import React from 'react';
-import celebration from '../../../assets/img/celebration-station.png';
+import celebration from '../../../assets/img/PNGs/celebration-station.png';
 import { Header } from '../../common';
 import { Celebration } from './Celebration';
 import { Scoreboard } from './Scoreboard';

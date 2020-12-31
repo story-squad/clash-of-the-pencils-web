@@ -1,7 +1,7 @@
 import React from 'react';
-import dragonReady from '../../../../assets/img/dragon-ready.png';
-import dummyPrompt from '../../../../assets/img/dummy-prompt.png';
-import scopeOut from '../../../../assets/img/scope-out-prompt.png';
+import dragonReady from '../../../../assets/img/PNGs/dragon-ready.png';
+import dummyPrompt from '../../../../assets/img/PNGs/dummy-prompt.png';
+import scopeOut from '../../../../assets/img/PNGs/scope-out-prompt.png';
 import NavArrowButton from '../NavArrowButton';
 import { StepProps } from './RenderSteps';
 

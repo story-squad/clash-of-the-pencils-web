@@ -5,7 +5,7 @@ import { useSetRecoilState } from 'recoil';
 import { Input } from '../..';
 import { Auth } from '../../../../api';
 import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
-import welcomeBack from '../../../../assets/img/welcome-back.png';
+import welcomeBack from '../../../../assets/img/PNGs/welcome-back.png';
 import { auth } from '../../../../state';
 import { token } from '../../../../utils';
 import { Modal } from '../../Modal';

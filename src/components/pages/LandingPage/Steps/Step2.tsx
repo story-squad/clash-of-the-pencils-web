@@ -1,7 +1,7 @@
 import React from 'react';
-import dragonSet from '../../../../assets/img/dragon-set.png';
-import getPaper from '../../../../assets/img/get-paper.png';
 import pencilPaper from '../../../../assets/img/paperandpencil.gif';
+import dragonSet from '../../../../assets/img/PNGs/dragon-set.png';
+import getPaper from '../../../../assets/img/PNGs/get-paper.png';
 import NavArrowButton from '../NavArrowButton';
 import { StepProps } from './RenderSteps';
 

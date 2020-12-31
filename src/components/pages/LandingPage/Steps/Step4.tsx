@@ -1,7 +1,7 @@
 import React from 'react';
-import dragonFire from '../../../../assets/img/dragon-fire.png';
-import submitPic from '../../../../assets/img/submit-a-pic.png';
-import writingArrowSubmit from '../../../../assets/img/writing-arrow-submit.png';
+import dragonFire from '../../../../assets/img/PNGs/dragon-fire.png';
+import submitPic from '../../../../assets/img/PNGs/submit-a-pic.png';
+import writingArrowSubmit from '../../../../assets/img/PNGs/writing-arrow-submit.png';
 import NavArrowButton from '../NavArrowButton';
 import { StepProps } from './RenderSteps';
 

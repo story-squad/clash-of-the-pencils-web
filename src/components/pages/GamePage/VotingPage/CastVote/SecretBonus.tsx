@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import secretBonus from '../../../../../assets/img/secret-bonus-red.png';
+import secretBonus from '../../../../../assets/img/PNGs/secret-bonus-red.png';
 import { Modal } from '../../../../common';
 
 const SecretBonus = (props: SecretBonusProps): React.ReactElement => {

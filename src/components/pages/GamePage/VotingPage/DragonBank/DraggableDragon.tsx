@@ -1,8 +1,8 @@
 import React from 'react';
 import { Draggable, DraggableProvided } from 'react-beautiful-dnd';
-import firstDragon from '../../../../../assets/img/first-place-dragon.png';
-import secondDragon from '../../../../../assets/img/second-place-dragon.png';
-import thirdDragon from '../../../../../assets/img/third-place-dragon.png';
+import firstDragon from '../../../../../assets/img/PNGs/first-place-dragon.png';
+import secondDragon from '../../../../../assets/img/PNGs/second-place-dragon.png';
+import thirdDragon from '../../../../../assets/img/PNGs/third-place-dragon.png';
 
 const DraggableDragon = ({
   place,

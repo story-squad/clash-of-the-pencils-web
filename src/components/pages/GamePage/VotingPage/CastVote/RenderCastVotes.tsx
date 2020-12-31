@@ -5,7 +5,7 @@ import {
 } from 'react-icons/ai';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { Voting } from '../../../../../api';
-import dragonDropText from '../../../../../assets/img/dragon-drop.png';
+import dragonDropText from '../../../../../assets/img/PNGs/dragon-drop.png';
 import { auth, dnd, top3 } from '../../../../../state';
 import { Header, Modal } from '../../../../common';
 import { DragonBank } from '../DragonBank';

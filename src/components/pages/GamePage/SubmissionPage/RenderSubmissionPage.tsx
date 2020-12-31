@@ -1,5 +1,5 @@
 import React from 'react';
-import todaysPrompt from '../../../../assets/img/todays-story-prompt.png';
+import todaysPrompt from '../../../../assets/img/PNGs/todays-story-prompt.png';
 import { Header, PromptBox } from '../../../common';
 
 const RenderSubmissionPage = (): React.ReactElement => {

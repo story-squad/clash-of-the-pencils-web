@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import blazeWillRead from '../../../../assets/img/blaze-will-read.png';
-import dragonDropDemo from '../../../../assets/img/dragon-drop-demo.png';
-import dragonSingle from '../../../../assets/img/dragon-single-page.png';
+import blazeWillRead from '../../../../assets/img/PNGs/blaze-will-read.png';
+import dragonDropDemo from '../../../../assets/img/PNGs/dragon-drop-demo.png';
+import dragonSingle from '../../../../assets/img/PNGs/dragon-single-page.png';
 
 const VotingInfo = (props: VotingInfoProps): React.ReactElement => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import votingStation from '../../../../../assets/img/voting-booth.png';
+import votingStation from '../../../../../assets/img/PNGs/voting-booth.png';
 import { top3 } from '../../../../../state';
 import { Countdown, Header } from '../../../../common';
 import ReadTop3 from './ReadTop3';

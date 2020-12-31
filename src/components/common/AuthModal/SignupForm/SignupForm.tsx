@@ -6,7 +6,7 @@ import { useSetRecoilState } from 'recoil';
 import { Checkbox, Input } from '../..';
 import { Auth } from '../../../../api';
 import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
-import squadUp from '../../../../assets/img/squad-up.png';
+import squadUp from '../../../../assets/img/PNGs/squad-up.png';
 import { auth } from '../../../../state';
 
 // Regex to check if a string matches the shape of an email
