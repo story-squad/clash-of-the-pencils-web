@@ -10,9 +10,11 @@ const Step2 = (props: StepProps): React.ReactElement => {
     <div className="step-2">
       <div className="grid-wrapper">
         <div className="container top">
-          <img
-            src={getPaper}
-            alt="Get a piece of paper and your lucky pencil."
+          <div
+            className="background-img"
+            style={{ backgroundImage: `url(${getPaper})` }}
+            aria-role="img"
+            aria-label="Get a piece of paper and your lucky pencil."
           />
         </div>
         <div className="container middle">
@@ -25,7 +27,12 @@ const Step2 = (props: StepProps): React.ReactElement => {
           <NavArrowButton navDirection={'right'} buttonNav={props.buttonNavX} />
         </div>
         <div className="container bottom">
-          <img src={dragonSet} className="dragon" alt="dragon saying 'Set?'" />
+          <div
+            className="dragon"
+            style={{ backgroundImage: `url(${dragonSet})` }}
+            aria-role="img"
+            aria-label="dragon saying 'Set?'"
+          />
           {props.circles()}
         </div>
       </div>

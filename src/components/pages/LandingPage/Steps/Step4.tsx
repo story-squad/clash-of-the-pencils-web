@@ -10,9 +10,11 @@ const Step4 = (props: StepProps): React.ReactElement => {
     <div className="step-4">
       <div className="grid-wrapper">
         <div className="container top">
-          <img
-            src={submitPic}
-            alt="Submit a pic of your story by the deadline"
+          <div
+            className="background-img"
+            style={{ backgroundImage: `url(${submitPic})` }}
+            aria-role="img"
+            aria-label="Submit a pic of your story by the deadline"
           />
         </div>
         <div className="container middle">
@@ -23,7 +25,12 @@ const Step4 = (props: StepProps): React.ReactElement => {
           />
         </div>
         <div className="container bottom">
-          <img src={dragonFire} className="dragon" alt="dragon saying 'Go!'" />
+          <div
+            className="dragon"
+            style={{ backgroundImage: `url(${dragonFire})` }}
+            aria-role="img"
+            aria-label="dragon saying 'handwritten stories are 🔥🔥🔥.'"
+          />
           {props.circles()}
         </div>
       </div>

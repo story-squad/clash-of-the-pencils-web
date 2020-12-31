@@ -12,8 +12,13 @@ const Step1 = (props: StepProps): React.ReactElement => {
   return (
     <div className="step-1">
       <div className="grid-wrapper">
-        <div className="container top">
-          <img src={scopeOut} alt="Scope out the prompt." />
+        <div className="container top step-one-top">
+          <div
+            className="background-img"
+            style={{ backgroundImage: `url(${scopeOut})` }}
+            aria-role="img"
+            aria-label="Scope out the prompt."
+          />
         </div>
         <div className="container middle">
           {active ? (
@@ -27,10 +32,11 @@ const Step1 = (props: StepProps): React.ReactElement => {
           <NavArrowButton navDirection={'right'} buttonNav={props.buttonNavX} />
         </div>
         <div className="container bottom">
-          <img
+          <div
             className="dragon"
-            src={dragonReady}
-            alt="dragon saying 'Ready?'"
+            style={{ backgroundImage: `url(${dragonReady})` }}
+            aria-role="img"
+            aria-label="dragon saying 'Ready?'"
           />
           {props.circles()}
         </div>

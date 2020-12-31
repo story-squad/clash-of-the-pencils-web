@@ -32,15 +32,11 @@
 
   .grid-wrapper {
     display: grid;
-    // up arrow | header image | main image container | dragon/circle container | down arrow
-    grid-template-rows: 22% auto 22%;
-    padding: 1rem 0.5rem 3rem;
-    height: 100vh;
+    // header image | main image container | dragon/circle container
+    grid-template-rows: 25% auto 25%;
+    padding: 3rem 0;
+    height: 100%;
     max-height: 100vh;
-
-    @media (min-width: $mid) {
-      padding: 1rem 2rem 3rem;
-    }
 
     img {
       max-width: 100%;
@@ -48,11 +44,9 @@
     }
 
     .dragon {
-      align-self: flex-end;
-      max-height: 22vh;
-      @media (min-width: $mid) {
-        padding-left: 2rem;
-      }
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position-y: bottom;
     }
 
     .container {
@@ -60,16 +54,31 @@
       height: 100%;
 
       &.top {
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        padding: 1rem 0;
+        margin: 0 auto;
+        padding: 0 2vw 0.2rem;
+        max-width: 100rem;
+
+        &.step-one-top {
+          max-width: 60rem;
+        }
+
+        .background-img {
+          height: 100%;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position-y: top;
+          background-position-x: center;
+        }
       }
 
       &.middle {
         display: grid;
         // left arrow | main image | right arrow
-        grid-template-columns: 8% auto 8%;
+        grid-template-columns: 12% auto 12%;
+
+        @media (min-width: $mid) {
+          grid-template-columns: 8% auto 8%;
+        }
 
         img,
         .prompt-box {
@@ -93,6 +102,7 @@
       }
 
       &.bottom {
+        padding: 0 2vw;
         display: grid;
         // left dragon | circles | right dragon
         grid-template-columns: 35% auto 35%;
@@ -111,11 +121,7 @@
     // put dragon on the right side
     .dragon {
       grid-column: 3;
-      justify-self: end;
-
-      @media (min-width: $mid) {
-        padding-right: 2rem;
-      }
+      background-position-x: right;
     }
   }
 }
