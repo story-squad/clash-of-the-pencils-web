@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { Submissions } from '../../../api';
-import { pastSubs, user } from '../../../state';
+import { auth, pastSubs } from '../../../state';
 import { Loader } from '../../common';
 import RenderProfile from './RenderProfile';
 
@@ -9,7 +9,7 @@ const Profile: React.FC = () => {
   // pull list of users top 5 stories from recoil state && the API call getRecentSubsByChild()
   const [list, setList] = useRecoilState(pastSubs.list);
   // pull users email from state and update the users email from the API call udpateEmail()
-  const [email, setEmail] = useRecoilState(user.email);
+  const [email, setEmail] = useRecoilState(auth.email);
 
   useEffect(() => {
     Submissions.getRecentSubsByChild()

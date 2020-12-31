@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import {
   AuthModal,
   ReadTokenData,
@@ -10,6 +10,7 @@ import { Activation } from './components/pages/Activated';
 import { GamePage } from './components/pages/GamePage';
 import { VotingPage } from './components/pages/GamePage/VotingPage';
 import { Scroller } from './components/pages/LandingPage';
+import { Profile } from './components/pages/Profile';
 import { ResetPasswordPage } from './components/pages/ResetPassword';
 import { ResultsPage } from './components/pages/ResultsPage';
 
@@ -30,7 +31,8 @@ const App = (): React.ReactElement => {
         <Route path="/reset" component={ResetPasswordPage} />
 
         {/* Fallback Redirect to Dashboard */}
-        <Route path="/" component={() => <Redirect to="/game" />} />
+        {/* <Route path="/" component={() => <Redirect to="/game" />} /> */}
+        <Route path="/profile" component={Profile} />
       </Switch>
     </div>
   );

@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
-
-import { user } from '../../../state';
 import { Submissions } from '../../../api';
-
+import { auth } from '../../../state';
 import { Header, Input, SubCard } from '../../common';
 
 interface RenderProfileProps {
@@ -14,7 +12,7 @@ interface RenderProfileProps {
 const RenderProfile = ({ picList }: RenderProfileProps): React.ReactElement => {
   const { register, errors } = useForm();
   const [passwordFormVisible, setPasswordFormVisible] = useState(false);
-  const username = useRecoilValue(user.username);
+  const username = useRecoilValue(auth.username);
 
   const toggleShowPasswordForm = () => {
     setPasswordFormVisible(!passwordFormVisible);
