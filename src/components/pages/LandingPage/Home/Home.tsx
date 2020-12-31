@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaAngleDown } from 'react-icons/fa';
 import hiImBlaze from '../../../../assets/img/hi-im-blaze.png';
 import howItWorks from '../../../../assets/img/how-it-works-arrow.png';
 import landingText from '../../../../assets/img/landing-text.png';
