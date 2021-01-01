@@ -1,6 +1,7 @@
 import React from 'react';
-import todaysPrompt from '../../../../assets/img/PNGs/todays-story-prompt.png';
-import { Header, PromptBox } from '../../../common';
+import todaysPromptPNG from '../../../../assets/img/PNGs/todays-story-prompt.png';
+import todaysPromptWEBP from '../../../../assets/img/WebPs/todays-story-prompt.webp';
+import { Header, Image, PromptBox } from '../../../common';
 
 const RenderSubmissionPage = (): React.ReactElement => {
   return (
@@ -8,7 +9,11 @@ const RenderSubmissionPage = (): React.ReactElement => {
       <Header />
       <div className="submission-page">
         <div className="content">
-          <img src={todaysPrompt} alt="Today's Story Prompt" />
+          <Image
+            webp={todaysPromptWEBP}
+            src={todaysPromptPNG}
+            alt="Today's Story Prompt"
+          />
           <PromptBox />
         </div>
       </div>
