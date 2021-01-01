@@ -1,7 +1,8 @@
 import React from 'react';
 import { Submissions } from '../../../../api';
-import dragonBoi from '../../../../assets/img/dragon-boi.svg';
-import { SubCard, ThoughtBubble } from '../../../common';
+import dragonBoiPNG from '../../../../assets/img/PNGs/first-place-dragon.png';
+import dragonBoiWEBP from '../../../../assets/img/WebPs/first-place-dragon.webp';
+import { Image, SubCard, ThoughtBubble } from '../../../common';
 import WinnerBubble from './WinnerBubble';
 
 const RenderCelebration = ({
@@ -14,7 +15,11 @@ const RenderCelebration = ({
       />
       <div className="bottom">
         <div className="dragon">
-          <img src={dragonBoi} alt="1st place dragon" />
+          <Image
+            webp={dragonBoiWEBP}
+            src={dragonBoiPNG}
+            alt="1st place dragon"
+          />
         </div>
         <SubCard {...winner} />
       </div>
