@@ -5,9 +5,11 @@ import { useSetRecoilState } from 'recoil';
 import { Input } from '../..';
 import { Auth } from '../../../../api';
 import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
-import welcomeBack from '../../../../assets/img/PNGs/welcome-back.png';
+import welcomeBackPNG from '../../../../assets/img/PNGs/welcome-back.png';
+import welcomeBackWEBP from '../../../../assets/img/WebPs/welcome-back.webp';
 import { auth } from '../../../../state';
 import { token } from '../../../../utils';
+import { Image } from '../../../common';
 import { Modal } from '../../Modal';
 
 const LoginForm = (props: Modal.ModalComponentProps): React.ReactElement => {
@@ -43,7 +45,7 @@ const LoginForm = (props: Modal.ModalComponentProps): React.ReactElement => {
       <div className="dragon-boi">
         <DragonBoi className="dragon login-dragon" />
       </div>
-      <img src={welcomeBack} alt="Welcome Back" />
+      <Image webp={welcomeBackWEBP} src={welcomeBackPNG} alt="Welcome Back" />
       <p>Hey! Sign in below to get back into the game.</p>
       {errors.form && <div className="server-error">{errors.form.message}</div>}
       <div className="inputs">
