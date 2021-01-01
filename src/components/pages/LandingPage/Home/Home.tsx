@@ -8,7 +8,7 @@ import landingTextPNG from '../../../../assets/img/PNGs/landing-text.png';
 import blazeWEBP from '../../../../assets/img/WebPs/hi-im-blaze.webp';
 import howItWorksWEBP from '../../../../assets/img/WebPs/how-it-works.webp';
 import landingTextWEBP from '../../../../assets/img/WebPs/landing-text.webp';
-import { Header } from '../../../common';
+import { Header, Image } from '../../../common';
 
 const Home = (props: HomeProps): React.ReactElement => {
   return (
@@ -23,23 +23,19 @@ const Home = (props: HomeProps): React.ReactElement => {
     >
       <Header />
       <div className="home-page">
-        <picture>
-          <source srcSet={landingTextWEBP} />
-          <img src={landingTextPNG} alt="Unleash your creativity!" />
-        </picture>
-        <picture>
-          <source srcSet={blazeWEBP} type="image/webp" />
-          <img
-            src={blazePNG}
-            className="dragon"
-            alt="Dragon saying 'Hi, I'm Blaze, and I can't wait to read your stories!'"
-          />
-        </picture>
+        <Image
+          webp={landingTextWEBP}
+          src={landingTextPNG}
+          alt="Unleash your creativity!"
+        />
+        <Image
+          webp={blazeWEBP}
+          src={blazePNG}
+          classes="dragon"
+          alt="Dragon saying 'Hi, I'm Blaze, and I can't wait to read your stories!'"
+        />
         <div className="how-it-works">
-          <picture>
-            <source srcSet={howItWorksWEBP} />
-            <img src={howItWorksPNG} alt="How it works" />
-          </picture>
+          <Image webp={howItWorksWEBP} src={howItWorksPNG} alt="How it works" />
           <FaAngleDown />
         </div>
       </div>
