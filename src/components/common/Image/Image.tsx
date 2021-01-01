@@ -9,15 +9,9 @@ const Image = ({
   height,
 }: ImageProps): React.ReactElement => {
   return (
-    <picture>
+    <picture className={classes}>
       <source srcSet={webp} type="image/webp" />
-      <img
-        className={classes}
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-      />
+      <img src={src} alt={alt} width={width} height={height} />
     </picture>
   );
 };
