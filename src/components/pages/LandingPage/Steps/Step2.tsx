@@ -1,7 +1,13 @@
 import React from 'react';
 import pencilPaper from '../../../../assets/img/paperandpencil.gif';
-import dragonSet from '../../../../assets/img/PNGs/dragon-set.png';
-import getPaper from '../../../../assets/img/PNGs/get-paper.png';
+// PNG Images
+import dragonSetPNG from '../../../../assets/img/PNGs/dragon-set.png';
+import getPaperPNG from '../../../../assets/img/PNGs/get-paper.png';
+// WebP Images
+import dragonSetWEBP from '../../../../assets/img/WebPs/dragon-set.webp';
+import getPaperWEBP from '../../../../assets/img/WebPs/get-paper.webp';
+// Components
+import { Image } from '../../../common';
 import NavArrowButton from '../NavArrowButton';
 import { StepProps } from './RenderSteps';
 
@@ -18,8 +24,9 @@ const Step2 = (props: StepProps): React.ReactElement => {
     >
       <div className="grid-wrapper">
         <div className="container top">
-          <img
-            src={getPaper}
+          <Image
+            webp={getPaperWEBP}
+            src={getPaperPNG}
             alt="Get a piece of paper and your lucky pencil."
           />
         </div>
@@ -33,7 +40,12 @@ const Step2 = (props: StepProps): React.ReactElement => {
           <NavArrowButton navDirection={'right'} buttonNav={props.buttonNavX} />
         </div>
         <div className="container bottom">
-          <img src={dragonSet} className="dragon" alt="dragon saying 'Set?'" />
+          <Image
+            webp={dragonSetWEBP}
+            src={dragonSetPNG}
+            classes="dragon"
+            alt="dragon saying 'Set?'"
+          />
           {props.circles()}
         </div>
       </div>
