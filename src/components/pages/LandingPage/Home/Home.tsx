@@ -8,6 +8,7 @@ import landingTextPNG from '../../../../assets/img/PNGs/landing-text.png';
 import blazeWEBP from '../../../../assets/img/WebPs/hi-im-blaze.webp';
 import howItWorksWEBP from '../../../../assets/img/WebPs/how-it-works.webp';
 import landingTextWEBP from '../../../../assets/img/WebPs/landing-text.webp';
+// Components
 import { Header, Image } from '../../../common';
 
 const Home = (props: HomeProps): React.ReactElement => {
