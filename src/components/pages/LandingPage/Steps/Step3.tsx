@@ -1,7 +1,13 @@
 import React from 'react';
 import writingStory from '../../../../assets/img/handwriting.gif';
-import dragonGo from '../../../../assets/img/PNGs/dragon-go.png';
-import scribbleDown from '../../../../assets/img/PNGs/scribble-down.png';
+//PNG Images
+import dragonGoPNG from '../../../../assets/img/PNGs/dragon-go.png';
+import scribbleDownPNG from '../../../../assets/img/PNGs/scribble-down.png';
+// WebP Images
+import dragonGoWEBP from '../../../../assets/img/WebPs/dragon-go.webp';
+import scribbleDownWEBP from '../../../../assets/img/WebPs/scribble-down.webp';
+// Components
+import { Image } from '../../../common';
 import NavArrowButton from '../NavArrowButton';
 import { StepProps } from './RenderSteps';
 
@@ -18,7 +24,11 @@ const Step3 = (props: StepProps): React.ReactElement => {
     >
       <div className="grid-wrapper">
         <div className="container top">
-          <img src={scribbleDown} alt="Scribble down a 1-page story by hand." />
+          <Image
+            webp={scribbleDownWEBP}
+            src={scribbleDownPNG}
+            alt="Scribble down a 1-page story by hand."
+          />
         </div>
         <div className="container middle">
           <NavArrowButton navDirection={'left'} buttonNav={props.buttonNavX} />
@@ -26,7 +36,12 @@ const Step3 = (props: StepProps): React.ReactElement => {
           <NavArrowButton navDirection={'right'} buttonNav={props.buttonNavX} />
         </div>
         <div className="container bottom">
-          <img src={dragonGo} className="dragon" alt="dragon saying 'Go!'" />
+          <Image
+            webp={dragonGoWEBP}
+            src={dragonGoPNG}
+            classes="dragon"
+            alt="dragon saying 'Go!'"
+          />
           {props.circles()}
         </div>
       </div>
