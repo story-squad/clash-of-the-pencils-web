@@ -1,6 +1,7 @@
 import React from 'react';
-import celebration from '../../../assets/img/PNGs/celebration-station.png';
-import { Header } from '../../common';
+import celebrationPNG from '../../../assets/img/PNGs/celebration-station.png';
+import celebrationWEBP from '../../../assets/img/WebPs/celebration-station.webp';
+import { Header, Image } from '../../common';
 import { Celebration } from './Celebration';
 import { Scoreboard } from './Scoreboard';
 
@@ -9,7 +10,11 @@ const RenderResultsPage = (): React.ReactElement => {
     <div>
       <Header />
       <div className="results-page">
-        <img src={celebration} alt="Celebration Station" />
+        <Image
+          webp={celebrationWEBP}
+          src={celebrationPNG}
+          alt="Celebration Station"
+        />
         <div className="results-modules">
           <Celebration />
           <Scoreboard />
