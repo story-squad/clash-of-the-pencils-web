@@ -6,8 +6,10 @@ import { useSetRecoilState } from 'recoil';
 import { Checkbox, Input } from '../..';
 import { Auth } from '../../../../api';
 import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
-import squadUp from '../../../../assets/img/PNGs/squad-up.png';
+import squadUpPNG from '../../../../assets/img/PNGs/squad-up.png';
+import squadUpWEBP from '../../../../assets/img/WebPs/squad-up.webp';
 import { auth } from '../../../../state';
+import { Image } from '../../../common';
 
 // Regex to check if a string matches the shape of an email
 const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -55,7 +57,7 @@ const SignupForm = (): React.ReactElement => {
       <div className="dragon-boi">
         <DragonBoi className="dragon" />
       </div>
-      <img src={squadUp} alt="Squad Up!" />
+      <Image webp={squadUpWEBP} src={squadUpPNG} alt="Squad Up!" />
       <p>
         A Story Squad account is free! Please fill out the information below to
         get started.
