@@ -29,6 +29,7 @@
     }
 
     @media screen and (min-width: $tablet) {
+      width: 33%;
       margin-bottom: 0;
       flex-flow: column nowrap;
       align-items: center;
