@@ -16,6 +16,10 @@
     width: 100%;
     max-width: 150px;
 
+    @media screen and(min-width: $tablet) {
+      width: 33%;
+    }
+
     .sub-info {
       p {
         margin-top: 1rem;
