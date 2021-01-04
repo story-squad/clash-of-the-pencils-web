@@ -4,7 +4,7 @@
   margin: 2rem auto;
 
   @media screen and (min-width: $tablet) {
-    background-color: $seafoam;
+    background-color: $jade;
     flex-flow: row nowrap;
     justify-content: space-evenly;
     margin: 3rem auto;
@@ -23,10 +23,7 @@
     align-items: flex-start;
     margin-bottom: 2rem;
     position: relative;
-
-    @media screen and (min-width: $mid) {
-      align-items: stretch;
-    }
+    align-items: stretch;
 
     @media screen and (min-width: $tablet) {
       width: 33%;
@@ -35,9 +32,6 @@
       align-items: center;
       &:not(:last-of-type) {
         margin-right: 2rem;
-        @media screen and (min-width: $large) {
-          margin-right: 3.2rem;
-        }
       }
     }
 
@@ -89,32 +83,41 @@
     .sub-info {
       flex-grow: 1;
 
-      @media screen and (min-width: $mid) {
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: center;
-        align-items: center;
-      }
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: center;
 
       @media screen and (min-width: $tablet) {
         text-align: center;
       }
 
       p {
+        text-align: center;
         font-family: $display-font;
-        font-size: 2.4rem;
+        text-shadow: 0 2px 2px #0005;
         color: $white;
         margin: 1rem 0;
-        .alt {
-          display: block;
-          color: $seafoam;
-          @media screen and (min-width: $tablet) {
-            color: $bright-blue;
-          }
+        font-size: 2rem;
+        @include bp(mid) {
+          font-size: 3rem;
         }
-
-        @media screen and (min-width: $tablet) {
+        @include bp(tablet) {
+          font-size: 2.4rem;
           margin: 1.6rem 0 0;
+        }
+        .alt {
+          margin-bottom: 0.5rem;
+          display: block;
+          color: $lt-orange;
+          font-size: 2.4rem;
+          @include word-wrap;
+          @include bp(mid) {
+            font-size: 3.6rem;
+          }
+          @media screen and (min-width: $tablet) {
+            font-size: 2.8rem;
+          }
         }
       }
     }

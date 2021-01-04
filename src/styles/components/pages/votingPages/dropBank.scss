@@ -1,13 +1,13 @@
 .drop-bank {
-  width: 80%;
+  width: 100%;
   max-width: 545px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-evenly;
   margin: 2rem auto;
   @media screen and (min-width: $tablet) {
-    padding: 3rem 3rem 1rem;
-    background-color: $seafoam;
+    padding: 3rem;
+    background-color: $jade;
     border-radius: 5px;
     @include drop-shadow;
   }
@@ -16,6 +16,13 @@
     width: 33%;
     max-width: 150px;
 
+    &:not(:last-of-type) {
+      margin-right: 1rem;
+      @include bp(mid) {
+        margin-right: 2rem;
+      }
+    }
+
     .sub-info {
       p {
         margin-top: 1rem;
@@ -23,19 +30,14 @@
         font-family: $display-font;
         text-align: center;
         color: $white;
-        @media screen and (min-width: $tablet) {
+        @media screen and (min-width: $mid) {
           font-size: 1.8rem;
+          margin-top: 1.5rem;
         }
 
         .alt {
-          color: $jade;
-          @media screen and (min-width: $tablet) {
-            color: $bright-blue;
-          }
-        }
-
-        @media screen and (min-width: $tablet) {
-          margin-top: 1rem;
+          color: $white;
+          text-shadow: 0 2px 2px #0005;
         }
       }
     }
