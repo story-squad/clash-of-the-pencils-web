@@ -106,6 +106,7 @@
         color: $white;
         margin: 1rem 0;
         .alt {
+          display: block;
           color: $seafoam;
           @media screen and (min-width: $tablet) {
             color: $bright-blue;
