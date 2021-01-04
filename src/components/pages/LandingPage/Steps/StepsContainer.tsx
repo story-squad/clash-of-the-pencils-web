@@ -4,7 +4,7 @@ import RenderSteps from './RenderSteps';
 
 const numberOfSteps = 4;
 
-const StepsContainer = (): React.ReactElement => {
+const StepsContainer = (props: StepsContainerProps): React.ReactElement => {
   const [stepNum, setStepNum] = useState<number>(1);
 
   useEffect(() => {
@@ -28,7 +28,17 @@ const StepsContainer = (): React.ReactElement => {
     }
   };
 
-  return <RenderSteps stepNum={stepNum} buttonNavX={buttonNavX} />;
+  return (
+    <RenderSteps
+      stepNum={stepNum}
+      buttonNavX={buttonNavX}
+      responsiveHeightRefs={props.responsiveHeightRefs}
+    />
+  );
 };
+
+interface StepsContainerProps {
+  responsiveHeightRefs: React.RefObject<Set<HTMLDivElement>>;
+}
 
 export default StepsContainer;

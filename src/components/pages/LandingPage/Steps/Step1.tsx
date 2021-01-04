@@ -10,7 +10,15 @@ import { StepProps } from './RenderSteps';
 const Step1 = (props: StepProps): React.ReactElement => {
   const { active } = time.getTimeUntilEvent('submit');
   return (
-    <div className="step-1">
+    <div
+      className="step-1"
+      ref={(element) =>
+        (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
+          element as HTMLDivElement,
+        )
+      }
+      style={{ height: window.innerHeight }}
+    >
       <div className="grid-wrapper">
         <div className="container top step-one-top">
           <div

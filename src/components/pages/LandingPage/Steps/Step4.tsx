@@ -7,7 +7,15 @@ import { StepProps } from './RenderSteps';
 
 const Step4 = (props: StepProps): React.ReactElement => {
   return (
-    <div className="step-4">
+    <div
+      className="step-4"
+      ref={(element) =>
+        (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
+          element as HTMLDivElement,
+        )
+      }
+      style={{ height: window.innerHeight }}
+    >
       <div className="grid-wrapper">
         <div className="container top">
           <div

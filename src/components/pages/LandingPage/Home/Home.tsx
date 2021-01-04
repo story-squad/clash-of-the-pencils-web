@@ -4,9 +4,17 @@ import howItWorks from '../../../../assets/img/how-it-works-arrow.png';
 import landingText from '../../../../assets/img/landing-text.png';
 import { Header } from '../../../common';
 
-const Home = (): React.ReactElement => {
+const Home = (props: HomeProps): React.ReactElement => {
   return (
-    <div className="home-page-wrapper">
+    <div
+      className="home-page-wrapper"
+      ref={(element) =>
+        (props.responsiveHeightRefs.current as Set<HTMLDivElement>).add(
+          element as HTMLDivElement,
+        )
+      }
+      style={{ height: window.innerHeight }}
+    >
       <Header />
       <div className="home-page">
         <img src={landingText} alt="Unleash your creativity!" />
@@ -22,5 +30,9 @@ const Home = (): React.ReactElement => {
     </div>
   );
 };
+
+interface HomeProps {
+  responsiveHeightRefs: React.RefObject<Set<HTMLDivElement>>;
+}
 
 export default Home;
