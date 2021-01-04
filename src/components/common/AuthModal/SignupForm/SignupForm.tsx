@@ -69,7 +69,23 @@ const SignupForm = (): React.ReactElement => {
           label="Codename"
           errors={errors}
           register={register}
-          rules={{ required: 'Codename is required!' }}
+          rules={{
+            required: 'Codename is required!',
+            validate: {
+              checkCharacters: (value) => {
+                return (
+                  // ensures the user's entered codename contains only allowed characters
+                  codenamePattern.test(value) ||
+                  'Only letters and numbers are allowed.'
+                );
+              },
+              checkLength: (value) => {
+                return (
+                  value.length < 15 || 'Cannot be more than 15 characters.'
+                );
+              },
+            },
+          }}
           placeholder="Enter your codename"
         />
         <Input
