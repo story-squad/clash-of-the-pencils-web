@@ -2,11 +2,12 @@
   max-width: 100%;
   display: flex;
   @include aspect-ratio();
+  border: 1px solid $charcoal;
+  border-radius: 5px;
+  overflow: hidden;
+  @include drop-shadow;
 
   .card-img {
-    border: 1px solid $charcoal;
-    border-radius: 5px;
-    @include drop-shadow;
     width: 100%;
     height: 100%;
     background-size: cover;
@@ -15,17 +16,11 @@
     &.rotate-180 {
       transform: rotate(-180deg);
     }
-    @mixin horizontal {
-      max-height: 100vw;
-      max-width: 90vh;
-    }
     &.rotate-90 {
       transform: rotate(-90deg);
-      @include horizontal;
     }
     &.rotate-270 {
       transform: rotate(-270deg);
-      @include horizontal;
     }
   }
 
