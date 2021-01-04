@@ -11,6 +11,8 @@ import { auth } from '../../../../state';
 
 // Regex to check if a string matches the shape of an email
 const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+// Regex to check entered codename contains only letters and numbers
+const codenamePattern = /^[A-Za-z0-9]*$/;
 
 const SignupForm = (): React.ReactElement => {
   const {
