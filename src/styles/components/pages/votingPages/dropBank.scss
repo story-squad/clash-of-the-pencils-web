@@ -13,12 +13,8 @@
   }
 
   .voting-item {
-    width: 100%;
+    width: 33%;
     max-width: 150px;
-
-    @media screen and(min-width: $tablet) {
-      width: 33%;
-    }
 
     .sub-info {
       p {
