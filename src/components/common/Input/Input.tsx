@@ -28,6 +28,7 @@ const Input = ({
       <label htmlFor={name}>{label} :</label>
       <div className="input-field">
         <input
+          id={name}
           name={name}
           type={inputType}
           ref={register && register(rules)}
