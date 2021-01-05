@@ -8,18 +8,16 @@ const GameClosed = (): React.ReactElement => {
       <Header />
       <div className="closed-page">
         <div className="countdown-closed-component">
-          <h2>Game is paused</h2>
+          <h2>Submissions are currently closed!</h2>
           <p>
-            Blaze is currently reading your stories! We&apos;ll return for
-            voting as soon as he&apos;s finished!
-          </p>
-          <p className="begins">
+            Sorry you missed it :(
+            <br />
             Voting begins at{' '}
             <span className="alt">
               {time.schedule.vote.start.format('h:mm A')}
             </span>
           </p>
-          <p className="check-back">
+          <p>
             Check back in: <Countdown toEvent="vote" />
           </p>
         </div>
