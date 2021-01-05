@@ -13,12 +13,12 @@ const Header = (): React.ReactElement => {
   const setAuthOpen = useSetRecoilState(auth.authModalOpen);
   const setAuthIsLogin = useSetRecoilState(auth.authModalIsLogin);
   const setSignupWasSuccessful = useSetRecoilState(auth.signupWasSuccessful);
+  const setAuthIsLogout = useSetRecoilState(auth.authModalIsLogout);
 
   const menuItems = useMemo<headerItems[]>(() => {
     const navItems = [{ link: '/', text: 'Home' }];
     if (gameActive) navItems.push({ link: '/game', text: 'Game' });
     navItems.push({ link: '/results', text: 'Results' });
-    if (isLogged) navItems.push({ link: '/logout', text: 'Sign Out' });
     return navItems;
   }, [isLogged]);
 
@@ -35,6 +35,12 @@ const Header = (): React.ReactElement => {
   const openSignup = () => {
     setAuthOpen(true);
     setAuthIsLogin(false);
+    setSignupWasSuccessful(false);
+  };
+
+  const openLogout = () => {
+    setAuthOpen(true);
+    setAuthIsLogout(true);
     setSignupWasSuccessful(false);
   };
 
@@ -66,7 +72,13 @@ const Header = (): React.ReactElement => {
               clickHandler={() => setShowMenu(false)}
             />
           ))}
-          {!isLogged && (
+          {isLogged ? (
+            <div className="menu-item">
+              <span className="link" onClick={openLogout}>
+                Sign Out
+              </span>
+            </div>
+          ) : (
             <>
               <div className="menu-item">
                 <span className="link" onClick={openLogin}>
