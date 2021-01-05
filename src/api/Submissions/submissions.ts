@@ -10,6 +10,14 @@ export const getRecentSubsByChild = async (): Promise<SubItem[]> => {
   return Promise.all(processedStories);
 };
 
+export const getMySubmissions = async (): Promise<SubItem[]> => {
+  const { data }: AxiosResponse<SubItem[]> = await axiosWithAuth().get(
+    '/upload/mysubmissions',
+  );
+  const processedStories = data.map((sub) => getImageFromS3(sub));
+  return Promise.all(processedStories);
+};
+
 export const getTop3Subs = async (): Promise<SubItem[]> => {
   const { data }: AxiosResponse<SubItem[]> = await axiosWithAuth().get(
     '/ranking',
