@@ -11,8 +11,9 @@ const Profile: React.FC = () => {
   // pull users email from state and update the users email from the API call udpateEmail()
   const [email, setEmail] = useRecoilState(auth.email);
 
+  //
   useEffect(() => {
-    Submissions.getRecentSubsByChild()
+    Submissions.getMySubmissions()
       .then((subList) => {
         setList(subList);
       })
