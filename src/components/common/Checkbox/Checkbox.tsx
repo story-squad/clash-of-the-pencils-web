@@ -2,6 +2,7 @@ import React from 'react';
 import { RegisterOptions, UseFormMethods } from 'react-hook-form';
 
 const Checkbox = ({
+  id,
   name,
   label,
   register,
@@ -11,9 +12,9 @@ const Checkbox = ({
 }: CheckboxProps): React.ReactElement => {
   return (
     <div className={`checkbox${errors[name] ? ' error' : ''}`}>
-      <label htmlFor={name}>
+      <label htmlFor={id}>
         <input
-          id={name}
+          id={id}
           name={name}
           type="checkbox"
           ref={register && register(rules)}
@@ -31,6 +32,7 @@ const Checkbox = ({
 };
 
 interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  id: string;
   name: string;
   label: React.ReactElement;
   register: UseFormMethods['register'];
