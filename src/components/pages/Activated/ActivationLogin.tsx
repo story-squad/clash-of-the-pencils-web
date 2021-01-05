@@ -1,35 +1,54 @@
-import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { parse } from 'query-string';
+import React, { useEffect, useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
+import { token } from '../../../utils';
 import { Modal } from '../../common';
 
 export const Activation = (): React.ReactElement => {
   const { push } = useHistory();
+  const { search } = useLocation();
+  const [success, setSuccess] = useState<boolean>();
 
   useEffect(() => {
-    setTimeout(() => {
-      push('/login');
-    }, 3000);
+    const parsedParams = parse(search);
+    if (parsedParams.authToken && typeof parsedParams.authToken === 'string') {
+      token.set(parsedParams.authToken);
+      setSuccess(true);
+      setTimeout(() => {
+        push('/game');
+      }, 3000);
+    } else {
+      setSuccess(false);
+      setTimeout(() => {
+        push('/');
+      }, 3000);
+    }
   }, []);
 
   return (
     <Modal.Component
+      className="activation"
       visible={true}
       setVisible={() => null}
-      component={ActivationMessage}
+      component={() => <ActivationMessage {...{ success }} />}
       centered={true}
       closable={false}
-      title="Success!"
     />
   );
 };
 
-const ActivationMessage = () => {
+const ActivationMessage = ({ success }: ActivationMessageProps) => {
   return (
-    <>
-      <p className="activation">Activation complete!</p>
-      <p className="activation">Redirecting to login...</p>
-    </>
+    <div className="activation-wrapper">
+      <h2>Activation {success ? 'successful!' : 'failed.'}</h2>
+      {success && <p>You have been logged in.</p>}
+      <h3>Redirecting...</h3>
+    </div>
   );
 };
+
+interface ActivationMessageProps {
+  success?: boolean;
+}
 
 export default Activation;
