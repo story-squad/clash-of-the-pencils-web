@@ -13,6 +13,8 @@ const RenderProfile = ({ picList }: RenderProfileProps): React.ReactElement => {
   const { register, errors } = useForm();
   const [passwordFormVisible, setPasswordFormVisible] = useState(false);
   const [emailFormVisible, setEmailFormVisible] = useState(false);
+  const [codenameFormVisible, setcodenameFormVisible] = useState(false);
+
   const username = useRecoilValue(auth.username);
 
   // toggle the password reset form (open/close)
@@ -20,8 +22,14 @@ const RenderProfile = ({ picList }: RenderProfileProps): React.ReactElement => {
     setPasswordFormVisible(!passwordFormVisible);
   };
 
+  // toggle the email reset form (open/close)
   const toggleEmailResetForm = () => {
     setEmailFormVisible(!emailFormVisible);
+  };
+
+  // toggle the password reset form (open/close)
+  const toggleCodenameResetForm = () => {
+    setcodenameFormVisible(!codenameFormVisible);
   };
 
   return (
@@ -67,7 +75,7 @@ const RenderProfile = ({ picList }: RenderProfileProps): React.ReactElement => {
             register={register}
             rules={{ required: 'Please confirm your new password' }}
           />
-          <button>Confirm Password Update</button>
+          <button>Confirm Password</button>
           <button onClick={togglePasswordResetForm}>Cancel</button>
         </div>
       ) : (
@@ -100,11 +108,44 @@ const RenderProfile = ({ picList }: RenderProfileProps): React.ReactElement => {
             register={register}
             rules={{ required: 'Please confirm your new email' }}
           />
-          <button>Confirm Email Update</button>
+          <button>Confirm Email</button>
           <button onClick={toggleEmailResetForm}>Cancel</button>
         </div>
       ) : (
         <button onClick={toggleEmailResetForm}>Reset Email</button>
+      )}
+
+      {codenameFormVisible ? (
+        <div>
+          <Input
+            name="oldcodename"
+            label="Old Codename"
+            type="text"
+            errors={errors}
+            register={register}
+            rules={{ required: 'Please enter your old codename' }}
+          />
+          <Input
+            name="newcodename"
+            label="New Codename"
+            type="text"
+            errors={errors}
+            register={register}
+            rules={{ required: 'Please enter your new codename' }}
+          />
+          <Input
+            name="confirmcodename"
+            label="Confirm New Codename"
+            type="text"
+            errors={errors}
+            register={register}
+            rules={{ required: 'Please confirm your new codename' }}
+          />
+          <button>Confirm Codename</button>
+          <button onClick={toggleCodenameResetForm}>Cancel</button>
+        </div>
+      ) : (
+        <button onClick={toggleCodenameResetForm}>Reset Codename</button>
       )}
     </div>
   );
