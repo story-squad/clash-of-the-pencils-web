@@ -9,7 +9,12 @@ const SignoutConfirmation = (
       <p>Are you sure you&apos;d like to sign out?</p>
       <div className="button-row">
         <button onClick={() => props.confirmSignout(true)}>Yes</button>
-        <button onClick={() => props.confirmSignout(false)}>No</button>
+        <button
+          className="no-button"
+          onClick={() => props.confirmSignout(false)}
+        >
+          No
+        </button>
       </div>
     </div>
   );

@@ -16,7 +16,11 @@ const Signout = (): React.ReactElement => {
     }, 1000);
   }, []);
 
-  return <p>Signing you out...</p>;
+  return (
+    <div className="signout-confirmation">
+      <p>Signing you out...</p>
+    </div>
+  );
 };
 
 export default Signout;
