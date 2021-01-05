@@ -40,8 +40,8 @@ export const Activation = (): React.ReactElement => {
 const ActivationMessage = ({ success }: ActivationMessageProps) => {
   return (
     <div className="activation-wrapper">
-      <h2>Activation {success ? 'successful!' : 'failed.'}</h2>
-      {success && <p>You have been logged in.</p>}
+      <h2>Activation successful!</h2>
+      {success ? <p>You have been logged in.</p> : <p>Could not log you in.</p>}
       <h3>Redirecting...</h3>
     </div>
   );
