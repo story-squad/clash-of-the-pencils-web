@@ -1,10 +1,15 @@
 import { selector } from 'recoil';
 import { global } from '../apiErrorState';
-import { email, loginToken, userId, username } from '../authState';
+import {
+  authModalOpen,
+  email,
+  loginToken,
+  signupWasSuccessful,
+  userId,
+  username,
+} from '../authState';
 import { dndContainerState } from '../dndState';
 import { list } from '../pastSubsState';
-import { currentPrompt } from '../promptState';
-import { winner } from '../resultsState';
 import {
   error,
   loading,
@@ -20,6 +25,8 @@ export const all = selector<null>({
   get: () => null,
   set: ({ reset }) => {
     reset(loginToken);
+    reset(authModalOpen);
+    reset(signupWasSuccessful);
     reset(top3List);
     reset(dndContainerState);
     reset(hasFinishedReadingState);
@@ -29,8 +36,6 @@ export const all = selector<null>({
     reset(email);
     reset(username);
     reset(global);
-    reset(currentPrompt);
-    reset(winner);
     reset(error);
     reset(loading);
     reset(preview);

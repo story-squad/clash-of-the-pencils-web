@@ -9,7 +9,7 @@ const SubmissionsClosed = (): React.ReactElement => {
 
   return (
     <div className="prompt-box inactive">
-      <h2>Hey, {username}</h2>
+      {username && <h2>Hey, {username}</h2>}
       <h3>Submissions are closed!</h3>
       <p>
         Sorry you missed it :(

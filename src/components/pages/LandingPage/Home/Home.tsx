@@ -1,9 +1,8 @@
 import React from 'react';
 import hiImBlaze from '../../../../assets/img/hi-im-blaze.png';
-import howItWorks from '../../../../assets/img/how-it-works.png';
+import howItWorks from '../../../../assets/img/how-it-works-arrow.png';
 import landingText from '../../../../assets/img/landing-text.png';
 import { Header } from '../../../common';
-import { FaAngleDown } from 'react-icons/fa';
 
 const Home = (props: HomeProps): React.ReactElement => {
   return (
@@ -26,7 +25,6 @@ const Home = (props: HomeProps): React.ReactElement => {
         />
         <div className="how-it-works">
           <img src={howItWorks} alt="How it works" />
-          <FaAngleDown />
         </div>
       </div>
     </div>
