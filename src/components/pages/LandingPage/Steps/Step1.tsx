@@ -24,7 +24,7 @@ const Step1 = (props: StepProps): React.ReactElement => {
           <div
             className="background-img"
             style={{ backgroundImage: `url(${scopeOut})` }}
-            aria-role="img"
+            role="img"
             aria-label="Scope out the prompt."
           />
         </div>
@@ -43,7 +43,7 @@ const Step1 = (props: StepProps): React.ReactElement => {
           <div
             className="dragon"
             style={{ backgroundImage: `url(${dragonReady})` }}
-            aria-role="img"
+            role="img"
             aria-label="dragon saying 'Ready?'"
           />
           {props.circles()}
