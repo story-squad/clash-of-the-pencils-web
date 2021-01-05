@@ -12,10 +12,16 @@ interface RenderProfileProps {
 const RenderProfile = ({ picList }: RenderProfileProps): React.ReactElement => {
   const { register, errors } = useForm();
   const [passwordFormVisible, setPasswordFormVisible] = useState(false);
+  const [emailFormVisible, setEmailFormVisible] = useState(false);
   const username = useRecoilValue(auth.username);
 
-  const toggleShowPasswordForm = () => {
+  // toggle the password reset form (open/close)
+  const togglePasswordResetForm = () => {
     setPasswordFormVisible(!passwordFormVisible);
+  };
+
+  const toggleEmailResetForm = () => {
+    setEmailFormVisible(!emailFormVisible);
   };
 
   return (
@@ -61,11 +67,44 @@ const RenderProfile = ({ picList }: RenderProfileProps): React.ReactElement => {
             register={register}
             rules={{ required: 'Please confirm your new password' }}
           />
-          <button>Confirm Password</button>
-          <button onClick={toggleShowPasswordForm}>Cancel</button>
+          <button>Confirm Password Update</button>
+          <button onClick={togglePasswordResetForm}>Cancel</button>
         </div>
       ) : (
-        <button onClick={toggleShowPasswordForm}>Reset Password</button>
+        <button onClick={togglePasswordResetForm}>Reset Password</button>
+      )}
+
+      {emailFormVisible ? (
+        <div>
+          <Input
+            name="oldemail"
+            label="Old Email"
+            type="email"
+            errors={errors}
+            register={register}
+            rules={{ required: 'Please enter your old email' }}
+          />
+          <Input
+            name="newemail"
+            label="New Email"
+            type="email"
+            errors={errors}
+            register={register}
+            rules={{ required: 'Please enter your new email' }}
+          />
+          <Input
+            name="confirmemail"
+            label="Confirm New Email"
+            type="email"
+            errors={errors}
+            register={register}
+            rules={{ required: 'Please confirm your new email' }}
+          />
+          <button>Confirm Email Update</button>
+          <button onClick={toggleEmailResetForm}>Cancel</button>
+        </div>
+      ) : (
+        <button onClick={toggleEmailResetForm}>Reset Email</button>
       )}
     </div>
   );
