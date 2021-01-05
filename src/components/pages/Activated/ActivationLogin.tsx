@@ -1,19 +1,21 @@
 import { parse } from 'query-string';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import { token } from '../../../utils';
+import { useSetRecoilState } from 'recoil';
+import { auth } from '../../../state';
 import { Modal } from '../../common';
 
 export const Activation = (): React.ReactElement => {
   const { push } = useHistory();
   const { search } = useLocation();
   const [success, setSuccess] = useState<boolean>();
+  const login = useSetRecoilState(auth.isLoggedIn);
 
   useEffect(() => {
     const parsedParams = parse(search);
     if (parsedParams.authToken && typeof parsedParams.authToken === 'string') {
-      token.set(parsedParams.authToken);
       setSuccess(true);
+      login(true);
       setTimeout(() => {
         push('/game');
       }, 3000);
