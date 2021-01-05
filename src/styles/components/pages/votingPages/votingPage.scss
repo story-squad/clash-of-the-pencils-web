@@ -25,8 +25,8 @@
     }
     h2 {
       font-size: 2.4rem;
-      color: $red;
-      margin-bottom: 1rem;
+      color: $seafoam;
+      text-shadow: 0 2px 2px #0005;
     }
     img {
       margin-bottom: 1rem;
@@ -39,13 +39,17 @@
       &.instructions {
         font-family: $display-font;
         font-size: 2.4rem;
-        margin-bottom: 1rem;
         line-height: 2.8rem;
+        margin-bottom: 1rem;
+        @include bp(tablet) {
+          margin-bottom: 2rem;
+          text-shadow: 0 2px 2px #0005;
+        }
         .vote {
           font-size: 3.6rem;
         }
         .alt {
-          color: $red;
+          color: $lt-orange;
           text-shadow: 0 2px 2px #0005;
         }
         .alt-2 {
@@ -74,7 +78,10 @@
       font-size: 2.4rem;
 
       &.small {
-        font-size: 1.8rem;
+        font-size: 1.2rem;
+        @include bp(mid) {
+          font-size: 1.8rem;
+        }
         display: flex;
         flex-flow: row nowrap;
         align-items: center;

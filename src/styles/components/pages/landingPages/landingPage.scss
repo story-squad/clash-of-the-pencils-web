@@ -6,9 +6,22 @@
 @import './votingInfo.scss';
 @import './navArrowButton.scss';
 
-.landing-page {
+.landing-page-container {
   // General Page Styling
   // Consistently display landing page headers/paragraphs/links
+
+  & > div {
+    height: 100vh;
+  }
+
+  .sub-card-test {
+    padding: 10rem;
+
+    .sub-card {
+      width: 30vh;
+    }
+  }
+
   h1 {
     font-family: $display-font;
     color: $white;

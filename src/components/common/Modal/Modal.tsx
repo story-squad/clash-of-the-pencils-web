@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MdClose } from 'react-icons/md';
 
 export const Component = ({
@@ -10,9 +10,16 @@ export const Component = ({
   className,
   title = '',
 }: ModalProps): React.ReactElement => {
+  const [showContents, setShowContents] = useState(visible);
+
   const closeModal = () => {
     setVisible(false);
   };
+
+  useEffect(() => {
+    if (!visible) setTimeout(() => setShowContents(false), 500);
+    else setShowContents(true);
+  }, [visible]);
 
   return (
     <div
@@ -34,7 +41,7 @@ export const Component = ({
           )}
         </div>
         <div className="modal-content">
-          <Component closeModal={closeModal} />
+          {showContents && <Component closeModal={closeModal} />}
         </div>
       </div>
     </div>

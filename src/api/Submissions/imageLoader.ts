@@ -8,7 +8,7 @@ export interface SubItem {
   image: string;
   src: string;
   rotation: number;
-  pages?: string;
+  prompt: string;
 }
 
 export const getImageFromS3 = async (sub: SubItem): Promise<SubItem> => {
