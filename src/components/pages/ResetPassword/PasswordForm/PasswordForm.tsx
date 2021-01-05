@@ -71,7 +71,8 @@ const PasswordForm = (
         </ul>
         <div className="password-form-input">
           <Input
-            name="resetPassword"
+            id="resetPassword"
+            name="password"
             label="New Password"
             type="password"
             placeholder="enter new password"
@@ -109,7 +110,8 @@ const PasswordForm = (
         </div>
         <div className="password-form-input">
           <Input
-            name="resetConfirm"
+            id="resetConfirm"
+            name="confirm"
             label="Confirm New Password"
             type="password"
             placeholder="confirm new password"

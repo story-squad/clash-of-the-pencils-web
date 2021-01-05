@@ -65,6 +65,7 @@ const SignupForm = (): React.ReactElement => {
       {errors.form && <div className="server-error">{errors.form.message}</div>}
       <div className="inputs">
         <Input
+          id="codename"
           name="username"
           label="Codename"
           errors={errors}
@@ -89,6 +90,7 @@ const SignupForm = (): React.ReactElement => {
           placeholder="Enter your codename"
         />
         <Input
+          id="signupEmail"
           name="email"
           label="Email"
           type="email"
@@ -105,6 +107,7 @@ const SignupForm = (): React.ReactElement => {
           placeholder="SuperWriter@storysquad.org"
         />
         <Input
+          id="age"
           name="ageStr"
           label="Age"
           errors={errors}
@@ -122,6 +125,7 @@ const SignupForm = (): React.ReactElement => {
               <li>Includes at least 1 Number</li>
             </ul> */}
         <Input
+          id="signupPassword"
           name="password"
           label="Password"
           type="password"
@@ -158,6 +162,7 @@ const SignupForm = (): React.ReactElement => {
           placeholder="Create a safe password"
         />
         <Input
+          id="signupConfirm"
           name="confirm"
           label="Confirm Password"
           type="password"
@@ -177,6 +182,7 @@ const SignupForm = (): React.ReactElement => {
         {/* If the user is younger than 13, require a parent email */}
         {parseInt(watch('ageStr')) < 13 && (
           <Input
+            id="parentEmail"
             name="parentEmail"
             label="Parent Email"
             errors={errors}
@@ -209,6 +215,7 @@ const SignupForm = (): React.ReactElement => {
       </div>
 
       <Checkbox
+        id="termsCheckbox"
         name="termsCheckbox"
         label={
           <>
