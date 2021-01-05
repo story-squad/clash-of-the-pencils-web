@@ -37,7 +37,8 @@ const EmailForm: React.FC = () => {
         )}
         <div className="email-form-input">
           <Input
-            name="resetEmail"
+            id="resetEmail"
+            name="email"
             label="Email"
             placeholder="enter your email"
             errors={errors}
