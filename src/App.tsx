@@ -4,7 +4,6 @@ import {
   AuthModal,
   ReadTokenData,
   SEO,
-  Signout,
   TermsOfService,
 } from './components/common';
 import { Activation } from './components/pages/Activated';
@@ -25,7 +24,6 @@ const App = (): React.ReactElement => {
         {/* Public Routes */}
         <Route exact path="/" component={Scroller} />
         <Route path="/activated" component={Activation} />
-        <Route path={['/logout', '/signout']} component={Signout} />
         <Route path="/vote" component={VotingPage} />
         <Route path="/tos" component={TermsOfService} />
         <Route path="/game" component={GamePage} />

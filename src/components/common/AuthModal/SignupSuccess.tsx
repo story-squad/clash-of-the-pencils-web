@@ -2,7 +2,7 @@ import React from 'react';
 import { useSetRecoilState } from 'recoil';
 import { auth } from '../../../state';
 
-const SignupSuccess: React.FC = () => {
+const SignupSuccess = (): React.ReactElement => {
   const setSignupWasSuccessful = useSetRecoilState(auth.signupWasSuccessful);
   const setAuthModalOpen = useSetRecoilState(auth.authModalOpen);
 

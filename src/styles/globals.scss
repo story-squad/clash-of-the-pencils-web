@@ -37,6 +37,10 @@ $red: #f64141;
 $ltblue: #85c7f2;
 $bright-blue: #2462d9;
 
+#root {
+  background-color: $dark-blue;
+}
+
 .App > div:not(.modal-wrapper) {
   min-height: 100vh;
   background-color: $dark-blue;

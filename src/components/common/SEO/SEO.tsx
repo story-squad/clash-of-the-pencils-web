@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { seoConfig } from '../../../config';
 
 const SEO = ({
