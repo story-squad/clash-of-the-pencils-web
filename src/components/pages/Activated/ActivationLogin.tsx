@@ -1,35 +1,56 @@
-import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { parse } from 'query-string';
+import React, { useEffect, useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { auth } from '../../../state';
 import { Modal } from '../../common';
 
 export const Activation = (): React.ReactElement => {
   const { push } = useHistory();
+  const { search } = useLocation();
+  const [success, setSuccess] = useState<boolean>();
+  const login = useSetRecoilState(auth.isLoggedIn);
 
   useEffect(() => {
-    setTimeout(() => {
-      push('/login');
-    }, 3000);
+    const parsedParams = parse(search);
+    if (parsedParams.authToken && typeof parsedParams.authToken === 'string') {
+      setSuccess(true);
+      login(true);
+      setTimeout(() => {
+        push('/game');
+      }, 3000);
+    } else {
+      setSuccess(false);
+      setTimeout(() => {
+        push('/');
+      }, 3000);
+    }
   }, []);
 
   return (
     <Modal.Component
+      className="activation"
       visible={true}
       setVisible={() => null}
-      component={ActivationMessage}
+      component={() => <ActivationMessage {...{ success }} />}
       centered={true}
       closable={false}
-      title="Success!"
     />
   );
 };
 
-const ActivationMessage = () => {
+const ActivationMessage = ({ success }: ActivationMessageProps) => {
   return (
-    <>
-      <p className="activation">Activation complete!</p>
-      <p className="activation">Redirecting to login...</p>
-    </>
+    <div className="activation-wrapper">
+      <h2>Activation successful!</h2>
+      {success ? <p>You have been logged in.</p> : <p>Could not log you in.</p>}
+      <h3>Redirecting...</h3>
+    </div>
   );
 };
+
+interface ActivationMessageProps {
+  success?: boolean;
+}
 
 export default Activation;
