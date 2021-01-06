@@ -1,10 +1,6 @@
 .profile-container {
-  h1 {
-    font-size: 4rem;
-  }
-
-  button {
-    @include button($blue);
-    font-size: 2.4rem;
+  // My Stories wrapper is the users recent submissions (7 max)
+  .mystories-wrapper {
+    border: 1px solid red;
   }
 }

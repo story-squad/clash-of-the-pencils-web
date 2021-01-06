@@ -32,121 +32,136 @@ const RenderProfile = ({ picList }: RenderProfileProps): React.ReactElement => {
     setcodenameFormVisible(!codenameFormVisible);
   };
 
+  // Regex to check entered codename contains only letters and numbers
+  const codenamePattern = /^[A-Za-z0-9]*$/;
+
   return (
     <div className="profile-container">
       <Header />
-      <h1>Hello {username}</h1>
-      <div className="sidebar">
-        <h2>My Stories</h2>
-        <div className="story-list">
+      <div className="mystories-wrapper">
+        <div className="profile-story-list">
+          <h2>My Stories</h2>
           {picList.map((pic, i) => (
             <SubCard key={i} {...pic} />
           ))}
           {picList.length === 0 && (
-            <div className="message">
+            <div className="profile-story-error-msg">
               You don&apos;t have any past submissions. Check back later!
             </div>
           )}
         </div>
       </div>
-      {passwordFormVisible ? (
-        <div>
-          <Input
-            name="oldpassword"
-            label="Old Password"
-            type="password"
-            errors={errors}
-            register={register}
-            rules={{ required: 'Please enter your old password' }}
-          />
-          <Input
-            name="newpassword"
-            label="New Password"
-            type="password"
-            errors={errors}
-            register={register}
-            rules={{ required: 'Please enter your new password' }}
-          />
-          <Input
-            name="confirmpassword"
-            label="Confirm New Password"
-            type="password"
-            errors={errors}
-            register={register}
-            rules={{ required: 'Please confirm your new password' }}
-          />
-          <button>Confirm Password</button>
-          <button onClick={togglePasswordResetForm}>Cancel</button>
-        </div>
-      ) : (
-        <button onClick={togglePasswordResetForm}>Reset Password</button>
-      )}
 
-      {emailFormVisible ? (
-        <div>
-          <Input
-            name="oldemail"
-            label="Old Email"
-            type="email"
-            errors={errors}
-            register={register}
-            rules={{ required: 'Please enter your old email' }}
-          />
-          <Input
-            name="newemail"
-            label="New Email"
-            type="email"
-            errors={errors}
-            register={register}
-            rules={{ required: 'Please enter your new email' }}
-          />
-          <Input
-            name="confirmemail"
-            label="Confirm New Email"
-            type="email"
-            errors={errors}
-            register={register}
-            rules={{ required: 'Please confirm your new email' }}
-          />
-          <button>Confirm Email</button>
-          <button onClick={toggleEmailResetForm}>Cancel</button>
-        </div>
-      ) : (
-        <button onClick={toggleEmailResetForm}>Reset Email</button>
-      )}
+      <div className="profile-form-wrapper">
+        {passwordFormVisible ? (
+          <div>
+            <Input
+              name="oldpassword"
+              label="Old Password"
+              type="password"
+              errors={errors}
+              register={register}
+              rules={{ required: 'Please enter your old password' }}
+            />
+            <Input
+              name="newpassword"
+              label="New Password"
+              type="password"
+              errors={errors}
+              register={register}
+              rules={{ required: 'Please enter your new password' }}
+            />
+            <Input
+              name="confirmpassword"
+              label="Confirm New Password"
+              type="password"
+              errors={errors}
+              register={register}
+              rules={{ required: 'Please confirm your new password' }}
+            />
+            <button>Confirm Password</button>
+            <button onClick={togglePasswordResetForm}>Cancel</button>
+          </div>
+        ) : (
+          <button onClick={togglePasswordResetForm}>Reset Password</button>
+        )}
 
-      {codenameFormVisible ? (
-        <div>
-          <Input
-            name="oldcodename"
-            label="Old Codename"
-            type="text"
-            errors={errors}
-            register={register}
-            rules={{ required: 'Please enter your old codename' }}
-          />
-          <Input
-            name="newcodename"
-            label="New Codename"
-            type="text"
-            errors={errors}
-            register={register}
-            rules={{ required: 'Please enter your new codename' }}
-          />
-          <Input
-            name="confirmcodename"
-            label="Confirm New Codename"
-            type="text"
-            errors={errors}
-            register={register}
-            rules={{ required: 'Please confirm your new codename' }}
-          />
-          <button>Confirm Codename</button>
-          <button onClick={toggleCodenameResetForm}>Cancel</button>
-        </div>
-      ) : (
-        <button onClick={toggleCodenameResetForm}>Reset Codename</button>
-      )}
+        {emailFormVisible ? (
+          <div>
+            <Input
+              name="oldemail"
+              label="Old Email"
+              type="email"
+              errors={errors}
+              register={register}
+              rules={{ required: 'Please enter your old email' }}
+            />
+            <Input
+              name="newemail"
+              label="New Email"
+              type="email"
+              errors={errors}
+              register={register}
+              rules={{ required: 'Please enter your new email' }}
+            />
+            <Input
+              name="confirmemail"
+              label="Confirm New Email"
+              type="email"
+              errors={errors}
+              register={register}
+              rules={{ required: 'Please confirm your new email' }}
+            />
+            <button>Confirm Email</button>
+            <button onClick={toggleEmailResetForm}>Cancel</button>
+          </div>
+        ) : (
+          <button onClick={toggleEmailResetForm}>Reset Email</button>
+        )}
+
+        {codenameFormVisible ? (
+          <div>
+            <Input
+              name="oldcodename"
+              label="Old Codename"
+              type="text"
+              errors={errors}
+              register={register}
+              rules={{
+                required: 'Please enter your old codename',
+                validate: {
+                  checkCharacters: (value) => {
+                    return (
+                      codenamePattern.test(value) ||
+                      'Only letters and numbers are allowed.'
+                    );
+                  },
+                },
+              }}
+            />
+            <Input
+              name="newcodename"
+              label="New Codename"
+              type="text"
+              errors={errors}
+              register={register}
+              rules={{ required: 'Please enter your new codename' }}
+            />
+            <Input
+              name="confirmcodename"
+              label="Confirm New Codename"
+              type="text"
+              errors={errors}
+              register={register}
+              rules={{ required: 'Please confirm your new codename' }}
+            />
+            <button>Confirm Codename</button>
+            <button onClick={toggleCodenameResetForm}>Cancel</button>
+          </div>
+        ) : (
+          <button onClick={toggleCodenameResetForm}>Reset Codename</button>
+        )}
+      </div>
     </div>
   );
 };

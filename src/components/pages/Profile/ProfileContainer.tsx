@@ -25,7 +25,7 @@ const Profile: React.FC = () => {
   // useEffect(() => {
   //   Users.udpateEmail()
   //     .then((userEmail) => {
-  //       setEmail(userEmail);
+  //       setEmail(userEmail.data.newEmail);
   //     })
   //     .catch((err) => {
   //       console.log(err);
