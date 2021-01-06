@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { SEO } from '../../common';
+import CarouselContainer from '../../common/Carousel/CarouselContainer';
 import { Home } from './Home';
 import { Steps } from './Steps';
 import { VotingInfo } from './VotingInfo';
@@ -54,9 +55,24 @@ const LandingPageContainer = (): React.ReactElement => {
         visible={true}
         centered
       /> */}
+      <CarouselContainer title="Some Title">
+        <SomeComponent color="red" />
+        <SomeComponent color="green" />
+        <SomeComponent color="orange" />
+        <SomeComponent color="pink" />
+        <SomeComponent color="yellow" />
+      </CarouselContainer>
       <Home responsiveHeightRefs={responsiveHeightRefs} />
       <Steps responsiveHeightRefs={responsiveHeightRefs} />
       <VotingInfo responsiveHeightRefs={responsiveHeightRefs} />
+    </div>
+  );
+};
+
+const SomeComponent = (props: { color: string }): React.ReactElement => {
+  return (
+    <div className="athing" style={{ backgroundColor: props.color }}>
+      here is some stuff
     </div>
   );
 };
