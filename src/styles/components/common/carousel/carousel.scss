@@ -1,19 +1,41 @@
 $carousel-height: 40vh;
+
 .carousel {
   width: 100%;
   height: $carousel-height;
-  .carousel-content {
+
+  .carousel-main {
     width: 100%;
     height: $carousel-height;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
 
-    .carousel-card {
-      height: $carousel-height;
-      & > div {
-        height: $carousel-height;
-        width: 100%;
+    .left,
+    .right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1vw;
+
+      svg {
+        width: 5vw;
       }
     }
 
-    @import './carouselCard.scss';
+    .carousel-content {
+      overflow: hidden;
+      position: relative;
+      height: $carousel-height;
+      flex-grow: 2;
+
+      @import './carouselCard.scss';
+      .carousel-card {
+        & > div {
+          height: $carousel-height;
+          width: 100%;
+        }
+      }
+    }
   }
 }
