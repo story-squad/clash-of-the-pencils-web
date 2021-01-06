@@ -1,0 +1,19 @@
+$carousel-height: 40vh;
+.carousel {
+  width: 100%;
+  height: $carousel-height;
+  .carousel-content {
+    width: 100%;
+    height: $carousel-height;
+
+    .carousel-card {
+      height: $carousel-height;
+      & > div {
+        height: $carousel-height;
+        width: 100%;
+      }
+    }
+
+    @import './carouselCard.scss';
+  }
+}
