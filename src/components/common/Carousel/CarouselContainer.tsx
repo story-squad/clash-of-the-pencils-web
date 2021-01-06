@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { FaCircle } from 'react-icons/fa';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
 const CarouselContainer = ({
@@ -18,11 +19,30 @@ const CarouselContainer = ({
 
   const next = () => setCurrent((cur) => (cur === numItems - 1 ? 0 : cur + 1));
   const prev = () => setCurrent((cur) => (cur === 0 ? numItems - 1 : cur - 1));
+  const setNum = (num: number) => setCurrent(num);
+
+  const circles = (): React.ReactNode => {
+    const circles = [...new Array(numItems)].map((x, i) => {
+      if (i === current)
+        return (
+          <FaCircle key={i} className="active" onClick={() => setNum(i)} />
+        );
+      else return <FaCircle key={i} onClick={() => setNum(i)} />;
+    });
+    return <>{circles.map((c) => c)}</>;
+  };
+
+  useEffect(() => {
+    // This useEffect is cOOL because it resets the timer to 0 if you manually change
+    // the current card, and it won't mess up timings with overlapping changes.
+    const goNextHandler = setTimeout(next, 4000);
+    return () => clearTimeout(goNextHandler);
+  }, [current]);
 
   return (
     <div className="carousel">
       <div className="carousel-main">
-        <div className="left">
+        <div className="left" onClick={prev} role="button">
           <MdKeyboardArrowLeft />
         </div>
         <div className="carousel-content">
@@ -39,14 +59,11 @@ const CarouselContainer = ({
             )
           )}
         </div>
-        <div className="right">
+        <div className="right" onClick={next} role="button">
           <MdKeyboardArrowRight />
         </div>
       </div>
-      <div className="arrows">
-        <button onClick={prev}>Prev</button>
-        <button onClick={next}>Next</button>
-      </div>
+      <div className="carousel-circles">{circles()}</div>
     </div>
   );
 };

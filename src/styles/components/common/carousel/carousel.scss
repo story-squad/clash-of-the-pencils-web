@@ -2,7 +2,10 @@ $carousel-height: 40vh;
 
 .carousel {
   width: 100%;
+  padding: 1rem 0;
   height: $carousel-height;
+
+  @import './carouselCircles.scss';
 
   .carousel-main {
     width: 100%;
@@ -10,26 +13,33 @@ $carousel-height: 40vh;
     display: flex;
     flex-flow: row wrap;
     align-items: stretch;
+    margin-bottom: 1rem;
 
     .left,
     .right {
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 1vw;
 
       svg {
-        width: 5vw;
+        width: 2.4rem;
+        height: 2.4rem;
+      }
+
+      color: #fff9;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+      &:hover {
+        transition: all 0.3s ease-in-out;
+        color: #fffa;
       }
     }
 
+    @import './carouselContent.scss';
     .carousel-content {
-      overflow: hidden;
-      position: relative;
       height: $carousel-height;
       flex-grow: 2;
 
-      @import './carouselCard.scss';
       .carousel-card {
         & > div {
           height: $carousel-height;
