@@ -1,7 +1,7 @@
 export const description =
   'Share your stories with the world with our free daily story contest!';
 
-export const title = 'Story Squad - Free Faily Story Contest';
+export const title = 'Story Squad - Free Daily Story Contest';
 
 export const twitterHandle = '@story_hq';
 
