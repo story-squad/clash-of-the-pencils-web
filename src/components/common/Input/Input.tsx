@@ -3,6 +3,7 @@ import { RegisterOptions, UseFormMethods } from 'react-hook-form';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 const Input = ({
+  id,
   name,
   label,
   register,
@@ -25,9 +26,10 @@ const Input = ({
   };
   return (
     <div className={`form-input${errors[name] ? ' error' : ''}`}>
-      <label htmlFor={name}>{label} :</label>
+      <label htmlFor={id}>{label} :</label>
       <div className="input-field">
         <input
+          id={id}
           name={name}
           type={inputType}
           ref={register && register(rules)}
@@ -61,6 +63,7 @@ const Input = ({
 
 interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
+  id: string;
   name: string;
   label: string;
   register: UseFormMethods['register'];

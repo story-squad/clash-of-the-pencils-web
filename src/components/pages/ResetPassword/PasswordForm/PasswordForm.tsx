@@ -69,8 +69,9 @@ const PasswordForm = (
           </li>
           <li className="password-form-li">Includes at least 1 number</li>
         </ul>
-        <p className="password-form-input">
+        <div className="password-form-input">
           <Input
+            id="resetPassword"
             name="password"
             label="New Password"
             type="password"
@@ -106,9 +107,10 @@ const PasswordForm = (
               },
             }}
           />
-        </p>
-        <p className="password-form-input">
+        </div>
+        <div className="password-form-input">
           <Input
+            id="resetConfirm"
             name="confirm"
             label="Confirm New Password"
             type="password"
@@ -124,7 +126,7 @@ const PasswordForm = (
               },
             }}
           />
-        </p>
+        </div>
         <input
           className="password-submit-btn"
           type="submit"
