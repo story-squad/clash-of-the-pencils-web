@@ -3,6 +3,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { auth } from '../../../state';
 import { Modal } from '../Modal';
 import { Login } from './LoginForm';
+import { Signout } from './Signout';
 import { Signup } from './SignupForm';
 import SignupSuccess from './SignupSuccess';
 
@@ -36,16 +37,19 @@ const AuthToggle = (props: Modal.ModalComponentProps): React.ReactElement => {
 const AuthModal = (): React.ReactElement => {
   const [modalOpen, setModalOpen] = useRecoilState(auth.authModalOpen);
   const signupWasSuccessful = useRecoilValue(auth.signupWasSuccessful);
+  const isSignout = useRecoilValue(auth.authModalIsLogout);
 
   return (
     <Modal.Component
       className="dark-blue"
       component={
-        signupWasSuccessful
+        isSignout
+          ? (props) => <Signout {...props} />
+          : signupWasSuccessful
           ? SignupSuccess
           : (props) => <AuthToggle {...props} />
       }
-      centered={signupWasSuccessful}
+      centered={signupWasSuccessful || isSignout}
       visible={modalOpen}
       setVisible={setModalOpen}
     />
