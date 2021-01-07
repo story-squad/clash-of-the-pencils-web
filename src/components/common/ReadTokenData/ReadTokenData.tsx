@@ -6,7 +6,7 @@ const ReadTokenData = (): React.ReactElement => {
   const [isLogged, login] = useRecoilState(auth.isLoggedIn);
   useEffect(() => {
     if (!isLogged) {
-      login(true);
+      login(null);
     }
   }, []);
 
