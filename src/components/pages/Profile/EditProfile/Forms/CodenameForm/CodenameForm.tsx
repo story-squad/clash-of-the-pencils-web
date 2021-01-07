@@ -18,7 +18,7 @@ const CodenameForm = (): React.ReactElement => {
   const codenamePattern = /^[A-Za-z0-9]*$/;
 
   return (
-    <div>
+    <div className="edit-profile">
       <h2>Current Username: {username}</h2>
       <Input
         id="oldcodename"

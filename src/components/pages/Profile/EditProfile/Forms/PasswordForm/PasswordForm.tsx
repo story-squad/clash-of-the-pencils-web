@@ -1,16 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Input } from '../../../../../common';
 
 const PasswordForm = (): React.ReactElement => {
   const { register, errors } = useForm();
-
-  const [passwordFormVisible, setPasswordFormVisible] = useState(false);
-
-  // Toggle the password reset form (open/close)
-  const togglePasswordResetForm = () => {
-    setPasswordFormVisible(!passwordFormVisible);
-  };
 
   // HTTP request to udpate password upon submit
   const resetPassword = () => {
@@ -18,7 +11,7 @@ const PasswordForm = (): React.ReactElement => {
   };
 
   return (
-    <div>
+    <div className="edit-profile">
       <Input
         id="oldpassword"
         name="oldpassword"

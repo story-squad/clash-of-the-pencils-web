@@ -5,7 +5,7 @@ import { PasswordForm } from './Forms/PasswordForm';
 // This component will render the Codename and Password reset forms
 const EditProfile = (): React.ReactElement => {
   return (
-    <div>
+    <div className="edit-profile-wrapper">
       <CodenameForm />
       <PasswordForm />
     </div>
