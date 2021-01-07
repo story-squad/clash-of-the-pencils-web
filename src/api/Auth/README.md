@@ -2,28 +2,22 @@
 
 The `Auth` API module should contain all requests related to authorization/authentication, as well as any requests related to user info.
 
-## `auth/login.ts`
-
-### `login`
+## `login`
 
 This function logs the user in.
 
-## `auth/signup.ts`
-
-### `signup`
+## `signup`
 
 This sends a signup request to the API.
 
-### `formatSignupBody`
+## `formatSignupBody`
 
 This is used to translate the contents of the signup form into the proper values that the API is expecting for the request.
 
-## `auth/reset.ts`
-
-### `getResetEmail`
+## `getResetEmail`
 
 This function triggers the API to send a password reset email for the email address passed in as a parameter.
 
-### `updatePassword`
+## `updatePassword`
 
 Sends the actual request that changes the user's password to the new password being passed in the body.
