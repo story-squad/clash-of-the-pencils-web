@@ -8,22 +8,20 @@ const ProfileNav = (props: {
 }): React.ReactElement => {
   return (
     <div className="profile-nav">
-      <div className="profile-switcher">
-        <span
-          role="link"
-          className={props.show ? 'active' : ''}
-          onClick={() => props.setShow(true)}
-        >
-          Gallery
-        </span>
-        <span
-          role="link"
-          className={!props.show ? 'active' : ''}
-          onClick={() => props.setShow(false)}
-        >
-          Account
-        </span>
-      </div>
+      <span
+        role="link"
+        className={props.show ? 'active' : ''}
+        onClick={() => props.setShow(true)}
+      >
+        Gallery
+      </span>
+      <span
+        role="link"
+        className={!props.show ? 'active' : ''}
+        onClick={() => props.setShow(false)}
+      >
+        Account
+      </span>
       <div className="profile-content">
         {props.show ? <Gallery /> : <EditProfile />}
       </div>
