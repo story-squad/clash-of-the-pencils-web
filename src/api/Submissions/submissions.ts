@@ -2,14 +2,6 @@ import { AxiosResponse } from 'axios';
 import { axiosWithAuth } from '../axiosWithConfig';
 import { getImageFromS3, SubItem } from './imageLoader';
 
-export const getRecentSubsByChild = async (): Promise<SubItem[]> => {
-  const { data }: AxiosResponse<SubItem[]> = await axiosWithAuth().get(
-    '/upload/mytopstories',
-  );
-  const processedStories = data.map((sub) => getImageFromS3(sub));
-  return Promise.all(processedStories);
-};
-
 export const getMySubmissions = async (): Promise<SubItem[]> => {
   const { data }: AxiosResponse<SubItem[]> = await axiosWithAuth().get(
     '/upload/mysubmissions',

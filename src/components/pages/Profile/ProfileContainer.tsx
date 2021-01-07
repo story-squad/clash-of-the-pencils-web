@@ -6,7 +6,7 @@ import { Loader } from '../../common';
 import RenderProfile from './RenderProfile';
 
 const Profile: React.FC = () => {
-  // pull list of users top 5 stories from recoil state && the API call getRecentSubsByChild()
+  // pull list of users top 5 stories from recoil state && the API call getMySubmissions()
   const [list, setList] = useRecoilState(pastSubs.list);
   const setLoadingError = useSetRecoilState(apiError.global);
 
