@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaCircle } from 'react-icons/fa';
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
+import RenderCarousel from './RenderCarousel';
 
 const CarouselContainer = ({
   children,
@@ -40,31 +40,9 @@ const CarouselContainer = ({
   }, [current]);
 
   return (
-    <div className="carousel">
-      <div className="carousel-main">
-        <div className="left" onClick={prev} role="button">
-          <MdKeyboardArrowLeft />
-        </div>
-        <div className="carousel-content">
-          {numItems === 0 ? (
-            <div className="carousel-card show">{children}</div>
-          ) : (
-            // We can coerce it to an array since we know it has length!
-            (children as Array<React.ReactElement>).map<React.ReactElement>(
-              (elem, i) => (
-                <div key={i} className={`carousel-card ${getClassName(i)}`}>
-                  {elem}
-                </div>
-              ),
-            )
-          )}
-        </div>
-        <div className="right" onClick={next} role="button">
-          <MdKeyboardArrowRight />
-        </div>
-      </div>
-      <div className="carousel-circles">{circles()}</div>
-    </div>
+    <RenderCarousel
+      {...{ children, circles, getClassName, next, prev, numItems }}
+    />
   );
 };
 
