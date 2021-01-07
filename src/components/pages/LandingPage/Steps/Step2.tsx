@@ -21,7 +21,7 @@ const Step2 = (props: StepProps): React.ReactElement => {
           <div
             className="background-img"
             style={{ backgroundImage: `url(${getPaper})` }}
-            aria-role="img"
+            role="img"
             aria-label="Get a piece of paper and your lucky pencil."
           />
         </div>
@@ -38,7 +38,7 @@ const Step2 = (props: StepProps): React.ReactElement => {
           <div
             className="dragon"
             style={{ backgroundImage: `url(${dragonSet})` }}
-            aria-role="img"
+            role="img"
             aria-label="dragon saying 'Set?'"
           />
           {props.circles()}
