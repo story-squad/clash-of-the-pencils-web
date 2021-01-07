@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Header } from '../../common';
 import { ProfileNav } from './Nav';
 
 const RenderProfile = (): React.ReactElement => {
+  // State to show if the gallery or the edit profile
+  const [showGallery, setShowGallery] = useState(true);
   return (
     <div>
       <Header />
-      <ProfileNav />
+      <ProfileNav show={showGallery} setShow={setShowGallery} />
     </div>
   );
 };
