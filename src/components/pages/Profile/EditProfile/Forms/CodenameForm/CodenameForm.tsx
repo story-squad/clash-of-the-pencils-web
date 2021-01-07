@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
 import { auth } from '../../../../../../state';
@@ -9,15 +9,8 @@ const CodenameForm = (): React.ReactElement => {
 
   const username = useRecoilValue(auth.username);
 
-  const [codenameFormVisible, setCodenameFormVisible] = useState(false);
-
-  // Toggle the password reset form (open/close)
-  const toggleCodenameResetForm = () => {
-    setCodenameFormVisible(!codenameFormVisible);
-  };
-
   // HTTP request to udpate password upon submit
-  const resetPassword = () => {
+  const resetCodename = () => {
     console.log('RESET CODENAME');
   };
 
@@ -64,7 +57,7 @@ const CodenameForm = (): React.ReactElement => {
         register={register}
         rules={{ required: 'Please confirm your new codename' }}
       />
-      <button onClick={toggleCodenameResetForm}>Confirm Codename</button>
+      <button onClick={resetCodename}>Confirm Codename</button>
     </div>
   );
 };

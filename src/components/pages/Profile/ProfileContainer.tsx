@@ -32,7 +32,7 @@ const Profile: React.FC = () => {
   //     });
   // }, []);
 
-  return list ? <RenderProfile picList={list} /> : <Loader />;
+  return list ? <RenderProfile /> : <Loader />;
 };
 
 export default Profile;
