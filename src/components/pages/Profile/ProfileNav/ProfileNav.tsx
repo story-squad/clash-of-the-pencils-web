@@ -10,12 +10,14 @@ const ProfileNav = (props: {
     <div className="profile-nav">
       <div className="profile-switcher">
         <span
+          role="link"
           className={props.show ? 'active' : ''}
           onClick={() => props.setShow(true)}
         >
           Gallery
         </span>
         <span
+          role="link"
           className={!props.show ? 'active' : ''}
           onClick={() => props.setShow(false)}
         >
