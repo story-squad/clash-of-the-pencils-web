@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
-import { auth } from '../../../../../state';
-import { Input } from '../../../../common';
+import { auth } from '../../../../../../state';
+import { Input } from '../../../../../common';
 
 const CodenameForm = (): React.ReactElement => {
   const { register, errors } = useForm();

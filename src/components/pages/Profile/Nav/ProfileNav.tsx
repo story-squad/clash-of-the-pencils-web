@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { EditProfile } from '../EditProfile';
 
 const ProfileNav = (): React.ReactElement => {
   // State to show if the gallery or the edit profile
@@ -21,7 +22,7 @@ const ProfileNav = (): React.ReactElement => {
         </span>
       </div>
       <div className="profile-content">
-        {showGallery ? 'Gallery' : 'Account'}
+        {showGallery ? 'Gallery' : <EditProfile />}
       </div>
     </div>
   );
