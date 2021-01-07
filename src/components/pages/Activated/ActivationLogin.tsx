@@ -15,7 +15,7 @@ export const Activation = (): React.ReactElement => {
     const parsedParams = parse(search);
     if (parsedParams.authToken && typeof parsedParams.authToken === 'string') {
       setSuccess(true);
-      login(true);
+      login(parsedParams.authToken);
       setTimeout(() => {
         push('/game');
       }, 3000);
