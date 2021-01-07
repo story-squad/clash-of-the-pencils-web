@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Header } from '../../common';
-import { ProfileNav } from './Nav';
+import { ProfileNav } from './ProfileNav';
 
 const RenderProfile = (): React.ReactElement => {
   // State to show if the gallery or the edit profile

@@ -1,6 +1,6 @@
 import React from 'react';
 import { EditProfile } from '../EditProfile';
-import { Gallery } from '../Gallery';
+import { Gallery } from '../ProfileGallery';
 
 const ProfileNav = (props: {
   show: boolean;
