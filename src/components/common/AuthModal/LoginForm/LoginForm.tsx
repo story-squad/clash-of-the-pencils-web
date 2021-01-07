@@ -19,7 +19,7 @@ const LoginForm = (props: Modal.ModalComponentProps): React.ReactElement => {
     Auth.login(data)
       .then((res) => {
         token.set(res.data.token);
-        login(true);
+        login(null);
         setAuthModalOpen(false);
       })
       .catch((err: Auth.AxiosError) => {
