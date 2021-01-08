@@ -50,9 +50,7 @@ export const getTop3Subs = async (): Promise<SubItem[]> => {
   return Promise.all(processedStories);
 };
 
-export const uploadSubmission = (
-  reqBody: FormData,
-): Promise<AxiosResponse<unknown>> => {
+export const uploadSubmission = (reqBody: FormData): Promise<AxiosResponse> => {
   // TODO
   return axiosWithAuth().post('/upload', reqBody);
 };

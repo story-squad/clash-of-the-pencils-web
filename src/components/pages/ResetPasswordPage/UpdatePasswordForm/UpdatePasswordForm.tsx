@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Auth } from '../../../../api';
-import { updatePassword } from '../../../../api/Auth';
 import { Input, Modal } from '../../../common';
-import ResetSuccess from './ResetSuccess';
+import ResetPageSuccess from '../ResetPageSuccess';
 
 const PasswordForm = (
   props: Omit<Auth.NewPasswordBody, 'password'>,
@@ -24,8 +23,6 @@ const PasswordForm = (
   const onSubmit: SubmitHandler<{
     password: string;
   }> = (data) => {
-    console.log('Form Submitted: ', data);
-
     const userBody = {
       email: props.email,
       code: props.code,
@@ -33,7 +30,7 @@ const PasswordForm = (
     };
 
     //TODO - redirect user?
-    updatePassword(userBody)
+    Auth.updatePassword(userBody)
       .then(() => {
         clearErrors();
         setShowModal(true);
@@ -41,7 +38,7 @@ const PasswordForm = (
       .catch((err: Auth.AxiosError) => {
         console.log({ err });
         let message: string;
-        if (err.response?.data) {
+        if (err.response?.data && typeof err.response.data.error === 'string') {
           message = err.response.data.error;
         } else {
           message = 'An unknown error occurred. Please try again.';
@@ -51,31 +48,41 @@ const PasswordForm = (
   };
 
   return (
-    <div className="password-form-wrapper">
+    <>
       <Modal.Component
+        className="reset-modal"
         visible={showModal}
         setVisible={setShowModal}
-        component={(props) => <ResetSuccess {...props} />}
-        closable={true}
-        centered={true}
+        component={(props) => (
+          <ResetPageSuccess
+            buttonText="Login"
+            message="Your password has been reset!"
+            openAuthModalAfter
+            {...props}
+          />
+        )}
+        closable
+        centered
         title="Success!"
       />
-      <form onSubmit={handleSubmit(onSubmit)} className="password-form">
-        <ul className="password-req-ul">
-          <li className="password-requirements-li">Password requirements</li>
-          <li className="password-form-li">Between 8 and 32 characters</li>
-          <li className="password-form-li">
-            Includes at least 1 capital letter
-          </li>
-          <li className="password-form-li">Includes at least 1 number</li>
-        </ul>
-        <div className="password-form-input">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <section className="password-reqs">
+          <h2>Password Requirements</h2>
+          <ul>
+            <li>Between 8 and 32 characters</li>
+            <li>Includes at least 1 capital letter</li>
+            <li>Includes at least 1 number</li>
+          </ul>
+        </section>
+        {errors.form && (
+          <div className="server-error">{errors.form.message}</div>
+        )}
+        <div className="inputs">
           <Input
             id="resetPassword"
             name="password"
             label="New Password"
             type="password"
-            placeholder="enter new password"
             showPassword
             errors={errors}
             register={register}
@@ -107,14 +114,11 @@ const PasswordForm = (
               },
             }}
           />
-        </div>
-        <div className="password-form-input">
           <Input
             id="resetConfirm"
             name="confirm"
             label="Confirm New Password"
             type="password"
-            placeholder="confirm new password"
             showPassword
             errors={errors}
             register={register}
@@ -128,13 +132,13 @@ const PasswordForm = (
           />
         </div>
         <input
-          className="password-submit-btn"
+          className="submit-button"
           type="submit"
           value="Reset Password"
           onClick={() => clearErrors('form')}
         />
       </form>
-    </div>
+    </>
   );
 };
 

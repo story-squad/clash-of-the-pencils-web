@@ -7,12 +7,8 @@ import { Checkbox, Input } from '../..';
 import { Auth } from '../../../../api';
 import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
 import squadUp from '../../../../assets/img/squad-up.png';
+import { dataConstraints } from '../../../../config';
 import { auth } from '../../../../state';
-
-// Regex to check if a string matches the shape of an email
-const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-// Regex to check entered codename contains only letters and numbers
-const codenamePattern = /^[A-Za-z0-9]*$/;
 
 const SignupForm = (): React.ReactElement => {
   const {
@@ -76,7 +72,7 @@ const SignupForm = (): React.ReactElement => {
               checkCharacters: (value) => {
                 return (
                   // ensures the user's entered codename contains only allowed characters
-                  codenamePattern.test(value) ||
+                  dataConstraints.codenamePattern.test(value) ||
                   'Only letters and numbers are allowed.'
                 );
               },
@@ -100,7 +96,7 @@ const SignupForm = (): React.ReactElement => {
             required: 'Email is required!',
             pattern: {
               // ensures the entered email string matches a valid email address pattern
-              value: emailPattern,
+              value: dataConstraints.emailPattern,
               message: 'Please enter a valid email address.',
             },
           }}
@@ -205,7 +201,7 @@ const SignupForm = (): React.ReactElement => {
               },
               pattern: {
                 // ensures the entered parent email string matches a valid email address pattern
-                value: emailPattern,
+                value: dataConstraints.emailPattern,
                 message: 'Please enter a valid email address.',
               },
             }}

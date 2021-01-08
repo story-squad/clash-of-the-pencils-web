@@ -1,5 +1,5 @@
-import { axiosWithoutAuth } from '../axiosWithConfig';
 import { AxiosResponse } from 'axios';
+import { axiosWithoutAuth } from '../axiosWithConfig';
 export type { AxiosError } from 'axios';
 
 export const signup = (credentials: SignupBody): Promise<AxiosResponse> => {
@@ -17,11 +17,7 @@ export const formatSignupBody = (formData: SignupFormState): SignupBody => {
   };
 };
 
-export interface SignupFormState {
-  email: string;
-  username: string;
-  password: string;
-  parentEmail: string;
+export interface SignupFormState extends Omit<SignupBody, 'age'> {
   ageStr: string;
   confirm: string;
 }
