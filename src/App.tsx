@@ -10,7 +10,7 @@ import { Activation } from './components/pages/Activated';
 import { GamePage } from './components/pages/GamePage';
 import { VotingPage } from './components/pages/GamePage/VotingPage';
 import { Scroller } from './components/pages/LandingPage';
-import { ResetPasswordPage } from './components/pages/ResetPassword';
+import { ResetPasswordPage } from './components/pages/ResetPasswordPage';
 import { ResultsPage } from './components/pages/ResultsPage';
 
 const App = (): React.ReactElement => {
