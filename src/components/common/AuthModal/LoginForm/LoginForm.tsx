@@ -7,7 +7,6 @@ import { Auth } from '../../../../api';
 import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
 import welcomeBack from '../../../../assets/img/welcome-back.png';
 import { auth } from '../../../../state';
-import { token } from '../../../../utils';
 import { Modal } from '../../Modal';
 
 const LoginForm = (props: Modal.ModalComponentProps): React.ReactElement => {
@@ -18,8 +17,7 @@ const LoginForm = (props: Modal.ModalComponentProps): React.ReactElement => {
   const onSubmit: SubmitHandler<Auth.LoginBody> = (data) => {
     Auth.login(data)
       .then((res) => {
-        token.set(res.data.token);
-        login(null);
+        login(res.data.token);
         setAuthModalOpen(false);
       })
       .catch((err: Auth.AxiosError) => {

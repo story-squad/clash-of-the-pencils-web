@@ -1,15 +1,6 @@
 import ConvertKitForm from 'convertkit-react';
 import React from 'react';
-
-const convertKitProps = {
-  className: 'ck-fm',
-  formId: 1831649,
-  showLabels: true,
-  emailLabel: 'Email',
-  emailPlaceholder: null,
-  nameLabel: 'First Name',
-  namePlaceholder: null,
-};
+import { convertKitConfig } from '../../../../../config';
 
 const EmailCollectionForm = (): React.ReactElement => {
   return (
@@ -19,7 +10,7 @@ const EmailCollectionForm = (): React.ReactElement => {
         Your vote has been cast! Enter your name and email below and be the
         first to find out who wrote the best story!
       </p>
-      <ConvertKitForm {...convertKitProps} />
+      <ConvertKitForm {...convertKitConfig} />
     </div>
   );
 };

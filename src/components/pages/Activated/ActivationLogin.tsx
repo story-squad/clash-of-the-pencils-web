@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { auth } from '../../../state';
-import { Modal } from '../../common';
+import { Header, Modal } from '../../common';
 
 export const Activation = (): React.ReactElement => {
   const { push } = useHistory();
@@ -28,14 +28,17 @@ export const Activation = (): React.ReactElement => {
   }, []);
 
   return (
-    <Modal.Component
-      className="activation"
-      visible={true}
-      setVisible={() => null}
-      component={() => <ActivationMessage {...{ success }} />}
-      centered={true}
-      closable={false}
-    />
+    <div>
+      <Header />
+      <Modal.Component
+        className="activation"
+        visible={true}
+        setVisible={() => null}
+        component={() => <ActivationMessage {...{ success }} />}
+        centered={true}
+        closable={false}
+      />
+    </div>
   );
 };
 
