@@ -1,0 +1,48 @@
+form {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  h2 {
+    font-size: 2.8rem;
+    font-family: $display-font;
+    color: $lt-orange;
+    margin-bottom: 1rem;
+    text-align: center;
+    @include bp(mid) {
+      margin-top: 2rem;
+    }
+    @include bp(tablet) {
+      font-size: 4rem;
+    }
+  }
+
+  p,
+  ul {
+    font-family: $text-font;
+    color: $white;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    margin-bottom: 2rem;
+    @include bp(mid) {
+      margin-bottom: 5rem;
+    }
+    li {
+      list-style-type: square;
+      list-style-position: inside;
+      font-weight: 300;
+      font-style: italic;
+    }
+  }
+  .password-reqs {
+  }
+  .inputs {
+    width: 260px;
+
+    input {
+    }
+  }
+  .submit-button {
+    @include button($orange);
+  }
+}

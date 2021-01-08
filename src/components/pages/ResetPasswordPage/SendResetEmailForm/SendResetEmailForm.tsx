@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Auth } from '../../../../api';
-import { getResetEmail } from '../../../../api/Auth';
-import { Input } from '../../../common';
+import { Input, Modal } from '../../../common';
+import ResetPageSuccess from '../ResetPageSuccess';
 
-const EmailForm: React.FC = () => {
+const SendEmailResetForm = (): React.ReactElement => {
+  const [showModal, setShowModal] = useState(false);
   // deconstruct our useForm() methods
   const { register, handleSubmit, errors, setError, clearErrors } = useForm();
 
@@ -12,14 +13,15 @@ const EmailForm: React.FC = () => {
   const onSubmit: SubmitHandler<{ email: string }> = (data) => {
     console.log('Form Submitted: ');
     const userEmail = data.email;
-    getResetEmail(userEmail)
+    Auth.getResetEmail(userEmail)
       .then(() => {
         clearErrors();
+        setShowModal(true);
       })
       .catch((err: Auth.AxiosError) => {
         console.log({ err });
         let message: string;
-        if (err.response?.data) {
+        if (err.response?.data && typeof err.response.data.error === 'string') {
           message = err.response.data.error;
         } else {
           message = 'An unknown error occurred. Please try again.';
@@ -29,32 +31,44 @@ const EmailForm: React.FC = () => {
   };
 
   return (
-    <div className="password-form-wrapper">
-      <form className="email-form" onSubmit={handleSubmit(onSubmit)}>
-        <p>Please enter your email to receive a reset link.</p>
+    <>
+      <Modal.Component
+        className="reset-modal"
+        visible={showModal}
+        setVisible={setShowModal}
+        component={(props) => (
+          <ResetPageSuccess
+            buttonText="Close"
+            message="Email sent!"
+            {...props}
+          />
+        )}
+      />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <h2>Password Reset</h2>
+        <p>Enter your email to receive a link:</p>
         {errors.form && (
           <div className="server-error">{errors.form.message}</div>
         )}
-        <div className="email-form-input">
+        <div className="inputs">
           <Input
             id="resetEmail"
             name="email"
             label="Email"
-            placeholder="enter your email"
             errors={errors}
             register={register}
             rules={{ required: 'Please enter your email!' }}
           />
         </div>
         <input
-          className="submit-email-btn"
+          className="submit-button"
           type="submit"
           value="Send"
           onClick={() => clearErrors('form')}
         />
       </form>
-    </div>
+    </>
   );
 };
 
-export default EmailForm;
+export default SendEmailResetForm;
