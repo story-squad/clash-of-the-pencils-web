@@ -39,7 +39,9 @@
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
+
         input {
+          margin-right: 1rem;
         }
       }
       button {
