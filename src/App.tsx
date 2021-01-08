@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import {
   AuthModal,
   ReadTokenData,
@@ -31,7 +31,7 @@ const App = (): React.ReactElement => {
         <Route path="/reset" component={ResetPasswordPage} />
 
         {/* Fallback Redirect to Dashboard */}
-        {/* <Route path="/" component={() => <Redirect to="/game" />} /> */}
+        <Route path="/" component={() => <Redirect to="/game" />} />
         <Route path="/profile" component={Profile} />
       </Switch>
     </div>
