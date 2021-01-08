@@ -13,7 +13,7 @@ const PasswordForm = (): React.ReactElement => {
   return (
     <div className="profile-form">
       <Input
-        id="oldpassword"
+        id="currentpassword"
         name="oldpassword"
         label="Old Password"
         type="password"
