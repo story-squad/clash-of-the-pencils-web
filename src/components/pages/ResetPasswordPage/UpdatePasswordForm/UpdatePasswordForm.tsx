@@ -66,9 +66,6 @@ const PasswordForm = (
         title="Success!"
       />
       <form onSubmit={handleSubmit(onSubmit)}>
-        {errors.form && (
-          <div className="server-error">{errors.form.message}</div>
-        )}
         <section className="password-reqs">
           <h2>Password Requirements</h2>
           <ul>
@@ -77,6 +74,9 @@ const PasswordForm = (
             <li>Includes at least 1 number</li>
           </ul>
         </section>
+        {errors.form && (
+          <div className="server-error">{errors.form.message}</div>
+        )}
         <div className="inputs">
           <Input
             id="resetPassword"

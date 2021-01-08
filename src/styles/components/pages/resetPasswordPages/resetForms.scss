@@ -24,9 +24,6 @@ form {
     font-size: 1.6rem;
     line-height: 2rem;
     margin-bottom: 2rem;
-    @include bp(mid) {
-      margin-bottom: 5rem;
-    }
     li {
       list-style-type: square;
       list-style-position: inside;
@@ -34,13 +31,19 @@ form {
       font-style: italic;
     }
   }
-  .password-reqs {
-  }
-  .inputs {
-    width: 260px;
 
-    input {
-    }
+  .server-error {
+    font-family: $display-font;
+    color: $red;
+    font-size: 2rem;
+    line-height: 2.4rem;
+    text-shadow: 0 2px 2px #0005;
+    text-align: center;
+  }
+
+  .inputs {
+    margin-top: 2rem;
+    width: 260px;
   }
   .submit-button {
     @include button($orange);
