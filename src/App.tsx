@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import {
   AuthModal,
+  CookiePopup,
   ReadTokenData,
   SEO,
   TermsOfService,
@@ -19,6 +20,7 @@ const App = (): React.ReactElement => {
       <SEO />
       <AuthModal />
       <ReadTokenData />
+      <CookiePopup />
       <Switch>
         {/* Public Routes */}
         <Route exact path="/" component={Scroller} />

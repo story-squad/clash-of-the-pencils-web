@@ -1,5 +1,6 @@
 export { AuthModal } from './AuthModal';
 export { Checkbox } from './Checkbox';
+export { CookiePopup } from './CookiePopup';
 export { Countdown } from './Countdown';
 export { FullscreenImage } from './FullscreenImage';
 export { Header } from './Header';
