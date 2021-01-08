@@ -1,6 +1,4 @@
 import React from 'react';
-import { EditProfile } from '../EditProfile';
-import { Gallery } from '../ProfileGallery';
 
 const ProfileNav = (props: {
   show: boolean;
@@ -9,22 +7,23 @@ const ProfileNav = (props: {
   return (
     <div className="profile-nav">
       <span
+        className={
+          props.show
+            ? 'profile-nav-span gallery'
+            : 'profile-nav-span active gallery'
+        }
         role="link"
-        className={props.show ? 'active' : ''}
         onClick={() => props.setShow(true)}
       >
         Gallery
       </span>
       <span
+        className={props.show ? 'profile-nav-span' : 'profile-nav-span active'}
         role="link"
-        className={!props.show ? 'active' : ''}
         onClick={() => props.setShow(false)}
       >
         Account
       </span>
-      <div className="profile-content">
-        {props.show ? <Gallery /> : <EditProfile />}
-      </div>
     </div>
   );
 };

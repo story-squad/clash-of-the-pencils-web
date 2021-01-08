@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Header } from '../../common';
+import { EditProfile } from './EditProfile';
+import { Gallery } from './ProfileGallery';
 import { ProfileNav } from './ProfileNav';
 
 const RenderProfile = (): React.ReactElement => {
@@ -9,6 +11,9 @@ const RenderProfile = (): React.ReactElement => {
     <div>
       <Header />
       <ProfileNav show={showGallery} setShow={setShowGallery} />
+      {/* <div className="profile-content"> */}
+      {showGallery ? <Gallery /> : <EditProfile />}
+      {/* </div> */}
     </div>
   );
 };
