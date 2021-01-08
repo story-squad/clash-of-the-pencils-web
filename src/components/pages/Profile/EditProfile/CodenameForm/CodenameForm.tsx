@@ -20,7 +20,7 @@ const CodenameForm = (): React.ReactElement => {
   return (
     <div className="profile-form">
       <Input
-        id="oldcodename"
+        id="currentusername"
         name="oldcodename"
         label="Old Codename"
         type="text"
@@ -39,7 +39,7 @@ const CodenameForm = (): React.ReactElement => {
         }}
       />
       <Input
-        id="newcodename"
+        id="newusername"
         name="newcodename"
         label="New Codename"
         type="text"
@@ -48,7 +48,7 @@ const CodenameForm = (): React.ReactElement => {
         rules={{ required: 'Please enter your new codename' }}
       />
       <Input
-        id="confirmcodename"
+        id="confirmusername"
         name="confirmcodename"
         label="Confirm New Codename"
         type="text"
