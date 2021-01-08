@@ -1,15 +1,21 @@
 .profile-nav {
-  //   border: 1px solid red;
-
   width: 100%;
+  // Not kosher but i had trouble making sure the nav was the same height
+  // when either the gallery or the account were active
   min-height: 25px;
-  // TODO - how can i have the same height on gallery and account
   max-height: 25px;
 
+  // Flex the profile nav wrapper
   display: flex;
   flex-direction: row;
   justify-content: center;
 
+  // Tablet styling for the profile-nav wrapper
+  @media screen and (min-width: $tablet) {
+    min-height: 40px;
+  }
+
+  // Styling for the two span "buttons" inside the profile nav wrapper
   .profile-nav-span {
     width: 50%;
     font-family: $text-font;
@@ -22,13 +28,10 @@
     padding-top: 0.5rem;
     border-top: 1px solid #0003;
 
-    // &.profile-nav-span > .active {
-    //   text-decoration: underline;
-    // }
-  }
-
-  // Add a right border to gallery to seperate the two profile spans
-  .gallery {
-    border-right: 1px solid $white;
+    // Tablet styling for the profile-nav-span(s)
+    @media screen and (min-width: $tablet) {
+      font-size: 2rem;
+      padding-top: 1rem;
+    }
   }
 }

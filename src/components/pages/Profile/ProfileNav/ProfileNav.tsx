@@ -7,18 +7,14 @@ const ProfileNav = (props: {
   return (
     <div className="profile-nav">
       <span
-        className={
-          props.show
-            ? 'profile-nav-span gallery'
-            : 'profile-nav-span active gallery'
-        }
+        className="profile-nav-span"
         role="link"
         onClick={() => props.setShow(true)}
       >
         Gallery
       </span>
       <span
-        className={props.show ? 'profile-nav-span' : 'profile-nav-span active'}
+        className="profile-nav-span"
         role="link"
         onClick={() => props.setShow(false)}
       >

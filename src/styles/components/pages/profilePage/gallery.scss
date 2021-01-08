@@ -1,11 +1,4 @@
 .gallery {
   display: flex;
   flex-direction: column;
-
-  // Make the gallery have rows of two on tablets
-  @media screen and (min-width: $tablet) {
-    border: 3px solid red;
-    // Flex the items into a row
-    flex-flow: row wrap;
-  }
 }
