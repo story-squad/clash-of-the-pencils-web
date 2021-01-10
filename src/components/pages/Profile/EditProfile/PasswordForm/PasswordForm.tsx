@@ -24,18 +24,18 @@ const PasswordForm = (): React.ReactElement => {
   }> = (data) => {
     console.log('Form Submitted: ', data);
 
-    // User props for password reset
+    // Use the form data for password reset
     const userPasswordBody = {
       currentpassword: data.currentpassword,
       newpassword: data.newpassword,
       confirmpassword: data.confirmpassword,
     };
 
-    // Reset password from users profile
+    // Reset the password from the data provided in the form
     resetPassword(userPasswordBody)
       .then(() => {
         clearErrors();
-        console.log('resetPassword sent');
+        console.log('Successful password reset!');
       })
       .catch((err: Auth.AxiosError) => {
         let message: string;

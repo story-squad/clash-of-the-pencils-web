@@ -1,13 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { axiosWithAuth } from '../axiosWithConfig';
 
-// Edit Profile interface for update username
-export interface UpdateUsernameBody {
-  currentusername: string;
-  newusername: string;
-  confirmusername: string;
-}
-
 export const resetUsername = (
   body: UpdateUsernameBody,
 ): Promise<AxiosResponse<ResetReponse>> => {
@@ -29,4 +22,11 @@ export interface UpdatePasswordBody {
   currentpassword: string;
   newpassword: string;
   confirmpassword: string;
+}
+
+// Edit Profile interface for update username
+export interface UpdateUsernameBody {
+  currentusername: string;
+  newusername: string;
+  confirmusername: string;
 }

@@ -1,17 +1,50 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import { useRecoilValue } from 'recoil';
-import { auth } from '../../../../../state';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { Auth } from '../../../../../api';
+import { resetUsername } from '../../../../../api/Users/editProfile';
 import { Input } from '../../../../common';
 
 const CodenameForm = (): React.ReactElement => {
-  const { register, errors } = useForm();
+  const {
+    register,
+    handleSubmit,
+    errors,
+    setError,
+    clearErrors,
+    watch,
+  } = useForm({
+    mode: 'onChange',
+  });
 
-  const username = useRecoilValue(auth.username);
+  // onSubmit update the users username ("codename")
+  const onSubmit: SubmitHandler<{
+    currentusername: string;
+    newusername: string;
+    confirmusername: string;
+  }> = (data) => {
+    console.log('Form Submitted: ', data);
 
-  // HTTP request to udpate password upon submit
-  const resetCodename = () => {
-    console.log('RESET CODENAME');
+    const usernameBody = {
+      currentusername: data.currentusername,
+      newusername: data.newusername,
+      confirmusername: data.confirmusername,
+    };
+
+    // Reset the username from the data provided in the form
+    resetUsername(usernameBody)
+      .then(() => {
+        clearErrors();
+        console.log('Successful username reset!');
+      })
+      .catch((err: Auth.AxiosError) => {
+        let message: string;
+        if (err.response?.data) {
+          message = err.response.data.error;
+        } else {
+          message = 'An unknown error occurred. Please try again.';
+        }
+        setError('form', { type: 'manual', message });
+      });
   };
 
   // Regex to check entered codename contains only letters and numbers
@@ -19,44 +52,51 @@ const CodenameForm = (): React.ReactElement => {
 
   return (
     <div className="profile-form">
-      <Input
-        id="currentusername"
-        name="oldcodename"
-        label="Old Codename"
-        type="text"
-        errors={errors}
-        register={register}
-        rules={{
-          required: 'Please enter your old codename',
-          validate: {
-            checkCharacters: (value) => {
-              return (
-                codenamePattern.test(value) ||
-                'Only letters and numbers are allowed.'
-              );
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Input
+          id="currentusername"
+          name="currentusername"
+          label="Old Codename"
+          type="text"
+          errors={errors}
+          register={register}
+          rules={{
+            required: 'Please enter your old codename',
+            validate: {
+              checkCharacters: (value) => {
+                return (
+                  codenamePattern.test(value) ||
+                  'Only letters and numbers are allowed.'
+                );
+              },
             },
-          },
-        }}
-      />
-      <Input
-        id="newusername"
-        name="newcodename"
-        label="New Codename"
-        type="text"
-        errors={errors}
-        register={register}
-        rules={{ required: 'Please enter your new codename' }}
-      />
-      <Input
-        id="confirmusername"
-        name="confirmcodename"
-        label="Confirm New Codename"
-        type="text"
-        errors={errors}
-        register={register}
-        rules={{ required: 'Please confirm your new codename' }}
-      />
-      <button onClick={resetCodename}>Confirm Codename</button>
+          }}
+        />
+        <Input
+          id="newusername"
+          name="newusername"
+          label="New Codename"
+          type="text"
+          errors={errors}
+          register={register}
+          rules={{ required: 'Please enter your new codename' }}
+        />
+        <Input
+          id="confirmusername"
+          name="confirmusername"
+          label="Confirm New Codename"
+          type="text"
+          errors={errors}
+          register={register}
+          rules={{ required: 'Please confirm your new codename' }}
+        />
+        <input
+          className="update-username-submit-btn"
+          type="submit"
+          value="Update Username"
+          onClick={() => clearErrors('form')}
+        />
+      </form>
     </div>
   );
 };
