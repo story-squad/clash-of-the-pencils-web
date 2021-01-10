@@ -1,45 +1,90 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { Auth } from '../../../../../api';
+import { resetPassword } from '../../../../../api/Users/editProfile';
 import { Input } from '../../../../common';
 
 const PasswordForm = (): React.ReactElement => {
-  const { register, errors } = useForm();
+  const {
+    register,
+    handleSubmit,
+    errors,
+    setError,
+    clearErrors,
+    watch,
+  } = useForm({
+    mode: 'onChange',
+  });
 
-  // HTTP request to udpate password upon submit
-  const resetPassword = () => {
-    console.log('RESET PASSWORD');
+  // onSubmit update the users password
+  const onSubmit: SubmitHandler<{
+    currentpassword: string;
+    newpassword: string;
+    confirmpassword: string;
+  }> = (data) => {
+    console.log('Form Submitted: ', data);
+
+    // User props for password reset
+    const userPasswordBody = {
+      currentpassword: data.currentpassword,
+      newpassword: data.newpassword,
+      confirmpassword: data.confirmpassword,
+    };
+
+    // Reset password from users profile
+    resetPassword(userPasswordBody)
+      .then(() => {
+        clearErrors();
+        console.log('resetPassword sent');
+      })
+      .catch((err: Auth.AxiosError) => {
+        let message: string;
+        if (err.response?.data) {
+          message = err.response.data.error;
+        } else {
+          message = 'An unknown error occurred. Please try again.';
+        }
+        setError('form', { type: 'manual', message });
+      });
   };
 
   return (
     <div className="profile-form">
-      <Input
-        id="currentpassword"
-        name="oldpassword"
-        label="Old Password"
-        type="password"
-        errors={errors}
-        register={register}
-        rules={{ required: 'Please enter your old password' }}
-      />
-      <Input
-        id="newpassword"
-        name="newpassword"
-        label="New Password"
-        type="password"
-        errors={errors}
-        register={register}
-        rules={{ required: 'Please enter your new password' }}
-      />
-      <Input
-        id="confirmpassword"
-        name="confirmpassword"
-        label="Confirm New Password"
-        type="password"
-        errors={errors}
-        register={register}
-        rules={{ required: 'Please confirm your new password' }}
-      />
-      <button onClick={resetPassword}>Confirm Password</button>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Input
+          id="currentpassword"
+          name="currentpassword"
+          label="Old Password"
+          type="password"
+          errors={errors}
+          register={register}
+          rules={{ required: 'Please enter your old password.' }}
+        />
+        <Input
+          id="newpassword"
+          name="newpassword"
+          label="New Password"
+          type="password"
+          errors={errors}
+          register={register}
+          rules={{ required: 'Please enter your new password.' }}
+        />
+        <Input
+          id="confirmpassword"
+          name="confirmpassword"
+          label="Confirm New Password"
+          type="password"
+          errors={errors}
+          register={register}
+          rules={{ required: 'Please confirm your new password.' }}
+        />
+        <input
+          className="update-password-submit-btn"
+          type="submit"
+          value="Update Password"
+          onClick={() => clearErrors('form')}
+        />
+      </form>
     </div>
   );
 };
