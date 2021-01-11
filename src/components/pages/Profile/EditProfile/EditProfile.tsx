@@ -1,12 +1,12 @@
 import React from 'react';
-import { CodenameForm } from './CodenameForm';
-import { PasswordForm } from './PasswordForm';
+import { PasswordForm } from './ResetPassword';
+import { UsernameForm } from './ResetUsername';
 
 // This component will render the Codename and Password reset forms
 const EditProfile = (): React.ReactElement => {
   return (
     <div className="edit-profile">
-      <CodenameForm />
+      <UsernameForm />
       <PasswordForm />
     </div>
   );

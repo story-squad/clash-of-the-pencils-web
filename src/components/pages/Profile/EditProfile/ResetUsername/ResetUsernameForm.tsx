@@ -4,7 +4,7 @@ import { Auth } from '../../../../../api';
 import { resetUsername } from '../../../../../api/Users';
 import { Input } from '../../../../common';
 
-const CodenameForm = (): React.ReactElement => {
+const UsernameForm = (): React.ReactElement => {
   const { register, handleSubmit, errors, setError, clearErrors } = useForm({
     mode: 'onChange',
   });
@@ -41,7 +41,7 @@ const CodenameForm = (): React.ReactElement => {
   };
 
   // Regex to check entered codename contains only letters and numbers
-  const codenamePattern = /^[A-Za-z0-9]*$/;
+  const usernamePattern = /^[A-Za-z0-9]*$/;
 
   return (
     <div className="profile-form">
@@ -58,7 +58,7 @@ const CodenameForm = (): React.ReactElement => {
             validate: {
               checkCharacters: (value) => {
                 return (
-                  codenamePattern.test(value) ||
+                  usernamePattern.test(value) ||
                   'Only letters and numbers are allowed.'
                 );
               },
@@ -94,4 +94,4 @@ const CodenameForm = (): React.ReactElement => {
   );
 };
 
-export default CodenameForm;
+export default UsernameForm;

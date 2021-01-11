@@ -20,6 +20,8 @@ This folder contains an `EditProfile.ts` file that render the Username and Passw
 The user will find these forms under their `Account` tab of their profile.
 These forms are conditionally rendered under the users Profile view.
 
+API calls are handled directly in their respected forms.
+
 ### Profile Gallery
 
 This folder contains the SubCards of the users past 7 submissions. It is rendered by default in the users Profile.
