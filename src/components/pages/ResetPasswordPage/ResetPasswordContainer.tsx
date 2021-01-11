@@ -2,18 +2,19 @@ import { parse } from 'query-string';
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Header } from '../../common';
-import { ResetEmailForm } from './EmailForm';
-import { PasswordResetForm } from './PasswordForm';
+import { SendResetEmailForm } from './SendResetEmailForm';
+import { UpdatePasswordForm } from './UpdatePasswordForm';
 
 const ResetPasswordPage = (): React.ReactElement => {
+  // If true, shows SendResetEmailForm, else shows UpdatePasswordForm
+  const [showEmailForm, setShowEmailForm] = useState(true);
+
   // state to be passed to the reset password form
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [userCode, setUserCode] = useState<string | null>(null);
-  const [showEmailForm, setShowEmailForm] = useState(true);
 
-  // establish the URL / location in a varaible to use in our useEffect
+  // establish the URL / location in a variable to use in our useEffect
   const location = useLocation();
-  //   const { url } = useRouteMatch();
 
   useEffect(() => {
     const pathname = location.search;
@@ -35,13 +36,14 @@ const ResetPasswordPage = (): React.ReactElement => {
   }, [userEmail, userCode]);
 
   return (
-    <div className="submission-page-container">
+    <div>
       <Header />
-      <div className="landing-page-container">
+      <div className="reset-password-page">
         {showEmailForm ? (
-          <ResetEmailForm />
+          <SendResetEmailForm />
         ) : (
-          <PasswordResetForm
+          <UpdatePasswordForm
+            // We can coerce types here because our useEffect ensures we only show this form if both are true
             email={userEmail as string}
             code={userCode as string}
           />

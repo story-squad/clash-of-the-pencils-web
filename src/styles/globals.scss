@@ -41,7 +41,7 @@ $bright-blue: #2462d9;
   background-color: $dark-blue;
 }
 
-.App > div:not(.modal-wrapper) {
+.App > div:not(.modal-wrapper):not(.cookie-popup) {
   min-height: 100vh;
   background-color: $dark-blue;
   display: flex;

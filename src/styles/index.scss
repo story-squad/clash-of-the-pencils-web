@@ -15,9 +15,7 @@
 @import './components/pages/submissionPage/submissionPage.scss';
 @import './components/pages/votingPages/votingPage.scss';
 @import './components/pages/resultsPage/resultsPage.scss';
-@import './components/pages/resetPasswordPages/passwordForm.scss';
-@import './components/pages/resetPasswordPages/emailForm.scss';
-@import './components/pages/resetPasswordPages/resetSuccess.scss';
+@import './components/pages/resetPasswordPages/resetPasswordPages.scss';
 @import './components/pages/gameClosed.scss';
 
 // Common Components
@@ -36,3 +34,4 @@
 @import './components/common/checkbox.scss';
 @import './components/common/thoughtBubble.scss';
 @import './components/common/carousel/carousel.scss';
+@import './components/common/cookiePopup.scss';
