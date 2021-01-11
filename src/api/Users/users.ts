@@ -13,10 +13,6 @@ export const resetPassword = (
   return axiosWithAuth().post('/email/resetpassword', body);
 };
 
-export const udpateEmail = (): Promise<AxiosResponse<UserItem>> => {
-  return axiosWithAuth().post('/email/updateEmail');
-};
-
 export interface ResetReponse {
   message: string;
 }
@@ -33,9 +29,4 @@ export interface UpdateUsernameBody {
   currentusername: string;
   newusername: string;
   confirmusername: string;
-}
-
-export interface UserItem {
-  email: string;
-  newEmail: string;
 }
