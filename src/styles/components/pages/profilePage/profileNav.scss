@@ -16,7 +16,7 @@
   }
 
   // Styling for the two span "buttons" inside the profile nav wrapper
-  .profile-nav-span {
+  span {
     width: 50%;
     font-family: $text-font;
     font-weight: 500;
@@ -27,6 +27,11 @@
     font-size: 1.3rem;
     padding-top: 0.5rem;
     border-top: 1px solid #0003;
+
+    // Identify which active tab we are on when a user navigates through their profile
+    &.active {
+      text-decoration: underline;
+    }
 
     // Tablet styling for the profile-nav-span(s)
     @media screen and (min-width: $tablet) {

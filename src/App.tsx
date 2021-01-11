@@ -29,10 +29,10 @@ const App = (): React.ReactElement => {
         <Route path="/game" component={GamePage} />
         <Route path="/results" component={ResultsPage} />
         <Route path="/reset" component={ResetPasswordPage} />
+        <Route path="/profile" component={Profile} />
 
         {/* Fallback Redirect to Dashboard */}
         <Route path="/" component={() => <Redirect to="/game" />} />
-        <Route path="/profile" component={Profile} />
       </Switch>
     </div>
   );

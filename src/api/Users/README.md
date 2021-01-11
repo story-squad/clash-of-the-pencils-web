@@ -10,7 +10,6 @@ This file contains three requests to the back end.
 
 1. `resetPassword` allows users to reset their password once they are signed in. This is not a forgot password feature.
 2. `resetUsername` allows users to reset their username once they are signed in. This is not a forgot username feature.
-3. `udpateEmail` allows users to reset their email once they are signed in. This is not a forgot email feature. (Not-In-Use)
 
 ### Future Iteration
 

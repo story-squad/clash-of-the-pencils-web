@@ -22,11 +22,11 @@ These forms are conditionally rendered under the users Profile view.
 
 API calls are handled directly in their respected forms.
 
-### Profile Gallery
+## Profile Gallery
 
 This folder contains the SubCards of the users past 7 submissions. It is rendered by default in the users Profile.
 
-#### Profile Nav
+## Profile Nav
 
 This navigation bar allows the user to jump from their Gallery Page to their Edit Profile (Account) view.
 The navigation bar will render either the Gallery or Edit Profile forms based off the users selection.
