@@ -1,7 +1,6 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Auth } from '../../../../../api';
-import { resetUsername } from '../../../../../api/Users';
+import { Auth, Users } from '../../../../../api';
 import { Input } from '../../../../common';
 
 const UsernameForm = (): React.ReactElement => {
@@ -10,11 +9,7 @@ const UsernameForm = (): React.ReactElement => {
   });
 
   // onSubmit update the users username ("codename")
-  const onSubmit: SubmitHandler<{
-    currentusername: string;
-    newusername: string;
-    confirmusername: string;
-  }> = (data) => {
+  const onSubmit: SubmitHandler<Users.UpdateUsernameBody> = (data) => {
     console.log('Form Submitted: ', data);
 
     const usernameBody = {
@@ -24,7 +19,7 @@ const UsernameForm = (): React.ReactElement => {
     };
 
     // Reset the username from the data provided in the form
-    resetUsername(usernameBody)
+    Users.resetUsername(usernameBody)
       .then(() => {
         clearErrors();
         console.log('Successful username reset!');

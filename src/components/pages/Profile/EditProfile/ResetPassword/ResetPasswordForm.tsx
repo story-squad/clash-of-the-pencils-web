@@ -1,7 +1,6 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Auth } from '../../../../../api';
-import { resetPassword } from '../../../../../api/Users';
+import { Auth, Users } from '../../../../../api';
 import { Input } from '../../../../common';
 
 const PasswordForm = (): React.ReactElement => {
@@ -10,11 +9,7 @@ const PasswordForm = (): React.ReactElement => {
   });
 
   // onSubmit update the users password
-  const onSubmit: SubmitHandler<{
-    currentpassword: string;
-    newpassword: string;
-    confirmpassword: string;
-  }> = (data) => {
+  const onSubmit: SubmitHandler<Users.UpdatePasswordBody> = (data) => {
     console.log('Form Submitted: ', data);
 
     // Use the form data for password reset
@@ -25,7 +20,7 @@ const PasswordForm = (): React.ReactElement => {
     };
 
     // Reset the password from the data provided in the form
-    resetPassword(userPasswordBody)
+    Users.resetPassword(userPasswordBody)
       .then(() => {
         clearErrors();
         console.log('Successful password reset!');
