@@ -1,7 +1,7 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Auth } from '../../../../../api';
-import { resetUsername } from '../../../../../api/Users/editProfile';
+import { resetUsername } from '../../../../../api/Users';
 import { Input } from '../../../../common';
 
 const CodenameForm = (): React.ReactElement => {

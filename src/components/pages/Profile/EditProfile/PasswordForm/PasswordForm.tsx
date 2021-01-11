@@ -1,7 +1,7 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Auth } from '../../../../../api';
-import { resetPassword } from '../../../../../api/Users/editProfile';
+import { resetPassword } from '../../../../../api/Users';
 import { Input } from '../../../../common';
 
 const PasswordForm = (): React.ReactElement => {
