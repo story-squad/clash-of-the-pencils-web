@@ -5,14 +5,7 @@ import { resetPassword } from '../../../../../api/Users/editProfile';
 import { Input } from '../../../../common';
 
 const PasswordForm = (): React.ReactElement => {
-  const {
-    register,
-    handleSubmit,
-    errors,
-    setError,
-    clearErrors,
-    watch,
-  } = useForm({
+  const { register, handleSubmit, errors, setError, clearErrors } = useForm({
     mode: 'onChange',
   });
 
