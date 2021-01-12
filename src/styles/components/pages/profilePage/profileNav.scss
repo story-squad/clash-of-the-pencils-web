@@ -28,6 +28,8 @@
     padding-top: 0.5rem;
     border-top: 1px solid #0003;
 
+    cursor: pointer;
+
     // Identify which active tab we are on when a user navigates through their profile
     &.active {
       text-decoration: underline;
