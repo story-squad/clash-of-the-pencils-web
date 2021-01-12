@@ -2,11 +2,11 @@ import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import { Input } from '../..';
 import { Auth } from '../../../../api';
 import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
 import welcomeBack from '../../../../assets/img/welcome-back.png';
 import { auth } from '../../../../state';
+import { Input } from '../../Input';
 import { Modal } from '../../Modal';
 
 const LoginForm = (props: Modal.ModalComponentProps): React.ReactElement => {

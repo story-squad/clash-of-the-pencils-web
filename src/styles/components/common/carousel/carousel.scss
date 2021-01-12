@@ -1,19 +1,22 @@
-$carousel-height: 40vh;
-
 .carousel {
   width: 100%;
   padding: 1rem 0;
-  height: $carousel-height;
+  display: flex;
+  flex-flow: column nowrap;
 
   @import './carouselCircles.scss';
 
   .carousel-main {
     width: 100%;
-    height: $carousel-height;
     display: flex;
     flex-flow: row wrap;
     align-items: stretch;
     margin-bottom: 1rem;
+    flex-grow: 1;
+    height: 30rem;
+    @include bp(large) {
+      height: 40rem;
+    }
 
     .left,
     .right {
@@ -31,18 +34,30 @@ $carousel-height: 40vh;
       cursor: pointer;
       &:hover {
         transition: all 0.3s ease-in-out;
-        color: #fffa;
+        color: #fff;
       }
     }
 
     @import './carouselContent.scss';
     .carousel-content {
-      height: $carousel-height;
+      height: 100%;
       flex-grow: 2;
+      height: 30rem;
+      @include bp(large) {
+        height: 40rem;
+      }
 
       .carousel-card {
+        height: 30rem;
+        @include bp(large) {
+          height: 40rem;
+        }
+        flex-grow: 1;
         & > div {
-          height: $carousel-height;
+          height: 30rem;
+          @include bp(large) {
+            height: 40rem;
+          }
           width: 100%;
         }
       }

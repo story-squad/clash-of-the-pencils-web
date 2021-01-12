@@ -1,0 +1,37 @@
+.carousel {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+
+  .carousel-content {
+    border-radius: 5px;
+
+    .play-with-blaze {
+      background-color: $jade;
+      padding: 1rem;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-between;
+      align-items: center;
+      img {
+        max-height: 8rem;
+        @include bp(large) {
+          max-height: 12rem;
+        }
+        &:last-of-type {
+          max-height: 15rem;
+          @include bp(large) {
+            max-height: 20rem;
+          }
+        }
+      }
+      a {
+        margin-bottom: 0.5rem;
+        @include button($orange);
+        font-size: 1.6rem;
+        @include bp(large) {
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+}

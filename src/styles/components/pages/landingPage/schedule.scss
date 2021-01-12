@@ -1,0 +1,42 @@
+.schedule {
+  padding: 2rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  h2 {
+    color: $orange;
+    font-family: $display-font;
+    font-size: 3rem;
+    text-align: center;
+    text-shadow: 0 2px 2px #0005;
+    margin-bottom: 1rem;
+  }
+  p {
+    width: 100%;
+    color: $white;
+    font-family: $text-font;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+
+    &:last-of-type {
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    strong {
+      font-weight: 600;
+      color: $seafoam;
+    }
+    em {
+      font-style: italic;
+      font-weight: 200;
+    }
+  }
+  button {
+    margin-top: 1rem;
+    @include button($blue);
+    font-size: 2rem;
+  }
+}
