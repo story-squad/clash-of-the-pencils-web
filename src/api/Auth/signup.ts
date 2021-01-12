@@ -7,8 +7,8 @@ export const signup = (credentials: SignupBody): Promise<AxiosResponse> => {
   return axiosWithoutAuth().post('/email/register', credentials);
 };
 
-export const getRNGusername = (): Promise<AxiosResponse> => {
-  return axiosWithoutAuth().get(`/email/getusername`);
+export const getRNGusername = (): Promise<AxiosResponse<string>> => {
+  return axiosWithoutAuth().get(`/email/randomusername`);
 };
 
 export const formatSignupBody = (formData: SignupFormState): SignupBody => {
