@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
@@ -21,6 +21,27 @@ const SignupForm = (): React.ReactElement => {
   } = useForm({ mode: 'onChange' });
 
   const setSignupWasSuccessful = useSetRecoilState(auth.signupWasSuccessful);
+  // State to hold the users
+  const [randomUsername, setRandomUsername] = useState();
+  // State for the input if the user decides to RNG a username
+  const [useRNG, setRNG] = useState(false);
+
+  // Function to hold RNG username
+  useEffect(() => {
+    Auth.getRNGusername()
+      .then((data) => {
+        console.log(data.data);
+        setRandomUsername(data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const createRNG = () => {
+    console.log(randomUsername);
+    setRNG(!useRNG);
+  };
 
   const onSubmit: SubmitHandler<Auth.SignupFormState> = (data): void => {
     // Format form data for API call body
@@ -84,6 +105,11 @@ const SignupForm = (): React.ReactElement => {
             },
           }}
           placeholder="Enter your codename"
+        />
+        <input
+          type="button"
+          value="Random Name Generator"
+          onClick={createRNG}
         />
         <Input
           id="signupEmail"

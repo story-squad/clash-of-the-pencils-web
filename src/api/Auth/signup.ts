@@ -1,9 +1,14 @@
 import { AxiosResponse } from 'axios';
 import { axiosWithoutAuth } from '../axiosWithConfig';
+
 export type { AxiosError } from 'axios';
 
 export const signup = (credentials: SignupBody): Promise<AxiosResponse> => {
   return axiosWithoutAuth().post('/email/register', credentials);
+};
+
+export const getRNGusername = (): Promise<AxiosResponse> => {
+  return axiosWithoutAuth().get(`/email/getusername`);
 };
 
 export const formatSignupBody = (formData: SignupFormState): SignupBody => {
