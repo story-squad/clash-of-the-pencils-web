@@ -35,7 +35,7 @@ header {
 
   // Position the header in FRONT of the nav menu for animation purposes
   position: relative;
-  z-index: 5;
+  z-index: 10;
   overflow-x: hidden;
 
   @media screen and (min-width: $tablet) {
@@ -62,7 +62,7 @@ header {
   // This element has 0 height and is used purely to position the .menu-container
   height: 0;
   position: relative;
-  z-index: 4;
+  z-index: 7;
 
   & + div {
     // Selects the element in the DOM *after* .nav-menu

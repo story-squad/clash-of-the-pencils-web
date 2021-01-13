@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import {
   AuthModal,
+  CookiePopup,
   ReadTokenData,
   SEO,
   TermsOfService,
@@ -9,9 +10,9 @@ import {
 import { Activation } from './components/pages/Activated';
 import { GamePage } from './components/pages/GamePage';
 import { VotingPage } from './components/pages/GamePage/VotingPage';
-import { Scroller } from './components/pages/LandingPage';
+import { LandingPage } from './components/pages/LandingPage';
 import { Profile } from './components/pages/Profile';
-import { ResetPasswordPage } from './components/pages/ResetPassword';
+import { ResetPasswordPage } from './components/pages/ResetPasswordPage';
 import { ResultsPage } from './components/pages/ResultsPage';
 
 const App = (): React.ReactElement => {
@@ -20,9 +21,10 @@ const App = (): React.ReactElement => {
       <SEO />
       <AuthModal />
       <ReadTokenData />
+      <CookiePopup />
       <Switch>
         {/* Public Routes */}
-        <Route exact path="/" component={Scroller} />
+        <Route exact path="/" component={LandingPage} />
         <Route path="/activated" component={Activation} />
         <Route path="/vote" component={VotingPage} />
         <Route path="/tos" component={TermsOfService} />

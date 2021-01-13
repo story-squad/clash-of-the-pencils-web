@@ -32,7 +32,7 @@ const RenderPromptBox = ({
           component={(props) => <SubmissionForm {...props} />}
           visible={showModal}
           setVisible={setShowModal}
-          centered={isLogged}
+          centered={!!isLogged}
           title={isLogged ? 'Submit a Story' : ''}
         />
       )}

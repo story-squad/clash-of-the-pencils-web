@@ -36,12 +36,14 @@ $charcoal: #343434;
 $red: #f64141;
 $ltblue: #85c7f2;
 $bright-blue: #2462d9;
+$rose: #d97f9f;
+$lime: #bfd349;
 
 #root {
   background-color: $dark-blue;
 }
 
-.App > div:not(.modal-wrapper) {
+.App > div:not(.modal-wrapper):not(.cookie-popup) {
   min-height: 100vh;
   background-color: $dark-blue;
   display: flex;
