@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { MdMenu } from 'react-icons/md';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { auth } from '../../../state';
 import { time } from '../../../utils';
@@ -58,7 +58,9 @@ const Header = (): React.ReactElement => {
   return (
     <>
       <header>
-        <h2>Story Squad</h2>
+        <h2>
+          <Link to="/">Story Squad</Link>
+        </h2>
         <MdMenu
           className={menuItems.length <= 0 ? 'hidden' : ''}
           onClick={toggleMenu}
