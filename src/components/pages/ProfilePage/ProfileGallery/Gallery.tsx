@@ -14,7 +14,8 @@ const Gallery = (): React.ReactElement => {
       ))}
       {(submissionList as SubItem[]).length === 0 && (
         <div className="gallery-error">
-          You don&apos;t have any past submissions. Check back later!
+          <p>You don&apos;t have any past submissions.</p>
+          <p>Check back later!</p>
         </div>
       )}
     </div>

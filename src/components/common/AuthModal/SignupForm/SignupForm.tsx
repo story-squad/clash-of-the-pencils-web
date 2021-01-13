@@ -18,21 +18,21 @@ const SignupForm = (): React.ReactElement => {
     handleSubmit,
     clearErrors,
     setError,
-    setValue,
+    // setValue,
   } = useForm({ mode: 'onChange' });
 
   const setSignupWasSuccessful = useSetRecoilState(auth.signupWasSuccessful);
 
   // This function will run an API call to retrieve a new random username
-  const setRNGusername = () => {
-    Auth.getRNGusername()
-      .then((res) => {
-        setValue('username', res.data);
-      })
-      .catch((err) => {
-        console.log({ err });
-      });
-  };
+  // const setRNGusername = () => {
+  //   Auth.getRNGusername()
+  //     .then((res) => {
+  //       setValue('username', res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log({ err });
+  //     });
+  // };
 
   const onSubmit: SubmitHandler<Auth.SignupFormState> = (data): void => {
     // Format form data for API call body

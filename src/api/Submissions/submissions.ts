@@ -7,6 +7,7 @@ export const getMySubmissions = async (): Promise<SubItem[]> => {
     '/upload/mysubmissions',
   );
   const processedStories = data.map((sub) => getImageFromS3(sub));
+  // const processedStories: SubItem[] = [];
   // const processedStories = [
   //   {
   //     id: 1,
