@@ -1,20 +1,14 @@
 import React from 'react';
-import { useSetRecoilState } from 'recoil';
-import { auth } from '../../../../state';
+import { Link } from 'react-router-dom';
 import { time } from '../../../../utils';
 
 const Schedule = (): React.ReactElement => {
-  const openAuthModal = useSetRecoilState(auth.authModalOpen);
-  const setAuthModalIsLogin = useSetRecoilState(auth.authModalIsLogin);
-
-  const openSignup = () => {
-    openAuthModal(true);
-    setAuthModalIsLogin(false);
-  };
-
   return (
     <div className="schedule">
-      <h2>How it Works</h2>
+      <h2>&#129300; How it Works &#129300;</h2>
+      <p className="disclaimer">
+        * All times are displayed in your local timezone <em>&#9200;</em>
+      </p>
       <p>
         <strong>Every morning (7 days a week):</strong> sign in to get the new
         story-writing prompt and start scribbling
@@ -34,7 +28,8 @@ const Schedule = (): React.ReactElement => {
       <p>
         <em>Unleash your creativity and sign up today!</em>
       </p>
-      <button onClick={openSignup}>Sign Up</button>
+
+      <Link to="/game">Get Started</Link>
     </div>
   );
 };

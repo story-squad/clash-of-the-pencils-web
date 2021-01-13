@@ -47,7 +47,7 @@ const CarouselContainer = ({
 };
 
 interface CarouselProps {
-  title: string;
+  title?: string;
 }
 
 export default CarouselContainer;

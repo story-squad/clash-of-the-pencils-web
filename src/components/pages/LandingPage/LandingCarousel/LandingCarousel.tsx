@@ -4,7 +4,8 @@ import PlayWithBlaze from './PlayWithBlaze';
 
 const LandingCarousel = (): React.ReactElement => {
   return (
-    <Carousel title="">
+    <Carousel>
+      {/* <SocialMediaGuest /> */}
       <PlayWithBlaze />
     </Carousel>
   );

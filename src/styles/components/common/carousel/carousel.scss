@@ -14,9 +14,6 @@
     margin-bottom: 1rem;
     flex-grow: 1;
     height: 30rem;
-    @include bp(large) {
-      height: 40rem;
-    }
 
     .left,
     .right {
@@ -27,6 +24,14 @@
       svg {
         width: 2.4rem;
         height: 2.4rem;
+        @include bp(mid) {
+          width: 2.8rem;
+          height: 2.8rem;
+        }
+        @include bp(tablet) {
+          width: 3.2rem;
+          height: 3.2rem;
+        }
       }
 
       color: #fff9;
@@ -43,21 +48,12 @@
       height: 100%;
       flex-grow: 2;
       height: 30rem;
-      @include bp(large) {
-        height: 40rem;
-      }
 
       .carousel-card {
         height: 30rem;
-        @include bp(large) {
-          height: 40rem;
-        }
         flex-grow: 1;
         & > div {
           height: 30rem;
-          @include bp(large) {
-            height: 40rem;
-          }
           width: 100%;
         }
       }
