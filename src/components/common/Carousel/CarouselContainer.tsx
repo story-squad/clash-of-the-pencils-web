@@ -4,6 +4,7 @@ import RenderCarousel from './RenderCarousel';
 
 const CarouselContainer = ({
   children,
+  secondsToChange = 4,
 }: React.PropsWithChildren<CarouselProps>): React.ReactElement => {
   const [numItems] = useState(Array.isArray(children) ? children.length : 0);
   const [current, setCurrent] = useState(0);
@@ -35,7 +36,7 @@ const CarouselContainer = ({
   useEffect(() => {
     // This useEffect is cOOL because it resets the timer to 0 if you manually change
     // the current card, and it won't mess up timings with overlapping changes.
-    const goNextHandler = setTimeout(next, 4000);
+    const goNextHandler = setTimeout(next, secondsToChange * 1000);
     return () => clearTimeout(goNextHandler);
   }, [current]);
 
@@ -47,7 +48,8 @@ const CarouselContainer = ({
 };
 
 interface CarouselProps {
-  title: string;
+  title?: string;
+  secondsToChange?: number;
 }
 
 export default CarouselContainer;

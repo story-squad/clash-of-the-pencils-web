@@ -1,8 +1,6 @@
 .carousel-content {
   overflow: hidden;
   position: relative;
-  border: 1px solid #000;
-  border-radius: 10px;
   @include drop-shadow;
 
   .carousel-card {
