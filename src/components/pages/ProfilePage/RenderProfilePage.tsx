@@ -8,7 +8,7 @@ import { ProfileNav } from './ProfileNav';
 
 const RenderProfile = (): React.ReactElement => {
   // State to show if the gallery or the edit profile
-  const [showGallery, setShowGallery] = useState(true);
+  const [galleryIsShowing, setGalleryIsShowing] = useState(true);
   const username = useRecoilValue(auth.username);
   const email = useRecoilValue(auth.email);
 
@@ -16,7 +16,10 @@ const RenderProfile = (): React.ReactElement => {
     <div>
       <Header />
       <div className="profile-page">
-        <ProfileNav show={showGallery} setShow={setShowGallery} />
+        <ProfileNav
+          galleryIsShowing={galleryIsShowing}
+          setGalleryIsShowing={setGalleryIsShowing}
+        />
         <div className="user-info">
           <h2>
             <em>&#128100;</em> {username}
@@ -25,7 +28,7 @@ const RenderProfile = (): React.ReactElement => {
             <em>&#128231;</em> {email}
           </h3>
         </div>
-        {showGallery ? <Gallery /> : <EditProfile />}
+        {galleryIsShowing ? <Gallery /> : <EditProfile />}
       </div>
     </div>
   );

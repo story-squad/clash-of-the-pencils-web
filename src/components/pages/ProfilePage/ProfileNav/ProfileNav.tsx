@@ -1,22 +1,22 @@
 import React from 'react';
 
 const ProfileNav = (props: {
-  show: boolean;
-  setShow: (arg: boolean) => void;
+  galleryIsShowing: boolean;
+  setGalleryIsShowing: (arg: boolean) => void;
 }): React.ReactElement => {
   return (
     <div className="profile-nav">
       <span
-        className={props.show ? 'active' : ''}
+        className={props.galleryIsShowing ? 'active' : ''}
         role="link"
-        onClick={() => props.setShow(true)}
+        onClick={() => props.setGalleryIsShowing(true)}
       >
         Gallery
       </span>
       <span
-        className={!props.show ? 'active' : ''}
+        className={!props.galleryIsShowing ? 'active' : ''}
         role="link"
-        onClick={() => props.setShow(false)}
+        onClick={() => props.setGalleryIsShowing(false)}
       >
         Account
       </span>

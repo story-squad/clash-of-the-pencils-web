@@ -18,7 +18,11 @@ const Profile: React.FC = () => {
       })
       .catch((err) => {
         console.log(err);
-        setLoadingError(err.message);
+        if (err.message === 'Network Error') {
+          setLoadingError('Could not load profile.');
+        } else {
+          setLoadingError(err.message);
+        }
       });
   }, []);
 
