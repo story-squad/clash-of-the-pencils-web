@@ -30,7 +30,7 @@ const SignupForm = (): React.ReactElement => {
         setValue('username', res.data);
       })
       .catch((err) => {
-        console.log(err);
+        console.log({ err });
       });
   };
 
@@ -72,36 +72,37 @@ const SignupForm = (): React.ReactElement => {
       </p>
       {errors.form && <div className="server-error">{errors.form.message}</div>}
       <div className="inputs">
-        <Input
-          id="codename"
-          name="username"
-          label="Codename"
-          errors={errors}
-          register={register}
-          rules={{
-            required: 'Codename is required!',
-            validate: {
-              checkCharacters: (value) => {
-                return (
-                  // ensures the user's entered codename contains only allowed characters
-                  dataConstraints.codenamePattern.test(value) ||
-                  'Only letters and numbers are allowed.'
-                );
+        <div className="codename-input">
+          <Input
+            id="codename"
+            name="username"
+            label="Codename"
+            errors={errors}
+            register={register}
+            rules={{
+              required: 'Codename is required!',
+              validate: {
+                checkCharacters: (value) => {
+                  return (
+                    // ensures the user's entered codename contains only allowed characters
+                    dataConstraints.codenamePattern.test(value) ||
+                    'Only letters and numbers are allowed.'
+                  );
+                },
+                checkLength: (value) => {
+                  return (
+                    value.length < 15 || 'Cannot be more than 15 characters.'
+                  );
+                },
               },
-              checkLength: (value) => {
-                return (
-                  value.length < 15 || 'Cannot be more than 15 characters.'
-                );
-              },
-            },
-          }}
-          placeholder="Enter your codename"
-        />
-        <input
-          type="button"
-          value="Random Name Generator"
-          onClick={setRNGusername}
-        />
+            }}
+            placeholder="Enter your codename"
+          />
+          {/* <GiRollingDices
+            title="Get a random Codename"
+            onClick={setRNGusername}
+          /> */}
+        </div>
         <Input
           id="signupEmail"
           name="email"
