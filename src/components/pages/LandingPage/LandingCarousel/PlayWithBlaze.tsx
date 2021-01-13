@@ -1,11 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 import hiImBlaze from '../../../../assets/img/hi-im-blaze.png';
 import unleashYourCreativity from '../../../../assets/img/landing-text.png';
+import { auth } from '../../../../state';
 
 const PlayWithBlaze = (): React.ReactElement => {
-  const openLogin = () => null;
-  const openSignup = () => null;
+  const setAuthOpen = useSetRecoilState(auth.authModalOpen);
+  const setAuthIsLogin = useSetRecoilState(auth.authModalIsLogin);
+  const openLogin = () => {
+    setAuthOpen(true);
+    setAuthIsLogin(true);
+  };
+  const openSignup = () => {
+    setAuthOpen(true);
+    setAuthIsLogin(false);
+  };
 
   return (
     <div className="play-with-blaze">
