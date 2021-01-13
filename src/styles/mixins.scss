@@ -60,11 +60,11 @@
   color: $color;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.25s ease-in;
+  transition: all 0.15s ease-in;
   &:active,
   &:hover {
     color: darken($color, $darken-amt);
-    transition: all 0.25s ease-in;
+    transition: all 0.15s ease-in;
   }
 }
 

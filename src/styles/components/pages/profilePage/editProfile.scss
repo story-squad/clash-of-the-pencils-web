@@ -1,0 +1,45 @@
+.edit-profile {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 800px;
+  max-width: 100%;
+  margin: 0 auto;
+  @include bp(tablet) {
+    justify-content: space-between;
+  }
+  form {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 350px;
+    padding: 3rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+
+    .server-error {
+      font-family: $display-font;
+      color: $red;
+      font-size: 1.6rem;
+      text-shadow: 0 2px 2px #0005;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .form-input {
+      width: 100%;
+      label {
+        color: $lt-orange;
+      }
+    }
+
+    @include bp(tablet) {
+      width: 49%;
+    }
+
+    input[type='submit'] {
+      @include button($jade);
+      font-size: 2rem;
+    }
+  }
+}
