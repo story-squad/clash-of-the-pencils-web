@@ -9,4 +9,5 @@ export const filetypes =
   uploads!';
 
 export const scoreboardInstructions =
-  'Blaze the Dragon gives every story you write a "Squad Score," usually between 20 and 50 points based on how much he liked it. This leaderboard adds up the TOTAL "Squad Score" for the top 10 players over the last week.  You can improve your chances of appearing here if you write and submit a story every day!';
+  'The leaderboard shows your total points for the past 7 days. \
+  Climb the leaderboard by writing every day!';
