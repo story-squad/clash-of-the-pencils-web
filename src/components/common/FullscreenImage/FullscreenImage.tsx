@@ -14,6 +14,7 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
   const [showInfo, setShowInfo] = useState(true);
 
   const closeModal = () => {
+    console.log('hide me');
     props.setIsVisible(false);
   };
 
