@@ -70,7 +70,8 @@
         align-items: flex-start;
       }
 
-      .form-input {
+      .codename-input,
+      & > .form-input {
         width: 350px;
         padding: 0 1rem;
 
@@ -80,6 +81,18 @@
 
         @media screen and (min-width: $large) {
           width: 33%;
+        }
+      }
+
+      .codename-input {
+        position: relative;
+        svg {
+          position: absolute;
+          top: 0;
+          right: 1rem;
+          color: $white;
+          font-size: 2rem;
+          cursor: pointer;
         }
       }
     }

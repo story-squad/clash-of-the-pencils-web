@@ -18,9 +18,21 @@ const SignupForm = (): React.ReactElement => {
     handleSubmit,
     clearErrors,
     setError,
+    // setValue,
   } = useForm({ mode: 'onChange' });
 
   const setSignupWasSuccessful = useSetRecoilState(auth.signupWasSuccessful);
+
+  // This function will run an API call to retrieve a new random username
+  // const setRNGusername = () => {
+  //   Auth.getRNGusername()
+  //     .then((res) => {
+  //       setValue('username', res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log({ err });
+  //     });
+  // };
 
   const onSubmit: SubmitHandler<Auth.SignupFormState> = (data): void => {
     // Format form data for API call body
@@ -60,31 +72,37 @@ const SignupForm = (): React.ReactElement => {
       </p>
       {errors.form && <div className="server-error">{errors.form.message}</div>}
       <div className="inputs">
-        <Input
-          id="codename"
-          name="username"
-          label="Codename"
-          errors={errors}
-          register={register}
-          rules={{
-            required: 'Codename is required!',
-            validate: {
-              checkCharacters: (value) => {
-                return (
-                  // ensures the user's entered codename contains only allowed characters
-                  dataConstraints.codenamePattern.test(value) ||
-                  'Only letters and numbers are allowed.'
-                );
+        <div className="codename-input">
+          <Input
+            id="codename"
+            name="username"
+            label="Codename"
+            errors={errors}
+            register={register}
+            rules={{
+              required: 'Codename is required!',
+              validate: {
+                checkCharacters: (value) => {
+                  return (
+                    // ensures the user's entered codename contains only allowed characters
+                    dataConstraints.codenamePattern.test(value) ||
+                    'Only letters and numbers are allowed.'
+                  );
+                },
+                checkLength: (value) => {
+                  return (
+                    value.length < 15 || 'Cannot be more than 15 characters.'
+                  );
+                },
               },
-              checkLength: (value) => {
-                return (
-                  value.length < 15 || 'Cannot be more than 15 characters.'
-                );
-              },
-            },
-          }}
-          placeholder="Enter your codename"
-        />
+            }}
+            placeholder="Enter your codename"
+          />
+          {/* <GiRollingDices
+            title="Get a random Codename"
+            onClick={setRNGusername}
+          /> */}
+        </div>
         <Input
           id="signupEmail"
           name="email"
