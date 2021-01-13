@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import hiImBlaze from '../../../../assets/img/hi-im-blaze.png';
 import unleashYourCreativity from '../../../../assets/img/landing-text.png';
 import { auth } from '../../../../state';
@@ -8,6 +8,8 @@ import { auth } from '../../../../state';
 const PlayWithBlaze = (): React.ReactElement => {
   const setAuthOpen = useSetRecoilState(auth.authModalOpen);
   const setAuthIsLogin = useSetRecoilState(auth.authModalIsLogin);
+  const isLogged = useRecoilValue(auth.isLoggedIn);
+
   const openLogin = () => {
     setAuthOpen(true);
     setAuthIsLogin(true);
@@ -32,8 +34,12 @@ const PlayWithBlaze = (): React.ReactElement => {
         />
         <div className="buttons">
           <Link to="/game">Play Now!</Link>
-          <button onClick={openLogin}>Log In</button>
-          <button onClick={openSignup}>Sign Up</button>
+          {!isLogged && (
+            <>
+              <button onClick={openLogin}>Log In</button>
+              <button onClick={openSignup}>Sign Up</button>
+            </>
+          )}
         </div>
       </div>
     </div>
