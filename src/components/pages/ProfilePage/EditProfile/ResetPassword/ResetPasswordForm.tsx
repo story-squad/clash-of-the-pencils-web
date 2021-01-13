@@ -4,7 +4,14 @@ import { Auth, Users } from '../../../../../api';
 import { Input } from '../../../../common';
 
 const PasswordForm = (): React.ReactElement => {
-  const { register, handleSubmit, errors, setError, clearErrors } = useForm({
+  const {
+    register,
+    handleSubmit,
+    errors,
+    setError,
+    clearErrors,
+    watch,
+  } = useForm({
     mode: 'onChange',
   });
 
@@ -27,9 +34,10 @@ const PasswordForm = (): React.ReactElement => {
       })
       .catch((err: Auth.AxiosError) => {
         let message: string;
-        if (err.response?.data) {
-          message = err.response.data.error;
-        } else {
+        console.log({ err });
+        if (err.response?.data.message) message = err.response.data.message;
+        else if (err.response?.data.error) message = err.response.data.error;
+        else {
           message = 'An unknown error occurred. Please try again.';
         }
         setError('form', { type: 'manual', message });
@@ -37,43 +45,74 @@ const PasswordForm = (): React.ReactElement => {
   };
 
   return (
-    <div className="profile-form">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          id="currentpassword"
-          name="currentpassword"
-          label="Old Password"
-          type="password"
-          errors={errors}
-          register={register}
-          rules={{ required: 'Please enter your old password.' }}
-        />
-        <Input
-          id="newpassword"
-          name="newpassword"
-          label="New Password"
-          type="password"
-          errors={errors}
-          register={register}
-          rules={{ required: 'Please enter your new password.' }}
-        />
-        <Input
-          id="confirmpassword"
-          name="confirmpassword"
-          label="Confirm New Password"
-          type="password"
-          errors={errors}
-          register={register}
-          rules={{ required: 'Please confirm your new password.' }}
-        />
-        <input
-          className="update-password-submit-btn"
-          type="submit"
-          value="Update Password"
-          onClick={() => clearErrors('form')}
-        />
-      </form>
-    </div>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      {errors.form && <div className="server-error">{errors.form.message}</div>}
+      <Input
+        id="currentpassword"
+        name="currentpassword"
+        label="Old Password"
+        type="password"
+        errors={errors}
+        register={register}
+        rules={{ required: 'Please enter your old password.' }}
+      />
+      <Input
+        id="newpassword"
+        name="newpassword"
+        label="New Password"
+        type="password"
+        errors={errors}
+        register={register}
+        rules={{
+          required: 'Password is required!',
+          validate: {
+            // checks entered password value contains required characters
+            includesCapital: (value) => {
+              const pattern = /[A-Z]/;
+              return (
+                pattern.test(value) ||
+                'Password must include at least 1 capital letter.'
+              );
+            },
+            includesNumber: (value) => {
+              const pattern = /[0-9]/;
+              return (
+                pattern.test(value) ||
+                'Password must include at least 1 number.'
+              );
+            },
+            // checks that entered password value is a minimum of 8 chars
+            checkLength: (value) => {
+              return (
+                (value.length >= 8 && value.length <= 32) ||
+                'Password must be between 8 and 32 characters.'
+              );
+            },
+          },
+        }}
+      />
+      <Input
+        id="confirmpassword"
+        name="confirmpassword"
+        label="Confirm New Password"
+        type="password"
+        errors={errors}
+        register={register}
+        rules={{
+          required: 'Password confirmation is required!',
+          validate: (value) => {
+            // checks that the values in password and confirm inputs match
+            return value === watch('newpassword') || "Passwords don't match!";
+          },
+        }}
+      />
+      <input
+        className="update-password-submit-btn"
+        type="submit"
+        value="Update Password"
+        onClick={() => clearErrors('form')}
+      />
+    </form>
   );
 };
 
