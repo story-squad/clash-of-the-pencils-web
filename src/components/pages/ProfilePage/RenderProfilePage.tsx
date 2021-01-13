@@ -6,7 +6,7 @@ import { EditProfile } from './EditProfile';
 import { Gallery } from './ProfileGallery';
 import { ProfileNav } from './ProfileNav';
 
-const RenderProfile = (): React.ReactElement => {
+const RenderProfilePage = (): React.ReactElement => {
   // State to show if the gallery or the edit profile
   const [galleryIsShowing, setGalleryIsShowing] = useState(true);
   const username = useRecoilValue(auth.username);
@@ -34,4 +34,4 @@ const RenderProfile = (): React.ReactElement => {
   );
 };
 
-export default RenderProfile;
+export default RenderProfilePage;

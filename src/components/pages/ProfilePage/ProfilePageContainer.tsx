@@ -3,9 +3,9 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { Submissions } from '../../../api';
 import { apiError, pastSubs } from '../../../state';
 import { Loader } from '../../common';
-import RenderProfile from './RenderProfilePage';
+import RenderProfilePage from './RenderProfilePage';
 
-const Profile: React.FC = () => {
+const ProfilePageContainer = (): React.ReactElement => {
   // pull list of users top 5 stories from recoil state && the API call getMySubmissions()
   const [list, setList] = useRecoilState(pastSubs.list);
   const setLoadingError = useSetRecoilState(apiError.global);
@@ -26,7 +26,7 @@ const Profile: React.FC = () => {
       });
   }, []);
 
-  return list ? <RenderProfile /> : <Loader />;
+  return list ? <RenderProfilePage /> : <Loader />;
 };
 
-export default Profile;
+export default ProfilePageContainer;
