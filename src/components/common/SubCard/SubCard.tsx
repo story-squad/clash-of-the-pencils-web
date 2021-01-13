@@ -26,18 +26,20 @@ const SubCard = ({
   }, []);
 
   return (
-    <div className={`sub-card${canPreview ? ' can-preview' : ''}`}>
-      <div
-        className={`card-img rotate-${sub.rotation}`}
-        style={{ backgroundImage: `url(${sub.src})` }}
-        onClick={modalOpenHandler}
-      />
+    <>
+      <div className={`sub-card${canPreview ? ' can-preview' : ''}`}>
+        <div
+          className={`card-img rotate-${sub.rotation}`}
+          style={{ backgroundImage: `url(${sub.src})` }}
+          onClick={modalOpenHandler}
+        />
+      </div>
       <FullscreenImage
         {...sub}
         isVisible={showModal}
         setIsVisible={setShowModal}
       />
-    </div>
+    </>
   );
 };
 

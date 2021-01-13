@@ -7,13 +7,11 @@
   overflow: hidden;
   @include drop-shadow;
   &.can-preview {
-    .card-img {
-      cursor: pointer;
-      transition: all 0.05s ease-out;
-      &:hover {
-        transition: all 0.05s ease-in;
-        transform: scale(1.05);
-      }
+    cursor: pointer;
+    transition: all 0.05s ease-out;
+    &:hover {
+      transition: all 0.05s ease-in;
+      transform: scale(1.05);
     }
   }
 
