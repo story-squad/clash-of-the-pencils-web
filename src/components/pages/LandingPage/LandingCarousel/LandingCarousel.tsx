@@ -1,12 +1,13 @@
 import React from 'react';
 import { Carousel } from '../../../common';
-import PlayWithBlaze from './PlayWithBlaze';
+import SocialMediaGuest from './SocialMediaGuest';
 
 const LandingCarousel = (): React.ReactElement => {
   return (
-    <Carousel>
+    <Carousel secondsToChange={6}>
       {/* <SocialMediaGuest /> */}
-      <PlayWithBlaze />
+      <SocialMediaGuest />
+      {/* <PlayWithBlaze /> */}
     </Carousel>
   );
 };
