@@ -1,8 +1,8 @@
-import React, { SetStateAction, useState } from 'react';
+import React, { SetStateAction, useEffect, useState } from 'react';
 import {
   MdClose,
-  MdInfo,
-  MdInfoOutline,
+  MdExpandLess,
+  MdExpandMore,
   MdZoomIn,
   MdZoomOut,
   MdZoomOutMap,
@@ -14,10 +14,24 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
   const [showInfo, setShowInfo] = useState(true);
 
   const closeModal = () => {
+    console.log('hide me');
     props.setIsVisible(false);
   };
 
   const toggleInfo = () => setShowInfo((cur) => !cur);
+
+  const resizeHandler = () => {
+    console.log('resized');
+
+    document
+      .getElementById(`fullscreen-image-${props.id}`)
+      ?.style.setProperty('height', `${window.innerHeight}px`);
+  };
+
+  useEffect(() => {
+    if (props.isVisible) window.addEventListener('resize', resizeHandler);
+    return () => window.removeEventListener('resize', resizeHandler);
+  }, [props.isVisible]);
 
   return props.isVisible ? (
     <TransformWrapper
@@ -26,7 +40,7 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
       }}
     >
       {({ zoomIn, zoomOut, resetTransform }: TransformProps) => (
-        <div className="fullscreen-image">
+        <div className="fullscreen-image" id={`fullscreen-image-${props.id}`}>
           <div className="close-button">
             <MdClose onClick={closeModal} />
           </div>
@@ -38,31 +52,43 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
                 className={`rotate-${props.rotation}`}
               />
             </TransformComponent>
-            {props.prompt && (
-              <div className={`info${showInfo ? '' : ' hidden'}`}>
-                <h2>Story Prompt</h2>
-                <p>&ldquo;{props.prompt}&rdquo;</p>
+            <div className={`info${showInfo ? '' : ' hidden'}`}>
+              <div className="info-left">
+                <h2>Prompt</h2>
+                {props.prompt && (
+                  <p className="prompt">&ldquo;{props.prompt}&rdquo;</p>
+                )}
               </div>
-            )}
+              <div className="info-right">
+                {props.username && <p className="user">{props.username}</p>}
+                {props.score && (
+                  <p className="score">
+                    - <strong>{Math.round(props.score)}</strong> points -
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
           <div className="controls">
-            <button onClick={zoomOut} title="Zoom Out">
-              <MdZoomOut />
-            </button>
-            <button onClick={resetTransform} title="Reset Image">
-              <MdZoomOutMap />
-            </button>
-            <button onClick={zoomIn} title="Zoom In">
-              <MdZoomIn />
-            </button>
-            {props.prompt && (
+            <div className="top-controls">
               <button
                 onClick={toggleInfo}
                 title={`${showInfo ? 'Hide' : 'Show'} Info`}
               >
-                {showInfo ? <MdInfo /> : <MdInfoOutline />}
+                {showInfo ? <MdExpandMore /> : <MdExpandLess />}
               </button>
-            )}
+            </div>
+            <div className="bottom-controls">
+              <button onClick={zoomOut} title="Zoom Out">
+                <MdZoomOut />
+              </button>
+              <button onClick={resetTransform} title="Reset Image">
+                <MdZoomOutMap />
+              </button>
+              <button onClick={zoomIn} title="Zoom In">
+                <MdZoomIn />
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -73,11 +99,13 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
 };
 
 interface FullscreenImageProps extends Submissions.SubItem {
+  id: number;
   src: string;
   rotation: number;
   prompt: string;
   username: string;
   isVisible: boolean;
+  score: number;
   setIsVisible: React.Dispatch<SetStateAction<boolean>>;
 }
 
