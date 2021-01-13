@@ -20,7 +20,7 @@ export const getMySubmissions = async (): Promise<SubItem[]> => {
       score: 45,
     },
     {
-      id: 1,
+      id: 2,
       image: '1231dwqsad',
       prompt:
         "Some prompt beleivable yes but let's make it even longer to test how long prompts look",
@@ -32,7 +32,7 @@ export const getMySubmissions = async (): Promise<SubItem[]> => {
       score: 45,
     },
     {
-      id: 1,
+      id: 3,
       image: '1231dwqsad',
       prompt: 'Some prompt beleivable yes',
       rotation: 0,
@@ -43,7 +43,7 @@ export const getMySubmissions = async (): Promise<SubItem[]> => {
       score: 45,
     },
     {
-      id: 1,
+      id: 4,
       image: '1231dwqsad',
       prompt: 'Some prompt beleivable yes',
       rotation: 0,
@@ -54,7 +54,7 @@ export const getMySubmissions = async (): Promise<SubItem[]> => {
       score: 45,
     },
     {
-      id: 1,
+      id: 5,
       image: '1231dwqsad',
       prompt: 'Some prompt beleivable yes',
       rotation: 0,

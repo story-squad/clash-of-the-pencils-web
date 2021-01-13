@@ -1,4 +1,4 @@
-import React, { SetStateAction, useState } from 'react';
+import React, { SetStateAction, useEffect, useState } from 'react';
 import {
   MdClose,
   MdExpandLess,
@@ -20,6 +20,19 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
 
   const toggleInfo = () => setShowInfo((cur) => !cur);
 
+  const resizeHandler = () => {
+    console.log('resized');
+
+    document
+      .getElementById(`fullscreen-image-${props.id}`)
+      ?.style.setProperty('height', `${window.innerHeight}px`);
+  };
+
+  useEffect(() => {
+    if (props.isVisible) window.addEventListener('resize', resizeHandler);
+    return () => window.removeEventListener('resize', resizeHandler);
+  }, [props.isVisible]);
+
   return props.isVisible ? (
     <TransformWrapper
       options={{
@@ -27,7 +40,7 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
       }}
     >
       {({ zoomIn, zoomOut, resetTransform }: TransformProps) => (
-        <div className="fullscreen-image">
+        <div className="fullscreen-image" id={`fullscreen-image-${props.id}`}>
           <div className="close-button">
             <MdClose onClick={closeModal} />
           </div>
@@ -86,6 +99,7 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
 };
 
 interface FullscreenImageProps extends Submissions.SubItem {
+  id: number;
   src: string;
   rotation: number;
   prompt: string;
