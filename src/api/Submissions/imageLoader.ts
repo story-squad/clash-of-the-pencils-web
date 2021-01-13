@@ -9,6 +9,7 @@ export interface SubItem {
   src: string;
   rotation: number;
   prompt: string;
+  score: number;
 }
 
 export const getImageFromS3 = async (sub: SubItem): Promise<SubItem> => {

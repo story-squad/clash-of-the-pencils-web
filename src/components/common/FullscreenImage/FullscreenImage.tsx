@@ -42,6 +42,9 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
               <div className={`info${showInfo ? '' : ' hidden'}`}>
                 <h2>Story Prompt</h2>
                 <p>&ldquo;{props.prompt}&rdquo;</p>
+                <p className="score">
+                  BLAZE SCORED YOUR STORY: {Math.round(props.score)}
+                </p>
               </div>
             )}
           </div>
@@ -78,6 +81,7 @@ interface FullscreenImageProps extends Submissions.SubItem {
   prompt: string;
   username: string;
   isVisible: boolean;
+  score: number;
   setIsVisible: React.Dispatch<SetStateAction<boolean>>;
 }
 
