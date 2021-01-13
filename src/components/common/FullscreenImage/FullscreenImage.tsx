@@ -1,8 +1,8 @@
 import React, { SetStateAction, useState } from 'react';
 import {
   MdClose,
-  MdInfo,
-  MdInfoOutline,
+  MdExpandLess,
+  MdExpandMore,
   MdZoomIn,
   MdZoomOut,
   MdZoomOutMap,
@@ -38,37 +38,43 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
                 className={`rotate-${props.rotation}`}
               />
             </TransformComponent>
-            {props.prompt && (
-              <div className={`info${showInfo ? '' : ' hidden'}`}>
-                <h2>Story Prompt</h2>
-                <p>&ldquo;{props.prompt}&rdquo;</p>
-                <p className="user-info">
-                  SUBMISSION SCORE: <span>{Math.round(props.score)}</span>{' '}
-                </p>
-                <p className="user-info">
-                  SUBMITTED BY: <span>{props.username}</span>
-                </p>
+            <div className={`info${showInfo ? '' : ' hidden'}`}>
+              <div className="info-left">
+                <h2>Prompt</h2>
+                {props.prompt && (
+                  <p className="prompt">&ldquo;{props.prompt}&rdquo;</p>
+                )}
               </div>
-            )}
+              <div className="info-right">
+                {props.username && <p className="user">{props.username}</p>}
+                {props.score && (
+                  <p className="score">
+                    - <strong>{Math.round(props.score)}</strong> points -
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
           <div className="controls">
-            <button onClick={zoomOut} title="Zoom Out">
-              <MdZoomOut />
-            </button>
-            <button onClick={resetTransform} title="Reset Image">
-              <MdZoomOutMap />
-            </button>
-            <button onClick={zoomIn} title="Zoom In">
-              <MdZoomIn />
-            </button>
-            {props.prompt && (
+            <div className="top-controls">
               <button
                 onClick={toggleInfo}
                 title={`${showInfo ? 'Hide' : 'Show'} Info`}
               >
-                {showInfo ? <MdInfo /> : <MdInfoOutline />}
+                {showInfo ? <MdExpandMore /> : <MdExpandLess />}
               </button>
-            )}
+            </div>
+            <div className="bottom-controls">
+              <button onClick={zoomOut} title="Zoom Out">
+                <MdZoomOut />
+              </button>
+              <button onClick={resetTransform} title="Reset Image">
+                <MdZoomOutMap />
+              </button>
+              <button onClick={zoomIn} title="Zoom In">
+                <MdZoomIn />
+              </button>
+            </div>
           </div>
         </div>
       )}
