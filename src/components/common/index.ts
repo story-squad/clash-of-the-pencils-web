@@ -1,4 +1,5 @@
 export { AuthModal } from './AuthModal';
+export { Carousel } from './Carousel';
 export { Checkbox } from './Checkbox';
 export { CookiePopup } from './CookiePopup';
 export { Countdown } from './Countdown';

@@ -1,0 +1,57 @@
+.schedule {
+  width: 400px;
+  padding: 2rem 2rem 4rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  h2 {
+    color: $white;
+    font-family: $display-font;
+    font-size: 3rem;
+    text-align: center;
+    text-shadow: 0 2px 2px #0005;
+    margin-bottom: 1rem;
+  }
+  p {
+    width: 100%;
+    color: $white;
+    font-family: $text-font;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+
+    &.disclaimer {
+      text-align: center;
+      font-weight: 200;
+      font-size: 1.2rem;
+      font-style: italic;
+      text-shadow: 0 2px 2px #0005;
+      color: $lt-orange;
+      em {
+        font-style: normal;
+      }
+    }
+
+    &:last-of-type {
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    strong {
+      font-weight: 600;
+      color: $seafoam;
+      text-shadow: 0 2px 2px #0005;
+    }
+    em {
+      font-style: italic;
+      text-shadow: 0 2px 2px #0005;
+      color: $ltblue;
+    }
+  }
+  a {
+    margin-top: 1rem;
+    @include button($orange);
+    font-size: 2rem;
+  }
+}

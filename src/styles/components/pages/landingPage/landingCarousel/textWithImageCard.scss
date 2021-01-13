@@ -1,0 +1,32 @@
+.text-with-image {
+  background-color: $jade;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+
+  @include bp(mid) {
+    flex-direction: row-reverse;
+  }
+
+  h2 {
+    font-size: 4rem;
+    color: $white;
+    font-family: $display-font;
+    text-shadow: 0 2px 2px #0005;
+    @include bp(mid) {
+      font-size: 7rem;
+      margin-right: 2rem;
+    }
+    @include bp(tablet) {
+      font-size: 10rem;
+    }
+  }
+  img {
+    max-height: 22rem;
+    max-width: 22rem;
+    @include bp(mid) {
+      width: 50%;
+    }
+  }
+}

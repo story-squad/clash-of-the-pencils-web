@@ -1,0 +1,14 @@
+.landing-page {
+  .landing-content {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    @import './landingCarousel/landingCarousel.scss';
+    @import './schedule.scss';
+
+    & > div {
+      width: 800px;
+      max-width: 100%;
+    }
+  }
+}

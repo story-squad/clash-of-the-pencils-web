@@ -11,12 +11,13 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap');
 
 // Component Stylesheets
-@import './components/pages/landingPages/landingPage.scss';
+@import './components/pages/landingPage/landingPage.scss';
 @import './components/pages/submissionPage/submissionPage.scss';
 @import './components/pages/votingPages/votingPage.scss';
 @import './components/pages/resultsPage/resultsPage.scss';
 @import './components/pages/resetPasswordPages/resetPasswordPages.scss';
 @import './components/pages/gameClosed.scss';
+@import './components/pages/activation.scss';
 
 // Common Components
 @import './components/common/modal.scss';
@@ -33,5 +34,6 @@
 @import './components/common/table.scss';
 @import './components/common/checkbox.scss';
 @import './components/common/thoughtBubble.scss';
+@import './components/pages/profilePage/profilePage.scss';
 @import './components/common/carousel/carousel.scss';
 @import './components/common/cookiePopup.scss';
