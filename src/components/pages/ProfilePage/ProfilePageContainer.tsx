@@ -3,7 +3,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { Submissions } from '../../../api';
 import { apiError, pastSubs } from '../../../state';
 import { Loader } from '../../common';
-import RenderProfile from './RenderProfile';
+import RenderProfile from './RenderProfilePage';
 
 const Profile: React.FC = () => {
   // pull list of users top 5 stories from recoil state && the API call getMySubmissions()

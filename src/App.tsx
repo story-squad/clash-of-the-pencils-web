@@ -11,7 +11,7 @@ import { Activation } from './components/pages/Activated';
 import { GamePage } from './components/pages/GamePage';
 import { VotingPage } from './components/pages/GamePage/VotingPage';
 import { LandingPage } from './components/pages/LandingPage';
-import { Profile } from './components/pages/Profile';
+import { Profile } from './components/pages/ProfilePage';
 import { ResetPasswordPage } from './components/pages/ResetPasswordPage';
 import { ResultsPage } from './components/pages/ResultsPage';
 
