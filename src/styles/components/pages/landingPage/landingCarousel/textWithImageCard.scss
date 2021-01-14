@@ -1,3 +1,7 @@
+.carousel-card:nth-of-type(odd) .text-with-image {
+  background-color: $ltblue;
+}
+
 .text-with-image {
   background-color: $jade;
   display: flex;
@@ -13,13 +17,15 @@
     font-size: 4rem;
     color: $white;
     font-family: $display-font;
-    text-shadow: 0 2px 2px #0005;
+    text-shadow: 0 2px 2px #0009;
     @include bp(mid) {
       font-size: 7rem;
       margin-right: 2rem;
+      text-shadow: 0 4px 4px #0009;
     }
     @include bp(tablet) {
       font-size: 10rem;
+      text-shadow: 0 10px 10px #0009;
     }
   }
   img {
