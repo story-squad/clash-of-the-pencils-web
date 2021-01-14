@@ -1,5 +1,5 @@
 .social-media-guest {
-  background-color: $jade;
+  background-color: $lt-orange;
   padding: 1rem;
   display: flex;
   flex-flow: column nowrap;
@@ -54,7 +54,7 @@
           @include drop-shadow;
           margin-bottom: 1.5rem;
           border-radius: 10rem;
-          border: 2px solid $jade;
+          border: 2px solid $lt-orange;
           overflow: hidden;
           max-width: 10rem;
           max-height: 10rem;
@@ -111,7 +111,7 @@
             strong {
               font-family: $display-font;
               font-size: 2.4rem;
-              color: $red;
+              color: $orange;
               text-shadow: 0 2px 2px #0003;
 
               @include bp(mid) {

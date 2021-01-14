@@ -1,12 +1,12 @@
 import React from 'react';
 import { AiOutlineInstagram } from 'react-icons/ai';
+import tammyB from '../../../../assets/img/guests/tammy-b-13012021.png';
 
 const guestInfo: IGuestInfo = {
-  handle: 'colorcoffeeandchaos',
-  name: 'Barbara Jones',
-  pic:
-    'https://scontent-sjc3-1.cdninstagram.com/v/t51.2885-19/s150x150/52995629_2209235015995215_3952522694427148288_n.jpg?_nc_ht=scontent-sjc3-1.cdninstagram.com&_nc_ohc=lkxxgKnm5OQAX8BZ73O&tp=1&oh=779b674bde3cf8b6fdb8911b586389c3&oe=60275C2B',
-  text: 'Barbara is a totally awesome 2nd Grade teacher from Detroit, MI!',
+  handle: 'inspiretammyb',
+  name: 'Tammy B',
+  pic: tammyB,
+  text: 'Tammy B is an amazing kindergarten teacher and writer!',
 };
 
 const SocialMediaGuest = (): React.ReactElement => {
@@ -29,7 +29,7 @@ const SocialMediaGuest = (): React.ReactElement => {
             <div className="welcome">
               <p>Welcome our guest judge,</p>
               <p>
-                <strong>Barbara Jones!</strong>
+                <strong>{guestInfo.name}!</strong>
               </p>
               <p className="blurb">{guestInfo.text}</p>
             </div>
