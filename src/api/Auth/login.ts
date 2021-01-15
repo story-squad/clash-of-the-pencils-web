@@ -4,7 +4,7 @@ import { axiosWithoutAuth } from '../axiosWithConfig';
 export const login = async (
   credentials: LoginBody,
 ): Promise<AxiosResponse<LoginResponse>> => {
-  return axiosWithoutAuth().post('/email/login', credentials);
+  return axiosWithoutAuth().post('/auth/login', credentials);
 };
 
 export interface LoginBody {

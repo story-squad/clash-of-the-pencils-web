@@ -14,7 +14,7 @@ export interface SubItem {
 
 export const getImageFromS3 = async (sub: SubItem): Promise<SubItem> => {
   const res: AxiosResponse<ArrayBuffer> = await axiosWithAuth().get(
-    `/upload/image/${sub.image}`,
+    `/contest/submission/${sub.image}`,
     {
       responseType: 'arraybuffer',
     },

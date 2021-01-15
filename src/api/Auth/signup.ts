@@ -4,11 +4,11 @@ import { axiosWithoutAuth } from '../axiosWithConfig';
 export type { AxiosError } from 'axios';
 
 export const signup = (credentials: SignupBody): Promise<AxiosResponse> => {
-  return axiosWithoutAuth().post('/email/register', credentials);
+  return axiosWithoutAuth().post('/auth/register', credentials);
 };
 
 export const getRNGusername = (): Promise<AxiosResponse<string>> => {
-  return axiosWithoutAuth().get(`/email/randomusername`);
+  return axiosWithoutAuth().get(`/auth/randomusername`);
 };
 
 export const formatSignupBody = (formData: SignupFormState): SignupBody => {
