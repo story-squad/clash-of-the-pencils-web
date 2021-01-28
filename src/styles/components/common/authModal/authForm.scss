@@ -70,6 +70,7 @@
         align-items: flex-start;
       }
 
+      .text,
       .codename-input,
       & > .form-input {
         width: 350px;
@@ -93,6 +94,9 @@
           color: $white;
           font-size: 2rem;
           cursor: pointer;
+        }
+        .form-input {
+          margin-bottom: 0;
         }
       }
     }

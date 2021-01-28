@@ -4,10 +4,9 @@ import { axiosWithAuth } from '../axiosWithConfig';
 export interface PromptItem {
   id: number;
   prompt: string;
-  active: boolean;
-  submitted: boolean;
+  submitted?: boolean;
 }
 
 export const getCurrent = (): Promise<AxiosResponse<PromptItem>> => {
-  return axiosWithAuth().get('/contest/prompt');
+  return axiosWithAuth().get('/contest/prompt/active');
 };

@@ -25,7 +25,7 @@ const App = (): React.ReactElement => {
       <Switch>
         {/* Public Routes */}
         <Route exact path="/" component={LandingPage} />
-        <Route path="/activated" component={Activation} />
+        <Route path="/activate" component={Activation} />
         <Route path="/vote" component={VotingPage} />
         <Route path="/tos" component={TermsOfService} />
         <Route path="/game" component={GamePage} />

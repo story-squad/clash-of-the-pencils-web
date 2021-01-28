@@ -17,7 +17,7 @@ const SubmissionForm = (
   const [complete, setComplete] = useRecoilState(submitModal.success);
   const username = useRecoilValue(auth.username);
 
-  const markAsSubmitted = useSetRecoilState(prompts.setSubmitted);
+  const markAsSubmitted = useSetRecoilState(prompts.hasSubmitted);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

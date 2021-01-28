@@ -14,10 +14,12 @@ export const getRNGusername = (): Promise<AxiosResponse<string>> => {
 export const formatSignupBody = (formData: SignupFormState): SignupBody => {
   const age = parseInt(formData.ageStr);
   return {
+    firstname: formData.firstname,
+    lastname: formData.lastname,
     email: formData.email,
     parentEmail: age < 13 ? formData.parentEmail : formData.email,
     password: formData.password,
-    username: formData.username,
+    codename: formData.codename,
     age,
   };
 };
@@ -28,8 +30,10 @@ export interface SignupFormState extends Omit<SignupBody, 'age'> {
 }
 
 interface SignupBody {
+  firstname: string;
+  lastname: string;
   email: string;
-  username: string;
+  codename: string;
   password: string;
   parentEmail: string;
   age: number;

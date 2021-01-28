@@ -40,15 +40,7 @@ const RenderPromptBox = ({
         // If there is a prompt
         <>
           {showHeader && <h2>Today&apos;s Prompt</h2>}
-          {prompt.active ? (
-            // If the existing prompt is active
-            <>
-              <p>{prompt.prompt}</p>
-            </>
-          ) : (
-            // If the prompt is NOT active!
-            <p>Submissions are currently closed.</p>
-          )}
+          <p>{prompt.prompt}</p>
           <p className="countdown-display">
             <Countdown toEvent="submit" /> left to submit!
           </p>
