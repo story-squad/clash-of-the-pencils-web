@@ -23,17 +23,13 @@ const LoginForm = (props: Modal.ModalComponentProps): React.ReactElement => {
       })
       .catch((err: Auth.AxiosError) => {
         console.log({ err });
-        if (err.response)
-          setError('form', {
-            type: 'manual',
-            message: err.response.data.error,
-          });
-        else {
-          setError('form', {
-            type: 'manual',
-            message: 'Uh oh! Login unsuccessful',
-          });
+        let message: string;
+        if (err.response?.data?.message) {
+          message = err.response.data.message;
+        } else {
+          message = 'An unknown error occurred. Please try again.';
         }
+        setError('form', { type: 'manual', message });
       });
   };
 

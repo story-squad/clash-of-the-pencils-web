@@ -60,7 +60,7 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
                 )}
               </div>
               <div className="info-right">
-                {props.username && <p className="user">{props.username}</p>}
+                {props.codename && <p className="user">{props.codename}</p>}
                 {props.score && (
                   <p className="score">
                     - <strong>{Math.round(props.score)}</strong> points -
@@ -103,7 +103,7 @@ interface FullscreenImageProps extends Submissions.SubItem {
   src: string;
   rotation: number;
   prompt: string;
-  username: string;
+  codename: string;
   isVisible: boolean;
   score: number;
   setIsVisible: React.Dispatch<SetStateAction<boolean>>;

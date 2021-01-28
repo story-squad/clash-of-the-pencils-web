@@ -48,7 +48,7 @@ const SubmissionItem = ({
       <div className="sub-info">
         <p>
           <span className="alt">Codename: </span>
-          {sub.username}
+          {sub.codename}
         </p>
         {/* <p>
           <span className="alt">Age: </span>

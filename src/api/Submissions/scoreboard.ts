@@ -15,7 +15,7 @@ export const processScoreboardData = (
   data: ScoreboardItem[],
 ): ProcessedScoreboardItem[] => {
   return data.map((d, i) => ({
-    username: d.username,
+    codename: d.codename,
     score: Math.round(d.score),
     placement: i + 1,
   }));
@@ -23,12 +23,12 @@ export const processScoreboardData = (
 
 export const ScoreboardHeadings = [
   { display: 'Placement', propName: 'placement' },
-  { display: 'Codename', propName: 'username' },
+  { display: 'Codename', propName: 'codename' },
   { display: 'Score', propName: 'score' },
 ];
 
 export interface ScoreboardItem extends TableItem {
-  username: string;
+  codename: string;
   score: number;
 }
 

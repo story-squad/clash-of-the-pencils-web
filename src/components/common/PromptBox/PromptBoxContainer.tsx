@@ -15,7 +15,6 @@ const PromptBoxContainer = (props: PromptBoxProps): React.ReactElement => {
     if (active && !prompt) {
       Prompts.getCurrent()
         .then(({ data }) => {
-          console.log(data);
           setPrompt(data);
         })
         .catch((err) => {
