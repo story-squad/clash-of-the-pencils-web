@@ -8,5 +8,5 @@ export interface PromptItem {
 }
 
 export const getCurrent = (): Promise<AxiosResponse<PromptItem>> => {
-  return axiosWithAuth().get('/contest/prompt/active');
+  return axiosWithAuth().get('/api/contest/prompts/active');
 };

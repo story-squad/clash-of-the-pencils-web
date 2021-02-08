@@ -61,11 +61,11 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
               </div>
               <div className="info-right">
                 {props.codename && <p className="user">{props.codename}</p>}
-                {props.score && (
+                {/* {props.score && (
                   <p className="score">
                     - <strong>{Math.round(props.score)}</strong> points -
                   </p>
-                )}
+                )} */}
               </div>
             </div>
           </div>

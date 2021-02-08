@@ -6,7 +6,7 @@ export const getScoreboard = async (): Promise<ProcessedScoreboardItem[]> => {
   const {
     data,
   }: AxiosResponse<ScoreboardItem[]> = await axiosWithoutAuth().get(
-    '/leaderboard',
+    '/api/contest/leaderboard',
   );
   return Promise.resolve(processScoreboardData(data));
 };

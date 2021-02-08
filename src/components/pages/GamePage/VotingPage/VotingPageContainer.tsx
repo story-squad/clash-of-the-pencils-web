@@ -17,6 +17,7 @@ const VotingPageContainer = (): React.ReactElement => {
       setLoadingError(null);
       Submissions.getTop3Subs()
         .then((top3Subs) => {
+          console.log({ top3Subs });
           if (top3Subs.length > 0) {
             setLoadingError(null);
             setTop3(top3Subs);
