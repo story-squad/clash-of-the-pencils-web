@@ -8,7 +8,7 @@ export const login = async (
 };
 
 export interface LoginBody {
-  email: string;
+  codename: string;
   password: string;
 }
 

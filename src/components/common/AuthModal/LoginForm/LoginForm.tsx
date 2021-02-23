@@ -43,14 +43,14 @@ const LoginForm = (props: Modal.ModalComponentProps): React.ReactElement => {
       {errors.form && <div className="server-error">{errors.form.message}</div>}
       <div className="inputs">
         <Input
-          id="loginEmail"
-          name="email"
-          label="Email"
-          type="email"
+          id="loginCodename"
+          name="codename"
+          label="Codename"
+          type="codename"
           errors={errors}
           register={register}
-          rules={{ required: 'Please enter your email!' }}
-          placeholder="Enter your email"
+          rules={{ required: 'Please enter your codename!' }}
+          placeholder="Enter your codename"
         />
         <Input
           id="loginPassword"
