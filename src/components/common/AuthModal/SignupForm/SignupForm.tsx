@@ -67,15 +67,37 @@ const SignupForm = (): React.ReactElement => {
       </div>
       <img src={squadUp} alt="Squad Up!" />
       <p>
-        A Story Squad account is free! Please fill out the information below to
-        get started.
+        Can&apos;t wait to start writing? Create a free, safe, and super-secret
+        account below!
       </p>
       {errors.form && <div className="server-error">{errors.form.message}</div>}
       <div className="inputs">
+        <Input
+          id="firstname"
+          name="firstname"
+          label="First Name"
+          errors={errors}
+          register={register}
+          rules={{
+            required: 'First name is required!',
+          }}
+          placeholder="Your first name"
+        />
+        <Input
+          id="lastname"
+          name="lastname"
+          label="Last Name"
+          errors={errors}
+          register={register}
+          rules={{
+            required: 'Last name is required!',
+          }}
+          placeholder="Your last name"
+        />
         <div className="codename-input">
           <Input
             id="codename"
-            name="username"
+            name="codename"
             label="Codename"
             errors={errors}
             register={register}
@@ -96,13 +118,25 @@ const SignupForm = (): React.ReactElement => {
                 },
               },
             }}
-            placeholder="Enter your codename"
+            placeholder="Your secret codename!"
           />
           {/* <GiRollingDices
             title="Get a random Codename"
             onClick={setRNGusername}
           /> */}
         </div>
+        <Input
+          id="age"
+          name="ageStr"
+          label="Age"
+          errors={errors}
+          register={register}
+          rules={{
+            required: 'Age is required!',
+            validate: (value) => !!parseInt(value) || 'Age must be a number!',
+          }}
+          placeholder="How old are you?"
+        />
         <Input
           id="signupEmail"
           name="email"
@@ -118,26 +152,45 @@ const SignupForm = (): React.ReactElement => {
               message: 'Please enter a valid email address.',
             },
           }}
-          placeholder="SuperWriter@storysquad.org"
+          placeholder="What's your email address?"
         />
-        <Input
-          id="age"
-          name="ageStr"
-          label="Age"
-          errors={errors}
-          register={register}
-          rules={{
-            required: 'Age is required!',
-            validate: (value) => !!parseInt(value) || 'Age must be a number!',
-          }}
-          placeholder="Enter your age"
-        />
-        {/* <ul className="text">
-              <li>Password requirements:</li>
-              <li>Between 8 and 32 characters</li>
-              <li>Includes at least 1 Capital</li>
-              <li>Includes at least 1 Number</li>
-            </ul> */}
+
+        {/* If the user is younger than 13, require a parent email */}
+        {parseInt(watch('ageStr')) < 13 && (
+          <Input
+            id="parentEmail"
+            name="parentEmail"
+            label="Parent Email"
+            errors={errors}
+            register={register}
+            rules={{
+              validate: {
+                // required field if the entered age is less than 13
+                required: (value) => {
+                  if (parseInt(watch('ageStr')) < 13)
+                    return value.length > 1 || 'Parent email is required!';
+                  else return true;
+                },
+                // checks the email and parent email to make sure they are different
+                differentEmail: (value) => {
+                  return (
+                    value !== watch('email') ||
+                    'Parent email must be different than email!'
+                  );
+                },
+              },
+              pattern: {
+                // ensures the entered parent email string matches a valid email address pattern
+                value: dataConstraints.emailPattern,
+                message: 'Please enter a valid email address.',
+              },
+            }}
+            placeholder="What's your parent's email?"
+          />
+        )}
+        <div style={{ flexBasis: '100%' }}>
+          {/* This is a flex line break*/}
+        </div>
         <Input
           id="signupPassword"
           name="password"
@@ -173,7 +226,7 @@ const SignupForm = (): React.ReactElement => {
               },
             },
           }}
-          placeholder="Create a safe password"
+          placeholder="Create a safe and secret password!"
         />
         <Input
           id="signupConfirm"
@@ -190,42 +243,8 @@ const SignupForm = (): React.ReactElement => {
               return value === watch('password') || "Passwords don't match!";
             },
           }}
-          placeholder="Re-enter your password"
+          placeholder="Type your password one more time!"
         />
-
-        {/* If the user is younger than 13, require a parent email */}
-        {parseInt(watch('ageStr')) < 13 && (
-          <Input
-            id="parentEmail"
-            name="parentEmail"
-            label="Parent Email"
-            errors={errors}
-            register={register}
-            rules={{
-              validate: {
-                // required field if the entered age is less than 13
-                required: (value) => {
-                  if (parseInt(watch('ageStr')) < 13)
-                    return value.length > 1 || 'Parent email is required!';
-                  else return true;
-                },
-                // checks the email and parent email to make sure they are different
-                differentEmail: (value) => {
-                  return (
-                    value !== watch('email') ||
-                    'Parent email must be different than email!'
-                  );
-                },
-              },
-              pattern: {
-                // ensures the entered parent email string matches a valid email address pattern
-                value: dataConstraints.emailPattern,
-                message: 'Please enter a valid email address.',
-              },
-            }}
-            placeholder="ParentSuperWriter@storysquad.org"
-          />
-        )}
       </div>
 
       <Checkbox
@@ -234,7 +253,12 @@ const SignupForm = (): React.ReactElement => {
         label={
           <>
             I have read and agree to the&nbsp;
-            <Link to="/tos" className="text-button" target="_blank">
+            <Link
+              to="/tos"
+              className="text-button"
+              target="_blank"
+              tabIndex={-1}
+            >
               Terms & Conditions
             </Link>
             .

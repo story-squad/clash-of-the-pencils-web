@@ -13,6 +13,7 @@ const LoginForm = (props: Modal.ModalComponentProps): React.ReactElement => {
   const { register, handleSubmit, errors, setError, clearErrors } = useForm();
   const login = useSetRecoilState(auth.isLoggedIn);
   const setAuthModalOpen = useSetRecoilState(auth.authModalOpen);
+  const setAuthIsLogin = useSetRecoilState(auth.authModalIsLogin);
 
   const onSubmit: SubmitHandler<Auth.LoginBody> = (data) => {
     Auth.login(data)
@@ -22,17 +23,13 @@ const LoginForm = (props: Modal.ModalComponentProps): React.ReactElement => {
       })
       .catch((err: Auth.AxiosError) => {
         console.log({ err });
-        if (err.response)
-          setError('form', {
-            type: 'manual',
-            message: err.response.data.error,
-          });
-        else {
-          setError('form', {
-            type: 'manual',
-            message: 'Uh oh! Login unsuccessful',
-          });
+        let message: string;
+        if (err.response?.data?.message) {
+          message = err.response.data.message;
+        } else {
+          message = 'An unknown error occurred. Please try again.';
         }
+        setError('form', { type: 'manual', message });
       });
   };
 
@@ -42,18 +39,18 @@ const LoginForm = (props: Modal.ModalComponentProps): React.ReactElement => {
         <DragonBoi className="dragon login-dragon" />
       </div>
       <img src={welcomeBack} alt="Welcome Back" />
-      <p>Hey! Sign in below to get back into the game.</p>
+      <p>Ready to write? Sign in below to get back into the game.</p>
       {errors.form && <div className="server-error">{errors.form.message}</div>}
       <div className="inputs">
         <Input
-          id="loginEmail"
-          name="email"
-          label="Email"
-          type="email"
+          id="loginCodename"
+          name="codename"
+          label="Codename"
+          type="codename"
           errors={errors}
           register={register}
-          rules={{ required: 'Please enter your email!' }}
-          placeholder="Enter your email"
+          rules={{ required: 'Please enter your codename!' }}
+          placeholder="Enter your codename"
         />
         <Input
           id="loginPassword"
@@ -79,6 +76,14 @@ const LoginForm = (props: Modal.ModalComponentProps): React.ReactElement => {
         <Link to="/reset" onClick={props.closeModal} className="text-button">
           Click Here
         </Link>
+        .
+      </div>
+
+      <div className="text">
+        Still need an account?{' '}
+        <span onClick={() => setAuthIsLogin(false)} className="text-button">
+          Click Here
+        </span>
         .
       </div>
     </form>

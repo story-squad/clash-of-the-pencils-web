@@ -10,7 +10,7 @@ const RenderCelebration = ({
   return (
     <div className="celebration">
       <ThoughtBubble
-        render={() => <WinnerBubble winnerName={winner.username} />}
+        render={() => <WinnerBubble winnerName={winner.codename} />}
       />
       <div className="bottom">
         <div className="dragon">

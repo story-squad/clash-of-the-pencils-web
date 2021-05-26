@@ -26,7 +26,7 @@ export const get = (flag: flags = null): string | number | null => {
 
     // If a flag is specified, return the correct data
     if (flag === 'userId') return decodedToken.id;
-    if (flag === 'username') return decodedToken.username;
+    if (flag === 'username') return decodedToken.codename;
     if (flag === 'userEmail') return decodedToken.email;
 
     // Otherwise, we return the token
@@ -58,6 +58,6 @@ export interface DecodedToken {
   exp: number;
   iat: number;
   id: number;
-  username: string;
+  codename: string;
   email: string;
 }
