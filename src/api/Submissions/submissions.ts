@@ -18,5 +18,5 @@ export const getTop3Subs = async (): Promise<SubItem[]> => {
 
 export const uploadSubmission = (reqBody: FormData): Promise<AxiosResponse> => {
   // TODO
-  return axiosWithAuth().post('/api/contest/submissions', reqBody);
+  return axiosWithAuth().post('/api/submissions', reqBody);
 };
