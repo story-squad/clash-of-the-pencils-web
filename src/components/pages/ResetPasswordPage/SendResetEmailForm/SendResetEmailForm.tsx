@@ -21,8 +21,11 @@ const SendEmailResetForm = (): React.ReactElement => {
       .catch((err: Auth.AxiosError) => {
         console.log({ err });
         let message: string;
-        if (err.response?.data && typeof err.response.data.error === 'string') {
-          message = err.response.data.error;
+        if (
+          err.response?.data &&
+          typeof err.response.data.message === 'string'
+        ) {
+          message = err.response.data.message;
         } else {
           message = 'An unknown error occurred. Please try again.';
         }

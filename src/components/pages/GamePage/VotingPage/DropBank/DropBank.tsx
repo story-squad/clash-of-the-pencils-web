@@ -27,7 +27,7 @@ const VotingItem = ({ dropZoneId, ...sub }: VotingItemProps) => {
           <SubCard {...sub} canPreview={false} />
           <div className="sub-info">
             <p>
-              <span className="alt">{sub.username}</span>
+              <span className="alt">{sub.codename}</span>
             </p>
           </div>
           {dragons[dndState[dropZoneId].contents]}

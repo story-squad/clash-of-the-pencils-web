@@ -4,7 +4,7 @@ import { axiosWithAuth } from '../axiosWithConfig';
 export interface SubItem {
   id: number;
   userId: number;
-  username: string;
+  codename: string;
   image: string;
   src: string;
   rotation: number;
@@ -14,7 +14,7 @@ export interface SubItem {
 
 export const getImageFromS3 = async (sub: SubItem): Promise<SubItem> => {
   const res: AxiosResponse<ArrayBuffer> = await axiosWithAuth().get(
-    `/upload/image/${sub.image}`,
+    `/contest/submission/${sub.image}`,
     {
       responseType: 'arraybuffer',
     },

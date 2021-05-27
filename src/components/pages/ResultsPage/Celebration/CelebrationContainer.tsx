@@ -22,7 +22,8 @@ const CelebrationContainer = (): React.ReactElement => {
     if (!winner) {
       Submissions.getWinner()
         .then((w) => {
-          setWinner(w);
+          if (w) setWinner(w);
+          else setError('No winner chosen');
         })
         .catch((err) => {
           console.log({ err });

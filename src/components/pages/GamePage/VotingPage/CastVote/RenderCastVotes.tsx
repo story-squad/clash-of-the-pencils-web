@@ -38,7 +38,11 @@ const RenderCastVotes = (): React.ReactElement => {
       })
       .catch((err) => {
         console.log({ err });
-        setError('Could not submit vote. Please try again later.');
+        if (typeof err === 'string') {
+          setError(err);
+        } else {
+          setError('Could not submit vote. Please try again later.');
+        }
       });
   };
 

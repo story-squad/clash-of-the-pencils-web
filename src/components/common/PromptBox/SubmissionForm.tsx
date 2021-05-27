@@ -15,14 +15,17 @@ const SubmissionForm = (
   const [error, setError] = useRecoilState(submitModal.error);
   const [loading, setLoading] = useRecoilState(submitModal.loading);
   const [complete, setComplete] = useRecoilState(submitModal.success);
+  const prompt = useRecoilValue(prompts.currentPrompt);
   const username = useRecoilValue(auth.username);
 
-  const markAsSubmitted = useSetRecoilState(prompts.setSubmitted);
+  const markAsSubmitted = useSetRecoilState(prompts.hasSubmitted);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!file) {
       setError('No image selected!');
+    } else if (!prompt) {
+      setError('There is currently no prompt.');
     } else {
       setLoading(true);
       try {
@@ -34,12 +37,14 @@ const SubmissionForm = (
           return;
         }
         const reqBody = new FormData();
-        reqBody.append('image', file);
+        reqBody.append('story', file);
+        reqBody.append('promptId', `${prompt.id}`);
         reqBody.append('base64Image', base64Image.toString());
 
         await Submissions.uploadSubmission(reqBody);
         setComplete(true);
         markAsSubmitted(true);
+        setError(null);
       } catch (err) {
         if (err?.response?.data?.error) {
           if (err.response.data.error === 'Transcription error')

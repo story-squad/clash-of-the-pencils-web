@@ -10,8 +10,10 @@ const SubCard = ({
   const [showModal, setShowModal] = useState(false);
 
   const modalOpenHandler = () => {
-    onModalOpen();
-    setShowModal(true);
+    if (canPreview) {
+      onModalOpen();
+      setShowModal(true);
+    }
   };
 
   const keydownListener = (e: KeyboardEvent) => {
