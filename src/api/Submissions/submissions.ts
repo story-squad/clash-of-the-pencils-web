@@ -11,7 +11,7 @@ export const getMySubmissions = async (userId: number): Promise<SubItem[]> => {
 
 export const getTop3Subs = async (): Promise<SubItem[]> => {
   const { data }: AxiosResponse<SubItem[]> = await axiosWithAuth().get(
-    '/api/contest/submissions/top',
+    '/api/submissions/top',
   );
   return data;
 };
