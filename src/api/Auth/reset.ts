@@ -1,18 +1,19 @@
-import { AxiosResponse } from 'axios';
 import { axiosWithoutAuth } from '../axiosWithConfig';
+import { IPassResetPostBody } from './types';
 
-export const getResetEmail = (email: string): Promise<AxiosResponse> => {
-  return axiosWithoutAuth().get(`/api/auth/reset?email=${email}`);
-};
-
-export const updatePassword = (
-  body: NewPasswordBody,
-): Promise<AxiosResponse> => {
-  return axiosWithoutAuth().post('/api/auth/reset', body);
-};
-
-export interface NewPasswordBody {
+export const getResetEmail = async ({
+  email,
+}: {
   email: string;
-  code: string;
-  password: string;
-}
+}): Promise<{ message: string }> => {
+  const { data } = await axiosWithoutAuth().get(
+    `/api/account/password?email=${email}`,
+  );
+  return data;
+};
+
+export const updatePassword = async (
+  body: IPassResetPostBody,
+): Promise<void> => {
+  await axiosWithoutAuth().post('/api/account/password', body);
+};

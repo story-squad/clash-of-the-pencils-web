@@ -1,22 +1,13 @@
-import { AxiosResponse } from 'axios';
 import { axiosWithAuth } from '../axiosWithConfig';
-import { SubItem } from './imageLoader';
+import { ISubItem } from './types';
 
-export const getMySubmissions = async (userId: number): Promise<SubItem[]> => {
-  const { data }: AxiosResponse<SubItem[]> = await axiosWithAuth().get(
+export const getMySubmissions = async (userId: number): Promise<ISubItem[]> => {
+  const { data } = await axiosWithAuth().get(
     `/api/users/${userId}/submissions`,
   );
   return data;
 };
 
-export const getTop3Subs = async (): Promise<SubItem[]> => {
-  const { data }: AxiosResponse<SubItem[]> = await axiosWithAuth().get(
-    '/api/submissions/top',
-  );
-  return data;
-};
-
-export const uploadSubmission = (reqBody: FormData): Promise<AxiosResponse> => {
-  // TODO
+export const uploadSubmission = (reqBody: FormData): Promise<ISubItem> => {
   return axiosWithAuth().post('/api/submissions', reqBody);
 };

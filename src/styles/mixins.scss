@@ -1,13 +1,14 @@
-@mixin placeholder($color) {
-  &::placeholder {
-    color: $color;
+@mixin hide-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
   }
-  &:-ms-input-placeholder {
-    color: $color;
-  }
-  ::-ms-input-placeholder {
-    color: $color;
-  }
+}
+
+@mixin drop-shadow($style: 0 2px 6px #0000001a) {
+  box-shadow: $style;
+  -moz-box-shadow: $style;
 }
 
 @mixin word-wrap() {
@@ -20,107 +21,4 @@
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
-}
-
-@mixin button(
-  $bgcolor: $blue,
-  $font-color: $white,
-  $padding: 0.75rem 5rem,
-  $border-width: 0,
-  $border-color: #000
-) {
-  padding: $padding;
-  color: $font-color;
-  background-color: $bgcolor;
-  cursor: pointer;
-  border: $border-width solid $border-color;
-  border-radius: 4px;
-  font-family: $display-font;
-  font-size: 1.5rem;
-  transition: all 0.2s ease-in-out;
-  @include drop-shadow(#0003);
-  text-decoration: none;
-  text-align: center;
-  &:hover {
-    background-color: darken($bgcolor, 5%);
-    transition: all 0.2s ease-in-out;
-  }
-  &:disabled {
-    background-color: #c4c4c4;
-    cursor: not-allowed;
-  }
-}
-
-@mixin drop-shadow($color: #0005) {
-  box-shadow: 0 4px 4px $color;
-  -moz-box-shadow: 0 4px 4px $color;
-}
-
-@mixin text-button($color, $darken-amt: 15%) {
-  color: $color;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.15s ease-in;
-  &:active,
-  &:hover {
-    color: darken($color, $darken-amt);
-    transition: all 0.15s ease-in;
-  }
-}
-
-@mixin hide-scroll {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-@mixin paragraph($size: 1rem) {
-  font-family: $text-font;
-  font-size: $size;
-  line-height: $size + 1rem;
-}
-
-@mixin text-input() {
-  border: none;
-  border-bottom: 2px solid $white;
-  background-color: transparent;
-  color: $white;
-  font-family: $text-font;
-  padding: 0.5rem;
-  @include placeholder(#c4c4c4);
-  position: relative;
-  z-index: 3;
-}
-
-@mixin img-center() {
-  display: block;
-  margin: 0 auto;
-  padding: 0 3rem;
-  max-height: 250px;
-
-  @media (min-width: $tablet) {
-    max-height: none;
-    padding: auto 6rem;
-  }
-}
-
-@mixin aspect-ratio($containerWidth: 100%, $width: 1, $height: 1) {
-  width: $containerWidth;
-  position: relative;
-
-  &::before {
-    display: block;
-    content: '';
-    width: 100%;
-    padding-top: ($height / $width) * 100%;
-  }
-  & > div:not(.fullscreen-image) {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
 }

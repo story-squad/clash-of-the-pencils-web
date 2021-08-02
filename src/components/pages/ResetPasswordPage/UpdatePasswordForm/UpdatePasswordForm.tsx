@@ -5,18 +5,12 @@ import { Input, Modal } from '../../../common';
 import ResetPageSuccess from '../ResetPageSuccess';
 
 const PasswordForm = (
-  props: Omit<Auth.NewPasswordBody, 'password'>,
+  props: Omit<Auth.IPassResetPostBody, 'password'>,
 ): React.ReactElement => {
-  const {
-    register,
-    handleSubmit,
-    errors,
-    setError,
-    clearErrors,
-    watch,
-  } = useForm({
-    mode: 'onChange',
-  });
+  const { register, handleSubmit, errors, setError, clearErrors, watch } =
+    useForm({
+      mode: 'onChange',
+    });
   const [showModal, setShowModal] = useState(false);
 
   // onSubmit should send the users email a reset password link/token that has a 10 min timer

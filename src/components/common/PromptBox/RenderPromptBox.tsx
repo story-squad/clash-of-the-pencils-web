@@ -9,7 +9,7 @@ import { PromptBoxProps } from './PromptBoxTypes';
 import SubmissionForm from './SubmissionForm';
 
 const RenderPromptBox = ({
-  hideSubmitButton = false,
+  // hideSubmitButton = false,
   showHeader = false,
 }: PromptBoxProps): React.ReactElement => {
   const prompt = useRecoilValue(prompts.currentPrompt);
@@ -45,13 +45,14 @@ const RenderPromptBox = ({
             <Countdown toEvent="submit" /> left to submit!
           </p>
           <div className="prompt-footer">
-            {!hideSubmitButton && (
+            {/* {!hideSubmitButton && (
               <button onClick={toggleModal} disabled={prompt.submitted}>
                 {prompt.submitted
                   ? 'Submission Received!'
                   : 'Submit Your Story'}
               </button>
-            )}
+            )} */}
+            <button onClick={toggleModal}>Submit Your Story</button>
           </div>
         </>
       ) : (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { SubItem } from '../../../../api/Submissions';
+import { Submissions } from '../../../../api';
 import { pastSubs } from '../../../../state';
 import { SubCard } from '../../../common';
 
@@ -9,10 +9,10 @@ const Gallery = (): React.ReactElement => {
 
   return (
     <div className="gallery">
-      {(submissionList as SubItem[]).map((pic, i) => (
+      {(submissionList as Submissions.ISubItem[]).map((pic, i) => (
         <SubCard key={i} {...pic} />
       ))}
-      {(submissionList as SubItem[]).length === 0 && (
+      {(submissionList as Submissions.ISubItem[]).length === 0 && (
         <div className="gallery-error">
           <p>You don&apos;t have any past submissions.</p>
           <p>Check back later!</p>

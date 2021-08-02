@@ -4,16 +4,10 @@ import { Auth, Users } from '../../../../../api';
 import { Input } from '../../../../common';
 
 const PasswordForm = (): React.ReactElement => {
-  const {
-    register,
-    handleSubmit,
-    errors,
-    setError,
-    clearErrors,
-    watch,
-  } = useForm({
-    mode: 'onChange',
-  });
+  const { register, handleSubmit, errors, setError, clearErrors, watch } =
+    useForm({
+      mode: 'onChange',
+    });
 
   // onSubmit update the users password
   const onSubmit: SubmitHandler<Users.UpdatePasswordBody> = (data) => {

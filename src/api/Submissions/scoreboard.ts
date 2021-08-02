@@ -1,37 +1,7 @@
-import { AxiosResponse } from 'axios';
-import { TableItem } from '../../components/common/Table/TableTypes';
 import { axiosWithoutAuth } from '../axiosWithConfig';
+import { ILeaderboardItem } from './types';
 
-export const getScoreboard = async (): Promise<ProcessedScoreboardItem[]> => {
-  const {
-    data,
-  }: AxiosResponse<ScoreboardItem[]> = await axiosWithoutAuth().get(
-    '/api/contest/leaderboard',
-  );
-  return Promise.resolve(processScoreboardData(data));
+export const getScoreboard = async (): Promise<ILeaderboardItem[]> => {
+  const { data } = await axiosWithoutAuth().get('/api/clash/leaderboard');
+  return data;
 };
-
-export const processScoreboardData = (
-  data: ScoreboardItem[],
-): ProcessedScoreboardItem[] => {
-  return data.map((d, i) => ({
-    codename: d.codename,
-    score: Math.round(d.score),
-    placement: i + 1,
-  }));
-};
-
-export const ScoreboardHeadings = [
-  { display: 'Placement', propName: 'placement' },
-  { display: 'Codename', propName: 'codename' },
-  { display: 'Score', propName: 'score' },
-];
-
-export interface ScoreboardItem extends TableItem {
-  codename: string;
-  score: number;
-}
-
-export interface ProcessedScoreboardItem extends ScoreboardItem {
-  placement: number;
-}

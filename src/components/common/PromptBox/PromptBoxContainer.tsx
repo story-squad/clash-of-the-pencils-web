@@ -14,7 +14,7 @@ const PromptBoxContainer = (props: PromptBoxProps): React.ReactElement => {
   useEffect(() => {
     if (active && !prompt) {
       Prompts.getCurrent()
-        .then(({ data }) => {
+        .then((data) => {
           setPrompt(data);
         })
         .catch((err) => {

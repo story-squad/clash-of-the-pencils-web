@@ -11,14 +11,20 @@ const RenderScoreboard = ({
       <div className="scoreboard">
         <InfoHoverTip tip={tooltips.scoreboardInstructions} position="left" />
         <h3>Weekly Leaderboard</h3>
-        <Table headings={Submissions.ScoreboardHeadings} rows={scoreboard} />
+        <Table headings={ScoreboardHeadings} rows={scoreboard} />
       </div>
     </>
   );
 };
 
+const ScoreboardHeadings = [
+  { display: 'Placement', propName: 'placement' },
+  { display: 'Codename', propName: 'codename' },
+  { display: 'Score', propName: 'score' },
+];
+
 interface RenderScoreboardProps {
-  scoreboard: Submissions.ProcessedScoreboardItem[];
+  scoreboard: Submissions.ILeaderboardItem[];
 }
 
 export default RenderScoreboard;

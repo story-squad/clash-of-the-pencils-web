@@ -1,3 +1,5 @@
+import { Submissions } from '../../../api';
+
 export interface TableRowProps {
   headings: TableHeadingProps[];
   row: TableItem;
@@ -8,7 +10,7 @@ export interface TableColProps {
 }
 
 export interface TableProps {
-  rows: TableItem[];
+  rows: Submissions.ILeaderboardItem[];
   headings: TableHeadingProps[];
 }
 
@@ -17,6 +19,6 @@ export interface TableHeadingProps {
   propName: string;
 }
 
-export interface TableItem {
+export interface TableItem extends Submissions.ILeaderboardItem {
   [key: string]: string | number;
 }

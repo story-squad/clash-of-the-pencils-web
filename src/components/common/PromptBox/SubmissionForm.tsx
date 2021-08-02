@@ -1,6 +1,6 @@
 import React from 'react';
 import { BarLoader } from 'react-spinners';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { InfoHoverTip, Modal } from '..';
 import { Submissions } from '../../../api';
 import { tooltips } from '../../../config';
@@ -17,8 +17,6 @@ const SubmissionForm = (
   const [complete, setComplete] = useRecoilState(submitModal.success);
   const prompt = useRecoilValue(prompts.currentPrompt);
   const username = useRecoilValue(auth.username);
-
-  const markAsSubmitted = useSetRecoilState(prompts.hasSubmitted);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,7 +41,6 @@ const SubmissionForm = (
 
         await Submissions.uploadSubmission(reqBody);
         setComplete(true);
-        markAsSubmitted(true);
         setError(null);
       } catch (err) {
         if (err?.response?.data?.error) {

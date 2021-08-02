@@ -37,7 +37,7 @@ const VotingItem = ({ dropZoneId, ...sub }: VotingItemProps) => {
   );
 };
 
-interface VotingItemProps extends Submissions.SubItem {
+interface VotingItemProps extends Submissions.ISubItem {
   dropZoneId: string;
 }
 

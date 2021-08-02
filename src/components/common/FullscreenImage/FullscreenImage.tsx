@@ -98,7 +98,7 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
   );
 };
 
-interface FullscreenImageProps extends Submissions.SubItem {
+interface FullscreenImageProps extends Submissions.ISubItem {
   id: number;
   src: string;
   rotation: number;
