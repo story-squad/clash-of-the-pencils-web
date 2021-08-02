@@ -42,12 +42,24 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "sb": "start-storybook -p 6006 -s public",
+    "sb:build": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   },
   "browserslist": {
@@ -63,6 +75,12 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^6.3.6",
+    "@storybook/addon-essentials": "^6.3.6",
+    "@storybook/addon-links": "^6.3.6",
+    "@storybook/node-logger": "^6.3.6",
+    "@storybook/preset-create-react-app": "^3.2.0",
+    "@storybook/react": "^6.3.6",
     "@typescript-eslint/eslint-plugin": "^4.6.0",
     "@typescript-eslint/parser": "^4.6.0",
     "eslint": "^7.12.1",
@@ -70,5 +88,19 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.5",
     "prettier": "^2.1.2"
+  },
+  "_moduleAliases": {
+    "@api": "./src/api",
+    "@assets": "./src/assets",
+    "@atoms": "./src/components/atoms",
+    "@molecules": "./src/components/molecules",
+    "@organisms": "./src/components/organisms",
+    "@templates": "./src/components/templates",
+    "@views": "./src/components/views",
+    "@config": "./src/config",
+    "@hooks": "./src/hooks",
+    "@state": "./src/state",
+    "@styles": "./src/styles",
+    "@utils": "./src/utils"
   }
 }

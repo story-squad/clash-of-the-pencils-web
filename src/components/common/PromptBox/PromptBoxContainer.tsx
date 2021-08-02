@@ -1,6 +1,6 @@
+import { Prompts } from '@api';
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { Prompts } from '../../../api';
 import { prompts } from '../../../state';
 import { time } from '../../../utils';
 import { PromptBoxProps } from './PromptBoxTypes';
