@@ -29,7 +29,10 @@ const RenderCastVotes = (): React.ReactElement => {
 
   const submitVotes = () => {
     setError(null);
-    Voting.submit(voteSubmission)
+    if (!voteSubmission?.votes) {
+      throw new Error('No votes cast');
+    }
+    Voting.submit({ votes: voteSubmission.votes })
       .then((res) => {
         // SUBMISSION SUCCESSFUL!
         setVoted(true);

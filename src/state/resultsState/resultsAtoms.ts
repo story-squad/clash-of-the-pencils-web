@@ -1,7 +1,7 @@
 import { atom } from 'recoil';
 import { Submissions } from '../../api';
 
-export const winner = atom<null | Submissions.SubItem>({
+export const winner = atom<null | Submissions.ISubItem>({
   key: 'winningStory',
   default: null,
 });
@@ -12,7 +12,7 @@ export const winner = atom<null | Submissions.SubItem>({
 //   { placement: 3, username: 'User3', score: 42 },
 // ];
 
-export const scoreboard = atom<null | Submissions.ProcessedScoreboardItem[]>({
+export const scoreboard = atom<null | Submissions.ILeaderboardItem[]>({
   key: 'scoreboard',
   default: null,
 });

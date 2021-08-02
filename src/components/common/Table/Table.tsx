@@ -12,7 +12,7 @@ const Table = (props: TableProps): React.ReactElement => {
       </div>
       <div className="table-body">
         {props.rows.map((r, i) => (
-          <TableRow headings={props.headings} row={r} key={i} />
+          <TableRow headings={props.headings} row={{ ...r }} key={i} />
         ))}
       </div>
     </div>

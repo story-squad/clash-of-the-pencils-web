@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { Checkbox, Input } from '../..';
-import { Auth } from '../../../../api';
+import { Auth, Users } from '../../../../api';
 import { ReactComponent as DragonBoi } from '../../../../assets/img/dragon-boi.svg';
 import squadUp from '../../../../assets/img/squad-up.png';
 import { dataConstraints } from '../../../../config';
@@ -34,7 +34,7 @@ const SignupForm = (): React.ReactElement => {
   //     });
   // };
 
-  const onSubmit: SubmitHandler<Auth.SignupFormState> = (data): void => {
+  const onSubmit: SubmitHandler<Users.INewUser> = (data): void => {
     // Format form data for API call body
     const credentials = Auth.formatSignupBody(data);
     Auth.signup(credentials)

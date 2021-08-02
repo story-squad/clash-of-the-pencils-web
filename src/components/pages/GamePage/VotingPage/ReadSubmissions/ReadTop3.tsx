@@ -59,7 +59,7 @@ const SubmissionItem = ({
   );
 };
 
-interface SubmissionItemComponentProps extends Submissions.SubItem {
+interface SubmissionItemComponentProps extends Submissions.ISubItem {
   markIndexRead: () => void;
   read: boolean;
 }

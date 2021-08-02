@@ -18,6 +18,7 @@
     "convertkit-react": "^1.4.2",
     "dotenv": "^8.2.0",
     "jwt-decode": "^3.0.0",
+    "luxon": "^2.0.1",
     "moment": "^2.29.1",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
@@ -74,6 +75,9 @@
       "last 1 safari version"
     ]
   },
+  "resolutions": {
+    "babel-loader": "8.1.0"
+  },
   "devDependencies": {
     "@storybook/addon-actions": "^6.3.6",
     "@storybook/addon-essentials": "^6.3.6",
@@ -81,6 +85,7 @@
     "@storybook/node-logger": "^6.3.6",
     "@storybook/preset-create-react-app": "^3.2.0",
     "@storybook/react": "^6.3.6",
+    "@types/luxon": "^1.27.1",
     "@typescript-eslint/eslint-plugin": "^4.6.0",
     "@typescript-eslint/parser": "^4.6.0",
     "eslint": "^7.12.1",
@@ -88,19 +93,5 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.5",
     "prettier": "^2.1.2"
-  },
-  "_moduleAliases": {
-    "@api": "./src/api",
-    "@assets": "./src/assets",
-    "@atoms": "./src/components/atoms",
-    "@molecules": "./src/components/molecules",
-    "@organisms": "./src/components/organisms",
-    "@templates": "./src/components/templates",
-    "@views": "./src/components/views",
-    "@config": "./src/config",
-    "@hooks": "./src/hooks",
-    "@state": "./src/state",
-    "@styles": "./src/styles",
-    "@utils": "./src/utils"
   }
 }

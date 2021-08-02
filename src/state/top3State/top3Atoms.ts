@@ -3,7 +3,7 @@ import { Submissions } from '../../api';
 
 const top3InitState = null;
 
-export const top3List = atom<Submissions.SubItem[] | null>({
+export const top3List = atom<Submissions.ISubItem[] | null>({
   key: 'top3List',
   default: top3InitState,
 });

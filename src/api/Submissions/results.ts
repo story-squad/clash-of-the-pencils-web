@@ -1,11 +1,15 @@
 import { AxiosResponse } from 'axios';
 import { axiosWithAuth } from '../axiosWithConfig';
-import { SubItem } from './imageLoader';
+import { ISubItem } from './types';
 
-export const getWinner = async (): Promise<SubItem> => {
-  const { data }: AxiosResponse<SubItem> = await axiosWithAuth().get(
-    '/api/submissions/winner',
+export const getWinner = async (): Promise<ISubItem> => {
+  const { data }: AxiosResponse<ISubItem> = await axiosWithAuth().get(
+    '/api/clash/winners',
   );
-  console.log(data);
+  return data;
+};
+
+export const getTop3Subs = async (): Promise<ISubItem[]> => {
+  const { data } = await axiosWithAuth().get('/api/clash/top');
   return data;
 };

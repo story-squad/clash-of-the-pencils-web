@@ -1,12 +1,7 @@
-import { AxiosResponse } from 'axios';
 import { axiosWithAuth } from '../axiosWithConfig';
+import { IPrompt } from './types';
 
-export interface PromptItem {
-  id: number;
-  prompt: string;
-  submitted?: boolean;
-}
-
-export const getCurrent = (): Promise<AxiosResponse<PromptItem>> => {
-  return axiosWithAuth().get('/api/prompts/active');
+export const getCurrent = async (): Promise<IPrompt> => {
+  const { data } = await axiosWithAuth().get('/api/prompts/active');
+  return data;
 };

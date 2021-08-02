@@ -11,9 +11,7 @@ const SendEmailResetForm = (): React.ReactElement => {
 
   // onSubmit should send the users email a reset password link/token that has a 10 min timer
   const onSubmit: SubmitHandler<{ email: string }> = (data) => {
-    console.log('Form Submitted: ');
-    const userEmail = data.email;
-    Auth.getResetEmail(userEmail)
+    Auth.getResetEmail(data)
       .then(() => {
         clearErrors();
         setShowModal(true);

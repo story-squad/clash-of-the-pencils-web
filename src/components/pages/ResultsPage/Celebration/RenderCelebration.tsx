@@ -23,6 +23,6 @@ const RenderCelebration = ({
 };
 
 interface RenderCelebrationProps {
-  winner: Submissions.SubItem;
+  winner: Submissions.ISubItem;
 }
 export default RenderCelebration;

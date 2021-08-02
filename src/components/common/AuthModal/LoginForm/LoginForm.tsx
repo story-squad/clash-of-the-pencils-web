@@ -15,10 +15,10 @@ const LoginForm = (props: Modal.ModalComponentProps): React.ReactElement => {
   const setAuthModalOpen = useSetRecoilState(auth.authModalOpen);
   const setAuthIsLogin = useSetRecoilState(auth.authModalIsLogin);
 
-  const onSubmit: SubmitHandler<Auth.LoginBody> = (data) => {
+  const onSubmit: SubmitHandler<Auth.ILoginBody> = (data) => {
     Auth.login(data)
       .then((res) => {
-        login(res.data.token);
+        login(res.token);
         setAuthModalOpen(false);
       })
       .catch((err: Auth.AxiosError) => {
