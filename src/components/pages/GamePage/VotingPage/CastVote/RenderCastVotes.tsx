@@ -32,11 +32,11 @@ const RenderCastVotes = (): React.ReactElement => {
     if (!voteSubmission?.votes) {
       throw new Error('No votes cast');
     }
-    Voting.submit({ votes: voteSubmission.votes })
+    Voting.submit(voteSubmission.votes)
       .then((res) => {
         // SUBMISSION SUCCESSFUL!
         setVoted(true);
-        setSecretMessage(res.data.tomorrow);
+        setSecretMessage(res.tomorrow);
         setShowModal(true);
       })
       .catch((err) => {
