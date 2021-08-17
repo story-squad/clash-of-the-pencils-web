@@ -1,18 +1,33 @@
+import { useClickOutside } from '@story-squad/react-utils';
 import React from 'react';
-import HeaderIcon from './HeaderIcon';
+import HeaderIcon, { IHeaderIconProps } from './HeaderIcon';
 import MobileNav from './MobileNav';
 import './styles/index.scss';
 import TabletNav from './TabletNav';
 
-export default function Header(): React.ReactElement {
+type IHeaderProps = IHeaderIconProps;
+
+export default function Header({
+  isMenuOpen,
+  toggleMenu,
+}: IHeaderProps): React.ReactElement {
+  // Menu should close on click outside of header
+  const [clickRef] = useClickOutside({
+    isActive: isMenuOpen,
+    onClick: closeMenuIfOpen,
+  });
+  function closeMenuIfOpen() {
+    if (isMenuOpen) toggleMenu();
+  }
+
   return (
-    <header>
+    <header ref={clickRef}>
       <section id="main-header">
-        <HeaderIcon />
+        <HeaderIcon isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
         <h1>Clash of the Pencils</h1>
         <TabletNav />
       </section>
-      <MobileNav />
+      <MobileNav isMenuOpen={isMenuOpen} />
     </header>
   );
 }

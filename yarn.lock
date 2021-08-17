@@ -1859,6 +1859,14 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@story-squad/react-utils@^0.0.21":
+  version "0.0.21"
+  resolved "https://registry.yarnpkg.com/@story-squad/react-utils/-/react-utils-0.0.21.tgz#8458f2e1c1390da34393552d6ef3df3893ad6b5f"
+  integrity sha512-t2m/v4s349z6OXl2l3hw95uLR0fX1zomKloUG6S3+1QAr4/lpF9QWNd2sUu8I75WUrK0e/JWCNDVqV1cz5LXMw==
+  dependencies:
+    react "^17.0.2"
+    react-dom "^17.0.2"
+
 "@storybook/addon-actions@6.3.6", "@storybook/addon-actions@^6.3.6":
   version "6.3.6"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-6.3.6.tgz#691d61d6aca9c4b3edba50c531cbe4d4139ed451"
@@ -12242,7 +12250,7 @@ react-docgen@^5.0.0:
     node-dir "^0.1.10"
     strip-indent "^3.0.0"
 
-react-dom@^17.0.1:
+react-dom@^17.0.1, react-dom@^17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
   integrity sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==

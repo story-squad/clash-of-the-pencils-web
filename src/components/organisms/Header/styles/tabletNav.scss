@@ -6,6 +6,30 @@
     display: none;
   }
   .tablet-nav {
-    display: block;
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    flex-grow: 1;
+
+    nav {
+      ul {
+        display: flex;
+        flex-flow: row nowrap;
+        li {
+          &:not(:first-of-type) {
+            margin-left: 2.5rem;
+          }
+          a {
+            color: $white;
+            font-family: $text-font;
+            font-size: 1.4rem;
+            line-height: 2.2rem;
+
+            span {
+              display: none;
+            }
+          }
+        }
+      }
+    }
   }
 }

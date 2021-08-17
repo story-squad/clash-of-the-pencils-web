@@ -1,8 +1,12 @@
 import { Meta, Story } from '@storybook/react';
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './Header';
 
-const Template: Story = (props) => <Header {...props} />;
+const Template: Story = (props) => {
+  const [show, setShow] = useState(false);
+  const toggle = () => setShow((x) => !x);
+  return <Header isMenuOpen={show} toggleMenu={toggle} {...props} />;
+};
 
 export const Default = Template.bind({});
 

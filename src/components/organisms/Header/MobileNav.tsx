@@ -1,9 +1,17 @@
+import { classnames } from '@story-squad/react-utils';
 import React from 'react';
 import NavItems from './NavItems';
 
-export default function MobileNav(): React.ReactElement {
+export interface IMobileNavProps {
+  isMenuOpen: boolean;
+}
+
+export default function MobileNav({
+  isMenuOpen,
+}: IMobileNavProps): React.ReactElement {
   return (
-    <div className="mobile-nav">
+    <div className={classnames('mobile-nav', !isMenuOpen && 'collapsed')}>
+      <div className="spacer" />
       <NavItems />
     </div>
   );
