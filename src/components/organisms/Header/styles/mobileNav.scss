@@ -1,0 +1,10 @@
+// Default to mobile only showing (mobile-first)
+.tablet-nav {
+  display: none;
+}
+.mobile-nav {
+  display: block;
+
+  // Design
+  background-color: $brand-blue;
+}

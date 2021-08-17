@@ -1,0 +1,11 @@
+@import '~/src/styles/mediaQueries.scss';
+
+// Mobile should be hidden while tablet is visible
+@include bp(tablet) {
+  .mobile-nav {
+    display: none;
+  }
+  .tablet-nav {
+    display: block;
+  }
+}

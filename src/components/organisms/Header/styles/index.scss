@@ -1,0 +1,36 @@
+@import '~/src/styles/newIndex.scss';
+
+header {
+  // Viewport-based navigation
+  @import './mobileNav.scss';
+  @import './tabletNav.scss';
+
+  // Layout
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+
+  section#main-header {
+    // Layout
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 0 1.6rem;
+
+    // Design
+    background-color: $brand-blue;
+
+    // Typography
+    color: $white;
+
+    svg.logo {
+      height: 6.6rem;
+    }
+
+    h1 {
+      font-family: $display-font;
+      font-size: 1.8rem;
+      line-height: 2.8rem;
+      padding: 2.6rem 0;
+    }
+  }
+}
