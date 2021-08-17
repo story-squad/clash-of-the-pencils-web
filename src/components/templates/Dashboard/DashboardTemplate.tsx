@@ -1,6 +1,7 @@
 import React from 'react';
 import { Footer, Header } from '../../organisms';
 import { IDashboardTemplateProps } from './DashboardTemplate.model';
+import './styles/index.scss';
 
 export default function DashboardTemplate({
   children,
@@ -8,7 +9,7 @@ export default function DashboardTemplate({
   return (
     <div className="dashboard-template">
       <Header />
-      {children}
+      <div id="dashboard-content">{children}</div>
       <Footer />
     </div>
   );

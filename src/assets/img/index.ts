@@ -1,3 +1,3 @@
 export { ReactComponent as ClashLogo } from './clash-logo.svg';
-export { ReactComponent as PencilMonster } from './pencil-monster.svg';
+export { default as pencilMonster } from './pencil-monster.png';
 export { ReactComponent as ProfileIcon } from './profile-icon.svg';

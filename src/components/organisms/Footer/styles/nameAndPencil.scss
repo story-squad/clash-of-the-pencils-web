@@ -9,7 +9,7 @@
     flex-flow: row nowrap;
   }
 
-  svg {
+  img {
     @include bp(tablet) {
       margin-right: 1.6rem;
     }
