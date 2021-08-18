@@ -10,7 +10,7 @@ const Template: Story<PropsWithChildren<IDashboardTemplateProps>> = (props) => (
   </RecoilRoot>
 );
 
-const Content = (): ReactElement => {
+const Content = ({ p = 8 }: { p?: number }): ReactElement => {
   const paragraph = (
     <p
       style={{
@@ -28,25 +28,19 @@ const Content = (): ReactElement => {
       non duis esse sint.
     </p>
   );
-  return (
-    <>
-      {paragraph}
-      {paragraph}
-      {paragraph}
-      {paragraph}
-      {paragraph}
-      {paragraph}
-      {paragraph}
-      {paragraph}
-    </>
-  );
+  return <>{new Array(p).fill(paragraph)}</>;
 };
 
 export const Default = Template.bind({});
 Default.argTypes = {};
 
-export const WithContent = Template.bind({});
-WithContent.args = {
+export const WithSmallContent = Template.bind({});
+WithSmallContent.args = {
+  children: <Content p={1} />,
+};
+
+export const WithLargeContent = Template.bind({});
+WithLargeContent.args = {
   children: <Content />,
 };
 
