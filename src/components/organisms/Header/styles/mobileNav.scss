@@ -18,14 +18,14 @@
   // Collapsing behavior
   &.collapsed {
     nav {
-      bottom: 0;
+      display: none;
     }
   }
 
   nav {
+    display: block;
     position: absolute;
     width: 100%;
-    top: 0;
     background-color: $brand-blue;
 
     ul {

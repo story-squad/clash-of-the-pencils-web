@@ -11,7 +11,6 @@ export default function MobileNav({
 }: IMobileNavProps): React.ReactElement {
   return (
     <div className={classnames('mobile-nav', !isMenuOpen && 'collapsed')}>
-      <div className="spacer" />
       <NavItems />
     </div>
   );
