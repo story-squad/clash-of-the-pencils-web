@@ -9,7 +9,9 @@ export default function DashboardTemplate({
   return (
     <div className="dashboard-template">
       <Header />
-      <div id="dashboard-content">{children}</div>
+      <div id="dashboard-content">
+        <div className="dashboard-content-container">{children}</div>
+      </div>
       <Footer />
     </div>
   );

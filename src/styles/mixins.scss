@@ -23,7 +23,7 @@
   hyphens: auto;
 }
 
-@mixin safe-zone($width: 700px) {
+@mixin safe-zone($width: 1000px) {
   width: 100%;
   max-width: $width;
   margin: 0 auto;

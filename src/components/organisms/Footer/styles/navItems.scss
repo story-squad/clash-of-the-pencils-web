@@ -21,6 +21,14 @@ nav {
 
   ul {
     li {
+      font-family: $text-font;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      color: $white;
+
+      &.hide-on-tablet {
+        display: list-item;
+      }
       &.hide-on-mobile {
         display: none;
       }
@@ -28,16 +36,15 @@ nav {
         &:not(:first-of-type) {
           margin-left: 4rem;
         }
+        &.hide-on-tablet {
+          display: none;
+        }
         &.hide-on-mobile {
           display: list-item;
         }
       }
       a {
-        font-family: $text-font;
-        font-size: 1.6rem;
         font-weight: 600;
-        line-height: 2.4rem;
-        color: $white;
         border-bottom: 1px solid $white;
       }
     }

@@ -6,8 +6,10 @@ import './styles/index.scss';
 export default function Footer(): React.ReactElement {
   return (
     <footer id="main-footer">
-      <NameAndPencil />
-      <FooterNav />
+      <div className="main-footer-container">
+        <NameAndPencil />
+        <FooterNav />
+      </div>
     </footer>
   );
 }

@@ -22,12 +22,14 @@ export default function Header({
 
   return (
     <header ref={clickRef}>
-      <section id="main-header">
-        <HeaderIcon isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
-        <h1>Clash of the Pencils</h1>
-        <TabletNav />
-      </section>
-      <MobileNav isMenuOpen={isMenuOpen} />
+      <div className="main-header-container">
+        <section id="main-header">
+          <HeaderIcon isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+          <h1>Clash of the Pencils</h1>
+          <TabletNav />
+        </section>
+        <MobileNav isMenuOpen={isMenuOpen} />
+      </div>
     </header>
   );
 }

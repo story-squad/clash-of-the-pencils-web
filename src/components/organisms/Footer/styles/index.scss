@@ -1,23 +1,26 @@
 @import '~/src/styles/newIndex.scss';
 
 footer#main-footer {
-  // Layout
-  display: flex;
-  flex-flow: row nowrap;
-
-  padding: 1rem 2.5rem;
-
   // Design
   background-color: $brand-blue-6;
 
-  // Typography
-  color: $white;
+  .main-footer-container {
+    // Layout
+    @include safe-zone();
+    display: flex;
+    flex-flow: row nowrap;
 
-  @import './nameAndPencil.scss';
+    padding: 1rem 2.5rem;
 
-  nav {
-    // Stretches the `nav` element!
-    flex-grow: 1;
+    // Typography
+    color: $white;
+
+    @import './nameAndPencil.scss';
+
+    nav {
+      // Stretches the `nav` element!
+      flex-grow: 1;
+    }
+    @import './navItems.scss';
   }
-  @import './navItems.scss';
 }

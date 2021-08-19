@@ -1,36 +1,39 @@
 @import '~/src/styles/newIndex.scss';
 
 header {
-  // Viewport-based navigation
-  @import './mobileNav.scss';
-  @import './tabletNav.scss';
+  // Design
+  background-color: $brand-blue;
 
-  // Layout
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: stretch;
+  .main-header-container {
+    // Viewport-based navigation
+    @import './mobileNav.scss';
+    @import './tabletNav.scss';
 
-  section#main-header {
     // Layout
     display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    padding: 0 1.6rem;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    @include safe-zone();
 
-    // Design
-    background-color: $brand-blue;
+    section#main-header {
+      // Layout
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      padding: 0 1.6rem;
 
-    // Typography
-    color: $white;
+      // Typography
+      color: $white;
 
-    @import './headerIcon.scss';
+      @import './headerIcon.scss';
 
-    h1 {
-      cursor: pointer;
-      font-family: $display-font;
-      font-size: 1.8rem;
-      line-height: 2.8rem;
-      padding: 2.6rem 0;
+      h1 {
+        cursor: pointer;
+        font-family: $display-font;
+        font-size: 1.8rem;
+        line-height: 2.8rem;
+        padding: 2.6rem 0;
+      }
     }
   }
 }
