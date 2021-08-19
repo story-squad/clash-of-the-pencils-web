@@ -3,6 +3,7 @@ export * as app from './appState';
 export * as auth from './authState';
 export * as clearState from './clearState';
 export * as dnd from './dndState';
+export * as leaderboard from './leaderboard';
 export * as pastSubs from './pastSubsState';
 export * as prompts from './promptState';
 export * as results from './resultsState';
