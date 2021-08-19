@@ -9,6 +9,7 @@ footer#main-footer {
     @include safe-zone();
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
 
     padding: 1rem 2.5rem;
 

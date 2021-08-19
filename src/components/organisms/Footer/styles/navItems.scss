@@ -26,6 +26,10 @@ nav {
       line-height: 2.4rem;
       color: $white;
 
+      &:not(:last-of-type) {
+        margin-bottom: 0.4rem;
+      }
+
       &.hide-on-tablet {
         display: list-item;
       }
@@ -34,6 +38,7 @@ nav {
       }
       @include bp(tablet) {
         &:not(:first-of-type) {
+          margin-bottom: unset;
           margin-left: 4rem;
         }
         &.hide-on-tablet {
@@ -44,7 +49,6 @@ nav {
         }
       }
       a {
-        font-weight: 600;
         border-bottom: 1px solid $white;
       }
     }
