@@ -24,6 +24,6 @@ const Template: Story<Pick<ILeaderboardProps, 'daily' | 'weekly'>> = (
 export const Default = Template.bind({});
 
 export default {
-  title: 'Components/Molecules/Leaderboard',
+  title: 'Components/Organisms/Leaderboard',
   component: Leaderboard,
 } as Meta;

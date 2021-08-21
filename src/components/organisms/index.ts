@@ -1,5 +1,6 @@
 export * from './Footer';
 export * from './Header';
+export * from './Leaderboard';
 export * from './Modal';
 export * from './Prompt';
 export * from './Schedule';

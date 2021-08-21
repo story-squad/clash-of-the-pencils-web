@@ -1,2 +1,2 @@
-export {} from './Leaderboard';
 export {} from './Submission';
+export { Table } from './Table';
