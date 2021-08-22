@@ -1,0 +1,12 @@
+@import './tableCell.scss';
+
+.table-header {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  width: 100%;
+
+  .table-header-cell {
+    @include table-cell-layout();
+  }
+}

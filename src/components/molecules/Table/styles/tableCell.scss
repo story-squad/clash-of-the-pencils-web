@@ -1,0 +1,17 @@
+@mixin table-cell-layout() {
+  // Cells should all be flexed
+  display: flex;
+  flex-flow: row nowrap;
+  flex: 1 auto 0;
+
+  // This allows us to cut off words with a '...' in our cells
+  // (this is great for too-long usernames!)
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  // ? This is potentially not needed
+  min-width: 0;
+  // This prevents any wrapping onto a new line
+  white-space: nowrap;
+}

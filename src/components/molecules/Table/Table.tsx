@@ -1,16 +1,19 @@
 import React from 'react';
+import './styles/index.scss';
+import { ITableBodyProps, TableBody } from './TableBody';
+import { ITableHeaderProps, TableHeader } from './TableHeader';
 
-export interface ITableProps {
-  /**
-   * The rows of the table, NOT including the header
-   */
-  rows: unknown[];
-  /**
-   * An array of React Nodes that serve as table headers
-   */
-  cols: React.ReactNode[];
-}
+export interface ITableProps extends ITableHeaderProps, ITableBodyProps {}
 
-export default function Table({ cols, rows }: ITableProps): React.ReactElement {
-  return <article className="table"></article>;
+export default function Table({
+  headings,
+  rows,
+}: ITableProps): React.ReactElement {
+  console.log('table', headings, rows);
+  return (
+    <table className="table">
+      <TableHeader headings={headings} />
+      <TableBody rows={rows} />
+    </table>
+  );
 }

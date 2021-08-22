@@ -1,0 +1,18 @@
+@import './tableCell.scss';
+
+.table-body {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+
+  .table-row {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    width: 100%;
+
+    .table-cell {
+      @include table-cell-layout();
+    }
+  }
+}
