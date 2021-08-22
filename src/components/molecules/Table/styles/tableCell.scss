@@ -9,6 +9,8 @@
   word-break: break-all;
   overflow: hidden;
   text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
 
   // ? This is potentially not needed
   min-width: 0;
