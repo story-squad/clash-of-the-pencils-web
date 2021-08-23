@@ -1,10 +1,11 @@
 import React, { useMemo } from 'react';
 import { Table } from '../../molecules';
+import './styles/index.scss';
 
 export interface ILeaderboardProps {
   dailyIsOpen: boolean;
-  daily: unknown[];
-  weekly: unknown[];
+  daily: React.ReactNode[][];
+  weekly: React.ReactNode[][];
 
   openDaily: () => void;
   openWeekly: () => void;
@@ -23,11 +24,11 @@ export default function Leaderboard({
     () => (dailyIsOpen ? daily : weekly),
     [dailyIsOpen, daily, weekly],
   );
-  const cols = useMemo(() => [], []);
+  const headings = useMemo(() => [<>&#127942;</>, 'Codename', 'Points'], []);
   return (
     <section className="leaderboard">
       {/* TOGGLER GOES HERE */}
-      <Table cols={cols} rows={rows} />
+      <Table headings={headings} rows={rows} />
     </section>
   );
 }

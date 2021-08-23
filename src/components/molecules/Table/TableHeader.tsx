@@ -13,12 +13,14 @@ export function TableHeader({
   headings,
 }: ITableHeaderProps): React.ReactElement {
   return (
-    <th className="table-header">
-      {headings.map((heading, i) => (
-        <td key={i} className="table-header-cell">
-          {heading}
-        </td>
-      ))}
-    </th>
+    <thead className="table-header">
+      <tr className="table-row table-header-row">
+        {headings.map((heading, i) => (
+          <td key={i} className="table-header-cell table-cell">
+            {heading}
+          </td>
+        ))}
+      </tr>
+    </thead>
   );
 }

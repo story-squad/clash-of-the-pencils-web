@@ -8,10 +8,10 @@ export interface ITableBodyProps {
 export function TableBody({ rows }: ITableBodyProps): React.ReactElement {
   console.log('table body', rows);
   return (
-    <div className="table-body">
+    <tbody className="table-body">
       {rows.map((row, i) => (
         <TableRow key={i} row={row} />
       ))}
-    </div>
+    </tbody>
   );
 }

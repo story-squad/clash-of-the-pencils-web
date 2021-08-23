@@ -22,6 +22,24 @@ const Template: Story<Pick<ILeaderboardProps, 'daily' | 'weekly'>> = (
 };
 
 export const Default = Template.bind({});
+Default.args = { ...getDisplayData() };
+
+function getDisplayData() {
+  return {
+    daily: [
+      [1, 'Joanne', 100],
+      [2, 'Joanne', 80],
+      [3, 'Joanne', 65],
+      [4, 'Joanne', 50],
+    ],
+    weekly: [
+      [1, 'Joanne', 100],
+      [2, 'Joanne', 80],
+      [3, 'Joanne', 65],
+      [4, 'Joanne', 50],
+    ],
+  };
+}
 
 export default {
   title: 'Components/Organisms/Leaderboard',
