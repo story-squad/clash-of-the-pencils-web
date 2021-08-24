@@ -1,4 +1,6 @@
 import React, { useMemo } from 'react';
+import { Toggle } from '../../atoms';
+import { ToggleOption } from '../../atoms/Toggle';
 import { Table } from '../../molecules';
 import './styles/index.scss';
 
@@ -25,9 +27,24 @@ export default function Leaderboard({
     [dailyIsOpen, daily, weekly],
   );
   const headings = useMemo(() => [<>&#127942;</>, 'Codename', 'Points'], []);
+
+  const toggleOptions = useMemo<ToggleOption[]>(
+    () => [
+      {
+        text: 'Daily',
+        onSelect: openDaily,
+      },
+      {
+        text: 'Weekly',
+        onSelect: openWeekly,
+      },
+    ],
+    [],
+  );
+
   return (
     <section className="leaderboard">
-      {/* TOGGLER GOES HERE */}
+      <Toggle />
       <Table headings={headings} rows={rows} />
     </section>
   );

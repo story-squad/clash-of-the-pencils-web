@@ -24,6 +24,10 @@ const Template: Story<Pick<ILeaderboardProps, 'daily' | 'weekly'>> = (
 export const Default = Template.bind({});
 Default.args = { ...getDisplayData() };
 
+/**
+ * Use this to generate table data for a leaderboard story
+ * @returns fake data to spread in as story args
+ */
 function getDisplayData() {
   return {
     daily: [
