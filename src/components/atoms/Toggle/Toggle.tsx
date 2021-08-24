@@ -33,13 +33,19 @@ export default function Toggle({
       />
       <div className="toggle-items">
         <div
-          className="toggle-item toggle-left"
+          className={classnames(
+            'toggle-item toggle-left',
+            leftIsSelected && 'selected',
+          )}
           onClick={options[0].onSelect ?? toggle}
         >
           {options[0].text}
         </div>
         <div
-          className="toggle-item toggle-right"
+          className={classnames(
+            'toggle-item toggle-right',
+            !leftIsSelected && 'selected',
+          )}
           onClick={options[1].onSelect ?? toggle}
         >
           {options[1].text}

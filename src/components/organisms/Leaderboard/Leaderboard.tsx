@@ -9,8 +9,8 @@ export interface ILeaderboardProps {
   daily: React.ReactNode[][];
   weekly: React.ReactNode[][];
 
-  openDaily: () => void;
-  openWeekly: () => void;
+  // openDaily: () => void;
+  // openWeekly: () => void;
   toggleLeaderboard: () => void;
 }
 
@@ -18,8 +18,8 @@ export default function Leaderboard({
   dailyIsOpen,
   daily,
   weekly,
-  openDaily,
-  openWeekly,
+  // openDaily,
+  // openWeekly,
   toggleLeaderboard,
 }: ILeaderboardProps): React.ReactElement {
   const rows = useMemo(
@@ -29,21 +29,13 @@ export default function Leaderboard({
   const headings = useMemo(() => [<>&#127942;</>, 'Codename', 'Points'], []);
 
   const toggleOptions = useMemo<ToggleOption[]>(
-    () => [
-      {
-        text: 'Daily',
-        onSelect: openDaily,
-      },
-      {
-        text: 'Weekly',
-        onSelect: openWeekly,
-      },
-    ],
+    () => [{ text: 'Daily' }, { text: 'Weekly' }],
     [],
   );
 
   return (
     <section className="leaderboard">
+      <h1>Leaderboard</h1>
       <Toggle
         leftIsSelected={dailyIsOpen}
         options={toggleOptions}

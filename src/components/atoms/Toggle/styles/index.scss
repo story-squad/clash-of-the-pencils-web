@@ -1,43 +1,72 @@
-@import '~/src/styles/variables.scss';
+@import '~/src/styles/newIndex.scss';
 
 .toggle {
   // Layout
   position: relative;
 
   // Design
+  background-color: $white;
   border: 1px solid $brand-blue;
+  border-radius: 1.6rem;
+  cursor: pointer;
 
   // Styles the colored block that slides
   .toggle-block {
     // Layout
     height: 100%;
-    width: 50%;
+    width: calc(50% + 1px);
 
     // Design
     padding: 0.8rem;
     background-color: $brand-blue;
+    border: 1px solid $brand-blue;
+    border-radius: 1.6rem;
 
     // Transition effect!
     position: absolute;
     z-index: 0;
-    right: 0;
+    left: 50%;
+
+    // HACK for SURE but that 1px makes all the difference for some reason
+    margin-right: -2px;
+    margin-left: unset;
+    transition: left 0.15s ease-in-out;
     &.leftSelected {
+      margin-right: unset;
+      margin-left: -1px;
       left: 0;
+      transition: left 0.15s ease-in-out;
     }
   }
 
   .toggle-items {
     display: flex;
     flex-flow: row nowrap;
+    justify-content: space-between;
     align-items: center;
     position: relative;
     z-index: 1;
 
     .toggle-item {
-      width: 50%;
+      // Design
+      width: calc(50% + 1px);
       padding: 0.8rem;
 
+      // Font Styling
       font-family: $text-font;
+      text-align: center;
+      font-size: 1.4rem;
+      line-height: 1.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08rem;
+
+      // Color transition for selection
+      color: $brand-blue;
+      transition: color 0.15s ease-in-out;
+      &.selected {
+        color: $white;
+        transition: color 0.15s ease-in-out;
+      }
     }
   }
 }

@@ -7,14 +7,14 @@ const Template: Story<Pick<ILeaderboardProps, 'daily' | 'weekly'>> = (
   props,
 ) => {
   const [dailyIsOpen, setDailyIsOpen] = useState(true);
-  const openDaily = () => setDailyIsOpen(true);
-  const openWeekly = () => setDailyIsOpen(false);
+  // const openDaily = () => setDailyIsOpen(true);
+  // const openWeekly = () => setDailyIsOpen(false);
   const toggleLeaderboard = () => setDailyIsOpen((is) => !is);
   return (
     <Leaderboard
       dailyIsOpen={dailyIsOpen}
-      openDaily={openDaily}
-      openWeekly={openWeekly}
+      // openDaily={openDaily}
+      // openWeekly={openWeekly}
       toggleLeaderboard={toggleLeaderboard}
       {...props}
     />
@@ -48,4 +48,7 @@ function getDisplayData() {
 export default {
   title: 'Components/Organisms/Leaderboard',
   component: Leaderboard,
+  parameters: {
+    layout: 'fullscreen',
+  },
 } as Meta;
