@@ -44,7 +44,11 @@ export default function Leaderboard({
 
   return (
     <section className="leaderboard">
-      <Toggle />
+      <Toggle
+        leftIsSelected={dailyIsOpen}
+        options={toggleOptions}
+        toggle={toggleLeaderboard}
+      />
       <Table headings={headings} rows={rows} />
     </section>
   );

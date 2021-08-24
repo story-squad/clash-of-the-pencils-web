@@ -1,4 +1,6 @@
+import { classnames } from '@story-squad/react-utils';
 import React from 'react';
+import './styles/index.scss';
 import { ToggleOption } from './Toggle.model';
 
 export interface IToggleProps {
@@ -24,5 +26,25 @@ export default function Toggle({
   leftIsSelected,
   toggle,
 }: IToggleProps): React.ReactElement {
-  return <div className="toggle"></div>;
+  return (
+    <div className="toggle">
+      <div
+        className={classnames('toggle-block', leftIsSelected && 'leftSelected')}
+      />
+      <div className="toggle-items">
+        <div
+          className="toggle-item toggle-left"
+          onClick={options[0].onSelect ?? toggle}
+        >
+          {options[0].text}
+        </div>
+        <div
+          className="toggle-item toggle-right"
+          onClick={options[1].onSelect ?? toggle}
+        >
+          {options[1].text}
+        </div>
+      </div>
+    </div>
+  );
 }

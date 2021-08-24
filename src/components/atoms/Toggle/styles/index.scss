@@ -1,2 +1,43 @@
+@import '~/src/styles/variables.scss';
+
 .toggle {
+  // Layout
+  position: relative;
+
+  // Design
+  border: 1px solid $brand-blue;
+
+  // Styles the colored block that slides
+  .toggle-block {
+    // Layout
+    height: 100%;
+    width: 50%;
+
+    // Design
+    padding: 0.8rem;
+    background-color: $brand-blue;
+
+    // Transition effect!
+    position: absolute;
+    z-index: 0;
+    right: 0;
+    &.leftSelected {
+      left: 0;
+    }
+  }
+
+  .toggle-items {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+
+    .toggle-item {
+      width: 50%;
+      padding: 0.8rem;
+
+      font-family: $text-font;
+    }
+  }
 }
