@@ -1,0 +1,100 @@
+@import '~/src/styles/newIndex.scss';
+
+.button {
+  // Container Styles
+  border: 1px solid;
+  border-radius: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // Text Styles
+  font-family: $mulish;
+  text-transform: uppercase;
+  font-weight: 700;
+
+  // Interaction Styles
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+
+  &.lg {
+    padding: 1.2rem 3rem;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    svg {
+      font-size: 2rem;
+    }
+  }
+
+  &.sm {
+    padding: 0.8rem 3.2rem;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    svg {
+      font-size: 1.2rem;
+      line-height: 2rem;
+    }
+  }
+
+  // Fixing SVG padding issues
+  &.iconLeft.lg svg:first-of-type {
+    margin-right: 2px;
+    margin-left: -6px;
+  }
+  &.iconLeft.sm svg:first-of-type {
+    margin-right: 2px;
+    margin-left: -4px;
+  }
+  &.iconRight.lg svg:last-of-type {
+    margin-left: 2px;
+    margin-right: -3px;
+  }
+  &.iconRight.sm svg:last-of-type {
+    margin-left: 2px;
+    margin-right: -3px;
+  }
+
+  &.primary {
+    background-color: $brand-orange;
+    color: $gray-1;
+    border-color: $brand-orange;
+
+    &:hover {
+      background-color: $brand-orange-4;
+      border-color: $brand-orange-4;
+      transition: all 0.1s ease-in-out;
+    }
+    &:active {
+      background-color: $brand-orange-6;
+      border-color: $brand-orange-6;
+      transition: all 0.1s ease-in-out;
+    }
+    &:disabled {
+      cursor: default;
+      background-color: $gray-3;
+      border-color: $gray-3;
+      color: $gray-4;
+    }
+  }
+
+  &.secondary {
+    background-color: $white;
+    color: $brand-orange;
+
+    &:hover {
+      border-color: $brand-orange-6;
+      color: $brand-orange-6;
+      transition: all 0.1s ease-in-out;
+    }
+    &:active {
+      border-color: $brand-orange-7;
+      color: $brand-orange-7;
+      transition: all 0.1s ease-in-out;
+    }
+    &:disabled {
+      cursor: default;
+      border-color: $gray-3;
+      color: $gray-3;
+    }
+  }
+}

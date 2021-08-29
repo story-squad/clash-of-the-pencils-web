@@ -1,3 +1,4 @@
+export * from './Button';
 export {} from './Dial';
 export {} from './Image';
 export {} from './Sticker';

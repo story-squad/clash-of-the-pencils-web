@@ -2,6 +2,7 @@
 
 .leaderboard {
   // Layout
+  flex-grow: 1;
   padding: 3rem 1.6rem;
   @include bp(tablet) {
     padding: 3rem 0 0;
