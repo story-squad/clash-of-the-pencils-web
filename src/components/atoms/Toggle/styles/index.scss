@@ -13,7 +13,7 @@
   // Styles the colored block that slides
   .toggle-block {
     // Layout
-    height: 100%;
+    height: calc(100% + 1px);
     width: calc(50% + 1px);
 
     // Design
@@ -29,6 +29,7 @@
 
     // HACK for SURE but that 1px makes all the difference for some reason
     margin-right: -2px;
+    margin-top: -1px;
     margin-left: unset;
     transition: left 0.15s ease-in-out;
     &.leftSelected {

@@ -32,7 +32,8 @@
 
   .table {
     @include bp(tablet) {
-      .table-header {
+      .table-header,
+      .table-body {
         border-radius: 0;
       }
     }

@@ -2,6 +2,11 @@
 @import '~/src/styles/newIndex.scss';
 
 .table-header {
+  // Design
+  background-color: $brand-blue-8;
+  overflow: hidden;
+  border-radius: 1.6rem 1.6rem 0 0;
+
   tr {
     display: flex;
     flex-flow: row nowrap;
@@ -10,11 +15,6 @@
 
     // Layout
     padding: 0.8rem;
-
-    // Design
-    background-color: $brand-blue-8;
-    border-radius: 1.6rem 1.6rem 0 0;
-    overflow: hidden;
 
     .table-header-cell {
       @include table-cell-layout();
