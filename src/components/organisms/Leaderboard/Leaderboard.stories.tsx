@@ -1,5 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import React, { useState } from 'react';
+import leaderboardData from '../../../data/leaderboardData';
 import Leaderboard, { ILeaderboardProps } from './Leaderboard';
 import './styles/index.scss';
 
@@ -22,28 +23,7 @@ const Template: Story<Pick<ILeaderboardProps, 'daily' | 'weekly'>> = (
 };
 
 export const Default = Template.bind({});
-Default.args = { ...getDisplayData() };
-
-/**
- * Use this to generate table data for a leaderboard story
- * @returns fake data to spread in as story args
- */
-function getDisplayData() {
-  return {
-    daily: [
-      [1, 'Joanne', 100],
-      [2, 'Joanne', 80],
-      [3, 'Joanne', 65],
-      [4, 'Joanne', 50],
-    ],
-    weekly: [
-      [1, 'Joanne', 100],
-      [2, 'Joanne', 80],
-      [3, 'Joanne', 65],
-      [4, 'Joanne', 50],
-    ],
-  };
-}
+Default.args = { ...leaderboardData };
 
 export default {
   title: 'Components/Organisms/Leaderboard',

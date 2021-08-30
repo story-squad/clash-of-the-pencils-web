@@ -1,17 +1,9 @@
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { Prompts } from '../../../api';
+import { promptData } from '../../../data';
 import PromptOrganism, { IPromptOrganismProps } from './PromptOrganism';
 
-const defaultPrompt: Prompts.IPrompt = {
-  active: true,
-  approved: true,
-  id: 1,
-  prompt:
-    "Write about someone who's trying to accomplish a task that used to be easy but is now made complicated by a pandemic.",
-};
-
-const Template: Story<IPromptOrganismProps> = ({ prompt = defaultPrompt }) => (
+const Template: Story<IPromptOrganismProps> = ({ prompt = promptData[7] }) => (
   <PromptOrganism prompt={prompt} />
 );
 

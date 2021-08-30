@@ -8,21 +8,9 @@ export const Default = Template.bind({});
 Default.args = {
   headings: ['Col 1', 'Col 2', 'Cutoff Test'],
   rows: [
-    [
-      '1',
-      '2',
-      'A RATHER LONG STRING OF TEXT THAT WILL HOPEFULLY BE CUT OFF AND REPLACED WITH ELLIPSES!',
-    ],
-    [
-      '2',
-      '3',
-      'A RATHER LONG STRING OF TEXT THAT WILL HOPEFULLY BE CUT OFF AND REPLACED WITH ELLIPSES!',
-    ],
-    [
-      '3',
-      '4',
-      'A RATHER LONG STRING OF TEXT THAT WILL HOPEFULLY BE CUT OFF AND REPLACED WITH ELLIPSES!',
-    ],
+    ['1', '2', 'A RATHER LONG STRING OF TEXT THAT WILL HOPEFULLY BE CUT OFF!'],
+    ['2', '3', 'A RATHER LONG STRING OF TEXT THAT WILL HOPEFULLY BE CUT OFF!'],
+    ['3', '4', 'A RATHER LONG STRING OF TEXT THAT WILL HOPEFULLY BE CUT OFF!'],
   ],
 };
 
