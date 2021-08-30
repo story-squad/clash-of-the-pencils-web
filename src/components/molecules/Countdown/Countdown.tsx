@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon';
 import React from 'react';
 import { Dial, Timer } from '../../atoms';
+import './styles/index.scss';
 
 export interface ICountdownProps {
   endTime: DateTime;
