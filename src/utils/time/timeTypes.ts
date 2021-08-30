@@ -15,6 +15,16 @@ export interface TimeUntilItem {
   m: number;
   s: number;
 }
+export function isTimeUntilItem(item: unknown): item is TimeUntilItem {
+  const itemAs = item as TimeUntilItem;
+  return (
+    itemAs !== undefined &&
+    typeof itemAs === 'object' &&
+    typeof itemAs.h === 'number' &&
+    typeof itemAs.m === 'number' &&
+    typeof itemAs.s === 'number'
+  );
+}
 
 /**
  * A type for the larger schedule object on which we track time-based events
