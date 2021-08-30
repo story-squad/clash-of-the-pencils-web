@@ -1,1 +1,1 @@
-export { default as DialAtom } from './DialContainer';
+export { default as Dial } from './Dial';

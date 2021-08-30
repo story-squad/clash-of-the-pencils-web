@@ -1,19 +1,25 @@
-import { DateTime } from 'luxon';
-import React, { useMemo } from 'react';
+import { Duration } from 'luxon';
+import React, { useCallback, useMemo } from 'react';
 import { time } from '../../../utils';
 import './styles/index.scss';
 
 export interface TimerProps {
-  endTime: time.TimeUntilItem | DateTime;
+  displayTime: time.TimeUntilItem | Duration;
 }
 
-export default function Timer({ endTime }: TimerProps): React.ReactElement {
+export default function Timer({ displayTime }: TimerProps): React.ReactElement {
+  const t = useCallback((item: string) => Math.abs(+item), []);
   const { h, m, s } = useMemo(() => {
-    if (time.isTimeUntilItem(endTime)) return endTime;
+    if (time.isTimeUntilItem(displayTime)) return displayTime;
     else {
-      return { h: endTime.hour, m: endTime.minute, s: endTime.second };
+      // Format as string, split string on colons, easy array destructure
+      // THIS FIXED A BUG, getting the units off of the object didn't work
+      const [h, m, s] = displayTime.toFormat('hh:mm:ss').split(':');
+      // Cast the values as numbers
+      return { h: t(h), m: t(m), s: t(s) };
     }
-  }, [endTime]);
+  }, [displayTime]);
+
   return (
     <div className="timer">
       <span className="item">

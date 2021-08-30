@@ -11,9 +11,9 @@ export default {
   component: Dial,
   argTypes: {
     angle: {
+      defaultValue: 90,
       control: {
         type: 'range',
-        defaultValue: 90,
         max: 360,
       },
     },
