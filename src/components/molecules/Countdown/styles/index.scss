@@ -1,10 +1,45 @@
 @import '~/src/styles/newIndex.scss';
 
 .countdown {
-  $dial-size: 22rem;
-  $dial-inner-size: 18.5rem;
-  .timer {
+  position: relative;
+  .clock-display {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    .timer {
+      margin: 0 auto 1.6rem;
+    }
+    .clock-display-text {
+      color: $brand-orange;
+      font-family: $display-font;
+      font-size: 2.2rem;
+      line-height: 2.6rem;
+    }
   }
   .dial {
+    z-index: 0;
+    position: relative;
+    padding: 1.2rem;
+    border-radius: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    .clock-face {
+      flex-grow: 1;
+      padding: 0.4rem;
+      background-color: $gray-0;
+      border-radius: 100%;
+      svg {
+        width: 100%;
+        height: 100%;
+        padding: 0.4rem;
+        border: 1px dashed $brand-blue;
+        border-radius: 100%;
+      }
+    }
   }
 }

@@ -2,7 +2,7 @@
 
 .prompt {
   background-color: $brand-blue-6;
-  padding: 3rem 1.6rem;
+  padding: 2.5rem;
   display: flex;
   flex-flow: column nowrap;
   align-items: stretch;
@@ -28,7 +28,30 @@
     }
   }
 
-  button {
-    margin-top: 1.6rem;
+  .button-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    justify-content: center;
+    @include bp(tablet) {
+      align-items: center;
+    }
+
+    .button:first-of-type {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .countdown-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+
+    .countdown {
+      max-width: 24rem;
+    }
   }
 }
