@@ -31,6 +31,7 @@
     "react-helmet-async": "^1.0.7",
     "react-hook-form": "^6.10.1",
     "react-icons": "^3.11.0",
+    "react-livestream": "^1.0.11",
     "react-markdown": "^5.0.3",
     "react-page-scroller": "^2.0.11-beta",
     "react-router-dom": "^5.2.0",
