@@ -26,16 +26,12 @@ const DraggableDragon = ({
 };
 
 interface DraggableDragonProps {
-  place: number;
+  place: 1 | 2 | 3;
   id: string;
   index: number;
 }
 
-interface DragonList {
-  [key: number]: string;
-}
-
-const DragonImageList: DragonList = {
+const DragonImageList = {
   1: firstDragon,
   2: secondDragon,
   3: thirdDragon,
