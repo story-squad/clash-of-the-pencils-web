@@ -2,11 +2,11 @@ import React, { useMemo } from 'react';
 import { stickerSVGs } from '../../../assets';
 
 export interface StickerProps {
-  name: keyof typeof stickerSVGs;
+  type: keyof typeof stickerSVGs;
 }
 
-const Sticker = ({ name }: StickerProps): React.ReactElement => {
-  const SelectedSticker = useMemo(() => stickerSVGs[name], [name]);
+const Sticker = ({ type }: StickerProps): React.ReactElement => {
+  const SelectedSticker = useMemo(() => stickerSVGs[type], [type]);
   return <SelectedSticker />;
 };
 
