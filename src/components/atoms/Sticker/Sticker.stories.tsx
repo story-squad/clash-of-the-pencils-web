@@ -11,6 +11,7 @@ export default {
   component: Sticker,
   argTypes: {
     type: {
+      defaultValue: 'firstPlaceDragon',
       options: [
         'firstPlaceDragon',
         'secondPlaceDragon',
