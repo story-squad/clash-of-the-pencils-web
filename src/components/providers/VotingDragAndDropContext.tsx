@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DragDropContext, DragDropContextProps } from 'react-beautiful-dnd';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { voting } from '../../state';
 
 export default function VotingDragAndDropContext({
   children,
 }: React.PropsWithChildren<unknown>): React.ReactElement {
-  const setDndState = useSetRecoilState(voting.dragAndDropState);
-
+  const [dndState, setDndState] = useRecoilState(voting.dragAndDropState);
+  useEffect(() => console.log({ dndState }), [dndState]);
   const voting__onDragStart: DragDropContextProps['onDragStart'] = (
     { source },
     {},

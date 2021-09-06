@@ -1,4 +1,4 @@
-import { atom, selector } from 'recoil';
+import { atom, selector, selectorFamily } from 'recoil';
 import { Voting } from '../../api';
 import { top3List } from '../top3State';
 
@@ -91,5 +91,20 @@ export const canSubmit = selector<boolean>({
       !!dndState[`${DROP_ZONE}-2`] &&
       !!dndState[`${DROP_ZONE}-3`]
     );
+  },
+});
+
+/**
+ * Returns the contents of the container at the given key.
+ */
+export const contentsOf = selectorFamily<string | undefined, string>({
+  key: 'contentsOfContainerByKeyselector',
+  get: (containerKey) => {
+    return ({ get }) => {
+      // Get the dnd state
+      const dndState = get(dragAndDropState);
+      // Return container state at specified value
+      return dndState[containerKey];
+    };
   },
 });
