@@ -1,11 +1,9 @@
 import { atom } from 'recoil';
 import { Submissions } from '../../api';
 
-const top3InitState = null;
-
-export const top3List = atom<Submissions.ISubItem[] | null>({
+export const top3List = atom<Submissions.ISubItem[] | undefined>({
   key: 'top3List',
-  default: top3InitState,
+  default: undefined,
 });
 
 const initialHasReadState = [false, false, false];
