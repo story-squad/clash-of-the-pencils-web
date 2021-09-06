@@ -1,5 +1,6 @@
 export * from './Button';
 export * from './Dial';
+export * from './DropZone';
 export * from './Image';
 export * from './Sticker';
 export * from './Timer';

@@ -1,7 +1,7 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { voting } from '../../../state';
-import { DropZone } from '../DropZone';
+import { DropZone } from '../../atoms';
 import DraggableDragon from './DraggableDragon';
 
 export interface DragonBankDropZoneProps {
@@ -14,11 +14,10 @@ export default function DragonBankDropZone({
   const contents = useRecoilValue(
     voting.contentsOf(`${voting.DRAG_BANK}-${place}`),
   );
-  const dragonPlace = useMemo(() => {
-    if (!contents) return undefined;
-    else return +contents.split('-')[1] as voting.Places;
-  }, []);
-  console.log(contents, { isEmpty: contents === undefined, dragonPlace });
+  // const dragonPlace = useMemo(() => {
+  // if (!contents) return undefined;
+  // else return +contents.split('-')[1] as voting.Places;
+  // }, []);
 
   return (
     <DropZone
@@ -26,7 +25,8 @@ export default function DragonBankDropZone({
       type={voting.DRAGON}
       isDisabled={contents !== undefined} // Disable drop if container isn't empty
     >
-      {dragonPlace && <DraggableDragon place={dragonPlace} />}
+      {/* {dragonPlace && <DraggableDragon place={dragonPlace} />} */}
+      {place && <DraggableDragon place={place} />}
     </DropZone>
   );
 }

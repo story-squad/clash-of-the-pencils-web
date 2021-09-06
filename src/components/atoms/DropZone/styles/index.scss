@@ -1,0 +1,5 @@
+.drop-zone {
+  // This fixes a slight flicker caused by slightly different image sizes
+  max-width: 64px;
+  max-height: 64px;
+}
