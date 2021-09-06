@@ -2,6 +2,7 @@ import { atom, selector } from 'recoil';
 import { Voting } from '../../api';
 import { top3List } from '../top3State';
 
+// Prefixes to identify the draggables
 export const DRAGON = 'dragon';
 export const DRAG_BANK = 'drag-bank';
 export const DROP_ZONE = 'drop-zone';
