@@ -1,18 +1,22 @@
-import React from 'react';
+import { DateTime } from 'luxon';
+import React, { useMemo } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { Submissions } from '../../../api';
-import { app } from '../../../state';
+import { app, voting } from '../../../state';
 import { Card, Picture } from '../../atoms';
 import './styles/index.scss';
+import SubmissionCardFooter from './SubmissionCardFooter';
 
 export interface SubmissionCardProps {
   submission: Submissions.ISubItem;
   containerProps?: React.HTMLProps<HTMLDivElement>;
   disablePreview?: boolean;
+  position: voting.Places;
 }
 
 export default function SubmissionCard({
   submission,
+  position,
   containerProps,
   disablePreview,
 }: SubmissionCardProps): React.ReactElement {
@@ -24,8 +28,17 @@ export default function SubmissionCard({
       rotation: submission.rotation,
     });
   };
+  const age = useMemo(
+    () =>
+      Math.abs(
+        Math.round(
+          DateTime.fromISO(submission.dob as string).diffNow('years').years,
+        ),
+      ),
+    [submission],
+  );
   return (
-    <Card {...containerProps}>
+    <Card className="submission-card" {...containerProps}>
       <Picture
         source={submission.src}
         description={`Hand-written story submitted by ${submission.codename}`}
@@ -34,6 +47,11 @@ export default function SubmissionCard({
         containerProps={{
           onClick: disablePreview ? undefined : openSubmission,
         }}
+      />
+      <SubmissionCardFooter
+        age={age}
+        codename={submission.codename}
+        position={position}
       />
     </Card>
   );

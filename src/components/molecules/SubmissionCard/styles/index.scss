@@ -1,0 +1,18 @@
+@import '~/src/styles/newIndex.scss';
+
+.submission-card {
+  .image {
+    display: none;
+    @include bp(tablet) {
+      display: flex;
+    }
+  }
+  .submission-card-footer {
+    .content-left {
+      h2 {
+      }
+      h3 {
+      }
+    }
+  }
+}

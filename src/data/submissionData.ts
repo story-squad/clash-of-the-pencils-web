@@ -1,3 +1,4 @@
+import { DateTime } from 'luxon';
 import { Submissions } from '../api';
 import { handwritingExample, handwritingExampleRotated } from '../assets';
 import promptData from './promptData';
@@ -12,6 +13,7 @@ export default [
     score: 75,
     src: handwritingExample,
     userId: 1,
+    dob: DateTime.now().minus({ years: 18 }).toISO(),
   },
   {
     codename: 'TestUser',
@@ -22,5 +24,17 @@ export default [
     score: 55,
     src: handwritingExampleRotated,
     userId: 1,
+    dob: DateTime.now().minus({ years: 18 }).toISO(),
+  },
+  {
+    codename: 'TestUser',
+    created_at: new Date(),
+    id: 3,
+    prompt: promptData[2].prompt,
+    rotation: 0,
+    score: 100,
+    src: handwritingExample,
+    userId: 1,
+    dob: DateTime.now().minus({ years: 18 }).toISO(),
   },
 ] as Submissions.ISubItem[];

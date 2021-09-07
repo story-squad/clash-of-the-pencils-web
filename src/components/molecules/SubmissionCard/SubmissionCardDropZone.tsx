@@ -2,35 +2,35 @@ import React, { useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { voting } from '../../../state';
 import { DropZone, Sticker } from '../../atoms';
-import DraggableDragon from './DraggableDragon';
+import DraggableDragon from '../DragonBank/DraggableDragon';
 
-export interface DragonBankDropZoneProps {
-  place: voting.Places;
+export interface SubmissionCardDropZoneProps {
+  /** The submission's index in the `top3` array + 1 */
+  position: voting.Places;
 }
 
-export default function DragonBankDropZone({
-  place,
-}: DragonBankDropZoneProps): React.ReactElement {
+export default function SubmissionCardDropZone({
+  position,
+}: SubmissionCardDropZoneProps): React.ReactElement {
   const contents = useRecoilValue(
-    voting.contentsOf(`${voting.DRAG_BANK}-${place}`),
+    voting.contentsOf(`${voting.DROP_ZONE}-${position}`),
   );
   const dragonPlace = useMemo(() => {
     if (!contents) return undefined;
     else return +contents.split('-')[1] as voting.Places;
-  }, []);
-
+  }, [contents]);
+  console.log('[SCDZ]', position, contents, dragonPlace);
   return (
     <DropZone
-      name={`${voting.DRAG_BANK}-${place}`}
+      name={`${voting.DROP_ZONE}-${position}`}
       type={voting.DRAGON}
-      isDisabled={contents !== undefined} // Disable drop if container isn't empty
+      isDisabled={contents !== undefined}
     >
       {dragonPlace ? (
         <DraggableDragon place={dragonPlace} />
       ) : (
         <Sticker type="dropZone" />
       )}
-      {/* {place && <DraggableDragon place={place} />} */}
     </DropZone>
   );
 }

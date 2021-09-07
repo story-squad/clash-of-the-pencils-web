@@ -2,6 +2,7 @@ import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { RecoilRoot } from 'recoil';
 import { submissionData } from '../../../data';
+import { VotingDragAndDropContext } from '../../providers';
 import { FullscreenImageOverlay } from '../../views';
 import SubmissionCard, { SubmissionCardProps } from './SubmissionCard';
 
@@ -21,16 +22,12 @@ export default {
   parameters: { layout: 'padded' },
   decorators: [
     (story) => (
-      <div
-        style={{
-          position: 'relative',
-        }}
-      >
-        <RecoilRoot>
+      <RecoilRoot>
+        <VotingDragAndDropContext>
           {story()}
           <FullscreenImageOverlay />
-        </RecoilRoot>
-      </div>
+        </VotingDragAndDropContext>
+      </RecoilRoot>
     ),
   ],
 } as Meta;
