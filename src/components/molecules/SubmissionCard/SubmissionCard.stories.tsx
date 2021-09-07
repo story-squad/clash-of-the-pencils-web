@@ -18,7 +18,7 @@ Rotated.args = { submission: submissionData[1] };
 export default {
   title: 'Components/Molecules/SubmissionCard',
   component: SubmissionCard,
-  parameters: { layout: 'fullscreen' },
+  parameters: { layout: 'padded' },
   decorators: [
     (story) => (
       <div
