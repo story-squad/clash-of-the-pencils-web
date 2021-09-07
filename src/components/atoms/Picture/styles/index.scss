@@ -1,7 +1,9 @@
 .image {
+  width: 100%;
   max-width: 100%;
   display: flex;
   overflow: hidden;
+  aspect-ratio: 1;
 
   &.can-preview {
     cursor: pointer;
@@ -12,26 +14,20 @@
     }
   }
 
-  .image-div {
+  .image-inner {
     width: 100%;
     height: 100%;
     background-size: cover;
     background-position: top center;
 
     &.rotate-180 {
-      img {
-        transform: rotate(-180deg);
-      }
+      transform: rotate(-180deg);
     }
     &.rotate-90 {
-      img {
-        transform: rotate(-90deg);
-      }
+      transform: rotate(-90deg);
     }
     &.rotate-270 {
-      img {
-        transform: rotate(-270deg);
-      }
+      transform: rotate(-270deg);
     }
   }
 }

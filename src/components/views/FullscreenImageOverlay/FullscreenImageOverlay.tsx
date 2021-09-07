@@ -1,10 +1,9 @@
-import { useKey } from '@story-squad/react-utils';
+import { classnames, useKey } from '@story-squad/react-utils';
 import React, { useCallback, useEffect } from 'react';
 import { FiMaximize, FiX, FiZoomIn, FiZoomOut } from 'react-icons/fi';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import { useSetRecoilState } from 'recoil';
 import { app } from '../../../state';
-import { Picture } from '../../atoms';
 import './styles/index.scss';
 
 const WRAPPER_ID = 'fullscreen-image=overlay';
@@ -44,7 +43,13 @@ export default function FullscreenImageOverlay(
           </div>
           <div className="img-wrapper">
             <TransformComponent>
-              <Picture {...content} />
+              <img
+                src={content.source}
+                alt={content.description}
+                className={classnames(
+                  content.rotation && `rotate-${content.rotation}`,
+                )}
+              />
             </TransformComponent>
           </div>
           <div className="controls">

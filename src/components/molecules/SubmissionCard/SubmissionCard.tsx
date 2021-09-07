@@ -4,6 +4,7 @@ import { Submissions } from '../../../api';
 import { app } from '../../../state';
 import { Card, Picture } from '../../atoms';
 import { PictureProps } from '../../atoms/Picture/Picture';
+import './styles/index.scss';
 
 export interface SubmissionCardProps {
   submission: Submissions.ISubItem;
@@ -20,6 +21,7 @@ export default function SubmissionCard({
     openAnImageFullscreen({
       description: submission.prompt,
       source: submission.src,
+      rotation: submission.rotation,
     });
   };
   return (

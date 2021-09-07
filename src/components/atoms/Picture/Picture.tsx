@@ -21,9 +21,9 @@ export default function Picture({
       className={classnames('image', containerProps.className)}
     >
       <div
-        className={classnames('image-div', `rotate=${rotation}`)}
-        title={description}
+        className={classnames('image-inner', `rotate-${rotation}`)}
         style={{ backgroundImage: `url(${source})` }}
+        title={description}
       />
     </div>
   );
