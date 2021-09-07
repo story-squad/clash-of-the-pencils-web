@@ -6,6 +6,7 @@ export interface PictureProps {
   source: string;
   description: string;
   rotation?: number;
+  disablePreview?: boolean;
   containerProps?: React.HTMLProps<HTMLDivElement>;
 }
 
@@ -14,11 +15,16 @@ export default function Picture({
   description,
   rotation = 0,
   containerProps = {},
+  disablePreview,
 }: PictureProps): React.ReactElement {
   return (
     <div
       {...containerProps}
-      className={classnames('image', containerProps.className)}
+      className={classnames(
+        'image',
+        containerProps.className,
+        !disablePreview && 'can-preview',
+      )}
     >
       <div
         className={classnames('image-inner', `rotate-${rotation}`)}

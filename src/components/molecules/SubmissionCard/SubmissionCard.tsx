@@ -3,18 +3,18 @@ import { useSetRecoilState } from 'recoil';
 import { Submissions } from '../../../api';
 import { app } from '../../../state';
 import { Card, Picture } from '../../atoms';
-import { PictureProps } from '../../atoms/Picture/Picture';
 import './styles/index.scss';
 
 export interface SubmissionCardProps {
   submission: Submissions.ISubItem;
   containerProps?: React.HTMLProps<HTMLDivElement>;
-  imageProps?: PictureProps;
+  disablePreview?: boolean;
 }
 
 export default function SubmissionCard({
   submission,
   containerProps,
+  disablePreview,
 }: SubmissionCardProps): React.ReactElement {
   const openAnImageFullscreen = useSetRecoilState(app.imageView.openImage);
   const openSubmission = () => {
@@ -30,8 +30,9 @@ export default function SubmissionCard({
         source={submission.src}
         description={`Hand-written story submitted by ${submission.codename}`}
         rotation={submission.rotation}
+        disablePreview={disablePreview}
         containerProps={{
-          onClick: openSubmission,
+          onClick: disablePreview ? undefined : openSubmission,
         }}
       />
     </Card>

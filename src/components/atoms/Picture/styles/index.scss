@@ -7,9 +7,9 @@
 
   &.can-preview {
     cursor: pointer;
-    transition: all 0.05s ease-out;
+    transition: all 0.15s ease-in;
     &:hover {
-      transition: all 0.05s ease-in;
+      transition: all 0.15s ease-out;
       transform: scale(1.05);
     }
   }
