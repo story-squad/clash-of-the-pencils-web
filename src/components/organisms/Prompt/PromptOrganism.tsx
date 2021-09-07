@@ -1,3 +1,4 @@
+import { DateTime } from 'luxon';
 import React from 'react';
 import { Prompts } from '../../../api';
 import { Button } from '../../atoms';
@@ -6,10 +7,12 @@ import './styles/index.scss';
 
 export interface IPromptOrganismProps {
   prompt: Prompts.IPrompt;
+  now: DateTime;
 }
 
 export default function PromptOrganism({
   prompt,
+  now,
 }: IPromptOrganismProps): React.ReactElement {
   return (
     <section className="prompt">
@@ -22,7 +25,7 @@ export default function PromptOrganism({
         </Button>
       </div>
       <div className="countdown-wrapper">
-        <Countdown />
+        <Countdown now={now} />
       </div>
     </section>
   );

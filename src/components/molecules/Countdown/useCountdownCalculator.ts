@@ -9,7 +9,7 @@ export type UseCountdownCalculatorReturn = [
 export default function useCountdownCalculator({
   endTime,
   startTime,
-  now = DateTime.now(),
+  now = DateTime.utc(),
 }: ICountdownProps): UseCountdownCalculatorReturn {
   const diffTotalInMS = Math.abs(startTime.diff(endTime).milliseconds);
   const diffNowInMS = Math.abs(startTime.diff(now).milliseconds);

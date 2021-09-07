@@ -5,9 +5,9 @@ import { RecoilRoot } from 'recoil';
 import { promptData } from '../../../data';
 import leaderboardData from '../../../data/leaderboardData';
 import { leaderboard, prompts } from '../../../state';
-import SubmissionView, { ISubmissionViewProps } from './SubmissionView';
+import SubmissionView from './SubmissionView';
 
-const Template: Story<ISubmissionViewProps> = (props) => {
+const Template: Story = (props) => {
   return <SubmissionView {...props} />;
 };
 
