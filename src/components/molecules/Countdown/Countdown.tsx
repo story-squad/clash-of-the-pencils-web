@@ -3,6 +3,7 @@ import React from 'react';
 import { ClockFaceLines } from '../../../assets';
 import { Dial, Timer } from '../../atoms';
 import './styles/index.scss';
+import useCountdownCalculator from './useCountdownCalculator';
 
 export interface ICountdownProps {
   endTime: DateTime;
@@ -10,14 +11,15 @@ export interface ICountdownProps {
   now?: DateTime;
 }
 
-export default function Countdown({}: ICountdownProps): React.ReactElement {
+export default function Countdown(props: ICountdownProps): React.ReactElement {
+  const [ratio, millisLeft] = useCountdownCalculator(props);
   return (
     <div className="countdown">
       <div className="clock-display">
-        <Timer displayTime={DateTime.now().diffNow()} />
+        <Timer displayTime={millisLeft} />
         <span className="clock-display-text">Left to Vote</span>
       </div>
-      <Dial angle={180}>
+      <Dial angle={360 * ratio}>
         <div className="clock-face">
           <ClockFaceLines />
         </div>

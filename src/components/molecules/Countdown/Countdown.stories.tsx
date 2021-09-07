@@ -1,24 +1,19 @@
 import { Meta, Story } from '@storybook/react';
-import { DateTime } from 'luxon';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { time } from '../../../utils';
 import Countdown from './Countdown';
 
-interface CustomStoryCountdownProps {
-  hours: number;
+interface CustomCountdownStoryProps {
   minutes: number;
-  seconds: number;
 }
 
-const Template: Story<CustomStoryCountdownProps> = ({}) => {
-  const s = time.schedule.submit.start.toISOString();
-  const now = DateTime.now();
-  const e = time.schedule.submit.end.toISOString();
+const Template: Story<CustomCountdownStoryProps> = ({ minutes }) => {
+  const { start, end } = useMemo(() => time.schedule.vote, [time.schedule]);
   return (
     <Countdown
-      endTime={DateTime.fromISO(e)}
-      startTime={DateTime.fromISO(s)}
-      now={now}
+      endTime={end}
+      startTime={start}
+      now={start.plus({ hour: 1, minutes, seconds: 28 })}
     />
   );
 };
@@ -29,22 +24,8 @@ export default {
   title: 'Components/Molecules/Countdown',
   component: Countdown,
   argTypes: {
-    hours: {
-      defaultValue: 0,
-      control: {
-        type: 'range',
-        max: 12,
-      },
-    },
     minutes: {
-      defaultValue: 0,
-      control: {
-        type: 'range',
-        max: 59,
-      },
-    },
-    seconds: {
-      defaultValue: 0,
+      defaultValue: 42,
       control: {
         type: 'range',
         max: 59,
@@ -52,4 +33,4 @@ export default {
     },
   },
   parameters: { layout: 'centered' },
-} as Meta<CustomStoryCountdownProps>;
+} as Meta;
