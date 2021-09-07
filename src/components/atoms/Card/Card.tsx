@@ -4,6 +4,14 @@ import './styles/index.scss';
 
 export default function Card({
   children,
-}: React.PropsWithChildren<unknown>): React.ReactElement {
-  return <div className={classnames('card')}>{children}</div>;
+  className,
+  ...props
+}: React.PropsWithChildren<
+  React.HTMLProps<HTMLDivElement>
+>): React.ReactElement {
+  return (
+    <div className={classnames('card', className)} {...props}>
+      {children}
+    </div>
+  );
 }

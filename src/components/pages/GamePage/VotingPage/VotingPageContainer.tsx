@@ -3,8 +3,6 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { Submissions } from '../../../../api';
 import { apiError, top3 } from '../../../../state';
 import { Loader } from '../../../common';
-import { CastVote } from './CastVote';
-import { ReadSubmissions } from './ReadSubmissions';
 
 const VotingPageContainer = (): React.ReactElement => {
   const [top3List, setTop3] = useRecoilState(top3.top3List);
@@ -33,11 +31,7 @@ const VotingPageContainer = (): React.ReactElement => {
     }
   }, [top3List]);
 
-  if (top3List) {
-    return finishedReading ? <CastVote /> : <ReadSubmissions />;
-  } else {
-    return <Loader />;
-  }
+  return <Loader />;
 };
 
 export default VotingPageContainer;

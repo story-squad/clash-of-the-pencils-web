@@ -2,7 +2,7 @@ export * from './Button';
 export * from './Card';
 export * from './Dial';
 export * from './DropZone';
-export * from './Image';
+export * from './Picture';
 export * from './Sticker';
 export * from './Timer';
 export * from './Toggle';

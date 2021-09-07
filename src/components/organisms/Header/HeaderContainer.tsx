@@ -9,7 +9,7 @@ import Header from './Header';
  * needing the Recoil layer.
  */
 export default function HeaderContainer(): React.ReactElement {
-  const [isMenuOpen, setIsMenuOpen] = useRecoilState(app.headerMenuIsOpen);
+  const [isMenuOpen, setIsMenuOpen] = useRecoilState(app.header.menuIsOpen);
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);

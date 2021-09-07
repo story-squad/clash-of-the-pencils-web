@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-export const headerMenuIsOpen = atom<boolean>({
+export const menuIsOpen = atom<boolean>({
   key: 'appStateHeaderMenuIsOpen',
   default: false,
 });
