@@ -4,7 +4,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import { promptData } from '../../../data';
 import leaderboardData from '../../../data/leaderboardData';
-import { leaderboard, prompts } from '../../../state';
+import { app, leaderboard, prompts } from '../../../state';
+import { schedule } from '../../../utils/time';
 import SubmissionView from './SubmissionView';
 
 const Template: Story = (props) => {
@@ -22,11 +23,19 @@ export default {
       const { daily, weekly } = leaderboardData;
       return (
         <RecoilRoot
-          initializeState={(x) => {
+          initializeState={({ set }) => {
             // We need to initialize recoil state here
-            x.set(prompts.currentPrompt, promptData[7]);
-            x.set(leaderboard.daily, daily);
-            x.set(leaderboard.weekly, weekly);
+            set(prompts.currentPrompt, promptData[7]);
+            set(leaderboard.daily, daily);
+            set(leaderboard.weekly, weekly);
+            set(
+              app.now,
+              schedule.submit.end.minus({
+                hours: 12,
+                minutes: 34,
+                seconds: 56,
+              }),
+            );
           }}
         >
           <BrowserRouter>{story()}</BrowserRouter>
