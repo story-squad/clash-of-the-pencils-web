@@ -12,7 +12,8 @@ export default function useCountdownCalculator({
   now = DateTime.now(),
 }: ICountdownProps): UseCountdownCalculatorReturn {
   const diffTotalInMS = Math.abs(startTime.diff(endTime).milliseconds);
-  const diffNowInMS = Math.abs(startTime.diff(now).milliseconds);
-  const ratio = diffNowInMS / diffTotalInMS;
-  return [ratio, diffNowInMS];
+  const diffNowFromStartInMS = Math.abs(startTime.diff(now).milliseconds);
+  const diffNowFromEndInMS = Math.abs(endTime.diff(now).milliseconds);
+  const ratio = diffNowFromStartInMS / diffTotalInMS;
+  return [ratio, diffNowFromEndInMS];
 }
