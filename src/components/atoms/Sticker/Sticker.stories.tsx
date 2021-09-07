@@ -18,7 +18,7 @@ export default {
         'thirdPlaceDragon',
         'readMe',
         'checkmark',
-        'dragZone',
+        'dropZone',
       ],
       control: {
         type: 'radio',
@@ -28,7 +28,7 @@ export default {
           thirdPlaceDragon: 'Third Place',
           readMe: 'Read Me',
           checkmark: 'Checkmark',
-          dragZone: 'Drag Zone',
+          dropZone: 'Drop Zone',
         },
       },
     },
