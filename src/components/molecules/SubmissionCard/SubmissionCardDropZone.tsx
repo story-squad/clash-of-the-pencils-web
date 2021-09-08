@@ -12,13 +12,13 @@ export interface SubmissionCardDropZoneProps {
 export default function SubmissionCardDropZone({
   position,
 }: SubmissionCardDropZoneProps): React.ReactElement {
-  const contents = useRecoilValue(
+  const { contents, isEmpty } = useRecoilValue(
     voting.contentsOf(`${voting.DROP_ZONE}-${position}`),
   );
   const dragonPlace = useMemo(() => {
-    if (!contents) return undefined;
+    if (!contents || isEmpty) return undefined;
     else return +contents.split('-')[1] as voting.Places;
-  }, [contents]);
+  }, [contents, isEmpty]);
   console.log('[SCDZ]', position, contents, dragonPlace);
   return (
     <DropZone
@@ -26,11 +26,8 @@ export default function SubmissionCardDropZone({
       type={voting.DRAGON}
       isDisabled={contents !== undefined}
     >
-      {dragonPlace ? (
-        <DraggableDragon place={dragonPlace} />
-      ) : (
-        <Sticker type="dropZone" />
-      )}
+      <DraggableDragon place={dragonPlace} />
+      {isEmpty && <Sticker type="dropZone" />}
     </DropZone>
   );
 }

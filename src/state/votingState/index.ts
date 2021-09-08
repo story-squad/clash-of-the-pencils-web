@@ -17,19 +17,24 @@ export const DROP_ZONE = 'drop-zone';
  * its value is `undefined`
  */
 const defaultVotingDragAndDropValue = {
-  [`${DROP_ZONE}-1`]: undefined,
-  [`${DROP_ZONE}-2`]: undefined,
-  [`${DROP_ZONE}-3`]: undefined,
-  [`${DRAG_BANK}-1`]: `${DRAGON}-1`,
-  [`${DRAG_BANK}-2`]: `${DRAGON}-2`,
-  [`${DRAG_BANK}-3`]: `${DRAGON}-3`,
+  [`${DROP_ZONE}-1`]: { contents: undefined, isEmpty: true },
+  [`${DROP_ZONE}-2`]: { contents: undefined, isEmpty: true },
+  [`${DROP_ZONE}-3`]: { contents: undefined, isEmpty: true },
+  [`${DRAG_BANK}-1`]: { contents: `${DRAGON}-1`, isEmpty: false },
+  [`${DRAG_BANK}-2`]: { contents: `${DRAGON}-2`, isEmpty: false },
+  [`${DRAG_BANK}-3`]: { contents: `${DRAGON}-3`, isEmpty: false },
 };
+
+export interface DndContent {
+  contents: string | undefined;
+  isEmpty: boolean;
+}
 
 /**
  * The state that manages the position of elements
  * in the voting "Dragon Drop" mechanism.
  */
-export const dragAndDropState = atom<Record<string, string | undefined>>({
+export const dragAndDropState = atom<Record<string, DndContent>>({
   key: 'votingDragAndDropState',
   default: defaultVotingDragAndDropValue,
 });
@@ -61,13 +66,13 @@ export const formattedVotes = selector<Voting.IPostVotesBody | undefined>({
 
     // Check all 3 submissions
     for (let i = 1; i <= 3; i++) {
-      const dndSubItem = dndState[`sub-${i}`]; // Returns `award-n` as a string
-      if (dndSubItem === undefined) {
+      const dndSubItem = dndState[`sub-${i}`];
+      if (dndSubItem.isEmpty || dndSubItem.contents === undefined) {
         // Make sure one last time that they voted
         return undefined;
       } else {
         // Get the index of the relevant submission, find the id, add to res
-        const subIndex = +dndSubItem.split('-')[1] - 1; // Awards start at 1 but index starts at 0
+        const subIndex = +dndSubItem.contents.split('-')[1] - 1; // Awards start at 1 but index starts at 0
         res.push(top3[subIndex].id); // Store the id of the specified submission
       }
     }
@@ -87,9 +92,9 @@ export const canSubmit = selector<boolean>({
   get: ({ get }) => {
     const dndState = get(dragAndDropState);
     return (
-      !!dndState[`${DROP_ZONE}-1`] &&
-      !!dndState[`${DROP_ZONE}-2`] &&
-      !!dndState[`${DROP_ZONE}-3`]
+      !dndState[`${DROP_ZONE}-1`].isEmpty &&
+      !dndState[`${DROP_ZONE}-2`].isEmpty &&
+      !dndState[`${DROP_ZONE}-3`].isEmpty
     );
   },
 });
@@ -97,7 +102,7 @@ export const canSubmit = selector<boolean>({
 /**
  * Returns the contents of the container at the given key.
  */
-export const contentsOf = selectorFamily<string | undefined, string>({
+export const contentsOf = selectorFamily<DndContent, string>({
   key: 'contentsOfContainerByKeyselector',
   get: (containerKey) => {
     return ({ get }) => {

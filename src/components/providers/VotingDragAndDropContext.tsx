@@ -8,44 +8,64 @@ export default function VotingDragAndDropContext({
 }: React.PropsWithChildren<unknown>): React.ReactElement {
   const [dndState, setDndState] = useRecoilState(voting.dragAndDropState);
   useEffect(() => console.log({ dndState }), [dndState]);
-  const voting__onDragStart: DragDropContextProps['onDragStart'] = (
-    { source },
-    {},
-  ) => {
-    // Mark the zone as empty!
-    setDndState((prev) => ({
-      ...prev,
-      [source.droppableId]: undefined,
-    }));
-  };
+  // const voting__onDragStart: DragDropContextProps['onDragStart'] = (
+  //   { source, draggableId, mode, type },
+  //   {},
+  // ) => {
+  //   console.log('[DS]', source, draggableId, mode, type);
+  //   // Mark the zone as empty!
+  //   setDndState((prev) => ({
+  //     ...prev,
+  //     [source.droppableId]: {
+  //       contents: undefined,
+  //       isEmpty: true,
+  //     },
+  //   }));
+  // };
 
   const voting__onDragEnd: DragDropContextProps['onDragEnd'] = (
-    { draggableId, source, destination },
+    { draggableId, source, destination, mode, reason, type, combine },
     {},
   ) => {
+    console.log(
+      '[DE]',
+      draggableId,
+      source,
+      destination,
+      mode,
+      reason,
+      type,
+      combine,
+    );
     if (!destination) {
       // If no destination, move it back
       setDndState((prev) => ({
         ...prev,
-        [source.droppableId]: draggableId, // Move the curreent draggable back to its source
+        [source.droppableId]: { contents: draggableId, isEmpty: false }, // Move the curreent draggable back to its source
       }));
     } else {
       // Otherwise, move it to its destination (only if the destination is empty!)
       setDndState((prev) => {
         // Check if our destination container is empty before dropping our draggable
-        const destIsEmpty = prev[destination.droppableId] === undefined;
+        const destIsEmpty = prev[destination.droppableId].isEmpty;
         if (destIsEmpty) {
           // Move our draggable to the destination
           return {
             ...prev,
             // Empty the source
-            [source.droppableId]: undefined,
+            [source.droppableId]: { contents: undefined, isEmpty: true },
             // Fill the destination
-            [destination.droppableId]: draggableId,
+            [destination.droppableId]: {
+              contents: draggableId,
+              isEmpty: false,
+            },
           };
         } else {
           // Move it back
-          return { ...prev, [source.droppableId]: draggableId };
+          return {
+            ...prev,
+            [source.droppableId]: { contents: draggableId, isEmpty: false },
+          };
         }
       });
     }
@@ -53,7 +73,7 @@ export default function VotingDragAndDropContext({
   return (
     <DragDropContext
       onDragEnd={voting__onDragEnd}
-      onDragStart={voting__onDragStart}
+      // onDragStart={voting__onDragStart}
     >
       {children}
     </DragDropContext>

@@ -1,7 +1,6 @@
 import { classnames } from '@story-squad/react-utils';
 import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
-import { Sticker } from '../Sticker';
 import './styles/index.scss';
 
 export interface DropZoneProps {
@@ -20,14 +19,13 @@ export default function DropZone({
 }: React.PropsWithChildren<DropZoneProps>): React.ReactElement {
   return (
     <Droppable droppableId={name} type={type} isDropDisabled={isDisabled}>
-      {({ innerRef, droppableProps, placeholder }, { isUsingPlaceholder }) => (
+      {({ innerRef, droppableProps, placeholder }) => (
         <div
           className={classnames('drop-zone', className)}
           ref={innerRef}
           {...droppableProps}
         >
           {children}
-          {isUsingPlaceholder && <Sticker type="dropZone" />}
           {placeholder}
         </div>
       )}
