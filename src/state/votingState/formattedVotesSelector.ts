@@ -1,6 +1,6 @@
 import { selector } from 'recoil';
 import { Voting } from '../../api';
-import { dropZone } from '../dndState';
+import { dropZone, splitKey } from '../dndState';
 import { top3List } from '../top3State';
 import { canSubmit, submissionDropZoneKeys } from './votingState';
 
@@ -36,8 +36,8 @@ export const formattedVotes = selector<Voting.IPostVotesBody | undefined>({
     const places = subDropZoneContents.map((content) => {
       if (!content) return undefined;
       else {
-        const [, placeNum] = content.split('-');
-        return +placeNum;
+        const [, placeNum] = splitKey(content);
+        return placeNum;
       }
     });
     // Only return the response if all 3 votes were cast (all values are truthy, not undefined)

@@ -1,6 +1,7 @@
 import { atomFamily, DefaultValue, selector, selectorFamily } from 'recoil';
 import { logger } from '../effects';
 import { DRAGON, DRAGON_BANK_ZONE } from '../votingState';
+import { splitKey } from './helpers';
 import {
   DEFAULT_EMPTY_DROP_ZONE,
   DropZoneContainer,
@@ -12,7 +13,7 @@ export const dropZone = atomFamily<DropZoneContainer, DropZoneKey>({
   default: selectorFamily({
     key: 'defaultDropZoneValueSelector',
     get: (key) => () => {
-      const [keyType, keyIndex] = key.split('-');
+      const [keyType, keyIndex] = splitKey(key);
       // Make sure to handle any drop zone default overrides here!
       switch (keyType) {
         case DRAGON_BANK_ZONE:

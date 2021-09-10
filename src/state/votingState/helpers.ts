@@ -1,4 +1,5 @@
-import { StickerTypes } from '../../components/atoms/Sticker/Sticker';
+import { StickerTypes } from '../../components/atoms';
+import { splitKey } from '../dndState';
 import { DRAGON } from './votingState';
 
 export type Places = 1 | 2 | 3;
@@ -16,7 +17,7 @@ export function getPlaceText(place: Places): PlaceText {
 }
 
 export function getDragon(dropKey: string): StickerTypes | undefined {
-  const [keyType, keyIndex] = dropKey.split('-');
+  const [keyType, keyIndex] = splitKey<Places>(dropKey);
   if (keyType !== DRAGON) return undefined;
-  else return `${getPlaceText(+keyIndex as Places)}PlaceDragon`;
+  else return `${getPlaceText(keyIndex)}PlaceDragon`;
 }
