@@ -2,18 +2,16 @@
 
 .submission-card {
   .image {
-    position: relative;
-    z-index: 1;
     display: none;
     @include bp(tablet) {
+      position: relative;
+      z-index: -1;
       display: flex;
       aspect-ratio: 1;
     }
   }
   .submission-card-footer {
     // Layout
-    position: relative;
-    z-index: 2;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -26,8 +24,11 @@
     // Design
     background-color: $brand-orange;
 
-    .sticker.read-me {
-      cursor: pointer;
+    .sticker {
+      z-index: 10;
+      .read-me {
+        cursor: pointer;
+      }
     }
 
     .content-left {
