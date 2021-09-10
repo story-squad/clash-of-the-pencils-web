@@ -6,7 +6,6 @@
     @include bp(tablet) {
       display: flex;
       aspect-ratio: 1;
-      z-index: -1;
     }
   }
   .submission-card-footer {
