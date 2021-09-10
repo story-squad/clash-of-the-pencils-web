@@ -14,20 +14,19 @@
     }
   }
 
+  &.rotate-180 .image-inner {
+    transform: rotate(-180deg);
+  }
+  &.rotate-90 .image-inner {
+    transform: rotate(-90deg);
+  }
+  &.rotate-270 .image-inner {
+    transform: rotate(-270deg);
+  }
   .image-inner {
     width: 100%;
     height: 100%;
     background-size: cover;
     background-position: top center;
-
-    &.rotate-180 {
-      transform: rotate(-180deg);
-    }
-    &.rotate-90 {
-      transform: rotate(-90deg);
-    }
-    &.rotate-270 {
-      transform: rotate(-270deg);
-    }
   }
 }

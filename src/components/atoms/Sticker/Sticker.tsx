@@ -1,3 +1,4 @@
+import { classnames } from '@story-squad/react-utils';
 import React, { HTMLProps, useMemo } from 'react';
 import { stickerSVGs } from '../../../assets';
 import './styles/index.scss';
@@ -11,11 +12,12 @@ export interface StickerProps extends HTMLProps<HTMLSpanElement> {
 const Sticker = ({
   type,
   dragRef,
+  className,
   ...props
 }: StickerProps): React.ReactElement => {
   const SelectedSticker = useMemo(() => stickerSVGs[type], [type]);
   return (
-    <span className="sticker" ref={dragRef} {...props}>
+    <span className={classnames('sticker', className)} ref={dragRef} {...props}>
       <SelectedSticker />
     </span>
   );

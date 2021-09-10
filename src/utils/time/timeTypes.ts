@@ -5,12 +5,13 @@ import { DateTime } from 'luxon';
 /**
  * The `nametags` for time-based events we track using union syntax
  */
-export type eventType = 'submit' | 'vote' | 'stream' | 'admin';
+export type eventType = 'submit' | 'vote' | 'stream' | 'admin' | 'off';
 export enum ClashPhases {
   submit = 'submit',
   vote = 'vote',
   stream = 'stream',
   admin = 'admin',
+  off = 'off',
 }
 
 /**

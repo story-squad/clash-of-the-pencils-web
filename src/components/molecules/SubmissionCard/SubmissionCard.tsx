@@ -3,6 +3,7 @@ import React, { useMemo } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { Submissions } from '../../../api';
 import { app, voting } from '../../../state';
+import { time } from '../../../utils';
 import { Card, Picture } from '../../atoms';
 import './styles/index.scss';
 import SubmissionCardFooter from './SubmissionCardFooter';
@@ -12,6 +13,7 @@ export interface SubmissionCardProps {
   containerProps?: React.HTMLProps<HTMLDivElement>;
   disablePreview?: boolean;
   position: voting.Places;
+  phase?: time.eventType;
 }
 
 export default function SubmissionCard({
@@ -19,6 +21,7 @@ export default function SubmissionCard({
   position,
   containerProps,
   disablePreview,
+  phase = 'off',
 }: SubmissionCardProps): React.ReactElement {
   const openAnImageFullscreen = useSetRecoilState(app.imageView.openImage);
   const openSubmission = () => {
@@ -52,6 +55,8 @@ export default function SubmissionCard({
         age={age}
         codename={submission.codename}
         position={position}
+        phase={phase}
+        openSubmission={openSubmission}
       />
     </Card>
   );

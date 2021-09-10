@@ -24,10 +24,11 @@ export default function Picture({
         'image',
         containerProps.className,
         !disablePreview && 'can-preview',
+        `rotate-${rotation}`,
       )}
     >
       <div
-        className={classnames('image-inner', `rotate-${rotation}`)}
+        className={classnames('image-inner')}
         style={{ backgroundImage: `url(${source})` }}
         title={description}
       />

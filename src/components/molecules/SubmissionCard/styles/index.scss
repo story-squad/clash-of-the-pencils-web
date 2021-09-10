@@ -2,22 +2,33 @@
 
 .submission-card {
   .image {
+    position: relative;
+    z-index: 1;
     display: none;
     @include bp(tablet) {
       display: flex;
-      aspect-ratio: 1.3;
+      aspect-ratio: 1;
     }
   }
   .submission-card-footer {
     // Layout
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-between;
     padding: 1.6rem;
+    @include bp(tablet) {
+      margin-top: -5rem;
+    }
 
     // Design
     background-color: $brand-orange;
+
+    .sticker.read-me {
+      cursor: pointer;
+    }
 
     .content-left {
       color: $white;
