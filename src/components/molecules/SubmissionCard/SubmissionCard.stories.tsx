@@ -2,12 +2,17 @@ import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { RecoilRoot } from 'recoil';
 import { submissionData } from '../../../data';
+import { CardList } from '../../organisms/CardList';
 import { VotingDragAndDropContext } from '../../providers';
 import { FullscreenImageOverlay } from '../../views';
 import SubmissionCard, { SubmissionCardProps } from './SubmissionCard';
 
 const Template: Story<SubmissionCardProps> = (props) => (
-  <SubmissionCard {...props} />
+  <CardList>
+    <SubmissionCard {...props} />
+    <SubmissionCard {...props} />
+    <SubmissionCard {...props} />
+  </CardList>
 );
 
 export const Default = Template.bind({});
