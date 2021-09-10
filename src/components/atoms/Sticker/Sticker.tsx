@@ -1,8 +1,9 @@
-import React, { useMemo } from 'react';
+import React, { HTMLProps, useMemo } from 'react';
 import { stickerSVGs } from '../../../assets';
+import './styles/index.scss';
 
 export type StickerTypes = keyof typeof stickerSVGs;
-export interface StickerProps {
+export interface StickerProps extends HTMLProps<HTMLSpanElement> {
   type: StickerTypes;
   dragRef?: React.Ref<HTMLSpanElement>;
 }

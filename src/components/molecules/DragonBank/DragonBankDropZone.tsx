@@ -1,29 +1,26 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
-import { voting } from '../../../state';
 import { DropZone, Sticker } from '../../atoms';
 import DraggableDragon from './DraggableDragon';
 
 export interface DragonBankDropZoneProps {
-  place: voting.Places;
+  name: string;
 }
 
 export default function DragonBankDropZone({
-  place,
+  name,
 }: DragonBankDropZoneProps): React.ReactElement {
-  const contents = useRecoilValue(
-    voting.contentsOf(`${voting.DRAG_BANK}-${place}`),
-  );
-
   return (
-    <DropZone
-      name={`${voting.DRAG_BANK}-${place}`}
-      type={voting.DRAGON}
-      isDisabled={contents !== undefined} // Disable drop if container isn't empty
-    >
-      <DraggableDragon place={place} />
-      {!contents && <Sticker type="dropZone" />}
-      {/* {place && <DraggableDragon place={place} />} */}
+    <DropZone name={name}>
+      {({ contents, isEmpty, isDraggingOver }) =>
+        isEmpty || !contents ? (
+          <Sticker
+            type="dropZone"
+            style={{ opacity: isDraggingOver ? 0.5 : 1 }}
+          />
+        ) : (
+          <DraggableDragon name={contents} />
+        )
+      }
     </DropZone>
   );
 }
