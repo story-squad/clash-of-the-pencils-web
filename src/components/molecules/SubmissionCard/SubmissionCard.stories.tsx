@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { RecoilRoot } from 'recoil';
 import { submissionData } from '../../../data';
-import { CardList } from '../../organisms/CardList';
+import { CardList } from '../../organisms';
 import { VotingDragAndDropContext } from '../../providers';
 import { FullscreenImageOverlay } from '../../views';
 import SubmissionCard, { SubmissionCardProps } from './SubmissionCard';
@@ -29,8 +29,8 @@ export default {
     (story) => (
       <RecoilRoot>
         <VotingDragAndDropContext>
-          {story()}
           <FullscreenImageOverlay />
+          {story()}
         </VotingDragAndDropContext>
       </RecoilRoot>
     ),

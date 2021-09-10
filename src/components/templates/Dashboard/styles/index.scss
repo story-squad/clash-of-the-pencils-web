@@ -10,8 +10,5 @@
 
   #dashboard-content {
     flex-grow: 1;
-    .dashboard-content-container {
-      @include safe-zone();
-    }
   }
 }

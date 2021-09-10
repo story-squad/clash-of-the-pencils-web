@@ -4,10 +4,9 @@
   .image {
     display: none;
     @include bp(tablet) {
-      position: relative;
-      z-index: -1;
       display: flex;
       aspect-ratio: 1;
+      z-index: -1;
     }
   }
   .submission-card-footer {
@@ -17,16 +16,12 @@
     align-items: center;
     justify-content: space-between;
     padding: 1.6rem;
-    @include bp(tablet) {
-      margin-top: -5rem;
-    }
 
     // Design
     background-color: $brand-orange;
 
     .sticker {
-      z-index: 10;
-      .read-me {
+      &.read-me {
         cursor: pointer;
       }
     }
@@ -37,6 +32,7 @@
         font-family: $display-font;
         font-size: 1.6rem;
         line-height: 2.6rem;
+        letter-spacing: 0.007rem;
       }
       h3 {
         font-family: $text-font;

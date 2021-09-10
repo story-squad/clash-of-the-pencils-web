@@ -2,9 +2,9 @@ import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-import { promptData } from '../../../data';
+import { promptData, submissionData } from '../../../data';
 import leaderboardData from '../../../data/leaderboardData';
-import { app, leaderboard, prompts } from '../../../state';
+import { app, leaderboard, prompts, top3 } from '../../../state';
 import { schedule } from '../../../utils/time';
 import SubmissionView from './SubmissionView';
 
@@ -28,6 +28,7 @@ export default {
             set(prompts.currentPrompt, promptData[7]);
             set(leaderboard.daily, daily);
             set(leaderboard.weekly, weekly);
+            set(top3.top3List, submissionData.slice(0, 3));
             set(
               app.now,
               schedule.submit.end.minus({
