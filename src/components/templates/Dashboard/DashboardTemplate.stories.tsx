@@ -1,10 +1,9 @@
 import { Meta, Story } from '@storybook/react';
-import React, { PropsWithChildren, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { RecoilRoot } from 'recoil';
 import DashboardTemplate from './DashboardTemplate';
-import { IDashboardTemplateProps } from './DashboardTemplate.model';
 
-const Template: Story<PropsWithChildren<IDashboardTemplateProps>> = (props) => (
+const Template: Story = (props) => (
   <RecoilRoot>
     <DashboardTemplate {...props} />
   </RecoilRoot>
@@ -49,5 +48,11 @@ export default {
   component: DashboardTemplate,
   parameters: {
     layout: 'fullscreen',
+  },
+  argTypes: {
+    useStorySquadHeader: {
+      control: { type: 'boolean' },
+      defaultValue: false,
+    },
   },
 } as Meta;

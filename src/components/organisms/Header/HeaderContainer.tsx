@@ -2,6 +2,7 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import { app } from '../../../state';
 import Header from './Header';
+import StorySquadHeader from './StorySquadHeader';
 
 export interface HeaderSwitcherProps {
   useStorySquadHeader?: boolean;
@@ -11,7 +12,7 @@ export default function HeaderSwitcher({
   useStorySquadHeader = false,
 }: HeaderSwitcherProps): React.ReactElement {
   if (useStorySquadHeader) {
-    return <></>;
+    return <StorySquadHeader />;
   } else {
     return <HeaderContainer />;
   }
