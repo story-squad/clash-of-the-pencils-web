@@ -5,10 +5,6 @@ header {
   background-color: $brand-blue;
 
   .main-header-container {
-    // Viewport-based navigation
-    @import './mobileNav.scss';
-    @import './tabletNav.scss';
-
     // Layout
     display: flex;
     flex-flow: column nowrap;

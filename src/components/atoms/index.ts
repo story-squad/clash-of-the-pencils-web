@@ -2,6 +2,8 @@ export * from './Button';
 export * from './Card';
 export * from './Dial';
 export * from './DropZone';
+export * from './InputField';
+export * from './InputLabel';
 export * from './Picture';
 export * from './Sticker';
 export * from './Timer';

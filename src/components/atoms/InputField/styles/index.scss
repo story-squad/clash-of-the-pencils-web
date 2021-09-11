@@ -1,0 +1,60 @@
+@import '~/src/styles/newIndex.scss';
+
+.input-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid $gray-3;
+  border-radius: 8px;
+  &.success {
+    border-color: $success;
+  }
+  &.warning {
+    border-color: $warning;
+  }
+  &.error {
+    border-color: $error;
+  }
+  svg {
+    color: $gray-4;
+    font-size: 2rem;
+    line-height: 2rem;
+    &:first-child {
+      margin-left: 1.2rem;
+    }
+    &:last-child {
+      margin-right: 1.2rem;
+    }
+  }
+  .input {
+    width: 100%;
+    font-family: $ui-foint;
+    font-style: normal;
+    font-weight: normal;
+    padding: 8px 12px;
+    //hack but fixes chrome default styling
+    &[type='date'],
+    &[type='time'] {
+      padding: 7px 12px;
+    }
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    color: $gray-8;
+    outline-width: 0;
+    border: unset;
+    border-radius: 0.8rem;
+  }
+
+  &.hover {
+    border: 1px solid $brand-blue-4;
+    box-shadow: 0px 0px 4px #006dc766;
+  }
+
+  &.focus {
+    border: 1px solid $brand-blue-6;
+    box-shadow: 0px 0px 4px #006dc766;
+    svg {
+      color: $gray-8;
+    }
+  }
+}

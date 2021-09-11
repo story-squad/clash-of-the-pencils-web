@@ -1,0 +1,23 @@
+@import '~/src/styles/newIndex.scss';
+
+.label {
+  font-family: $ui-foint;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  color: $gray-7;
+  .require {
+    color: $dust-red;
+    margin-right: 4px;
+  }
+  .optional {
+    margin-left: 5px;
+    font-family: $ui-foint;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    color: $gray-5;
+  }
+}
