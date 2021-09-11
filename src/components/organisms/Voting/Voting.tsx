@@ -2,7 +2,7 @@ import React from 'react';
 import { Submissions } from '../../../api';
 import { voting } from '../../../state';
 import { time } from '../../../utils';
-import { DragonBank, SubmissionCard } from '../../molecules';
+import { DragonBank, InstructionCard, SubmissionCard } from '../../molecules';
 import { CardList } from '../CardList';
 import './styles/index.scss';
 
@@ -19,7 +19,11 @@ export default function Voting({
     <section className="voting-wrapper">
       <div className="voting-container">
         <h2>Read &amp; Rank the Top 3 Stories</h2>
-        {/* Here is where the instruction cards go */}
+        <CardList>
+          <InstructionCard step={1} />
+          <InstructionCard step={2} />
+          <InstructionCard step={3} />
+        </CardList>
         <h3>Drop the Dragons to Vote</h3>
         <DragonBank />
         <CardList>
