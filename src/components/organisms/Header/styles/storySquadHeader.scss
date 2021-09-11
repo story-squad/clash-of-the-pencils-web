@@ -1,0 +1,21 @@
+@import '~/src/styles/newIndex.scss';
+
+header.story-squad-header-wrapper {
+  // Design
+  background-color: $brand-blue;
+  padding-top: 0.5rem;
+  .story-squad-header {
+    // Layout
+    @include safe-zone();
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+    h1 {
+      font-family: $corporate-font;
+      font-size: 3.6rem;
+      line-height: 2.6rem;
+      color: $white;
+    }
+  }
+}
