@@ -1,11 +1,12 @@
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
 import { Submissions } from '../../api';
 
-const top3InitState = null;
-
-export const top3List = atom<Submissions.ISubItem[] | null>({
+export const top3List = atom<Submissions.ISubItem[]>({
   key: 'top3List',
-  default: top3InitState,
+  default: selector({
+    key: 'defaultTop3Selector',
+    get: Submissions.getTop3Subs, // Use this as the default getter
+  }),
 });
 
 const initialHasReadState = [false, false, false];

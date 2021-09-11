@@ -1,0 +1,29 @@
+@import './tableCell.scss';
+@import '~/src/styles/newIndex.scss';
+
+.table-header {
+  // Design
+  background-color: $brand-blue-8;
+  overflow: hidden;
+  border-radius: 1.6rem 1.6rem 0 0;
+
+  tr {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    width: 100%;
+
+    // Layout
+    padding: 0.8rem;
+
+    .table-header-cell {
+      @include table-cell-layout();
+
+      // Design
+      font-family: $display-font;
+      color: $white;
+      font-size: 1.6rem;
+      line-height: 3.4rem;
+    }
+  }
+}

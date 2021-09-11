@@ -3,7 +3,11 @@ $brand-blue: #0089ed;
 $brand-orange: #ff7f34;
 $sky-blue: #f6fbfc;
 
+// Export font variables from this file as well
+@import './fonts.scss';
+
 // Accent Colors
+$white: #ffffff;
 $lime-green: #c6fd7e;
 $neon-green: #d5ff2e;
 $mellow-yellow: #ffd854;
@@ -44,3 +48,5 @@ $brand-orange-8: #8c2b07;
 $brand-orange-9: #661b04;
 
 $sky-blue-4: #99f0ff;
+
+$lime-green-3: #dcffa8;

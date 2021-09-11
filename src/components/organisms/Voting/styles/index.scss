@@ -1,0 +1,28 @@
+@import '~/src/styles/newIndex.scss';
+
+section.voting-wrapper {
+  background-color: $brand-blue-0;
+
+  .voting-container {
+    padding: 4rem 1.6rem;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 1.6rem;
+    @include safe-zone();
+    & > h2,
+    & > h3 {
+      font-family: $display-font;
+      font-size: 2.4rem;
+      line-height: 2.6rem;
+      text-align: center;
+    }
+    & > h2 {
+      color: $brand-blue-6;
+    }
+    & > h3 {
+      color: $gray-7;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+@import './tableCell.scss';
+
+.table-body {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+
+  // ? Do we want these borders?
+  border-radius: 0 0 1.6rem 1.6rem;
+  overflow: hidden;
+
+  .table-row {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    width: 100%;
+
+    // Standard row styles
+    padding: 0.8rem 1.2rem;
+    background-color: $brand-orange-1;
+    color: $gray-8;
+    font-family: $text-font;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $gray-4;
+    }
+
+    // First place row gets a different style!
+    &:first-of-type {
+      background-color: $lime-green-3;
+    }
+
+    .table-cell {
+      @include table-cell-layout();
+    }
+  }
+}

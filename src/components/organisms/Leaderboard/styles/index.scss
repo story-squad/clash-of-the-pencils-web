@@ -1,0 +1,55 @@
+@import '~/src/styles/newIndex.scss';
+
+.leaderboard {
+  // Layout
+  flex-grow: 1;
+  padding: 3rem 1.6rem;
+  @include bp(tablet) {
+    padding: 3rem 0 0;
+  }
+
+  // Design
+  background-color: $brand-blue-7;
+
+  h1 {
+    // Layout
+    margin-bottom: 1.6rem;
+
+    // Design
+    color: $white;
+    font-size: 2.4rem;
+    line-height: 2.6rem;
+    text-align: center;
+    font-family: $display-font;
+  }
+
+  .toggle {
+    margin-bottom: 1.6rem;
+
+    @include bp(tablet) {
+      margin: 0 1.6rem 1.6rem;
+    }
+  }
+
+  .table {
+    @include bp(tablet) {
+      .table-header,
+      .table-body {
+        border-radius: 0;
+      }
+    }
+
+    .table-row {
+      .table-cell:nth-of-type(1) {
+        flex-grow: 1;
+      }
+      .table-cell:nth-of-type(2) {
+        flex-grow: 5;
+      }
+      .table-cell:nth-of-type(3) {
+        flex-grow: 2;
+        justify-content: center;
+      }
+    }
+  }
+}

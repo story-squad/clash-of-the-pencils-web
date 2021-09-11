@@ -29,7 +29,10 @@ const FullscreenImage = (props: FullscreenImageProps): React.ReactElement => {
   };
 
   useEffect(() => {
-    if (props.isVisible) window.addEventListener('resize', resizeHandler);
+    if (props.isVisible) {
+      resizeHandler();
+      window.addEventListener('resize', resizeHandler);
+    }
     return () => window.removeEventListener('resize', resizeHandler);
   }, [props.isVisible]);
 

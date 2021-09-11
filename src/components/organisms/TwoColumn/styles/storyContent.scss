@@ -1,0 +1,24 @@
+/**
+
+This stylesheet is only here to style the stories for Storybook.
+These styles aren't used in the application at all.
+
+**/
+
+.col-left .content {
+  background-color: #999;
+}
+.col-right .content {
+  background-color: #ccc;
+}
+
+.content {
+  p {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    padding: 1rem;
+    &:not(:last-of-type) {
+      margin-bottom: 1rem;
+    }
+  }
+}

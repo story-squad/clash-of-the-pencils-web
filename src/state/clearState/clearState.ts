@@ -8,7 +8,6 @@ import {
   userId,
   username,
 } from '../authState';
-import { dndContainerState } from '../dndState';
 import { list } from '../pastSubsState';
 import {
   error,
@@ -28,7 +27,6 @@ export const all = selector<null>({
     reset(authModalOpen);
     reset(signupWasSuccessful);
     reset(top3List);
-    reset(dndContainerState);
     reset(hasFinishedReadingState);
     reset(hasReadState);
     reset(list);

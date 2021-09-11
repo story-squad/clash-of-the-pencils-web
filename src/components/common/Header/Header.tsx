@@ -4,6 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { auth } from '../../../state';
 import { time } from '../../../utils';
+import './styles/index.scss';
 
 const Header = (): React.ReactElement => {
   const [showMenu, setShowMenu] = useState(false);

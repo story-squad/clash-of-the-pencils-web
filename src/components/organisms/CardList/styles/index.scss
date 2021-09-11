@@ -1,0 +1,17 @@
+@import '~/src/styles/newIndex.scss';
+
+.card-list {
+  @include safe-zone();
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1.6rem;
+
+  @include bp(tablet) {
+    flex-flow: row wrap;
+    .card {
+      width: calc((100% - (1.6rem * 2)) / 3);
+    }
+  }
+}

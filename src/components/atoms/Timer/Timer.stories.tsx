@@ -4,7 +4,8 @@ import Timer, { TimerProps } from './Timer';
 
 const Template: Story<TimerProps> = (props) => <Timer {...props} />;
 
-export const Basic = Template.bind({});
+export const Default = Template.bind({});
+Default.args = { displayTime: { h: 4, m: 30, s: 31 } };
 
 export default {
   title: 'Components/Atoms/Timer',

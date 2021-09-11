@@ -1,0 +1,39 @@
+@import '~/src/styles/newIndex.scss';
+
+header {
+  // Design
+  background-color: $brand-blue;
+
+  .main-header-container {
+    // Viewport-based navigation
+    @import './mobileNav.scss';
+    @import './tabletNav.scss';
+
+    // Layout
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    @include safe-zone();
+
+    section#main-header {
+      // Layout
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      padding: 0 1.6rem;
+
+      // Typography
+      color: $white;
+
+      @import './headerIcon.scss';
+
+      h1 {
+        cursor: pointer;
+        font-family: $display-font;
+        font-size: 1.8rem;
+        line-height: 2.8rem;
+        padding: 2.6rem 0;
+      }
+    }
+  }
+}

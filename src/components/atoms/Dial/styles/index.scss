@@ -1,0 +1,14 @@
+@import '~/src/styles/newIndex.scss';
+
+.dial {
+  background-color: $brand-blue;
+  background: conic-gradient(
+    $brand-blue-5 0 var(--dial-angle),
+    $brand-blue-3 var(--dial-angle)
+  );
+  min-height: 10rem;
+  min-width: 10rem;
+  aspect-ratio: 1;
+
+  border-radius: 100%;
+}

@@ -1,9 +1,18 @@
-import { Moment } from 'moment';
+import { DateTime } from 'luxon';
+
 /* Important Time Module Types */
+
 /**
  * The `nametags` for time-based events we track using union syntax
  */
-export type eventType = 'submit' | 'vote' | 'stream' | 'announce' | 'offTime';
+export type eventType = 'submit' | 'vote' | 'stream' | 'admin' | 'off';
+export enum ClashPhases {
+  submit = 'submit',
+  vote = 'vote',
+  stream = 'stream',
+  admin = 'admin',
+  off = 'off',
+}
 
 /**
  * An interface for a seconds value converted into hours, minutes, seconds
@@ -15,13 +24,26 @@ export interface TimeUntilItem {
   m: number;
   s: number;
 }
+export function isTimeUntilItem(item: unknown): item is TimeUntilItem {
+  const itemAs = item as TimeUntilItem;
+  return (
+    itemAs !== undefined &&
+    typeof itemAs === 'object' &&
+    typeof itemAs.h === 'number' &&
+    typeof itemAs.m === 'number' &&
+    typeof itemAs.s === 'number'
+  );
+}
 
 /**
  * A type for the larger schedule object on which we track time-based events
  */
-export type scheduleObjectType = {
-  [key in eventType]: {
-    start: Moment;
-    end: Moment;
-  };
-};
+export type scheduleObjectType = Record<
+  eventType,
+  { start: DateTime; end: DateTime }
+>;
+
+export interface ICurrentTime {
+  phase: ClashPhases & string;
+  timeLeft: number;
+}

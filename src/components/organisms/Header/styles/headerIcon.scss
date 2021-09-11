@@ -1,0 +1,27 @@
+@import '~/src/styles/mediaQueries.scss';
+
+svg {
+  cursor: pointer;
+
+  &.logo {
+    height: 6.6rem;
+    margin-right: 1rem;
+
+    // Logo should display on tablet only
+    display: none;
+    @include bp(tablet) {
+      display: block;
+    }
+  }
+
+  &.menu-toggle {
+    height: 4rem;
+    width: 4rem;
+    margin-right: 1.6rem;
+
+    // Menu should display on mobile only
+    @include bp(tablet) {
+      display: none;
+    }
+  }
+}

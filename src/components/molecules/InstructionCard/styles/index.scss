@@ -1,0 +1,25 @@
+@import '~/src/styles/newIndex.scss';
+
+.instruction-card {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  text-align: center;
+  border: 0.05rem solid $gray-3;
+  padding: 1.2rem;
+  svg {
+    margin-bottom: 1rem;
+  }
+  h2 {
+    font-family: $display-font;
+    font-size: 2rem;
+    line-height: 2rem;
+    color: $gray-7;
+  }
+  p {
+    font-family: $text-font;
+    color: $gray-8;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+  }
+}

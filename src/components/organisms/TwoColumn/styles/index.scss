@@ -1,0 +1,44 @@
+@import '~/src/styles/mixins.scss';
+@import '~/src/styles/mediaQueries.scss';
+
+// Configuration
+$border-radius: 1.6rem;
+
+@mixin col-style() {
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  @include bp(tablet) {
+    border-radius: $border-radius;
+    overflow: hidden;
+    width: 50%;
+  }
+}
+
+.two-column-layout {
+  .two-column-layout-container {
+    // Layout
+    @include safe-zone();
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+
+    @include bp(tablet) {
+      flex-flow: row nowrap;
+      gap: 2rem;
+    }
+
+    @include bp(tablet) {
+      padding: 2.4rem;
+    }
+
+    .col-left {
+      @include col-style();
+    }
+    .col-right {
+      @include col-style();
+    }
+  }
+}

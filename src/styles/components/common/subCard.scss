@@ -22,26 +22,18 @@
     background-position: top center;
 
     &.rotate-180 {
-      transform: rotate(-180deg);
+      img {
+        transform: rotate(-180deg);
+      }
     }
     &.rotate-90 {
-      transform: rotate(-90deg);
+      img {
+        transform: rotate(-90deg);
+      }
     }
     &.rotate-270 {
-      transform: rotate(-270deg);
-    }
-  }
-
-  .modal {
-    .modal-image {
-      width: 100%;
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: center;
       img {
-        height: unset !important;
-        width: unset !important;
-        max-width: 100% !important;
+        transform: rotate(-270deg);
       }
     }
   }

@@ -1,0 +1,58 @@
+@import '~/src/styles/newIndex.scss';
+
+.prompt {
+  background-color: $brand-blue-6;
+  padding: 2.5rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+
+  h1 {
+    font-family: $display-font;
+    color: $white;
+    font-size: 2.4rem;
+    line-height: 2.6rem;
+    text-align: center;
+
+    margin-bottom: 1.6rem;
+  }
+  p {
+    font-family: $text-font;
+    color: $white;
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+    text-align: center;
+    margin-bottom: 2.4rem;
+    @include bp(tablet) {
+      text-align: left;
+    }
+  }
+
+  .button-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    justify-content: center;
+    margin-bottom: 2.4rem;
+    @include bp(tablet) {
+      align-items: center;
+    }
+
+    .button:first-of-type {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .countdown-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+
+    .countdown {
+      max-width: 24rem;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+.image {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  overflow: hidden;
+  aspect-ratio: 1;
+
+  &.can-preview .image-inner {
+    cursor: pointer;
+    transition: all 0.15s ease-in;
+    &:hover {
+      transition: all 0.15s ease-out;
+      transform: scale(1.05);
+    }
+  }
+
+  @mixin rotate($degrees) {
+    -webkit-transform: rotate($degrees);
+    -moz-transform: rotate($degrees);
+    -ms-transform: rotate($degrees);
+    -o-transform: rotate($degrees);
+    transform: rotate($degrees);
+  }
+  // TODO turning these back on causes weird problems with the aspect ratio
+  // &.rotate-90 .image-inner {
+  //   @include rotate(-90deg);
+  // }
+  // &.rotate-180 .image-inner {
+  //   @include rotate(-180deg);
+  // }
+  // &.rotate-270 .image-inner {
+  //   @include rotate(-270deg);
+  // }
+  .image-inner {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: top center;
+  }
+}

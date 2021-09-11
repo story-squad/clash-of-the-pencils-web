@@ -1,0 +1,25 @@
+@import '~/src/styles/newIndex.scss';
+
+.empty-card {
+  background-color: $brand-blue-7;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.2rem;
+  @include bp(tablet) {
+    aspect-ratio: 0.95;
+  }
+
+  p {
+    font-family: $display-font;
+    color: $white;
+
+    font-size: 7.2rem;
+    line-height: 6.4rem;
+    @include bp(tablet) {
+      font-size: 14.4rem;
+      line-height: 14.4rem;
+    }
+  }
+}
