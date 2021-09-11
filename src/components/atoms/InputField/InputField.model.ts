@@ -8,7 +8,8 @@ type InputFieldTypes =
   // | "phone"
   | 'date'
   | 'time'
-  | 'textarea';
+  | 'textarea'
+  | 'password';
 
 export interface IInputFieldProps {
   variant?: InputVariants;

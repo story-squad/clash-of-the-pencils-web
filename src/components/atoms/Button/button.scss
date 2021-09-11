@@ -38,19 +38,19 @@
 
   // Fixing SVG padding issues
   &.iconLeft.lg svg:first-of-type {
-    margin-right: 2px;
+    margin-right: 8px;
     margin-left: -6px;
   }
   &.iconLeft.sm svg:first-of-type {
-    margin-right: 2px;
+    margin-right: 6px;
     margin-left: -4px;
   }
   &.iconRight.lg svg:last-of-type {
-    margin-left: 2px;
+    margin-left: 8px;
     margin-right: -3px;
   }
   &.iconRight.sm svg:last-of-type {
-    margin-left: 2px;
+    margin-left: 6px;
     margin-right: -3px;
   }
 

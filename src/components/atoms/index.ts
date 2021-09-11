@@ -4,6 +4,7 @@ export * from './Dial';
 export * from './DropZone';
 export * from './InputField';
 export * from './InputLabel';
+export * from './LoadIcon';
 export * from './Picture';
 export * from './Sticker';
 export * from './Timer';

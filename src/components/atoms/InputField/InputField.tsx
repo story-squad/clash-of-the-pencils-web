@@ -7,7 +7,7 @@ const InputField = ({
   iconLeft,
   iconRight,
   variant,
-  inputType,
+  inputType = 'text',
   placeholder,
 }: IInputFieldProps): React.ReactElement => {
   const [isFocused, setFocused] = useState(false);
