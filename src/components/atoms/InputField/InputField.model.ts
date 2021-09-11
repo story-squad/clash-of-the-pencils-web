@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { HTMLProps, ReactNode } from 'react';
 
 type InputVariants = 'default' | 'success' | 'error' | 'warning';
 
@@ -11,7 +11,8 @@ type InputFieldTypes =
   | 'textarea'
   | 'password';
 
-export interface IInputFieldProps {
+export interface IInputFieldProps
+  extends Omit<HTMLProps<HTMLInputElement>, 'type'> {
   variant?: InputVariants;
   inputType?: InputFieldTypes;
   placeholder?: string;

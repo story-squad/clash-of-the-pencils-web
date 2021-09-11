@@ -3,5 +3,5 @@ type LabelTypes = 'default' | 'required' | 'optional';
 export interface ILabelProps {
   label?: string;
   labelType?: LabelTypes;
-  toolTip?: boolean;
+  tooltip?: boolean;
 }

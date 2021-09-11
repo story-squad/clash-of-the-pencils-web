@@ -9,6 +9,7 @@ const InputField = ({
   variant,
   inputType = 'text',
   placeholder,
+  ...props
 }: IInputFieldProps): React.ReactElement => {
   const [isFocused, setFocused] = useState(false);
   const [isHovered, setHovered] = useState(false);
@@ -36,6 +37,7 @@ const InputField = ({
         onBlur={unfocus}
         type={inputType}
         placeholder={placeholder}
+        {...props}
       />
       {iconRight}
     </div>

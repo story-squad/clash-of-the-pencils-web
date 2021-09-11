@@ -1,6 +1,6 @@
 import { useAsync } from '@story-squad/react-utils';
-import React from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import React, { useEffect } from 'react';
+import { useFormContext } from 'react-hook-form';
 import { Auth } from '../../../api';
 import { Button, LoadIcon } from '../../atoms';
 import { Input } from '../../molecules';
@@ -14,38 +14,38 @@ export interface LoginFormProps {
 export default function LoginForm({
   onSuccess,
 }: LoginFormProps): React.ReactElement {
-  const { register, handleSubmit, errors, setError, clearErrors } = useForm();
+  const { handleSubmit, errors, setError, clearErrors } = useFormContext();
 
   const clearFormError = () => clearErrors('form');
 
-  const onSubmit: SubmitHandler<Auth.ILoginBody> = async (data) => {
-    try {
-      const res = await Auth.login(data);
-      onSuccess(res);
-    } catch (err) {
-      let message: string;
-      if (err.response?.data?.message) {
-        message = err.response.data.message;
-      } else {
-        message = 'An unknown error occurred. Please try again.';
-      }
-      setError('form', { type: 'manual', message });
-    }
-  };
-
-  const [exec, isLoading] = useAsync({
-    asyncFunction: handleSubmit(onSubmit),
+  const [exec, isLoading, , error] = useAsync({
+    asyncFunction: handleSubmit(Auth.login),
+    setter: onSuccess,
   });
+
+  useEffect(() => {
+    let message: string;
+    if (Auth.isAxiosError(error) && error.response?.data?.message) {
+      message = error.response.data.message;
+    } else {
+      message = 'An unknown error occurred. Please try again.';
+    }
+    setError('form', { type: 'manual', message });
+  }, [error]);
 
   return (
     <form onSubmit={exec}>
-      {errors.form && <div className="server-error">{errors.form.message}</div>}
+      {errors?.form && (
+        <div className="server-error">{errors.form.message}</div>
+      )}
       <Input
+        name="codename"
         label="Codename"
         // rules={{ required: 'Please enter your codename!' }}
         placeholder="Enter your codename"
       />
       <Input
+        name="password"
         label="Password"
         inputType="password"
         // rules={{ required: 'Please enter a password!' }}

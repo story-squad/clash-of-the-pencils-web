@@ -3,16 +3,18 @@ import { IInputFieldProps, InputField } from '../../atoms/InputField';
 import { ILabelProps, InputLabel } from '../../atoms/InputLabel';
 import './input.scss';
 
+export interface InputProps extends IInputFieldProps, ILabelProps {}
+
 const Input = ({
   label,
   labelType,
-  toolTip,
+  tooltip,
   error,
   ...props
-}: IInputFieldProps & ILabelProps): React.ReactElement => {
+}: InputProps): React.ReactElement => {
   return (
     <div>
-      <InputLabel label={label} labelType={labelType} toolTip={toolTip} />
+      <InputLabel label={label} labelType={labelType} tooltip={tooltip} />
       <InputField {...props} />
       {error && (
         <div className="message">

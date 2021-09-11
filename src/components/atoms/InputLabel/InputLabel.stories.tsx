@@ -27,7 +27,7 @@ export default {
       },
       defaultValue: 'default',
     },
-    toolTip: {
+    tooltip: {
       control: { type: 'boolean' },
       defaultValue: false,
     },
