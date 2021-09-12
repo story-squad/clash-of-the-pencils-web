@@ -2,12 +2,12 @@ import { useAsync } from '@story-squad/react-utils';
 import React, { useCallback, useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Auth } from '../../../api';
-import { Button, LoadIcon } from '../../atoms';
+import { Button, CleverButton, LoadIcon } from '../../atoms';
 import { Input } from '../../molecules';
 import { FormProps } from '../formTypes';
 import './styles/index.scss';
 
-export type LoginFormProps = FormProps<Auth.ILoginBody, Auth.IAuthResponse>;
+export type LoginFormProps = FormProps<Auth.ILoginBody>;
 
 export default function LoginForm({
   onSubmit,
@@ -49,6 +49,9 @@ export default function LoginForm({
 
   return (
     <form className="login-form" onSubmit={exec}>
+      <CleverButton htmlType="button" />
+      <p className="alt-font">or</p>
+      <p className="main-font">Sign In Using Email Address</p>
       {errors?.form && (
         <div className="server-error">{errors.form.message}</div>
       )}
