@@ -1,18 +1,17 @@
 import { useAsync } from '@story-squad/react-utils';
 import React, { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { Auth } from '../../../api';
+import { Auth, Users } from '../../../api';
 import { Button, CleverButton, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
-import { authFormInputs } from '../inputs';
 import './styles/index.scss';
 
-export type LoginFormProps = FormProps<Auth.ILoginBody>;
+export type SignupFormProps = FormProps<Users.INewUser>;
 
-export default function LoginForm({
+export default function SignupForm({
   onSubmit,
   onError,
-}: LoginFormProps): React.ReactElement {
+}: SignupFormProps): React.ReactElement {
   const {
     handleSubmit,
     setError,
@@ -46,17 +45,13 @@ export default function LoginForm({
   });
 
   return (
-    <form className="login-form" onSubmit={exec}>
+    <form className="signup-form" onSubmit={exec}>
       <CleverButton htmlType="button" />
       <p className="alt-font">or</p>
       <p className="main-font">Sign In Using Email Address</p>
       {errors?.form && (
         <div className="server-error">{errors.form.message}</div>
       )}
-      {authFormInputs.codename({
-        minLength: { value: 2, message: 'Too short' },
-      })}
-      {authFormInputs.password()}
       <Button
         disabled={isLoading}
         iconRight={isLoading && <LoadIcon />}

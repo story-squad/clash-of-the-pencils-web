@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Controller, RegisterOptions, useFormContext } from 'react-hook-form';
 import Input, { InputProps } from './Input';
 
@@ -25,6 +25,7 @@ export default function InputContainer({
   ...inputProps
 }: InputContainerProps): React.ReactElement {
   const { control } = useFormContext();
+  useEffect(() => console.log(nameProp, rules), [rules]);
   return (
     <Controller
       name={nameProp}
