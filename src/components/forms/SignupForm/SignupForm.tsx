@@ -4,6 +4,7 @@ import { useFormContext } from 'react-hook-form';
 import { Auth, Users } from '../../../api';
 import { Button, CleverButton, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
+import { authFormInputs } from '../inputs';
 import './styles/index.scss';
 
 export type SignupFormProps = FormProps<Users.INewUser>;
@@ -12,15 +13,16 @@ export default function SignupForm({
   onSubmit,
   onError,
 }: SignupFormProps): React.ReactElement {
+  // Standard form handlers
   const {
     handleSubmit,
     setError,
     clearErrors,
     formState: { errors },
   } = useFormContext();
-
+  // Clearing form error
   const clearFormError = () => clearErrors('form');
-
+  // Custom error handler
   const errorHandler = useCallback(
     onError ?? // If a custom error handler was provided, use it instead of our function
       ((error: unknown) => {
@@ -38,7 +40,7 @@ export default function SignupForm({
       }),
     [onError],
   );
-
+  // Using useAsync for easier async render control
   const [exec, isLoading] = useAsync({
     asyncFunction: handleSubmit(onSubmit),
     errorHandler,
@@ -52,6 +54,13 @@ export default function SignupForm({
       {errors?.form && (
         <div className="server-error">{errors.form.message}</div>
       )}
+      {authFormInputs.firstname()}
+      {authFormInputs.lastname()}
+      {authFormInputs.codename()}
+      {authFormInputs.birthday()}
+      {authFormInputs.email()}
+      {authFormInputs.password()}
+      {authFormInputs.confirmPassword()}
       <Button
         disabled={isLoading}
         iconRight={isLoading && <LoadIcon />}
