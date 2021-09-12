@@ -34,7 +34,7 @@ export default function LoginView({
 
   return (
     <FormProvider {...methods}>
-      <DashboardTemplate useStorySquadHeader>
+      <DashboardTemplate useStorySquadHeader className="login-view">
         <LoginForm onSubmit={submitHandler} />
         <p className="form-footer">
           Need to create an account?{' '}
