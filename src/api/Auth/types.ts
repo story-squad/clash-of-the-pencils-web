@@ -18,5 +18,5 @@ export interface IPassResetPostBody {
 }
 
 export function isAxiosError(err: unknown): err is AxiosError {
-  return (err as AxiosError).isAxiosError;
+  return (err as AxiosError)?.isAxiosError || false;
 }
