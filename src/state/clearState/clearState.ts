@@ -1,13 +1,6 @@
 import { selector } from 'recoil';
 import { global } from '../apiErrorState';
-import {
-  authModalOpen,
-  email,
-  loginToken,
-  signupWasSuccessful,
-  userId,
-  username,
-} from '../authState';
+import { authToken, user } from '../authState';
 import { list } from '../pastSubsState';
 import {
   error,
@@ -23,16 +16,12 @@ export const all = selector<null>({
   key: 'clearState',
   get: () => null,
   set: ({ reset }) => {
-    reset(loginToken);
-    reset(authModalOpen);
-    reset(signupWasSuccessful);
+    reset(authToken);
+    reset(user);
     reset(top3List);
     reset(hasFinishedReadingState);
     reset(hasReadState);
     reset(list);
-    reset(userId);
-    reset(email);
-    reset(username);
     reset(global);
     reset(error);
     reset(loading);
