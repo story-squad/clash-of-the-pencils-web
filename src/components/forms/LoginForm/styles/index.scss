@@ -1,0 +1,16 @@
+@import '~/src/styles/newIndex.scss';
+
+.login-form {
+  @include safe-zone(420px);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+
+  .form-input {
+    margin-bottom: 1.6rem;
+  }
+
+  .button {
+    margin-top: 2rem;
+  }
+}
