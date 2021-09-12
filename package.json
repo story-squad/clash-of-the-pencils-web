@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@story-squad/react-utils": "^0.0.21",
+    "@story-squad/react-utils": "^0.0.3",
     "@storybook/preset-scss": "^1.0.3",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
