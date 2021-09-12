@@ -13,7 +13,7 @@ const Input = ({
   ...props
 }: InputProps): React.ReactElement => {
   return (
-    <div>
+    <div className="form-input">
       <InputLabel label={label} labelType={labelType} tooltip={tooltip} />
       <InputField {...props} />
       {error && (
