@@ -72,4 +72,28 @@ export default {
       />
     );
   },
+  birthday: function BirthdayInput(
+    rules: CustomRulesProps = {},
+  ): React.ReactElement {
+    return (
+      <Input
+        name="dob"
+        label="Birthday"
+        inputType="date"
+        rules={{ required: 'Birthday is required!', ...rules }}
+        placeholder="Birthday"
+      />
+    );
+  },
+  email: function EmailInput(rules: CustomRulesProps = {}): React.ReactElement {
+    return (
+      <Input
+        name="email"
+        label="Email Address"
+        inputType="email"
+        rules={{ required: 'Email is required!', ...rules }}
+        placeholder="Email Address"
+      />
+    );
+  },
 };
