@@ -1,9 +1,11 @@
-export type FormOnSuccess<Response = unknown> = (res: Response) => void;
 export type FormOnSubmit<FormData = unknown, Response = unknown> = (
   data: FormData,
-) => Response;
-
-export interface FormProps<FormData, SubmitResponse> {
-  onSubmit: FormOnSubmit<FormData, SubmitResponse>;
-  onSuccess: FormOnSuccess<SubmitResponse>;
+) => Response | Promise<Response>;
+export type FormOnError = (err: unknown) => void;
+export interface FormProps<
+  FormData extends unknown = unknown,
+  FormOnSubmitResponse extends unknown = unknown,
+> {
+  onSubmit: FormOnSubmit<FormData, FormOnSubmitResponse>;
+  onError?: FormOnError;
 }
