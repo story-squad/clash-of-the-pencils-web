@@ -1,5 +1,6 @@
 export * from './Button';
 export * from './Card';
+export * from './CleverButton';
 export * from './Dial';
 export * from './DropZone';
 export * from './InputField';
