@@ -40,11 +40,11 @@ export default {
   ): React.ReactElement {
     return (
       <Input
-        name="password"
-        label="Password"
+        name="confirmPassword"
+        label="Re-Enter Password"
         inputType="password"
         rules={{ required: 'Please enter a password!', ...rules }}
-        placeholder="Password must be at least 8 characters"
+        placeholder="Re-enter your password"
       />
     );
   },
