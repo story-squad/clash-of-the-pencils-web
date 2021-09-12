@@ -9,10 +9,12 @@ import './styles/index.scss';
 
 export interface LoginViewProps {
   onSubmit?: (data: Auth.ILoginBody) => void;
+  openSignup?: () => void;
 }
 
 export default function LoginView({
   onSubmit,
+  openSignup,
 }: LoginViewProps): React.ReactElement {
   // Get form methods for the provider
   const methods = useForm();
@@ -34,6 +36,10 @@ export default function LoginView({
     <FormProvider {...methods}>
       <DashboardTemplate useStorySquadHeader>
         <LoginForm onSubmit={submitHandler} />
+        <p className="form-footer">
+          Need to create an account?{' '}
+          <span onClick={openSignup}>Sign Up Here</span>
+        </p>
       </DashboardTemplate>
     </FormProvider>
   );

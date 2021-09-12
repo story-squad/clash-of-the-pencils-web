@@ -11,8 +11,11 @@ const Template: Story<LoginViewProps> = () => {
     await sleep(2000);
     console.log('Submitted!', data);
   }
+  function openSignup() {
+    console.log('Opening Signup.');
+  }
 
-  return <LoginView onSubmit={onSubmit} />;
+  return <LoginView onSubmit={onSubmit} openSignup={openSignup} />;
 };
 
 export const Default = Template.bind({});
