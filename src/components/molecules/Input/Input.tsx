@@ -1,3 +1,4 @@
+import { ErrorMessage } from '@hookform/error-message';
 import React from 'react';
 import { IInputFieldProps, InputField } from '../../atoms/InputField';
 import { ILabelProps, InputLabel } from '../../atoms/InputLabel';
@@ -9,18 +10,20 @@ const Input = ({
   label,
   labelType,
   tooltip,
-  error,
   ...props
 }: InputProps): React.ReactElement => {
   return (
     <div className="form-input">
       <InputLabel label={label} labelType={labelType} tooltip={tooltip} />
       <InputField {...props} />
-      {error && (
-        <div className="message">
-          <span>{error}</span>
-        </div>
-      )}
+      <ErrorMessage
+        name={props.name}
+        render={({ message }) => (
+          <div className="message">
+            <span>{message}</span>
+          </div>
+        )}
+      />
     </div>
   );
 };

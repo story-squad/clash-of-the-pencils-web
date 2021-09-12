@@ -33,7 +33,6 @@ export default function InputContainer({
       defaultValue={defaultValue}
       render={({ field, fieldState: { error } }) => (
         <Input
-          error={error?.message}
           variant={error ? 'error' : 'default'}
           {...inputProps}
           {...field}

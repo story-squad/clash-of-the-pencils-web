@@ -12,12 +12,11 @@ type InputFieldTypes =
   | 'password';
 
 export interface IInputFieldProps
-  extends Omit<HTMLProps<HTMLInputElement>, 'type'> {
+  extends Omit<HTMLProps<HTMLInputElement>, 'type' | 'name'> {
   variant?: InputVariants;
   inputType?: InputFieldTypes;
   placeholder?: string;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
-  // the message is for the error message on the input
-  error?: string;
+  name: string;
 }
