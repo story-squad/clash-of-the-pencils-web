@@ -11,12 +11,13 @@ const Button = ({
   iconLeft,
   iconRight,
   children,
+  className,
   ...props
 }: React.PropsWithChildren<ICustomButtonProps>): React.ReactElement => {
   return (
     <button
       onClick={onClick}
-      className={classnames('button', type, size, {
+      className={classnames('button', type, size, className, {
         iconLeft: !!iconLeft,
         iconRight: !!iconRight,
       })}

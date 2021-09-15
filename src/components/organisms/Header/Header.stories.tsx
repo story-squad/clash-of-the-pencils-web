@@ -1,8 +1,10 @@
 import { Meta, Story } from '@storybook/react';
 import React, { useState } from 'react';
 import Header from './Header';
+import { HeaderSwitcherProps } from './HeaderContainer';
+import StorySquadHeader from './StorySquadHeader';
 
-const Template: Story = (props) => {
+const Template: Story<HeaderSwitcherProps> = (props) => {
   const [show, setShow] = useState(false);
   const toggle = () => setShow((x) => !x);
   return <Header isMenuOpen={show} toggleMenu={toggle} {...props} />;
@@ -10,10 +12,10 @@ const Template: Story = (props) => {
 
 export const Default = Template.bind({});
 
+export const StorySquad: Story = () => <StorySquadHeader />;
+
 export default {
   title: 'Components/Organisms/Header',
   component: Header,
-  parameters: {
-    layout: 'fullscreen',
-  },
+  parameters: { layout: 'fullscreen' },
 } as Meta;

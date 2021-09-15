@@ -1,0 +1,39 @@
+@import '~/src/styles/newIndex.scss';
+
+.login-form {
+  @include safe-zone(420px);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+
+  .clever-button {
+    margin-bottom: 0.7rem;
+  }
+
+  .alt-font {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    font-family: 'Open Sans', $ui-foint;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+
+  .main-font {
+    text-align: center;
+    font-size: 1.8rem;
+    line-height: 2.5rem;
+    font-family: 'Open Sans', $text-font;
+    font-weight: 600;
+    margin-bottom: 1.4rem;
+  }
+
+  .form-input {
+    margin-bottom: 1.6rem;
+  }
+
+  & > .button:last-of-type {
+    margin-top: 2rem;
+  }
+}

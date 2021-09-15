@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode';
  * If a key is set in the ENV, it will use that as the localStorage
  * key for the token, otherwise it will be stored as `token: ''`
  */
-const tokenName: string = process.env.TOKEN_KEY || 'token';
+export const STORAGE_KEY: string = process.env.TOKEN_KEY || 'token';
 
 /**
  * Decodes the token and checks if you're still logged in before continuing.
@@ -14,7 +14,7 @@ const tokenName: string = process.env.TOKEN_KEY || 'token';
 type flags = 'userId' | 'username' | 'userEmail' | null;
 export const get = (flag: flags = null): string | number | null => {
   // Read the token in from localStorage
-  const token = localStorage.getItem(tokenName);
+  const token = localStorage.getItem(STORAGE_KEY);
   // If it's empty, return null
   if (!token) return null;
 
@@ -44,12 +44,12 @@ export const get = (flag: flags = null): string | number | null => {
  * @param token taks a token as the argument and stores it in localStorage
  */
 export const set = (token: string): void =>
-  localStorage.setItem(tokenName, token);
+  localStorage.setItem(STORAGE_KEY, token);
 
 /**
  * Clears the current token stored in localStorage
  */
-export const clear = (): void => localStorage.removeItem(tokenName);
+export const clear = (): void => localStorage.removeItem(STORAGE_KEY);
 
 /**
  * An interface defining what the DecodedToken looks like

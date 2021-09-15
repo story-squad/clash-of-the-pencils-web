@@ -1528,6 +1528,11 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
+"@hookform/error-message@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@hookform/error-message/-/error-message-2.0.0.tgz#9b1b037fd816ea9b1531c06aa7fab5f5154aa740"
+  integrity sha512-Y90nHzjgL2MP7GFy75kscdvxrCTjtyxGmOLLxX14nd08OXRIh9lMH/y9Kpdo0p1IPowJBiZMHyueg7p+yrqynQ==
+
 "@humanwhocodes/config-array@^0.5.0":
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.5.0.tgz#1407967d4c6eecd7388f83acf1eaf4d0c6e58ef9"
@@ -1896,10 +1901,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@story-squad/react-utils@^0.0.21":
-  version "0.0.21"
-  resolved "https://registry.yarnpkg.com/@story-squad/react-utils/-/react-utils-0.0.21.tgz#8458f2e1c1390da34393552d6ef3df3893ad6b5f"
-  integrity sha512-t2m/v4s349z6OXl2l3hw95uLR0fX1zomKloUG6S3+1QAr4/lpF9QWNd2sUu8I75WUrK0e/JWCNDVqV1cz5LXMw==
+"@story-squad/react-utils@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@story-squad/react-utils/-/react-utils-0.0.3.tgz#cdcd137ba97dc2e745600df8ad1e080c6781d923"
+  integrity sha512-rqkp8/K9uPIhUNeDPZjX56BZU7HSpR6CFLXQgUo4ZbQS11JXbQtmPc1p6Bi9axG31vjkGkL/ebvYKPqwFAZBEA==
   dependencies:
     react "^17.0.2"
     react-dom "^17.0.2"
@@ -12357,10 +12362,10 @@ react-helmet-async@^1.0.7:
     react-fast-compare "^3.2.0"
     shallowequal "^1.1.0"
 
-react-hook-form@^6.10.1:
-  version "6.15.8"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.15.8.tgz#725c139d308c431c4611e4b9d85a49f01cfc0e7a"
-  integrity sha512-prq82ofMbnRyj5wqDe8hsTRcdR25jQ+B8KtCS7BLCzjFHAwNuCjRwzPuP4eYLsEBjEIeYd6try+pdLdw0kPkpg==
+react-hook-form@^7.15.2:
+  version "7.15.2"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.15.2.tgz#c4d4fa44a5df755648ab19034062ae37087536b0"
+  integrity sha512-tPcLlsTXaOtZkyc1IGGaJfQ6amo2sJiM6DDufE7WG+S4N8s5Wr60HGtnKS7gPnnZL93pFPQYrSj7WDB5An2VVw==
 
 react-icons@^3.11.0:
   version "3.11.0"

@@ -21,7 +21,7 @@ export default function Header({
   }
 
   return (
-    <header ref={clickRef}>
+    <header className="main-header-wrapper" ref={clickRef}>
       <div className="main-header-container">
         <section id="main-header">
           <HeaderIcon isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
