@@ -5,6 +5,7 @@ import { Auth, Users } from '../../../api';
 import { auth } from '../../../state';
 import { SignupForm } from '../../forms';
 import { DashboardTemplate } from '../../templates';
+import './styles/index.scss';
 
 export interface SignupViewProps {
   onSubmit?: (data: Users.INewUser) => void;
@@ -32,6 +33,9 @@ export default function SignupView({
     <FormProvider {...methods}>
       <DashboardTemplate useStorySquadHeader className="signup-view">
         <SignupForm onSubmit={submitHandler} />
+        <p className="form-footer">
+          Already have an account? <span onClick={openLogin}>Sign In Here</span>
+        </p>
       </DashboardTemplate>
     </FormProvider>
   );
