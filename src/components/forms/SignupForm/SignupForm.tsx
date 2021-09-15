@@ -52,20 +52,26 @@ export default function SignupForm({
     setFormValues((prev) => ({ ...prev, ...currentValues }));
   }, [watch, setFormValues, pageNum]);
   // Page change handlers
-  const nextPage = () =>
+  const nextPage = () => {
     setPageNum((prev) => {
       if (prev === 1) {
         saveFormState();
         return 2;
       } else return prev;
     });
-  const prevPage = () =>
+  };
+  const prevPage = () => {
     setPageNum((prev) => {
       if (prev === 2) {
         saveFormState();
         return 1;
       } else return prev;
     });
+  };
+
+  // Clear errors after page changes (This fixes a bug)
+  useEffect(clearErrors, [pageNum]);
+
   // Debug logger
   useEffect(() => console.log(formValues), [formValues]);
 
