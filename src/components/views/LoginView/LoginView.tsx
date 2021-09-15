@@ -29,7 +29,7 @@ export default function LoginView({
         const res = await Auth.login(data);
         login(res);
       }),
-    [login],
+    [login, onSubmit],
   );
 
   return (
