@@ -2,6 +2,7 @@ import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
+import { auth } from '../../../state';
 import { sleep } from '../../../utils';
 import LoginView, { LoginViewProps } from './LoginView';
 
@@ -26,7 +27,12 @@ export default {
   parameters: { layout: 'fullscreen' },
   decorators: [
     (story) => (
-      <RecoilRoot>
+      <RecoilRoot
+        initializeState={({ set }) => {
+          set(auth.useMockCleverButton, true);
+          set(auth.cleverLoginButtonURL, 'notarealurl.com');
+        }}
+      >
         <BrowserRouter>{story()}</BrowserRouter>
       </RecoilRoot>
     ),
