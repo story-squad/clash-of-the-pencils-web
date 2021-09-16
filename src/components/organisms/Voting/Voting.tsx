@@ -15,6 +15,7 @@ export default function Voting({
   phase,
   top3,
 }: VotingProps): React.ReactElement {
+  const dragDisabled = phase !== 'vote';
   return (
     <section className="voting-wrapper">
       <div className="voting-container">
@@ -25,7 +26,7 @@ export default function Voting({
           <InstructionCard step={3} />
         </CardList>
         <h3>Drop the Dragons to Vote</h3>
-        <DragonBank />
+        <DragonBank dragDisabled={dragDisabled} />
         <CardList>
           {top3.map((sub, i) => (
             <SubmissionCard

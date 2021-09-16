@@ -4,10 +4,12 @@ import DraggableDragon from './DraggableDragon';
 
 export interface DragonBankDropZoneProps {
   name: string;
+  dragDisabled?: boolean;
 }
 
 export default function DragonBankDropZone({
   name,
+  dragDisabled = false,
 }: DragonBankDropZoneProps): React.ReactElement {
   return (
     <DropZone name={name}>
@@ -18,7 +20,7 @@ export default function DragonBankDropZone({
             style={{ opacity: isDraggingOver ? 0.5 : 1 }}
           />
         ) : (
-          <DraggableDragon name={contents} />
+          <DraggableDragon name={contents} dragDisabled={dragDisabled} />
         )
       }
     </DropZone>

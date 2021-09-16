@@ -11,7 +11,7 @@ export default function SubmissionView(): React.ReactElement {
   return (
     <DashboardTemplate>
       <TwoColumn left={<Prompt />} right={<Leaderboard />} />
-      <VotingOrganism />
+      <VotingOrganism phase="submit" />
     </DashboardTemplate>
   );
 }

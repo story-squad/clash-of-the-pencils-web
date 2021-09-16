@@ -1,24 +1,30 @@
 import { classnames } from '@story-squad/react-utils';
 import React, { HTMLProps, useMemo } from 'react';
-import { stickerSVGs } from '../../../assets';
+import { stickerFiles } from '../../../assets';
 import './styles/index.scss';
 
-export type StickerTypes = keyof typeof stickerSVGs;
+export type StickerTypes = keyof typeof stickerFiles;
 export interface StickerProps extends HTMLProps<HTMLSpanElement> {
   type: StickerTypes;
   dragRef?: React.Ref<HTMLSpanElement>;
+  dragDisabled?: boolean;
 }
 
 const Sticker = ({
   type,
   dragRef,
   className,
+  dragDisabled = false,
   ...props
 }: StickerProps): React.ReactElement => {
-  const SelectedSticker = useMemo(() => stickerSVGs[type], [type]);
+  const src = useMemo(() => stickerFiles[type], [type]);
   return (
-    <span className={classnames('sticker', className)} ref={dragRef} {...props}>
-      <SelectedSticker />
+    <span
+      className={classnames('sticker', className)}
+      ref={dragDisabled ? null : dragRef}
+      {...props}
+    >
+      <img src={src} alt={type} />
     </span>
   );
 };
