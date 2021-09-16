@@ -1,13 +1,15 @@
 import React from 'react';
 import { Input } from '../../molecules';
-import { CustomRulesProps } from './types';
+import { FormInputMapProps } from './types';
 
 export default {
-  codename: function CodenameInput(
-    rules: CustomRulesProps = {},
-  ): React.ReactElement {
+  codename: function CodenameInput({
+    rules,
+    ...props
+  }: FormInputMapProps): React.ReactElement {
     return (
       <Input
+        {...props}
         name="codename"
         label="Codename"
         rules={{ required: 'Please enter your codename!', ...rules }}
@@ -15,11 +17,13 @@ export default {
       />
     );
   },
-  password: function PasswordInput(
-    rules: CustomRulesProps = {},
-  ): React.ReactElement {
+  password: function PasswordInput({
+    rules,
+    ...props
+  }: FormInputMapProps): React.ReactElement {
     return (
       <Input
+        {...props}
         name="password"
         label="Password"
         inputType="password"
@@ -35,11 +39,13 @@ export default {
       />
     );
   },
-  confirmPassword: function ConfirmPasswordInput(
-    rules: CustomRulesProps = {},
-  ): React.ReactElement {
+  confirmPassword: function ConfirmPasswordInput({
+    rules,
+    ...props
+  }: FormInputMapProps): React.ReactElement {
     return (
       <Input
+        {...props}
         name="confirmPassword"
         label="Re-Enter Password"
         inputType="password"
@@ -48,11 +54,13 @@ export default {
       />
     );
   },
-  firstname: function FirstnameInput(
-    rules: CustomRulesProps = {},
-  ): React.ReactElement {
+  firstname: function FirstnameInput({
+    rules,
+    ...props
+  }: FormInputMapProps): React.ReactElement {
     return (
       <Input
+        {...props}
         name="firstname"
         label="First Name"
         rules={{ required: 'Please enter your first name!', ...rules }}
@@ -60,11 +68,13 @@ export default {
       />
     );
   },
-  lastname: function LastnameInput(
-    rules: CustomRulesProps = {},
-  ): React.ReactElement {
+  lastname: function LastnameInput({
+    rules,
+    ...props
+  }: FormInputMapProps): React.ReactElement {
     return (
       <Input
+        {...props}
         name="lastname"
         label="Last Name"
         rules={{ required: 'Last name is required!', ...rules }}
@@ -72,11 +82,13 @@ export default {
       />
     );
   },
-  birthday: function BirthdayInput(
-    rules: CustomRulesProps = {},
-  ): React.ReactElement {
+  birthday: function BirthdayInput({
+    rules,
+    ...props
+  }: FormInputMapProps): React.ReactElement {
     return (
       <Input
+        {...props}
         name="dob"
         label="Birthday"
         inputType="date"
@@ -85,9 +97,13 @@ export default {
       />
     );
   },
-  email: function EmailInput(rules: CustomRulesProps = {}): React.ReactElement {
+  email: function EmailInput({
+    rules,
+    ...props
+  }: FormInputMapProps): React.ReactElement {
     return (
       <Input
+        {...props}
         name="email"
         label="Email Address"
         inputType="email"

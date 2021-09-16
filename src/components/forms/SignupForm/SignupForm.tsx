@@ -87,10 +87,10 @@ export default function SignupForm({
       {pageNum === 1 ? (
         <>
           {/* First page */}
-          {authFormInputs.firstname()}
-          {authFormInputs.lastname()}
-          {authFormInputs.codename()}
-          {authFormInputs.birthday()}
+          {authFormInputs.firstname({})}
+          {authFormInputs.lastname({})}
+          {authFormInputs.codename({})}
+          {authFormInputs.birthday({})}
           <Button onClick={nextPage} htmlType="button">
             Next
           </Button>
@@ -98,9 +98,9 @@ export default function SignupForm({
       ) : (
         <>
           {/* Second page */}
-          {authFormInputs.email()}
-          {authFormInputs.password()}
-          {authFormInputs.confirmPassword()}
+          {authFormInputs.email({})}
+          {authFormInputs.password({})}
+          {authFormInputs.confirmPassword({})}
           <Button onClick={prevPage} htmlType="button" type="secondary">
             Back
           </Button>

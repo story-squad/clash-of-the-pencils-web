@@ -54,9 +54,11 @@ export default function LoginForm({
         <div className="server-error">{errors.form.message}</div>
       )}
       {authFormInputs.codename({
-        minLength: { value: 2, message: 'Too short' },
+        rules: {
+          minLength: { value: 2, message: 'Too short' },
+        },
       })}
-      {authFormInputs.password()}
+      {authFormInputs.password({})}
       <Button
         disabled={isLoading}
         iconRight={isLoading && <LoadIcon />}
