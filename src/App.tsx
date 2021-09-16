@@ -1,40 +1,24 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import {
-  AuthModal,
-  CookiePopup,
-  ReadTokenData,
-  SEO,
-  TermsOfService,
-} from './components/common';
-import { Activation } from './components/pages/Activated';
-import { GamePage } from './components/pages/GamePage';
-import { VotingPage } from './components/pages/GamePage/VotingPage';
-import { LandingPage } from './components/pages/LandingPage';
-import { ProfilePage } from './components/pages/ProfilePage';
-import { ResetPasswordPage } from './components/pages/ResetPasswordPage';
-import { ResultsPage } from './components/pages/ResultsPage';
+import { CookiePopup } from './components/common/CookiePopup';
+import { SEO } from './components/common/SEO';
+import LoginView from './components/views/LoginView/LoginView';
+import SignupView from './components/views/SignupView/SignupView';
+import SubmissionView from './components/views/Submission/SubmissionView';
 
 const App = (): React.ReactElement => {
   return (
     <div className="App">
       <SEO />
-      <AuthModal />
-      <ReadTokenData />
       <CookiePopup />
       <Switch>
         {/* Public Routes */}
-        <Route exact path="/" component={LandingPage} />
-        <Route path="/activate" component={Activation} />
-        <Route path="/vote" component={VotingPage} />
-        <Route path="/tos" component={TermsOfService} />
-        <Route path="/game" component={GamePage} />
-        <Route path="/results" component={ResultsPage} />
-        <Route path="/reset" component={ResetPasswordPage} />
-        <Route path="/profile" component={ProfilePage} />
+        <Route exact path="/" component={SubmissionView} />
+        <Route path="/login" component={LoginView} />
+        <Route path="/signup" component={SignupView} />
 
         {/* Fallback Redirect to Dashboard */}
-        <Route path="/" component={() => <Redirect to="/game" />} />
+        <Route path="/" component={() => <Redirect to="/" />} />
       </Switch>
     </div>
   );
