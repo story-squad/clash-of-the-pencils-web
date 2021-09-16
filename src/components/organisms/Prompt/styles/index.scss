@@ -3,6 +3,7 @@
 .prompt {
   background-color: $brand-blue-6;
   padding: 2.5rem;
+  width: 100%;
   display: flex;
   flex-flow: column nowrap;
   align-items: stretch;
@@ -38,7 +39,9 @@
     @include bp(tablet) {
       align-items: center;
     }
-
+    .button {
+      width: 100%;
+    }
     .button:first-of-type {
       margin-bottom: 1rem;
     }
