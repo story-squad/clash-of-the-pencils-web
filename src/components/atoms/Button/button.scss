@@ -82,11 +82,13 @@
     color: $brand-orange;
 
     &:hover {
+      background-color: $gray-0;
       border-color: $brand-orange-6;
       color: $brand-orange-6;
       transition: all 0.1s ease-in-out;
     }
     &:active {
+      background-color: $gray-1;
       border-color: $brand-orange-7;
       color: $brand-orange-7;
       transition: all 0.1s ease-in-out;
