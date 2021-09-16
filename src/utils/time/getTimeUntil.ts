@@ -18,7 +18,7 @@ import { eventType } from './timeTypes';
  * time in calculations to something other than the current time
  */
 export const getTimeUntilEvent = (
-  event: eventType,
+  event: Exclude<eventType, 'off'>,
   now?: DateTime,
 ): { active: boolean; timeUntil: number } => {
   if (!now) now = DateTime.utc();

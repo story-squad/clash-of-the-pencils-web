@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon';
-import { scheduleObjectType } from './timeTypes';
+import { eventType } from './timeTypes';
 
 /**
  * To convert a time to UTC, add 8 hours to PST or 5 hours to EST.
@@ -42,7 +42,10 @@ const SCHEDULE_STREAM_END_MIN = 30;
  * To add tracking for another time-based event, MAKE SURE you add it to the
  * `eventType` type object _as well as_ the schedule object
  */
-export const schedule: scheduleObjectType = {
+export const schedule: Record<
+  Exclude<eventType, 'off'>,
+  { start: DateTime; end: DateTime }
+> = {
   submit: {
     start: utcToLocal(SCHEDULE_SUBMIT_START_HOUR, SCHEDULE_SUBMIT_START_MIN),
     end: utcToLocal(SCHEDULE_SUBMIT_END_HOUR, SCHEDULE_SUBMIT_END_MIN),

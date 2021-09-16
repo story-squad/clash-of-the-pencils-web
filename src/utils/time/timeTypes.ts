@@ -1,5 +1,3 @@
-import { DateTime } from 'luxon';
-
 /* Important Time Module Types */
 
 /**
@@ -34,14 +32,6 @@ export function isTimeUntilItem(item: unknown): item is TimeUntilItem {
     typeof itemAs.s === 'number'
   );
 }
-
-/**
- * A type for the larger schedule object on which we track time-based events
- */
-export type scheduleObjectType = Record<
-  eventType,
-  { start: DateTime; end: DateTime }
->;
 
 export interface ICurrentTime {
   phase: ClashPhases & string;

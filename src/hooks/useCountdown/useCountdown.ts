@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-
 import { time } from '../../utils';
 
-export const useCountdown = (event: time.eventType): useCountdownReturnType => {
+export const useCountdown = (
+  event: Exclude<time.eventType, 'off'>,
+): useCountdownReturnType => {
   const { active: a, timeUntil: t } = time.getTimeUntilEvent(event);
   const [active, setActive] = useState(a);
   const [seconds, setSeconds] = useState(t);
