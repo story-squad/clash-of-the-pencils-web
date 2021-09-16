@@ -1,9 +1,9 @@
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { FiYoutube } from 'react-icons/fi';
-import { Input } from '.';
+import Input, { InputProps } from './Input';
 
-const Template: Story = ({ iconLeft, iconRight, ...props }) => (
+const Template: Story<InputProps> = ({ iconLeft, iconRight, ...props }) => (
   <div style={{ width: 325 }}>
     <Input
       label="INPUT LABEL"
