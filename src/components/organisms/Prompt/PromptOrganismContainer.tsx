@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { app, prompts } from '../../../state';
-import { Loader } from '../../common';
+import { Loader } from '../../molecules';
 import PromptOrganism from './PromptOrganism';
 
 export default function PromptOrganismContainer(): React.ReactElement {
