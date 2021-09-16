@@ -1,7 +1,13 @@
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
 import { Prompts } from '../../api';
 
-export const currentPrompt = atom<Prompts.IPrompt | null>({
+export const currentPrompt = atom<Prompts.IPrompt>({
   key: 'currentPrompt',
-  default: null,
+  default: selector({
+    key: 'defaultCurrentPromptSelector',
+    get: async () => {
+      const prompt = await Prompts.getCurrent();
+      return prompt;
+    },
+  }),
 });
