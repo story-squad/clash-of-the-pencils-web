@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon';
 import React, { useMemo } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { Submissions } from '../../../api';
 import { app, voting } from '../../../state';
 import { time } from '../../../utils';
@@ -14,6 +14,7 @@ export interface SubmissionCardProps {
   disablePreview?: boolean;
   position: voting.Places;
   phase?: time.eventType;
+  hasReadAll?: boolean;
 }
 
 export default function SubmissionCard({
@@ -21,8 +22,12 @@ export default function SubmissionCard({
   position,
   containerProps,
   disablePreview,
-  phase = 'off',
+  phase = 'vote',
+  hasReadAll = false,
 }: SubmissionCardProps): React.ReactElement {
+  const [hasRead, setHasRead] = useRecoilState(
+    voting.hasReadSubInPosition(position),
+  );
   const openAnImageFullscreen = useSetRecoilState(app.imageView.openImage);
   const openSubmission = () => {
     openAnImageFullscreen({
@@ -30,6 +35,7 @@ export default function SubmissionCard({
       source: submission.src,
       rotation: submission.rotation,
     });
+    setHasRead(true);
   };
   const age = useMemo(
     () =>
@@ -55,8 +61,10 @@ export default function SubmissionCard({
         age={age}
         codename={submission.codename}
         position={position}
-        phase={phase}
         openSubmission={openSubmission}
+        hasRead={hasRead}
+        hasReadAll={hasReadAll}
+        phase={phase}
       />
     </Card>
   );

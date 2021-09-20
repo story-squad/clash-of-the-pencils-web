@@ -8,16 +8,20 @@ export interface SubmissionCardFooterProps {
   codename: string;
   age: number;
   position: voting.Places;
-  phase: time.eventType;
   openSubmission: () => void;
+  hasRead: boolean;
+  hasReadAll: boolean;
+  phase: time.eventType;
 }
 
 export default function SubmissionCardFooter({
   age,
   codename,
   position,
-  phase,
   openSubmission,
+  hasRead,
+  hasReadAll,
+  phase,
 }: SubmissionCardFooterProps): React.ReactElement {
   return (
     <div className="submission-card-footer">
@@ -25,11 +29,17 @@ export default function SubmissionCardFooter({
         <h2>{codename}</h2>
         <h3>Age: {age}</h3>
       </div>
-      {phase === 'vote' ? (
-        <SubmissionCardDropZone position={position} />
-      ) : (
+      {phase === 'stream' && (
         <Sticker type="readMe" onClick={openSubmission} className="read-me" />
       )}
+      {phase === 'vote' &&
+        (hasReadAll ? (
+          <SubmissionCardDropZone position={position} />
+        ) : hasRead ? (
+          <Sticker type="checkmark" />
+        ) : (
+          <Sticker type="readMe" onClick={openSubmission} className="read-me" />
+        ))}
     </div>
   );
 }

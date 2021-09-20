@@ -1,1 +1,1 @@
-export { default as DashboardView } from './DashboardViewController';
+export { default as DashboardView } from './DashboardViewContainer';

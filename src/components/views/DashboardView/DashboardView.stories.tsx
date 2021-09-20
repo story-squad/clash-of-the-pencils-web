@@ -2,24 +2,30 @@ import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-import {
-  leaderboardData,
-  promptData,
-  submissionData,
-} from '../../../../../data';
-import { app, leaderboard, prompts, top3 } from '../../../../../state';
-import { schedule } from '../../../../../utils/time';
-import SubmissionPhase from './SubmissionPhase';
+import { leaderboardData, promptData, submissionData } from '../../../data';
+import { app, leaderboard, prompts, top3 } from '../../../state';
+import { schedule } from '../../../utils/time';
+import DashboardView, { DashboardViewProps } from './DashboardView';
 
-const Template: Story = (props) => {
-  return <SubmissionPhase {...props} />;
+const Template: Story<DashboardViewProps> = (props) => {
+  return <DashboardView {...props} />;
 };
 
-export const Default = Template.bind({});
+export const VotingPhase = Template.bind({});
+VotingPhase.args = { phase: 'vote' };
+
+export const SubmissionPhase = Template.bind({});
+SubmissionPhase.args = { phase: 'submit' };
+
+export const AdminPhase = Template.bind({});
+AdminPhase.args = { phase: 'admin' };
+
+export const StreamPhase = Template.bind({});
+StreamPhase.args = { phase: 'stream' };
 
 export default {
-  title: 'Views/SubmissionPhase',
-  component: SubmissionPhase,
+  title: 'Views/DashboardView',
+  component: DashboardView,
   parameters: { layout: 'fullscreen' },
   decorators: [
     (story) => {
