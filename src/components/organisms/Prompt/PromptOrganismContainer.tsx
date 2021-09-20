@@ -21,7 +21,7 @@ export default function PromptOrganismContainerFallback(
   props: PromptOrganismContainerProps,
 ): React.ReactElement {
   return (
-    <Suspense fallback={Loader}>
+    <Suspense fallback={<Loader />}>
       <PromptOrganismContainer {...props} />
     </Suspense>
   );
