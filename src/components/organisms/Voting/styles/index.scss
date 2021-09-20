@@ -25,6 +25,17 @@ section.voting-wrapper {
       color: $gray-7;
     }
 
+    .instruction-card {
+      display: none;
+      &.active {
+        display: flex;
+      }
+
+      @include bp(tablet) {
+        display: flex;
+      }
+    }
+
     .button-row {
       display: flex;
       flex-flow: row nowrap;
