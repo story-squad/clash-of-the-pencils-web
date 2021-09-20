@@ -1,8 +1,14 @@
-@import '~/src/styles/newIndex.scss';
+@import '../../../../styles/newIndex.scss';
 
 header.main-header-wrapper {
   // Design
   background-color: $brand-blue;
+
+  nav {
+    a {
+      text-decoration: none;
+    }
+  }
 
   .main-header-container {
     // Layout

@@ -6,10 +6,12 @@ import { StickerTypes } from '../../atoms/Sticker/Sticker';
 
 export interface DraggableDragonProps {
   name: string;
+  dragDisabled?: boolean;
 }
 
 export default function DraggableDragon({
   name,
+  dragDisabled = false,
 }: DraggableDragonProps): React.ReactElement {
   const stickerType = useMemo(
     () => voting.getDragon(name) as StickerTypes,
@@ -18,7 +20,11 @@ export default function DraggableDragon({
   return stickerType === undefined ? (
     <></>
   ) : (
-    <Draggable draggableId={name} index={+name.split('-')[1]}>
+    <Draggable
+      draggableId={name}
+      index={+name.split('-')[1]}
+      isDragDisabled={dragDisabled}
+    >
       {({ draggableProps, innerRef, dragHandleProps }, {}) => (
         <Sticker
           dragRef={innerRef}

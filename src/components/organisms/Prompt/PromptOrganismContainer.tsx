@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useRecoilValue } from 'recoil';
 import { app, prompts } from '../../../state';
-import { Loader } from '../../common';
+import { time } from '../../../utils';
+import { Loader } from '../../molecules';
 import PromptOrganism from './PromptOrganism';
 
-export default function PromptOrganismContainer(): React.ReactElement {
+export interface PromptOrganismContainerProps {
+  phase: Exclude<time.eventType, 'off'>;
+}
+
+function PromptOrganismContainer({
+  phase,
+}: PromptOrganismContainerProps): React.ReactElement {
   const prompt = useRecoilValue(prompts.currentPrompt);
   const now = useRecoilValue(app.now);
-  return prompt ? <PromptOrganism prompt={prompt} now={now} /> : <Loader />;
+  return <PromptOrganism prompt={prompt} now={now} phase={phase} />;
+}
+
+export default function PromptOrganismContainerFallback(
+  props: PromptOrganismContainerProps,
+): React.ReactElement {
+  return (
+    <Suspense fallback={<Loader />}>
+      <PromptOrganismContainer {...props} />
+    </Suspense>
+  );
 }

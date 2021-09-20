@@ -1,4 +1,4 @@
-@import '~/src/styles/newIndex.scss';
+@import '../../../../styles/newIndex.scss';
 
 section.voting-wrapper {
   background-color: $brand-blue-0;
@@ -23,6 +23,25 @@ section.voting-wrapper {
     }
     & > h3 {
       color: $gray-7;
+    }
+
+    .instruction-card {
+      display: none;
+      &.active {
+        display: flex;
+      }
+
+      @include bp(tablet) {
+        display: flex;
+      }
+    }
+
+    .button-row {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
     }
   }
 }

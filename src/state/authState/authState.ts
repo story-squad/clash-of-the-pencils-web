@@ -1,11 +1,13 @@
 import { atom, DefaultValue, selector } from 'recoil';
 import { Auth, Users } from '../../api';
 import { token } from '../../utils';
+import { all } from '../clearState';
 import { persist } from '../effects';
 
 export const user = atom<Omit<Users.IUser, 'password'> | undefined>({
   key: 'userAtom',
   default: undefined,
+  effects_UNSTABLE: [persist('logged:in:user')],
 });
 
 export const authToken = atom<string | undefined>({
@@ -31,8 +33,7 @@ export const login = selector<Auth.IAuthResponse | undefined>({
     if (authResponse instanceof DefaultValue) {
       return undefined;
     } else if (authResponse === undefined) {
-      set(authToken, undefined);
-      set(user, undefined);
+      set(all, undefined);
     } else {
       // This persists in localStorage automatically because of our effect
       set(authToken, authResponse.token);

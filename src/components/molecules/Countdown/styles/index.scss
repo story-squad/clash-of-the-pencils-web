@@ -1,7 +1,8 @@
-@import '~/src/styles/newIndex.scss';
+@import '../../../../styles/newIndex.scss';
 
 .countdown {
   position: relative;
+  margin-bottom: 1rem;
   .clock-display {
     position: absolute;
     width: 100%;
@@ -19,6 +20,8 @@
       font-family: $display-font;
       font-size: 2.2rem;
       line-height: 2.6rem;
+      padding: 0 2rem;
+      text-align: center;
     }
   }
   .dial {

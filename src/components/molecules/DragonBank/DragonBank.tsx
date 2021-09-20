@@ -4,12 +4,18 @@ import { voting } from '../../../state';
 import DragonBankDropZone from './DragonBankDropZone';
 import './styles/index.scss';
 
-export default function DragonBank(): React.ReactElement {
+export interface DragonBankProps {
+  dragDisabled?: boolean;
+}
+
+export default function DragonBank({
+  dragDisabled = false,
+}: DragonBankProps): React.ReactElement {
   const dragonBankKeys = useRecoilValue(voting.dragonBankDropZoneKeys);
   return (
     <div className="dragon-bank">
       {dragonBankKeys.map((key) => (
-        <DragonBankDropZone key={key} name={key} />
+        <DragonBankDropZone key={key} name={key} dragDisabled={dragDisabled} />
       ))}
     </div>
   );

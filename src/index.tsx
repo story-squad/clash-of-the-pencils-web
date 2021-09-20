@@ -1,3 +1,5 @@
+import { ErrorBoundary } from '@story-squad/react-utils';
+import { IErrorFallbackProps } from '@story-squad/react-utils/dist/utils/ErrorBoundary/types';
 import dotenv from 'dotenv';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -5,8 +7,6 @@ import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-import './styles/index.scss';
 
 dotenv.config();
 
@@ -15,7 +15,9 @@ ReactDOM.render(
     <HelmetProvider>
       <RecoilRoot>
         <Router>
-          <App />
+          <ErrorBoundary fallback={ErrorComponent}>
+            <App />
+          </ErrorBoundary>
         </Router>
       </RecoilRoot>
     </HelmetProvider>
@@ -23,7 +25,14 @@ ReactDOM.render(
   document.getElementById('root'),
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+function ErrorComponent({
+  error,
+  children,
+}: React.PropsWithChildren<IErrorFallbackProps>) {
+  return (
+    <>
+      <p>{error.message}</p>
+      {children}
+    </>
+  );
+}

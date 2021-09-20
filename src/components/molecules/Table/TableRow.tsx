@@ -6,7 +6,6 @@ export interface ITableRowProps {
 }
 
 export function TableRow({ row }: ITableRowProps): React.ReactElement {
-  console.log('table row', row);
   return (
     <tr className="table-row">
       {row.map((cell, i) => (

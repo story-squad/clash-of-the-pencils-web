@@ -8,4 +8,4 @@ export { default as handwritingExample } from './handwriting-example.jpg';
 export { default as pencilMonsterHead } from './pencil-monster-head.png';
 export { default as pencilMonster } from './pencil-monster.png';
 export { ReactComponent as ProfileIcon } from './profile-icon.svg';
-export * as stickerSVGs from './stickers';
+export * as stickerFiles from './stickers';

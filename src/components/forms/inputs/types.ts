@@ -1,3 +1,3 @@
-import { RegisterOptions } from 'react-hook-form';
+import { InputContainerProps } from '../../molecules/Input/InputContainer';
 
-export type CustomRulesProps = RegisterOptions;
+export type FormInputMapProps = Partial<InputContainerProps>;

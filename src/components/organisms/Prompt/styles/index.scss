@@ -1,8 +1,9 @@
-@import '~/src/styles/newIndex.scss';
+@import '../../../../styles/newIndex.scss';
 
 .prompt {
   background-color: $brand-blue-6;
   padding: 2.5rem;
+  width: 100%;
   display: flex;
   flex-flow: column nowrap;
   align-items: stretch;
@@ -34,12 +35,13 @@
     flex-flow: column nowrap;
     align-items: stretch;
     justify-content: center;
-    margin-bottom: 2.4rem;
     @include bp(tablet) {
       align-items: center;
     }
-
-    .button:first-of-type {
+    .button {
+      width: 100%;
+    }
+    &:first-of-type {
       margin-bottom: 1rem;
     }
   }

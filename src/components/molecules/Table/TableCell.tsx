@@ -5,6 +5,5 @@ export interface ITableCellProps {
 }
 
 export function TableCell({ cell }: ITableCellProps): React.ReactElement {
-  console.log('cell', cell);
   return <td className="table-cell">{cell}</td>;
 }

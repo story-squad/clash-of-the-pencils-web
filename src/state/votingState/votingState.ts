@@ -1,6 +1,5 @@
 import { atom, selector } from 'recoil';
 import { dropZone, DropZoneContainer } from '../dndState';
-import { logger } from '../effects';
 
 // Prefixes to identify the draggables
 export const DRAGON = 'dragon';
@@ -15,7 +14,6 @@ export const submissionDropZoneKeys = atom<string[]>({
     `${SUBMISSION_ZONE}-2`,
     `${SUBMISSION_ZONE}-3`,
   ],
-  effects_UNSTABLE: [logger()],
 });
 /** Keep track of the drop zone keys in an atom */
 export const dragonBankDropZoneKeys = atom<string[]>({
@@ -25,7 +23,6 @@ export const dragonBankDropZoneKeys = atom<string[]>({
     `${DRAGON_BANK_ZONE}-2`,
     `${DRAGON_BANK_ZONE}-3`,
   ],
-  effects_UNSTABLE: [logger()],
 });
 export const dragonBank = selector<DropZoneContainer[]>({
   key: 'dragonBankSelector',

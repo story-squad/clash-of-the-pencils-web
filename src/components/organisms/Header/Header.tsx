@@ -1,15 +1,19 @@
 import { useClickOutside } from '@story-squad/react-utils';
 import React from 'react';
+import { Users } from '../../../api';
 import HeaderIcon, { IHeaderIconProps } from './HeaderIcon';
 import MobileNav from './MobileNav';
 import './styles/index.scss';
 import TabletNav from './TabletNav';
 
-type IHeaderProps = IHeaderIconProps;
+type IHeaderProps = IHeaderIconProps & {
+  user?: Omit<Users.IUser, 'password'> | undefined;
+};
 
 export default function Header({
   isMenuOpen,
   toggleMenu,
+  user,
 }: IHeaderProps): React.ReactElement {
   // Menu should close on click outside of header
   const [clickRef] = useClickOutside({
@@ -26,9 +30,9 @@ export default function Header({
         <section id="main-header">
           <HeaderIcon isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
           <h1>Clash of the Pencils</h1>
-          <TabletNav />
+          <TabletNav user={user} />
         </section>
-        <MobileNav isMenuOpen={isMenuOpen} />
+        <MobileNav isMenuOpen={isMenuOpen} user={user} />
       </div>
     </header>
   );
