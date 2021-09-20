@@ -9,7 +9,6 @@ export default function Table({
   headings,
   rows,
 }: ITableProps): React.ReactElement {
-  console.log('table', headings, rows);
   return (
     <table className="table">
       <TableHeader headings={headings} />

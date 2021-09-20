@@ -6,7 +6,6 @@ export interface ITableBodyProps {
 }
 
 export function TableBody({ rows }: ITableBodyProps): React.ReactElement {
-  console.log('table body', rows);
   return (
     <tbody className="table-body">
       {rows.map((row, i) => (
