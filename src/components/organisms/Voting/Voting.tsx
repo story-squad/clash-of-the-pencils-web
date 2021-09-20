@@ -41,9 +41,12 @@ export default function Voting({
       <div className="voting-container">
         <h2>Read &amp; Rank the Top 3 Stories</h2>
         <CardList>
-          <InstructionCard step={1} active={!hasReadAll} />
-          <InstructionCard step={2} active={hasReadAll && !canSubmit} />
-          <InstructionCard step={3} active={canSubmit} />
+          <InstructionCard step={1} active={phase === 'vote' && !hasReadAll} />
+          <InstructionCard
+            step={2}
+            active={phase === 'vote' && hasReadAll && !canSubmit}
+          />
+          <InstructionCard step={3} active={phase === 'vote' && canSubmit} />
         </CardList>
         <h3>Drop the Dragons to Vote</h3>
         <DragonBank dragDisabled={dragDisabled || !hasReadAll} />
@@ -67,18 +70,20 @@ export default function Voting({
             ))
           )}
         </CardList>
-        <div className="button-row">
-          <Button onClick={resetVotes} type="secondary">
-            Reset Votes
-          </Button>
-          <Button
-            iconLeft={loading && <LoadIcon />}
-            disabled={!canSubmit || loading}
-            onClick={exec}
-          >
-            Submit Votes
-          </Button>
-        </div>
+        {phase === 'vote' && (
+          <div className="button-row">
+            <Button onClick={resetVotes} type="secondary">
+              Reset Votes
+            </Button>
+            <Button
+              iconLeft={loading && <LoadIcon />}
+              disabled={!canSubmit || loading}
+              onClick={exec}
+            >
+              Submit Votes
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );
