@@ -1,8 +1,6 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import LoginView from './components/views/LoginView/LoginView';
-import SignupView from './components/views/SignupView/SignupView';
-import SubmissionView from './components/views/Submission/SubmissionView';
+import { DashboardView, LoginView, SignupView } from './components/views';
 
 const App = (): React.ReactElement => {
   return (
@@ -11,7 +9,7 @@ const App = (): React.ReactElement => {
       {/* <CookiePopup /> */}
       <Switch>
         {/* Public Routes */}
-        <Route exact path="/" component={SubmissionView} />
+        <Route exact path="/" component={DashboardView} />
         <Route
           path="/login"
           render={({ history }) => (

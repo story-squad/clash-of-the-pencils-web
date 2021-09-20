@@ -3,17 +3,17 @@ import { Input } from '../../molecules';
 import { FormInputMapProps } from './types';
 
 export default {
-  codename: function CodenameInput({
-    rules,
-    ...props
-  }: FormInputMapProps): React.ReactElement {
+  codename: function CodenameInput(
+    { rules, ...props }: FormInputMapProps,
+    orEmail = false,
+  ): React.ReactElement {
     return (
       <Input
         {...props}
         name="codename"
-        label="Codename"
-        rules={{ required: 'Please enter your codename!', ...rules }}
-        placeholder="Codename"
+        label={`Codename${orEmail ? ' or Email' : ''}`}
+        rules={{ required: 'Please enter your codename or email!', ...rules }}
+        placeholder="Codename or email address"
       />
     );
   },

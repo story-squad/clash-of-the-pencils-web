@@ -2,21 +2,24 @@ import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-import { promptData, submissionData } from '../../../data';
-import leaderboardData from '../../../data/leaderboardData';
-import { app, leaderboard, prompts, top3 } from '../../../state';
-import { schedule } from '../../../utils/time';
-import SubmissionView from './SubmissionView';
+import {
+  leaderboardData,
+  promptData,
+  submissionData,
+} from '../../../../../data';
+import { app, leaderboard, prompts, top3 } from '../../../../../state';
+import { schedule } from '../../../../../utils/time';
+import SubmissionPhase from './SubmissionPhase';
 
 const Template: Story = (props) => {
-  return <SubmissionView {...props} />;
+  return <SubmissionPhase {...props} />;
 };
 
 export const Default = Template.bind({});
 
 export default {
   title: 'Views/SubmissionPhase',
-  component: SubmissionView,
+  component: SubmissionPhase,
   parameters: { layout: 'fullscreen' },
   decorators: [
     (story) => {

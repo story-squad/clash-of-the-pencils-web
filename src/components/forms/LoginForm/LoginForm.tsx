@@ -2,8 +2,9 @@ import { useAsync } from '@story-squad/react-utils';
 import React, { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Auth } from '../../../api';
+import { dataConstraints } from '../../../config';
 import { Button, CleverButton, LoadIcon } from '../../atoms';
-import { FormProps } from '../formTypes';
+import { FormOnSubmit, FormProps } from '../formTypes';
 import { authFormInputs } from '../inputs';
 import './styles/index.scss';
 
@@ -40,8 +41,16 @@ export default function LoginForm({
     [onError],
   );
 
+  const submitHandler: FormOnSubmit<Auth.ILoginBody> = (data) => {
+    if (data.codename && dataConstraints.emailPattern.test(data.codename)) {
+      onSubmit({ email: data.codename, password: data.password });
+    } else {
+      onSubmit(data);
+    }
+  };
+
   const [exec, isLoading] = useAsync({
-    asyncFunction: handleSubmit(onSubmit),
+    asyncFunction: handleSubmit(submitHandler),
     errorHandler,
   });
 
@@ -49,15 +58,18 @@ export default function LoginForm({
     <form className="login-form" onSubmit={exec}>
       <CleverButton htmlType="button" />
       <p className="alt-font">or</p>
-      <p className="main-font">Sign In Using Email Address</p>
+      <p className="main-font">Sign In Using Story Squad Account</p>
       {errors?.form && (
         <div className="server-error">{errors.form.message}</div>
       )}
-      {authFormInputs.codename({
-        rules: {
-          minLength: { value: 2, message: 'Too short' },
+      {authFormInputs.codename(
+        {
+          rules: {
+            minLength: { value: 2, message: 'Too short' },
+          },
         },
-      })}
+        true,
+      )}
       {authFormInputs.password({})}
       <Button
         disabled={isLoading}

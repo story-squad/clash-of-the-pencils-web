@@ -7,7 +7,8 @@ export interface IAuthResponse {
 }
 
 export interface ILoginBody {
-  codename: string;
+  codename?: string;
+  email?: string;
   password: string;
 }
 

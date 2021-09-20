@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { Auth } from '../../../api';
 import { auth } from '../../../state';
@@ -18,6 +19,7 @@ export default function LoginView({
 }: LoginViewProps): React.ReactElement {
   // Get form methods for the provider
   const methods = useForm();
+  const { push } = useHistory();
 
   // Get login selector from Recoil
   const login = useSetRecoilState(auth.login);
@@ -28,6 +30,7 @@ export default function LoginView({
       (async (data: Auth.ILoginBody) => {
         const res = await Auth.login(data);
         login(res);
+        push('/');
       }),
     [login, onSubmit],
   );

@@ -4,11 +4,11 @@ import {
   Prompt,
   TwoColumn,
   VotingOrganism,
-} from '../../organisms';
-import { DashboardTemplate } from '../../templates';
-import { FullscreenImageOverlay } from '../FullscreenImageOverlay';
+} from '../../../../organisms';
+import { DashboardTemplate } from '../../../../templates';
+import { FullscreenImageOverlay } from '../../../FullscreenImageOverlay';
 
-export default function SubmissionView(): React.ReactElement {
+export default function SubmissionPhase(): React.ReactElement {
   return (
     <DashboardTemplate>
       <FullscreenImageOverlay />

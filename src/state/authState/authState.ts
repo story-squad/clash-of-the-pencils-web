@@ -6,6 +6,7 @@ import { persist } from '../effects';
 export const user = atom<Omit<Users.IUser, 'password'> | undefined>({
   key: 'userAtom',
   default: undefined,
+  effects_UNSTABLE: [persist('logged:in:user', { asString: true })],
 });
 
 export const authToken = atom<string | undefined>({
