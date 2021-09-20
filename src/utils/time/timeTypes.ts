@@ -32,8 +32,3 @@ export function isTimeUntilItem(item: unknown): item is TimeUntilItem {
     typeof itemAs.s === 'number'
   );
 }
-
-export interface ICurrentTime {
-  phase: ClashPhases & string;
-  timeLeft: number;
-}

@@ -1,11 +1,10 @@
 import { DateTime } from 'luxon';
-import { getTimeUntilEvent } from './getTimeUntil';
 import { schedule } from './schedule';
-import { ClashPhases, ICurrentTime, TimeUntilItem } from './timeTypes';
+import { ClashPhases, eventType, TimeUntilItem } from './timeTypes';
 
 /* Helper Functions */
 // now is used only for testing
-export function getCurrent(now?: DateTime): ICurrentTime {
+export function getCurrent(now?: DateTime): Exclude<eventType, 'off'> {
   if (!now) now = DateTime.utc();
 
   const phase = (() => {
@@ -23,12 +22,9 @@ export function getCurrent(now?: DateTime): ICurrentTime {
   // console.log('[PHASE]', now.toFormat('HH:mm:ss'), phase);
 
   // Should always be active
-  const phaseInfo = getTimeUntilEvent(phase, now);
+  // const phaseInfo = getTimeUntilEvent(phase, now);
 
-  return {
-    phase,
-    timeLeft: phaseInfo.timeUntil,
-  };
+  return phase;
 }
 
 /**
