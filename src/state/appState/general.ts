@@ -1,7 +1,16 @@
 import { DateTime } from 'luxon';
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
 
 export const now = atom<DateTime>({
   key: 'appAtomCurrentDateTime',
-  default: DateTime.now(),
+  default: selector({
+    key: 'appNowDefaultSelector',
+    get: DateTime.now,
+  }),
+  effects_UNSTABLE: [
+    ({ setSelf }) => {
+      const interval = setInterval(() => setSelf(DateTime.now), 1000);
+      return () => clearInterval(interval);
+    },
+  ],
 });
