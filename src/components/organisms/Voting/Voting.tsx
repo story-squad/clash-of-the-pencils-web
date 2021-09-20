@@ -1,7 +1,9 @@
+import { useAsync } from '@story-squad/react-utils';
 import React from 'react';
 import { Submissions } from '../../../api';
 import { voting } from '../../../state';
 import { time } from '../../../utils';
+import { Button, LoadIcon } from '../../atoms';
 import {
   DragonBank,
   EmptyCard,
@@ -15,22 +17,33 @@ export interface VotingProps {
   phase: time.eventType;
   top3: Submissions.ISubItem[];
   hasReadAll?: boolean;
+  canSubmit?: boolean;
+  submitVotes: () => Promise<unknown>;
+  resetVotes: () => void;
 }
 
 export default function Voting({
   phase,
   top3,
   hasReadAll = false,
+  canSubmit = false,
+  submitVotes,
+  resetVotes,
 }: VotingProps): React.ReactElement {
   const dragDisabled = phase !== 'vote';
+
+  const [exec, loading] = useAsync({
+    asyncFunction: submitVotes,
+  });
+
   return (
     <section className="voting-wrapper">
       <div className="voting-container">
         <h2>Read &amp; Rank the Top 3 Stories</h2>
         <CardList>
-          <InstructionCard step={1} />
-          <InstructionCard step={2} />
-          <InstructionCard step={3} />
+          <InstructionCard step={1} active={!hasReadAll} />
+          <InstructionCard step={2} active={hasReadAll && !canSubmit} />
+          <InstructionCard step={3} active={canSubmit} />
         </CardList>
         <h3>Drop the Dragons to Vote</h3>
         <DragonBank dragDisabled={dragDisabled || !hasReadAll} />
@@ -54,6 +67,18 @@ export default function Voting({
             ))
           )}
         </CardList>
+        <div className="button-row">
+          <Button onClick={resetVotes} type="secondary">
+            Reset Votes
+          </Button>
+          <Button
+            iconLeft={loading && <LoadIcon />}
+            disabled={!canSubmit || loading}
+            onClick={exec}
+          >
+            Submit Votes
+          </Button>
+        </div>
       </div>
     </section>
   );

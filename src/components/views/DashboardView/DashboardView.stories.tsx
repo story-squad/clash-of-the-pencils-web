@@ -1,14 +1,22 @@
 import { Meta, Story } from '@storybook/react';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import { leaderboardData, promptData, submissionData } from '../../../data';
 import { app, leaderboard, prompts, top3 } from '../../../state';
+import { sleep } from '../../../utils';
 import { schedule } from '../../../utils/time';
 import DashboardView, { DashboardViewProps } from './DashboardView';
 
-const Template: Story<DashboardViewProps> = (props) => {
-  return <DashboardView {...props} />;
+const Template: Story<DashboardViewProps> = ({ submitVotes, ...props }) => {
+  const submitHandler = useCallback(
+    submitVotes ??
+      (async () => {
+        await sleep(2000);
+      }),
+    [submitVotes, sleep],
+  );
+  return <DashboardView submitVotes={submitHandler} {...props} />;
 };
 
 export const VotingPhase = Template.bind({});

@@ -1,13 +1,15 @@
-import React from 'react';
-import { useRecoilValue } from 'recoil';
+import React, { useCallback } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { Voting } from '../../../api';
 import { top3, voting } from '../../../state';
 import { time } from '../../../utils';
 import { Loader } from '../../molecules';
 import { VotingDragAndDropContext } from '../../providers';
-import Voting from './Voting';
+import VotingComponent from './Voting';
 
 export interface VotingContainerProps {
   phase?: time.eventType;
+  submitVotes?: () => Promise<unknown>;
 }
 
 /**
@@ -33,8 +35,35 @@ export default function VotingContainer(
 
 function VotingSubscriber({
   phase = 'submit',
+  submitVotes,
 }: VotingContainerProps): React.ReactElement {
   const top3List = useRecoilValue(top3.top3List);
   const hasReadAll = useRecoilValue(voting.hasReadAll);
-  return <Voting phase={phase} top3={top3List} hasReadAll={hasReadAll} />;
+  const canSubmit = useRecoilValue(voting.canSubmit);
+  const formattedVotes = useRecoilValue(voting.formattedVotes);
+
+  // Reset Handler
+  const resetVotes = useSetRecoilState(voting.resetDropZones);
+  const resetVoteDropZones = () => resetVotes(undefined);
+
+  const submitHandler = useCallback(
+    submitVotes ??
+      (async () => {
+        if (canSubmit && formattedVotes) {
+          await Voting.submit(formattedVotes);
+        }
+      }),
+    [submitVotes],
+  );
+
+  return (
+    <VotingComponent
+      phase={phase}
+      top3={top3List}
+      hasReadAll={hasReadAll}
+      canSubmit={canSubmit}
+      submitVotes={submitHandler}
+      resetVotes={resetVoteDropZones}
+    />
+  );
 }

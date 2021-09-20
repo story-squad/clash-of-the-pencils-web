@@ -24,5 +24,13 @@ section.voting-wrapper {
     & > h3 {
       color: $gray-7;
     }
+
+    .button-row {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
   }
 }
