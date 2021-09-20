@@ -1,11 +1,13 @@
 import { DateTime } from 'luxon';
-import { schedule } from './schedule';
+import { printSchedule, schedule } from './schedule';
 import { ClashPhases, eventType, TimeUntilItem } from './timeTypes';
 
 /* Helper Functions */
-// now is used only for testing
-export function getCurrent(now?: DateTime): Exclude<eventType, 'off'> {
-  if (!now) now = DateTime.utc();
+export function getCurrent(params?: {
+  now?: DateTime;
+  enableLogs?: boolean;
+}): Exclude<eventType, 'off'> {
+  const { enableLogs = false, now = DateTime.utc() } = params || {};
 
   const phase = (() => {
     if (now >= schedule.submit.start && now < schedule.submit.end) {
@@ -19,10 +21,8 @@ export function getCurrent(now?: DateTime): Exclude<eventType, 'off'> {
     }
   })();
 
-  // console.log('[PHASE]', now.toFormat('HH:mm:ss'), phase);
-
-  // Should always be active
-  // const phaseInfo = getTimeUntilEvent(phase, now);
+  enableLogs && console.log('[PHASE]', now.toFormat('HH:mm:ss'), phase);
+  enableLogs && printSchedule();
 
   return phase;
 }

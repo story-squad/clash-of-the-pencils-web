@@ -12,9 +12,9 @@ import {
 import { hasFinishedReadingState, hasReadState, top3List } from '../top3State';
 
 // This selector exists to clear all Recoil state on logout and should be updated as state grows
-export const all = selector<null>({
+export const all = selector<undefined>({
   key: 'clearState',
-  get: () => null,
+  get: () => undefined,
   set: ({ reset }) => {
     reset(authToken);
     reset(user);

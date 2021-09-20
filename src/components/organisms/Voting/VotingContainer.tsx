@@ -49,11 +49,12 @@ function VotingSubscriber({
   const submitHandler = useCallback(
     submitVotes ??
       (async () => {
+        console.log({ canSubmit, formattedVotes });
         if (canSubmit && formattedVotes) {
           await Voting.submit(formattedVotes);
         }
       }),
-    [submitVotes],
+    [submitVotes, formattedVotes],
   );
 
   return (
