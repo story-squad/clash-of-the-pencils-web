@@ -22,13 +22,13 @@ export default function PromptOrganism({
       <h1>Today&apos;s Writing Prompt</h1>
       <p>{prompt.prompt}</p>
       <div className="button-wrapper">
-        <Button>Upload Story</Button>
-        <Button type="secondary" size="sm">
-          Encouragement Button
-        </Button>
+        <Button type="secondary">Encouragement Button</Button>
       </div>
       <div className="countdown-wrapper">
         <Countdown now={now} event={event} />
+      </div>
+      <div className="button-wrapper">
+        <Button>Upload Story</Button>
       </div>
     </section>
   );

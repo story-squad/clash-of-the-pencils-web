@@ -35,14 +35,13 @@
     flex-flow: column nowrap;
     align-items: stretch;
     justify-content: center;
-    margin-bottom: 2.4rem;
     @include bp(tablet) {
       align-items: center;
     }
     .button {
       width: 100%;
     }
-    .button:first-of-type {
+    &:first-of-type {
       margin-bottom: 1rem;
     }
   }
