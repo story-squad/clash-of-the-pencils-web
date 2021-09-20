@@ -9,13 +9,13 @@ import './styles/index.scss';
 export interface IPromptOrganismProps {
   prompt: Prompts.IPrompt;
   now: DateTime;
-  event: Exclude<time.eventType, 'off'>;
+  phase: Exclude<time.eventType, 'off'>;
 }
 
 export default function PromptOrganism({
   prompt,
   now,
-  event,
+  phase,
 }: IPromptOrganismProps): React.ReactElement {
   return (
     <section className="prompt">
@@ -25,10 +25,10 @@ export default function PromptOrganism({
         <Button type="secondary">Encouragement Button</Button>
       </div>
       <div className="countdown-wrapper">
-        <Countdown now={now} event={event} />
+        <Countdown now={now} phase={phase} />
       </div>
       <div className="button-wrapper">
-        <Button>Upload Story</Button>
+        <Button disabled={phase !== 'submit'}>Upload Story</Button>
       </div>
     </section>
   );

@@ -41,10 +41,15 @@ export default function Voting({
       <div className="voting-container">
         <h2>Read &amp; Rank the Top 3 Stories</h2>
         <CardList>
-          <InstructionCard step={1} active={phase === 'vote' && !hasReadAll} />
+          <InstructionCard
+            step={1}
+            active={phase === 'vote' && !hasReadAll}
+            complete={hasReadAll}
+          />
           <InstructionCard
             step={2}
             active={phase === 'vote' && hasReadAll && !canSubmit}
+            complete={canSubmit}
           />
           <InstructionCard step={3} active={phase === 'vote' && canSubmit} />
         </CardList>

@@ -14,7 +14,7 @@ function PromptOrganismContainer({
 }: PromptOrganismContainerProps): React.ReactElement {
   const prompt = useRecoilValue(prompts.currentPrompt);
   const now = useRecoilValue(app.now);
-  return <PromptOrganism prompt={prompt} now={now} event={phase} />;
+  return <PromptOrganism prompt={prompt} now={now} phase={phase} />;
 }
 
 export default function PromptOrganismContainerFallback(
