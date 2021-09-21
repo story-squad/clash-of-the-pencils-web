@@ -50,6 +50,12 @@ nav {
       }
       a {
         border-bottom: 1px solid $white;
+        font-family: $text-font;
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+        color: $white;
+        text-decoration: none;
+        cursor: pointer;
       }
     }
   }
