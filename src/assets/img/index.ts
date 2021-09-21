@@ -6,6 +6,7 @@ export { default as emptyCardBackground } from './empty-card-background.svg';
 export { default as greenBulletPoint } from './green-bullet-point.svg';
 export { default as handwritingExampleRotated } from './handwriting-example-rotated.jpg';
 export { default as handwritingExample } from './handwriting-example.jpg';
+export { default as orangeCloseButton } from './orange-close-button.svg';
 export { default as pencilMonsterHead } from './pencil-monster-head.png';
 export { default as pencilMonster } from './pencil-monster.png';
 export { ReactComponent as ProfileIcon } from './profile-icon.svg';
