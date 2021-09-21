@@ -77,7 +77,7 @@ export default function Voting({
         </CardList>
         {phase === 'vote' && (
           <div className="button-row">
-            <Button onClick={resetVotes} type="secondary">
+            <Button onClick={resetVotes} disabled={loading} type="secondary">
               Reset Votes
             </Button>
             <Button
