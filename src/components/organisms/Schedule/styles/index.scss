@@ -1,0 +1,68 @@
+@import '../../../../styles/newIndex.scss';
+
+.schedule-wrapper {
+  background-color: $brand-blue-8;
+  flex-grow: 1;
+  .schedule-container {
+    @include safe-zone();
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    flex-grow: 1;
+    padding: 4rem 1rem;
+
+    .schedule-container-content {
+      width: 100%;
+      background-color: $brand-blue-6;
+      border: 2px solid $brand-blue-4;
+      border-radius: 1.6rem;
+      padding: 4.8rem;
+      margin-bottom: 4rem;
+
+      h2 {
+        font-family: $display-font;
+        font-size: 3rem;
+        line-height: 3rem;
+        color: $white;
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .schedule-item {
+        @include safe-zone(430px);
+        color: $white;
+        display: flex;
+        flex-flow: row nowrap;
+        align-self: flex-start;
+        margin-bottom: 2rem;
+
+        .left-content {
+          margin-right: 1rem;
+        }
+
+        .right-content {
+          h3 {
+            display: inline;
+            font-family: $display-font;
+            font-size: 2.4rem;
+            line-height: 2.6rem;
+            letter-spacing: 0.07px;
+          }
+          p {
+            font-family: $text-font;
+            font-size: 1.6rem;
+            line-height: 2rem;
+          }
+        }
+      }
+
+      .disclaimer {
+        text-align: center;
+        color: $white;
+        font-family: $text-font;
+        font-size: 1.2rem;
+        line-height: 2rem;
+      }
+    }
+  }
+}

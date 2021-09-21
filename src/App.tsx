@@ -1,6 +1,11 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { DashboardView, LoginView, SignupView } from './components/views';
+import {
+  DashboardView,
+  LoginView,
+  ScheduleView,
+  SignupView,
+} from './components/views';
 
 const App = (): React.ReactElement => {
   return (
@@ -20,6 +25,12 @@ const App = (): React.ReactElement => {
           path="/signup"
           render={({ history }) => (
             <SignupView openLogin={() => history.push('/login')} />
+          )}
+        />
+        <Route
+          path="/schedule"
+          render={({ history }) => (
+            <ScheduleView openDashboard={() => history.push('/')} />
           )}
         />
 

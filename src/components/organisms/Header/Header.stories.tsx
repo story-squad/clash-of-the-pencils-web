@@ -7,7 +7,15 @@ import StorySquadHeader from './StorySquadHeader';
 const Template: Story<HeaderSwitcherProps> = (props) => {
   const [show, setShow] = useState(false);
   const toggle = () => setShow((x) => !x);
-  return <Header isMenuOpen={show} toggleMenu={toggle} {...props} />;
+  const openDashboard = () => undefined;
+  return (
+    <Header
+      isMenuOpen={show}
+      toggleMenu={toggle}
+      openDashboard={openDashboard}
+      {...props}
+    />
+  );
 };
 
 export const Default = Template.bind({});

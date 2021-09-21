@@ -5,11 +5,13 @@ import { IMobileNavProps } from './MobileNav';
 
 export interface IHeaderIconProps extends IMobileNavProps {
   toggleMenu: () => void;
+  openDashboard: () => void;
 }
 
 export default function HeaderIcon({
   isMenuOpen,
   toggleMenu,
+  openDashboard,
 }: IHeaderIconProps): React.ReactElement {
   const menuToggleProps = useMemo(
     () => ({
@@ -20,7 +22,7 @@ export default function HeaderIcon({
   );
   return (
     <>
-      <ClashLogo className="logo" />
+      <ClashLogo className="logo" onClick={openDashboard} />
       {isMenuOpen ? (
         <FiX {...menuToggleProps} />
       ) : (

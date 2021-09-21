@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { app, auth } from '../../../state';
 import Header from './Header';
@@ -13,12 +14,22 @@ function HeaderContainer(): React.ReactElement {
   const [isMenuOpen, setIsMenuOpen] = useRecoilState(app.header.menuIsOpen);
   const user = useRecoilValue(auth.user);
 
+  const { push } = useHistory();
+  const openDashboard = () => push('/');
+
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
     console.log('hit');
   };
 
-  return <Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} user={user} />;
+  return (
+    <Header
+      openDashboard={openDashboard}
+      isMenuOpen={isMenuOpen}
+      toggleMenu={toggleMenu}
+      user={user}
+    />
+  );
 }
 
 export interface HeaderSwitcherProps {

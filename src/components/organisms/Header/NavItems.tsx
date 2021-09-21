@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import { FiUser } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { auth } from '../../../state';
@@ -11,10 +10,10 @@ export default function NavItems(props: NavProps): React.ReactElement {
       <div className="spacer" />
       <ul>
         {/* TODO add back in later */}
-        {/* <li>
-          <a>Daily Schedule</a>
-        </li>
         <li>
+          <Link to="/schedule">Daily Schedule</Link>
+        </li>
+        {/* <li>
           <a>Tutorial</a>
         </li> */}
         <NavAuthControl {...props} />
@@ -33,12 +32,12 @@ function NavAuthControl({ user }: NavProps): React.ReactElement {
       <li onClick={logout}>
         <a>Logout</a>
       </li>
-      <li>
+      {/* <li>
         <a>
           <span className="text-version">My Account</span>
           <FiUser className="icon-version" />
         </a>
-      </li>
+      </li> */}
     </>
   ) : (
     <>
