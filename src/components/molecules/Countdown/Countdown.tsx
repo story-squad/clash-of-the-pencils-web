@@ -24,7 +24,7 @@ export default function Countdown({
       case 'admin':
         return 'Until Voting Starts';
       case 'stream':
-        return 'Until Stream Ends';
+        return 'Streaming Now';
       case 'submit':
         return 'Left to Submit';
       case 'vote':
