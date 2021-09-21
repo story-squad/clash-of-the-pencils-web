@@ -1,5 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import React, { ReactElement } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import DashboardTemplate from './DashboardTemplate';
 
@@ -46,6 +47,7 @@ WithLargeContent.args = {
 export default {
   title: 'Templates/Dashboard',
   component: DashboardTemplate,
+  decorators: [(story) => <BrowserRouter>{story()}</BrowserRouter>],
   parameters: {
     layout: 'fullscreen',
   },

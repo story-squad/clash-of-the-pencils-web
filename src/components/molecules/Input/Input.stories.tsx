@@ -1,5 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 import { FiYoutube } from 'react-icons/fi';
 import Input, { InputProps } from './Input';
 
@@ -20,6 +21,12 @@ export const Interactive = Template.bind({});
 export default {
   title: 'Components/Molecules/Input',
   component: Input,
+  decorators: [
+    (story) => {
+      const methods = useForm();
+      return <FormProvider {...methods}>{story()}</FormProvider>;
+    },
+  ],
   argTypes: {
     inputType: {
       options: ['date', 'text', 'email', 'date', 'time', 'textarea'],

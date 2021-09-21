@@ -1,5 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import React, { useState } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import Header from './Header';
 import { HeaderSwitcherProps } from './HeaderContainer';
 import StorySquadHeader from './StorySquadHeader';
@@ -26,4 +27,5 @@ export default {
   title: 'Components/Organisms/Header',
   component: Header,
   parameters: { layout: 'fullscreen' },
+  decorators: [(story) => <BrowserRouter>{story()}</BrowserRouter>],
 } as Meta;
