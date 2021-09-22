@@ -9,7 +9,7 @@ export default function NavItems(props: NavProps): React.ReactElement {
     <nav className="main-header-nav">
       <div className="spacer" />
       <ul>
-        {/* TODO add back in later */}
+        {props.user && <li>Welcome, {props.user.codename}!</li>}
         <li>
           <Link to="/schedule">Daily Schedule</Link>
         </li>

@@ -34,12 +34,15 @@
     ul {
       li {
         padding: 2rem;
+        color: $white;
+        font-family: $text-font;
+        font-size: 1.8rem;
+        line-height: 2.6rem;
         a {
           color: $white;
           font-family: $text-font;
           font-size: 1.8rem;
           line-height: 2.6rem;
-
           // Hide the icon in mobile nav
           svg {
             display: none;
