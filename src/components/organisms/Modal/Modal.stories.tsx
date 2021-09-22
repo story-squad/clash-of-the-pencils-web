@@ -33,4 +33,5 @@ export const Default = Template.bind({});
 export default {
   title: 'Components/Organisms/Modal',
   component: Modal,
+  parameters: { layout: 'centered' },
 } as Meta;
