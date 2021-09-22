@@ -1,3 +1,4 @@
+export * from './helpers';
 export * as cookie from './hideCookiePopup';
 export * from './sleep';
 export * as time from './time';
