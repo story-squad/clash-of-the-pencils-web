@@ -1,4 +1,4 @@
-import { classnames } from '@story-squad/react-utils';
+import { classnames, useClickOutside } from '@story-squad/react-utils';
 import React, { useCallback } from 'react';
 import { orangeCloseButton } from '../../../assets';
 import { stopPropagation } from '../../../utils';
@@ -20,10 +20,11 @@ export default function Modal({
   setIsOpen,
 }: ModalProps): React.ReactElement {
   const closeModal = useCallback(() => setIsOpen(false), [setIsOpen]);
+  const [ref] = useClickOutside({ onClick: closeModal, isActive: isOpen });
 
   return (
     <div className={classnames('modal-wrapper', !isOpen && 'hidden')}>
-      <div className={classnames('modal')} onClick={stopPropagation}>
+      <div className={classnames('modal')} onClick={stopPropagation} ref={ref}>
         <img
           src={orangeCloseButton}
           className="modal-close-button"
