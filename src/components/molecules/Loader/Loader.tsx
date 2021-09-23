@@ -1,3 +1,4 @@
+import { classnames } from '@story-squad/react-utils';
 import React from 'react';
 import Dots from './Dots';
 import { ILoaderProps } from './loaderTypes';
@@ -7,10 +8,11 @@ const Loader = ({
   message = 'Loading',
   hideDots = false,
   center = true,
+  className,
   children,
 }: React.PropsWithChildren<ILoaderProps>): React.ReactElement => {
   return (
-    <div className={`loader-wrapper${center ? ' center' : ''}`}>
+    <div className={classnames('loader-wrapper', { center }, className)}>
       <div className="loader-container">
         <div className="message">
           {message}
