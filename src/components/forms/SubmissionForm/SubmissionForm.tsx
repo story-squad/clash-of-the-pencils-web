@@ -1,10 +1,12 @@
-import { useAsync } from '@story-squad/react-utils';
+import { ErrorMessage } from '@hookform/error-message';
+import { classnames, useAsync } from '@story-squad/react-utils';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Auth } from '../../../api';
 import { upload } from '../../../utils';
 import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
+import './styles/index.scss';
 
 // TODO specify the proper data interface here
 export type SubmissionFormProps = FormProps & { enableLogs?: boolean };
@@ -83,9 +85,14 @@ export default function SubmissionForm({
           <img src={preview} alt="Upload preview" />
         </div>
       ) : (
+        // PLACEHOLDER GOES HERE
         'NO IMAGE YET?'
       )}
-      <label className={file ? 'selected' : ''}>
+      <ErrorMessage
+        name="form"
+        render={({ message }) => <div className="server-error">{message}</div>}
+      />
+      <label className={classnames('file-input', file && 'selected')}>
         {/* IMAGE SHOULD REPLACE THE FOLLOWING LINE! */}
         {file ? 'Change Picture' : 'Select a Picture'}
         <input type="file" onChange={fileSelection} hidden {...inputParams} />
