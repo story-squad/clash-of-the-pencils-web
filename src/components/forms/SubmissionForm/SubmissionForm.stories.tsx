@@ -16,6 +16,7 @@ Default.args = {
     await sleep(2000);
     console.log('[DONE]');
   },
+  enableLogs: true,
 };
 
 export default {
