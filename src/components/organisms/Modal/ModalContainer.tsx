@@ -5,10 +5,10 @@ import Modal from './Modal';
 
 export default function ModalContainer(): React.ReactElement {
   const [isOpen, setIsOpen] = useRecoilState(app.modal.isOpen);
-  const ModalContent = useRecoilValue(app.modal.content);
+  const content = useRecoilValue(app.modal.content);
 
-  return ModalContent ? (
-    <Modal component={ModalContent} isOpen={isOpen} setIsOpen={setIsOpen} />
+  return content ? (
+    <Modal component={content} isOpen={isOpen} setIsOpen={setIsOpen} />
   ) : (
     <></>
   );
