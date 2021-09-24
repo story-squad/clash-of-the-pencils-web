@@ -1,18 +1,17 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
-import { Submissions } from '../../../api';
-import { prompts } from '../../../state';
+import { Prompts, Submissions } from '../../../api';
 import { FormOnSubmit } from '../../forms/formTypes';
 import SubmissionForm from '../../forms/SubmissionForm/SubmissionForm';
 import { Modal, ModalProps } from '../../organisms';
 
 export default function SubmissionModal({
   onSubmit = Submissions.uploadSubmission,
+  prompt,
   ...props
 }: Omit<ModalProps, 'component'> & {
   onSubmit?: FormOnSubmit<FormData>;
+  prompt: Prompts.IPrompt;
 }): React.ReactElement {
-  const prompt = useRecoilValue(prompts.currentPrompt);
   const closeModal = () => props.setIsOpen(false);
 
   return (

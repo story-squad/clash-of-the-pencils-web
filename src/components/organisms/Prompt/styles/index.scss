@@ -8,7 +8,7 @@
   flex-flow: column nowrap;
   align-items: stretch;
 
-  h1 {
+  > h1 {
     font-family: $display-font;
     color: $white;
     font-size: 2.4rem;
@@ -17,7 +17,7 @@
 
     margin-bottom: 1.6rem;
   }
-  p {
+  > p {
     font-family: $text-font;
     color: $white;
     font-size: 1.8rem;
@@ -40,9 +40,9 @@
     }
     .button {
       width: 100%;
-    }
-    &:first-of-type {
-      margin-bottom: 1rem;
+      &.secondary {
+        margin-bottom: 1rem;
+      }
     }
   }
 
