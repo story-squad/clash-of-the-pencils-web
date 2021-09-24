@@ -1,7 +1,9 @@
 import { classnames, useAsync } from '@story-squad/react-utils';
 import React, { SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import { FiUploadCloud } from 'react-icons/fi';
+import { useRecoilState } from 'recoil';
 import { Auth, Prompts } from '../../../api';
+import { app } from '../../../state';
 import { upload } from '../../../utils';
 import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
@@ -20,7 +22,12 @@ export default function SubmissionForm({
   onCancel,
   currentPrompt,
 }: SubmissionFormProps): React.ReactElement {
-  // Standard Form Handlers
+  // Store the selected file in state
+  const [file, setFile] = useRecoilState(app.submissionModal.file);
+  // Store a URL location for the selected file in order to display a preview
+  const [preview, setPreview] = useRecoilState(app.submissionModal.preview);
+
+  // Form Error Handlers
   const [error, setError] = useState<string>();
   const clearError = () => setError(undefined);
 
@@ -65,12 +72,6 @@ export default function SubmissionForm({
     asyncFunction: submitHandler,
     errorHandler,
   });
-
-  // Submission-Specific Form Handlers
-  // Store the selected file in state
-  const [file, setFile] = useState<File>();
-  // Store a URL location for the selected file in order to display a preview
-  const [preview, setPreview] = useState<string>();
 
   // This extracts the file from the Input element's event object
   const fileSelection = (e: React.ChangeEvent<HTMLInputElement>): void => {
