@@ -1,6 +1,6 @@
-export type FormOnSubmit<FormData = unknown> = (
+export type FormOnSubmit<FormData = unknown, Response = unknown> = (
   data: FormData,
-) => void | Promise<void>;
+) => Response | Promise<Response>;
 export type FormOnError = (err: unknown) => void;
 export interface FormProps<FormData extends unknown = unknown> {
   onSubmit: FormOnSubmit<FormData>;
