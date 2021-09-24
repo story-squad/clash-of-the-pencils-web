@@ -1,43 +1,68 @@
-import { ErrorMessage } from '@hookform/error-message';
 import { classnames, useAsync } from '@story-squad/react-utils';
-import React, { useCallback, useEffect, useState } from 'react';
-import { useFormContext } from 'react-hook-form';
-import { Auth } from '../../../api';
+import React, { SyntheticEvent, useCallback, useEffect, useState } from 'react';
+import { FiUploadCloud } from 'react-icons/fi';
+import { Auth, Prompts } from '../../../api';
 import { upload } from '../../../utils';
 import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import './styles/index.scss';
 
-// TODO specify the proper data interface here
-export type SubmissionFormProps = FormProps & { enableLogs?: boolean };
+export type SubmissionFormProps = FormProps<FormData> & {
+  enableLogs?: boolean;
+  onCancel?: () => void;
+  currentPrompt: Prompts.IPrompt;
+};
 
 export default function SubmissionForm({
   onSubmit,
   onError,
   enableLogs = false,
+  onCancel,
+  currentPrompt,
 }: SubmissionFormProps): React.ReactElement {
   // Standard Form Handlers
-  const { clearErrors, setError, handleSubmit, register } = useFormContext();
-  const clearFormError = () => clearErrors('form');
+  const [error, setError] = useState<string>();
+  const clearError = () => setError(undefined);
+
   const errorHandler = useCallback(
-    onError ??
-      ((error: unknown) => {
-        if (error) {
-          let message: string;
-          if (Auth.isAxiosError(error) && error.response?.data?.message) {
-            message = error.response.data.message;
-          } else {
-            message = 'An unknown error occurred. Please try again.';
-          }
-          setError('form', { type: 'manual', message });
+    (err: unknown) => {
+      // If there's an onError function, call it with our error object
+      onError?.(err);
+
+      if (Auth.isAxiosError(err)) {
+        // Custom error handling case for DS API error
+        if (err.response?.data?.error === 'Transcription error') {
+          setError('Your submission must be a story!');
         } else {
-          clearErrors('form');
+          setError(err.message);
         }
-      }),
+      } else if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('An error occurred during upload');
+      }
+    },
     [onError],
   );
+
+  const submitHandler = async (e: SyntheticEvent) => {
+    e.preventDefault();
+    if (!file) {
+      setError('No image selected');
+    } else {
+      try {
+        const reqBody = new FormData();
+        reqBody.append('story', file);
+        reqBody.append('promptId', `${currentPrompt.id}`);
+        await onSubmit(reqBody);
+      } catch (err) {
+        errorHandler(err);
+      }
+    }
+  };
+
   const [exec, loading] = useAsync({
-    asyncFunction: handleSubmit(onSubmit),
+    asyncFunction: submitHandler,
     errorHandler,
   });
 
@@ -47,27 +72,22 @@ export default function SubmissionForm({
   // Store a URL location for the selected file in order to display a preview
   const [preview, setPreview] = useState<string>();
 
-  const { onChange: registeredChangeHandler, ...inputParams } = register(
-    'story',
-    { required: { message: 'You must select an image!', value: true } },
-  );
-
   // This extracts the file from the Input element's event object
   const fileSelection = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    // Get the file list from the event
     const fileList = e.target.files;
     if (fileList) {
+      // Get the selected image from the list
       const selection = fileList[0];
       if (selection) {
+        // Make sure the image is a valid image type
         if (!upload.isValidImage(selection)) {
-          setError('form', {
-            message: 'Upload must be an image!',
-            type: 'manual',
-          });
+          setError('Upload must be an image!');
         } else {
-          clearFormError();
+          // If its valid, update the file and preview in state and reset error
+          clearError();
           setFile(selection);
           setPreview(URL.createObjectURL(selection));
-          registeredChangeHandler(e);
         }
       }
     }
@@ -80,30 +100,48 @@ export default function SubmissionForm({
 
   return (
     <form className="submission-form" onSubmit={exec}>
-      {preview ? (
-        <div className="preview">
-          <img src={preview} alt="Upload preview" />
-        </div>
-      ) : (
-        // PLACEHOLDER GOES HERE
-        'NO IMAGE YET?'
-      )}
-      <ErrorMessage
-        name="form"
-        render={({ message }) => <div className="server-error">{message}</div>}
-      />
-      <label className={classnames('file-input', file && 'selected')}>
-        {/* IMAGE SHOULD REPLACE THE FOLLOWING LINE! */}
-        {file ? 'Change Picture' : 'Select a Picture'}
-        <input type="file" onChange={fileSelection} hidden {...inputParams} />
+      <h2>File Upload</h2>
+      <p>
+        {preview
+          ? 'Click your story to pick a different image'
+          : 'Select a file to upload your story'}
+      </p>
+      <label className={classnames('file-input')}>
+        {preview ? (
+          <img className="preview" src={preview} alt="Upload preview" />
+        ) : (
+          <div className="placeholder">
+            <FiUploadCloud />
+            <span className="icon-text">Click to Upload</span>
+          </div>
+        )}
+        <input type="file" onChange={fileSelection} hidden />
       </label>
-      <Button
-        disabled={loading}
-        onClick={clearFormError}
-        iconRight={loading && <LoadIcon />}
-      >
-        Submit Story
-      </Button>
+      {error && (
+        <div className="server-error">
+          <span className="red">*</span>
+          {error}
+        </div>
+      )}
+      <div className="button-row">
+        {onCancel && (
+          <Button
+            disabled={loading}
+            onClick={onCancel}
+            htmlType="button"
+            type="secondary"
+          >
+            Cancel
+          </Button>
+        )}
+        <Button
+          disabled={loading}
+          onClick={clearError}
+          iconRight={loading && <LoadIcon />}
+        >
+          Submit Story
+        </Button>
+      </div>
     </form>
   );
 }
