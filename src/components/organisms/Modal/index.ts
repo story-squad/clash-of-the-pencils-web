@@ -1,2 +1,2 @@
 export * from './Modal';
-export { default as AppModal } from './ModalContainer';
+export { default as Modal } from './Modal';
