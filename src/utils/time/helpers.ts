@@ -1,4 +1,5 @@
 import { DateTime } from 'luxon';
+import { APP_TIME_OFFSET } from '../../config';
 import { printSchedule, schedule } from './schedule';
 import { ClashPhases, eventType, TimeUntilItem } from './timeTypes';
 
@@ -7,7 +8,8 @@ export function getCurrent(params?: {
   now?: DateTime;
   enableLogs?: boolean;
 }): Exclude<eventType, 'off'> {
-  const { enableLogs = false, now = DateTime.utc() } = params || {};
+  const { enableLogs = false, now = DateTime.utc().plus(APP_TIME_OFFSET) } =
+    params || {};
 
   const phase = (() => {
     if (now >= schedule.submit.start && now < schedule.submit.end) {
