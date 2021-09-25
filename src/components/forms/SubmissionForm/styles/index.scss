@@ -1,0 +1,77 @@
+@import '../../../../styles/newIndex.scss';
+
+.submission-form {
+  @include safe-zone(62rem);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  gap: 1rem;
+
+  h2 {
+    font-size: 2.4rem;
+    line-height: 2.6rem;
+    font-family: $display-font;
+    color: $gray-7;
+    text-align: center;
+  }
+
+  p,
+  .server-error {
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+    font-family: $text-font;
+    text-align: center;
+    color: $gray-7;
+
+    .red {
+      color: $error;
+    }
+  }
+
+  .file-input {
+    .preview {
+      max-height: 50vh;
+    }
+    .placeholder {
+      width: 100%;
+      height: 40rem;
+      border: 1px dashed $gray-3;
+      border-radius: 0.8rem;
+
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      justify-content: center;
+
+      // Interaction Code
+      cursor: pointer;
+      background-color: $gray-1;
+      transition: all 0.05s ease-in-out;
+      &:hover {
+        filter: brightness(0.95);
+        transition: all 0.1s ease-in-out;
+      }
+
+      svg {
+        color: $brand-blue;
+        width: 15rem;
+        height: 15rem;
+      }
+      .icon-text {
+        font-family: $ui-foint;
+        color: $brand-blue;
+        font-weight: 700;
+        font-size: 1.4rem;
+        line-height: 2.4rem;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .button-row {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+}

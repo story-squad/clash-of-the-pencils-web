@@ -3,13 +3,6 @@ import { global } from '../apiErrorState';
 import { authToken, user } from '../authState';
 import { dropZone } from '../dndState';
 import { list } from '../pastSubsState';
-import {
-  error,
-  loading,
-  preview,
-  selected,
-  success,
-} from '../submitModalState';
 import { hasFinishedReadingState, hasReadState, top3List } from '../top3State';
 import {
   dragonBankDropZoneKeys,
@@ -30,11 +23,6 @@ export const all = selector<undefined>({
     reset(hasReadState);
     reset(list);
     reset(global);
-    reset(error);
-    reset(loading);
-    reset(preview);
-    reset(selected);
-    reset(success);
 
     // Reset Drop Zones to default
     get(dragonBankDropZoneKeys).map(dropZone).map(reset);

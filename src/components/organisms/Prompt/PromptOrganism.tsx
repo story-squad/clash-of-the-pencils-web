@@ -1,24 +1,36 @@
 import { DateTime } from 'luxon';
-import React from 'react';
+import React, { useState } from 'react';
 import { Prompts } from '../../../api';
 import { time } from '../../../utils';
 import { Button } from '../../atoms';
+import { FormOnSubmit } from '../../forms/formTypes';
+import { SubmissionModal } from '../../modals';
 import { Countdown } from '../../molecules';
 import './styles/index.scss';
 
 export interface IPromptOrganismProps {
   prompt: Prompts.IPrompt;
   now: DateTime;
-  phase: Exclude<time.eventType, 'off'>;
+  phase?: Exclude<time.eventType, 'off'>;
+  onUploadSubmit?: FormOnSubmit;
 }
 
 export default function PromptOrganism({
   prompt,
   now,
-  phase,
+  phase = time.getCurrent({ now }),
+  onUploadSubmit,
 }: IPromptOrganismProps): React.ReactElement {
+  const [isOpen, setIsOpen] = useState(false);
+  const openModal = () => setIsOpen(true);
   return (
     <section className="prompt">
+      <SubmissionModal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        prompt={prompt}
+        onSubmit={onUploadSubmit}
+      />
       <h1>Today&apos;s Writing Prompt</h1>
       <p>{prompt.prompt}</p>
       <div className="button-wrapper">
@@ -28,7 +40,9 @@ export default function PromptOrganism({
         <Countdown now={now} phase={phase} />
       </div>
       <div className="button-wrapper">
-        <Button disabled={phase !== 'submit'}>Upload Story</Button>
+        <Button disabled={phase !== 'submit'} onClick={openModal}>
+          Upload Story
+        </Button>
       </div>
     </section>
   );
