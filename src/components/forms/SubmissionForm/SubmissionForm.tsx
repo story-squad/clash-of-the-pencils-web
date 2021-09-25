@@ -4,7 +4,7 @@ import { FiUploadCloud } from 'react-icons/fi';
 import { useRecoilState } from 'recoil';
 import { Auth, Prompts } from '../../../api';
 import { app } from '../../../state';
-import { upload } from '../../../utils';
+import { stopPropagation, upload } from '../../../utils';
 import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import './styles/index.scss';
@@ -112,11 +112,18 @@ export default function SubmissionForm({
       </p>
       <label className={classnames('file-input')}>
         {preview ? (
-          <img className="preview" src={preview} alt="Upload preview" />
+          <img
+            className="preview"
+            src={preview}
+            alt="Upload preview"
+            onClick={stopPropagation}
+          />
         ) : (
-          <div className="placeholder">
-            <FiUploadCloud />
-            <span className="icon-text">Click to Upload</span>
+          <div className="placeholder" onClick={stopPropagation}>
+            <FiUploadCloud onClick={stopPropagation} />
+            <span className="icon-text" onClick={stopPropagation}>
+              Click to Upload
+            </span>
           </div>
         )}
         <input type="file" onChange={fileSelection} hidden />
