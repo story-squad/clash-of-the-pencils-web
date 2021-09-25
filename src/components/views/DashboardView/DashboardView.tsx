@@ -1,5 +1,4 @@
 import React from 'react';
-import { time } from '../../../utils';
 import {
   Leaderboard,
   Prompt,
@@ -10,7 +9,6 @@ import { DashboardTemplate } from '../../templates';
 import { FullscreenImageOverlay } from '../FullscreenImageOverlay';
 
 export interface DashboardViewProps {
-  phase: Exclude<time.eventType, 'off'>;
   submitVotes?: () => Promise<unknown>;
 }
 

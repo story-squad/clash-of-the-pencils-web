@@ -8,7 +8,7 @@ export function getCurrent(params?: {
   now?: DateTime;
   enableLogs?: boolean;
 }): Exclude<eventType, 'off'> {
-  const { enableLogs = false, now = DateTime.utc().plus(APP_TIME_OFFSET) } =
+  const { enableLogs = false, now = DateTime.now().plus(APP_TIME_OFFSET) } =
     params || {};
 
   const phase = (() => {

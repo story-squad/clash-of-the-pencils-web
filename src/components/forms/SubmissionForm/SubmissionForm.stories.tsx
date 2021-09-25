@@ -1,5 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
+import { RecoilRoot } from 'recoil';
 import { promptData } from '../../../data';
 import { sleep } from '../../../utils';
 import SubmissionForm, { SubmissionFormProps } from './SubmissionForm';
@@ -26,4 +27,5 @@ export default {
   title: 'Components/Forms/SubmissionForm',
   component: SubmissionForm,
   parameters: { layout: 'fullscreen' },
+  decorators: [(story) => <RecoilRoot>{story()}</RecoilRoot>],
 } as Meta;

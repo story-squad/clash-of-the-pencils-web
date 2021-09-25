@@ -21,6 +21,7 @@ export const phase = selector<Exclude<time.eventType, 'off'>>({
   key: 'appPhaseSelector',
   get: ({ get }) => {
     const curTime = get(now);
-    return time.getCurrent({ now: curTime });
+    const phase = time.getCurrent({ now: curTime });
+    return phase;
   },
 });

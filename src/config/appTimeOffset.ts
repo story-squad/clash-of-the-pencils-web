@@ -3,6 +3,10 @@ import { DurationInput } from 'luxon';
 /**
  * Make sure to set these variables to negative integers if you want to travel
  * back in time! the time is calculated using the `DateTime.plus` method!
+ *
+ * Also, keep in mind there may be some strange unintended effects when using
+ * these offsets! They are not perfected yet, and cause some small issues for
+ * certain large time jumps.
  */
 
 const APP_OFFSET_HOURS = 0;

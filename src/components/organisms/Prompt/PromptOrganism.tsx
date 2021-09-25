@@ -1,49 +1,46 @@
-import { DateTime } from 'luxon';
-import React, { useState } from 'react';
+import React from 'react';
+import { useRecoilValue } from 'recoil';
 import { Prompts } from '../../../api';
-import { time } from '../../../utils';
+import { app } from '../../../state';
 import { Button } from '../../atoms';
-import { FormOnSubmit } from '../../forms/formTypes';
-import { SubmissionModal } from '../../modals';
 import { Countdown } from '../../molecules';
 import './styles/index.scss';
 
 export interface IPromptOrganismProps {
   prompt: Prompts.IPrompt;
-  now: DateTime;
-  phase?: Exclude<time.eventType, 'off'>;
-  onUploadSubmit?: FormOnSubmit;
+  openUploadModal: () => void;
 }
 
 export default function PromptOrganism({
   prompt,
-  now,
-  phase = time.getCurrent({ now }),
-  onUploadSubmit,
+  openUploadModal,
 }: IPromptOrganismProps): React.ReactElement {
-  const [isOpen, setIsOpen] = useState(false);
-  const openModal = () => setIsOpen(true);
   return (
     <section className="prompt">
-      <SubmissionModal
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        prompt={prompt}
-        onSubmit={onUploadSubmit}
-      />
       <h1>Today&apos;s Writing Prompt</h1>
       <p>{prompt.prompt}</p>
       <div className="button-wrapper">
         <Button type="secondary">Encouragement Button</Button>
       </div>
       <div className="countdown-wrapper">
-        <Countdown now={now} phase={phase} />
+        <Countdown />
       </div>
       <div className="button-wrapper">
-        <Button disabled={phase !== 'submit'} onClick={openModal}>
-          Upload Story
-        </Button>
+        <UploadButton onClick={openUploadModal} />
       </div>
     </section>
+  );
+}
+
+function UploadButton({
+  onClick,
+}: {
+  onClick: () => void;
+}): React.ReactElement {
+  const phase = useRecoilValue(app.phase);
+  return (
+    <Button onClick={onClick} disabled={phase !== 'submit'}>
+      Upload Story
+    </Button>
   );
 }

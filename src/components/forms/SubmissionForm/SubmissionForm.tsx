@@ -24,8 +24,10 @@ export default function SubmissionForm({
 }: SubmissionFormProps): React.ReactElement {
   // Store the selected file in state
   const [file, setFile] = useRecoilState(app.submissionModal.file);
+  // const [file, setFile] = useState<File>();
   // Store a URL location for the selected file in order to display a preview
   const [preview, setPreview] = useRecoilState(app.submissionModal.preview);
+  // const [preview, setPreview] = useState<string>();
 
   // Form Error Handlers
   const [error, setError] = useState<string>();
@@ -75,6 +77,7 @@ export default function SubmissionForm({
 
   // This extracts the file from the Input element's event object
   const fileSelection = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    console.log('[SELECTED]', e.target.files);
     // Get the file list from the event
     const fileList = e.target.files;
     if (fileList) {

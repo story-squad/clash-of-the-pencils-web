@@ -1,5 +1,7 @@
 import { DateTime } from 'luxon';
 import React, { useMemo } from 'react';
+import { useRecoilValue } from 'recoil';
+import { app } from '../../../state';
 import { time } from '../../../utils';
 import Countdown from './Countdown';
 
@@ -8,10 +10,9 @@ export interface CountdownContainerProps {
   phase: Exclude<time.eventType, 'off'>;
 }
 
-export default function CountdownContainer({
-  now,
-  phase = 'submit',
-}: CountdownContainerProps): React.ReactElement {
+export default function CountdownContainer(): React.ReactElement {
+  const now = useRecoilValue(app.now);
+  const phase = useRecoilValue(app.phase);
   const { end, start } = useMemo(
     () => time.schedule[phase],
     [time.schedule, phase],
