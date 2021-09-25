@@ -2,22 +2,19 @@ import { DateTime } from 'luxon';
 import { atom, selector } from 'recoil';
 import { APP_TIME_OFFSET } from '../../config';
 import { time } from '../../utils';
+import { recalculate } from '../effects';
+
+function getCurrentTimeWithOffset() {
+  return DateTime.now().plus(APP_TIME_OFFSET);
+}
 
 export const now = atom<DateTime>({
   key: 'appAtomCurrentDateTime',
   default: selector({
     key: 'appNowDefaultSelector',
-    get: () => DateTime.now().plus(APP_TIME_OFFSET),
+    get: getCurrentTimeWithOffset,
   }),
-  effects_UNSTABLE: [
-    ({ setSelf }) => {
-      const interval = setInterval(
-        () => setSelf(DateTime.now().plus(APP_TIME_OFFSET)),
-        1000,
-      );
-      return () => clearInterval(interval);
-    },
-  ],
+  effects_UNSTABLE: [recalculate(getCurrentTimeWithOffset)],
 });
 
 export const phase = selector<Exclude<time.eventType, 'off'>>({
