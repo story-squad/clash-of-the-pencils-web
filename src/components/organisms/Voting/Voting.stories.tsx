@@ -9,10 +9,9 @@ import FullscreenImageOverlayContainer from '../../views/FullscreenImageOverlay/
 import Voting, { VotingProps } from './Voting';
 import VotingContainer from './VotingContainer';
 
-const Template: Story<VotingProps> = ({ phase = 'vote', ...props }) => (
+const Template: Story<VotingProps> = ({ ...props }) => (
   <VotingContainer
     {...props}
-    phase={phase}
     submitVotes={async () => {
       await sleep(2000);
     }}

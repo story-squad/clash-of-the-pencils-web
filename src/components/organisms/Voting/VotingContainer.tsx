@@ -1,14 +1,12 @@
 import React, { useCallback } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { Voting } from '../../../api';
-import { top3, voting } from '../../../state';
-import { time } from '../../../utils';
+import { app, top3, voting } from '../../../state';
 import { Loader } from '../../molecules';
 import { VotingDragAndDropContext } from '../../providers';
 import VotingComponent from './Voting';
 
 export interface VotingContainerProps {
-  phase?: time.eventType;
   submitVotes?: () => Promise<unknown>;
 }
 
@@ -34,13 +32,13 @@ export default function VotingContainer(
 }
 
 function VotingSubscriber({
-  phase = 'submit',
   submitVotes,
 }: VotingContainerProps): React.ReactElement {
   const top3List = useRecoilValue(top3.top3List);
   const hasReadAll = useRecoilValue(voting.hasReadAll);
   const canSubmit = useRecoilValue(voting.canSubmit);
   const formattedVotes = useRecoilValue(voting.formattedVotes);
+  const phase = useRecoilValue(app.phase);
 
   // Reset Handler
   const resetVotes = useSetRecoilState(voting.resetDropZones);

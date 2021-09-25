@@ -15,14 +15,13 @@ export interface DashboardViewProps {
 }
 
 export default function DashboardView({
-  phase,
   submitVotes,
 }: DashboardViewProps): React.ReactElement {
   return (
     <DashboardTemplate>
       <FullscreenImageOverlay />
-      <TwoColumn left={<Prompt phase={phase} />} right={<Leaderboard />} />
-      <VotingOrganism phase={phase} submitVotes={submitVotes} />
+      <TwoColumn left={<Prompt />} right={<Leaderboard />} />
+      <VotingOrganism submitVotes={submitVotes} />
     </DashboardTemplate>
   );
 }
