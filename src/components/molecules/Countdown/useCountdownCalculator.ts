@@ -1,4 +1,5 @@
 import { DateTime } from 'luxon';
+import { APP_TIME_OFFSET } from '../../../config';
 import { ICountdownProps } from './Countdown';
 
 export type UseCountdownCalculatorReturn = [
@@ -9,7 +10,7 @@ export type UseCountdownCalculatorReturn = [
 export default function useCountdownCalculator({
   endTime,
   startTime,
-  now = DateTime.utc(),
+  now = DateTime.utc().plus(APP_TIME_OFFSET),
 }: ICountdownProps): UseCountdownCalculatorReturn {
   const diffTotalInMS = Math.abs(startTime.diff(endTime).milliseconds);
   const diffNowFromStartInMS = Math.abs(startTime.diff(now).milliseconds);
