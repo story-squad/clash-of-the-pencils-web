@@ -1,4 +1,5 @@
 import { DateTime } from 'luxon';
+import { APP_TIME_OFFSET } from '../../config';
 import { printSchedule, schedule } from './schedule';
 import { ClashPhases, eventType, TimeUntilItem } from './timeTypes';
 
@@ -7,18 +8,29 @@ export function getCurrent(params?: {
   now?: DateTime;
   enableLogs?: boolean;
 }): Exclude<eventType, 'off'> {
-  const { enableLogs = false, now = DateTime.utc() } = params || {};
+  const { enableLogs = false, now = DateTime.now().plus(APP_TIME_OFFSET) } =
+    params || {};
+
+  function isNowBetween({
+    start,
+    end,
+  }: {
+    start: DateTime;
+    end: DateTime;
+  }): boolean {
+    return now >= start && now < end;
+  }
 
   const phase = (() => {
-    if (now >= schedule.submit.start && now < schedule.submit.end) {
+    if (isNowBetween(schedule.submit)) {
       return ClashPhases.submit;
-    } else if (now >= schedule.admin.start && now < schedule.admin.end) {
+    } else if (isNowBetween(schedule.admin)) {
       return ClashPhases.admin;
-    } else if (now >= schedule.vote.start && now < schedule.vote.end) {
+    } else if (isNowBetween(schedule.vote)) {
       return ClashPhases.vote;
-    } else {
+    } else if (isNowBetween(schedule.stream)) {
       return ClashPhases.stream;
-    }
+    } else return ClashPhases.submit;
   })();
 
   enableLogs && console.log('[PHASE]', now.toFormat('HH:mm:ss'), phase);

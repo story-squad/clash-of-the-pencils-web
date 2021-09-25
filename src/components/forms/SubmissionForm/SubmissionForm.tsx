@@ -4,7 +4,7 @@ import { FiUploadCloud } from 'react-icons/fi';
 import { useRecoilState } from 'recoil';
 import { Auth, Prompts } from '../../../api';
 import { app } from '../../../state';
-import { upload } from '../../../utils';
+import { stopPropagation, upload } from '../../../utils';
 import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import './styles/index.scss';
@@ -24,8 +24,10 @@ export default function SubmissionForm({
 }: SubmissionFormProps): React.ReactElement {
   // Store the selected file in state
   const [file, setFile] = useRecoilState(app.submissionModal.file);
+  // const [file, setFile] = useState<File>();
   // Store a URL location for the selected file in order to display a preview
   const [preview, setPreview] = useRecoilState(app.submissionModal.preview);
+  // const [preview, setPreview] = useState<string>();
 
   // Form Error Handlers
   const [error, setError] = useState<string>();
@@ -75,6 +77,7 @@ export default function SubmissionForm({
 
   // This extracts the file from the Input element's event object
   const fileSelection = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    console.log('[SELECTED]', e.target.files);
     // Get the file list from the event
     const fileList = e.target.files;
     if (fileList) {
@@ -109,11 +112,18 @@ export default function SubmissionForm({
       </p>
       <label className={classnames('file-input')}>
         {preview ? (
-          <img className="preview" src={preview} alt="Upload preview" />
+          <img
+            className="preview"
+            src={preview}
+            alt="Upload preview"
+            onClick={stopPropagation}
+          />
         ) : (
-          <div className="placeholder">
-            <FiUploadCloud />
-            <span className="icon-text">Click to Upload</span>
+          <div className="placeholder" onClick={stopPropagation}>
+            <FiUploadCloud onClick={stopPropagation} />
+            <span className="icon-text" onClick={stopPropagation}>
+              Click to Upload
+            </span>
           </div>
         )}
         <input type="file" onChange={fileSelection} hidden />

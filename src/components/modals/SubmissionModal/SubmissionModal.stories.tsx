@@ -1,15 +1,14 @@
 import { Meta, Story } from '@storybook/react';
 import React, { useState } from 'react';
-import { RecoilRoot, useRecoilValue } from 'recoil';
+import { RecoilRoot } from 'recoil';
 import { promptData } from '../../../data';
-import { prompts } from '../../../state';
-import { sleep } from '../../../utils';
+import { app } from '../../../state';
+import { sleep, time } from '../../../utils';
 import { Button } from '../../atoms';
 import SubmissionModal from './SubmissionModal';
 
 const Template: Story = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const currentPrompt = useRecoilValue(prompts.currentPrompt);
   const openModal = () => setIsOpen(true);
   const dummyOnSubmit = async () => {
     await sleep(2000);
@@ -22,7 +21,7 @@ const Template: Story = () => {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         onSubmit={dummyOnSubmit}
-        prompt={currentPrompt}
+        prompt={promptData[0]}
       />
     </div>
   );
@@ -37,7 +36,10 @@ export default {
     (story) => (
       <RecoilRoot
         initializeState={({ set }) => {
-          set(prompts.currentPrompt, promptData[0]);
+          set(
+            app.now,
+            time.schedule.submit.start.plus({ hours: 1, minutes: 23 }),
+          );
         }}
       >
         {story()}

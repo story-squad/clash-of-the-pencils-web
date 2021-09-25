@@ -19,16 +19,12 @@ const Template: Story<DashboardViewProps> = ({ submitVotes, ...props }) => {
 };
 
 export const VotingPhase = Template.bind({});
-VotingPhase.args = { phase: 'vote' };
 
 export const SubmissionPhase = Template.bind({});
-SubmissionPhase.args = { phase: 'submit' };
 
 export const AdminPhase = Template.bind({});
-AdminPhase.args = { phase: 'admin' };
 
 export const StreamPhase = Template.bind({});
-StreamPhase.args = { phase: 'stream' };
 
 export default {
   title: 'Views/DashboardView',

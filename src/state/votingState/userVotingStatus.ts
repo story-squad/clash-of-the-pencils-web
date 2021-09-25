@@ -1,6 +1,5 @@
 import { atomFamily, selector } from 'recoil';
-import { time } from '../../utils';
-import { now } from '../appState';
+import { phase } from '../appState';
 
 export const hasReadSubInPosition = atomFamily<boolean, number>({
   key: 'hasReadSubInPositionAtomFamily',
@@ -11,8 +10,7 @@ export const hasReadAll = selector<boolean>({
   key: 'hasReadAllSubsSelector',
   get: ({ get }) => {
     // Stories should not be marked as read outside of the voting phase
-    const currentTime = get(now);
-    const currentPhase = time.getCurrent({ now: currentTime });
+    const currentPhase = get(phase);
     // So if it's not the voting phase, always return false
     if (currentPhase !== 'vote') return false;
 
