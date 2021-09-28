@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { Submissions } from '../../../api';
-import { Toggle } from '../../atoms';
-import { ToggleOption } from '../../atoms/Toggle';
+import { Toggle, ToggleOption } from '../../atoms';
 import { Table } from '../../molecules';
 import './styles/index.scss';
 
@@ -11,6 +10,8 @@ export interface ILeaderboardProps {
   weekly: Submissions.ILeaderboardItem[];
   toggleLeaderboard: () => void;
 }
+
+const TOGGLE_OPTS: ToggleOption[] = [{ text: 'Daily' }, { text: 'Weekly' }];
 
 export default function Leaderboard({
   dailyIsOpen,
@@ -34,17 +35,12 @@ export default function Leaderboard({
   );
   const headings = useMemo(() => [<>&#127942;</>, 'Codename', 'Points'], []);
 
-  const toggleOptions = useMemo<ToggleOption[]>(
-    () => [{ text: 'Daily' }, { text: 'Weekly' }],
-    [],
-  );
-
   return (
     <section className="leaderboard">
       <h1>Leaderboard</h1>
       <Toggle
         leftIsSelected={dailyIsOpen}
-        options={toggleOptions}
+        options={TOGGLE_OPTS}
         toggle={toggleLeaderboard}
       />
       <Table headings={headings} rows={rows} />
