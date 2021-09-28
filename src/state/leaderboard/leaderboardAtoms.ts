@@ -1,4 +1,5 @@
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
+import { Submissions } from '../../api';
 
 export const dailyIsOpen = atom<boolean>({
   key: 'dailyLeaderboardIsOpen',
@@ -7,10 +8,16 @@ export const dailyIsOpen = atom<boolean>({
 
 export const daily = atom<unknown[]>({
   key: 'dailyLeaderboard',
-  default: [],
+  default: selector({
+    key: 'dailyLeaderboardDefaultSelector',
+    get: Submissions.getDailyLeaderboard,
+  }),
 });
 
 export const weekly = atom<unknown[]>({
   key: 'weeklyLeaderboard',
-  default: [],
+  default: selector({
+    key: 'weeklyLeaderboardDefaultSelector',
+    get: Submissions.getWeeklyLeaderboard,
+  }),
 });
