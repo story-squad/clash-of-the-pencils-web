@@ -13,7 +13,7 @@ export const user = atom<Omit<Users.IUser, 'password'> | undefined>({
 export const authToken = atom<string | undefined>({
   key: 'tokenAtom',
   default: undefined,
-  effects_UNSTABLE: [persist(token.STORAGE_KEY)],
+  effects_UNSTABLE: [persist(token.STORAGE_KEY, { asString: true })],
 });
 
 /**
