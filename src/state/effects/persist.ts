@@ -8,7 +8,7 @@ export const persist: <DataType>(
 ) => AtomEffect<DataType> =
   (key, config) =>
   ({ onSet, setSelf }) => {
-    const asString = config?.asString ?? true;
+    const asString = config?.asString ?? false;
 
     // Initialize on app load
     const initVal = localStorage.getItem(key);
