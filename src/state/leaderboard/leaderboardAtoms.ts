@@ -6,7 +6,7 @@ export const dailyIsOpen = atom<boolean>({
   default: true,
 });
 
-export const daily = atom<unknown[]>({
+export const daily = atom<Submissions.ILeaderboardItem[]>({
   key: 'dailyLeaderboard',
   default: selector({
     key: 'dailyLeaderboardDefaultSelector',
@@ -14,7 +14,7 @@ export const daily = atom<unknown[]>({
   }),
 });
 
-export const weekly = atom<unknown[]>({
+export const weekly = atom<Submissions.ILeaderboardItem[]>({
   key: 'weeklyLeaderboard',
   default: selector({
     key: 'weeklyLeaderboardDefaultSelector',
