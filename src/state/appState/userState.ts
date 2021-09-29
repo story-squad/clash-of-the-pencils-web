@@ -1,7 +1,13 @@
 import { atom, selector } from 'recoil';
-import { Voting } from '../../api';
+import { Submissions, Voting } from '../../api';
 
-export const userSubForToday = atom < Submission;
+export const userSubForToday = atom<Submissions.ISubItem | undefined>({
+  key: 'usersSubForTodayAtom',
+  default: selector({
+    key: 'userSubForTodayDefaultSelector',
+    get: Submissions.getUserSubForToday,
+  }),
+});
 
 export const userHasSubmitted = atom<boolean>({
   key: 'userHasSubmittedAtom',
