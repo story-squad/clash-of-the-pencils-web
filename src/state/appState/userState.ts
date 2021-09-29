@@ -9,9 +9,9 @@ export const userSubForToday = atom<Submissions.ISubItem | undefined>({
   }),
 });
 
-export const userHasSubmitted = atom<boolean>({
-  key: 'userHasSubmittedAtom',
-  default: false,
+export const userHasSubmitted = selector<boolean>({
+  key: 'userHasSubmittedSelector',
+  get: ({ get }) => !!get(userSubForToday),
 });
 
 // Gets the user's vote from the server, or undefined
