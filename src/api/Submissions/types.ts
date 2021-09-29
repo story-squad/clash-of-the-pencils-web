@@ -30,7 +30,7 @@ export interface INewSubmission {
 }
 
 export interface ILeaderboardItem {
-  id: number;
   score: number;
   codename: string;
+  rank: number;
 }

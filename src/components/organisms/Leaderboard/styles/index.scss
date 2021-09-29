@@ -8,6 +8,11 @@
     padding: 3rem 0 0;
   }
 
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  justify-content: flex-start;
+
   // Design
   background-color: $brand-blue-7;
 
@@ -50,6 +55,23 @@
         flex-grow: 2;
         justify-content: center;
       }
+    }
+  }
+
+  .empty-leaderboard-message {
+    flex-grow: 1;
+
+    p:first-of-type {
+      font-family: $display-font;
+      font-size: 2rem;
+      line-height: 2.8rem;
+    }
+    p {
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      color: $white;
+      font-family: $text-font;
+      text-align: center;
     }
   }
 }

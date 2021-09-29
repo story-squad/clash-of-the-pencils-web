@@ -1,13 +1,12 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import { leaderboardData } from '../../../data';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { leaderboard } from '../../../state';
+import { Loader } from '../../molecules';
 import Leaderboard from './Leaderboard';
 
-export default function LeaderboardContainer(): React.ReactElement {
-  // const daily = useRecoilValue(leaderboard.daily);
-  // const weekly = useRecoilValue(leaderboard.weekly);
-  const { daily, weekly } = leaderboardData;
+function LeaderboardContainer(): React.ReactElement {
+  const daily = useRecoilValue(leaderboard.daily);
+  const weekly = useRecoilValue(leaderboard.weekly);
   const [dailyIsOpen, setDailyIsOpen] = useRecoilState(leaderboard.dailyIsOpen);
 
   const toggleLeaderboard = () => setDailyIsOpen((is) => !is);
@@ -19,5 +18,13 @@ export default function LeaderboardContainer(): React.ReactElement {
       weekly={weekly}
       toggleLeaderboard={toggleLeaderboard}
     />
+  );
+}
+
+export default function LeaderboardSuspenseWrapper(): React.ReactElement {
+  return (
+    <React.Suspense fallback={<Loader />}>
+      <LeaderboardContainer />
+    </React.Suspense>
   );
 }
