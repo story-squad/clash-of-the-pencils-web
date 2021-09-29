@@ -20,6 +20,7 @@ export interface VotingProps {
   canSubmit?: boolean;
   submitVotes: () => Promise<unknown>;
   resetVotes: () => void;
+  userHasVoted: boolean;
 }
 
 export default function Voting({
@@ -29,6 +30,7 @@ export default function Voting({
   canSubmit = false,
   submitVotes,
   resetVotes,
+  userHasVoted,
 }: VotingProps): React.ReactElement {
   const dragDisabled = phase !== 'vote';
 
@@ -43,15 +45,21 @@ export default function Voting({
         <CardList>
           <InstructionCard
             step={1}
-            active={phase === 'vote' && !hasReadAll}
-            complete={hasReadAll}
+            active={phase === 'vote' && !hasReadAll && !userHasVoted}
+            complete={hasReadAll || userHasVoted}
           />
           <InstructionCard
             step={2}
-            active={phase === 'vote' && hasReadAll && !canSubmit}
-            complete={canSubmit}
+            active={
+              phase === 'vote' && hasReadAll && !canSubmit && !userHasVoted
+            }
+            complete={canSubmit || userHasVoted}
           />
-          <InstructionCard step={3} active={phase === 'vote' && canSubmit} />
+          <InstructionCard
+            step={3}
+            active={phase === 'vote' && canSubmit}
+            complete={userHasVoted}
+          />
         </CardList>
         <h3>Drop the Dragons to Vote</h3>
         <DragonBank dragDisabled={dragDisabled || !hasReadAll} />

@@ -10,13 +10,11 @@ export interface IPromptOrganismProps {
   prompt: Prompts.IPrompt;
   openUploadModalOrSubmission: () => void;
   userHasSubmitted: boolean;
-  userIsLoggedIn: boolean;
 }
 
 export default function PromptOrganism({
   prompt,
   openUploadModalOrSubmission,
-  userIsLoggedIn,
   userHasSubmitted,
 }: IPromptOrganismProps): React.ReactElement {
   return (
@@ -30,25 +28,37 @@ export default function PromptOrganism({
         <Countdown />
       </div>
       <div className="button-wrapper">
-        {userHasSubmitted && userIsLoggedIn ? (
-          <Button onClick={openUploadModalOrSubmission}>View Submission</Button>
-        ) : (
-          <UploadButton onClick={openUploadModalOrSubmission} />
-        )}
+        <PromptActionButton
+          onClick={openUploadModalOrSubmission}
+          userHasSubmitted={userHasSubmitted}
+        />
       </div>
     </section>
   );
 }
 
-function UploadButton({
+function PromptActionButton({
   onClick,
+  userHasSubmitted,
 }: {
   onClick: () => void;
+  userHasSubmitted: boolean;
 }): React.ReactElement {
   const phase = useRecoilValue(app.phase);
+
+  let message = 'Upload Story';
+  let disabled = false;
+
+  // During non-submission phases, we should never get enabled upload button
+
+  if (userHasSubmitted) {
+    message = 'View Submission';
+  } else if (phase !== 'submit') {
+    disabled = true;
+  }
   return (
-    <Button onClick={onClick} disabled={phase !== 'submit'}>
-      Upload Story
+    <Button onClick={onClick} disabled={disabled}>
+      {message}
     </Button>
   );
 }

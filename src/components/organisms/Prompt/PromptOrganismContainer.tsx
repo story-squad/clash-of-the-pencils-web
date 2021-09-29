@@ -58,7 +58,6 @@ function PromptOrganismContainer(): React.ReactElement {
         prompt={prompt}
         openUploadModalOrSubmission={openHandler}
         userHasSubmitted={!!userSubmission}
-        userIsLoggedIn={userIsLoggedIn}
       />
     </>
   );

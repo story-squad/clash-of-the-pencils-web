@@ -42,6 +42,7 @@ function VotingSubscriber({
 
   // Set the user's vote item in state
   const setVoteItem = useSetRecoilState(voting.userVotes);
+  const userVotes = useRecoilValue(voting.userVotes);
 
   // Reset Handler
   const resetVotes = useSetRecoilState(voting.resetDropZones);
@@ -66,6 +67,7 @@ function VotingSubscriber({
       canSubmit={canSubmit}
       submitVotes={submitHandler}
       resetVotes={resetVoteDropZones}
+      userHasVoted={!!userVotes}
     />
   );
 }
