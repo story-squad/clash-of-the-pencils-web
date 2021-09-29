@@ -1,5 +1,6 @@
 import { selector } from 'recoil';
 import { global } from '../apiErrorState';
+import { userSubForToday, userVotes } from '../appState';
 import { authToken, user } from '../authState';
 import { dropZone } from '../dndState';
 import { list } from '../pastSubsState';
@@ -15,7 +16,6 @@ export const all = selector<undefined>({
   key: 'clearState',
   get: () => undefined,
   set: ({ reset, get }) => {
-    // TODO after state cleanup, clean these up too
     reset(authToken);
     reset(user);
     reset(top3List);
@@ -23,6 +23,8 @@ export const all = selector<undefined>({
     reset(hasReadState);
     reset(list);
     reset(global);
+    reset(userSubForToday);
+    reset(userVotes);
 
     // Reset Drop Zones to default
     get(dragonBankDropZoneKeys).map(dropZone).map(reset);
