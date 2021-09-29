@@ -1,6 +1,28 @@
 import { atom, atomFamily, selector } from 'recoil';
 import { Voting } from '../../api';
 import { phase } from '../appState';
+import { user } from '../authState';
+
+/**
+ * Gets the user's vote from the server, or undefined.
+ * How do we make sure that the app's DnD state properly
+ * reflects what we return here from the server?
+ */
+export const userVotes = atom<Voting.IVote | undefined>({
+  key: 'userVotesAtom',
+  default: selector({
+    key: 'userVotesDefaultSelector',
+    get: async ({ get }) => {
+      const loggedInUser = get(user);
+      // If not logged in, the API call won't work!
+      if (loggedInUser === undefined) return undefined;
+      else {
+        const vote = await Voting.getUserVoteForToday();
+        return vote;
+      }
+    },
+  }),
+});
 
 export const hasReadSubInPosition = atomFamily<boolean, number>({
   key: 'hasReadSubInPositionAtomFamily',
@@ -21,15 +43,6 @@ export const hasReadAll = selector<boolean>({
     const c = get(hasReadSubInPosition(3));
     return a && b && c;
   },
-});
-
-// Gets the user's vote from the server, or undefined
-export const userVotes = atom<Voting.IVote | undefined>({
-  key: 'userVotesAtom',
-  default: selector({
-    key: 'userVotesDefaultSelector',
-    get: Voting.getUserVoteForToday,
-  }),
 });
 
 // Checks if the user has voted based on their vote
