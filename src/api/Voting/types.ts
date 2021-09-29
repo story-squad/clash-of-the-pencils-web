@@ -2,7 +2,7 @@
 export type IPostVotesBody = number[];
 
 export interface IVotingResponse {
-  tomorrow: string;
+  vote: IVote;
   message: string;
 }
 
