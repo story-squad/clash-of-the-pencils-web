@@ -9,7 +9,7 @@ export default function SubmissionModal({
   prompt,
   ...props
 }: Omit<ModalProps, 'component'> & {
-  onSubmit?: FormOnSubmit<FormData>;
+  onSubmit?: FormOnSubmit<FormData, Submissions.ISubItem>;
   prompt: Prompts.IPrompt;
 }): React.ReactElement {
   return (

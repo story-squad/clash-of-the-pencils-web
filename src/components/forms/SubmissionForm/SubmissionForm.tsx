@@ -1,15 +1,15 @@
 import { classnames, useAsync } from '@story-squad/react-utils';
 import React, { SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import { FiUploadCloud } from 'react-icons/fi';
-import { useRecoilState } from 'recoil';
-import { Auth, Prompts } from '../../../api';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { Auth, Prompts, Submissions } from '../../../api';
 import { app } from '../../../state';
 import { stopPropagation, upload } from '../../../utils';
 import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import './styles/index.scss';
 
-export type SubmissionFormProps = FormProps<FormData> & {
+export type SubmissionFormProps = FormProps<FormData, Submissions.ISubItem> & {
   enableLogs?: boolean;
   onCancel?: () => void;
   currentPrompt: Prompts.IPrompt;
@@ -24,10 +24,11 @@ export default function SubmissionForm({
 }: SubmissionFormProps): React.ReactElement {
   // Store the selected file in state
   const [file, setFile] = useRecoilState(app.submissionModal.file);
-  // const [file, setFile] = useState<File>();
   // Store a URL location for the selected file in order to display a preview
   const [preview, setPreview] = useRecoilState(app.submissionModal.preview);
-  // const [preview, setPreview] = useState<string>();
+
+  // Need to be able to set today's sub in recoil state on success
+  const setUserSubForToday = useSetRecoilState(app.userSubForToday);
 
   // Form Error Handlers
   const [error, setError] = useState<string>();
@@ -38,10 +39,14 @@ export default function SubmissionForm({
       // If there's an onError function, call it with our error object
       onError?.(err);
 
+      console.log('[SUB]', { err });
+
       if (Auth.isAxiosError(err)) {
         // Custom error handling case for DS API error
         if (err.response?.data?.error === 'Transcription error') {
           setError('Your submission must be a story!');
+        } else if (err.response?.data.message) {
+          setError(err.response.data.message);
         } else {
           setError(err.message);
         }
@@ -60,10 +65,15 @@ export default function SubmissionForm({
       setError('No image selected');
     } else {
       try {
+        // Create the request body form data
         const reqBody = new FormData();
         reqBody.append('story', file);
         reqBody.append('promptId', `${currentPrompt.id}`);
-        await onSubmit(reqBody);
+
+        // Send it to the server
+        const sub = await onSubmit(reqBody);
+        // On success, store it in state!
+        setUserSubForToday(sub);
       } catch (err) {
         errorHandler(err);
       }

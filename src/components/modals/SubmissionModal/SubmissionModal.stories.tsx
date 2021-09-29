@@ -1,7 +1,7 @@
 import { Meta, Story } from '@storybook/react';
 import React, { useState } from 'react';
 import { RecoilRoot } from 'recoil';
-import { promptData } from '../../../data';
+import { promptData, submissionData } from '../../../data';
 import { app } from '../../../state';
 import { sleep, time } from '../../../utils';
 import { Button } from '../../atoms';
@@ -12,6 +12,7 @@ const Template: Story = () => {
   const openModal = () => setIsOpen(true);
   const dummyOnSubmit = async () => {
     await sleep(2000);
+    return submissionData[0];
   };
 
   return (
