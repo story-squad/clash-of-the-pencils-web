@@ -4,7 +4,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { app, auth, prompts } from '../../../state';
 import { SubmissionModal } from '../../modals';
 import { Loader } from '../../molecules';
-import LoginToVoteModal from './LoginToVoteModal';
+import LoginToSubmitModal from './LoginToSubmitModal';
 import PromptOrganism from './PromptOrganism';
 
 function PromptOrganismContainer(): React.ReactElement {
@@ -48,7 +48,7 @@ function PromptOrganismContainer(): React.ReactElement {
         />
       ) : (
         // Otherwise, they need to log in!
-        <LoginToVoteModal
+        <LoginToSubmitModal
           isOpen={modalIsOpen}
           setIsOpen={setModalIsOpen}
           openLoginPage={openLogin}
@@ -58,6 +58,7 @@ function PromptOrganismContainer(): React.ReactElement {
         prompt={prompt}
         openUploadModalOrSubmission={openHandler}
         userHasSubmitted={!!userSubmission}
+        userIsLoggedIn={userIsLoggedIn}
       />
     </>
   );

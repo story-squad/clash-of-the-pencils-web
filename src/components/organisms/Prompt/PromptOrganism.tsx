@@ -10,13 +10,13 @@ export interface IPromptOrganismProps {
   prompt: Prompts.IPrompt;
   openUploadModalOrSubmission: () => void;
   userHasSubmitted: boolean;
-  // userIsLoggedIn: boolean;
+  userIsLoggedIn: boolean;
 }
 
 export default function PromptOrganism({
   prompt,
   openUploadModalOrSubmission,
-  // userIsLoggedIn,
+  userIsLoggedIn,
   userHasSubmitted,
 }: IPromptOrganismProps): React.ReactElement {
   return (
@@ -30,10 +30,10 @@ export default function PromptOrganism({
         <Countdown />
       </div>
       <div className="button-wrapper">
-        {userHasSubmitted ? (
-          <UploadButton onClick={openUploadModalOrSubmission} />
-        ) : (
+        {userHasSubmitted && userIsLoggedIn ? (
           <Button onClick={openUploadModalOrSubmission}>View Submission</Button>
+        ) : (
+          <UploadButton onClick={openUploadModalOrSubmission} />
         )}
       </div>
     </section>

@@ -3,7 +3,7 @@ import { Button } from '../../atoms';
 import { Modal, ModalProps } from '../Modal';
 import './styles/loginToVoteModal.scss';
 
-export default function LoginToVoteModal({
+export default function LoginToSubmitModal({
   isOpen,
   setIsOpen,
   openLoginPage,
