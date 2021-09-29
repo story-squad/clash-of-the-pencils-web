@@ -1,6 +1,7 @@
 export * from './Countdown';
 export * from './DragonBank';
 export * from './EmptyCard';
+export * from './EncouragementButton';
 export * from './Input';
 export * from './InstructionCard';
 export * from './Loader';
