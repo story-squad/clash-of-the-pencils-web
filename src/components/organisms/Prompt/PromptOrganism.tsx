@@ -8,12 +8,16 @@ import './styles/index.scss';
 
 export interface IPromptOrganismProps {
   prompt: Prompts.IPrompt;
-  openUploadModal: () => void;
+  openUploadModalOrSubmission: () => void;
+  userHasSubmitted: boolean;
+  // userIsLoggedIn: boolean;
 }
 
 export default function PromptOrganism({
   prompt,
-  openUploadModal,
+  openUploadModalOrSubmission,
+  // userIsLoggedIn,
+  userHasSubmitted,
 }: IPromptOrganismProps): React.ReactElement {
   return (
     <section className="prompt">
@@ -26,7 +30,11 @@ export default function PromptOrganism({
         <Countdown />
       </div>
       <div className="button-wrapper">
-        <UploadButton onClick={openUploadModal} />
+        {userHasSubmitted ? (
+          <UploadButton onClick={openUploadModalOrSubmission} />
+        ) : (
+          <Button onClick={openUploadModalOrSubmission}>View Submission</Button>
+        )}
       </div>
     </section>
   );
