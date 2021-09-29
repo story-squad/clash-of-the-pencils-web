@@ -1,7 +1,7 @@
 import { Meta, Story } from '@storybook/react';
 import React, { useState } from 'react';
 import { RecoilRoot } from 'recoil';
-import { promptData, submissionData } from '../../../data';
+import { promptData } from '../../../data';
 import { sleep } from '../../../utils';
 import { SubmissionModal } from '../../modals';
 import PromptOrganism, { IPromptOrganismProps } from './PromptOrganism';
@@ -13,7 +13,6 @@ const Template: Story<IPromptOrganismProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const onUploadSubmit = async () => {
     await sleep(2000);
-    return submissionData[0];
   };
   return (
     <>

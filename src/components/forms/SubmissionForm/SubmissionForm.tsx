@@ -9,7 +9,7 @@ import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import './styles/index.scss';
 
-export type SubmissionFormProps = FormProps<FormData, Submissions.ISubItem> & {
+export type SubmissionFormProps = FormProps<FormData> & {
   enableLogs?: boolean;
   onCancel?: () => void;
   currentPrompt: Prompts.IPrompt;
@@ -38,8 +38,6 @@ export default function SubmissionForm({
     (err: unknown) => {
       // If there's an onError function, call it with our error object
       onError?.(err);
-
-      console.log('[SUB]', { err });
 
       if (Auth.isAxiosError(err)) {
         // Custom error handling case for DS API error
@@ -71,7 +69,8 @@ export default function SubmissionForm({
         reqBody.append('promptId', `${currentPrompt.id}`);
 
         // Send it to the server
-        const sub = await onSubmit(reqBody);
+        // Coercing type because we know what response is, AND undefined is valid value
+        const sub = (await onSubmit(reqBody)) as Submissions.ISubItem;
         // On success, store it in state!
         setUserSubForToday(sub);
       } catch (err) {
