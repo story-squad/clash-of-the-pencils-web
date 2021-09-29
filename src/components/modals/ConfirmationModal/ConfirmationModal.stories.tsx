@@ -29,6 +29,14 @@ const Template: Story<ConfirmationModalProps> = ({
 
 export const Default = Template.bind({});
 
+export const Logout = Template.bind({});
+Logout.args = {
+  cancelText: 'No',
+  confirmText: 'Yes',
+  message: 'Are you sure you want to log out?',
+  onConfirm: () => alert('Logged out!'),
+};
+
 export default {
   title: 'Modals/ConfirmationModal',
   component: ConfirmationModal,
