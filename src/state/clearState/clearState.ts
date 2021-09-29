@@ -1,6 +1,6 @@
 import { selector } from 'recoil';
 import { global } from '../apiErrorState';
-import { userSubForToday, userVotes } from '../appState';
+import { userSubForToday } from '../appState';
 import { authToken, user } from '../authState';
 import { dropZone } from '../dndState';
 import { list } from '../pastSubsState';
@@ -9,6 +9,7 @@ import {
   dragonBankDropZoneKeys,
   hasReadSubInPosition,
   submissionDropZoneKeys,
+  userVotes,
 } from '../votingState';
 
 // This selector exists to clear all Recoil state on logout and should be updated as state grows
