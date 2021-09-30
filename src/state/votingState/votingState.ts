@@ -1,5 +1,6 @@
 import { atom, selector } from 'recoil';
 import { dropZone, DropZoneContainer } from '../dndState';
+import { userHasVoted } from './userVotingStatus';
 
 // Prefixes to identify the draggables
 export const DRAGON = 'dragon';
@@ -41,6 +42,9 @@ export const dragonBank = selector<DropZoneContainer[]>({
 export const canSubmit = selector<boolean>({
   key: 'canSubmitVotesSelector',
   get: ({ get }) => {
+    const userHasVotedValue = get(userHasVoted);
+    // User can't submit more votes if they already voted!
+    if (userHasVotedValue === true) return false;
     // Get the contents of the submission drop zones
     const subDropZoneContents = get(submissionDropZoneKeys)
       .map(dropZone)

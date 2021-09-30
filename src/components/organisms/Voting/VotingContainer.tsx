@@ -40,6 +40,10 @@ function VotingSubscriber({
   const formattedVotes = useRecoilValue(voting.formattedVotes);
   const phase = useRecoilValue(app.phase);
 
+  // Set the user's vote item in state
+  const setVoteItem = useSetRecoilState(voting.userVotes);
+  const userVotes = useRecoilValue(voting.userVotes);
+
   // Reset Handler
   const resetVotes = useSetRecoilState(voting.resetDropZones);
   const resetVoteDropZones = () => resetVotes(undefined);
@@ -47,9 +51,9 @@ function VotingSubscriber({
   const submitHandler = useCallback(
     submitVotes ??
       (async () => {
-        console.log({ canSubmit, formattedVotes });
         if (canSubmit && formattedVotes) {
-          await Voting.submit(formattedVotes);
+          const { vote } = await Voting.submit(formattedVotes);
+          setVoteItem(vote);
         }
       }),
     [submitVotes, formattedVotes],
@@ -63,6 +67,7 @@ function VotingSubscriber({
       canSubmit={canSubmit}
       submitVotes={submitHandler}
       resetVotes={resetVoteDropZones}
+      userHasVoted={!!userVotes}
     />
   );
 }

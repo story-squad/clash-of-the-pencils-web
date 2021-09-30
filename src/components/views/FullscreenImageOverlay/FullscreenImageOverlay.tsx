@@ -34,6 +34,7 @@ export default function FullscreenImageOverlay(
     <TransformWrapper
       options={{
         limitToBounds: false,
+        centerContent: true,
       }}
     >
       {({ resetTransform, zoomIn, zoomOut }: TransformProps) => (

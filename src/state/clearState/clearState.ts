@@ -1,5 +1,6 @@
 import { selector } from 'recoil';
 import { global } from '../apiErrorState';
+import { userSubForToday } from '../appState';
 import { authToken, user } from '../authState';
 import { dropZone } from '../dndState';
 import { list } from '../pastSubsState';
@@ -8,6 +9,7 @@ import {
   dragonBankDropZoneKeys,
   hasReadSubInPosition,
   submissionDropZoneKeys,
+  userVotes,
 } from '../votingState';
 
 // This selector exists to clear all Recoil state on logout and should be updated as state grows
@@ -15,7 +17,6 @@ export const all = selector<undefined>({
   key: 'clearState',
   get: () => undefined,
   set: ({ reset, get }) => {
-    // TODO after state cleanup, clean these up too
     reset(authToken);
     reset(user);
     reset(top3List);
@@ -23,6 +24,8 @@ export const all = selector<undefined>({
     reset(hasReadState);
     reset(list);
     reset(global);
+    reset(userSubForToday);
+    reset(userVotes);
 
     // Reset Drop Zones to default
     get(dragonBankDropZoneKeys).map(dropZone).map(reset);
