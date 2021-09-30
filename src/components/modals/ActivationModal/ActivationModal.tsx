@@ -1,4 +1,6 @@
 import React from 'react';
+import { useRecoilValue } from 'recoil';
+import { auth } from '../../../state';
 import { Loader } from '../../molecules';
 import { Modal, ModalProps } from '../../organisms';
 import './styles/index.scss';
@@ -14,13 +16,7 @@ export default function ActivationModal({
   ActivationModalProps): React.ReactElement {
   return (
     <Modal
-      component={() =>
-        success === undefined ? (
-          <Loader />
-        ) : (
-          <ActivationComponent success={success} />
-        )
-      }
+      component={() => <ActivationComponent success={success} />}
       closable={false}
       {...props}
     />
@@ -29,16 +25,26 @@ export default function ActivationModal({
 
 function ActivationComponent({
   success,
-}: Required<ActivationModalProps>): React.ReactElement {
+}: ActivationModalProps): React.ReactElement {
+  const user = useRecoilValue(auth.user);
   return (
     <div className="activation-component">
-      <h2>{`Activation ${success ? 'Successful' : 'Failed'}`}</h2>
-      {success ? (
-        <Loader message="You are being logged in" />
+      {success === undefined ? (
+        <Loader message="Activating your account" />
       ) : (
         <>
-          <p>Could not log you in.</p>
-          <Loader message="Redirecting" />
+          <h2>{`Activation ${success ? 'Successful' : 'Failed'}`}</h2>
+          {success ? (
+            <>
+              {user && <p>Welcome, {user.codename}</p>}
+              <Loader message="You are being logged in" />
+            </>
+          ) : (
+            <>
+              <p>Could not log you in.</p>
+              <Loader message="Redirecting" />
+            </>
+          )}
         </>
       )}
     </div>
