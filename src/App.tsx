@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import { ActivationModal } from './components/modals';
 import {
   DashboardView,
   LoginView,
@@ -32,6 +33,10 @@ const App = (): React.ReactElement => {
           render={({ history }) => (
             <ScheduleView openDashboard={() => history.push('/')} />
           )}
+        />
+        <Route
+          path="/activate"
+          render={(props) => <ActivationModal {...props} />}
         />
 
         {/* Fallback Redirect to Dashboard */}
