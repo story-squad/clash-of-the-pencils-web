@@ -1,4 +1,7 @@
 declare module '*.md';
+declare module '*.m4a';
+declare module '*.mp3';
+declare module '*.wav';
 declare module 'react-page-scroller';
 declare module 'react-livestream' {
   import React from 'react';

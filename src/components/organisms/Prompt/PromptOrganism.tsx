@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil';
 import { Prompts } from '../../../api';
 import { app } from '../../../state';
 import { Button } from '../../atoms';
-import { Countdown } from '../../molecules';
+import { Countdown, EncouragementButton } from '../../molecules';
 import './styles/index.scss';
 
 export interface IPromptOrganismProps {
@@ -22,7 +22,7 @@ export default function PromptOrganism({
       <h1>Today&apos;s Writing Prompt</h1>
       <p>{prompt.prompt}</p>
       <div className="button-wrapper">
-        <Button type="secondary">Encouragement Button</Button>
+        <EncouragementButton />
       </div>
       <div className="countdown-wrapper">
         <Countdown />
