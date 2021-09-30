@@ -4,6 +4,12 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: stretch;
+  flex-grow: 1;
+
+  .spacer {
+    flex-grow: 1;
+    background-color: $brand-orange-1;
+  }
 
   // ? Do we want these borders?
   border-radius: 0 0 1.6rem 1.6rem;

@@ -11,6 +11,7 @@ export function TableBody({ rows }: ITableBodyProps): React.ReactElement {
       {rows.map((row, i) => (
         <TableRow key={i} row={row} />
       ))}
+      <div className="spacer" />
     </tbody>
   );
 }
