@@ -1,11 +1,12 @@
-import { parse, ParsedQuery } from 'query-string';
+import { parse } from 'query-string';
 import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
+import { Auth } from '../../../api';
 import { auth } from '../../../state';
 import ActivationModal from './ActivationModal';
 
-const MODAL_STAYS_OPEN_FOR = 4; // in seconds
+const MODAL_STAYS_OPEN_ON_FAIL_FOR = 3; // in seconds
 
 export default function ActivationModalContainer({
   history: { push },
@@ -15,22 +16,30 @@ export default function ActivationModalContainer({
   const login = useSetRecoilState(auth.login);
 
   const backToDashboard = () => push('/');
+  // const backToDashboard = () => console.log('GOING BACK');
+  const setDashTimeout = () => {
+    // Go back to dash after timeout
+    setTimeout(backToDashboard, MODAL_STAYS_OPEN_ON_FAIL_FOR * 1000);
+  };
 
   useEffect(() => {
     const parsedParams = parse(search);
-    const userString = extract(parsedParams, 'user');
-    const tokenString = extract(parsedParams, 'token');
-
-    if (userString && tokenString) {
-      const user = JSON.parse(userString);
-      login({ user, token: tokenString });
-      setActivationSuccessful(true);
+    const t = parsedParams.authToken;
+    if (t && typeof t === 'string') {
+      Auth.getMe(t)
+        .then((res) => {
+          setActivationSuccessful(true);
+          login(res);
+          backToDashboard();
+        })
+        .catch(() => {
+          setActivationSuccessful(false);
+          setDashTimeout();
+        });
     } else {
       setActivationSuccessful(false);
+      setDashTimeout();
     }
-
-    // Go back to dash after timeout
-    setTimeout(backToDashboard, MODAL_STAYS_OPEN_FOR * 1000);
   }, []);
 
   return (
@@ -40,10 +49,4 @@ export default function ActivationModalContainer({
       success={activationSuccessful}
     />
   );
-}
-
-function extract(obj: ParsedQuery, key: string): string | null {
-  const item = obj[key];
-  if (Array.isArray(item)) return item[0];
-  else return item;
 }
