@@ -12,11 +12,9 @@ export default function SubmissionModal({
   onSubmit?: FormOnSubmit<FormData>;
   prompt: Prompts.IPrompt;
 }): React.ReactElement {
-  const closeModal = () => props.setIsOpen(false);
-
   return (
     <Modal
-      component={() => (
+      component={({ closeModal }) => (
         <SubmissionForm
           currentPrompt={prompt}
           onSubmit={onSubmit}

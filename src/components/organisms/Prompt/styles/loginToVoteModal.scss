@@ -1,0 +1,16 @@
+@import '../../../../styles/newIndex.scss';
+
+.must-login-to-vote {
+  h2 {
+    font-family: $display-font;
+    font-size: 2rem;
+    line-height: 2.8rem;
+    color: $gray-7;
+    margin-bottom: 2rem;
+  }
+  .button-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1rem;
+  }
+}
