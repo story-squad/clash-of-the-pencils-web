@@ -1,6 +1,7 @@
 import { selector } from 'recoil';
 import { global } from '../apiErrorState';
 import { userSubForToday } from '../appState';
+import { file, preview } from '../appState/submissionModal';
 import { authToken, user } from '../authState';
 import { dropZone } from '../dndState';
 import { list } from '../pastSubsState';
@@ -26,6 +27,8 @@ export const all = selector<undefined>({
     reset(global);
     reset(userSubForToday);
     reset(userVotes);
+    reset(file);
+    reset(preview);
 
     // Reset Drop Zones to default
     get(dragonBankDropZoneKeys).map(dropZone).map(reset);

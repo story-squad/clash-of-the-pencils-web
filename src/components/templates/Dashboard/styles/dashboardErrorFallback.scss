@@ -1,0 +1,30 @@
+@import '../../../../styles/newIndex.scss';
+
+.dashboard-error-fallback {
+  @include safe-zone();
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column nowrap;
+  flex-grow: 1;
+
+  h2 {
+    font-family: $display-font;
+    font-size: 2.8rem;
+    line-height: 3.6rem;
+    color: $gray-7;
+    margin-bottom: 2rem;
+  }
+
+  p {
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+    font-family: $text-font;
+    color: $gray-9;
+  }
+
+  .button {
+    margin-top: 2rem;
+  }
+}
