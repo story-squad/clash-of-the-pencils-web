@@ -8,7 +8,6 @@
   height: 100vh;
   width: 100vw;
   background-color: #0004;
-  cursor: pointer;
   padding: 0 2rem;
   @include bp(tablet) {
     padding: 0 4rem;
@@ -20,6 +19,9 @@
 
   &.hidden {
     display: none;
+  }
+  &.closable {
+    cursor: pointer;
   }
 
   .modal {
