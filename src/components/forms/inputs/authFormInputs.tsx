@@ -4,7 +4,7 @@ import { FormInputMapProps } from './types';
 
 export default {
   codename: function CodenameInput(
-    { rules, ...props }: FormInputMapProps,
+    { rules, ...props }: FormInputMapProps = {},
     orEmail = false,
   ): React.ReactElement {
     return (
@@ -20,7 +20,7 @@ export default {
   password: function PasswordInput({
     rules,
     ...props
-  }: FormInputMapProps): React.ReactElement {
+  }: FormInputMapProps = {}): React.ReactElement {
     return (
       <Input
         {...props}
@@ -42,7 +42,7 @@ export default {
   confirmPassword: function ConfirmPasswordInput({
     rules,
     ...props
-  }: FormInputMapProps): React.ReactElement {
+  }: FormInputMapProps = {}): React.ReactElement {
     return (
       <Input
         {...props}
@@ -57,7 +57,7 @@ export default {
   firstname: function FirstnameInput({
     rules,
     ...props
-  }: FormInputMapProps): React.ReactElement {
+  }: FormInputMapProps = {}): React.ReactElement {
     return (
       <Input
         {...props}
@@ -71,7 +71,7 @@ export default {
   lastname: function LastnameInput({
     rules,
     ...props
-  }: FormInputMapProps): React.ReactElement {
+  }: FormInputMapProps = {}): React.ReactElement {
     return (
       <Input
         {...props}
@@ -85,7 +85,7 @@ export default {
   birthday: function BirthdayInput({
     rules,
     ...props
-  }: FormInputMapProps): React.ReactElement {
+  }: FormInputMapProps = {}): React.ReactElement {
     return (
       <Input
         {...props}
@@ -100,7 +100,7 @@ export default {
   email: function EmailInput({
     rules,
     ...props
-  }: FormInputMapProps): React.ReactElement {
+  }: FormInputMapProps = {}): React.ReactElement {
     return (
       <Input
         {...props}

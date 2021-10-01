@@ -52,17 +52,17 @@ export default function SignupForm({
         render={({ message }) => <div className="server-error">{message}</div>}
       />
       {/* First page */}
-      {authFormInputs.firstname({})}
-      {authFormInputs.lastname({})}
-      {authFormInputs.codename({})}
-      {authFormInputs.birthday({})}
+      {authFormInputs.firstname()}
+      {authFormInputs.lastname()}
+      {authFormInputs.codename()}
+      {authFormInputs.birthday()}
       {/* <Button onClick={nextPage} htmlType="button">
             Next
           </Button> */}
       {/* Second page */}
-      {authFormInputs.email({})}
-      {authFormInputs.password({})}
-      {authFormInputs.confirmPassword({})}
+      {authFormInputs.email()}
+      {authFormInputs.password()}
+      {authFormInputs.confirmPassword()}
       {/* <Button onClick={prevPage} htmlType="button" type="secondary">
             Back
           </Button> */}

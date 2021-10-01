@@ -70,7 +70,7 @@ export default function LoginForm({
         },
         true,
       )}
-      {authFormInputs.password({})}
+      {authFormInputs.password()}
       <Button
         disabled={isLoading}
         iconRight={isLoading && <LoadIcon />}
