@@ -16,7 +16,7 @@ export default function InstructionCard({
   complete = false,
 }: InstructionCardProps): React.ReactElement {
   return (
-    <Card className={classnames('instruction-card', { active })}>
+    <Card className={classnames('instruction-card', { active, complete })}>
       {getBadgeForStep(complete ? 4 : step)}
       <h2>{instructions[step - 1].header}</h2>
       <p>{instructions[step - 1].body}</p>
