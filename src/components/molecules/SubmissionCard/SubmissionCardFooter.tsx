@@ -4,24 +4,16 @@ import { time } from '../../../utils';
 import { Sticker } from '../../atoms';
 import SubmissionCardDropZone from './SubmissionCardDropZone';
 
-export interface SubmissionCardFooterProps {
+export interface SubmissionCardFooterProps
+  extends SubmissionCardFooterBadgeProps {
   codename: string;
   age: number;
-  position: voting.Places;
-  openSubmission: () => void;
-  hasRead: boolean;
-  hasReadAll: boolean;
-  phase: time.eventType;
 }
 
 export default function SubmissionCardFooter({
   age,
   codename,
-  position,
-  openSubmission,
-  hasRead,
-  hasReadAll,
-  phase,
+  ...props
 }: SubmissionCardFooterProps): React.ReactElement {
   return (
     <div className="submission-card-footer">
@@ -29,17 +21,39 @@ export default function SubmissionCardFooter({
         <h2>{codename}</h2>
         <h3>Age: {age}</h3>
       </div>
-      {phase === 'stream' && (
-        <Sticker type="readMe" onClick={openSubmission} className="read-me" />
-      )}
-      {phase === 'vote' &&
-        (hasReadAll ? (
-          <SubmissionCardDropZone position={position} />
-        ) : hasRead ? (
-          <Sticker type="checkmark" />
-        ) : (
-          <Sticker type="readMe" onClick={openSubmission} className="read-me" />
-        ))}
+      <SubmissionCardFooterBadge {...props} />
     </div>
   );
+}
+
+interface SubmissionCardFooterBadgeProps {
+  position: voting.Places;
+  openSubmission: () => void;
+  hasRead: boolean;
+  enableDropZone: boolean;
+  phase: time.eventType;
+}
+
+function SubmissionCardFooterBadge({
+  enableDropZone,
+  hasRead,
+  openSubmission,
+  phase,
+  position,
+}: SubmissionCardFooterBadgeProps): React.ReactElement {
+  if (phase === 'stream' || !enableDropZone) {
+    return (
+      <Sticker type="readMe" onClick={openSubmission} className="read-me" />
+    );
+  } else if (phase === 'vote') {
+    if (hasRead) {
+      return <Sticker type="checkmark" />;
+    } else {
+      return <SubmissionCardDropZone position={position} />;
+    }
+  } else {
+    return (
+      <Sticker type="readMe" onClick={openSubmission} className="read-me" />
+    );
+  }
 }
