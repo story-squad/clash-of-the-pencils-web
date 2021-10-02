@@ -1,10 +1,11 @@
+import { ErrorMessage } from '@hookform/error-message';
 import { useAsync } from '@story-squad/react-utils';
 import React, { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Auth } from '../../../api';
 import { dataConstraints } from '../../../config';
 import { Button, CleverButton, LoadIcon } from '../../atoms';
-import { FormOnSubmit, FormProps } from '../formTypes';
+import { FormProps } from '../formTypes';
 import { authFormInputs } from '../inputs';
 import './styles/index.scss';
 
@@ -14,12 +15,7 @@ export default function LoginForm({
   onSubmit,
   onError,
 }: LoginFormProps): React.ReactElement {
-  const {
-    handleSubmit,
-    setError,
-    clearErrors,
-    formState: { errors },
-  } = useFormContext();
+  const { handleSubmit, setError, clearErrors } = useFormContext();
 
   const clearFormError = () => clearErrors('form');
 
@@ -34,14 +30,12 @@ export default function LoginForm({
             message = 'An unknown error occurred. Please try again.';
           }
           setError('form', { type: 'manual', message });
-        } else {
-          clearErrors('form');
         }
       }),
     [onError],
   );
 
-  const submitHandler: FormOnSubmit<Auth.ILoginBody> = (data) => {
+  const submitHandler: LoginFormProps['onSubmit'] = (data) => {
     if (data.codename && dataConstraints.emailPattern.test(data.codename)) {
       onSubmit({ email: data.codename, password: data.password });
     } else {
@@ -59,9 +53,10 @@ export default function LoginForm({
       <CleverButton htmlType="button" />
       <p className="alt-font">or</p>
       <p className="main-font">Sign In Using Story Squad Account</p>
-      {errors?.form && (
-        <div className="server-error">{errors.form.message}</div>
-      )}
+      <ErrorMessage
+        name="form"
+        render={({ message }) => <div className="server-error">{message}</div>}
+      />
       {authFormInputs.codename(
         {
           rules: {
