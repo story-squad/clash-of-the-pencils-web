@@ -11,6 +11,11 @@ import { eventType } from './timeTypes';
 
 // Schedule times...
 
+const SCHEDULE_STREAM_START_HOUR = 0;
+const SCHEDULE_STREAM_START_MIN = 0;
+const SCHEDULE_STREAM_END_HOUR = 0;
+const SCHEDULE_STREAM_END_MIN = 30;
+
 const SCHEDULE_SUBMIT_START_HOUR = 0;
 const SCHEDULE_SUBMIT_START_MIN = 30;
 const SCHEDULE_SUBMIT_END_HOUR = 21;
@@ -26,11 +31,6 @@ const SCHEDULE_VOTE_START_MIN = 30;
 const SCHEDULE_VOTE_END_HOUR = 0;
 const SCHEDULE_VOTE_END_MIN = 0;
 
-const SCHEDULE_STREAM_START_HOUR = 0;
-const SCHEDULE_STREAM_START_MIN = 0;
-const SCHEDULE_STREAM_END_HOUR = 0;
-const SCHEDULE_STREAM_END_MIN = 30;
-
 /**
  * To add tracking for another time-based event, MAKE SURE you add it to the
  * `eventType` type object _as well as_ the schedule object
@@ -39,6 +39,10 @@ export const schedule: Record<
   Exclude<eventType, 'off'>,
   { start: DateTime; end: DateTime }
 > = {
+  stream: {
+    start: utcToLocal(SCHEDULE_STREAM_START_HOUR, SCHEDULE_STREAM_START_MIN),
+    end: utcToLocal(SCHEDULE_STREAM_END_HOUR, SCHEDULE_STREAM_END_MIN),
+  },
   submit: {
     start: utcToLocal(SCHEDULE_SUBMIT_START_HOUR, SCHEDULE_SUBMIT_START_MIN),
     end: utcToLocal(SCHEDULE_SUBMIT_END_HOUR, SCHEDULE_SUBMIT_END_MIN),
@@ -50,10 +54,6 @@ export const schedule: Record<
   vote: {
     start: utcToLocal(SCHEDULE_VOTE_START_HOUR, SCHEDULE_VOTE_START_MIN),
     end: utcToLocal(SCHEDULE_VOTE_END_HOUR, SCHEDULE_VOTE_END_MIN),
-  },
-  stream: {
-    start: utcToLocal(SCHEDULE_STREAM_START_HOUR, SCHEDULE_STREAM_START_MIN),
-    end: utcToLocal(SCHEDULE_STREAM_END_HOUR, SCHEDULE_STREAM_END_MIN),
   },
 };
 
