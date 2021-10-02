@@ -1,9 +1,17 @@
 @import '../../../../styles/newIndex.scss';
 
-.stream {
-  .offline-stream-component {
-    p {
-      font-family: $text-font;
+.stream-wrapper {
+  background-color: $gray-9;
+  .stream {
+    @include safe-zone();
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: 2rem;
+    .offline-stream-component {
+      p {
+        font-family: $text-font;
+      }
     }
   }
 }

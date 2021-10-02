@@ -1,24 +1,28 @@
 import React from 'react';
-import ReactLivestream from 'react-livestream';
+import { Button } from '../../atoms';
 import './styles/index.scss';
 
 export interface IStreamProps {
-  channelId: string;
-  apiKey: string;
+  channelId?: string;
+  apiKey?: string;
 }
 
 export default function Stream({
   apiKey,
   channelId,
 }: IStreamProps): React.ReactElement {
+  const revealChampion = () => undefined;
   return (
-    <div className="stream">
-      <ReactLivestream
-        platform="youtube"
-        youtubeApiKey={apiKey}
-        youtubeChannelId={channelId}
-        offlineComponent={OfflineStreamComponent}
-      />
+    <div className="stream-wrapper">
+      <div className="stream">
+        {/* <ReactLivestream
+          platform="youtube"
+          youtubeApiKey={apiKey}
+          youtubeChannelId={channelId}
+          offlineComponent={OfflineStreamComponent}
+        /> */}
+        <Button onClick={revealChampion}>Reveal Champion</Button>
+      </div>
     </div>
   );
 }
