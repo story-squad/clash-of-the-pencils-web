@@ -5,16 +5,20 @@ import './styles/index.scss';
 
 export interface ConfirmationModalProps {
   onConfirm: () => void | Promise<void>;
+  onCancel?: () => void | Promise<void>;
+  onError?: (err: unknown) => void;
   cancelText?: React.ReactNode;
   confirmText?: React.ReactNode;
   message: string;
 }
 
 export default function ConfirmationModal({
-  onConfirm,
   message,
   cancelText,
   confirmText,
+  onConfirm,
+  onCancel,
+  onError,
   ...props
 }: ConfirmationModalProps & Omit<ModalProps, 'component'>): React.ReactElement {
   return (
@@ -26,6 +30,8 @@ export default function ConfirmationModal({
           message={message}
           cancelText={cancelText}
           confirmText={confirmText}
+          onCancel={onCancel}
+          onError={onError}
         />
       )}
       {...props}
@@ -39,19 +45,33 @@ function ConfirmationModalComponent({
   message,
   cancelText = 'Cancel',
   confirmText = 'Okay',
+  onCancel,
+  onError,
 }: ConfirmationModalProps & ModalComponentProps): React.ReactElement {
-  const confirmAndCloseModal = async () => {
-    await onConfirm();
-    closeModal();
+  const confirmHandler = async () => {
+    try {
+      await onConfirm();
+      closeModal();
+    } catch (e) {
+      onError?.(e);
+    }
+  };
+  const cancelHandler = async () => {
+    try {
+      await onCancel?.();
+      closeModal();
+    } catch (e) {
+      onError?.(e);
+    }
   };
   return (
     <div className="confirmation-modal">
       <p>{message}</p>
       <div className="button-wrapper">
-        <Button onClick={closeModal} type="secondary">
+        <Button onClick={cancelHandler} type="secondary">
           {cancelText}
         </Button>
-        <Button onClick={confirmAndCloseModal}>{confirmText}</Button>
+        <Button onClick={confirmHandler}>{confirmText}</Button>
       </div>
     </div>
   );
