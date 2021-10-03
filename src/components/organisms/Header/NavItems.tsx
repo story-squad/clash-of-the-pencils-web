@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
+import { useConfirmationModal } from '../../../hooks';
 import { auth } from '../../../state';
 import { NavProps } from './types';
 
@@ -27,9 +28,18 @@ function NavAuthControl({ user }: NavProps): React.ReactElement {
   const logout = useCallback(() => {
     setAuthValues(undefined);
   }, [setAuthValues]);
+
+  const [modal, confirmLogout] = useConfirmationModal({
+    message: 'Are you sure you want to log out',
+    cancelText: 'No',
+    confirmText: 'Yes',
+    onConfirm: logout,
+  });
+
   return user ? (
     <>
-      <li onClick={logout}>
+      {modal}
+      <li onClick={confirmLogout}>
         <a>Logout</a>
       </li>
       {/* <li>
