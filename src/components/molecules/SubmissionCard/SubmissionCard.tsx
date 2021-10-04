@@ -14,7 +14,8 @@ export interface SubmissionCardProps {
   disablePreview?: boolean;
   position: voting.Places;
   phase?: time.eventType;
-  enableDropZone?: boolean;
+  hasReadAll?: boolean;
+  userHasVoted: boolean;
 }
 
 export default function SubmissionCard({
@@ -23,7 +24,8 @@ export default function SubmissionCard({
   containerProps,
   disablePreview,
   phase = 'vote',
-  enableDropZone = false,
+  userHasVoted,
+  hasReadAll = false,
 }: SubmissionCardProps): React.ReactElement {
   const [hasRead, setHasRead] = useRecoilState(
     voting.hasReadSubInPosition(position),
@@ -63,8 +65,9 @@ export default function SubmissionCard({
         position={position}
         openSubmission={openSubmission}
         hasRead={hasRead}
-        enableDropZone={enableDropZone}
         phase={phase}
+        hasReadAll={hasReadAll}
+        userHasVoted={userHasVoted}
       />
     </Card>
   );

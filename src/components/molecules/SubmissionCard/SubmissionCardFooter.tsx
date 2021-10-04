@@ -30,30 +30,32 @@ interface SubmissionCardFooterBadgeProps {
   position: voting.Places;
   openSubmission: () => void;
   hasRead: boolean;
-  enableDropZone: boolean;
   phase: time.eventType;
+  hasReadAll: boolean;
+  userHasVoted: boolean;
 }
 
 function SubmissionCardFooterBadge({
-  enableDropZone,
   hasRead,
   openSubmission,
   phase,
   position,
+  userHasVoted,
+  hasReadAll,
 }: SubmissionCardFooterBadgeProps): React.ReactElement {
-  if (phase === 'stream' || !enableDropZone) {
-    return (
-      <Sticker type="readMe" onClick={openSubmission} className="read-me" />
-    );
-  } else if (phase === 'vote') {
-    if (hasRead) {
-      return <Sticker type="checkmark" />;
+  const readMeSticker = (
+    <Sticker type="readMe" onClick={openSubmission} className="read-me" />
+  );
+  const checkSticker = <Sticker type="checkmark" />;
+  const dropZoneSticker = <SubmissionCardDropZone position={position} />;
+  if (phase === 'vote') {
+    if (hasReadAll) {
+      if (userHasVoted) return readMeSticker;
+      else return dropZoneSticker;
+    } else if (hasRead) {
+      return checkSticker;
     } else {
-      return <SubmissionCardDropZone position={position} />;
+      return readMeSticker;
     }
-  } else {
-    return (
-      <Sticker type="readMe" onClick={openSubmission} className="read-me" />
-    );
-  }
+  } else return readMeSticker;
 }

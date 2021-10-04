@@ -16,10 +16,10 @@ import './styles/index.scss';
 export interface VotingProps {
   phase: time.eventType;
   top3: Submissions.ISubItem[];
-  hasReadAll?: boolean;
   canSubmit?: boolean;
   submitVotes: () => Promise<unknown>;
   resetVotes: () => void;
+  hasReadAll?: boolean;
   userHasVoted: boolean;
 }
 
@@ -80,7 +80,8 @@ export default function Voting({
                 position={(i + 1) as voting.Places}
                 submission={sub}
                 phase={phase}
-                enableDropZone={hasReadAll && !userHasVoted}
+                hasReadAll={hasReadAll}
+                userHasVoted={userHasVoted}
               />
             ))
           )}
