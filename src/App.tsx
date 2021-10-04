@@ -6,6 +6,7 @@ import {
   LoginView,
   ScheduleView,
   SignupView,
+  TermsView,
 } from './components/views';
 
 const App = (): React.ReactElement => {
@@ -38,6 +39,7 @@ const App = (): React.ReactElement => {
           path="/activate"
           render={(props) => <ActivationModal {...props} />}
         />
+        <Route path="/termsofservice" render={TermsView} />
 
         {/* Fallback Redirect to Dashboard */}
         <Route path="/" component={() => <Redirect to="/" />} />

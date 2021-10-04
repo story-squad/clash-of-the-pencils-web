@@ -1,0 +1,41 @@
+@import '../../../../styles/newIndex.scss';
+
+.terms-of-service-wrapper {
+  background-color: $brand-blue-8;
+  flex-grow: 1;
+  padding: 4rem 1rem;
+  .terms-of-service {
+    @include safe-zone(800px);
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
+    background-color: $white;
+    border: 2px solid $brand-blue-4;
+    border-radius: 1.6rem;
+    padding: 3rem 4.8rem;
+    h1,
+    h2 {
+      font-family: $display-font;
+    }
+    h1 {
+      font-size: 2.6rem;
+      line-height: 3.8rem;
+      color: $brand-blue-8;
+    }
+    h2 {
+      font-size: 1.8rem;
+      line-height: 2.6rem;
+      color: $brand-blue;
+
+      &:not(:first-of-type) {
+        margin-top: 1rem;
+      }
+    }
+    p {
+      font-family: $text-font;
+      color: $gray-8;
+      font-size: 1.6rem;
+      line-height: 2.2rem;
+    }
+  }
+}

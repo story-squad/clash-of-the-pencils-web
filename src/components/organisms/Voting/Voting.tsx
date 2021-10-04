@@ -62,7 +62,9 @@ export default function Voting({
           />
         </CardList>
         <h3>Drop the Dragons to Vote</h3>
-        <DragonBank dragDisabled={dragDisabled || !hasReadAll} />
+        <DragonBank
+          dragDisabled={dragDisabled || !hasReadAll || userHasVoted}
+        />
         <CardList>
           {['admin', 'submit'].indexOf(phase) >= 0 ? (
             <>
@@ -78,19 +80,23 @@ export default function Voting({
                 position={(i + 1) as voting.Places}
                 submission={sub}
                 phase={phase}
-                hasReadAll={hasReadAll}
+                enableDropZone={hasReadAll && !userHasVoted}
               />
             ))
           )}
         </CardList>
         {phase === 'vote' && (
           <div className="button-row">
-            <Button onClick={resetVotes} disabled={loading} type="secondary">
+            <Button
+              onClick={resetVotes}
+              disabled={loading || userHasVoted}
+              type="secondary"
+            >
               Reset Votes
             </Button>
             <Button
               iconLeft={loading && <LoadIcon />}
-              disabled={!canSubmit || loading}
+              disabled={!canSubmit || loading || userHasVoted}
               onClick={exec}
             >
               Submit Votes

@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { ClockFaceLines } from '../../../assets';
 import { time } from '../../../utils';
 import { Dial, Timer } from '../../atoms';
@@ -18,6 +18,17 @@ export default function Countdown({
   ...props
 }: ICountdownProps): React.ReactElement {
   const [ratio, millisLeft] = useCountdownCalculator(props);
+
+  // This code aims to force a page refresh when stream time starts
+  // This is a hack to fix a bug. Seems to work
+  // (Infinite loop danger, but I think it's been avoided correctly?)
+  const memoizedPhase = useMemo(() => phase, []);
+  useEffect(() => {
+    if (memoizedPhase !== 'stream' && phase === 'stream') {
+      console.log('Forcing page reload...');
+      window.location.reload();
+    }
+  }, [phase]);
 
   const countdownText = useMemo(() => {
     switch (phase) {
