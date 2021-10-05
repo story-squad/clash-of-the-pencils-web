@@ -19,6 +19,7 @@ export default function SubmissionModal({
           currentPrompt={prompt}
           onSubmit={onSubmit}
           onCancel={closeModal}
+          onSuccess={closeModal}
         />
       )}
       {...props}
