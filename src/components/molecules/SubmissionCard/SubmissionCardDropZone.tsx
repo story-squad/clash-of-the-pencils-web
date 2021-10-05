@@ -1,5 +1,6 @@
 import React from 'react';
 import { voting } from '../../../state';
+import { stopPropagation } from '../../../utils';
 import { DropZone, Sticker } from '../../atoms';
 import DraggableDragon from '../DragonBank/DraggableDragon';
 
@@ -19,6 +20,7 @@ export default function SubmissionCardDropZone({
           <Sticker
             type="dropZone"
             style={{ opacity: isDraggingOver ? 0.5 : 1 }}
+            onClick={stopPropagation}
           />
         ) : (
           <DraggableDragon name={contents} />
