@@ -1,8 +1,9 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useMemo, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { useConfirmationModal } from '../../../hooks';
 import { app, auth, prompts } from '../../../state';
+import { time } from '../../../utils';
 import { SubmissionModal } from '../../modals';
 import { Loader } from '../../molecules';
 import LoginToSubmitModal from './LoginToSubmitModal';
@@ -38,12 +39,17 @@ function PromptOrganismContainer(): React.ReactElement {
   const { push } = useHistory();
   const openLogin = () => push('/login');
 
+  const votingTime = useMemo(
+    () => time.schedule.vote.start.toLocal().toFormat('h:mm a'),
+    [time.schedule.vote.start],
+  );
+
   const [successModal, openSuccessModal] = useConfirmationModal({
     hideCancelButton: true,
     title: 'Your submission has been received!',
     message: (
       <>
-        Come back at 5:30 PM to vote.
+        Come back at {votingTime} to vote.
         <br />
         The power to determine today’s winner is in your hands!
       </>
