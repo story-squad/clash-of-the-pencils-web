@@ -1,5 +1,5 @@
 import { useAsync } from '@story-squad/react-utils';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Submissions } from '../../../api';
 import { useConfirmationModal } from '../../../hooks';
 import { time } from '../../../utils';
@@ -30,12 +30,16 @@ export default function Voting({
 }: VotingProps): React.ReactElement {
   const dragDisabled = phase !== 'vote';
 
+  const streamTime = useMemo(
+    () => time.schedule.stream.start.toLocal().toFormat('h:mm a'),
+    [time.schedule.stream.start],
+  );
+
   const [successModal, openSuccessModal] = useConfirmationModal({
     title: 'Your votes have been received!',
     confirmText: 'Back to Dashboard',
     hideCancelButton: true,
-    message:
-      'Tune into the Story Squad livestream at 8:00pm  to find out today’s champion!',
+    message: `Tune into the Story Squad livestream at ${streamTime} to find out today’s champion!`,
   });
 
   const [exec, loading, , err] = useAsync({
