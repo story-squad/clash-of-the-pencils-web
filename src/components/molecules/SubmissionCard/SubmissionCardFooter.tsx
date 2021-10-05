@@ -41,12 +41,15 @@ function SubmissionCardFooterBadge({
   phase,
   position,
   hasReadAll,
+  userHasVoted,
 }: SubmissionCardFooterBadgeProps): React.ReactElement {
   const readMeSticker = <Sticker type="readMe" className="read-me" />;
   const checkSticker = <Sticker type="checkmark" />;
   const dropZoneSticker = <SubmissionCardDropZone position={position} />;
   if (phase === 'vote') {
-    if (hasReadAll) {
+    if (userHasVoted) {
+      return checkSticker;
+    } else if (hasReadAll) {
       return dropZoneSticker;
     } else if (hasRead) {
       return checkSticker;
