@@ -1,17 +1,12 @@
 import { useAsync } from '@story-squad/react-utils';
 import React from 'react';
 import { Submissions } from '../../../api';
-import { voting } from '../../../state';
 import { time } from '../../../utils';
-import { Button, LoadIcon } from '../../atoms';
-import {
-  DragonBank,
-  EmptyCard,
-  InstructionCard,
-  SubmissionCard,
-} from '../../molecules';
-import { CardList } from '../CardList';
+import { DragonBank } from '../../molecules';
+import InstructionCardList from './InstructionCardList';
 import './styles/index.scss';
+import VotingButtons from './VotingButtons';
+import VotingCardList from './VotingCardList';
 
 export interface VotingProps {
   phase: time.eventType;
@@ -34,7 +29,7 @@ export default function Voting({
 }: VotingProps): React.ReactElement {
   const dragDisabled = phase !== 'vote';
 
-  const [exec, loading] = useAsync({
+  const [exec, loading, , err] = useAsync({
     asyncFunction: submitVotes,
   });
 
@@ -42,67 +37,30 @@ export default function Voting({
     <section className="voting-wrapper">
       <div className="voting-container">
         <h2>Read &amp; Rank the Top 3 Stories</h2>
-        <CardList>
-          <InstructionCard
-            step={1}
-            active={phase === 'vote' && !hasReadAll && !userHasVoted}
-            complete={hasReadAll || userHasVoted}
-          />
-          <InstructionCard
-            step={2}
-            active={
-              phase === 'vote' && hasReadAll && !canSubmit && !userHasVoted
-            }
-            complete={canSubmit || userHasVoted}
-          />
-          <InstructionCard
-            step={3}
-            active={phase === 'vote' && canSubmit}
-            complete={userHasVoted}
-          />
-        </CardList>
+        <InstructionCardList
+          canSubmit={canSubmit}
+          hasReadAll={hasReadAll}
+          phase={phase}
+          userHasVoted={userHasVoted}
+        />
         <h3>Drop the Dragons to Vote</h3>
         <DragonBank
           dragDisabled={dragDisabled || !hasReadAll || userHasVoted}
         />
-        <CardList>
-          {['admin', 'submit'].indexOf(phase) >= 0 ? (
-            <>
-              <EmptyCard />
-              <EmptyCard />
-              <EmptyCard />
-            </>
-          ) : (
-            top3.map((sub, i) => (
-              <SubmissionCard
-                key={sub.id}
-                // This is okay, there will only ever be 3 subs here so we can coerce
-                position={(i + 1) as voting.Places}
-                submission={sub}
-                phase={phase}
-                hasReadAll={hasReadAll}
-                userHasVoted={userHasVoted}
-              />
-            ))
-          )}
-        </CardList>
+        <VotingCardList
+          hasReadAll={hasReadAll}
+          phase={phase}
+          top3={top3}
+          userHasVoted={userHasVoted}
+        />
         {phase === 'vote' && (
-          <div className="button-row">
-            <Button
-              onClick={resetVotes}
-              disabled={loading || userHasVoted}
-              type="secondary"
-            >
-              Reset Votes
-            </Button>
-            <Button
-              iconLeft={loading && <LoadIcon />}
-              disabled={!canSubmit || loading || userHasVoted}
-              onClick={exec}
-            >
-              Submit Votes
-            </Button>
-          </div>
+          <VotingButtons
+            buttonsDisabled={userHasVoted || loading}
+            loading={loading}
+            onClear={resetVotes}
+            onSubmit={exec}
+            submitDisabled={!canSubmit}
+          />
         )}
       </div>
     </section>
