@@ -1,6 +1,7 @@
 import { useAsync } from '@story-squad/react-utils';
 import React from 'react';
 import { Submissions } from '../../../api';
+import { useConfirmationModal } from '../../../hooks';
 import { time } from '../../../utils';
 import { DragonBank } from '../../molecules';
 import InstructionCardList from './InstructionCardList';
@@ -29,8 +30,13 @@ export default function Voting({
 }: VotingProps): React.ReactElement {
   const dragDisabled = phase !== 'vote';
 
+  const [] = useConfirmationModal({
+    message:
+  });
+
   const [exec, loading, , err] = useAsync({
     asyncFunction: submitVotes,
+    onSuccess,
   });
 
   return (
