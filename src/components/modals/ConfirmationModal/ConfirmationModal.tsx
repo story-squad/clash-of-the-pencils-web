@@ -61,8 +61,8 @@ function ConfirmationModalComponent({
   };
   return (
     <div className="confirmation-modal">
-      {title && typeof title === 'string' ? <h2>{title}</h2> : title}
-      {message && typeof message === 'string' ? <p>{message}</p> : message}
+      {title && <h2>{title}</h2>}
+      {message && <p>{message}</p>}
       <div className="button-wrapper">
         {!hideCancelButton && (
           <Button onClick={cancelHandler} type="secondary">
