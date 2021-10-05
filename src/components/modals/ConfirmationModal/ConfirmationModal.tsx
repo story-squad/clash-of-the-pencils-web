@@ -9,8 +9,8 @@ export interface ConfirmationModalProps {
   onError?: (err: unknown) => void;
   cancelText?: React.ReactNode;
   confirmText?: React.ReactNode;
-  message?: string;
-  title?: string;
+  message?: React.ReactNode;
+  title?: React.ReactNode;
   hideCancelButton?: boolean;
 }
 
@@ -61,8 +61,8 @@ function ConfirmationModalComponent({
   };
   return (
     <div className="confirmation-modal">
-      {title && <h2>{title}</h2>}
-      {message && <p>{message}</p>}
+      {title && typeof title === 'string' ? <h2>{title}</h2> : title}
+      {message && typeof message === 'string' ? <p>{message}</p> : message}
       <div className="button-wrapper">
         {!hideCancelButton && (
           <Button onClick={cancelHandler} type="secondary">
