@@ -1,12 +1,21 @@
 @import '../../../../styles/newIndex.scss';
 
 .confirmation-modal {
-  p {
-    margin-bottom: 2rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 2rem;
+  h2 {
     font-family: $display-font;
     color: $gray-7;
-    font-size: 2rem;
+    font-size: 2.2rem;
     line-height: 2.8rem;
+  }
+  p {
+    font-family: $text-font;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    color: $gray-8;
   }
   .button-wrapper {
     display: flex;
