@@ -29,6 +29,9 @@
   }
 
   .file-input {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
     .preview {
       max-height: 50vh;
       cursor: pointer;
