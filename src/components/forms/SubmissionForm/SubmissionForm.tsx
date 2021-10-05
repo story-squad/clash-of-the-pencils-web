@@ -3,6 +3,7 @@ import React, { SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import { FiUploadCloud } from 'react-icons/fi';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { Auth, Prompts, Submissions } from '../../../api';
+import { useConfirmationModal } from '../../../hooks';
 import { app } from '../../../state';
 import { stopPropagation, upload } from '../../../utils';
 import { Button, LoadIcon } from '../../atoms';
@@ -17,6 +18,7 @@ export type SubmissionFormProps = FormProps<FormData> & {
 
 export default function SubmissionForm({
   onSubmit,
+  onSuccess,
   onError,
   enableLogs = false,
   onCancel,
@@ -79,9 +81,26 @@ export default function SubmissionForm({
     }
   };
 
+  const [successModal, openSuccessModal] = useConfirmationModal({
+    hideCancelButton: true,
+    title: 'Your submission has been received!',
+    message: (
+      <>
+        Come back at 5:30 PM to vote.
+        <br />
+        The power to determine today’s winner is in your hands!
+      </>
+    ),
+    confirmText: 'Back to Dashboard',
+  });
+
   const [exec, loading] = useAsync({
     asyncFunction: submitHandler,
     onError: errorHandler,
+    onSuccess: () => {
+      onSuccess?.();
+      openSuccessModal();
+    },
   });
 
   // This extracts the file from the Input element's event object
@@ -113,6 +132,7 @@ export default function SubmissionForm({
 
   return (
     <form className="submission-form" onSubmit={exec}>
+      {successModal}
       <h2>File Upload</h2>
       <p>
         {preview

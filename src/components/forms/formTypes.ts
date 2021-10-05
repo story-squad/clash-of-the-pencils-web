@@ -7,5 +7,6 @@ export interface FormProps<
   Response = unknown,
 > {
   onSubmit: FormOnSubmit<FormData, Response>;
+  onSuccess?: () => void;
   onError?: FormOnError;
 }
