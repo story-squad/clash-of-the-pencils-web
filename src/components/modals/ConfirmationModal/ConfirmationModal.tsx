@@ -4,7 +4,7 @@ import { Modal, ModalComponentProps, ModalProps } from '../../organisms';
 import './styles/index.scss';
 
 export interface ConfirmationModalProps {
-  onConfirm: () => void | Promise<void>;
+  onConfirm?: () => void | Promise<void>;
   onCancel?: () => void | Promise<void>;
   onError?: (err: unknown) => void;
   cancelText?: React.ReactNode;
@@ -45,7 +45,7 @@ function ConfirmationModalComponent({
 }: ConfirmationModalProps & ModalComponentProps): React.ReactElement {
   const confirmHandler = async () => {
     try {
-      await onConfirm();
+      await onConfirm?.();
       closeModal();
     } catch (e) {
       onError?.(e);
