@@ -1,6 +1,7 @@
 import React, { Suspense, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useConfirmationModal } from '../../../hooks';
 import { app, auth, prompts } from '../../../state';
 import { SubmissionModal } from '../../modals';
 import { Loader } from '../../molecules';
@@ -37,6 +38,19 @@ function PromptOrganismContainer(): React.ReactElement {
   const { push } = useHistory();
   const openLogin = () => push('/login');
 
+  const [successModal, openSuccessModal] = useConfirmationModal({
+    hideCancelButton: true,
+    title: 'Your submission has been received!',
+    message: (
+      <>
+        Come back at 5:30 PM to vote.
+        <br />
+        The power to determine today’s winner is in your hands!
+      </>
+    ),
+    confirmText: 'Back to Dashboard',
+  });
+
   return (
     <>
       {userIsLoggedIn ? (
@@ -45,6 +59,7 @@ function PromptOrganismContainer(): React.ReactElement {
           isOpen={modalIsOpen}
           setIsOpen={setModalIsOpen}
           prompt={prompt}
+          onSuccess={openSuccessModal}
         />
       ) : (
         // Otherwise, they need to log in!
@@ -54,6 +69,7 @@ function PromptOrganismContainer(): React.ReactElement {
           openLoginPage={openLogin}
         />
       )}
+      {successModal}
       <PromptOrganism
         prompt={prompt}
         openUploadModalOrSubmission={openHandler}
