@@ -39,7 +39,7 @@ export default function SignupForm({
   // Using useAsync for easier async render control
   const [exec, isLoading] = useAsync({
     asyncFunction: handleSubmit(onSubmit),
-    errorHandler,
+    onError: errorHandler,
   });
 
   return (
