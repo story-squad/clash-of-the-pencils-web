@@ -53,6 +53,12 @@ export default function Voting({
           top3={top3}
           userHasVoted={userHasVoted}
         />
+        {err && (
+          <div className="error-message">
+            <span className="red">*</span>
+            {err.message}
+          </div>
+        )}
         {phase === 'vote' && (
           <VotingButtons
             buttonsDisabled={userHasVoted || loading}
