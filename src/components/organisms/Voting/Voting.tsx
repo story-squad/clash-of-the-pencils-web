@@ -30,17 +30,22 @@ export default function Voting({
 }: VotingProps): React.ReactElement {
   const dragDisabled = phase !== 'vote';
 
-  const [] = useConfirmationModal({
+  const [successModal, openSuccessModal] = useConfirmationModal({
+    title: 'Your votes have been received!',
+    confirmText: 'Back to Dashboard',
+    hideCancelButton: true,
     message:
+      'Tune into the Story Squad livestream at 8:00pm  to find out today’s champion!',
   });
 
   const [exec, loading, , err] = useAsync({
     asyncFunction: submitVotes,
-    onSuccess,
+    onSuccess: openSuccessModal,
   });
 
   return (
     <section className="voting-wrapper">
+      {successModal}
       <div className="voting-container">
         <h2>Read &amp; Rank the Top 3 Stories</h2>
         <InstructionCardList
