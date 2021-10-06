@@ -20,7 +20,7 @@ const Sticker = ({
   const src = useMemo(() => stickerFiles[type], [type]);
   return (
     <span
-      className={classnames('sticker', className)}
+      className={classnames('sticker', type, className)}
       ref={dragDisabled ? null : dragRef}
       {...props}
     >

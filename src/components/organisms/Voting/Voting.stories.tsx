@@ -5,7 +5,7 @@ import { submissionData } from '../../../data';
 import { app, top3 } from '../../../state';
 import { sleep, time } from '../../../utils';
 import { VotingDragAndDropContext } from '../../providers';
-import FullscreenImageOverlayContainer from '../../views/FullscreenImageOverlay/FullscreenImageOverlayContainer';
+import { FullscreenImageOverlay } from '../../views';
 import Voting, { VotingProps } from './Voting';
 import VotingContainer from './VotingContainer';
 
@@ -33,7 +33,7 @@ export default {
         }}
       >
         <VotingDragAndDropContext>
-          <FullscreenImageOverlayContainer />
+          <FullscreenImageOverlay />
           {story()}
         </VotingDragAndDropContext>
       </RecoilRoot>

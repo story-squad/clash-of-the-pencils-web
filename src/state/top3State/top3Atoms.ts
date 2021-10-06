@@ -1,11 +1,22 @@
 import { atom, selector } from 'recoil';
 import { Submissions } from '../../api';
+import { phase } from '../appState';
 
 export const top3List = atom<Submissions.ISubItem[]>({
   key: 'top3List',
   default: selector({
     key: 'defaultTop3Selector',
-    get: Submissions.getTop3Subs, // Use this as the default getter
+    get: async ({ get }) => {
+      // This will subscribe to the phase, cause a refresh of
+      // this list whenever the phase changes
+      const curPhase = get(phase);
+      if (curPhase === 'vote') {
+        return await Submissions.getTop3Subs();
+      } else {
+        // When it's not voting phase, don't run the API call
+        return [];
+      }
+    },
   }),
 });
 

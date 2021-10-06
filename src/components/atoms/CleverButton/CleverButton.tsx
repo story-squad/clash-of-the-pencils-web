@@ -20,7 +20,7 @@ export default function CleverButton({
 
   const [exec, loading, , err] = useAsync({
     asyncFunction: Auth.cleverButton,
-    setter: ({ url }) => setUrl(url),
+    onSuccess: ({ url }) => setUrl(url),
   });
 
   // Error logging

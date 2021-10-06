@@ -8,15 +8,17 @@ export interface SubmissionCardFooterProps
   extends SubmissionCardFooterBadgeProps {
   codename: string;
   age: number;
+  openSubmission: () => void;
 }
 
 export default function SubmissionCardFooter({
   age,
   codename,
+  openSubmission,
   ...props
 }: SubmissionCardFooterProps): React.ReactElement {
   return (
-    <div className="submission-card-footer">
+    <div className="submission-card-footer" onClick={openSubmission}>
       <div className="content-left">
         <h2>{codename}</h2>
         <h3>Age: {age}</h3>
@@ -28,32 +30,31 @@ export default function SubmissionCardFooter({
 
 interface SubmissionCardFooterBadgeProps {
   position: voting.Places;
-  openSubmission: () => void;
   hasRead: boolean;
-  enableDropZone: boolean;
   phase: time.eventType;
+  hasReadAll: boolean;
+  userHasVoted: boolean;
 }
 
 function SubmissionCardFooterBadge({
-  enableDropZone,
   hasRead,
-  openSubmission,
   phase,
   position,
+  hasReadAll,
+  userHasVoted,
 }: SubmissionCardFooterBadgeProps): React.ReactElement {
-  if (phase === 'stream' || !enableDropZone) {
-    return (
-      <Sticker type="readMe" onClick={openSubmission} className="read-me" />
-    );
-  } else if (phase === 'vote') {
-    if (hasRead) {
-      return <Sticker type="checkmark" />;
+  const readMeSticker = <Sticker type="readMe" className="read-me" />;
+  const checkSticker = <Sticker type="checkmark" />;
+  const dropZoneSticker = <SubmissionCardDropZone position={position} />;
+  if (phase === 'vote') {
+    if (userHasVoted) {
+      return checkSticker;
+    } else if (hasReadAll) {
+      return dropZoneSticker;
+    } else if (hasRead) {
+      return checkSticker;
     } else {
-      return <SubmissionCardDropZone position={position} />;
+      return readMeSticker;
     }
-  } else {
-    return (
-      <Sticker type="readMe" onClick={openSubmission} className="read-me" />
-    );
-  }
+  } else return readMeSticker;
 }

@@ -45,7 +45,7 @@ export default function LoginForm({
 
   const [exec, isLoading] = useAsync({
     asyncFunction: handleSubmit(submitHandler),
-    errorHandler,
+    onError: errorHandler,
   });
 
   return (

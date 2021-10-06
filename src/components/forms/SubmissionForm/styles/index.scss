@@ -29,6 +29,9 @@
   }
 
   .file-input {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
     .preview {
       max-height: 50vh;
       cursor: pointer;
@@ -64,7 +67,7 @@
         height: 15rem;
       }
       .icon-text {
-        font-family: $ui-foint;
+        font-family: $ui-font;
         color: $brand-blue;
         font-weight: 700;
         font-size: 1.4rem;

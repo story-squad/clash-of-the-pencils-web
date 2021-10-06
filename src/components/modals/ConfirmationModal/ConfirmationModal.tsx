@@ -4,37 +4,30 @@ import { Modal, ModalComponentProps, ModalProps } from '../../organisms';
 import './styles/index.scss';
 
 export interface ConfirmationModalProps {
-  onConfirm: () => void | Promise<void>;
+  onConfirm?: () => void | Promise<void>;
   onCancel?: () => void | Promise<void>;
   onError?: (err: unknown) => void;
   cancelText?: React.ReactNode;
   confirmText?: React.ReactNode;
-  message: string;
+  message?: React.ReactNode;
+  title?: React.ReactNode;
+  hideCancelButton?: boolean;
 }
 
 export default function ConfirmationModal({
-  message,
-  cancelText,
-  confirmText,
-  onConfirm,
-  onCancel,
-  onError,
+  closable,
+  isOpen,
+  setIsOpen,
   ...props
 }: ConfirmationModalProps & Omit<ModalProps, 'component'>): React.ReactElement {
   return (
     <Modal
       component={({ closeModal }) => (
-        <ConfirmationModalComponent
-          closeModal={closeModal}
-          onConfirm={onConfirm}
-          message={message}
-          cancelText={cancelText}
-          confirmText={confirmText}
-          onCancel={onCancel}
-          onError={onError}
-        />
+        <ConfirmationModalComponent closeModal={closeModal} {...props} />
       )}
-      {...props}
+      closable={closable}
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
     />
   );
 }
@@ -43,14 +36,16 @@ function ConfirmationModalComponent({
   onConfirm,
   closeModal,
   message,
+  title,
   cancelText = 'Cancel',
   confirmText = 'Okay',
   onCancel,
   onError,
+  hideCancelButton = false,
 }: ConfirmationModalProps & ModalComponentProps): React.ReactElement {
   const confirmHandler = async () => {
     try {
-      await onConfirm();
+      await onConfirm?.();
       closeModal();
     } catch (e) {
       onError?.(e);
@@ -66,11 +61,14 @@ function ConfirmationModalComponent({
   };
   return (
     <div className="confirmation-modal">
-      <p>{message}</p>
+      {title && <h2>{title}</h2>}
+      {message && <p>{message}</p>}
       <div className="button-wrapper">
-        <Button onClick={cancelHandler} type="secondary">
-          {cancelText}
-        </Button>
+        {!hideCancelButton && (
+          <Button onClick={cancelHandler} type="secondary">
+            {cancelText}
+          </Button>
+        )}
         <Button onClick={confirmHandler}>{confirmText}</Button>
       </div>
     </div>

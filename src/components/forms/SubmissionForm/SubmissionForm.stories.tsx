@@ -21,6 +21,7 @@ Default.args = {
   onCancel: () => {
     console.log('[CANCEL] Cancel pressed.');
   },
+  onSuccess: () => alert('SUCCESS'),
 };
 
 export default {

@@ -45,6 +45,18 @@ section.voting-wrapper {
       }
     }
 
+    .error-message {
+      font-family: $ui-font;
+      font-size: 1.6rem;
+      line-height: 2rem;
+      color: $gray-9;
+      text-align: center;
+
+      .red {
+        color: $error;
+      }
+    }
+
     .button-row {
       display: flex;
       flex-flow: column nowrap;

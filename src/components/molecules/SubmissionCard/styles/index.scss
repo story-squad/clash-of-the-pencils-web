@@ -17,11 +17,20 @@
     padding: 1.6rem;
 
     // Design
+    cursor: pointer;
     background-color: $brand-orange;
+    transition: all 0.05s ease-in-out;
+    &:hover {
+      transition: all 0.05s ease-in-out;
+      background-color: $brand-orange-6;
+    }
 
     .sticker {
       &.read-me {
         cursor: pointer;
+      }
+      &.dropZone {
+        cursor: default;
       }
     }
 

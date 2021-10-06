@@ -30,7 +30,7 @@ function NavAuthControl({ user }: NavProps): React.ReactElement {
   }, [setAuthValues]);
 
   const [modal, confirmLogout] = useConfirmationModal({
-    message: 'Are you sure you want to log out',
+    title: 'Are you sure you want to log out?',
     cancelText: 'No',
     confirmText: 'Yes',
     onConfirm: logout,

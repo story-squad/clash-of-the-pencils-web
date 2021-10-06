@@ -17,6 +17,7 @@ export type SubmissionFormProps = FormProps<FormData> & {
 
 export default function SubmissionForm({
   onSubmit,
+  onSuccess,
   onError,
   enableLogs = false,
   onCancel,
@@ -81,7 +82,8 @@ export default function SubmissionForm({
 
   const [exec, loading] = useAsync({
     asyncFunction: submitHandler,
-    errorHandler,
+    onError: errorHandler,
+    onSuccess,
   });
 
   // This extracts the file from the Input element's event object

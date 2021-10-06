@@ -7,9 +7,11 @@ import { Modal, ModalProps } from '../../organisms';
 export default function SubmissionModal({
   onSubmit = Submissions.uploadSubmission,
   prompt,
+  onSuccess,
   ...props
 }: Omit<ModalProps, 'component'> & {
   onSubmit?: FormOnSubmit<FormData>;
+  onSuccess?: () => void;
   prompt: Prompts.IPrompt;
 }): React.ReactElement {
   return (
@@ -19,6 +21,10 @@ export default function SubmissionModal({
           currentPrompt={prompt}
           onSubmit={onSubmit}
           onCancel={closeModal}
+          onSuccess={() => {
+            closeModal();
+            onSuccess?.();
+          }}
         />
       )}
       {...props}
