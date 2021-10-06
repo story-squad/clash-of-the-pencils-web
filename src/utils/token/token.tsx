@@ -2,7 +2,7 @@
  * If a key is set in the ENV, it will use that as the localStorage
  * key for the token, otherwise it will be stored as `token: ''`
  */
-export const STORAGE_KEY: string = process.env.TOKEN_KEY || 'token';
+export const STORAGE_KEY: string = process.env.REACT_APP_TOKEN_KEY || 'token';
 
 /**
  * Decodes the token and checks if you're still logged in before continuing.
