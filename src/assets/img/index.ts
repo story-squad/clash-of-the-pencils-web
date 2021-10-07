@@ -2,6 +2,7 @@ export * as Badges from './badges';
 export { ReactComponent as ClashLogo } from './clash-logo.svg';
 export { default as cleverLogo } from './clever-logo.png';
 export { ReactComponent as ClockFaceLines } from './clock-face-lines.svg';
+export { default as dragonBoi } from './dragon-boi.svg';
 export { default as emptyCardBackground } from './empty-card-background.svg';
 export { default as errorDragon } from './error-dragon.svg';
 export { default as greenBulletPoint } from './green-bullet-point.svg';
