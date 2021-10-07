@@ -3,6 +3,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { leaderboard } from '../../../state';
 import { DragonLoader } from '../../molecules';
 import Leaderboard from './Leaderboard';
+import './styles/leaderboardLoader.scss';
 
 function LeaderboardContainer(): React.ReactElement {
   const daily = useRecoilValue(leaderboard.daily);
