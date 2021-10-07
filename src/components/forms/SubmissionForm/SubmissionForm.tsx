@@ -74,6 +74,7 @@ export default function SubmissionForm({
         const sub = (await onSubmit(reqBody)) as Submissions.ISubItem;
         // On success, store it in state!
         setUserSubForToday(sub);
+        onSuccess?.();
       } catch (err) {
         errorHandler(err);
       }
@@ -83,7 +84,6 @@ export default function SubmissionForm({
   const [exec, loading] = useAsync({
     asyncFunction: submitHandler,
     onError: errorHandler,
-    onSuccess,
   });
 
   // This extracts the file from the Input element's event object
