@@ -2,8 +2,9 @@ import React, { useCallback } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { Voting } from '../../../api';
 import { app, top3, voting } from '../../../state';
-import { Loader } from '../../atoms';
+import { DragonLoader } from '../../molecules';
 import { VotingDragAndDropContext } from '../../providers';
+import './styles/votingLoader.scss';
 import VotingComponent from './Voting';
 
 export interface VotingContainerProps {
@@ -23,7 +24,7 @@ export default function VotingContainer(
   props: VotingContainerProps,
 ): React.ReactElement {
   return (
-    <React.Suspense fallback={<Loader message="Loading Top 3" center />}>
+    <React.Suspense fallback={<DragonLoader className="voting-loader" />}>
       <VotingDragAndDropContext>
         <VotingSubscriber {...props} />
       </VotingDragAndDropContext>

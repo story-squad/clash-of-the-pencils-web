@@ -1,11 +1,12 @@
 @import '../../../../styles/newIndex.scss';
 
-.leaderboard-loader {
-  background-color: $brand-orange-1;
+.voting-loader {
+  background-color: $brand-blue-0;
 
   .image {
     border-color: $brand-blue-4;
   }
+
   .message {
     color: $brand-blue-4;
   }
