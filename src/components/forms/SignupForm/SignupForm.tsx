@@ -47,10 +47,6 @@ export default function SignupForm({
       <CleverButton htmlType="button" />
       <p className="alt-font">or</p>
       <p className="main-font">Sign In Using Email Address</p>
-      <ErrorMessage
-        name="form"
-        render={({ message }) => <div className="server-error">{message}</div>}
-      />
       {/* First page */}
       {authFormInputs.firstname()}
       {authFormInputs.lastname()}
@@ -66,6 +62,15 @@ export default function SignupForm({
       {/* <Button onClick={prevPage} htmlType="button" type="secondary">
             Back
           </Button> */}
+      <ErrorMessage
+        name="form"
+        render={({ message }) => (
+          <div className="server-error">
+            <span className="red">*</span>
+            {message}
+          </div>
+        )}
+      />
       <Button
         disabled={isLoading}
         htmlType="submit"
