@@ -2,23 +2,23 @@ import { classnames } from '@story-squad/react-utils';
 import React from 'react';
 import { dragonBoi } from '../../../assets';
 import { ILoaderProps, Loader, Picture } from '../../atoms';
-
-export interface DragonLoaderProps extends ILoaderProps {
-  containerProps?: React.HTMLProps<HTMLDivElement>;
-}
+import './styles/index.scss';
 
 export default function DragonLoader({
-  containerProps: { className, ...containerProps } = {},
+  className,
   ...props
-}: DragonLoaderProps): React.ReactElement {
+}: ILoaderProps): React.ReactElement {
   return (
-    <div className={classnames(className, 'dragon-loader')} {...containerProps}>
+    <Loader
+      className={classnames(className, 'dragon-loader')}
+      flipLayout
+      {...props}
+    >
       <Picture
         source={dragonBoi}
         description="Blaze the Dragon"
         disablePreview
       />
-      <Loader {...props} />
-    </div>
+    </Loader>
   );
 }

@@ -3,4 +3,5 @@ export interface ILoaderProps {
   hideDots?: boolean;
   center?: boolean;
   className?: string;
+  flipLayout?: boolean;
 }

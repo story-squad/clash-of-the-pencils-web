@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { leaderboard } from '../../../state';
-import { Loader } from '../../atoms';
+import { DragonLoader } from '../../molecules';
 import Leaderboard from './Leaderboard';
 
 function LeaderboardContainer(): React.ReactElement {
@@ -23,7 +23,7 @@ function LeaderboardContainer(): React.ReactElement {
 
 export default function LeaderboardSuspenseWrapper(): React.ReactElement {
   return (
-    <React.Suspense fallback={<Loader />}>
+    <React.Suspense fallback={<DragonLoader className="leaderboard-loader" />}>
       <LeaderboardContainer />
     </React.Suspense>
   );

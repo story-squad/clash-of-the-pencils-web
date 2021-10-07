@@ -10,15 +10,20 @@ const Loader = ({
   center = true,
   className,
   children,
+  flipLayout = false,
 }: React.PropsWithChildren<ILoaderProps>): React.ReactElement => {
+  const loadMessage = (
+    <div className="message">
+      {message}
+      {!hideDots && <Dots />}
+    </div>
+  );
   return (
     <div className={classnames('loader-wrapper', { center }, className)}>
       <div className="loader-container">
-        <div className="message">
-          {message}
-          {!hideDots && <Dots />}
-        </div>
+        {!flipLayout && loadMessage}
         {children && <div className="loader-content">{children}</div>}
+        {flipLayout && loadMessage}
       </div>
     </div>
   );

@@ -4,10 +4,11 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { useConfirmationModal } from '../../../hooks';
 import { app, auth, prompts } from '../../../state';
 import { time } from '../../../utils';
-import { Loader } from '../../atoms';
 import { SubmissionModal } from '../../modals';
+import { DragonLoader } from '../../molecules';
 import LoginToSubmitModal from './LoginToSubmitModal';
 import PromptOrganism from './PromptOrganism';
+import './styles/promptOrganismLoader.scss';
 
 function PromptOrganismContainer(): React.ReactElement {
   // Handle submission form modal state
@@ -87,7 +88,7 @@ function PromptOrganismContainer(): React.ReactElement {
 
 export default function PromptOrganismContainerFallback(): React.ReactElement {
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<DragonLoader className="prompt-organism-loader" />}>
       <PromptOrganismContainer />
     </Suspense>
   );
