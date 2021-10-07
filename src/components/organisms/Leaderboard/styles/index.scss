@@ -69,17 +69,24 @@
     align-items: center;
     flex-flow: column nowrap;
 
-    p:first-of-type {
-      font-family: $display-font;
-      font-size: 2rem;
-      line-height: 2.8rem;
-    }
-    p {
-      font-size: 1.6rem;
-      line-height: 2.4rem;
-      color: $gray-7;
-      font-family: $text-font;
-      text-align: center;
+    .empty-leaderboard-message-container {
+      border: 1px dashed $gray-5;
+      border-radius: 1.6rem;
+      padding: 2rem;
+
+      h2 {
+        font-family: $display-font;
+        color: $gray-8;
+        font-size: 1.4rem;
+        line-height: 2.6rem;
+      }
+      p {
+        font-size: 1.2rem;
+        line-height: 2rem;
+        color: $gray-8;
+        font-family: $text-font;
+        text-align: center;
+      }
     }
   }
 }

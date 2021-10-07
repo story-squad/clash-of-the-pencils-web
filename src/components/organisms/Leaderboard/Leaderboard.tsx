@@ -46,8 +46,10 @@ export default function Leaderboard({
       <Table headings={headings} rows={rows} />
       {rows.length === 0 && (
         <div className="empty-leaderboard-message">
-          <p>Leaderboard is currently empty.</p>
-          <p>Submit a story and try to make it to the top!</p>
+          <div className="empty-leaderboard-message-container">
+            <h2>Leaderboard is currently empty</h2>
+            <p>Submit a story and try to make it to the top!</p>
+          </div>
         </div>
       )}
     </section>

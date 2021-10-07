@@ -4,8 +4,8 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { useConfirmationModal } from '../../../hooks';
 import { app, auth, prompts } from '../../../state';
 import { time } from '../../../utils';
+import { Loader } from '../../atoms';
 import { SubmissionModal } from '../../modals';
-import { Loader } from '../../molecules';
 import LoginToSubmitModal from './LoginToSubmitModal';
 import PromptOrganism from './PromptOrganism';
 

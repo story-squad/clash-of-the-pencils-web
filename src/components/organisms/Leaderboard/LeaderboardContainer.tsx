@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { leaderboard } from '../../../state';
-import { Loader } from '../../molecules';
+import { Loader } from '../../atoms';
 import Leaderboard from './Leaderboard';
 
 function LeaderboardContainer(): React.ReactElement {

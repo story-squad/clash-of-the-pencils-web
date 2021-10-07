@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { Voting } from '../../../api';
 import { app, top3, voting } from '../../../state';
-import { Loader } from '../../molecules';
+import { Loader } from '../../atoms';
 import { VotingDragAndDropContext } from '../../providers';
 import VotingComponent from './Voting';
 

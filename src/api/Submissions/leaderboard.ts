@@ -30,8 +30,10 @@ export function getPaginationQuery({
   limit = 10,
   offset = 0,
 }: LeaderboardPaginationParams): string {
-  return new URLSearchParams({
+  const query = new URLSearchParams({
     limit: `${limit}`,
     offset: `${offset}`,
-  }).toString();
+  });
+  console.log({ query: query.toString() });
+  return query.toString();
 }
