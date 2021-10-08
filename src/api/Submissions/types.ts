@@ -34,3 +34,8 @@ export interface ILeaderboardItem {
   codename: string;
   rank: number;
 }
+
+export interface WeeklyLeaderboardItem extends ILeaderboardItem {
+  timesVoted?: number;
+  timesSubmitted?: number;
+}
