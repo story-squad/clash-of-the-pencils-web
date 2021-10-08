@@ -5,6 +5,7 @@ export * from './Dial';
 export * from './DropZone';
 export * from './InputField';
 export * from './InputLabel';
+export * from './Loader';
 export * from './LoadIcon';
 export * from './Picture';
 export * from './Sticker';

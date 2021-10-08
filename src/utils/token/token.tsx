@@ -10,29 +10,6 @@ export const STORAGE_KEY: string = process.env.REACT_APP_TOKEN_KEY || 'token';
  * you're sent back to the landing page.
  */
 export const get = (): string | null => localStorage.getItem(STORAGE_KEY);
-// // Read the token in from localStorage
-// const token = localStorage.getItem(STORAGE_KEY);
-// // If it's empty, return null
-// if (!token) return null;
-
-// try {
-//   // jwt_decode will throw an error if the token is invalid
-//   const decodedToken: DecodedToken = jwt_decode(token);
-//   // If the token is expired, we will also throw an error
-//   if (Date.now() >= decodedToken.exp * 1000) throw new Error();
-
-//   // If a flag is specified, return the correct data
-//   if (flag === 'username') return decodedToken.codename;
-//   if (flag === 'userEmail') return decodedToken.email;
-
-//   // Otherwise, we return the token
-//   return token;
-// } catch (err) {
-//   // If we hit an error at any point, the token will be cleared
-//   // and this function will return null
-//   clear();
-//   return null;
-// }
 
 /**
  * This function stores a token in localStorage
