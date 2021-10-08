@@ -36,6 +36,6 @@ export interface ILeaderboardItem {
 }
 
 export interface WeeklyLeaderboardItem extends ILeaderboardItem {
-  timesVoted?: number;
-  timesSubmitted?: number;
+  timesVoted: number;
+  timesSubmitted: number;
 }
