@@ -16,7 +16,7 @@ export default function LoginToSubmitModal({
       setIsOpen={setIsOpen}
       component={({ closeModal }) => (
         <div className="must-login-to-vote">
-          <h2>You must log in to vote!</h2>
+          <h2>You must log in to upload!</h2>
           <div className="button-wrapper">
             <Button onClick={closeModal} type="secondary">
               Cancel
