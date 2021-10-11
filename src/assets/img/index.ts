@@ -8,6 +8,7 @@ export { default as errorDragon } from './error-dragon.svg';
 export { default as greenBulletPoint } from './green-bullet-point.svg';
 export { default as handwritingExampleRotated } from './handwriting-example-rotated.jpg';
 export { default as handwritingExample } from './handwriting-example.jpg';
+export * as lbIcons from './lbIcons';
 export { default as orangeCloseButton } from './orange-close-button.svg';
 export { default as pencilMonsterHead } from './pencil-monster-head.png';
 export { default as pencilMonster } from './pencil-monster.png';

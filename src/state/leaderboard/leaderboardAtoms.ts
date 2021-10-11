@@ -14,7 +14,7 @@ export const daily = atom<Submissions.ILeaderboardItem[]>({
   }),
 });
 
-export const weekly = atom<Submissions.ILeaderboardItem[]>({
+export const weekly = atom<Submissions.WeeklyLeaderboardItem[]>({
   key: 'weeklyLeaderboard',
   default: selector({
     key: 'weeklyLeaderboardDefaultSelector',

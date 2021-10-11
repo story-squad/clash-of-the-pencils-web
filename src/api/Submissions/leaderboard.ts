@@ -1,5 +1,5 @@
 import { axiosWithoutAuth } from '../axiosWithConfig';
-import { ILeaderboardItem } from './types';
+import { ILeaderboardItem, WeeklyLeaderboardItem } from './types';
 
 export interface LeaderboardPaginationParams {
   limit?: number;
@@ -18,7 +18,7 @@ export const getDailyLeaderboard = async (
 
 export const getWeeklyLeaderboard = async (
   params: LeaderboardPaginationParams = {},
-): Promise<ILeaderboardItem[]> => {
+): Promise<WeeklyLeaderboardItem[]> => {
   const query = getPaginationQuery(params);
   const { data } = await axiosWithoutAuth().get(
     `/api/clash/leaderboard/weekly?${query}`,
