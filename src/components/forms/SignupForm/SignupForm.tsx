@@ -1,7 +1,7 @@
 import { ErrorMessage } from '@hookform/error-message';
 import { useAsync } from '@story-squad/react-utils';
 import { DateTime } from 'luxon';
-import React, { useCallback, useMemo, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Auth, Users } from '../../../api';
 import { dataConstraints } from '../../../config';
@@ -21,11 +21,19 @@ export default function SignupForm({
   // Clearing form error
   const clearFormError = () => clearErrors('form');
 
+  const [parentNeeded, setParentNeeded] = useState(false);
+
   // ref to password
   const password = useRef({});
   password.current = watch('password', '');
 
-  const parentNeeded = useMemo(() => calculate_age(watch('dob', '')), [watch]);
+  // ref to watch dob
+  const dob = useRef({});
+  dob.current = watch('dob', '');
+
+  useEffect(() => {
+    setParentNeeded(calculate_age(dob.current.toString()));
+  }, [dob.current]);
 
   // Custom error handler
   const errorHandler = useCallback(

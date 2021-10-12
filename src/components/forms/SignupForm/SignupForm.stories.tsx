@@ -1,6 +1,7 @@
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { RecoilRoot } from 'recoil';
 import { sleep } from '../../../utils';
 import SignupForm, { SignupFormProps } from './SignupForm';
 
@@ -23,7 +24,11 @@ export default {
   decorators: [
     (story) => {
       const methods = useForm();
-      return <FormProvider {...methods}>{story()}</FormProvider>;
+      return (
+        <RecoilRoot>
+          <FormProvider {...methods}>{story()}</FormProvider>
+        </RecoilRoot>
+      );
     },
   ],
 } as Meta;
