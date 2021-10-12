@@ -112,4 +112,22 @@ export default {
       />
     );
   },
+  parentEmail: function EmailInput({
+    rules,
+    ...props
+  }: FormInputMapProps = {}): React.ReactElement {
+    return (
+      <Input
+        {...props}
+        name="parentEmail"
+        label="Parent Email Address"
+        inputType="email"
+        rules={{
+          required: 'Parent email is required for users under 13!',
+          ...rules,
+        }}
+        placeholder="Parent Email Address"
+      />
+    );
+  },
 };

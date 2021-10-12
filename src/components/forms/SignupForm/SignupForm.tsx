@@ -1,12 +1,13 @@
 import { ErrorMessage } from '@hookform/error-message';
 import { useAsync } from '@story-squad/react-utils';
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Auth, Users } from '../../../api';
 import { Button, CleverButton, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import { authFormInputs } from '../inputs';
 import { dataConstraints } from '../../../config';
+import { DateTime } from 'luxon';
 import './styles/index.scss';
 
 export type SignupFormProps = FormProps<Users.INewUser>;
@@ -19,10 +20,19 @@ export default function SignupForm({
   const { handleSubmit, setError, clearErrors, watch } = useFormContext();
   // Clearing form error
   const clearFormError = () => clearErrors('form');
+  const [parentNeeded, setParentNeeded] = useState(false);
 
   // ref to password
   const password = useRef({});
   password.current = watch('password', '');
+
+  // ref to watch dob
+  const dob = useRef({});
+  dob.current = watch('dob', '');
+
+  useEffect(() => {
+    setParentNeeded(calculate_age(dob.current.toString()));
+  }, [dob.current]);
 
   // Custom error handler
   const errorHandler = useCallback(
@@ -50,10 +60,10 @@ export default function SignupForm({
 
   // calculate age
   function calculate_age(dob: string) {
-    const diff_ms = Date.now() - new Date(dob).getTime();
+    const diff_ms = DateTime.local().toMillis() - new Date(dob).getTime();
     const age_dt = new Date(diff_ms);
-
-    return Math.abs(age_dt.getUTCFullYear() - 1970);
+    // return boolean to control display of parent email field
+    return Math.abs(age_dt.getUTCFullYear() - 1970) < 13;
   }
 
   return (
@@ -83,16 +93,7 @@ export default function SignupForm({
           },
         },
       })}
-      {authFormInputs.birthday({
-        rules: {
-          validate: {
-            checkAge: (value) => {
-              const age = calculate_age(value);
-              return age > 12 || "Parent's email is required!";
-            },
-          },
-        },
-      })}
+      {authFormInputs.birthday()}
       {/* <Button onClick={nextPage} htmlType="button">
             Next
           </Button> */}
@@ -105,6 +106,7 @@ export default function SignupForm({
           },
         },
       })}
+      {parentNeeded ? authFormInputs.parentEmail() : null}
       {authFormInputs.password()}
       {authFormInputs.confirmPassword({
         rules: {
