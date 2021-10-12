@@ -1,13 +1,13 @@
 import { ErrorMessage } from '@hookform/error-message';
 import { useAsync } from '@story-squad/react-utils';
-import React, { useCallback, useRef, useEffect, useState } from 'react';
+import { DateTime } from 'luxon';
+import React, { useCallback, useMemo, useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Auth, Users } from '../../../api';
+import { dataConstraints } from '../../../config';
 import { Button, CleverButton, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import { authFormInputs } from '../inputs';
-import { dataConstraints } from '../../../config';
-import { DateTime } from 'luxon';
 import './styles/index.scss';
 
 export type SignupFormProps = FormProps<Users.INewUser>;
@@ -20,19 +20,12 @@ export default function SignupForm({
   const { handleSubmit, setError, clearErrors, watch } = useFormContext();
   // Clearing form error
   const clearFormError = () => clearErrors('form');
-  const [parentNeeded, setParentNeeded] = useState(false);
 
   // ref to password
   const password = useRef({});
   password.current = watch('password', '');
 
-  // ref to watch dob
-  const dob = useRef({});
-  dob.current = watch('dob', '');
-
-  useEffect(() => {
-    setParentNeeded(calculate_age(dob.current.toString()));
-  }, [dob.current]);
+  const parentNeeded = useMemo(() => calculate_age(watch('dob', '')), [watch]);
 
   // Custom error handler
   const errorHandler = useCallback(
@@ -55,7 +48,7 @@ export default function SignupForm({
   // Using useAsync for easier async render control
   const [exec, isLoading] = useAsync({
     asyncFunction: handleSubmit(onSubmit),
-    errorHandler,
+    onError: errorHandler,
   });
 
   // calculate age
