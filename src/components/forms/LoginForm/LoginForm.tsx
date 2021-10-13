@@ -36,12 +36,15 @@ export default function LoginForm({
   );
 
   const submitHandler: LoginFormProps['onSubmit'] = async (data) => {
-    clearFormError();
+    console.log('RUNNING SUBMIT');
     if (data.codename && dataConstraints.emailPattern.test(data.codename)) {
+      console.log('Detected email in codename field');
       await onSubmit({ email: data.codename, password: data.password });
     } else {
+      console.log('Detected codename in codename field');
       await onSubmit(data);
     }
+    console.log('SUBMIT COMPLETE');
   };
 
   const [exec, isLoading] = useAsync({
@@ -72,7 +75,11 @@ export default function LoginForm({
         true,
       )}
       {authFormInputs.password()}
-      <Button disabled={isLoading} iconRight={isLoading && <LoadIcon />}>
+      <Button
+        disabled={isLoading}
+        iconRight={isLoading && <LoadIcon />}
+        onClick={clearFormError}
+      >
         Sign In
       </Button>
     </form>
