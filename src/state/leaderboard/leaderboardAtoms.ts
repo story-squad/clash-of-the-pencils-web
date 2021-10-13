@@ -1,9 +1,11 @@
 import { atom, selector } from 'recoil';
 import { Submissions } from '../../api';
+import { persist } from '../effects';
 
 export const dailyIsOpen = atom<boolean>({
   key: 'dailyLeaderboardIsOpen',
   default: true,
+  effects_UNSTABLE: [persist('lb:open:state')],
 });
 
 export const daily = atom<Submissions.ILeaderboardItem[]>({
