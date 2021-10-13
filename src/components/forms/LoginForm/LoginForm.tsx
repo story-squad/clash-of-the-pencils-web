@@ -4,6 +4,7 @@ import React, { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Auth } from '../../../api';
 import { dataConstraints } from '../../../config';
+import { sleep } from '../../../utils';
 import { Button, CleverButton, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import { authFormInputs } from '../inputs';
@@ -35,11 +36,13 @@ export default function LoginForm({
     [onError],
   );
 
-  const submitHandler: LoginFormProps['onSubmit'] = (data) => {
+  const submitHandler: LoginFormProps['onSubmit'] = async (data) => {
+    clearFormError();
+    await sleep(1000);
     if (data.codename && dataConstraints.emailPattern.test(data.codename)) {
-      onSubmit({ email: data.codename, password: data.password });
+      await onSubmit({ email: data.codename, password: data.password });
     } else {
-      onSubmit(data);
+      await onSubmit(data);
     }
   };
 
@@ -55,7 +58,12 @@ export default function LoginForm({
       <p className="main-font">Sign In Using Story Squad Account</p>
       <ErrorMessage
         name="form"
-        render={({ message }) => <div className="server-error">{message}</div>}
+        render={({ message }) => (
+          <div className="server-error">
+            <span className="alt">*</span>
+            {message}
+          </div>
+        )}
       />
       {authFormInputs.codename(
         {
@@ -66,11 +74,7 @@ export default function LoginForm({
         true,
       )}
       {authFormInputs.password()}
-      <Button
-        disabled={isLoading}
-        iconRight={isLoading && <LoadIcon />}
-        onClick={clearFormError}
-      >
+      <Button disabled={isLoading} iconRight={isLoading && <LoadIcon />}>
         Sign In
       </Button>
     </form>

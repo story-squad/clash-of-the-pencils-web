@@ -10,6 +10,18 @@
     margin-bottom: 0.7rem;
   }
 
+  .server-error {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    font-family: $text-font;
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 1rem;
+    .alt {
+      color: $error;
+    }
+  }
+
   .alt-font {
     font-size: 1.2rem;
     line-height: 1.6rem;
