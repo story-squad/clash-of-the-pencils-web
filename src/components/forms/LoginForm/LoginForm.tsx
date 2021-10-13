@@ -4,7 +4,6 @@ import React, { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Auth } from '../../../api';
 import { dataConstraints } from '../../../config';
-import { sleep } from '../../../utils';
 import { Button, CleverButton, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import { authFormInputs } from '../inputs';
@@ -38,7 +37,6 @@ export default function LoginForm({
 
   const submitHandler: LoginFormProps['onSubmit'] = async (data) => {
     clearFormError();
-    await sleep(1000);
     if (data.codename && dataConstraints.emailPattern.test(data.codename)) {
       await onSubmit({ email: data.codename, password: data.password });
     } else {
