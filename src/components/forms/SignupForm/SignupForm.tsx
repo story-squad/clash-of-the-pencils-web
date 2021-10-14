@@ -32,7 +32,9 @@ export default function SignupForm({
   dob.current = watch('dob', '');
 
   useEffect(() => {
-    setParentNeeded(calculate_age(dob.current.toString()));
+    if (dob.current) {
+      setParentNeeded(calculate_age(dob.current.toString()));
+    }
   }, [dob.current]);
 
   // Custom error handler
@@ -41,8 +43,17 @@ export default function SignupForm({
       ((error: unknown) => {
         if (error) {
           let message: string;
-          if (Auth.isAxiosError(error) && error.response?.data?.message) {
-            message = error.response.data.message;
+          if (Auth.isAxiosError(error) && error.response?.data) {
+            message =
+              error.response.data.message ??
+              error.response.data.error ??
+              error.message;
+            if (
+              message === 'Could not create duplicate' &&
+              typeof error.response.data.field === 'string'
+            ) {
+              message = `An account with this ${error.response.data.field} already exists`;
+            }
           } else {
             message = 'An unknown error occurred. Please try again.';
           }
