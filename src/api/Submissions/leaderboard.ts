@@ -1,39 +1,57 @@
 import { axiosWithoutAuth } from '../axiosWithConfig';
-import { ILeaderboardItem, WeeklyLeaderboardItem } from './types';
 
-export interface LeaderboardPaginationParams {
-  limit?: number;
-  offset?: number;
+/** Daily Leaderboard */
+
+export interface ILeaderboardItem {
+  score: number;
+  codename: string;
+  rank: number;
 }
 
 export const getDailyLeaderboard = async (
-  params: LeaderboardPaginationParams = {},
+  params: LeaderboardParams = {},
 ): Promise<ILeaderboardItem[]> => {
-  const query = getPaginationQuery(params);
+  const query = getLbQuery(params);
   const { data } = await axiosWithoutAuth().get(
     `/api/clash/leaderboard/daily?${query}`,
   );
   return data;
 };
 
+/** Weekly Leaderboard */
+
+export interface WeeklyLeaderboardItem extends ILeaderboardItem {
+  timesVoted: number;
+  timesSubmitted: number;
+}
+
 export const getWeeklyLeaderboard = async (
-  params: LeaderboardPaginationParams = {},
+  params: LeaderboardParams = {},
 ): Promise<WeeklyLeaderboardItem[]> => {
-  const query = getPaginationQuery(params);
+  const query = getLbQuery(params);
   const { data } = await axiosWithoutAuth().get(
     `/api/clash/leaderboard/weekly?${query}`,
   );
   return data;
 };
 
-export function getPaginationQuery({
+/** Pagination Query */
+
+export interface LeaderboardParams {
+  limit?: number;
+  offset?: number;
+  getBuffer?: boolean;
+}
+
+function getLbQuery({
   limit = 10,
   offset = 0,
-}: LeaderboardPaginationParams): string {
+  getBuffer = false,
+}: LeaderboardParams): string {
   const query = new URLSearchParams({
     limit: `${limit}`,
     offset: `${offset}`,
+    getBuffer: `${getBuffer}`,
   });
-  console.log({ query: query.toString() });
   return query.toString();
 }

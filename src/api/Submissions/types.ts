@@ -28,14 +28,3 @@ export interface INewSubmission {
   sourceId?: number;
   rumbleId?: number;
 }
-
-export interface ILeaderboardItem {
-  score: number;
-  codename: string;
-  rank: number;
-}
-
-export interface WeeklyLeaderboardItem extends ILeaderboardItem {
-  timesVoted: number;
-  timesSubmitted: number;
-}

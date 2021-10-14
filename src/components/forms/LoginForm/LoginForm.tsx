@@ -35,12 +35,16 @@ export default function LoginForm({
     [onError],
   );
 
-  const submitHandler: LoginFormProps['onSubmit'] = (data) => {
+  const submitHandler: LoginFormProps['onSubmit'] = async (data) => {
+    console.log('RUNNING SUBMIT');
     if (data.codename && dataConstraints.emailPattern.test(data.codename)) {
-      onSubmit({ email: data.codename, password: data.password });
+      console.log('Detected email in codename field');
+      await onSubmit({ email: data.codename, password: data.password });
     } else {
-      onSubmit(data);
+      console.log('Detected codename in codename field');
+      await onSubmit(data);
     }
+    console.log('SUBMIT COMPLETE');
   };
 
   const [exec, isLoading] = useAsync({
@@ -55,7 +59,12 @@ export default function LoginForm({
       <p className="main-font">Sign In Using Story Squad Account</p>
       <ErrorMessage
         name="form"
-        render={({ message }) => <div className="server-error">{message}</div>}
+        render={({ message }) => (
+          <div className="server-error">
+            <span className="alt">*</span>
+            {message}
+          </div>
+        )}
       />
       {authFormInputs.codename(
         {
