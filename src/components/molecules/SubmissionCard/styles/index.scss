@@ -8,6 +8,18 @@
       aspect-ratio: 1.3;
     }
   }
+
+  &:hover {
+    .image.can-preview .image-inner {
+      transition: all 0.15s ease-out;
+      transform: scale(1.05);
+    }
+    .submission-card-footer {
+      transition: all 0.15s ease-in-out;
+      background-color: $brand-orange-6;
+    }
+  }
+
   .submission-card-footer {
     // Layout
     display: flex;
@@ -19,11 +31,7 @@
     // Design
     cursor: pointer;
     background-color: $brand-orange;
-    transition: all 0.05s ease-in-out;
-    &:hover {
-      transition: all 0.05s ease-in-out;
-      background-color: $brand-orange-6;
-    }
+    transition: all 0.15s ease-in-out;
 
     .sticker {
       &.read-me {

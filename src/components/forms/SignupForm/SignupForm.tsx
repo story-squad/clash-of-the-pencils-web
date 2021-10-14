@@ -1,8 +1,10 @@
 import { ErrorMessage } from '@hookform/error-message';
 import { useAsync } from '@story-squad/react-utils';
-import React, { useCallback } from 'react';
+import { DateTime } from 'luxon';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Auth, Users } from '../../../api';
+import { dataConstraints } from '../../../config';
 import { Button, CleverButton, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import { authFormInputs } from '../inputs';
@@ -15,17 +17,43 @@ export default function SignupForm({
   onError,
 }: SignupFormProps): React.ReactElement {
   // Standard form handlers
-  const { handleSubmit, setError, clearErrors } = useFormContext();
+  const { handleSubmit, setError, clearErrors, watch } = useFormContext();
   // Clearing form error
   const clearFormError = () => clearErrors('form');
+
+  const [parentNeeded, setParentNeeded] = useState(false);
+
+  // ref to password
+  const password = useRef({});
+  password.current = watch('password', '');
+
+  // ref to watch dob
+  const dob = useRef({});
+  dob.current = watch('dob', '');
+
+  useEffect(() => {
+    if (dob.current) {
+      setParentNeeded(calculate_age(dob.current.toString()));
+    }
+  }, [dob.current]);
+
   // Custom error handler
   const errorHandler = useCallback(
     onError ?? // If a custom error handler was provided, use it instead of our function
       ((error: unknown) => {
         if (error) {
           let message: string;
-          if (Auth.isAxiosError(error) && error.response?.data?.message) {
-            message = error.response.data.message;
+          if (Auth.isAxiosError(error) && error.response?.data) {
+            message =
+              error.response.data.message ??
+              error.response.data.error ??
+              error.message;
+            if (
+              message === 'Could not create duplicate' &&
+              typeof error.response.data.field === 'string'
+            ) {
+              message = `An account with this ${error.response.data.field} already exists`;
+            }
           } else {
             message = 'An unknown error occurred. Please try again.';
           }
@@ -42,30 +70,73 @@ export default function SignupForm({
     onError: errorHandler,
   });
 
+  // calculate age
+  function calculate_age(dob: string) {
+    const diff_ms = DateTime.local().toMillis() - new Date(dob).getTime();
+    const age_dt = new Date(diff_ms);
+    // return boolean to control display of parent email field
+    return Math.abs(age_dt.getUTCFullYear() - 1970) < 13;
+  }
+
   return (
-    <form className="signup-form" onSubmit={exec}>
+    <form className="signup-form" onSubmit={exec} noValidate>
       <CleverButton htmlType="button" />
       <p className="alt-font">or</p>
       <p className="main-font">Sign In Using Email Address</p>
-      <ErrorMessage
-        name="form"
-        render={({ message }) => <div className="server-error">{message}</div>}
-      />
       {/* First page */}
       {authFormInputs.firstname()}
       {authFormInputs.lastname()}
-      {authFormInputs.codename()}
+      {authFormInputs.codename({
+        rules: {
+          validate: {
+            checkCharacters: (value) => {
+              return (
+                dataConstraints.codenamePattern.test(value) ||
+                'Only letters and numbers are allowed!'
+              );
+            },
+            checkLength: (value) => {
+              return value.length < 15 || 'Cannot be more than 15 characters!';
+            },
+          },
+        },
+      })}
       {authFormInputs.birthday()}
       {/* <Button onClick={nextPage} htmlType="button">
             Next
           </Button> */}
       {/* Second page */}
-      {authFormInputs.email()}
+      {authFormInputs.email({
+        rules: {
+          pattern: {
+            value: dataConstraints.emailPattern,
+            message: 'Please enter a valid email address!',
+          },
+        },
+      })}
+      {parentNeeded ? authFormInputs.parentEmail() : null}
       {authFormInputs.password()}
-      {authFormInputs.confirmPassword()}
+      {authFormInputs.confirmPassword({
+        rules: {
+          validate: {
+            checkPassword: (value) => {
+              return password.current === value || 'Passwords do not match.';
+            },
+          },
+        },
+      })}
       {/* <Button onClick={prevPage} htmlType="button" type="secondary">
             Back
           </Button> */}
+      <ErrorMessage
+        name="form"
+        render={({ message }) => (
+          <div className="server-error">
+            <span className="red">*</span>
+            {message}
+          </div>
+        )}
+      />
       <Button
         disabled={isLoading}
         htmlType="submit"

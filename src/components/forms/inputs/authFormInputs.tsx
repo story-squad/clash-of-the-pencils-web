@@ -33,6 +33,30 @@ export default {
             value: 8,
             message: 'Password must be at least 8 characters',
           },
+          validate: {
+            // checks entered password value contains required characters
+            includesCapital: (value) => {
+              const pattern = /[A-Z]/;
+              return (
+                pattern.test(value) ||
+                'Password must include at least 1 capital letter.'
+              );
+            },
+            includesNumber: (value) => {
+              const pattern = /[0-9]/;
+              return (
+                pattern.test(value) ||
+                'Password must include at least 1 number.'
+              );
+            },
+            // checks that entered password value is a minimum of 8 chars
+            checkLength: (value) => {
+              return (
+                (value.length >= 8 && value.length <= 32) ||
+                'Password must be between 8 and 32 characters.'
+              );
+            },
+          },
           ...rules,
         }}
         placeholder="Password must be at least 8 characters"
@@ -109,6 +133,24 @@ export default {
         inputType="email"
         rules={{ required: 'Email is required!', ...rules }}
         placeholder="Email Address"
+      />
+    );
+  },
+  parentEmail: function EmailInput({
+    rules,
+    ...props
+  }: FormInputMapProps = {}): React.ReactElement {
+    return (
+      <Input
+        {...props}
+        name="parentEmail"
+        label="Parent Email Address"
+        inputType="email"
+        rules={{
+          required: 'Parent email is required for users under 13!',
+          ...rules,
+        }}
+        placeholder="Parent Email Address"
       />
     );
   },

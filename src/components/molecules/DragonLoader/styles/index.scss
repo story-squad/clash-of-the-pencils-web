@@ -1,0 +1,23 @@
+@import '../../../../styles/newIndex.scss';
+
+.dragon-loader {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  .image {
+    padding: 3.5rem;
+    border: 1px dashed $white;
+    border-radius: 40rem;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 2rem;
+    @include spin(1.2s);
+  }
+  .message {
+    font-family: $display-font;
+    font-size: 3rem;
+    line-height: 3rem;
+  }
+}

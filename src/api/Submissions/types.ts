@@ -28,9 +28,3 @@ export interface INewSubmission {
   sourceId?: number;
   rumbleId?: number;
 }
-
-export interface ILeaderboardItem {
-  score: number;
-  codename: string;
-  rank: number;
-}

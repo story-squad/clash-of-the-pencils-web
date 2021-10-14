@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { auth } from '../../../state';
-import { Loader } from '../../molecules';
+import { Loader } from '../../atoms';
 import { Modal, ModalProps } from '../../organisms';
 import './styles/index.scss';
 

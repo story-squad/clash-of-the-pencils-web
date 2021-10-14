@@ -1,0 +1,12 @@
+@import '../../../../styles/newIndex.scss';
+
+.leaderboard-loader {
+  background-color: $brand-orange-1;
+
+  .image {
+    border-color: $brand-blue-4;
+  }
+  .message {
+    color: $brand-blue-4;
+  }
+}

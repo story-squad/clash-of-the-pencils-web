@@ -18,13 +18,7 @@ export default function VotingCardList({
 }): React.ReactElement {
   return (
     <CardList>
-      {['admin', 'submit'].indexOf(phase) >= 0 ? (
-        <>
-          <EmptyCard />
-          <EmptyCard />
-          <EmptyCard />
-        </>
-      ) : (
+      {phase === 'vote' ? (
         top3.map((sub, i) => (
           <SubmissionCard
             key={sub.id}
@@ -36,6 +30,12 @@ export default function VotingCardList({
             userHasVoted={userHasVoted}
           />
         ))
+      ) : (
+        <>
+          <EmptyCard />
+          <EmptyCard />
+          <EmptyCard />
+        </>
       )}
     </CardList>
   );

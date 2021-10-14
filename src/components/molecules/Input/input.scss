@@ -1,9 +1,11 @@
+@import '../../../styles/newIndex.scss';
+
 .message {
-  font-family: Open Sans;
+  font-family: $ui-font;
   font-style: normal;
   font-weight: normal;
   font-size: 1.2rem;
   line-height: 1.6rem;
   margin-top: 0.2rem;
-  color: #e82f2f;
+  color: $error;
 }
