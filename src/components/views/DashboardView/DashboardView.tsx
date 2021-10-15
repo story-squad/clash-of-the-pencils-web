@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Leaderboard,
   Prompt,
-  StreamOrganism,
   TwoColumn,
   VotingOrganism,
 } from '../../organisms';
@@ -21,7 +20,7 @@ export default function DashboardView({
       <FullscreenImageOverlay />
       <TwoColumn left={<Prompt />} right={<Leaderboard />} />
       <VotingOrganism submitVotes={submitVotes} />
-      <StreamOrganism />
+      {/* <StreamOrganism /> */}
     </DashboardTemplate>
   );
 }
