@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
+import { default as OfflineStreamVideo } from './OfflineStreamVideo';
 import './styles/index.scss';
 
 const PlayerState = {
@@ -11,11 +12,10 @@ const PlayerState = {
   CUED: 5,
 } as const;
 
-const streamURL =
-  'https://www.youtube.com/embed/live_stream?channel=UC0oA3AzYAj0Rnfg2Yhvrnqw';
+const streamURL = process.env.REACT_APP_LIVESTREAM_URL;
 
 export default function Stream(): React.ReactElement {
-  const [renderFallback, setRenderFallback] = useState(false);
+  const [renderFallback, setRenderFallback] = useState(streamURL === undefined);
   const hidePlayer = () => setRenderFallback(true);
 
   const [playing, setPlaying] = useState(false);
@@ -27,19 +27,22 @@ export default function Stream(): React.ReactElement {
       {renderFallback ? (
         <>
           <h2>Latest Livestream</h2>
-          <OfflineStreamComponent />
+          <OfflineStreamVideo />
         </>
       ) : (
         <>
           <h2>Stream is Live!</h2>
           <ReactPlayer
+            url={streamURL}
             playing={playing}
             onReady={start}
-            url={streamURL}
-            fallback={<OfflineStreamComponent />}
             config={{
               youtube: {
-                onUnstarted: hidePlayer,
+                // TODO Figure out how much of this is actually working
+                onUnstarted: (...a) => {
+                  console.log('[YTUNSTRT]', a);
+                  hidePlayer();
+                },
                 playerVars: {
                   events: {
                     onStateChange: (
@@ -49,9 +52,9 @@ export default function Stream(): React.ReactElement {
                       if (stateVal === PlayerState.ENDED) hidePlayer();
                     },
                     onError: (e: unknown) => {
+                      console.log('[YTERR]', e);
                       stop();
                       hidePlayer();
-                      console.log('[YTERR]', e);
                     },
                   },
                 },
@@ -60,15 +63,6 @@ export default function Stream(): React.ReactElement {
           />
         </>
       )}
-    </div>
-  );
-}
-
-export function OfflineStreamComponent(): React.ReactElement {
-  return (
-    <div className="offline-stream-component">
-      <p>Stream is now offline</p>
-      {/* TODO put the past stream vid here */}
     </div>
   );
 }
