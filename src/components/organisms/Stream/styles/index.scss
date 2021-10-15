@@ -1,17 +1,26 @@
 @import '../../../../styles/newIndex.scss';
 
-.stream-wrapper {
+.stream {
   background-color: $gray-9;
-  .stream {
-    @include safe-zone();
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    padding: 2rem;
-    .offline-stream-component {
-      p {
-        font-family: $text-font;
-      }
+  @include safe-zone();
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding: 2rem;
+  gap: 2rem;
+  .offline-stream-component {
+    p {
+      font-family: $text-font;
+      color: $white;
     }
+  }
+  > div {
+  }
+
+  h2 {
+    font-family: $display-font;
+    color: $lime-green;
+    font-size: 2.4rem;
+    line-height: 3.2rem;
   }
 }
