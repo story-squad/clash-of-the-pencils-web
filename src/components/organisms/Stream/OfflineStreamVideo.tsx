@@ -15,10 +15,9 @@ function OfflineStreamVideo(): React.ReactElement {
         <>
           <h2>Latest Stream</h2>
           <ReactPlayer
-            playing
             url={url}
             controls
-            volume={0.4}
+            volume={0.1}
             onEnded={() => console.log('ended')}
             onError={(e) => {
               throw e;
