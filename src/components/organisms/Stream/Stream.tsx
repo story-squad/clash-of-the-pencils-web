@@ -1,11 +1,13 @@
+import { ErrorBoundary } from '@story-squad/react-utils';
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
 import { default as OfflineStreamVideo } from './OfflineStreamVideo';
-import './styles/index.scss';
+import StreamFailureFallback from './StreamFailureFallback';
+import StreamWrapper from './StreamWrapper';
 
 const streamURL = process.env.REACT_APP_LIVESTREAM_URL;
 
-export default function Stream(): React.ReactElement {
+function Stream(): React.ReactElement {
   const [playing, setPlaying] = useState(false);
   const [renderFallback, setRenderFallback] = useState(streamURL === undefined);
   const hidePlayer = () => {
@@ -15,25 +17,28 @@ export default function Stream(): React.ReactElement {
     setPlaying(true);
   };
 
+  if (renderFallback) return <OfflineStreamVideo />;
+  else {
+    return (
+      <StreamWrapper>
+        {playing && <h2>Streaming Now!</h2>}
+        <ReactPlayer
+          url={streamURL}
+          playing={playing}
+          onReady={onReady}
+          onError={hidePlayer}
+          stopOnUnmount
+          config={{ youtube: { onUnstarted: hidePlayer } }}
+        />
+      </StreamWrapper>
+    );
+  }
+}
+
+export default function StreamErrorBound(): React.ReactElement {
   return (
-    <div className="stream-wrapper">
-      <div className="stream">
-        <h2>
-          {playing && !renderFallback ? 'Streaming Now!' : 'Latest Livestream'}
-        </h2>
-        {renderFallback ? (
-          <OfflineStreamVideo />
-        ) : (
-          <ReactPlayer
-            url={streamURL}
-            playing={playing}
-            onReady={onReady}
-            onError={hidePlayer}
-            stopOnUnmount
-            config={{ youtube: { onUnstarted: hidePlayer } }}
-          />
-        )}
-      </div>
-    </div>
+    <ErrorBoundary fallback={StreamFailureFallback}>
+      <Stream />
+    </ErrorBoundary>
   );
 }
