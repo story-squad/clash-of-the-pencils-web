@@ -3,15 +3,29 @@ import ReactPlayer from 'react-player';
 import { useRecoilValue } from 'recoil';
 import { app } from '../../../state';
 import { Loader } from '../../atoms';
+import StreamFailureFallback from './StreamFailureFallback';
+import StreamWrapper from './StreamWrapper';
 
 function OfflineStreamVideo(): React.ReactElement {
   const { url } = useRecoilValue(app.streams.latest);
 
   return (
-    <div className="offline-stream-component">
-      {/* TODO put the past stream vid here */}
-      <ReactPlayer url={url} />
-    </div>
+    <StreamWrapper>
+      {url ? (
+        <>
+          <h2>Latest Stream</h2>
+          <ReactPlayer
+            url={url}
+            onEnded={() => console.log('ended')}
+            onError={(e) => {
+              throw e;
+            }}
+          />
+        </>
+      ) : (
+        <StreamFailureFallback />
+      )}
+    </StreamWrapper>
   );
 }
 
