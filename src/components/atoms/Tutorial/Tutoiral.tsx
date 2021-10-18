@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '..';
+import { DragonLoader } from '../../molecules';
 import './styles/index.scss';
+import TutorialModal from './TutorialModal';
+
+export interface TutorialProps {
+  noTutorial: () => void;
+  runTutorial: () => void;
+}
 
 const Tutorial = (): React.ReactElement => {
   const [messageItem, setMessage] = useState(0);
-  const [showTutorial, setShowTutorial] = useState(true);
+  const [showTutorial, setShowTutorial] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [modalIsOpen, setModalIsOpen] = useState(true);
 
   const tutorialMessages: { message: string; key: number }[] = [
     {
@@ -47,8 +56,11 @@ const Tutorial = (): React.ReactElement => {
   ];
 
   const CheckLocalStorage = () => {
-    if (localStorage.getItem('this is tutorial key')) {
+    setLoading(false);
+    if (localStorage.getItem('tutorial-Key')) {
       setShowTutorial(false);
+      setModalIsOpen(false);
+      setLoading(false);
     } else return;
   };
 
@@ -60,24 +72,55 @@ const Tutorial = (): React.ReactElement => {
     if (tutorialMessages[messageItem].key !== 7) {
       setMessage((prev) => (prev + 1) % tutorialMessages.length);
     } else {
-      localStorage.setItem('this is tutorial key', 'turkey');
+      localStorage.setItem('tutorial-Key', 'turkey');
       setShowTutorial(false);
+      setLoading(false);
     }
   };
 
+  const NoTutorial = () => {
+    localStorage.setItem('tutorial-Key', 'turkey');
+    setShowTutorial(false);
+    setModalIsOpen(false);
+  };
+
+  const RunTutorial = () => {
+    setShowTutorial(true);
+    setModalIsOpen(false);
+  };
+  console.log(modalIsOpen);
   return (
     <>
-      {showTutorial && (
+      {loading ? (
         <div className="tutorial-wrapper">
-          <div>
-            <div className="dashboard-tutorial-content">
-              <p>{tutorialMessages[messageItem].message}</p>
-              <div>
-                <Button onClick={() => nextItem()}>Next</Button>
-              </div>
-            </div>
+          <div className="tutorial-loader">
+            <DragonLoader />
           </div>
         </div>
+      ) : (
+        <>
+          {modalIsOpen ? (
+            <TutorialModal
+              setIsOpen={setModalIsOpen}
+              isOpen={modalIsOpen}
+              noTutorial={NoTutorial}
+              runTutorial={RunTutorial}
+            />
+          ) : (
+            showTutorial && (
+              <div className="tutorial-wrapper">
+                <div>
+                  <div className="dashboard-tutorial-content">
+                    <p>{tutorialMessages[messageItem].message}</p>
+                    <div>
+                      <Button onClick={() => nextItem()}>Next</Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+          )}
+        </>
       )}
     </>
   );

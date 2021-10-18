@@ -28,4 +28,15 @@
       padding-bottom: 2rem;
     }
   }
+
+  //Loading Spinner CSS For Tutorial only
+  .tutorial-loader {
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    // color: $white;
+    margin: auto;
+    align-items: center;
+    height: 100vh;
+  }
 }
