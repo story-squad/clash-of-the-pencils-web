@@ -15,9 +15,7 @@ export default function VotingDragAndDropContext({
   const updateDrop = useSetRecoilState(dnd.updateDropZone);
 
   const voting__onDragStart = useCallback(
-    ({ source, draggableId }: DragStart, {}: ResponderProvided) => {
-      console.log(draggableId, source);
-    },
+    ({}: DragStart, {}: ResponderProvided) => undefined,
     [updateDrop],
   );
 
@@ -26,7 +24,6 @@ export default function VotingDragAndDropContext({
       { source, destination, draggableId }: DropResult,
       {}: ResponderProvided,
     ) => {
-      console.log(draggableId, source, destination);
       if (!destination) return; // Do nothing!
       if (
         destination.droppableId === source.droppableId &&
