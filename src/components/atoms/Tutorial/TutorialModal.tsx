@@ -41,7 +41,8 @@ const TutorialModalComponent = ({
   return (
     <div className="tutorial-modal">
       {/* Temp text placeholder */}
-      <h1>Hi Brandon, welcome to Clash of the Pencils!</h1>
+      {/* This needs to change based on if the user is logged in or not */}
+      <h1>Hi Scribble Agent, welcome to Clash of the Pencils!</h1>
       <p>
         Let’s get you started by going through your dashboard. Do you want to
         run the tutorial?

@@ -7,25 +7,49 @@
   width: 100%;
   height: 100%;
   background-color: rgba(16, 16, 17, 0.8);
-  .dashboard-tutorial-content {
-    border: 2px solid $brand-orange;
-    padding: 32px;
-    border-radius: 16px;
-    z-index: 3;
-    width: 80%;
-    padding: 20px 0px;
-    margin: auto;
-    opacity: 1;
-    background-color: $white;
+  .tutorial-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    p {
-      font-family: $lato;
-      font-size: 18px;
-      line-height: 26px;
-      text-align: center;
-      padding-bottom: 2rem;
+    padding-top: 10rem;
+    .arrow {
+      animation: bounce 1s infinite;
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(-10%);
+          animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+        }
+        50% {
+          transform: translateY(0);
+          animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+        }
+      }
+    }
+    .dashboard-tutorial-content {
+      @media (min-width: $tablet) {
+        width: 324px;
+      }
+      border: 2px solid $brand-orange;
+      padding: 32px;
+      border-radius: 16px;
+      z-index: 3;
+      width: 80%;
+      padding: 20px 0px;
+      margin: auto;
+      margin-top: 30px;
+      opacity: 1;
+      background-color: $white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      p {
+        font-family: $lato;
+        font-size: 18px;
+        line-height: 26px;
+        text-align: center;
+        padding: 2rem;
+      }
     }
   }
 

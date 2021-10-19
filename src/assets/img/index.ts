@@ -5,6 +5,7 @@ export { ReactComponent as ClockFaceLines } from './clock-face-lines.svg';
 export { default as dragonBoi } from './dragon-boi.svg';
 export { default as emptyCardBackground } from './empty-card-background.svg';
 export { default as errorDragon } from './error-dragon.svg';
+export { default as greenArrow } from './green-arrow.svg';
 export { default as greenBulletPoint } from './green-bullet-point.svg';
 export { default as handwritingExampleRotated } from './handwriting-example-rotated.jpg';
 export { default as handwritingExample } from './handwriting-example.jpg';
