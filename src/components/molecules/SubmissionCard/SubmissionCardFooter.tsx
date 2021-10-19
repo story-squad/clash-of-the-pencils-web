@@ -20,7 +20,7 @@ export default function SubmissionCardFooter({
     <div className="submission-card-footer">
       <div className="content-left">
         <h2>{codename}</h2>
-        <h3>Age: {age}</h3>
+        <h3>Age: {age > 18 ? '18+' : age}</h3>
       </div>
       <SubmissionCardFooterBadge {...props} />
     </div>
