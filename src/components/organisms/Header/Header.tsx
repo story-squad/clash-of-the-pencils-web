@@ -36,9 +36,13 @@ export default function Header({
             openDashboard={openDashboard}
           />
           <h1 onClick={openDashboard}>Clash of the Pencils</h1>
-          <TabletNav user={user} />
+          <TabletNav user={user} closeMenu={closeMenuIfOpen} />
         </section>
-        <MobileNav isMenuOpen={isMenuOpen} user={user} />
+        <MobileNav
+          isMenuOpen={isMenuOpen}
+          user={user}
+          closeMenu={closeMenuIfOpen}
+        />
       </div>
     </header>
   );
