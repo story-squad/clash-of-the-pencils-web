@@ -6,7 +6,7 @@ import MobileNav from './MobileNav';
 import './styles/index.scss';
 import TabletNav from './TabletNav';
 
-type IHeaderProps = IHeaderIconProps & {
+type IHeaderProps = Omit<IHeaderIconProps, 'closeMenu'> & {
   user?: Omit<Users.IUser, 'password'> | undefined;
   openDashboard: () => void;
 };
