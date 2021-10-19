@@ -1,24 +1,23 @@
 import React from 'react';
-import { voting } from '../../../state';
 import { time } from '../../../utils';
 import { Sticker } from '../../atoms';
-import SubmissionCardDropZone from './SubmissionCardDropZone';
+import SubmissionCardDropZone, {
+  SubmissionCardDropZoneProps,
+} from './SubmissionCardDropZone';
 
 export interface SubmissionCardFooterProps
   extends SubmissionCardFooterBadgeProps {
   codename: string;
   age: number;
-  openSubmission: () => void;
 }
 
 export default function SubmissionCardFooter({
   age,
   codename,
-  openSubmission,
   ...props
 }: SubmissionCardFooterProps): React.ReactElement {
   return (
-    <div className="submission-card-footer" onClick={openSubmission}>
+    <div className="submission-card-footer">
       <div className="content-left">
         <h2>{codename}</h2>
         <h3>Age: {age}</h3>
@@ -28,8 +27,7 @@ export default function SubmissionCardFooter({
   );
 }
 
-interface SubmissionCardFooterBadgeProps {
-  position: voting.Places;
+interface SubmissionCardFooterBadgeProps extends SubmissionCardDropZoneProps {
   hasRead: boolean;
   phase: time.eventType;
   hasReadAll: boolean;
@@ -39,13 +37,13 @@ interface SubmissionCardFooterBadgeProps {
 function SubmissionCardFooterBadge({
   hasRead,
   phase,
-  position,
   hasReadAll,
   userHasVoted,
+  ...dropZoneProps
 }: SubmissionCardFooterBadgeProps): React.ReactElement {
   const readMeSticker = <Sticker type="readMe" className="read-me" />;
   const checkSticker = <Sticker type="checkmark" />;
-  const dropZoneSticker = <SubmissionCardDropZone position={position} />;
+  const dropZoneSticker = <SubmissionCardDropZone {...dropZoneProps} />;
   if (phase === 'vote') {
     if (userHasVoted) {
       return checkSticker;
