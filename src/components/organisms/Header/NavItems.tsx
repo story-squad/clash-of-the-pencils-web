@@ -12,7 +12,9 @@ export default function NavItems(props: NavProps): React.ReactElement {
       <ul>
         {props.user && <li>Welcome, {props.user.codename}!</li>}
         <li>
-          <Link to="/schedule">Daily Schedule</Link>
+          <Link to="/schedule" onClick={props.closeMenu}>
+            Daily Schedule
+          </Link>
         </li>
         {/* <li>
           <a>Tutorial</a>
@@ -23,10 +25,11 @@ export default function NavItems(props: NavProps): React.ReactElement {
   );
 }
 
-function NavAuthControl({ user }: NavProps): React.ReactElement {
+function NavAuthControl({ user, closeMenu }: NavProps): React.ReactElement {
   const setAuthValues = useSetRecoilState(auth.login);
   const logout = useCallback(() => {
     setAuthValues(undefined);
+    closeMenu();
   }, [setAuthValues]);
 
   const [modal, confirmLogout] = useConfirmationModal({
@@ -52,10 +55,14 @@ function NavAuthControl({ user }: NavProps): React.ReactElement {
   ) : (
     <>
       <li>
-        <Link to="/login">Log In</Link>
+        <Link to="/login" onClick={closeMenu}>
+          Log In
+        </Link>
       </li>
       <li>
-        <Link to="/signup">Sign Up</Link>
+        <Link to="/signup" onClick={closeMenu}>
+          Sign Up
+        </Link>
       </li>
     </>
   );

@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { RecoilRoot } from 'recoil';
 import { submissionData } from '../../../data';
-import { app, top3 } from '../../../state';
+import { app, submissions } from '../../../state';
 import { sleep, time } from '../../../utils';
 import { VotingDragAndDropContext } from '../../providers';
 import { FullscreenImageOverlay } from '../../views';
@@ -28,7 +28,7 @@ export default {
     (story) => (
       <RecoilRoot
         initializeState={({ set }) => {
-          set(top3.top3List, submissionData.slice(0, 3));
+          set(submissions.top3.add, submissionData.slice(0, 3));
           set(app.now, time.schedule.vote.start);
         }}
       >

@@ -12,7 +12,8 @@
   &:hover {
     .image.can-preview .image-inner {
       transition: all 0.15s ease-out;
-      transform: scale(1.05);
+      filter: brightness(0.8);
+      transform: scale(1.025);
     }
     .submission-card-footer {
       transition: all 0.15s ease-in-out;

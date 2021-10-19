@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import { ActivationModal } from './components/modals';
 import {
   DashboardView,
+  ErrorView,
   LoginView,
   ScheduleView,
   SignupView,
@@ -15,8 +16,13 @@ const App = (): React.ReactElement => {
       {/* <SEO /> */}
       {/* <CookiePopup /> */}
       <Switch>
-        {/* Public Routes */}
+        {/* Dashboard Route */}
         <Route exact path="/" component={DashboardView} />
+
+        {/* Error Handler Route */}
+        <Route path="/error" component={ErrorView} />
+
+        {/* Public Routes */}
         <Route
           path="/login"
           render={({ history }) => (

@@ -6,7 +6,7 @@ import MobileNav from './MobileNav';
 import './styles/index.scss';
 import TabletNav from './TabletNav';
 
-type IHeaderProps = IHeaderIconProps & {
+type IHeaderProps = Omit<IHeaderIconProps, 'closeMenu'> & {
   user?: Omit<Users.IUser, 'password'> | undefined;
   openDashboard: () => void;
 };
@@ -25,6 +25,10 @@ export default function Header({
   function closeMenuIfOpen() {
     if (isMenuOpen) toggleMenu();
   }
+  function headingClickHandler() {
+    closeMenuIfOpen();
+    openDashboard();
+  }
 
   return (
     <header className="main-header-wrapper" ref={clickRef}>
@@ -34,11 +38,16 @@ export default function Header({
             isMenuOpen={isMenuOpen}
             toggleMenu={toggleMenu}
             openDashboard={openDashboard}
+            closeMenu={closeMenuIfOpen}
           />
-          <h1 onClick={openDashboard}>Clash of the Pencils</h1>
-          <TabletNav user={user} />
+          <h1 onClick={headingClickHandler}>Clash of the Pencils</h1>
+          <TabletNav user={user} closeMenu={closeMenuIfOpen} />
         </section>
-        <MobileNav isMenuOpen={isMenuOpen} user={user} />
+        <MobileNav
+          isMenuOpen={isMenuOpen}
+          user={user}
+          closeMenu={closeMenuIfOpen}
+        />
       </div>
     </header>
   );

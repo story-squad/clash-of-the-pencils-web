@@ -1,6 +1,5 @@
 import { useAsync } from '@story-squad/react-utils';
 import React, { useMemo } from 'react';
-import { Submissions } from '../../../api';
 import { useConfirmationModal } from '../../../hooks';
 import { time } from '../../../utils';
 import { DragonBank } from '../../molecules';
@@ -11,7 +10,7 @@ import VotingCardList from './VotingCardList';
 
 export interface VotingProps {
   phase: time.eventType;
-  top3: Submissions.ISubItem[];
+  top3Ids: number[];
   canSubmit?: boolean;
   submitVotes: () => Promise<unknown>;
   resetVotes: () => void;
@@ -21,7 +20,7 @@ export interface VotingProps {
 
 export default function Voting({
   phase,
-  top3,
+  top3Ids,
   hasReadAll = false,
   canSubmit = false,
   submitVotes,
@@ -65,7 +64,7 @@ export default function Voting({
         <VotingCardList
           hasReadAll={hasReadAll}
           phase={phase}
-          top3={top3}
+          top3Ids={top3Ids}
           userHasVoted={userHasVoted}
         />
         {err && (
