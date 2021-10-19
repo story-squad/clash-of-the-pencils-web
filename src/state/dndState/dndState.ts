@@ -1,5 +1,4 @@
 import { atomFamily, DefaultValue, selector, selectorFamily } from 'recoil';
-import { logger } from '../effects';
 import { DRAGON, DRAGON_BANK_ZONE } from '../votingState';
 import { splitKey } from './helpers';
 import {
@@ -28,7 +27,6 @@ export const dropZone = atomFamily<DropZoneContainer, DropZoneKey>({
       }
     },
   }),
-  effects_UNSTABLE: [logger()],
 });
 
 export const updateDropZone = selector<
@@ -39,7 +37,6 @@ export const updateDropZone = selector<
   set: ({ set }, newValue) => {
     // Break early
     if (newValue === undefined || newValue instanceof DefaultValue) return;
-    console.log('[U]', newValue);
     set(dropZone(newValue.key), newValue.contents);
   },
 });
