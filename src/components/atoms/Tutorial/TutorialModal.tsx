@@ -4,12 +4,12 @@ import { Modal, ModalProps } from '../../organisms';
 import './styles/tutorialModal.scss';
 import { TutorialProps } from './Tutoiral';
 
-export const TutorialModal = ({
+export function TutorialModal({
   noTutorial,
   runTutorial,
   setIsOpen,
   ...props
-}: Omit<ModalProps, 'component'> & TutorialProps): React.ReactElement => {
+}: Omit<ModalProps, 'component'> & TutorialProps): React.ReactElement {
   return (
     <Modal
       component={() => (
@@ -23,7 +23,7 @@ export const TutorialModal = ({
       {...props}
     />
   );
-};
+}
 
 interface TutorialInterfaceModalProps {
   noTutorial: () => void;
@@ -33,11 +33,7 @@ interface TutorialInterfaceModalProps {
 const TutorialModalComponent = ({
   runTutorial,
   noTutorial,
-}: TutorialInterfaceModalProps &
-  Omit<
-    ModalProps,
-    'component' | 'isOpen' | 'setIsOpen'
-  >): React.ReactElement => {
+}: TutorialInterfaceModalProps): React.ReactElement => {
   return (
     <div className="tutorial-modal">
       {/* Temp text placeholder */}
