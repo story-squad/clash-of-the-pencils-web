@@ -1,35 +1,17 @@
+import { classnames } from '@story-squad/react-utils';
 import { DateTime } from 'luxon';
 import React, { useMemo } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { Submissions } from '../../../api';
-import { app, voting } from '../../../state';
-import { time } from '../../../utils';
-import { Card, Picture } from '../../atoms';
+import { useSetRecoilState } from 'recoil';
+import { app } from '../../../state';
+import { Card, Picture, Sticker } from '../../atoms';
 import './styles/index.scss';
-import SubmissionCardFooter from './SubmissionCardFooter';
-
-export interface SubmissionCardProps {
-  submission: Submissions.ISubItem;
-  containerProps?: React.HTMLProps<HTMLDivElement>;
-  disablePreview?: boolean;
-  position: voting.Places;
-  phase?: time.eventType;
-  hasReadAll?: boolean;
-  userHasVoted: boolean;
-}
+import { SubmissionCardProps } from './types';
 
 export default function SubmissionCard({
   submission,
-  position,
-  containerProps,
+  containerProps: { onClick, className, ...containerProps } = {},
   disablePreview,
-  phase = 'vote',
-  userHasVoted,
-  hasReadAll = false,
 }: SubmissionCardProps): React.ReactElement {
-  const [hasRead, setHasRead] = useRecoilState(
-    voting.hasReadSubInPosition(position),
-  );
   const openAnImageFullscreen = useSetRecoilState(app.imageView.openImage);
   const openSubmission = () => {
     openAnImageFullscreen({
@@ -37,8 +19,12 @@ export default function SubmissionCard({
       source: submission.src,
       rotation: submission.rotation,
     });
-    setHasRead(true);
   };
+  const clickHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    onClick?.(e);
+    if (!disablePreview) openSubmission();
+  };
+
   const age = useMemo(
     () =>
       Math.abs(
@@ -46,29 +32,28 @@ export default function SubmissionCard({
           DateTime.fromISO(submission.dob as string).diffNow('years').years,
         ),
       ),
-    [submission],
+    [submission.dob],
   );
+
   return (
-    <Card className="submission-card" {...containerProps}>
+    <Card
+      className={classnames('submission-card', className)}
+      onClick={clickHandler}
+      {...containerProps}
+    >
       <Picture
         source={submission.src}
         description={`Hand-written story submitted by ${submission.codename}`}
         rotation={submission.rotation}
         disablePreview={disablePreview}
-        containerProps={{
-          onClick: disablePreview ? undefined : openSubmission,
-        }}
       />
-      <SubmissionCardFooter
-        age={age}
-        codename={submission.codename}
-        position={position}
-        openSubmission={openSubmission}
-        hasRead={hasRead}
-        phase={phase}
-        hasReadAll={hasReadAll}
-        userHasVoted={userHasVoted}
-      />
+      <div className="submission-card-footer">
+        <div className="content-left">
+          <h2>{submission.codename}</h2>
+          <h3>Age: {age > 18 ? '18+' : age}</h3>
+        </div>
+        <Sticker type="readMe" className="read-me" />
+      </div>
     </Card>
   );
 }

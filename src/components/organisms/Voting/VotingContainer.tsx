@@ -1,7 +1,8 @@
-import React, { useCallback } from 'react';
+import { useAsync } from '@story-squad/react-utils';
+import React, { useCallback, useEffect } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { Voting } from '../../../api';
-import { app, top3, voting } from '../../../state';
+import { Submissions, Voting } from '../../../api';
+import { app, submissions, voting } from '../../../state';
 import { DragonLoader } from '../../molecules';
 import { VotingDragAndDropContext } from '../../providers';
 import './styles/votingLoader.scss';
@@ -35,7 +36,8 @@ export default function VotingContainer(
 function VotingSubscriber({
   submitVotes,
 }: VotingContainerProps): React.ReactElement {
-  const top3List = useRecoilValue(top3.top3List);
+  const top3Ids = useRecoilValue(submissions.top3.list);
+  const addTop3 = useSetRecoilState(submissions.top3.add);
   const hasReadAll = useRecoilValue(voting.hasReadAll);
   const canSubmit = useRecoilValue(voting.canSubmit);
   const formattedVotes = useRecoilValue(voting.formattedVotes);
@@ -60,15 +62,26 @@ function VotingSubscriber({
     [submitVotes, formattedVotes],
   );
 
-  return (
+  const [loadTop3, loading] = useAsync({
+    asyncFunction: Submissions.getTop3Subs,
+    onSuccess: addTop3,
+  });
+
+  useEffect(() => {
+    if (!loading && !top3Ids) loadTop3();
+  }, [loading]);
+
+  return top3Ids ? (
     <VotingComponent
       phase={phase}
-      top3={top3List}
+      top3Ids={top3Ids}
       hasReadAll={hasReadAll}
       canSubmit={canSubmit}
       submitVotes={submitHandler}
       resetVotes={resetVoteDropZones}
       userHasVoted={!!userVotes}
     />
+  ) : (
+    <DragonLoader className="voting-loader" />
   );
 }

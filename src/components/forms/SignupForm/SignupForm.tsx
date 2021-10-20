@@ -52,7 +52,14 @@ export default function SignupForm({
               message === 'Could not create duplicate' &&
               typeof error.response.data.field === 'string'
             ) {
-              message = `An account with this ${error.response.data.field} already exists`;
+              let fieldName: string;
+              if (error.response.data.field === 'insensitive') {
+                fieldName = 'codename';
+              } else {
+                fieldName = error.response.data.field;
+              }
+              message = `An account with this ${fieldName} already exists`;
+              setError(fieldName, { type: 'manual', message });
             }
           } else {
             message = 'An unknown error occurred. Please try again.';

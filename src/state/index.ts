@@ -7,5 +7,5 @@ export * as leaderboard from './leaderboard';
 export * as pastSubs from './pastSubsState';
 export * as prompts from './promptState';
 export * as results from './resultsState';
-export * as top3 from './top3State';
+export * as submissions from './submissionState';
 export * as voting from './votingState';
