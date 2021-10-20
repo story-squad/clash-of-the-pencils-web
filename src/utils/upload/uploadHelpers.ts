@@ -1,5 +1,6 @@
+import { DateTime } from 'luxon';
+
 export const isValidImage = (image: File): boolean => {
-  if (isHeic(image)) return true;
   const validTypes = [
     'image/jpeg',
     'image/png',
@@ -19,4 +20,19 @@ export const toBase64 = (image: File): Promise<string | ArrayBuffer | null> =>
 
 export function isHeic(file: File): boolean {
   return /heic/.test(file.type);
+}
+
+export async function fileToBlob(file: File): Promise<Blob> {
+  const blobURL = URL.createObjectURL(file);
+  const blobRes = await fetch(blobURL);
+  const blob = await blobRes.blob();
+  return blob;
+}
+
+export function blobToFile(blob: Blob | Blob[], filename: string): File {
+  const blobArr = Array.isArray(blob) ? blob : [blob];
+  return new File(blobArr, filename, {
+    lastModified: DateTime.now().toMillis(),
+    type: blobArr[0]?.type,
+  });
 }
