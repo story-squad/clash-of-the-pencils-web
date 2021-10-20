@@ -59,6 +59,7 @@ export default function SignupForm({
                 fieldName = error.response.data.field;
               }
               message = `An account with this ${fieldName} already exists`;
+              setError(fieldName, { type: 'manual', message });
             }
           } else {
             message = 'An unknown error occurred. Please try again.';

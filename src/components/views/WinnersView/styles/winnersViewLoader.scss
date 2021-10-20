@@ -1,0 +1,8 @@
+@import '../../../../styles/newIndex.scss';
+
+.winners-view-loader {
+  background-color: $brand-blue-9;
+  .message {
+    color: $lime-green;
+  }
+}

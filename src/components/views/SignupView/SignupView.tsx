@@ -34,13 +34,13 @@ export default function SignupView({
   );
 
   return (
-    <FormProvider {...methods}>
-      <DashboardTemplate useStorySquadHeader className="signup-view">
+    <DashboardTemplate useStorySquadHeader className="signup-view">
+      <FormProvider {...methods}>
         <SignupForm onSubmit={submitHandler} />
-        <p className="form-footer">
-          Already have an account? <span onClick={openLogin}>Sign In Here</span>
-        </p>
-      </DashboardTemplate>
-    </FormProvider>
+      </FormProvider>
+      <p className="form-footer">
+        Already have an account? <span onClick={openLogin}>Sign In Here</span>
+      </p>
+    </DashboardTemplate>
   );
 }

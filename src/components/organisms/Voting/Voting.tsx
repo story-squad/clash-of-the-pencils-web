@@ -1,5 +1,6 @@
 import { useAsync } from '@story-squad/react-utils';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
+import { Auth } from '../../../api';
 import { useConfirmationModal } from '../../../hooks';
 import { time } from '../../../utils';
 import { DragonBank } from '../../molecules';
@@ -41,9 +42,26 @@ export default function Voting({
     message: `Tune into the Story Squad livestream at ${streamTime} to find out today’s champion!`,
   });
 
-  const [exec, loading, , err] = useAsync({
+  const [errOverride, setError] = useState<string>();
+  const [submitVotesHandler, loading, , err] = useAsync({
     asyncFunction: submitVotes,
     onSuccess: openSuccessModal,
+    onError: (error) => {
+      if (Auth.isAxiosError(error) && error.response?.data) {
+        const message =
+          error.response.data.message ??
+          error.response.data.error ??
+          error.message;
+
+        switch (message) {
+          case 'Could not access this resource again so soon!':
+            setError("It's too soon to vote again!");
+            break;
+          default:
+            setError(message);
+        }
+      }
+    },
   });
 
   return (
@@ -67,10 +85,10 @@ export default function Voting({
           top3Ids={top3Ids}
           userHasVoted={userHasVoted}
         />
-        {err && (
+        {(err || errOverride) && (
           <div className="error-message">
             <span className="red">*</span>
-            {err.message}
+            {errOverride ?? err?.message}
           </div>
         )}
         {phase === 'vote' && (
@@ -78,7 +96,7 @@ export default function Voting({
             buttonsDisabled={userHasVoted || loading}
             loading={loading}
             onClear={resetVotes}
-            onSubmit={exec}
+            onSubmit={submitVotesHandler}
             submitDisabled={!canSubmit}
           />
         )}

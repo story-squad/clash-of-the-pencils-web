@@ -12,8 +12,13 @@ export default function NavItems(props: NavProps): React.ReactElement {
       <ul>
         {props.user && <li>Welcome, {props.user.codename}!</li>}
         <li>
+          <Link to="/winners" onClick={props.closeMenu}>
+            View Winners
+          </Link>
+        </li>
+        <li>
           <Link to="/schedule" onClick={props.closeMenu}>
-            Daily Schedule
+            Schedule
           </Link>
         </li>
         {/* <li>
