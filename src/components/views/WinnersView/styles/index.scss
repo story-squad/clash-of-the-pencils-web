@@ -2,6 +2,21 @@
 
 .winners-dashboard {
   background-color: $brand-blue-9;
+
+  .dashboard-content-container {
+    > h2 {
+      text-align: center;
+      padding: 2rem;
+      font-family: $display-font;
+      color: $white;
+      font-size: 3rem;
+    }
+  }
+
+  .card-list {
+    padding: 2rem;
+  }
+
   .winners-two-col {
     .big-winner {
       padding: 2rem;
