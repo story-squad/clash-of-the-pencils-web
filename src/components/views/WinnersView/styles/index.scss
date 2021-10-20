@@ -1,0 +1,31 @@
+@import '../../../../styles/newIndex.scss';
+
+.winners-dashboard {
+  background-color: $brand-blue-9;
+  .winners-two-col {
+    .big-winner {
+      padding: 2rem;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: stretch;
+      justify-content: center;
+      gap: 2rem;
+
+      flex-grow: 1;
+      background-color: $gray-9;
+
+      > h2 {
+        text-align: center;
+        font-size: 2.4rem;
+        line-height: 2.6rem;
+        color: $lime-green;
+        font-family: $display-font;
+      }
+
+      .submission-card .image {
+        // Override hidden images on mobile
+        display: flex;
+      }
+    }
+  }
+}

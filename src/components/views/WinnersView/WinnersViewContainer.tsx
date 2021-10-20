@@ -14,10 +14,7 @@ function WinnersViewContainer(): React.ReactElement {
 
   const [loadWinner, loading] = useAsync({
     asyncFunction: Submissions.getWinner,
-    onSuccess: (data) => {
-      addWinners(data);
-      console.log({ data });
-    },
+    onSuccess: addWinners,
   });
 
   useEffect(() => {
