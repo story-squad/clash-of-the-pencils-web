@@ -1,4 +1,5 @@
 export const isValidImage = (image: File): boolean => {
+  if (isHeic(image)) return true;
   const validTypes = [
     'image/jpeg',
     'image/png',
@@ -15,3 +16,7 @@ export const toBase64 = (image: File): Promise<string | ArrayBuffer | null> =>
     reader.onload = () => resolve(reader.result);
     reader.onerror = (error) => reject(error);
   });
+
+export function isHeic(file: File): boolean {
+  return /heic/.test(file.type);
+}
