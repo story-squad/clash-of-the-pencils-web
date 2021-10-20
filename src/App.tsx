@@ -8,6 +8,7 @@ import {
   ScheduleView,
   SignupView,
   TermsView,
+  WinnersView,
 } from './components/views';
 
 const App = (): React.ReactElement => {
@@ -45,6 +46,7 @@ const App = (): React.ReactElement => {
           path="/activate"
           render={(props) => <ActivationModal {...props} />}
         />
+        <Route path="/winners" render={WinnersView} />
         <Route path="/termsofservice" render={TermsView} />
 
         {/* Fallback Redirect to Dashboard */}
