@@ -5,7 +5,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { Auth, Prompts, Submissions } from '../../../api';
 import { app } from '../../../state';
 import { stopPropagation, upload } from '../../../utils';
-import { Button, LoadIcon } from '../../atoms';
+import { Button, Loader, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import './styles/index.scss';
 
@@ -44,10 +44,12 @@ export default function SubmissionForm({
         // Custom error handling case for DS API error
         if (err.response?.data?.error === 'Transcription error') {
           setError('Your submission must be a story!');
-        } else if (err.response?.data.message) {
-          setError(err.response.data.message);
         } else {
-          setError(err.message);
+          setError(
+            err.response?.data?.error ??
+              err.response?.data?.message ??
+              err.message,
+          );
         }
       } else if (err instanceof Error) {
         setError(err.message);
@@ -86,24 +88,31 @@ export default function SubmissionForm({
     onError: errorHandler,
   });
 
+  const [convertHEICImage, loadingHEIC] = useAsync({
+    asyncFunction: upload.heicToPng,
+    onSuccess: async (pngImage) => {
+      setFile(pngImage);
+      setPreview(await upload.generatePreview(pngImage));
+    },
+  });
+
   // This extracts the file from the Input element's event object
   const fileSelection = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    console.log('[SELECTED]', e.target.files);
-    // Get the file list from the event
-    const fileList = e.target.files;
-    if (fileList) {
-      // Get the selected image from the list
-      const selection = fileList[0];
-      if (selection) {
-        // Make sure the image is a valid image type
-        if (!upload.isValidImage(selection)) {
-          setError('Upload must be an image!');
-        } else {
-          // If its valid, update the file and preview in state and reset error
-          clearError();
-          setFile(selection);
-          setPreview(URL.createObjectURL(selection));
-        }
+    // Get the selected file from the event object
+    const selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+      console.log('[FILE]', selectedFile);
+      clearError();
+      if (upload.isHeic(selectedFile)) {
+        convertHEICImage(selectedFile);
+      } else if (upload.isValidImage(selectedFile)) {
+        // If a file was selected, check that it's a valid image
+        // If its valid, update the file and preview in state
+        setFile(selectedFile);
+        setPreview(URL.createObjectURL(selectedFile));
+      } else {
+        // Invalid image!
+        setError('Upload must be an image!');
       }
     }
   };
@@ -139,6 +148,11 @@ export default function SubmissionForm({
         )}
         <input type="file" onChange={fileSelection} hidden />
       </label>
+      {loadingHEIC && (
+        <div className="server-error">
+          <Loader message="Converting HEIC file" />
+        </div>
+      )}
       {error && (
         <div className="server-error">
           <span className="red">*</span>
@@ -148,7 +162,7 @@ export default function SubmissionForm({
       <div className="button-row">
         {onCancel && (
           <Button
-            disabled={loading}
+            disabled={loading || loadingHEIC}
             onClick={onCancel}
             htmlType="button"
             type="secondary"
@@ -157,7 +171,7 @@ export default function SubmissionForm({
           </Button>
         )}
         <Button
-          disabled={loading}
+          disabled={loading || loadingHEIC}
           onClick={clearError}
           iconRight={loading && <LoadIcon />}
         >
