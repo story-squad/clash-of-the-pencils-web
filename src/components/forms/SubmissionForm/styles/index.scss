@@ -16,7 +16,8 @@
   }
 
   p,
-  .server-error {
+  .server-error,
+  .message {
     font-size: 1.8rem;
     line-height: 2.6rem;
     font-family: $text-font;
