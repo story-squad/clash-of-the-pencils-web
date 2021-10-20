@@ -1,11 +1,20 @@
 import { AxiosResponse } from 'axios';
+import { stringify } from 'query-string';
 import { axiosWithAuth } from '../axiosWithConfig';
 import { ISubItem } from './types';
 
-export const getWinner = async (): Promise<ISubItem> => {
+export const getWinners = async ({
+  limit = 7,
+  offset = 0,
+}: {
+  limit?: number;
+  offset?: number;
+} = {}): Promise<ISubItem> => {
+  const query = stringify({ limit, offset });
   const { data }: AxiosResponse<ISubItem> = await axiosWithAuth().get(
-    '/api/clash/winners',
+    `/api/clash/winners?${query}`,
   );
+  console.log({ query, data });
   return data;
 };
 
