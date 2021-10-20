@@ -1,23 +1,30 @@
 @import '../../../../styles/newIndex.scss';
 
 .winners-dashboard {
-  background-color: $brand-blue-9;
-
   .dashboard-content-container {
+    background-color: $brand-blue-9;
+  }
+
+  .submission-card .image {
+    // Override hidden images on mobile
+    display: flex;
+  }
+
+  .past-winners-list {
+    flex-grow: 1;
+    padding: 4rem 2rem;
+    background-color: $brand-blue-0;
     > h2 {
       text-align: center;
-      padding: 2rem;
       font-family: $display-font;
-      color: $white;
+      color: $brand-blue-6;
       font-size: 3rem;
+      margin-bottom: 3rem;
     }
   }
 
-  .card-list {
-    padding: 2rem;
-  }
-
   .winners-two-col {
+    background-color: $brand-blue-9;
     .big-winner {
       padding: 2rem;
       display: flex;

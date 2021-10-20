@@ -20,12 +20,14 @@ export default function WinnersView({
         left={<BigWinner winnerId={winnerId} />}
         right={<Leaderboard />}
       />
-      <h2>Previous Winners</h2>
-      <CardList className="winners-submission-card-list">
-        {winnerIds.map((id) => (
-          <SubmissionCard key={id} droppable={false} submissionId={id} />
-        ))}
-      </CardList>
+      <div className="past-winners-list">
+        <h2>Previous Winners</h2>
+        <CardList className="winners-submission-card-list">
+          {winnerIds.map((id) => (
+            <SubmissionCard key={id} droppable={false} submissionId={id} />
+          ))}
+        </CardList>
+      </div>
     </DashboardTemplate>
   );
 }
