@@ -2,23 +2,28 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { submissions } from '../../../state';
 import { Card, Loader } from '../../atoms';
+import DroppableSubmissionCard, {
+  DroppableSubmissionCardProps,
+} from './DroppableSubmissionCard';
 import './styles/subCardLoader.scss';
-import SubmissionCard, { SubmissionCardProps } from './SubmissionCard';
-
-export type SubmissionCardContainerProps = Omit<
-  SubmissionCardProps,
-  'submission'
-> & {
-  submissionId: number;
-};
+import SubmissionCard from './SubmissionCard';
+import { SubmissionCardContainerPropSwitcher } from './types';
 
 function SubmissionCardContainer({
   submissionId,
+  droppable,
   ...props
-}: SubmissionCardContainerProps): React.ReactElement {
+}: SubmissionCardContainerPropSwitcher): React.ReactElement {
   const submission = useRecoilValue(submissions.getById(submissionId));
   return submission ? (
-    <SubmissionCard submission={submission} {...props} />
+    droppable ? (
+      <DroppableSubmissionCard
+        submission={submission}
+        {...(props as Omit<DroppableSubmissionCardProps, 'submission'>)}
+      />
+    ) : (
+      <SubmissionCard submission={submission} {...props} />
+    )
   ) : (
     <Card className="submission-card-failure">
       <p>Failed to load submission</p>
@@ -27,7 +32,7 @@ function SubmissionCardContainer({
 }
 
 export default function SubmissionCardContainerSuspense(
-  props: SubmissionCardContainerProps,
+  props: SubmissionCardContainerPropSwitcher,
 ): React.ReactElement {
   return (
     <React.Suspense
