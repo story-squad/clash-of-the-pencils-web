@@ -11,5 +11,5 @@ export * from './Picture';
 export * from './Sticker';
 export * from './Timer';
 export * from './Toggle';
-export * from './Tutorial';
+export * from '../modals/Tutorial';
 export * from './YoutubeEmbed';

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { Prompts } from '../../../api';
+import { IDS } from '../../../config';
 import { app } from '../../../state';
 import { Button } from '../../atoms';
 import { Countdown, EncouragementButton } from '../../molecules';
@@ -20,11 +21,11 @@ export default function PromptOrganism({
   return (
     <section className="prompt">
       <h1>Today&apos;s Writing Prompt</h1>
-      <p>{prompt.prompt}</p>
+      <p id={IDS.ID_PROMPT}>{prompt.prompt}</p>
       <div className="button-wrapper">
         <EncouragementButton />
       </div>
-      <div className="countdown-wrapper">
+      <div id={IDS.ID_TIMER} className="countdown-wrapper">
         <Countdown />
       </div>
       <div className="button-wrapper">
@@ -57,7 +58,7 @@ function PromptActionButton({
     disabled = true;
   }
   return (
-    <Button onClick={onClick} disabled={disabled}>
+    <Button id={IDS.ID_UPLOAD} onClick={onClick} disabled={disabled}>
       {message}
     </Button>
   );

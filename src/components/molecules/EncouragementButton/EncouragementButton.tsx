@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useSound from 'use-sound';
 import { encouragement } from '../../../assets';
+import { IDS } from '../../../config';
 import { Button } from '../../atoms';
 
 export default function EncouragementButton(): React.ReactElement {
@@ -23,7 +24,7 @@ export default function EncouragementButton(): React.ReactElement {
   };
 
   return (
-    <Button type="secondary" onClick={playHandler}>
+    <Button id={IDS.ID_ENCOURAGEMENT} type="secondary" onClick={playHandler}>
       Encouragement Button
     </Button>
   );

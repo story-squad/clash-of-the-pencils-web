@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '..';
+import { Button } from '../../atoms';
 import { Modal, ModalProps } from '../../organisms';
 import './styles/tutorialModal.scss';
 import { TutorialProps } from './Tutoiral';
