@@ -1,5 +1,4 @@
 import React from 'react';
-import { Submissions } from '../../../api';
 import { voting } from '../../../state';
 import { time } from '../../../utils';
 import { EmptyCard, SubmissionCard } from '../../molecules';
@@ -8,23 +7,24 @@ import { CardList } from '../CardList';
 export default function VotingCardList({
   hasReadAll,
   phase,
-  top3,
+  top3Ids,
   userHasVoted,
 }: {
   phase: time.eventType;
-  top3: Submissions.ISubItem[];
+  top3Ids: number[];
   hasReadAll: boolean;
   userHasVoted: boolean;
 }): React.ReactElement {
   return (
     <CardList>
       {phase === 'vote' ? (
-        top3.map((sub, i) => (
+        top3Ids.map((id, i) => (
           <SubmissionCard
-            key={sub.id}
+            key={id}
+            droppable
             // This is okay, there will only ever be 3 subs here so we can coerce
             position={(i + 1) as voting.Places}
-            submission={sub}
+            submissionId={id}
             phase={phase}
             hasReadAll={hasReadAll}
             userHasVoted={userHasVoted}

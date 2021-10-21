@@ -1,7 +1,7 @@
 import { selector } from 'recoil';
-import { Voting } from '../../api';
+import { Submissions, Voting } from '../../api';
 import { dropZone, splitKey } from '../dndState';
-import { top3List } from '../top3State';
+import { getById, top3 } from '../submissionState';
 import { canSubmit, submissionDropZoneKeys } from './votingState';
 
 /**
@@ -17,9 +17,14 @@ import { canSubmit, submissionDropZoneKeys } from './votingState';
 export const formattedVotes = selector<Voting.IPostVotesBody | undefined>({
   key: 'formattedVotesSelector',
   get: ({ get }) => {
-    const top3 = get(top3List);
+    const top3Ids = get(top3.list);
     // Make sure it's set (for linting)
-    if (!top3) return undefined;
+    if (!top3Ids) return undefined;
+
+    const top3Subs = top3Ids
+      .map(getById)
+      .map(get)
+      .filter(Boolean) as Submissions.ISubItem[];
 
     // If a user is able to submit, that means all the submission fields are full
     const userCanSubmit = get(canSubmit);
@@ -47,7 +52,7 @@ export const formattedVotes = selector<Voting.IPostVotesBody | undefined>({
     // of the submissions in the order the user voted for them, from 1 to 3
     const res: (number | undefined)[] = [undefined, undefined, undefined];
 
-    top3.forEach(({ id }, i) => {
+    top3Subs.forEach(({ id }, i) => {
       const place = places[i] as number; // Places are 1-3, and at this point we've checked for undefined a lot
       res[place - 1] = id; // Here we add the id to the array, with index being `place - 1` (1-3 => 0-2)
     });

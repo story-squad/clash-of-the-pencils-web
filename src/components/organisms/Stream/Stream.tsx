@@ -1,36 +1,46 @@
-import React from 'react';
-import { Button } from '../../atoms';
-import './styles/index.scss';
+import { ErrorBoundary } from '@story-squad/react-utils';
+import React, { useState } from 'react';
+import ReactPlayer from 'react-player';
+import { default as OfflineStreamVideo } from './OfflineStreamVideo';
+import StreamFailureFallback from './StreamFailureFallback';
+import StreamWrapper from './StreamWrapper';
 
-export interface IStreamProps {
-  channelId?: string;
-  apiKey?: string;
+const streamURL = process.env.REACT_APP_LIVESTREAM_URL;
+
+function Stream(): React.ReactElement {
+  const [playing, setPlaying] = useState(false);
+  const [renderFallback, setRenderFallback] = useState(streamURL === undefined);
+  const hidePlayer = () => {
+    setRenderFallback(true);
+  };
+  const onReady = () => {
+    setPlaying(true);
+  };
+
+  if (renderFallback) return <OfflineStreamVideo />;
+  else {
+    return (
+      <StreamWrapper>
+        {playing && <h2>Streaming Now!</h2>}
+        <ReactPlayer
+          url={streamURL}
+          playing={playing}
+          onReady={onReady}
+          onError={hidePlayer}
+          controls
+          volume={0.1}
+          stopOnUnmount
+          config={{ youtube: { onUnstarted: hidePlayer } }}
+        />
+      </StreamWrapper>
+    );
+  }
 }
 
-export default function Stream({
-  apiKey,
-  channelId,
-}: IStreamProps): React.ReactElement {
-  const revealChampion = () => undefined;
+export default function StreamErrorBound(): React.ReactElement {
   return (
-    <div className="stream-wrapper">
-      <div className="stream">
-        {/* <ReactLivestream
-          platform="youtube"
-          youtubeApiKey={apiKey}
-          youtubeChannelId={channelId}
-          offlineComponent={OfflineStreamComponent}
-        /> */}
-        <Button onClick={revealChampion}>Reveal Champion</Button>
-      </div>
-    </div>
-  );
-}
-
-export function OfflineStreamComponent(): React.ReactElement {
-  return (
-    <div className="offline-stream-component">
-      <p>Stream is currently offline</p>
-    </div>
+    <ErrorBoundary fallback={StreamFailureFallback}>
+      <Stream />
+    </ErrorBoundary>
   );
 }

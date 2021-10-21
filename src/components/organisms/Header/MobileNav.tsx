@@ -11,10 +11,11 @@ export interface IMobileNavProps extends NavProps {
 export default function MobileNav({
   isMenuOpen,
   user,
+  closeMenu,
 }: IMobileNavProps): React.ReactElement {
   return (
     <div className={classnames('mobile-nav', !isMenuOpen && 'collapsed')}>
-      <NavItems user={user} />
+      <NavItems user={user} closeMenu={closeMenu} />
     </div>
   );
 }

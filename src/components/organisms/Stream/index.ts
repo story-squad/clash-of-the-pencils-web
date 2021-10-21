@@ -1,1 +1,1 @@
-export { default as Stream } from './Stream';
+export { default as StreamOrganism } from './Stream';

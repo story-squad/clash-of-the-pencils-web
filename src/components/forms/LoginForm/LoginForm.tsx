@@ -29,22 +29,28 @@ export default function LoginForm({
           } else {
             message = 'An unknown error occurred. Please try again.';
           }
-          setError('form', { type: 'manual', message });
+          const formError = { type: 'manual', message };
+          switch (message) {
+            case 'User not found':
+              setError('codename', formError);
+              break;
+            case 'Incorrect password':
+              setError('password', formError);
+              break;
+            default:
+              setError('form', formError);
+          }
         }
       }),
     [onError],
   );
 
   const submitHandler: LoginFormProps['onSubmit'] = async (data) => {
-    console.log('RUNNING SUBMIT');
     if (data.codename && dataConstraints.emailPattern.test(data.codename)) {
-      console.log('Detected email in codename field');
       await onSubmit({ email: data.codename, password: data.password });
     } else {
-      console.log('Detected codename in codename field');
       await onSubmit(data);
     }
-    console.log('SUBMIT COMPLETE');
   };
 
   const [exec, isLoading] = useAsync({
@@ -74,7 +80,9 @@ export default function LoginForm({
         },
         true,
       )}
-      {authFormInputs.password()}
+      {authFormInputs.password({
+        rules: { validate: undefined, minLength: undefined },
+      })}
       <Button
         disabled={isLoading}
         iconRight={isLoading && <LoadIcon />}

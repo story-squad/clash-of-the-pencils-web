@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { ClashLogo } from '../../../assets';
 import { IMobileNavProps } from './MobileNav';
@@ -12,6 +12,7 @@ export default function HeaderIcon({
   isMenuOpen,
   toggleMenu,
   openDashboard,
+  closeMenu,
 }: IHeaderIconProps): React.ReactElement {
   const menuToggleProps = useMemo(
     () => ({
@@ -20,9 +21,15 @@ export default function HeaderIcon({
     }),
     [],
   );
+
+  const clickHandler = useCallback(() => {
+    openDashboard();
+    closeMenu();
+  }, [openDashboard, closeMenu]);
+
   return (
     <>
-      <ClashLogo className="logo" onClick={openDashboard} />
+      <ClashLogo className="logo" onClick={clickHandler} />
       {isMenuOpen ? (
         <FiX {...menuToggleProps} />
       ) : (
