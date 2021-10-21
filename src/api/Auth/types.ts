@@ -1,8 +1,8 @@
 import { AxiosError } from 'axios';
-import { Users } from '..';
+import { IUser } from '../Users';
 
 export interface IAuthResponse {
-  user: Omit<Users.IUser, 'password'>;
+  user: IUser;
   token: string;
 }
 

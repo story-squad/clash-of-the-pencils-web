@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { ClashLogo } from '../../../assets';
-import { IMobileNavProps } from './MobileNav';
 
 export interface IHeaderIconProps extends IMobileNavProps {
   toggleMenu: () => void;

@@ -4,7 +4,7 @@ import { token } from '../../utils';
 import { all } from '../clearState';
 import { persist } from '../effects';
 
-export const user = atom<Omit<Users.IUser, 'password'> | undefined>({
+export const user = atom<Users.IUser | undefined>({
   key: 'userAtom',
   default: undefined,
   effects_UNSTABLE: [persist('logged:in:user')],
