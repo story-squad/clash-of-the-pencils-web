@@ -6,6 +6,8 @@
 }
 
 svg {
+  color: $white;
+  cursor: pointer;
   &.menu-toggle {
     @include size;
     margin-right: 1.6rem;
@@ -25,8 +27,17 @@ svg {
 
   &.tablet-icon {
     display: none;
+    background-color: $brand-orange;
+    border-radius: 10rem;
     @include bp(tablet) {
       display: block;
+    }
+
+    transition: all 0.15s ease;
+    &.menu-is-open,
+    &:hover {
+      transition: all 0.15s ease;
+      filter: brightness(0.8);
     }
   }
 }
