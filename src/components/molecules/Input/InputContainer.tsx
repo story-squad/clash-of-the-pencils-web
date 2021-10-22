@@ -31,9 +31,10 @@ export default function InputContainer({
       control={control}
       rules={rules}
       defaultValue={defaultValue}
-      render={({ field, fieldState: { error } }) => (
+      render={({ field: { ref, ...field }, fieldState: { error } }) => (
         <Input
           variant={error ? 'error' : 'default'}
+          innerRef={ref}
           {...inputProps}
           {...field}
         />
