@@ -24,7 +24,9 @@ export default function SignupView({
   lastname,
   roleId,
 }: SignupViewProps & Clever.NewRedirectState): React.ReactElement {
-  const methods = useForm();
+  const methods = useForm({
+    defaultValues: { firstname, lastname, email },
+  });
   const { push } = useHistory();
 
   const login = useSetRecoilState(auth.login);
@@ -67,10 +69,7 @@ export default function SignupView({
         )}
       </div>
       <FormProvider {...methods}>
-        <SignupForm
-          onSubmit={submitHandler}
-          defaultValues={{ firstname, lastname, email }}
-        />
+        <SignupForm onSubmit={submitHandler} />
       </FormProvider>
       <p className="form-footer">
         Already have an account? <span onClick={openLogin}>Sign In Here</span>

@@ -14,7 +14,6 @@ export type LoginFormProps = FormProps<Auth.ILoginBody>;
 export default function LoginForm({
   onSubmit,
   onError,
-  defaultValues,
 }: LoginFormProps): React.ReactElement {
   const { handleSubmit, setError, clearErrors } = useFormContext();
 
@@ -72,7 +71,6 @@ export default function LoginForm({
       />
       {authFormInputs.codename(
         {
-          defaultValue: defaultValues?.codename,
           rules: {
             minLength: { value: 2, message: 'Too short' },
           },

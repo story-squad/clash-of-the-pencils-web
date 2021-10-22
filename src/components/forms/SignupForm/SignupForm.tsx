@@ -15,7 +15,6 @@ export type SignupFormProps = FormProps<Users.INewUser>;
 export default function SignupForm({
   onSubmit,
   onError,
-  defaultValues,
 }: SignupFormProps): React.ReactElement {
   // Standard form handlers
   const { handleSubmit, setError, clearErrors, watch } = useFormContext();
@@ -89,8 +88,8 @@ export default function SignupForm({
   return (
     <form className="signup-form" onSubmit={exec} noValidate>
       {/* First page */}
-      {authFormInputs.firstname({ defaultValue: defaultValues?.firstname })}
-      {authFormInputs.lastname({ defaultValue: defaultValues?.lastname })}
+      {authFormInputs.firstname()}
+      {authFormInputs.lastname()}
       {authFormInputs.codename({
         rules: {
           validate: {
@@ -112,7 +111,6 @@ export default function SignupForm({
           </Button> */}
       {/* Second page */}
       {authFormInputs.email({
-        defaultValue: defaultValues?.email,
         rules: {
           pattern: {
             value: dataConstraints.emailPattern,

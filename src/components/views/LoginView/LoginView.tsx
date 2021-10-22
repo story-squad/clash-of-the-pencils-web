@@ -22,7 +22,7 @@ export default function LoginView({
   codename,
 }: LoginViewProps & Clever.MergeRedirectState): React.ReactElement {
   // Get form methods for the provider
-  const methods = useForm();
+  const methods = useForm({ defaultValues: { codename } });
   const { push } = useHistory();
 
   // Get login selector from Recoil
@@ -65,7 +65,7 @@ export default function LoginView({
         )}
       </div>
       <FormProvider {...methods}>
-        <LoginForm onSubmit={submitHandler} defaultValues={{ codename }} />
+        <LoginForm onSubmit={submitHandler} />
       </FormProvider>
       <p className="form-footer">
         Need to create an account?{' '}
