@@ -1,12 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { NavProps } from './types';
+import HeaderContext from './headerContext';
 
-export type AppNavItemsProps = NavProps;
-
-export default function AppNavItems({
-  closeMenu,
-}: AppNavItemsProps): React.ReactElement {
+export default function AppNavItems(): React.ReactElement {
+  const { closeMenu } = useContext(HeaderContext);
   return (
     <>
       <li>

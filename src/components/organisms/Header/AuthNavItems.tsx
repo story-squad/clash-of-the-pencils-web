@@ -1,16 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Users } from '../../../api';
-import { NavProps } from './types';
+import HeaderContext from './headerContext';
 
-export interface AuthNavItemsProps extends NavProps {
-  user?: Users.IUser;
-}
-
-export default function AuthNavItems({
-  closeMenu,
-  user,
-}: AuthNavItemsProps): React.ReactElement {
+export default function AuthNavItems(): React.ReactElement {
+  const { user, closeMenu } = useContext(HeaderContext);
   return user ? (
     <>
       <li>Welcome, {user.codename}</li>
