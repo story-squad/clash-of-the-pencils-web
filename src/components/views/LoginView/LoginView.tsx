@@ -43,34 +43,34 @@ export default function LoginView({
   );
 
   return (
-    <FormProvider {...methods}>
-      <DashboardTemplate useStorySquadHeader className="login-view">
-        <div className="login-header">
-          {isMerge ? (
-            <>
-              {codename && <h2>Hey, {codename}!</h2>}
-              <p>
-                <em>It looks like you already have a Story Squad account!</em>
-              </p>
-              <p>
-                Enter your password below to automatically link your Clever and
-                Story Squad accounts.
-              </p>
-            </>
-          ) : (
-            <>
-              <CleverButton htmlType="button" />
-              <p className="alt-font">or</p>
-              <p className="main-font">Sign In Using Story Squad Account</p>
-            </>
-          )}
-        </div>
+    <DashboardTemplate useStorySquadHeader className="login-view">
+      <div className="login-header">
+        {isMerge ? (
+          <>
+            {codename && <h2>Hey, {codename}!</h2>}
+            <p>
+              <em>It looks like you already have a Story Squad account!</em>
+            </p>
+            <p>
+              Enter your password below to automatically link your Clever and
+              Story Squad accounts.
+            </p>
+          </>
+        ) : (
+          <>
+            <CleverButton htmlType="button" />
+            <p className="alt-font">or</p>
+            <p>Sign In Using Story Squad Account</p>
+          </>
+        )}
+      </div>
+      <FormProvider {...methods}>
         <LoginForm onSubmit={submitHandler} defaultValues={{ codename }} />
-        <p className="form-footer">
-          Need to create an account?{' '}
-          <span onClick={openSignup}>Sign Up Here</span>
-        </p>
-      </DashboardTemplate>
-    </FormProvider>
+      </FormProvider>
+      <p className="form-footer">
+        Need to create an account?{' '}
+        <span onClick={openSignup}>Sign Up Here</span>
+      </p>
+    </DashboardTemplate>
   );
 }
