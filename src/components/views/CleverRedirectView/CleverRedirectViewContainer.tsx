@@ -35,16 +35,16 @@ export default function CleverRedirectViewContainer(): React.ReactElement {
        * user to a login page prepopulated with their codename and, on a
        * successful login, we link the two accounts.
        */
-      const params = Clever.getMergeParams(res);
-      push(`/login?${params}`); // Route them to login with filled codename
+      const state = Clever.getMergeState(res);
+      push(`/login`, state); // Route them to login with filled codename
     } else if (res.actionType === 'NEW') {
       /**
        * On a new action, the user does not have a Story Squad account yet.
        * We route them to the signup form, prepopulated with their name and
        * email address, and merge the two accounts on successful signup.
        */
-      const params = Clever.getNewParams(res);
-      push(`/signup?${params}`); // Route them to signup with given info
+      const state = Clever.getNewState(res);
+      push(`/signup`, state); // Route them to signup with given info
     }
   }, []);
 

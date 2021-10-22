@@ -1,4 +1,3 @@
-import { stringify } from 'query-string';
 import {
   CleverAuthResponse,
   CleverMergeResponse,
@@ -19,12 +18,17 @@ export function isMerge(res: CleverAuthResponse): res is CleverMergeResponse {
   const { actionType, body } = (res as CleverMergeResponse) ?? {};
   return actionType === 'MERGE' && !!body?.codename && !!body?.email;
 }
-export function getMergeParams(res: CleverMergeResponse): string {
-  return stringify({
+export type MergeRedirectState = {
+  isMerge?: boolean;
+  cleverId?: string;
+  codename?: string;
+};
+export function getMergeState(res: CleverMergeResponse): MergeRedirectState {
+  return {
     isMerge: true,
     cleverId: res.cleverId,
     codename: res.body.codename,
-  });
+  };
 }
 
 // New response handlers
@@ -32,13 +36,19 @@ export function isNew(res: CleverAuthResponse): res is CleverNewResponse {
   const { actionType, body } = (res as CleverNewResponse) ?? {};
   return actionType === 'NEW' && !body.id && !body.name;
 }
-export function getNewParams(res: CleverNewResponse): string {
-  return stringify({
+export type NewOnSignupFields = {
+  isNew?: boolean;
+  cleverId?: string;
+  firstname?: string;
+  lastname?: string;
+  email?: string;
+};
+export function getNewState(res: CleverNewResponse): NewOnSignupFields {
+  return {
     isNew: true,
     cleverId: res.body.id,
-    roleId: res.roleId,
     firstname: res.body?.name?.first,
     lastname: res.body?.name?.last,
     email: res.body?.email,
-  });
+  };
 }
