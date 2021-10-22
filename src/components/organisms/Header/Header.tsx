@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { ClashLogo } from '../../../assets';
 import HeaderContext from './headerContext';
 import HeaderToggle from './HeaderToggle';
+import InlineNav from './InlineNav';
 import './styles/index.scss';
 
 export default function Header(): React.ReactElement {
@@ -20,11 +21,12 @@ export default function Header(): React.ReactElement {
   return (
     <header className="main-header-wrapper" ref={clickRef}>
       <div className="main-header-container">
+        <HeaderToggle />
         <section id="main-header">
-          <HeaderToggle />
           <ClashLogo className="logo" onClick={closeMenuAndOpenDash} />
           <h1 onClick={closeMenuAndOpenDash}>Clash of the Pencils</h1>
         </section>
+        <InlineNav />
       </div>
     </header>
   );
