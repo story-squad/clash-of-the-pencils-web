@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
+import { IDS } from '../../../config';
 import { useConfirmationModal } from '../../../hooks';
 import { auth } from '../../../state';
 import { NavProps } from './types';
@@ -21,9 +22,9 @@ export default function NavItems(props: NavProps): React.ReactElement {
             Schedule
           </Link>
         </li>
-        {/* <li>
+        <li id={IDS.ID_REFRESH}>
           <a>Tutorial</a>
-        </li> */}
+        </li>
         <NavAuthControl {...props} />
       </ul>
     </nav>

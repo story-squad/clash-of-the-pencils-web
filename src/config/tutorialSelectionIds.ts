@@ -4,7 +4,7 @@ export const IDS = {
   ID_UPLOAD: 'upload-id',
   ID_TIMER: 'timer-id',
   ID_TOP_THREE: 'top-three-id',
-  ID_LIVE: 'stream-id',
+  ID_STREAM: 'stream-id',
   ID_LEADERBOARD: 'leaderboard-id',
   ID_REFRESH: 'refresh-id',
 };

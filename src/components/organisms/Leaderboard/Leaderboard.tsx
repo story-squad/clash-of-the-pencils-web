@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { Submissions } from '../../../api';
+import { IDS } from '../../../config';
 import { Toggle, ToggleOption } from '../../atoms';
 import { Table } from '../../molecules';
 import LeaderboardIcon from './LeaderboardIcon';
@@ -51,7 +52,7 @@ export default function Leaderboard({
   );
 
   return (
-    <section className="leaderboard">
+    <section id={IDS.ID_LEADERBOARD} className="leaderboard">
       <h1>Leaderboard</h1>
       <Toggle
         leftIsSelected={dailyIsOpen}

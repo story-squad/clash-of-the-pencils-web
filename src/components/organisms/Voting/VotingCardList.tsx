@@ -1,4 +1,5 @@
 import React from 'react';
+import { IDS } from '../../../config';
 import { voting } from '../../../state';
 import { time } from '../../../utils';
 import { EmptyCard, SubmissionCard } from '../../molecules';
@@ -16,7 +17,7 @@ export default function VotingCardList({
   userHasVoted: boolean;
 }): React.ReactElement {
   return (
-    <CardList>
+    <CardList id={IDS.ID_TOP_THREE}>
       {phase === 'vote' ? (
         top3Ids.map((id, i) => (
           <SubmissionCard

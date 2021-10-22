@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import { useRecoilState } from 'recoil';
 import { app } from '../../../state';
 import { $ } from '../../../utils';
@@ -17,6 +18,7 @@ const Tutorial = (): React.ReactElement => {
   const [modalIsOpen, setModalIsOpen] = useRecoilState(app.tutorial.isOpen);
   const [showTutorial, setShowTutorial] = useState(false);
   const [position, setPosition] = useState<DOMRect>();
+  const router = useHistory();
   // can try and add another component and move all logic to it and render based on loading there
   const nextItem = () => {
     setMessage((prev) => {
@@ -25,6 +27,7 @@ const Tutorial = (): React.ReactElement => {
       } else {
         setShowTutorial(false);
         setModalIsOpen(false);
+        router.push('/schedule');
         return prev;
       }
     });
@@ -38,14 +41,14 @@ const Tutorial = (): React.ReactElement => {
     setShowTutorial(true);
   };
 
+  // Finds and gets the IDS that are on the page linked to the tutorial and positions the page based on where they are
   useEffect(() => {
     if (tutorialMessages[messageIndex].id !== undefined) {
       const element = $(`#${tutorialMessages[messageIndex].id}`);
       if (element && showTutorial) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView();
         window.scrollBy(0, -60);
         setPosition(element.getBoundingClientRect());
-        console.log('I RAN');
       }
     } else return;
   }, [messageIndex, showTutorial]);
@@ -61,18 +64,32 @@ const Tutorial = (): React.ReactElement => {
       {showTutorial && (
         <div className="tutorial-wrapper">
           <div
+            // these styles position the message on the page
             style={{
-              position: 'absolute',
-              top: position && position?.height + position?.top + 20,
-              left: position && position.left,
+              position: tutorialMessages[messageIndex].id
+                ? 'absolute'
+                : 'unset',
+              top:
+                tutorialMessages[messageIndex].classname !== 'tutorial-top'
+                  ? position && position?.height + position?.top + 20
+                  : // This math below needs to be changed
+                    position && position?.top * -0.2,
+              left:
+                tutorialMessages[messageIndex].classname !== 'tutorial-top'
+                  ? tutorialMessages[messageIndex].classname !== 'tutorial-redo'
+                    ? position && position.left + 20
+                    : position && position.left + 20 - position.left / 2.5
+                  : '',
             }}
-            className={`tutorial-container`}
+            className={`${tutorialMessages[messageIndex].classname}`}
           >
             {tutorialMessages[messageIndex].arrow && (
-              <img
-                className="arrow"
-                src={tutorialMessages[messageIndex].arrow}
-              />
+              <div className={`${tutorialMessages[messageIndex].styleclass}`}>
+                <img
+                  className="arrow"
+                  src={tutorialMessages[messageIndex].arrow}
+                />
+              </div>
             )}
             <div className="dashboard-tutorial-content">
               <p>{tutorialMessages[messageIndex].message}</p>
