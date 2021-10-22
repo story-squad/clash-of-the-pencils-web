@@ -15,6 +15,7 @@ export type SignupFormProps = FormProps<Users.INewUser>;
 export default function SignupForm({
   onSubmit,
   onError,
+  defaultValues,
 }: SignupFormProps): React.ReactElement {
   // Standard form handlers
   const { handleSubmit, setError, clearErrors, watch } = useFormContext();
@@ -91,8 +92,8 @@ export default function SignupForm({
       <p className="alt-font">or</p>
       <p className="main-font">Sign In Using Email Address</p>
       {/* First page */}
-      {authFormInputs.firstname()}
-      {authFormInputs.lastname()}
+      {authFormInputs.firstname({ defaultValue: defaultValues?.firstname })}
+      {authFormInputs.lastname({ defaultValue: defaultValues?.lastname })}
       {authFormInputs.codename({
         rules: {
           validate: {
@@ -114,6 +115,7 @@ export default function SignupForm({
           </Button> */}
       {/* Second page */}
       {authFormInputs.email({
+        defaultValue: defaultValues?.email,
         rules: {
           pattern: {
             value: dataConstraints.emailPattern,

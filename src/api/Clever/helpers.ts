@@ -1,3 +1,4 @@
+import { Users } from '..';
 import {
   CleverAuthResponse,
   CleverMergeResponse,
@@ -36,19 +37,21 @@ export function isNew(res: CleverAuthResponse): res is CleverNewResponse {
   const { actionType, body } = (res as CleverNewResponse) ?? {};
   return actionType === 'NEW' && !body.id && !body.name;
 }
-export type NewOnSignupFields = {
+export type NewRedirectState = {
   isNew?: boolean;
   cleverId?: string;
   firstname?: string;
   lastname?: string;
   email?: string;
+  roleId?: Users.Roles & number;
 };
-export function getNewState(res: CleverNewResponse): NewOnSignupFields {
+export function getNewState(res: CleverNewResponse): NewRedirectState {
   return {
     isNew: true,
     cleverId: res.body.id,
     firstname: res.body?.name?.first,
     lastname: res.body?.name?.last,
     email: res.body?.email,
+    roleId: res.roleId,
   };
 }

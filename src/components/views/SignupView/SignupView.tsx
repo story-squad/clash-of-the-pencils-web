@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import { Auth, Users } from '../../../api';
+import { Auth, Clever, Users } from '../../../api';
 import { auth } from '../../../state';
 import { SignupForm } from '../../forms';
 import { DashboardTemplate } from '../../templates';
@@ -16,7 +16,13 @@ export interface SignupViewProps {
 export default function SignupView({
   onSubmit,
   openLogin,
-}: SignupViewProps): React.ReactElement {
+  cleverId,
+  email,
+  firstname,
+  isNew = false,
+  lastname,
+  roleId,
+}: SignupViewProps & Clever.NewRedirectState): React.ReactElement {
   const methods = useForm();
   const { push } = useHistory();
 
@@ -26,7 +32,11 @@ export default function SignupView({
     onSubmit ??
       (async (data: Users.INewUser) => {
         Reflect.deleteProperty(data, 'confirmPassword');
-        const res = await Auth.signup(data);
+        const res = await (() => {
+          if (isNew && cleverId && roleId)
+            return Clever.signupWithClever(data, roleId, cleverId);
+          return Auth.signup(data);
+        })();
         login(res);
         push('/');
       }),
@@ -36,7 +46,10 @@ export default function SignupView({
   return (
     <DashboardTemplate useStorySquadHeader className="signup-view">
       <FormProvider {...methods}>
-        <SignupForm onSubmit={submitHandler} />
+        <SignupForm
+          onSubmit={submitHandler}
+          defaultValues={{ firstname, lastname, email }}
+        />
       </FormProvider>
       <p className="form-footer">
         Already have an account? <span onClick={openLogin}>Sign In Here</span>
