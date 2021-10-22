@@ -58,16 +58,20 @@
         }
 
         a {
-          display: block;
-          color: $white;
-          font-family: $text-font;
-          padding: 2rem;
-
           transition: all 0.1s ease;
           &:hover {
             transition: all 0.1s ease;
             background-color: #fff2;
           }
+        }
+
+        a,
+        .link {
+          display: block;
+          color: $white;
+          font-family: $text-font;
+          padding: 2rem;
+          white-space: nowrap;
 
           @include bp(tablet) {
             padding: 2rem 4rem;

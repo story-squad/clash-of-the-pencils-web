@@ -30,6 +30,9 @@ const Template: Story = ({ isLogged }: { isLogged?: boolean }) => {
 
 export const Default = Template.bind({});
 
+export const LoggedIn = Template.bind({});
+LoggedIn.args = { isLogged: true };
+
 export const StorySquad: Story = () => <StorySquadHeader />;
 
 export default {

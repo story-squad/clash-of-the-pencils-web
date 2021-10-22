@@ -11,18 +11,18 @@ export default function AuthNavItems({
   const { user, closeMenu } = useHeaderContext();
   return user ? (
     <>
-      <li className={classnames('app-nav', className)}>
-        Welcome, {user.codename}
+      <li className={classnames('auth-nav', className)}>
+        <span className="link"> Welcome, {user.codename}!</span>
       </li>
     </>
   ) : (
     <>
-      <li className={classnames('app-nav', className)}>
+      <li className={classnames('auth-nav', className)}>
         <Link to="/login" onClick={closeMenu}>
           Log In
         </Link>
       </li>
-      <li className={classnames('app-nav', className)}>
+      <li className={classnames('auth-nav', className)}>
         <Link to="/signup" onClick={closeMenu}>
           Sign Up
         </Link>
