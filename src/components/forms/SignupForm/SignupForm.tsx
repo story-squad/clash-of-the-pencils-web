@@ -5,7 +5,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Auth, Users } from '../../../api';
 import { dataConstraints } from '../../../config';
-import { Button, CleverButton, LoadIcon } from '../../atoms';
+import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import { authFormInputs } from '../inputs';
 import './styles/index.scss';
@@ -88,9 +88,6 @@ export default function SignupForm({
 
   return (
     <form className="signup-form" onSubmit={exec} noValidate>
-      <CleverButton htmlType="button" signUp />
-      <p className="alt-font">or</p>
-      <p className="main-font">Sign In Using Email Address</p>
       {/* First page */}
       {authFormInputs.firstname({ defaultValue: defaultValues?.firstname })}
       {authFormInputs.lastname({ defaultValue: defaultValues?.lastname })}
