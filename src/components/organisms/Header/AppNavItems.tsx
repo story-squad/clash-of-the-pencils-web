@@ -1,14 +1,14 @@
 import { classnames } from '@story-squad/react-utils';
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import HeaderContext from './headerContext';
+import useHeaderContext from './useHeaderContext';
 
 export default function AppNavItems({
   className,
 }: {
   className?: string;
 } = {}): React.ReactElement {
-  const { closeMenu } = useContext(HeaderContext);
+  const { closeMenu } = useHeaderContext();
   return (
     <>
       <li className={classnames('app-nav', className)}>

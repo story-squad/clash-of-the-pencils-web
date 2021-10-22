@@ -14,5 +14,11 @@
     gap: 1.6rem;
     justify-content: flex-start;
     padding: 0 1.6rem;
+
+    a {
+      &:hover {
+        border-bottom: 1px solid #fff6;
+      }
+    }
   }
 }

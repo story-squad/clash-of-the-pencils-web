@@ -6,4 +6,5 @@ export interface HeaderContextProps {
   menuIsOpen: boolean;
   openDashboard: () => void;
   user?: Users.IUser;
+  logout: () => void;
 }

@@ -1,13 +1,14 @@
 import { useClickOutside } from '@story-squad/react-utils';
-import React, { useContext } from 'react';
+import React from 'react';
 import { ClashLogo } from '../../../assets';
-import HeaderContext from './headerContext';
+import HeaderMenu from './HeaderMenu';
 import HeaderToggle from './HeaderToggle';
 import InlineNav from './InlineNav';
 import './styles/index.scss';
+import useHeaderContext from './useHeaderContext';
 
 export default function Header(): React.ReactElement {
-  const { menuIsOpen, openDashboard, closeMenu } = useContext(HeaderContext);
+  const { menuIsOpen, openDashboard, closeMenu } = useHeaderContext();
   // Menu should close on click outside of header
   const [clickRef] = useClickOutside({
     isActive: menuIsOpen,
@@ -28,6 +29,7 @@ export default function Header(): React.ReactElement {
         </section>
         <InlineNav />
       </div>
+      <HeaderMenu />
     </header>
   );
 }

@@ -1,0 +1,79 @@
+@import '../../../../styles/newIndex.scss';
+
+.header-menu {
+  display: block;
+  height: 0;
+  overflow: visible;
+  position: relative;
+  align-self: flex-end;
+  @include safe-zone();
+
+  // Hide nav when collapsed
+  &.collapsed nav {
+    display: none;
+  }
+
+  nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    @include bp(tablet) {
+      padding: 0 1rem;
+      align-items: flex-end;
+    }
+    ul {
+      width: min-content;
+      min-width: 50vw;
+      background-color: $brand-blue-6;
+      z-index: 5;
+
+      border-top: 1px solid fade-out($white, 0.4);
+      border-radius: 0 0 1.6rem 0;
+
+      @include bp(tablet) {
+        min-width: 15rem;
+        left: unset;
+        right: 0;
+        border-radius: 0 0 1.6rem 1.6rem;
+        text-align: center;
+      }
+
+      li {
+        &:last-child {
+          border-radius: 0 0 1.6rem 0;
+
+          @include bp(tablet) {
+            border-radius: 0 0 1.6rem 1.6rem;
+          }
+        }
+        @include bp(tablet) {
+          &.hide-on-tablet {
+            display: none;
+          }
+        }
+
+        a {
+          display: block;
+          color: $white;
+          font-family: $text-font;
+          padding: 2rem;
+
+          transition: all 0.1s ease;
+          &:hover {
+            transition: all 0.1s ease;
+            background-color: #fff2;
+          }
+
+          @include bp(tablet) {
+            padding: 2rem 4rem;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { app, auth } from '../../../state';
 import Header from './Header';
-import HeaderContext from './headerContext';
 import StorySquadHeader from './StorySquadHeader';
+import { HeaderContextProvider } from './useHeaderContext';
 
 /**
  * This container serves as an injection layer so that in testing and development
@@ -27,18 +27,22 @@ function HeaderContainer(): React.ReactElement {
   const { push } = useHistory();
   const openDashboard = () => push('/');
 
+  // Logout
+  const logout = useSetRecoilState(auth.login);
+
   return (
-    <HeaderContext.Provider
+    <HeaderContextProvider
       value={{
         closeMenu,
         menuIsOpen,
         toggleMenu,
         openDashboard,
         user,
+        logout,
       }}
     >
       <Header />
-    </HeaderContext.Provider>
+    </HeaderContextProvider>
   );
 }
 
