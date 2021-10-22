@@ -9,4 +9,5 @@ export interface FormProps<
   onSubmit: FormOnSubmit<FormData, Response>;
   onSuccess?: () => void;
   onError?: FormOnError;
+  defaultValues?: Partial<FormData>;
 }
