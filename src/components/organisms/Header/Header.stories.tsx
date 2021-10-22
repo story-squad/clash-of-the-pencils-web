@@ -1,21 +1,29 @@
 import { Meta, Story } from '@storybook/react';
 import React, { useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { userData } from '../../../data';
 import Header from './Header';
-import { HeaderSwitcherProps } from './HeaderContainer';
+import HeaderContext from './headerContext';
 import StorySquadHeader from './StorySquadHeader';
 
-const Template: Story<HeaderSwitcherProps> = (props) => {
-  const [show, setShow] = useState(false);
-  const toggle = () => setShow((x) => !x);
+const Template: Story = ({ isLogged }: { isLogged?: boolean }) => {
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const toggleMenu = () => setMenuIsOpen((p) => !p);
+  const closeMenu = () => setMenuIsOpen(false);
+  const user = isLogged ? userData[0] : undefined;
   const openDashboard = () => undefined;
   return (
-    <Header
-      isMenuOpen={show}
-      toggleMenu={toggle}
-      openDashboard={openDashboard}
-      {...props}
-    />
+    <HeaderContext.Provider
+      value={{
+        menuIsOpen,
+        closeMenu,
+        openDashboard,
+        toggleMenu,
+        user,
+      }}
+    >
+      <Header />
+    </HeaderContext.Provider>
   );
 };
 

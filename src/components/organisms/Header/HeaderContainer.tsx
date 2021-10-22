@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { app, auth } from '../../../state';
 import Header from './Header';
+import HeaderContext from './headerContext';
 import StorySquadHeader from './StorySquadHeader';
 
 /**
@@ -11,24 +12,31 @@ import StorySquadHeader from './StorySquadHeader';
  * needing the Recoil layer.
  */
 function HeaderContainer(): React.ReactElement {
-  const [isMenuOpen, setIsMenuOpen] = useRecoilState(app.header.menuIsOpen);
+  const [menuIsOpen, setMenuIsOpen] = useRecoilState(app.header.menuIsOpen);
   const user = useRecoilValue(auth.user);
 
   const { push } = useHistory();
   const openDashboard = () => push('/');
 
-  const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev);
-    console.log('hit');
-  };
+  const toggleMenu = useCallback(
+    () => setMenuIsOpen((prev) => !prev),
+    [setMenuIsOpen],
+  );
+
+  const closeMenu = useCallback(() => setMenuIsOpen(false), [setMenuIsOpen]);
 
   return (
-    <Header
-      openDashboard={openDashboard}
-      isMenuOpen={isMenuOpen}
-      toggleMenu={toggleMenu}
-      user={user}
-    />
+    <HeaderContext.Provider
+      value={{
+        closeMenu,
+        menuIsOpen,
+        toggleMenu,
+        openDashboard,
+        user,
+      }}
+    >
+      <Header />
+    </HeaderContext.Provider>
   );
 }
 
