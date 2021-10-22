@@ -87,7 +87,7 @@ export default function SignupForm({
 
   return (
     <form className="signup-form" onSubmit={exec} noValidate>
-      <CleverButton htmlType="button" />
+      <CleverButton htmlType="button" signUp />
       <p className="alt-font">or</p>
       <p className="main-font">Sign In Using Email Address</p>
       {/* First page */}
