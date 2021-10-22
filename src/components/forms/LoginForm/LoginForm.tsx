@@ -4,7 +4,7 @@ import React, { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Auth } from '../../../api';
 import { dataConstraints } from '../../../config';
-import { Button, CleverButton, LoadIcon } from '../../atoms';
+import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import { authFormInputs } from '../inputs';
 import './styles/index.scss';
@@ -14,6 +14,7 @@ export type LoginFormProps = FormProps<Auth.ILoginBody>;
 export default function LoginForm({
   onSubmit,
   onError,
+  defaultValues,
 }: LoginFormProps): React.ReactElement {
   const { handleSubmit, setError, clearErrors } = useFormContext();
 
@@ -60,9 +61,6 @@ export default function LoginForm({
 
   return (
     <form className="login-form" onSubmit={exec}>
-      <CleverButton htmlType="button" />
-      <p className="alt-font">or</p>
-      <p className="main-font">Sign In Using Story Squad Account</p>
       <ErrorMessage
         name="form"
         render={({ message }) => (
@@ -74,6 +72,7 @@ export default function LoginForm({
       />
       {authFormInputs.codename(
         {
+          defaultValue: defaultValues?.codename,
           rules: {
             minLength: { value: 2, message: 'Too short' },
           },
