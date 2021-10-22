@@ -1,0 +1,32 @@
+@import '../../../../styles/newIndex.scss';
+
+@mixin size($s: 4rem) {
+  height: $s;
+  width: $s;
+}
+
+svg {
+  &.menu-toggle {
+    @include size;
+    margin-right: 1.6rem;
+
+    // Menu should display on mobile only
+    @include bp(tablet) {
+      display: none;
+    }
+  }
+
+  &.mobile-icon {
+    display: block;
+    @include bp(tablet) {
+      display: none;
+    }
+  }
+
+  &.tablet-icon {
+    display: none;
+    @include bp(tablet) {
+      display: block;
+    }
+  }
+}
