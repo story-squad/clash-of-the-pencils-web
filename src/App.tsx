@@ -37,7 +37,7 @@ const App = (): React.ReactElement => {
             <SignupView openLogin={() => history.push('/login')} />
           )}
         />
-        <Route path="/oauth/clever" render={CleverRedirectView} />
+        <Route path="/oauth/clever" render={() => <CleverRedirectView />} />
 
         {/* Public Routes */}
         <Route
