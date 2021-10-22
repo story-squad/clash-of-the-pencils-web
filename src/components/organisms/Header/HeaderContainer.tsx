@@ -12,18 +12,20 @@ import StorySquadHeader from './StorySquadHeader';
  * needing the Recoil layer.
  */
 function HeaderContainer(): React.ReactElement {
+  // Recoil subscriptions
   const [menuIsOpen, setMenuIsOpen] = useRecoilState(app.header.menuIsOpen);
   const user = useRecoilValue(auth.user);
 
-  const { push } = useHistory();
-  const openDashboard = () => push('/');
-
+  // Setters
   const toggleMenu = useCallback(
     () => setMenuIsOpen((prev) => !prev),
     [setMenuIsOpen],
   );
-
   const closeMenu = useCallback(() => setMenuIsOpen(false), [setMenuIsOpen]);
+
+  // Navigation
+  const { push } = useHistory();
+  const openDashboard = () => push('/');
 
   return (
     <HeaderContext.Provider
