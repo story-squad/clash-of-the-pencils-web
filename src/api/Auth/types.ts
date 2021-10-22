@@ -21,3 +21,9 @@ export interface IPassResetPostBody {
 export function isAxiosError(err: unknown): err is AxiosError {
   return (err as AxiosError)?.isAxiosError || false;
 }
+
+export enum Roles {
+  'user' = 1,
+  'teacher' = 2,
+  'admin' = 3,
+}
