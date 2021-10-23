@@ -58,6 +58,8 @@
         }
 
         a {
+          font-family: $text-font;
+
           transition: all 0.1s ease;
           &:hover {
             transition: all 0.1s ease;
@@ -65,13 +67,20 @@
           }
         }
 
+        .link {
+          font-family: $display-font;
+          font-size: 115%;
+          .codename {
+            color: $lime-green;
+          }
+        }
+
         a,
         .link {
           display: block;
           color: $white;
-          font-family: $text-font;
-          padding: 2rem;
           white-space: nowrap;
+          padding: 2rem;
 
           @include bp(tablet) {
             padding: 2rem 4rem;
