@@ -7,13 +7,13 @@ import StreamWrapper from './StreamWrapper';
 const streamURL = process.env.REACT_APP_LIVESTREAM_URL;
 
 function Stream(): React.ReactElement {
-  const [playing, setPlaying] = useState(false);
+  const [playing /* setPlaying */] = useState(false);
   const [renderFallback, setRenderFallback] = useState(streamURL === undefined);
   const hidePlayer = () => {
     setRenderFallback(true);
   };
   const onReady = () => {
-    setPlaying(true);
+    // setPlaying(true);
   };
 
   // if (renderFallback) return <OfflineStreamVideo />;
