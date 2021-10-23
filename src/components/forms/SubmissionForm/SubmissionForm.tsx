@@ -5,7 +5,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { Auth, Prompts, Submissions } from '../../../api';
 import { app } from '../../../state';
 import { stopPropagation, upload } from '../../../utils';
-import { Button, Loader, LoadIcon } from '../../atoms';
+import { Button, LoadIcon } from '../../atoms';
 import { DragonLoader } from '../../molecules';
 import { FormProps } from '../formTypes';
 import './styles/index.scss';
@@ -134,7 +134,7 @@ export default function SubmissionForm({
       <label className={classnames('file-input')}>
         {loadingHEIC ? (
           <div className="placeholder loading-heic" onClick={stopPropagation}>
-            <DragonLoader />
+            <DragonLoader message="Converting" />
           </div>
         ) : preview ? (
           <img
@@ -153,11 +153,6 @@ export default function SubmissionForm({
         )}
         <input type="file" onChange={fileSelection} hidden />
       </label>
-      {loadingHEIC && (
-        <div className="server-error">
-          <Loader message="Converting HEIC file" />
-        </div>
-      )}
       {error && (
         <div className="server-error">
           <span className="red">*</span>
