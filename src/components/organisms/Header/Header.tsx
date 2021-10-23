@@ -1,4 +1,3 @@
-import { useClickOutside } from '@story-squad/react-utils';
 import React from 'react';
 import { ClashLogo } from '../../../assets';
 import HeaderMenu from './HeaderMenu';
@@ -8,19 +7,14 @@ import './styles/index.scss';
 import useHeaderContext from './useHeaderContext';
 
 export default function Header(): React.ReactElement {
-  const { menuIsOpen, openDashboard, closeMenu } = useHeaderContext();
-  // Menu should close on click outside of header
-  const [clickRef] = useClickOutside({
-    isActive: menuIsOpen,
-    onClick: closeMenu,
-  });
+  const { openDashboard, closeMenu } = useHeaderContext();
   function closeMenuAndOpenDash() {
     closeMenu();
     openDashboard();
   }
 
   return (
-    <header className="main-header-wrapper" ref={clickRef}>
+    <header className="main-header-wrapper">
       <div className="main-header-container">
         <HeaderToggle />
         <section id="main-header">
