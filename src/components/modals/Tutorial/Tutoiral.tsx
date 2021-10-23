@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useRecoilState } from 'recoil';
 import { app } from '../../../state';
@@ -19,6 +19,10 @@ const Tutorial = (): React.ReactElement => {
   const [showTutorial, setShowTutorial] = useState(false);
   const [position, setPosition] = useState<DOMRect>();
   const router = useHistory();
+  const [{ message, arrow, classname, id, styleclass }] = useMemo(
+    () => [tutorialMessages[messageIndex]],
+    [tutorialMessages, messageIndex],
+  );
   // can try and add another component and move all logic to it and render based on loading there
   const nextItem = () => {
     setMessage((prev) => {
@@ -43,15 +47,15 @@ const Tutorial = (): React.ReactElement => {
 
   // Finds and gets the IDS that are on the page linked to the tutorial and positions the page based on where they are
   useEffect(() => {
-    if (tutorialMessages[messageIndex].id !== undefined) {
-      const element = $(`#${tutorialMessages[messageIndex].id}`);
+    if (id !== undefined) {
+      const element = $(`#${id}`);
       if (element && showTutorial) {
-        element.scrollIntoView();
-        window.scrollBy(0, -60);
+        element.scrollIntoView(false);
+        // window.scrollBy(0, -60);
         setPosition(element.getBoundingClientRect());
       }
     } else return;
-  }, [messageIndex, showTutorial]);
+  }, [id, showTutorial]);
 
   return (
     <>
@@ -66,18 +70,16 @@ const Tutorial = (): React.ReactElement => {
           <div
             // these styles position the message on the page
             style={{
-              position: tutorialMessages[messageIndex].id
-                ? 'absolute'
-                : 'unset',
+              position: id ? 'absolute' : 'unset',
               top:
-                tutorialMessages[messageIndex].classname !== 'tutorial-top'
+                classname !== 'tutorial-top'
                   ? position && position?.height + position?.top + 20
                   : // This math below needs to be changed
                     position && position?.top * -0.2,
               left:
-                tutorialMessages[messageIndex].classname !== 'tutorial-top'
-                  ? tutorialMessages[messageIndex].classname !== 'tutorial-redo'
-                    ? position && position.left + 20
+                classname !== 'tutorial-top'
+                  ? classname !== 'tutorial-redo'
+                    ? position && position.left
                     : position && position.left + 20 - position.left / 2.5
                   : '',
             }}
