@@ -8,14 +8,14 @@
   align-items: stretch;
   gap: 1.6rem;
 
-  @include bp(med) {
-    flex-flow: row wrap;
-    .card {
-      width: calc((100% - (1.6rem)) / 2);
-    }
-  }
+  // @include bp(med) {
+  //   .card {
+  //     width: calc((100% - (1.6rem)) / 2);
+  //   }
+  // }
 
   @include bp(tablet) {
+    flex-flow: row wrap;
     .card {
       width: calc((100% - (1.6rem * 2)) / 3);
     }
