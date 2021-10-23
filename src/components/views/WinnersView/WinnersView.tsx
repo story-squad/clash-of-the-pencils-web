@@ -1,8 +1,8 @@
 import React from 'react';
+import { FullscreenImageOverlay } from '../../modals';
 import { SubmissionCard } from '../../molecules';
 import { CardList, Leaderboard, TwoColumn } from '../../organisms';
 import { DashboardTemplate } from '../../templates';
-import { FullscreenImageOverlay } from '../FullscreenImageOverlay';
 import './styles/index.scss';
 
 export interface WinnersViewProps {
