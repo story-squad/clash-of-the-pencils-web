@@ -1,4 +1,5 @@
 import React from 'react';
+import { Auth } from '../api';
 
 /** Use this to stop mouse events from propagating */
 export function stopPropagation<ElementType = unknown>(
@@ -15,3 +16,13 @@ export function stopPropagation<ElementType = unknown>(
  */
 export const $: typeof document.querySelector =
   document.querySelector.bind(document);
+
+export function readError(err: unknown): string {
+  if (Auth.isAxiosError(err)) {
+    return (
+      err.response?.data?.message ?? err.response?.data?.error ?? err.message
+    );
+  } else if (err instanceof Error) {
+    return err.message;
+  } else return 'An unknown error occurred.';
+}
