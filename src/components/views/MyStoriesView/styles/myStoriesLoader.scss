@@ -1,0 +1,9 @@
+@import '../../../../styles/newIndex.scss';
+
+.my-stories-view-loader {
+  background-color: $white;
+
+  .message {
+    color: $brand-blue;
+  }
+}
