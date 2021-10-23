@@ -75,6 +75,14 @@
         line-height: 2.4rem;
         text-transform: uppercase;
       }
+      &.loading-heic {
+        background-color: $brand-blue-1;
+        .message {
+          color: $brand-orange;
+          font-family: $display-font;
+          font-size: 2.4rem;
+        }
+      }
     }
   }
 

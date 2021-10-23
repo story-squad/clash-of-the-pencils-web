@@ -6,6 +6,7 @@ import { Auth, Prompts, Submissions } from '../../../api';
 import { app } from '../../../state';
 import { stopPropagation, upload } from '../../../utils';
 import { Button, Loader, LoadIcon } from '../../atoms';
+import { DragonLoader } from '../../molecules';
 import { FormProps } from '../formTypes';
 import './styles/index.scss';
 
@@ -131,7 +132,11 @@ export default function SubmissionForm({
           : 'Select a file to upload your story'}
       </p>
       <label className={classnames('file-input')}>
-        {preview ? (
+        {loadingHEIC ? (
+          <div className="placeholder loading-heic" onClick={stopPropagation}>
+            <DragonLoader />
+          </div>
+        ) : preview ? (
           <img
             className="preview"
             src={preview}
