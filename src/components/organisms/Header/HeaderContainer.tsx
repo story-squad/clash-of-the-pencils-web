@@ -29,6 +29,10 @@ function HeaderContainer(): React.ReactElement {
 
   // Logout
   const logout = useSetRecoilState(auth.login);
+  const logoutAndCloseMenu = useCallback(() => {
+    logout();
+    closeMenu();
+  }, [logout, closeMenu]);
 
   return (
     <HeaderContextProvider
@@ -38,7 +42,7 @@ function HeaderContainer(): React.ReactElement {
         toggleMenu,
         openDashboard,
         user,
-        logout,
+        logout: logoutAndCloseMenu,
       }}
     >
       <Header />
