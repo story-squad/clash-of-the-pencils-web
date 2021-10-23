@@ -1,10 +1,6 @@
 @import '../../../../styles/newIndex.scss';
 
 .winners-dashboard {
-  .dashboard-content-container {
-    background-color: $brand-blue-9;
-  }
-
   .submission-card .image {
     // Override hidden images on mobile
     display: flex;
@@ -24,7 +20,7 @@
   }
 
   .winners-two-col {
-    background-color: $brand-blue-9;
+    background-color: $white;
     .big-winner {
       padding: 2rem;
       display: flex;
@@ -34,7 +30,7 @@
       gap: 2rem;
 
       flex-grow: 1;
-      background-color: $gray-9;
+      background-color: $brand-blue-6;
 
       .winner-content {
         display: flex;
@@ -44,7 +40,7 @@
           text-align: center;
           font-size: 2.4rem;
           line-height: 2.6rem;
-          color: $lime-green;
+          color: $white;
           font-family: $display-font;
         }
         p {
