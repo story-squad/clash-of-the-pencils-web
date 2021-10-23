@@ -1,11 +1,13 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { ActivationModal } from './components/modals';
+import { PrivateRoute } from './components/providers';
 import {
   CleverRedirectView,
   DashboardView,
   ErrorView,
   LoginView,
+  MyStoriesView,
   ScheduleView,
   SignupView,
   TermsView,
@@ -38,6 +40,9 @@ const App = (): React.ReactElement => {
           )}
         />
         <Route path="/oauth/clever" render={() => <CleverRedirectView />} />
+
+        {/* Private Routes */}
+        <PrivateRoute path="/stories" component={() => <MyStoriesView />} />
 
         {/* Public Routes */}
         <Route
