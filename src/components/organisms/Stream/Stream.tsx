@@ -29,7 +29,6 @@ function Stream(): React.ReactElement {
         onReady={onReady}
         onError={hidePlayer}
         controls
-        volume={0.1}
         stopOnUnmount
         config={{ youtube: { onUnstarted: hidePlayer } }}
       />
