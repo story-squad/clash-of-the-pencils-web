@@ -3,6 +3,7 @@ import { FullscreenImageOverlay } from '../../modals';
 import { SubmissionCard } from '../../molecules';
 import { CardList } from '../../organisms';
 import { DashboardTemplate } from '../../templates';
+import './styles/index.scss';
 
 export interface MyStoriesViewProps {
   submissionIds: number[];
