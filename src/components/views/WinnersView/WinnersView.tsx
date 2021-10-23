@@ -3,6 +3,7 @@ import { FullscreenImageOverlay } from '../../modals';
 import { SubmissionCard } from '../../molecules';
 import { CardList, Leaderboard, TwoColumn } from '../../organisms';
 import { DashboardTemplate } from '../../templates';
+import BigWinner from './BigWinner';
 import './styles/index.scss';
 
 export interface WinnersViewProps {
@@ -29,20 +30,5 @@ export default function WinnersView({
         </CardList>
       </div>
     </DashboardTemplate>
-  );
-}
-
-function BigWinner({ winnerId }: { winnerId: number }): React.ReactElement {
-  return (
-    <div className="big-winner">
-      <div className="winner-content">
-        <h2>Latest Champion</h2>
-        <p>
-          Here&apos;s the story that won our last contest. Click on the picture
-          to get a better look!
-        </p>
-      </div>
-      <SubmissionCard droppable={false} submissionId={winnerId} />
-    </div>
   );
 }
