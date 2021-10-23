@@ -23,22 +23,21 @@
     flex-flow: column nowrap;
     align-items: flex-start;
     @include bp(tablet) {
+      width: min-content;
       padding: 0 1rem;
+      left: unset;
+      right: 0;
       align-items: flex-end;
     }
     ul {
-      width: min-content;
-      min-width: 50vw;
+      width: 100%;
       background-color: $brand-blue-6;
       z-index: 5;
 
       border-top: 1px solid fade-out($white, 0.4);
-      border-radius: 0 0 1.6rem 0;
 
       @include bp(tablet) {
         min-width: 15rem;
-        left: unset;
-        right: 0;
         border-radius: 0 0 1.6rem 1.6rem;
         text-align: center;
       }
@@ -57,8 +56,22 @@
           }
         }
 
+        a,
+        .link {
+          display: block;
+          color: $white;
+          white-space: nowrap;
+          padding: 2rem;
+
+          @include bp(tablet) {
+            padding: 1rem 4rem;
+          }
+        }
+
         a {
           font-family: $text-font;
+          font-size: 2.2rem;
+          line-height: 2.6rem;
 
           transition: all 0.1s ease;
           &:hover {
@@ -70,20 +83,12 @@
         .link {
           font-family: $display-font;
           font-size: 115%;
-          .codename {
-            color: $lime-green;
-          }
-        }
-
-        a,
-        .link {
-          display: block;
-          color: $white;
-          white-space: nowrap;
-          padding: 2rem;
 
           @include bp(tablet) {
-            padding: 2rem 4rem;
+            padding: 1.5rem;
+          }
+          .codename {
+            color: $lime-green;
           }
         }
       }

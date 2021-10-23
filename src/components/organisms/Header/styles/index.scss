@@ -16,7 +16,12 @@ header.main-header-wrapper {
       @mixin text {
         color: $white;
         font-family: $text-font;
-        font-size: 1.4rem;
+        font-size: 1.8rem;
+        line-height: 2.6rem;
+        @include bp(tablet) {
+          font-size: 1.6rem;
+          line-height: 2.2rem;
+        }
       }
       @include text;
       a {
