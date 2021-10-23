@@ -18,7 +18,6 @@ function OfflineStreamVideo(): React.ReactElement {
           <ReactPlayer
             url={url}
             controls
-            volume={0.1}
             onEnded={() => console.log('ended')}
             onError={(e) => {
               throw e;

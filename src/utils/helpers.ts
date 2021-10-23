@@ -4,6 +4,7 @@ import React from 'react';
 export function stopPropagation<ElementType = unknown>(
   e: React.MouseEvent<ElementType, MouseEvent>,
 ): void {
+  console.log('stopping');
   e.stopPropagation();
 }
 

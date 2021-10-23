@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { app, auth } from '../../../state';
 import Header from './Header';
 import StorySquadHeader from './StorySquadHeader';
+import { HeaderContextProvider } from './useHeaderContext';
 
 /**
  * This container serves as an injection layer so that in testing and development
@@ -11,24 +12,41 @@ import StorySquadHeader from './StorySquadHeader';
  * needing the Recoil layer.
  */
 function HeaderContainer(): React.ReactElement {
-  const [isMenuOpen, setIsMenuOpen] = useRecoilState(app.header.menuIsOpen);
+  // Recoil subscriptions
+  const [menuIsOpen, setMenuIsOpen] = useRecoilState(app.header.menuIsOpen);
   const user = useRecoilValue(auth.user);
 
+  // Setters
+  const toggleMenu = useCallback(
+    () => setMenuIsOpen((prev) => !prev),
+    [setMenuIsOpen],
+  );
+  const closeMenu = useCallback(() => setMenuIsOpen(false), [setMenuIsOpen]);
+
+  // Navigation
   const { push } = useHistory();
   const openDashboard = () => push('/');
 
-  const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev);
-    console.log('hit');
-  };
+  // Logout
+  const logout = useSetRecoilState(auth.login);
+  const logoutAndCloseMenu = useCallback(() => {
+    logout();
+    closeMenu();
+  }, [logout, closeMenu]);
 
   return (
-    <Header
-      openDashboard={openDashboard}
-      isMenuOpen={isMenuOpen}
-      toggleMenu={toggleMenu}
-      user={user}
-    />
+    <HeaderContextProvider
+      value={{
+        closeMenu,
+        menuIsOpen,
+        toggleMenu,
+        openDashboard,
+        user,
+        logout: logoutAndCloseMenu,
+      }}
+    >
+      <Header />
+    </HeaderContextProvider>
   );
 }
 

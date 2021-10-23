@@ -1,10 +1,6 @@
 @import '../../../../styles/newIndex.scss';
 
 .winners-dashboard {
-  .dashboard-content-container {
-    background-color: $brand-blue-9;
-  }
-
   .submission-card .image {
     // Override hidden images on mobile
     display: flex;
@@ -21,45 +17,20 @@
       font-size: 3rem;
       margin-bottom: 3rem;
     }
+    > p {
+      font-family: $text-font;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      color: $gray-9;
+      text-align: center;
+      font-style: italic;
+
+      // This basically gives the h2 less bot margin when this p is displayed
+      margin-top: -1.2rem;
+    }
   }
 
   .winners-two-col {
-    background-color: $brand-blue-9;
-    .big-winner {
-      padding: 2rem;
-      display: flex;
-      flex-flow: column nowrap;
-      align-items: stretch;
-      justify-content: space-around;
-      gap: 2rem;
-
-      flex-grow: 1;
-      background-color: $gray-9;
-
-      .winner-content {
-        display: flex;
-        flex-flow: column nowrap;
-        gap: 1rem;
-        h2 {
-          text-align: center;
-          font-size: 2.4rem;
-          line-height: 2.6rem;
-          color: $lime-green;
-          font-family: $display-font;
-        }
-        p {
-          font-family: $text-font;
-          color: $white;
-          font-size: 1.6rem;
-          text-align: center;
-          line-height: 2.4rem;
-        }
-      }
-
-      .submission-card .image {
-        // Override hidden images on mobile
-        display: flex;
-      }
-    }
+    background-color: $white;
   }
 }

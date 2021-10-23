@@ -1,54 +1,29 @@
-import { useClickOutside } from '@story-squad/react-utils';
 import React from 'react';
-import { Users } from '../../../api';
-import HeaderIcon, { IHeaderIconProps } from './HeaderIcon';
-import MobileNav from './MobileNav';
+import { ClashLogo } from '../../../assets';
+import HeaderMenu from './HeaderMenu';
+import HeaderToggle from './HeaderToggle';
+import InlineNav from './InlineNav';
 import './styles/index.scss';
-import TabletNav from './TabletNav';
+import useHeaderContext from './useHeaderContext';
 
-type IHeaderProps = Omit<IHeaderIconProps, 'closeMenu'> & {
-  user?: Omit<Users.IUser, 'password'> | undefined;
-  openDashboard: () => void;
-};
-
-export default function Header({
-  isMenuOpen,
-  toggleMenu,
-  user,
-  openDashboard,
-}: IHeaderProps): React.ReactElement {
-  // Menu should close on click outside of header
-  const [clickRef] = useClickOutside({
-    isActive: isMenuOpen,
-    onClick: closeMenuIfOpen,
-  });
-  function closeMenuIfOpen() {
-    if (isMenuOpen) toggleMenu();
-  }
-  function headingClickHandler() {
-    closeMenuIfOpen();
+export default function Header(): React.ReactElement {
+  const { openDashboard, closeMenu } = useHeaderContext();
+  function closeMenuAndOpenDash() {
+    closeMenu();
     openDashboard();
   }
 
   return (
-    <header className="main-header-wrapper" ref={clickRef}>
+    <header className="main-header-wrapper">
       <div className="main-header-container">
+        <HeaderToggle />
         <section id="main-header">
-          <HeaderIcon
-            isMenuOpen={isMenuOpen}
-            toggleMenu={toggleMenu}
-            openDashboard={openDashboard}
-            closeMenu={closeMenuIfOpen}
-          />
-          <h1 onClick={headingClickHandler}>Clash of the Pencils</h1>
-          <TabletNav user={user} closeMenu={closeMenuIfOpen} />
+          <ClashLogo className="logo" onClick={closeMenuAndOpenDash} />
+          <h1 onClick={closeMenuAndOpenDash}>Clash of the Pencils</h1>
         </section>
-        <MobileNav
-          isMenuOpen={isMenuOpen}
-          user={user}
-          closeMenu={closeMenuIfOpen}
-        />
+        <InlineNav />
       </div>
+      <HeaderMenu />
     </header>
   );
 }

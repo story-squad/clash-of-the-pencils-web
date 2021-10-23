@@ -22,6 +22,7 @@ export default function VotingCardList({
         top3Ids.map((id, i) => (
           <SubmissionCard
             key={id}
+            droppable
             // This is okay, there will only ever be 3 subs here so we can coerce
             position={(i + 1) as voting.Places}
             submissionId={id}

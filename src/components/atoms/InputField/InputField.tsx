@@ -9,6 +9,7 @@ const InputField = ({
   variant,
   inputType = 'text',
   placeholder,
+  innerRef,
   ...props
 }: IInputFieldProps): React.ReactElement => {
   const [isFocused, setFocused] = useState(false);
@@ -37,6 +38,7 @@ const InputField = ({
         onBlur={unfocus}
         type={inputType}
         placeholder={placeholder}
+        ref={innerRef}
         {...props}
       />
       {iconRight}
