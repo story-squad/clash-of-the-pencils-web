@@ -1,7 +1,6 @@
 import { ErrorBoundary } from '@story-squad/react-utils';
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
-import { default as OfflineStreamVideo } from './OfflineStreamVideo';
 import StreamFailureFallback from './StreamFailureFallback';
 import StreamWrapper from './StreamWrapper';
 
@@ -17,24 +16,26 @@ function Stream(): React.ReactElement {
     setPlaying(true);
   };
 
-  if (renderFallback) return <OfflineStreamVideo />;
-  else {
-    return (
-      <StreamWrapper>
-        {playing && <h2>Streaming Now!</h2>}
-        <ReactPlayer
-          url={streamURL}
-          playing={playing}
-          onReady={onReady}
-          onError={hidePlayer}
-          controls
-          volume={0.1}
-          stopOnUnmount
-          config={{ youtube: { onUnstarted: hidePlayer } }}
-        />
-      </StreamWrapper>
-    );
-  }
+  // if (renderFallback) return <OfflineStreamVideo />;
+  // else {
+  return (
+    <StreamWrapper>
+      {playing && (
+        <h2>{renderFallback ? 'Latest Stream' : 'Streaming Now!'}</h2>
+      )}
+      <ReactPlayer
+        muted
+        url={streamURL}
+        playing={playing}
+        onReady={onReady}
+        onError={hidePlayer}
+        controls
+        stopOnUnmount
+        config={{ youtube: { onUnstarted: hidePlayer } }}
+      />
+    </StreamWrapper>
+  );
+  // }
 }
 
 export default function StreamErrorBound(): React.ReactElement {

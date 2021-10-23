@@ -1,0 +1,43 @@
+@import '../../../../styles/newIndex.scss';
+
+@mixin size($s: 4rem) {
+  height: $s;
+  width: $s;
+}
+
+svg {
+  color: $white;
+  cursor: pointer;
+  &.menu-toggle {
+    @include size;
+    margin-right: 1.6rem;
+
+    // Menu should display on mobile only
+    @include bp(tablet) {
+      display: none;
+    }
+  }
+
+  &.mobile-icon {
+    display: block;
+    @include bp(tablet) {
+      display: none;
+    }
+  }
+
+  &.tablet-icon {
+    display: none;
+    background-color: $brand-orange;
+    border-radius: 10rem;
+    @include bp(tablet) {
+      display: block;
+    }
+
+    transition: all 0.15s ease;
+    &.menu-is-open,
+    &:hover {
+      transition: all 0.15s ease;
+      filter: brightness(0.8);
+    }
+  }
+}

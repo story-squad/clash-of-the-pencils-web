@@ -4,8 +4,8 @@ import { RecoilRoot } from 'recoil';
 import { submissionData } from '../../../data';
 import { app, submissions } from '../../../state';
 import { sleep, time } from '../../../utils';
+import { FullscreenImageOverlay } from '../../modals';
 import { VotingDragAndDropContext } from '../../providers';
-import { FullscreenImageOverlay } from '../../views';
 import Voting, { VotingProps } from './Voting';
 import VotingContainer from './VotingContainer';
 

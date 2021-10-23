@@ -37,4 +37,4 @@ export default [
     updated_at: new Date(),
     id: 3,
   },
-] as Omit<Users.IUser, 'password'>[];
+] as Users.IUser[];

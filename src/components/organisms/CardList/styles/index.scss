@@ -4,9 +4,15 @@
   @include safe-zone();
   display: flex;
   flex-flow: column nowrap;
-  justify-content: flex-start;
+  justify-items: flex-start;
   align-items: stretch;
   gap: 1.6rem;
+
+  // @include bp(med) {
+  //   .card {
+  //     width: calc((100% - (1.6rem)) / 2);
+  //   }
+  // }
 
   @include bp(tablet) {
     flex-flow: row wrap;

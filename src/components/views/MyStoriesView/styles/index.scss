@@ -1,0 +1,32 @@
+@import '../../../../styles/newIndex.scss';
+
+.my-submissions-view {
+  .submission-card .image {
+    // Override image hiding on mobile
+    display: flex;
+  }
+
+  .my-submissions {
+    flex-grow: 1;
+    padding: 2rem;
+    background-color: $brand-blue-0;
+    > h2 {
+      text-align: center;
+      font-family: $display-font;
+      color: $brand-blue-7;
+      font-size: 3rem;
+      margin-bottom: 3rem;
+    }
+    > p {
+      font-family: $text-font;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      color: $gray-9;
+      text-align: center;
+      font-style: italic;
+
+      // This basically gives the h2 less bot margin when this p is displayed
+      margin-top: -1.2rem;
+    }
+  }
+}
