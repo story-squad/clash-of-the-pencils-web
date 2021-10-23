@@ -25,12 +25,16 @@ export default function DraggableDragon({
       index={+name.split('-')[1]}
       isDragDisabled={dragDisabled}
     >
-      {({ draggableProps, innerRef, dragHandleProps }, {}) => (
+      {({ draggableProps, innerRef, dragHandleProps }, { isDropAnimating }) => (
         <Sticker
           dragRef={innerRef}
           type={stickerType}
           {...draggableProps}
           {...dragHandleProps}
+          style={{
+            ...draggableProps.style,
+            ...(isDropAnimating && { transitionDuration: '0.0001s' }),
+          }}
         />
       )}
     </Draggable>
