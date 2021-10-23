@@ -14,6 +14,11 @@ export default function AuthNavItems({
       <li className={classnames('auth-nav', className)}>
         <span className="link"> Welcome, {user.codename}!</span>
       </li>
+      <li className={classnames('auth-nav', className)}>
+        <Link to="/stories" onClick={closeMenu}>
+          My Stories
+        </Link>
+      </li>
     </>
   ) : (
     <>
