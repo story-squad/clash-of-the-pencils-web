@@ -2,6 +2,7 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { Prompts } from '../../../api';
 import { IDS } from '../../../config';
+import { PROMPT_BOX_ID } from '../../../config/tutorialSelectionIds';
 import { app } from '../../../state';
 import { Button } from '../../atoms';
 import { Countdown, EncouragementButton } from '../../molecules';
@@ -19,13 +20,13 @@ export default function PromptOrganism({
   userHasSubmitted,
 }: IPromptOrganismProps): React.ReactElement {
   return (
-    <section className="prompt">
+    <section id={PROMPT_BOX_ID} className="prompt">
       <h1>Today&apos;s Writing Prompt</h1>
       <p id={IDS.ID_PROMPT}>{prompt.prompt}</p>
       <div className="button-wrapper">
         <EncouragementButton />
       </div>
-      <div id={IDS.ID_TIMER} className="countdown-wrapper">
+      <div className="countdown-wrapper">
         <Countdown />
       </div>
       <div className="button-wrapper">

@@ -7,62 +7,69 @@
   height: 100%;
   background-color: rgba(16, 16, 17, 0.8);
   .tutorial-leaderboard {
+    @include bp($tablet) {
+      width: unset !important;
+    }
+    // This media break is specific for the leaderboard styles breaks without it
+    @media screen and (max-width: $tablet) {
+      left: unset !important;
+    }
+    width: 100% !important;
     display: flex;
-    flex-direction: row-reverse;
     align-items: center;
-    left: 5;
+    flex-direction: column;
     position: absolute;
-    .arrow {
-      @include arrow();
+    @include bp($tablet) {
+      flex-direction: row-reverse;
     }
     .arrow-sideways {
-      transform: rotate(90deg);
+      @include bp($tablet) {
+        transform: rotate(90deg);
+      }
     }
     .dashboard-tutorial-content {
-      @include tutorial-content();
-      margin-right: 30px;
+      @include bp($tablet) {
+        margin-right: 30px;
+      }
     }
   }
   .tutorial-top {
+    @include bp($tablet) {
+      width: unset !important;
+    }
+    width: 100% !important;
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
     left: 50%;
     transform: translate(-50%, 30%);
     position: absolute;
-    .arrow {
-      @include arrow();
-    }
     .arrow-flip {
       transform: rotate(180deg);
     }
     .dashboard-tutorial-content {
-      @include tutorial-content();
       margin-bottom: 30px;
     }
   }
   .tutorial-container {
+    @include bp($tablet) {
+      width: unset !important;
+    }
+    transform: translate(-50%, 0%);
+    // left: unset !important;
+    width: 100% !important;
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
-    .arrow {
-      @include arrow();
-    }
     .dashboard-tutorial-content {
-      @include tutorial-content();
       margin-top: 30px;
     }
-  }
-  .tutorial-redo {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
   }
   .arrow {
     @include arrow();
   }
   .dashboard-tutorial-content {
     @include tutorial-content();
-    margin-top: 30px;
   }
 }

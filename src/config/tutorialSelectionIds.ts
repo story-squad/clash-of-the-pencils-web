@@ -8,3 +8,5 @@ export const IDS = {
   ID_LEADERBOARD: 'leaderboard-id',
   ID_REFRESH: 'refresh-id',
 };
+
+export const PROMPT_BOX_ID = 'prompt-box-id';

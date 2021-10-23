@@ -1,6 +1,7 @@
 import { ErrorBoundary } from '@story-squad/react-utils';
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
+import { IDS } from '../../../config';
 import StreamFailureFallback from './StreamFailureFallback';
 import StreamWrapper from './StreamWrapper';
 
@@ -19,7 +20,7 @@ function Stream(): React.ReactElement {
   // if (renderFallback) return <OfflineStreamVideo />;
   // else {
   return (
-    <StreamWrapper>
+    <StreamWrapper id={IDS.ID_STREAM}>
       {playing && (
         <h2>{renderFallback ? 'Latest Stream' : 'Streaming Now!'}</h2>
       )}

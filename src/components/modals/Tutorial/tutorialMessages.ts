@@ -1,6 +1,9 @@
 import { greenArrow } from '../../../assets';
 import { IDS } from '../../../config/tutorialSelectionIds';
 
+//Only needed if using last message
+// const screenWith = window.innerWidth;
+
 export const tutorialMessages: {
   message: string;
   arrow?: string;
@@ -36,7 +39,6 @@ export const tutorialMessages: {
   {
     message:
       'Each story is analyzed by a super high tech data science engine that awards points based on story development, reader engagement, and creativity.',
-    classname: 'tutorial-container',
   },
   {
     message:
@@ -62,11 +64,16 @@ export const tutorialMessages: {
     classname: 'tutorial-leaderboard',
     styleclass: 'arrow-sideways',
   },
-  {
-    message:
-      'If you ever need to refresh your memory about how to play, you can access the tutorial any time by clicking here.',
-    arrow: greenArrow,
-    id: IDS.ID_REFRESH,
-    classname: 'tutorial-redo',
-  },
 ];
+
+// const nonMobile = {
+//   message:
+//     'If you ever need to refresh your memory about how to play, you can access the tutorial any time by clicking here.',
+//   arrow: greenArrow,
+//   id: IDS.ID_REFRESH,
+//   classname: 'tutorial-redo',
+// };
+
+// if (screenWith >= 800) {
+//   tutorialMessages.push(nonMobile);
+// }
