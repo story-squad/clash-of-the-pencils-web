@@ -37,7 +37,7 @@ export default function CleverRedirectViewContainer(): React.ReactElement {
        */
       const state = Clever.getMergeState(res);
       push(`/login`, state); // Route them to login with filled codename
-    } else if (res.actionType === 'NEW') {
+    } else if (Clever.isNew(res)) {
       /**
        * On a new action, the user does not have a Story Squad account yet.
        * We route them to the signup form, prepopulated with their name and
