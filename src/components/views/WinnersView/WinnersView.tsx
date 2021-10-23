@@ -23,6 +23,9 @@ export default function WinnersView({
       />
       <div className="past-winners-list">
         <h2>Previous Winners</h2>
+        {winnerIds.length < 1 && (
+          <p>There are no previous winners to display!</p>
+        )}
         <CardList className="winners-submission-card-list">
           {winnerIds.map((id) => (
             <SubmissionCard key={id} droppable={false} submissionId={id} />
