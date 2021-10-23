@@ -1,0 +1,44 @@
+@import '../../../../styles/newIndex.scss';
+
+.big-winner {
+  padding: 2rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  justify-content: space-around;
+  gap: 2rem;
+
+  flex-grow: 1;
+  background-color: $brand-blue-6;
+
+  .center-grow {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .submission-card {
+    max-width: 400px;
+    width: 100%;
+  }
+
+  .winner-content {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
+    h2 {
+      text-align: center;
+      font-size: 2.4rem;
+      line-height: 2.6rem;
+      color: $white;
+      font-family: $display-font;
+    }
+    p {
+      font-family: $text-font;
+      color: $white;
+      font-size: 1.6rem;
+      text-align: center;
+      line-height: 2.4rem;
+    }
+  }
+}
