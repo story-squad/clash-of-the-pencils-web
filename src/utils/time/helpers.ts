@@ -1,7 +1,12 @@
 import { DateTime } from 'luxon';
 import { APP_TIME_OFFSET } from '../../config';
 import { printSchedule, schedule, ScheduleItem } from './schedule';
-import { ClashPhases, eventType, TimeUntilItem } from './timeTypes';
+import {
+  ClashPhases,
+  eventType,
+  LuxonWeekdays,
+  TimeUntilItem,
+} from './timeTypes';
 
 interface GetCurrentPhaseParams {
   now?: DateTime;
@@ -12,7 +17,12 @@ interface GetCurrentPhaseParams {
 export function getCurrent({
   enableLogs = false,
   now = DateTime.utc().plus(APP_TIME_OFFSET),
-}: GetCurrentPhaseParams = {}): Exclude<eventType, 'off'> {
+}: GetCurrentPhaseParams = {}): eventType {
+  const day = now.plus(0).weekday; // plus(0) is a hack to fix a bug I promise
+  const isWeekend =
+    day === LuxonWeekdays.Saturday || day === LuxonWeekdays.Sunday;
+  if (isWeekend) return ClashPhases.off;
+
   // Create a scoped function to pass in schedule items to compare to `now`
   const isDuring = ({ start, end }: ScheduleItem): boolean => {
     return now >= start && now < end;
