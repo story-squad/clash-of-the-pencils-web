@@ -22,6 +22,7 @@ export default function SignupForm({
   const clearFormError = () => clearErrors('form');
 
   const [parentNeeded, setParentNeeded] = useState(false);
+  const [page, setPage] = useState(1);
 
   // ref to password
   const password = useRef({});
@@ -84,67 +85,84 @@ export default function SignupForm({
       <p className="alt-font">or</p>
       <p className="main-font">Sign In Using Email Address</p>
       {/* First page */}
-      {authFormInputs.firstname()}
-      {authFormInputs.lastname()}
-      {authFormInputs.codename({
-        rules: {
-          validate: {
-            checkCharacters: (value) => {
-              return (
-                dataConstraints.codenamePattern.test(value) ||
-                'Only letters and numbers are allowed!'
-              );
+      {page === 1 ? (
+        <>
+          {authFormInputs.firstname()}
+          {authFormInputs.lastname()}
+          {authFormInputs.codename({
+            rules: {
+              validate: {
+                checkCharacters: (value) => {
+                  return (
+                    dataConstraints.codenamePattern.test(value) ||
+                    'Only letters and numbers are allowed!'
+                  );
+                },
+                checkLength: (value) => {
+                  return (
+                    value.length < 15 || 'Cannot be more than 15 characters!'
+                  );
+                },
+              },
             },
-            checkLength: (value) => {
-              return value.length < 15 || 'Cannot be more than 15 characters!';
-            },
-          },
-        },
-      })}
-      {authFormInputs.birthday()}
-      {/* <Button onClick={nextPage} htmlType="button">
+          })}
+          {authFormInputs.birthday()}
+          <Button onClick={() => setPage(page + 1)} htmlType="button">
             Next
-          </Button> */}
+          </Button>
+        </>
+      ) : null}
+
       {/* Second page */}
-      {authFormInputs.email({
-        rules: {
-          pattern: {
-            value: dataConstraints.emailPattern,
-            message: 'Please enter a valid email address!',
-          },
-        },
-      })}
-      {parentNeeded ? authFormInputs.parentEmail() : null}
-      {authFormInputs.password()}
-      {authFormInputs.confirmPassword({
-        rules: {
-          validate: {
-            checkPassword: (value) => {
-              return password.current === value || 'Passwords do not match.';
+      {page === 2 ? (
+        <>
+          {authFormInputs.email({
+            rules: {
+              pattern: {
+                value: dataConstraints.emailPattern,
+                message: 'Please enter a valid email address!',
+              },
             },
-          },
-        },
-      })}
-      {/* <Button onClick={prevPage} htmlType="button" type="secondary">
+          })}
+          {parentNeeded ? authFormInputs.parentEmail() : null}
+          {authFormInputs.password()}
+          {authFormInputs.confirmPassword({
+            rules: {
+              validate: {
+                checkPassword: (value) => {
+                  return (
+                    password.current === value || 'Passwords do not match.'
+                  );
+                },
+              },
+            },
+          })}
+          <Button
+            onClick={() => setPage(page - 1)}
+            htmlType="button"
+            type="secondary"
+          >
             Back
-          </Button> */}
-      <ErrorMessage
-        name="form"
-        render={({ message }) => (
-          <div className="server-error">
-            <span className="red">*</span>
-            {message}
-          </div>
-        )}
-      />
-      <Button
-        disabled={isLoading}
-        htmlType="submit"
-        iconRight={isLoading && <LoadIcon />}
-        onClick={clearFormError}
-      >
-        Sign Up
-      </Button>
+          </Button>
+          <ErrorMessage
+            name="form"
+            render={({ message }) => (
+              <div className="server-error">
+                <span className="red">*</span>
+                {message}
+              </div>
+            )}
+          />
+          <Button
+            disabled={isLoading}
+            htmlType="submit"
+            iconRight={isLoading && <LoadIcon />}
+            onClick={clearFormError}
+          >
+            Sign Up
+          </Button>
+        </>
+      ) : null}
     </form>
   );
 }

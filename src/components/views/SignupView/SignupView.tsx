@@ -17,7 +17,11 @@ export default function SignupView({
   onSubmit,
   openLogin,
 }: SignupViewProps): React.ReactElement {
-  const methods = useForm();
+  const methods = useForm({
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
+    shouldFocusError: true,
+  });
   const { push } = useHistory();
 
   const login = useSetRecoilState(auth.login);
