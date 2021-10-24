@@ -13,6 +13,7 @@ export interface IPromptOrganismProps {
   openUploadModalOrSubmission: () => void;
   userHasSubmitted: boolean;
 }
+//ChickenNugget I am using this to find stuff
 
 export default function PromptOrganism({
   prompt,
@@ -21,8 +22,26 @@ export default function PromptOrganism({
 }: IPromptOrganismProps): React.ReactElement {
   return (
     <section id={PROMPT_BOX_ID} className="prompt">
-      <h1>Today&apos;s Writing Prompt</h1>
-      <p id={IDS.ID_PROMPT}>{prompt.prompt}</p>
+      <div
+        // Add these styles when its active during tutorial
+        style={{
+          zIndex: 3,
+          borderRadius: 15,
+          paddingTop: ' 2.4rem',
+          backgroundColor: '#006DC7',
+        }}
+        id={IDS.ID_PROMPT}
+      >
+        <h1>Today&apos;s Writing Prompt</h1>
+        <p
+          //Add this style when tutorial is active
+          style={{
+            textAlign: 'center',
+          }}
+        >
+          {prompt.prompt}
+        </p>
+      </div>
       <div className="button-wrapper">
         <EncouragementButton />
       </div>
@@ -59,7 +78,12 @@ function PromptActionButton({
     disabled = true;
   }
   return (
-    <Button id={IDS.ID_UPLOAD} onClick={onClick} disabled={disabled}>
+    <Button
+      // style={{ zIndex: 4 }}
+      id={IDS.ID_UPLOAD}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {message}
     </Button>
   );

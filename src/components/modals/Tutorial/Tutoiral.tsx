@@ -15,16 +15,16 @@ export interface TutorialProps {
 }
 
 const Tutorial = (): React.ReactElement => {
+  // Big brain stuff happening
   const [messageIndex, setMessage] = useState(0);
-  const [modalIsOpen, setModalIsOpen] = useRecoilState(app.tutorial.isOpen);
+  const [complete, setComplete] = useRecoilState(app.tutorial.isOpen);
+  const [modalIsOpen, setModalIsOpen] = useState(true);
   const [showTutorial, setShowTutorial] = useState(false);
-  // const [position, setPosition] = useState<DOMRect>();
   const router = useHistory();
   const [{ message, arrow, classname, id, styleclass }] = useMemo(
     () => [tutorialMessages[messageIndex]],
     [tutorialMessages, messageIndex],
   );
-  // can try and add another component and move all logic to it and render based on loading there
   const nextItem = () => {
     console.log(styleclass);
     setMessage((prev) => {
@@ -33,6 +33,8 @@ const Tutorial = (): React.ReactElement => {
       } else {
         setShowTutorial(false);
         setModalIsOpen(false);
+        //This is little confusing but wont work other way maybe wording can be changed but brain is tired
+        setComplete(false);
         router.push('/schedule');
         return prev;
       }
@@ -55,6 +57,7 @@ const Tutorial = (): React.ReactElement => {
 
   const runTutorial = () => {
     setShowTutorial(true);
+    setModalIsOpen(false);
   };
 
   // Finds and gets the IDS that are on the page linked to the tutorial and positions the page based on where they are
@@ -82,12 +85,12 @@ const Tutorial = (): React.ReactElement => {
   }, [PROMPT_BOX_ID, showTutorial]);
   const centerI = center && (center.left + center.right) / 2;
   console.log(centerI);
-
+  // REMEMBER LOOK FOR THE CHICKENNUGGET
   return (
     <>
       <TutorialModal
         setIsOpen={setModalIsOpen}
-        isOpen={modalIsOpen && !showTutorial}
+        isOpen={complete && modalIsOpen}
         noTutorial={noTutorial}
         runTutorial={runTutorial}
       />

@@ -30,6 +30,7 @@
 }
 
 @mixin arrow() {
+  z-index: 4;
   animation: bounce 1s infinite;
   @keyframes bounce {
     0%,
