@@ -18,10 +18,8 @@ export function getCurrent({
   enableLogs = false,
   now = DateTime.utc().plus(APP_TIME_OFFSET),
 }: GetCurrentPhaseParams = {}): eventType {
-  const day = now.plus(0).weekday; // plus(0) is a hack to fix a bug I promise
-  const isWeekend =
-    day === LuxonWeekdays.Saturday || day === LuxonWeekdays.Sunday;
-  if (isWeekend) return ClashPhases.off;
+  // Check our weekend condition
+  if (isWeekend(now)) return ClashPhases.off;
 
   // Create a scoped function to pass in schedule items to compare to `now`
   const isDuring = ({ start, end }: ScheduleItem): boolean => {
@@ -86,3 +84,11 @@ export const secondsElapsed = (start: DateTime, end: DateTime): number => {
 
   return seconds;
 };
+
+/**
+ * TODO: Make sure that this works the whole weekend!
+ */
+function isWeekend(time: DateTime): boolean {
+  const day = time.plus(0).weekday; // plus(0) is a hack to fix a bug I promise
+  return day === LuxonWeekdays.Saturday || day === LuxonWeekdays.Sunday;
+}
