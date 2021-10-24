@@ -1,34 +1,30 @@
 import { DateTime } from 'luxon';
 import { APP_TIME_OFFSET } from '../../config';
-import { printSchedule, schedule } from './schedule';
+import { printSchedule, schedule, ScheduleItem } from './schedule';
 import { ClashPhases, eventType, TimeUntilItem } from './timeTypes';
 
-/* Helper Functions */
-export function getCurrent(params?: {
+interface GetCurrentPhaseParams {
   now?: DateTime;
   enableLogs?: boolean;
-}): Exclude<eventType, 'off'> {
-  const { enableLogs = false, now = DateTime.now().plus(APP_TIME_OFFSET) } =
-    params || {};
+}
 
-  function isNowBetween({
-    start,
-    end,
-  }: {
-    start: DateTime;
-    end: DateTime;
-  }): boolean {
+/* Helper Functions */
+export function getCurrent({
+  enableLogs = false,
+  now = DateTime.utc().plus(APP_TIME_OFFSET),
+}: GetCurrentPhaseParams = {}): Exclude<eventType, 'off'> {
+  // Create a scoped function to pass in schedule items to compare to `now`
+  const isDuring = ({ start, end }: ScheduleItem): boolean => {
     return now >= start && now < end;
-  }
-
+  };
   const phase = (() => {
-    if (isNowBetween(schedule.submit)) {
+    if (isDuring(schedule.submit)) {
       return ClashPhases.submit;
-    } else if (isNowBetween(schedule.admin)) {
+    } else if (isDuring(schedule.admin)) {
       return ClashPhases.admin;
-    } else if (isNowBetween(schedule.vote)) {
+    } else if (isDuring(schedule.vote)) {
       return ClashPhases.vote;
-    } else if (isNowBetween(schedule.stream)) {
+    } else if (isDuring(schedule.stream)) {
       return ClashPhases.stream;
     } else return ClashPhases.submit;
   })();
