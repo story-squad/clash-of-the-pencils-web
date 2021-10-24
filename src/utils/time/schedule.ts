@@ -35,27 +35,28 @@ const SCHEDULE_VOTE_END_MIN = 0;
  * To add tracking for another time-based event, MAKE SURE you add it to the
  * `eventType` type object _as well as_ the schedule object
  */
-export const schedule: Record<
-  Exclude<eventType, 'off'>,
-  { start: DateTime; end: DateTime }
-> = {
+export const schedule: Record<Exclude<eventType, 'off'>, ScheduleItem> = {
   stream: {
-    start: utcToLocal(SCHEDULE_STREAM_START_HOUR, SCHEDULE_STREAM_START_MIN),
-    end: utcToLocal(SCHEDULE_STREAM_END_HOUR, SCHEDULE_STREAM_END_MIN),
+    start: utcFrom(SCHEDULE_STREAM_START_HOUR, SCHEDULE_STREAM_START_MIN),
+    end: utcFrom(SCHEDULE_STREAM_END_HOUR, SCHEDULE_STREAM_END_MIN),
   },
   submit: {
-    start: utcToLocal(SCHEDULE_SUBMIT_START_HOUR, SCHEDULE_SUBMIT_START_MIN),
-    end: utcToLocal(SCHEDULE_SUBMIT_END_HOUR, SCHEDULE_SUBMIT_END_MIN),
+    start: utcFrom(SCHEDULE_SUBMIT_START_HOUR, SCHEDULE_SUBMIT_START_MIN),
+    end: utcFrom(SCHEDULE_SUBMIT_END_HOUR, SCHEDULE_SUBMIT_END_MIN),
   },
   admin: {
-    start: utcToLocal(SCHEDULE_ADMIN_START_HOUR, SCHEDULE_ADMIN_START_MIN),
-    end: utcToLocal(SCHEDULE_ADMIN_END_HOUR, SCHEDULE_ADMIN_END_MIN),
+    start: utcFrom(SCHEDULE_ADMIN_START_HOUR, SCHEDULE_ADMIN_START_MIN),
+    end: utcFrom(SCHEDULE_ADMIN_END_HOUR, SCHEDULE_ADMIN_END_MIN),
   },
   vote: {
-    start: utcToLocal(SCHEDULE_VOTE_START_HOUR, SCHEDULE_VOTE_START_MIN),
-    end: utcToLocal(SCHEDULE_VOTE_END_HOUR, SCHEDULE_VOTE_END_MIN),
+    start: utcFrom(SCHEDULE_VOTE_START_HOUR, SCHEDULE_VOTE_START_MIN),
+    end: utcFrom(SCHEDULE_VOTE_END_HOUR, SCHEDULE_VOTE_END_MIN),
   },
 };
+export interface ScheduleItem {
+  start: DateTime;
+  end: DateTime;
+}
 
 export function printSchedule(): void {
   console.groupCollapsed('[Clash Schedule]');
@@ -87,7 +88,7 @@ export function printSchedule(): void {
  * @param hour the UTC hour
  * @param minute the UTC minute
  */
-export function utcToLocal(hour: number, minute: number): DateTime {
+export function utcFrom(hour: number, minute: number): DateTime {
   return DateTime.utc().set({
     hour,
     minute,
