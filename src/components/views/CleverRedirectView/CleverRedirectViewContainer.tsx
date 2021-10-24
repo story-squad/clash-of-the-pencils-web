@@ -27,10 +27,8 @@ export default function CleverRedirectViewContainer(): React.ReactElement {
        * in to the application and push them to the dashboard.
        */
       login({ token: res.body.token, user: res.body.user }); // Log them in
-      console.log('[CLVR SUCCESS]');
       push('/'); // Go to dashboard
     } else if (Clever.isMerge(res)) {
-      console.log('[CLVR ]');
       /**
        * On a merge action, we find that the user's Clever account email
        * matches the email of an existing Story Squad user. We redirect the
@@ -38,7 +36,6 @@ export default function CleverRedirectViewContainer(): React.ReactElement {
        * successful login, we link the two accounts.
        */
       const state = Clever.getMergeState(res);
-      console.log('[CLVR MERGE]', state);
       push(`/login`, state); // Route them to login with filled codename
     } else if (Clever.isNew(res)) {
       /**
@@ -47,16 +44,12 @@ export default function CleverRedirectViewContainer(): React.ReactElement {
        * email address, and merge the two accounts on successful signup.
        */
       const state = Clever.getNewState(res);
-      console.log('[CLVR NEW]', state);
       push(`/signup`, state); // Route them to signup with given info
     }
   }, []);
 
   const [authorizeWithCode] = useAsync({
     asyncFunction: authorizationHandler,
-    onError: (err) => {
-      console.log('[CLVR ERR]', { err });
-    },
   });
 
   useEffect(() => {
