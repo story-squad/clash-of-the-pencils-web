@@ -1,10 +1,13 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { ActivationModal } from './components/modals';
+import { PrivateRoute } from './components/providers';
 import {
+  CleverRedirectView,
   DashboardView,
   ErrorView,
   LoginView,
+  MyStoriesView,
   ScheduleView,
   SignupView,
   TermsView,
@@ -23,7 +26,7 @@ const App = (): React.ReactElement => {
         {/* Error Handler Route */}
         <Route path="/error" component={ErrorView} />
 
-        {/* Public Routes */}
+        {/* Auth Routes */}
         <Route
           path="/login"
           render={({ history }) => (
@@ -36,6 +39,12 @@ const App = (): React.ReactElement => {
             <SignupView openLogin={() => history.push('/login')} />
           )}
         />
+        <Route path="/oauth/clever" render={() => <CleverRedirectView />} />
+
+        {/* Private Routes */}
+        <PrivateRoute path="/stories" component={() => <MyStoriesView />} />
+
+        {/* Public Routes */}
         <Route
           path="/schedule"
           render={({ history }) => (

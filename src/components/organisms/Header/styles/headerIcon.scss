@@ -13,15 +13,4 @@ svg {
       display: block;
     }
   }
-
-  &.menu-toggle {
-    height: 4rem;
-    width: 4rem;
-    margin-right: 1.6rem;
-
-    // Menu should display on mobile only
-    @include bp(tablet) {
-      display: none;
-    }
-  }
 }

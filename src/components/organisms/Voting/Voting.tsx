@@ -37,7 +37,7 @@ export default function Voting({
 
   const [successModal, openSuccessModal] = useConfirmationModal({
     title: 'Your votes have been received!',
-    confirmText: 'Back to Dashboard',
+    confirmText: 'Awesome!',
     hideCancelButton: true,
     message: `Tune into the Story Squad livestream at ${streamTime} to find out today’s champion!`,
   });
