@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon';
-import { eventType } from './timeTypes';
+import { eventType, LuxonWeekdays } from './timeTypes';
 
 /**
  * To convert a time to UTC, add 8 hours to PST (7 for PDT) or 5 hours to
@@ -31,17 +31,23 @@ const SCHEDULE_VOTE_START_MIN = 30;
 const SCHEDULE_VOTE_END_HOUR = 24;
 const SCHEDULE_VOTE_END_MIN = 0;
 
+// Memoize these as we use them twice
+const submitStart = utcFrom(
+  SCHEDULE_SUBMIT_START_HOUR,
+  SCHEDULE_SUBMIT_START_MIN,
+);
+const streamEnd = utcFrom(SCHEDULE_STREAM_END_HOUR, SCHEDULE_STREAM_END_MIN);
 /**
  * To add tracking for another time-based event, MAKE SURE you add it to the
  * `eventType` type object _as well as_ the schedule object
  */
-export const schedule: Record<Exclude<eventType, 'off'>, ScheduleItem> = {
+export const schedule: Record<eventType, ScheduleItem> = {
   stream: {
     start: utcFrom(SCHEDULE_STREAM_START_HOUR, SCHEDULE_STREAM_START_MIN),
-    end: utcFrom(SCHEDULE_STREAM_END_HOUR, SCHEDULE_STREAM_END_MIN),
+    end: streamEnd,
   },
   submit: {
-    start: utcFrom(SCHEDULE_SUBMIT_START_HOUR, SCHEDULE_SUBMIT_START_MIN),
+    start: submitStart,
     end: utcFrom(SCHEDULE_SUBMIT_END_HOUR, SCHEDULE_SUBMIT_END_MIN),
   },
   admin: {
@@ -51,6 +57,10 @@ export const schedule: Record<Exclude<eventType, 'off'>, ScheduleItem> = {
   vote: {
     start: utcFrom(SCHEDULE_VOTE_START_HOUR, SCHEDULE_VOTE_START_MIN),
     end: utcFrom(SCHEDULE_VOTE_END_HOUR, SCHEDULE_VOTE_END_MIN),
+  },
+  off: {
+    start: streamEnd.set({ weekday: LuxonWeekdays.Saturday }),
+    end: submitStart.set({ weekday: LuxonWeekdays.Monday }),
   },
 };
 export interface ScheduleItem {
