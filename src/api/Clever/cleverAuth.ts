@@ -9,6 +9,7 @@ export const authorizeWithClever = async (
   const { data } = await axiosWithoutAuth().get(
     `/api/auth/o/clever?code=${code}`,
   );
+  console.log('[CLVR DATA]', data);
   return data;
 };
 
