@@ -1,5 +1,5 @@
 import { ErrorMessage } from '@hookform/error-message';
-import { useAsync } from '@story-squad/react-utils';
+import { useAsync, useKey } from '@story-squad/react-utils';
 import { DateTime } from 'luxon';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -74,7 +74,7 @@ export default function SignupForm({
     [onError],
   );
   // Using useAsync for easier async render control
-  const [exec, isLoading] = useAsync({
+  const [asyncSubmitForm, isLoading] = useAsync({
     asyncFunction: handleSubmit(onSubmit),
     onError: errorHandler,
   });
@@ -98,8 +98,15 @@ export default function SignupForm({
     setPage((prev) => prev - 1);
   };
 
+  useKey({
+    action: () => {
+      if (page === 1) goNext();
+    },
+    key: 'Enter',
+  });
+
   return (
-    <form className="signup-form" onSubmit={exec} noValidate>
+    <form className="signup-form" onSubmit={asyncSubmitForm} noValidate>
       {/* First page */}
       {page === 1 ? (
         <>
@@ -108,6 +115,10 @@ export default function SignupForm({
           {authFormInputs.codename({
             rules: {
               validate: {
+                available: async (value) => {
+                  const available = await Users.isCodenameAvailable(value);
+                  return available || 'Codename is already taken';
+                },
                 checkCharacters: (value) => {
                   return (
                     dataConstraints.codenamePattern.test(value) ||
@@ -134,6 +145,12 @@ export default function SignupForm({
         <>
           {authFormInputs.email({
             rules: {
+              validate: {
+                available: async (value) => {
+                  const available = await Users.isEmailAvailable(value);
+                  return available || 'Email is already taken';
+                },
+              },
               pattern: {
                 value: dataConstraints.emailPattern,
                 message: 'Please enter a valid email address!',

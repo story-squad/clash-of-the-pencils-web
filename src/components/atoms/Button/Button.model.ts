@@ -1,10 +1,10 @@
-import { ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 
 export type ButtonTypes = 'primary' | 'secondary';
 
 export interface ICustomButtonProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   type?: ButtonTypes;
   htmlType?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
   size?: 'lg' | 'sm';
