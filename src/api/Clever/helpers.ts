@@ -35,7 +35,7 @@ export function getMergeState(res: CleverMergeResponse): MergeRedirectState {
 // New response handlers
 export function isNew(res: CleverAuthResponse): res is CleverNewResponse {
   const { actionType, body } = (res as CleverNewResponse) ?? {};
-  return actionType === 'NEW' && !body.id && !body.name;
+  return actionType === 'NEW' && !!body.id && !!body.name;
 }
 export type NewRedirectState = {
   isNew?: boolean;
