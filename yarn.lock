@@ -1864,10 +1864,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@story-squad/react-utils@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@story-squad/react-utils/-/react-utils-0.1.0.tgz#25b386b81158e6c9135c53795f980f21e2e4cf6b"
-  integrity sha512-VdRS7jvIl3NNNMLCRV/7xVZz9WTVAy2nFeDDpjtpG7v2+ABwqDt9od5+EbaAk9hTbm9aAPsCJwXM83agn2OWrQ==
+"@story-squad/react-utils@^0.1.11":
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@story-squad/react-utils/-/react-utils-0.1.11.tgz#100eb81e44d21a0e0651f6109e84f97540243495"
+  integrity sha512-yQpXdrMambMu4yy4j7PDc+uq7G/2E/XvLNtDQ//XRg3Ti6lsf6+3aNuE5tLHPUc2EOJqTS0i49N48aSKWyDi4Q==
   dependencies:
     react "^17.0.2"
     react-dom "^17.0.2"
@@ -7781,6 +7781,11 @@ he@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
+
+heic2any@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/heic2any/-/heic2any-0.0.3.tgz#59248665a3646424b1f88c0aaaa1abba3bbd1aae"
+  integrity sha512-1KG0LzZuIPiqyJjwLgGlgrgWd3UBwUE9g5+tOuHy8PbeH2hF0U4gc4ZWT4ChlCmcdISr1xVRimSehsTOPdRXnQ==
 
 hex-color-regex@^1.1.0:
   version "1.1.0"

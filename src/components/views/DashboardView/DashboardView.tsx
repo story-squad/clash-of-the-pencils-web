@@ -1,4 +1,5 @@
 import React from 'react';
+import { FullscreenImageOverlay } from '../../modals';
 import {
   Leaderboard,
   Prompt,
@@ -7,7 +8,6 @@ import {
   VotingOrganism,
 } from '../../organisms';
 import { DashboardTemplate } from '../../templates';
-import { FullscreenImageOverlay } from '../FullscreenImageOverlay';
 
 export interface DashboardViewProps {
   submitVotes?: () => Promise<unknown>;

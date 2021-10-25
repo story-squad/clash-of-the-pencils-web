@@ -5,7 +5,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Auth, Users } from '../../../api';
 import { dataConstraints } from '../../../config';
-import { Button, CleverButton, LoadIcon } from '../../atoms';
+import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import { authFormInputs } from '../inputs';
 import './styles/index.scss';
@@ -54,7 +54,14 @@ export default function SignupForm({
               message === 'Could not create duplicate' &&
               typeof error.response.data.field === 'string'
             ) {
-              message = `An account with this ${error.response.data.field} already exists`;
+              let fieldName: string;
+              if (error.response.data.field === 'insensitive') {
+                fieldName = 'codename';
+              } else {
+                fieldName = error.response.data.field;
+              }
+              message = `An account with this ${fieldName} already exists`;
+              setError(fieldName, { type: 'manual', message });
             }
           } else {
             message = 'An unknown error occurred. Please try again.';
@@ -93,9 +100,6 @@ export default function SignupForm({
 
   return (
     <form className="signup-form" onSubmit={exec} noValidate>
-      <CleverButton htmlType="button" />
-      <p className="alt-font">or</p>
-      <p className="main-font">Sign In Using Email Address</p>
       {/* First page */}
       {page === 1 ? (
         <>

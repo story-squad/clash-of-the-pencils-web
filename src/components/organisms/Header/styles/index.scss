@@ -1,6 +1,8 @@
 @import '../../../../styles/newIndex.scss';
 
 header.main-header-wrapper {
+  @import './headerIcon.scss';
+
   // Design
   background-color: $brand-blue;
 
@@ -9,33 +11,57 @@ header.main-header-wrapper {
       text-decoration: none;
       cursor: pointer;
     }
+
+    ul li {
+      @mixin text {
+        color: $white;
+        font-family: $text-font;
+        font-size: 1.8rem;
+        line-height: 2.6rem;
+        @include bp(tablet) {
+          font-size: 1.6rem;
+          line-height: 2.2rem;
+        }
+      }
+      @include text;
+      a {
+        @include text;
+      }
+    }
   }
 
   .main-header-container {
     // Layout
     display: flex;
-    flex-flow: column nowrap;
-    align-items: stretch;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: stretch;
     @include safe-zone();
+    padding: 0 1.6rem;
+
+    @include bp(tablet) {
+      .menu-toggle {
+        order: 3;
+      }
+    }
 
     section#main-header {
+      flex-grow: 1;
       // Layout
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
-      padding: 0 1.6rem;
-
-      // Typography
-      color: $white;
-
-      @import './headerIcon.scss';
 
       h1 {
         cursor: pointer;
+        padding: 2.6rem 0;
+
+        // Typography
+        color: $white;
         font-family: $display-font;
         font-size: 1.8rem;
         line-height: 2.8rem;
-        padding: 2.6rem 0;
+        user-select: none;
       }
     }
   }

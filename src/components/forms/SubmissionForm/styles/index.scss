@@ -16,7 +16,8 @@
   }
 
   p,
-  .server-error {
+  .server-error,
+  .message {
     font-size: 1.8rem;
     line-height: 2.6rem;
     font-family: $text-font;
@@ -73,6 +74,14 @@
         font-size: 1.4rem;
         line-height: 2.4rem;
         text-transform: uppercase;
+      }
+      &.loading-heic {
+        background-color: $brand-blue-1;
+        .message {
+          color: $brand-orange;
+          font-family: $display-font;
+          font-size: 2.4rem;
+        }
       }
     }
   }

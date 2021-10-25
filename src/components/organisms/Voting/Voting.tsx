@@ -1,6 +1,6 @@
 import { useAsync } from '@story-squad/react-utils';
-import React, { useMemo } from 'react';
-import { Submissions } from '../../../api';
+import React, { useMemo, useState } from 'react';
+import { Auth } from '../../../api';
 import { useConfirmationModal } from '../../../hooks';
 import { time } from '../../../utils';
 import { DragonBank } from '../../molecules';
@@ -11,7 +11,7 @@ import VotingCardList from './VotingCardList';
 
 export interface VotingProps {
   phase: time.eventType;
-  top3: Submissions.ISubItem[];
+  top3Ids: number[];
   canSubmit?: boolean;
   submitVotes: () => Promise<unknown>;
   resetVotes: () => void;
@@ -21,7 +21,7 @@ export interface VotingProps {
 
 export default function Voting({
   phase,
-  top3,
+  top3Ids,
   hasReadAll = false,
   canSubmit = false,
   submitVotes,
@@ -37,14 +37,31 @@ export default function Voting({
 
   const [successModal, openSuccessModal] = useConfirmationModal({
     title: 'Your votes have been received!',
-    confirmText: 'Back to Dashboard',
+    confirmText: 'Awesome!',
     hideCancelButton: true,
     message: `Tune into the Story Squad livestream at ${streamTime} to find out today’s champion!`,
   });
 
-  const [exec, loading, , err] = useAsync({
+  const [errOverride, setError] = useState<string>();
+  const [submitVotesHandler, loading, , err] = useAsync({
     asyncFunction: submitVotes,
     onSuccess: openSuccessModal,
+    onError: (error) => {
+      if (Auth.isAxiosError(error) && error.response?.data) {
+        const message =
+          error.response.data.message ??
+          error.response.data.error ??
+          error.message;
+
+        switch (message) {
+          case 'Could not access this resource again so soon!':
+            setError("It's too soon to vote again!");
+            break;
+          default:
+            setError(message);
+        }
+      }
+    },
   });
 
   return (
@@ -65,13 +82,13 @@ export default function Voting({
         <VotingCardList
           hasReadAll={hasReadAll}
           phase={phase}
-          top3={top3}
+          top3Ids={top3Ids}
           userHasVoted={userHasVoted}
         />
-        {err && (
+        {(err || errOverride) && (
           <div className="error-message">
             <span className="red">*</span>
-            {err.message}
+            {errOverride ?? err?.message}
           </div>
         )}
         {phase === 'vote' && (
@@ -79,7 +96,7 @@ export default function Voting({
             buttonsDisabled={userHasVoted || loading}
             loading={loading}
             onClear={resetVotes}
-            onSubmit={exec}
+            onSubmit={submitVotesHandler}
             submitDisabled={!canSubmit}
           />
         )}

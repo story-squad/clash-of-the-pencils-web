@@ -1,0 +1,10 @@
+@import '../../../../styles/newIndex.scss';
+
+.submission-card-loader,
+.submission-card-failure {
+  background-color: $brand-orange;
+  color: $white;
+  font-family: $display-font;
+  font-size: 1.4rem;
+  line-height: 2.2rem;
+}

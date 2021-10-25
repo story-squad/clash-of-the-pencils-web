@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import { leaderboardData, promptData, submissionData } from '../../../data';
-import { leaderboard, prompts, top3 } from '../../../state';
+import { leaderboard, prompts, submissions } from '../../../state';
 import { sleep } from '../../../utils';
 import DashboardView, { DashboardViewProps } from './DashboardView';
 
@@ -40,7 +40,7 @@ export default {
             set(prompts.currentPrompt, promptData[7]);
             set(leaderboard.daily, daily);
             set(leaderboard.weekly, weekly);
-            set(top3.top3List, submissionData.slice(0, 3));
+            set(submissions.top3.add, submissionData.slice(0, 3));
           }}
         >
           <BrowserRouter>{story()}</BrowserRouter>

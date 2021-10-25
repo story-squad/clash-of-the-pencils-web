@@ -2,10 +2,11 @@ import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { RecoilRoot } from 'recoil';
 import { submissionData } from '../../../data';
+import { FullscreenImageOverlay } from '../../modals';
 import { CardList } from '../../organisms';
 import { VotingDragAndDropContext } from '../../providers';
-import { FullscreenImageOverlay } from '../../views';
-import SubmissionCard, { SubmissionCardProps } from './SubmissionCard';
+import SubmissionCard from './SubmissionCard';
+import { SubmissionCardProps } from './types';
 
 const Template: Story<SubmissionCardProps> = (props) => (
   <CardList>

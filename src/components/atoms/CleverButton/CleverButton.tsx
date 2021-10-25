@@ -1,7 +1,7 @@
 import { useAsync } from '@story-squad/react-utils';
 import React, { ComponentProps, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { Auth } from '../../../api';
+import { Clever } from '../../../api';
 import { cleverLogo } from '../../../assets';
 import { auth } from '../../../state';
 import { Button } from '../Button';
@@ -19,7 +19,7 @@ export default function CleverButton({
   const useMockCleverButton = useRecoilValue(auth.useMockCleverButton);
 
   const [exec, loading, , err] = useAsync({
-    asyncFunction: Auth.cleverButton,
+    asyncFunction: Clever.cleverButton,
     onSuccess: ({ url }) => setUrl(url),
   });
 

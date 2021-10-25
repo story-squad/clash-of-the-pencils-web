@@ -1,12 +1,17 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { ActivationModal } from './components/modals';
+import { PrivateRoute } from './components/providers';
 import {
+  CleverRedirectView,
   DashboardView,
+  ErrorView,
   LoginView,
+  MyStoriesView,
   ScheduleView,
   SignupView,
   TermsView,
+  WinnersView,
 } from './components/views';
 
 const App = (): React.ReactElement => {
@@ -15,8 +20,13 @@ const App = (): React.ReactElement => {
       {/* <SEO /> */}
       {/* <CookiePopup /> */}
       <Switch>
-        {/* Public Routes */}
+        {/* Dashboard Route */}
         <Route exact path="/" component={DashboardView} />
+
+        {/* Error Handler Route */}
+        <Route path="/error" component={ErrorView} />
+
+        {/* Auth Routes */}
         <Route
           path="/login"
           render={({ history }) => (
@@ -29,6 +39,12 @@ const App = (): React.ReactElement => {
             <SignupView openLogin={() => history.push('/login')} />
           )}
         />
+        <Route path="/oauth/clever" render={() => <CleverRedirectView />} />
+
+        {/* Private Routes */}
+        <PrivateRoute path="/stories" component={() => <MyStoriesView />} />
+
+        {/* Public Routes */}
         <Route
           path="/schedule"
           render={({ history }) => (
@@ -39,6 +55,7 @@ const App = (): React.ReactElement => {
           path="/activate"
           render={(props) => <ActivationModal {...props} />}
         />
+        <Route path="/winners" render={WinnersView} />
         <Route path="/termsofservice" render={TermsView} />
 
         {/* Fallback Redirect to Dashboard */}

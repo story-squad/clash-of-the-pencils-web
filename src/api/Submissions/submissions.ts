@@ -19,3 +19,8 @@ export const getUserSubForToday = async (): Promise<ISubItem | undefined> => {
   const { data } = await axiosWithAuth().get('/api/submissions/today');
   return data;
 };
+
+export async function getById(subId: number): Promise<ISubItem> {
+  const { data } = await axiosWithAuth().get(`/api/submissions/${subId}`);
+  return data;
+}

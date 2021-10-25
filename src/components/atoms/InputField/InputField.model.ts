@@ -1,4 +1,4 @@
-import { HTMLProps, ReactNode } from 'react';
+import { HTMLProps, LegacyRef, ReactNode } from 'react';
 
 type InputVariants = 'default' | 'success' | 'error' | 'warning';
 
@@ -19,4 +19,5 @@ export interface IInputFieldProps
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
   name: string;
+  innerRef?: LegacyRef<HTMLInputElement>;
 }
