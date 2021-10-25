@@ -44,7 +44,7 @@ export default function Voting({
 
   const [errOverride, setError] = useState<string>();
   const [submitVotesHandler, loading, , err] = useAsync({
-    asyncFunction: submitVotes,
+    run: submitVotes,
     onSuccess: openSuccessModal,
     onError: (error) => {
       if (Auth.isAxiosError(error) && error.response?.data) {

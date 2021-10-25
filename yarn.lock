@@ -1864,10 +1864,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@story-squad/react-utils@^0.1.11":
-  version "0.1.11"
-  resolved "https://registry.yarnpkg.com/@story-squad/react-utils/-/react-utils-0.1.11.tgz#100eb81e44d21a0e0651f6109e84f97540243495"
-  integrity sha512-yQpXdrMambMu4yy4j7PDc+uq7G/2E/XvLNtDQ//XRg3Ti6lsf6+3aNuE5tLHPUc2EOJqTS0i49N48aSKWyDi4Q==
+"@story-squad/react-utils@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@story-squad/react-utils/-/react-utils-0.2.0.tgz#681d3be668251a5e5a2306cab12d7aea3ecd67ee"
+  integrity sha512-tY8XH3x3WJp/EHRD6q/UOoBVanHSpYqWE7XW0tfdUp+ySGomyM2O24ryK4nuRuPwErQurarXjNZj6eR+7aQJRw==
   dependencies:
     react "^17.0.2"
     react-dom "^17.0.2"

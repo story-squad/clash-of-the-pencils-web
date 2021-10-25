@@ -19,7 +19,7 @@ function WinnersViewContainer(): React.ReactElement {
   const addWinners = useSetRecoilState(submissions.winners.add);
 
   const [loadWinner, loading] = useAsync({
-    asyncFunction: Submissions.getWinners,
+    run: Submissions.getWinners,
     onSuccess: addWinners,
   });
 

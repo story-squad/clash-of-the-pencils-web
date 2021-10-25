@@ -19,7 +19,7 @@ export default function CleverButton({
   const useMockCleverButton = useRecoilValue(auth.useMockCleverButton);
 
   const [exec, loading, , err] = useAsync({
-    asyncFunction: Clever.cleverButton,
+    run: Clever.cleverButton,
     onSuccess: ({ url }) => setUrl(url),
   });
 

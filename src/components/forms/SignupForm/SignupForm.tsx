@@ -75,7 +75,7 @@ export default function SignupForm({
   );
   // Using useAsync for easier async render control
   const [asyncSubmitForm, isLoading] = useAsync({
-    asyncFunction: handleSubmit(onSubmit),
+    run: handleSubmit(onSubmit),
     onError: errorHandler,
   });
 
