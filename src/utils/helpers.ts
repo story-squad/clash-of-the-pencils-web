@@ -17,6 +17,10 @@ export function stopPropagation<ElementType = unknown>(
 export const $: typeof document.querySelector =
   document.querySelector.bind(document);
 
+/**
+ * This function will consistently process errors from our API, pulling out the
+ * most important string data and returning a default if none is found
+ */
 export function readError(err: unknown): string {
   if (Auth.isAxiosError(err)) {
     return (
@@ -25,4 +29,23 @@ export function readError(err: unknown): string {
   } else if (err instanceof Error) {
     return err.message;
   } else return 'An unknown error occurred.';
+}
+
+/**
+ * Use this function to debounce function calls. This will throttle the
+ * amount of times they can be called each second. This should make for
+ * more efficient code! Timeout defaults to 1 second (1000ms).
+ */
+export function debounce<
+  Args extends unknown[] = unknown[],
+  ResponseType = unknown,
+>(
+  func: (...args: Args) => ResponseType,
+  timeout = 1000,
+): (...args: Args) => void {
+  let timer: NodeJS.Timeout;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => func(...args), timeout);
+  };
 }
