@@ -26,6 +26,9 @@ export default function SignupView({
 }: SignupViewProps & Clever.NewRedirectState): React.ReactElement {
   const methods = useForm({
     defaultValues: { firstname, lastname, email },
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
+    shouldFocusError: true,
   });
   const { push } = useHistory();
 
