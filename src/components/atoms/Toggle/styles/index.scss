@@ -1,13 +1,19 @@
 @import '../../../../styles/newIndex.scss';
 
 $toggle-color: $brand-orange;
+$toggle-color-pressed: $brand-orange-7;
+$toggle-bg: $white;
+$toggle-color-dark: $gray-9;
+
+$toggle-border-color: $toggle-color;
+$toggle-block-bg: $toggle-color;
 
 .toggle {
   // Layout
   position: relative;
 
   // Design
-  background-color: $white;
+  background-color: $toggle-bg;
   border: 1px solid $toggle-color;
   border-radius: 1.6rem;
   cursor: pointer;
@@ -20,9 +26,9 @@ $toggle-color: $brand-orange;
 
     // Design
     padding: 0.8rem;
-    background-color: $toggle-color;
-    border: 1px solid $toggle-color;
+    border: 1px solid $toggle-border-color;
     border-radius: 1.6rem;
+    background-color: $toggle-block-bg;
 
     // Transition effect!
     position: absolute;
@@ -30,8 +36,10 @@ $toggle-color: $brand-orange;
     left: 50%;
 
     // HACK for SURE but that 1px makes all the difference for some reason
+    @include bp(tablet) {
+      margin-top: -1px;
+    }
     margin-right: -2px;
-    margin-top: -1px;
     margin-left: unset;
     transition: left 0.15s ease-in-out;
     &.leftSelected {
@@ -64,7 +72,7 @@ $toggle-color: $brand-orange;
       letter-spacing: 0.08rem;
 
       // Color transition for selection
-      color: $toggle-color;
+      color: $toggle-color-dark;
       transition: color 0.15s ease-in-out;
       &.selected {
         color: $white;
