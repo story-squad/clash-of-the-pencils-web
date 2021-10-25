@@ -87,12 +87,7 @@ function PromptActionButton({
     disabled = true;
   }
   return (
-    <Button
-      // style={{ zIndex: 4 }}
-      id={IDS.ID_UPLOAD}
-      onClick={onClick}
-      disabled={disabled}
-    >
+    <Button id={IDS.ID_UPLOAD} onClick={onClick} disabled={disabled}>
       {message}
     </Button>
   );

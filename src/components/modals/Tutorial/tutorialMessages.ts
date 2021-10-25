@@ -39,6 +39,7 @@ export const tutorialMessages: {
   {
     message:
       'Each story is analyzed by a super high tech data science engine that awards points based on story development, reader engagement, and creativity.',
+    classname: 'tutorial-plain',
   },
   {
     message:
@@ -53,7 +54,7 @@ export const tutorialMessages: {
       'Results are announced via livestream every Monday through Friday at 8pm EST / 5pm PST where we break down the highlights, analyze the winning stories, and offer some secret tips for how to score higher.',
     arrow: greenArrow,
     id: IDS.ID_STREAM,
-    classname: 'tutorial-top',
+    classname: 'tutorial-stream',
     styleclass: 'arrow-flip',
   },
   {

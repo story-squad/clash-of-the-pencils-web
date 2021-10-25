@@ -69,13 +69,10 @@ const Tutorial = (): React.ReactElement => {
     if (id !== undefined && showTutorial) {
       const element = $(`#${id}`);
       if (element) {
-        if (element.id !== 'top-three-id') {
-          element.scrollIntoView({ block: 'center' });
-        } else {
-          element.scrollIntoView({ block: 'end' });
-        }
+        element.scrollIntoView({ block: 'end' });
         return [element.getBoundingClientRect()];
       }
+      return [];
     }
     return [];
   }, [id, showTutorial]);
@@ -118,9 +115,7 @@ const Tutorial = (): React.ReactElement => {
                   : {
                       position: 'absolute',
                       top:
-                        id === 'stream-id'
-                          ? position && position?.top
-                          : position && position?.top * 1.2,
+                        position && position?.top + position?.height * 2 - 100,
                     }
               }
               className={`${classname}`}

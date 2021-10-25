@@ -42,18 +42,25 @@
       margin-bottom: 30px;
     }
   }
+  .tutorial-plain {
+    left: 50% !important;
+    transform: translate(-50%, 50%);
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
   .tutorial-top {
     @include bp($tablet) {
       width: unset !important;
-      transform: translate(-50%, 30%);
+      left: 50%;
+      // z-index: 5;
+      transform: translate(-50%, -70%);
     }
     width: 100% !important;
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
-    left: 50%;
     position: absolute;
-    transform: translate(-50%, 140%);
     .arrow-flip {
       transform: rotate(180deg);
     }
@@ -74,6 +81,27 @@
     align-items: center;
     .dashboard-tutorial-content {
       margin-top: 30px;
+    }
+  }
+  .tutorial-stream {
+    @include bp($tablet) {
+      width: unset !important;
+      transform: translate(-50%, 60%);
+      left: 50% !important;
+    }
+    @media screen and (max-width: $tablet) {
+      transform: translate(0%, 130%);
+      left: unset !important;
+    }
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    .arrow-flip {
+      transform: rotate(180deg);
+    }
+    .dashboard-tutorial-content {
+      margin-bottom: 30px;
     }
   }
   .arrow {
