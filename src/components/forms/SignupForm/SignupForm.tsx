@@ -17,7 +17,8 @@ export default function SignupForm({
   onError,
 }: SignupFormProps): React.ReactElement {
   // Standard form handlers
-  const { handleSubmit, setError, clearErrors, watch } = useFormContext();
+  const { handleSubmit, setError, clearErrors, watch, trigger } =
+    useFormContext();
   // Clearing form error
   const clearFormError = () => clearErrors('form');
 
@@ -79,6 +80,19 @@ export default function SignupForm({
     return Math.abs(age_dt.getUTCFullYear() - 1970) < 13;
   }
 
+  const goNext = async () => {
+    clearErrors();
+    const isValid = await trigger(
+      ['firstname', 'lastname', 'codename', 'dob'],
+      { shouldFocus: true },
+    );
+    if (isValid) setPage((prev) => prev + 1);
+  };
+  const goBack = async () => {
+    setPage((prev) => prev - 1);
+    clearErrors();
+  };
+
   return (
     <form className="signup-form" onSubmit={exec} noValidate>
       <CleverButton htmlType="button" />
@@ -107,7 +121,7 @@ export default function SignupForm({
             },
           })}
           {authFormInputs.birthday()}
-          <Button onClick={() => setPage(page + 1)} htmlType="button">
+          <Button onClick={goNext} htmlType="button">
             Next
           </Button>
         </>
@@ -137,11 +151,7 @@ export default function SignupForm({
               },
             },
           })}
-          <Button
-            onClick={() => setPage(page - 1)}
-            htmlType="button"
-            type="secondary"
-          >
+          <Button onClick={goBack} htmlType="button" type="secondary">
             Back
           </Button>
           <ErrorMessage
