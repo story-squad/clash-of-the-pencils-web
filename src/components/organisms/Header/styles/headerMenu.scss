@@ -31,10 +31,10 @@
     }
     ul {
       width: 100%;
-      background-color: $brand-blue-6;
+      background-color: $brand-blue;
       z-index: 5;
 
-      border-top: 1px solid fade-out($white, 0.4);
+      border-top: 1px solid #0003;
 
       @include bp(tablet) {
         min-width: 15rem;
