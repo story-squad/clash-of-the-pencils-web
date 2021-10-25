@@ -20,16 +20,13 @@ export default function PromptOrganism({
   openUploadModalOrSubmission,
   userHasSubmitted,
 }: IPromptOrganismProps): React.ReactElement {
+  const currentMessage = useRecoilValue(app.tutorial.isCurrentMessage);
+
   return (
     <section id={PROMPT_BOX_ID} className="prompt">
       <div
         // Add these styles when its active during tutorial
-        style={{
-          zIndex: 3,
-          borderRadius: 15,
-          paddingTop: ' 2.4rem',
-          backgroundColor: '#006DC7',
-        }}
+        className={`${currentMessage === 0 && 'active-tutorial'}`}
         id={IDS.ID_PROMPT}
       >
         <h1>Today&apos;s Writing Prompt</h1>
@@ -42,13 +39,25 @@ export default function PromptOrganism({
           {prompt.prompt}
         </p>
       </div>
-      <div className="button-wrapper">
+      <div
+        className={`${
+          currentMessage === 1 && 'active-tutorial'
+        } button-wrapper`}
+      >
         <EncouragementButton />
       </div>
-      <div className="countdown-wrapper">
+      <div
+        className={`${
+          currentMessage === 3 && 'active-tutorial'
+        } countdown-wrapper`}
+      >
         <Countdown />
       </div>
-      <div className="button-wrapper">
+      <div
+        className={`${
+          currentMessage === 2 && 'active-tutorial'
+        } button-wrapper`}
+      >
         <PromptActionButton
           onClick={openUploadModalOrSubmission}
           userHasSubmitted={userHasSubmitted}

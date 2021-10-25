@@ -17,6 +17,9 @@ export interface TutorialProps {
 const Tutorial = (): React.ReactElement => {
   // Big brain stuff happening
   const [messageIndex, setMessage] = useState(0);
+  const [currentMessage, setCurrentmessage] = useRecoilState(
+    app.tutorial.isCurrentMessage,
+  );
   const [complete, setComplete] = useRecoilState(app.tutorial.isOpen);
   const [modalIsOpen, setModalIsOpen] = useState(true);
   const [showTutorial, setShowTutorial] = useState(false);
@@ -25,10 +28,11 @@ const Tutorial = (): React.ReactElement => {
     () => [tutorialMessages[messageIndex]],
     [tutorialMessages, messageIndex],
   );
+
   const nextItem = () => {
-    console.log(styleclass);
     setMessage((prev) => {
       if (prev < tutorialMessages.length - 1 && styleclass !== 'special') {
+        setCurrentmessage(currentMessage + 1);
         return prev + 1;
       } else {
         setShowTutorial(false);
@@ -40,16 +44,16 @@ const Tutorial = (): React.ReactElement => {
       }
     });
   };
-
-  const prevItem = () => {
-    setMessage((prev) => {
-      if (prev < tutorialMessages.length) {
-        return prev - 1;
-      } else {
-        return prev;
-      }
-    });
-  };
+  // console.log(currentMessage);
+  // const prevItem = () => {
+  //   setMessage((prev) => {
+  //     if (prev < tutorialMessages.length) {
+  //       return prev - 1;
+  //     } else {
+  //       return prev;
+  //     }
+  //   });
+  // };
 
   const noTutorial = () => {
     setModalIsOpen(false);
@@ -76,6 +80,7 @@ const Tutorial = (): React.ReactElement => {
     return [];
   }, [id, showTutorial]);
 
+  //Gets the maths stuffs to center the message properly accross screens
   const [center] = useMemo(() => {
     if (id !== undefined && showTutorial) {
       const promptBox = $(`#${PROMPT_BOX_ID}`);
@@ -84,10 +89,11 @@ const Tutorial = (): React.ReactElement => {
     return [];
   }, [PROMPT_BOX_ID, showTutorial]);
   const centerI = center && (center.left + center.right) / 2;
-  console.log(centerI);
+
   // REMEMBER LOOK FOR THE CHICKENNUGGET
   return (
     <>
+      {showTutorial && <div className="tutorial-screen" />}
       <TutorialModal
         setIsOpen={setModalIsOpen}
         isOpen={complete && modalIsOpen}
@@ -95,37 +101,41 @@ const Tutorial = (): React.ReactElement => {
         runTutorial={runTutorial}
       />
       {showTutorial && (
-        <div className="tutorial-wrapper">
-          <div
-            // these styles position the message on the page
-            style={
-              classname !== 'tutorial-top'
-                ? {
-                    top:
-                      id !== 'leaderboard-id'
-                        ? position && position?.height + position?.top + 20
-                        : position && position?.height / 2,
-                    left: centerI && centerI,
-                  }
-                : {
-                    top:
-                      id === 'stream-id'
-                        ? position && position?.top * -0.6
-                        : position && position?.top * -0.28,
-                  }
-            }
-            className={`${classname}`}
-          >
-            {arrow && (
-              <div className={`${styleclass}`}>
-                <img className="arrow" src={arrow} />
-              </div>
-            )}
-            <div className="dashboard-tutorial-content">
-              <p>{message}</p>
-              <div>
-                <Button onClick={nextItem}>Next</Button>
-                {/* <Button onClick={prevItem}>Prev</Button> */}
+        <div className="tutorial-container">
+          <div className="tutorial-wrapper">
+            <div
+              // these styles position the message on the page
+              style={
+                classname !== 'tutorial-top'
+                  ? {
+                      position: 'absolute',
+                      top:
+                        id !== 'leaderboard-id'
+                          ? position && position?.height + position?.top + 20
+                          : position && position?.height / 2,
+                      left: id !== 'leaderboard-id' ? centerI && centerI : '',
+                    }
+                  : {
+                      position: 'absolute',
+                      top:
+                        id === 'stream-id'
+                          ? position && position?.top
+                          : position && position?.top * 1.2,
+                    }
+              }
+              className={`${classname}`}
+            >
+              {arrow && (
+                <div className={`${styleclass}`}>
+                  <img className="arrow" src={arrow} />
+                </div>
+              )}
+              <div className="dashboard-tutorial-content">
+                <p>{message}</p>
+                <div>
+                  <Button onClick={nextItem}>Next</Button>
+                  {/* <Button onClick={prevItem}>Prev</Button> */}
+                </div>
               </div>
             </div>
           </div>

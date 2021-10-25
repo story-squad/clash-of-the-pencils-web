@@ -7,6 +7,12 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: stretch;
+
+  .active-tutorial {
+    z-index: 3;
+    border-radius: 15px;
+    background-color: #006dc7;
+  }
   > div {
     > h1 {
       font-family: $display-font;

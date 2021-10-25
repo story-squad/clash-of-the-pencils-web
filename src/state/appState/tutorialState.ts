@@ -8,3 +8,8 @@ export const isOpen = atom<boolean>({
   default: true,
   effects_UNSTABLE: [persist(LOCAL_STORAGE_TUTOIRAL_KEY)],
 });
+
+export const isCurrentMessage = atom<number>({
+  key: 'current-message',
+  default: 0,
+});
