@@ -1,12 +1,14 @@
 @import '../../../../styles/newIndex.scss';
 
+$toggle-color: $brand-orange;
+
 .toggle {
   // Layout
   position: relative;
 
   // Design
   background-color: $white;
-  border: 1px solid $brand-blue;
+  border: 1px solid $toggle-color;
   border-radius: 1.6rem;
   cursor: pointer;
 
@@ -18,8 +20,8 @@
 
     // Design
     padding: 0.8rem;
-    background-color: $brand-blue;
-    border: 1px solid $brand-blue;
+    background-color: $toggle-color;
+    border: 1px solid $toggle-color;
     border-radius: 1.6rem;
 
     // Transition effect!
@@ -62,7 +64,7 @@
       letter-spacing: 0.08rem;
 
       // Color transition for selection
-      color: $brand-blue;
+      color: $toggle-color;
       transition: color 0.15s ease-in-out;
       &.selected {
         color: $white;
