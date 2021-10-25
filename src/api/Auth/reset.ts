@@ -1,11 +1,13 @@
 import { axiosWithoutAuth } from '../axiosWithConfig';
 import { IPassResetPostBody } from './types';
 
+export interface ResetEmailParams {
+  email: string;
+}
+
 export const getResetEmail = async ({
   email,
-}: {
-  email: string;
-}): Promise<{ message: string }> => {
+}: ResetEmailParams): Promise<{ message: string }> => {
   const { data } = await axiosWithoutAuth().get(
     `/api/account/password?email=${email}`,
   );
