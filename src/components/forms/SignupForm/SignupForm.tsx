@@ -81,7 +81,6 @@ export default function SignupForm({
   }
 
   const goNext = async () => {
-    clearErrors();
     const isValid = await trigger(
       ['firstname', 'lastname', 'codename', 'dob'],
       { shouldFocus: true },
@@ -90,7 +89,6 @@ export default function SignupForm({
   };
   const goBack = async () => {
     setPage((prev) => prev - 1);
-    clearErrors();
   };
 
   return (
