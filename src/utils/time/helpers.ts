@@ -22,9 +22,8 @@ export function getCurrent({
   if (isWeekend(now)) return ClashPhases.off;
 
   // Create a scoped function to pass in schedule items to compare to `now`
-  const isDuring = ({ start, end }: ScheduleItem): boolean => {
-    return now >= start && now < end;
-  };
+  const isDuring = isDuringGen(now);
+
   const phase = (() => {
     if (isDuring(schedule.submit)) {
       return ClashPhases.submit;
@@ -90,5 +89,19 @@ export const secondsElapsed = (start: DateTime, end: DateTime): number => {
  */
 function isWeekend(time: DateTime): boolean {
   const day = time.plus(0).weekday; // plus(0) is a hack to fix a bug I promise
-  return day === LuxonWeekdays.Saturday || day === LuxonWeekdays.Sunday;
+  const isDuring = isDuringGen(time);
+  return (
+    day === LuxonWeekdays.Sunday ||
+    (day === LuxonWeekdays.Saturday && !isDuring(schedule.stream))
+  );
+}
+
+/**
+ * Pass in a time and it returns a function that takes a schedule item and returns
+ * a boolean on whether the original time is during the passed-in event.
+ */
+function isDuringGen(now: DateTime) {
+  return function isDuring({ end, start }: ScheduleItem) {
+    return now >= start && now < end;
+  };
 }
