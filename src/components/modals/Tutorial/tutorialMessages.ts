@@ -54,7 +54,7 @@ export const tutorialMessages: {
       'Results are announced via livestream every Monday through Friday at 8pm EST / 5pm PST where we break down the highlights, analyze the winning stories, and offer some secret tips for how to score higher.',
     arrow: greenArrow,
     id: IDS.ID_STREAM,
-    classname: 'tutorial-stream',
+    classname: 'tutorial-top',
     styleclass: 'arrow-flip',
   },
   {
