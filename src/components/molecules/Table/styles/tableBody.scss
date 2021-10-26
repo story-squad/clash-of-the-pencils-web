@@ -29,9 +29,7 @@
     font-size: 1.6rem;
     line-height: 2.4rem;
 
-    &:not(:last-child) {
-      border-bottom: 1px solid $gray-4;
-    }
+    border-top: 1px solid #fff3;
 
     // First place row gets a different style!
     &:first-of-type {
