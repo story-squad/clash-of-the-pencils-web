@@ -6,6 +6,7 @@ import {
   CleverRedirectView,
   DashboardView,
   ErrorView,
+  ForgotPasswordView,
   LoginView,
   MyStoriesView,
   ScheduleView,
@@ -37,6 +38,12 @@ const App = (): React.ReactElement => {
           path="/signup"
           render={({ history }) => (
             <SignupView openLogin={() => history.push('/login')} />
+          )}
+        />
+        <Route
+          path="/forgot/password"
+          render={({ history }) => (
+            <ForgotPasswordView openDashboard={() => history.push('/')} />
           )}
         />
         <Route path="/oauth/clever" render={() => <CleverRedirectView />} />
