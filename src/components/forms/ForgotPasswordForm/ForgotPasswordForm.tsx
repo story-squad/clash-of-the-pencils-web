@@ -20,14 +20,7 @@ export default function ForgotPasswordForm({
   const { handleSubmit, setError, clearErrors } = useFormContext();
   const clearFormError = useCallback(() => clearErrors('form'), [clearErrors]);
 
-  // Error Handling
-  const [failureModal, openFailureModal] = useConfirmationModal({
-    title: 'Uh oh!',
-    message: 'The email could not be sent to the given address.',
-    confirmText: 'Okay',
-    hideCancelButton: true,
-  });
-
+  // Success Handling
   const [successModal, openSuccessModal] = useConfirmationModal({
     title: 'Request Submitted!',
     message:
@@ -35,6 +28,14 @@ export default function ForgotPasswordForm({
     hideCancelButton: true,
     confirmText: 'Okay',
     onConfirm: onSuccess,
+  });
+
+  // Error Handling
+  const [failureModal, openFailureModal] = useConfirmationModal({
+    title: 'Uh oh!',
+    message: 'The email could not be sent to the given address.',
+    confirmText: 'Okay',
+    hideCancelButton: true,
   });
 
   // Error handler for submit function
@@ -68,9 +69,9 @@ export default function ForgotPasswordForm({
   const [submitForm, isSubmitting] = useAsync({
     run: async (data: Auth.ResetParams) => {
       await onSubmit(data);
-      openSuccessModal();
     },
     onError: errorHandler,
+    onSuccess: openSuccessModal,
   });
 
   return (

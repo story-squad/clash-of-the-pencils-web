@@ -1,5 +1,5 @@
 import { ErrorMessage } from '@hookform/error-message';
-import { useAsync, useKey } from '@story-squad/react-utils';
+import { useAsync } from '@story-squad/react-utils';
 import { DateTime } from 'luxon';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -97,13 +97,6 @@ export default function SignupForm({
   const goBack = async () => {
     setPage((prev) => prev - 1);
   };
-
-  useKey({
-    action: () => {
-      if (page === 1) goNext();
-    },
-    key: 'Enter',
-  });
 
   return (
     <form className="signup-form" onSubmit={asyncSubmitForm} noValidate>

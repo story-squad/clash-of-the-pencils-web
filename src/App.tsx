@@ -9,6 +9,7 @@ import {
   ForgotPasswordView,
   LoginView,
   MyStoriesView,
+  ResetPasswordView,
   ScheduleView,
   SignupView,
   TermsView,
@@ -50,6 +51,7 @@ const App = (): React.ReactElement => {
             <ForgotPasswordView openLogin={() => history.push('/login')} />
           )}
         />
+        <Route path="/reset/submit" render={() => <ResetPasswordView />} />
         <Route path="/oauth/clever" render={() => <CleverRedirectView />} />
 
         {/* Private Routes */}

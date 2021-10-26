@@ -24,7 +24,7 @@ export default function ForgotPasswordView({
   return (
     <DashboardTemplate className="forgot-password-view" useStorySquadHeader>
       <div className="forgot-password-header">
-        <h2>Reset Your Password</h2>
+        <h2>Forgot Your Password?</h2>
         <p>
           Enter your email address. If your email address is correct, we will
           send you an email with a link to reset your&nbsp;password!
