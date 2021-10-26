@@ -58,11 +58,13 @@
 
     span {
       font-weight: 600;
-      text-transform: uppercase;
       cursor: pointer;
 
       &:hover {
         text-shadow: 0 0 2px $gray-4;
+      }
+      &.all-caps {
+        text-transform: uppercase;
       }
     }
   }

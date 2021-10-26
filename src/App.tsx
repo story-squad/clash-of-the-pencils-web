@@ -31,7 +31,11 @@ const App = (): React.ReactElement => {
         <Route
           path="/login"
           render={({ history }) => (
-            <LoginView openSignup={() => history.push('/signup')} />
+            <LoginView
+              openSignup={() => history.push('/signup')}
+              openForgotCodename={() => history.push('/forgot/codename')}
+              openForgotPassword={() => history.push('/forgot/password')}
+            />
           )}
         />
         <Route
