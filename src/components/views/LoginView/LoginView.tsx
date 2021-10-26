@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { Auth, Clever } from '../../../api';
+import { useOpenDashboard } from '../../../hooks';
 import { auth } from '../../../state';
 import { CleverButton } from '../../atoms';
 import { LoginForm } from '../../forms';
@@ -23,10 +23,11 @@ export default function LoginView({
 }: LoginViewProps & Clever.MergeRedirectState): React.ReactElement {
   // Get form methods for the provider
   const methods = useForm({ defaultValues: { codename } });
-  const { push } = useHistory();
 
   // Get login selector from Recoil
   const login = useSetRecoilState(auth.login);
+
+  const openDash = useOpenDashboard();
 
   // Memoize the passed in submit handler if there was one, else use our custom function
   const submitHandler = useCallback(
@@ -37,7 +38,7 @@ export default function LoginView({
           else return Auth.login(data);
         })();
         login(res);
-        push('/');
+        openDash();
       }),
     [login, onSubmit, isMerge, cleverId],
   );
