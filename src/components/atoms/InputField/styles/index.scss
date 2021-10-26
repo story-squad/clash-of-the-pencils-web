@@ -43,6 +43,10 @@
     outline-width: 0;
     border: unset;
     border-radius: 0.8rem;
+
+    &::placeholder {
+      color: $gray-3;
+    }
   }
 
   &.hover {
