@@ -1,13 +1,13 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { useHistory } from 'react-router';
 import { useRecoilState } from 'recoil';
 import { PROMPT_BOX_ID } from '../../../config/tutorialSelectionIds';
+import { useConfirmationModal } from '../../../hooks';
 import { app } from '../../../state';
 import { $ } from '../../../utils';
 import { Button } from '../../atoms/Button';
 import './styles/index.scss';
 import { tutorialMessages } from './tutorialMessages';
-import TutorialModal from './TutorialModal';
 
 export interface TutorialProps {
   noTutorial: () => void;
@@ -15,38 +15,56 @@ export interface TutorialProps {
 }
 
 const Tutorial = (): React.ReactElement => {
-  // Big brain stuff happening
-  const [messageIndex, setMessage] = useState(0);
   const [currentMessage, setCurrentmessage] = useRecoilState(
-    app.tutorial.isCurrentMessage,
+    app.tutorial.currentMessageIndex,
   );
-  const [complete, setComplete] = useRecoilState(app.tutorial.isOpen);
-  const [modalIsOpen, setModalIsOpen] = useState(true);
-  const [showTutorial, setShowTutorial] = useState(false);
-  const router = useHistory();
-  const [{ message, arrow, classname, id, styleclass }] = useMemo(
-    () => [tutorialMessages[messageIndex]],
-    [tutorialMessages, messageIndex],
+  // This is whether the tutorial is running
+  const [tutorialIsOpen, setTutorialIsOpen] = useRecoilState(
+    app.tutorial.isOpen,
+  );
+  // This is whether to run tutorial on app launch
+  const [showTutorial, setShowTutorial] = useRecoilState(
+    app.tutorial.showTutorial,
   );
 
+  const router = useHistory();
+  const [{ message, arrow, classname, id, styleclass }] = useMemo(
+    () => [tutorialMessages[currentMessage]],
+    [tutorialMessages, currentMessage],
+  );
+
+  const [modal, openModal] = useConfirmationModal({
+    title: 'Hi Scribble Agent, welcome to Clash of the Pencils!',
+    message:
+      'Let’s get you started by going through your dashboard. Do you want to run the tutorial?',
+    onConfirm: () => {
+      setTutorialIsOpen(true);
+    },
+    confirmText: 'Yes, Start',
+    cancelText: 'No, Thanks',
+    onCancel: () => {
+      setShowTutorial(false);
+    },
+  });
+
+  useEffect(openModal, []);
+
   const nextItem = () => {
-    setMessage((prev) => {
-      if (prev < tutorialMessages.length - 1 && styleclass !== 'special') {
-        setCurrentmessage(currentMessage + 1);
-        return prev + 1;
-      } else {
-        setShowTutorial(false);
-        setModalIsOpen(false);
-        //This is little confusing but wont work other way maybe wording can be changed but brain is tired
-        setComplete(false);
-        router.push('/schedule');
-        return prev;
-      }
-    });
+    if (
+      currentMessage < tutorialMessages.length - 1 &&
+      styleclass !== 'special'
+    ) {
+      setCurrentmessage(currentMessage + 1);
+    } else {
+      setTutorialIsOpen(false);
+      //This is little confusing but wont work other way maybe wording can be changed but brain is tired
+      setShowTutorial(false);
+      router.push('/schedule');
+    }
   };
   // console.log(currentMessage);
   // const prevItem = () => {
-  //   setMessage((prev) => {
+  //   setCurrentmessage((prev) => {
   //     if (prev < tutorialMessages.length) {
   //       return prev - 1;
   //     } else {
@@ -55,52 +73,45 @@ const Tutorial = (): React.ReactElement => {
   //   });
   // };
 
-  const noTutorial = () => {
-    setModalIsOpen(false);
-  };
-
-  const runTutorial = () => {
-    setShowTutorial(true);
-    setModalIsOpen(false);
-  };
+  const tutorialRef = useRef<HTMLDivElement>(null);
+  const tutorialHeight = useMemo(() => {
+    const { height } = tutorialRef.current?.getBoundingClientRect() ?? {};
+    return height ?? 0;
+  }, [tutorialRef.current]);
 
   // Finds and gets the IDS that are on the page linked to the tutorial and positions the page based on where they are
   const [position] = useMemo(() => {
-    if (id !== undefined && showTutorial) {
+    if (id !== undefined && tutorialIsOpen) {
       const element = $(`#${id}`);
       if (element) {
         element.scrollIntoView({ block: 'end' });
-        return [element.getBoundingClientRect()];
+        const { height, top } = element.getBoundingClientRect();
+        return [{ height: height, top: top + window.scrollY }];
       }
-      return [];
     }
     return [];
-  }, [id, showTutorial]);
+  }, [id, tutorialIsOpen]);
 
   //Gets the maths stuffs to center the message properly accross screens
   const [center] = useMemo(() => {
-    if (id !== undefined && showTutorial) {
+    if (id !== undefined && tutorialIsOpen) {
       const promptBox = $(`#${PROMPT_BOX_ID}`);
-      return [promptBox?.getBoundingClientRect()];
+      const bounds = promptBox?.getBoundingClientRect();
+      return [bounds && (bounds.left + bounds.right) / 2];
     }
     return [];
-  }, [PROMPT_BOX_ID, showTutorial]);
-  const centerI = center && (center.left + center.right) / 2;
+  }, [PROMPT_BOX_ID, tutorialIsOpen]);
 
   // REMEMBER LOOK FOR THE CHICKENNUGGET
   return (
     <>
-      {showTutorial && <div className="tutorial-screen" />}
-      <TutorialModal
-        setIsOpen={setModalIsOpen}
-        isOpen={complete && modalIsOpen}
-        noTutorial={noTutorial}
-        runTutorial={runTutorial}
-      />
-      {showTutorial && (
+      {tutorialIsOpen && <div className="tutorial-screen" />}
+      {showTutorial && modal}
+      {tutorialIsOpen && (
         <div className="tutorial-container">
           <div className="tutorial-wrapper">
             <div
+              ref={tutorialRef}
               // these styles position the message on the page
               style={
                 classname !== 'tutorial-top'
@@ -110,12 +121,11 @@ const Tutorial = (): React.ReactElement => {
                         id !== 'leaderboard-id'
                           ? position && position?.height + position?.top + 20
                           : position && position?.height / 2,
-                      left: id !== 'leaderboard-id' ? centerI && centerI : '',
+                      left: id !== 'leaderboard-id' ? center && center : '',
                     }
                   : {
                       position: 'absolute',
-                      top:
-                        position && position?.top + position?.height * 2 - 100,
+                      top: position && position?.top - tutorialHeight - 100,
                     }
               }
               className={`${classname}`}
