@@ -10,7 +10,7 @@ import { Input } from '../../molecules';
 import { FormProps } from '../formTypes';
 import './styles/index.scss';
 
-export type ForgotPasswordFormProps = FormProps<Auth.ResetEmailParams>;
+export type ForgotPasswordFormProps = FormProps<Auth.ResetParams>;
 
 export default function ForgotPasswordForm({
   onSubmit,
@@ -57,7 +57,7 @@ export default function ForgotPasswordForm({
   });
 
   const [submitForm, isSubmitting] = useAsync({
-    run: async (data: Auth.ResetEmailParams) => {
+    run: async (data: Auth.ResetParams) => {
       await onSubmit(data);
       openSuccessModal();
     },

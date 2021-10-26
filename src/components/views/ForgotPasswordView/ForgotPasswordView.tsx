@@ -6,7 +6,7 @@ import { DashboardTemplate } from '../../templates';
 import './styles/index.scss';
 
 export interface ForgotPasswordViewProps {
-  onSubmit?: (data: Auth.ResetEmailParams) => void | Promise<void>;
+  onSubmit?: (data: Auth.ResetParams) => void | Promise<void>;
   openDashboard: () => void;
 }
 
@@ -16,7 +16,7 @@ export default function ForgotPasswordView({
 }: ForgotPasswordViewProps): React.ReactElement {
   const methods = useForm();
 
-  const submitHandler = useCallback(onSubmit ?? Auth.getResetEmail, [
+  const submitHandler = useCallback(onSubmit ?? Auth.getPasswordReset, [
     onSubmit,
     openDashboard,
   ]);
