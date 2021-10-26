@@ -57,7 +57,6 @@ function PromptOrganismContainer(): React.ReactElement {
     ),
     confirmText: 'Back to Dashboard',
   });
-
   return (
     <>
       {userIsLoggedIn ? (

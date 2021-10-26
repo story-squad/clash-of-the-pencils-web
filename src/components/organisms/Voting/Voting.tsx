@@ -1,14 +1,16 @@
 import { useAsync } from '@story-squad/react-utils';
 import React, { useMemo, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import { Auth } from '../../../api';
+import { TUTORIAL_IDS } from '../../../config';
 import { useConfirmationModal } from '../../../hooks';
+import { app } from '../../../state';
 import { time } from '../../../utils';
 import { DragonBank } from '../../molecules';
 import InstructionCardList from './InstructionCardList';
 import './styles/index.scss';
 import VotingButtons from './VotingButtons';
 import VotingCardList from './VotingCardList';
-
 export interface VotingProps {
   phase: time.eventType;
   top3Ids: number[];
@@ -29,6 +31,7 @@ export default function Voting({
   userHasVoted,
 }: VotingProps): React.ReactElement {
   const dragDisabled = phase !== 'vote';
+  const currentMessage = useRecoilValue(app.tutorial.currentMessageIndex);
 
   const streamTime = useMemo(
     () => time.schedule.stream.start.toLocal().toFormat('h:mm a'),
@@ -79,12 +82,17 @@ export default function Voting({
         <DragonBank
           dragDisabled={dragDisabled || !hasReadAll || userHasVoted}
         />
-        <VotingCardList
-          hasReadAll={hasReadAll}
-          phase={phase}
-          top3Ids={top3Ids}
-          userHasVoted={userHasVoted}
-        />
+        <div
+          id={TUTORIAL_IDS.ID_TOP_THREE}
+          className={` ${currentMessage === 5 ? 'active-tutorial' : ''}`}
+        >
+          <VotingCardList
+            hasReadAll={hasReadAll}
+            phase={phase}
+            top3Ids={top3Ids}
+            userHasVoted={userHasVoted}
+          />
+        </div>
         {(err || errOverride) && (
           <div className="error-message">
             <span className="red">*</span>

@@ -24,7 +24,10 @@ section.voting-wrapper {
     & > h3 {
       color: $gray-7;
     }
-
+    .active-tutorial {
+      z-index: 4;
+      border-radius: 15px;
+    }
     .instruction-card {
       display: none;
       &.active {

@@ -31,13 +31,14 @@
     }
     ul {
       width: 100%;
-      background-color: $brand-blue-6;
       z-index: 5;
 
-      border-top: 1px solid fade-out($white, 0.4);
+      border-top: 1px solid #0003;
 
+      background-color: $brand-blue;
       @include bp(tablet) {
         min-width: 15rem;
+        background-color: $brand-blue-6;
         border-radius: 0 0 1.6rem 1.6rem;
         text-align: center;
       }
