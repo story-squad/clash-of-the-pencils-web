@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { Prompts } from '../../../api';
-import { IDS } from '../../../config';
+import { TUTORIAL_IDS } from '../../../config';
 import { PROMPT_BOX_ID } from '../../../config/tutorialSelectionIds';
 import { app } from '../../../state';
 import { Button } from '../../atoms';
@@ -20,14 +20,14 @@ export default function PromptOrganism({
   openUploadModalOrSubmission,
   userHasSubmitted,
 }: IPromptOrganismProps): React.ReactElement {
-  const currentMessage = useRecoilValue(app.tutorial.isCurrentMessage);
+  const currentMessage = useRecoilValue(app.tutorial.currentMessageIndex);
 
   return (
     <section id={PROMPT_BOX_ID} className="prompt">
       <div
         // Add these styles when its active during tutorial
         className={`${currentMessage === 0 && 'active-tutorial'}`}
-        id={IDS.ID_PROMPT}
+        id={TUTORIAL_IDS.ID_PROMPT}
       >
         <h1>Today&apos;s Writing Prompt</h1>
         <p
@@ -87,7 +87,7 @@ function PromptActionButton({
     disabled = true;
   }
   return (
-    <Button id={IDS.ID_UPLOAD} onClick={onClick} disabled={disabled}>
+    <Button id={TUTORIAL_IDS.ID_UPLOAD} onClick={onClick} disabled={disabled}>
       {message}
     </Button>
   );

@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import ReactPlayer from 'react-player';
 import { useRecoilValue } from 'recoil';
-import { IDS } from '../../../config';
+import { TUTORIAL_IDS } from '../../../config';
 import { app } from '../../../state';
 import { Loader } from '../../atoms';
 import StreamFailureFallback from './StreamFailureFallback';
@@ -11,7 +11,7 @@ function OfflineStreamVideo(): React.ReactElement {
   const { url } = useRecoilValue(app.streams.latest);
 
   return (
-    <StreamWrapper id={IDS.ID_STREAM}>
+    <StreamWrapper id={TUTORIAL_IDS.ID_STREAM}>
       {url ? (
         <>
           <h2>Latest Stream</h2>

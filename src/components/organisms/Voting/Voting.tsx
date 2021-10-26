@@ -2,7 +2,7 @@ import { useAsync } from '@story-squad/react-utils';
 import React, { useMemo, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { Auth } from '../../../api';
-import { IDS } from '../../../config';
+import { TUTORIAL_IDS } from '../../../config';
 import { useConfirmationModal } from '../../../hooks';
 import { app } from '../../../state';
 import { time } from '../../../utils';
@@ -31,7 +31,7 @@ export default function Voting({
   userHasVoted,
 }: VotingProps): React.ReactElement {
   const dragDisabled = phase !== 'vote';
-  const currentMessage = useRecoilValue(app.tutorial.isCurrentMessage);
+  const currentMessage = useRecoilValue(app.tutorial.currentMessageIndex);
 
   const streamTime = useMemo(
     () => time.schedule.stream.start.toLocal().toFormat('h:mm a'),
@@ -83,7 +83,7 @@ export default function Voting({
           dragDisabled={dragDisabled || !hasReadAll || userHasVoted}
         />
         <div
-          id={IDS.ID_TOP_THREE}
+          id={TUTORIAL_IDS.ID_TOP_THREE}
           className={` ${currentMessage === 5 ? 'active-tutorial' : ''}`}
         >
           <VotingCardList

@@ -1,6 +1,6 @@
 import { Duration } from 'luxon';
 import React, { useMemo } from 'react';
-import { IDS } from '../../../config';
+import { TUTORIAL_IDS } from '../../../config';
 import { time } from '../../../utils';
 import './styles/index.scss';
 
@@ -40,7 +40,7 @@ export default function Timer({ displayTime }: TimerProps): React.ReactElement {
         {h}
       </span>
       <span className="colon">:</span>
-      <span id={IDS.ID_TIMER} className="item">
+      <span id={TUTORIAL_IDS.ID_TIMER} className="item">
         {m < 10 && '0'}
         {m}
       </span>
