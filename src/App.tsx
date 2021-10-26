@@ -47,7 +47,7 @@ const App = (): React.ReactElement => {
         <Route
           path="/forgot/password"
           render={({ history }) => (
-            <ForgotPasswordView openDashboard={() => history.push('/')} />
+            <ForgotPasswordView openLogin={() => history.push('/login')} />
           )}
         />
         <Route path="/oauth/clever" render={() => <CleverRedirectView />} />

@@ -14,7 +14,7 @@ const Template: Story<ForgotPasswordViewProps> = () => {
     alert('Opening Dashboard');
   };
 
-  return <ForgotPasswordView openDashboard={openDash} onSubmit={onSubmit} />;
+  return <ForgotPasswordView openLogin={openDash} onSubmit={onSubmit} />;
 };
 
 export const Default = Template.bind({});

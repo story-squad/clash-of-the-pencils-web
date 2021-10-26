@@ -7,18 +7,18 @@ import './styles/index.scss';
 
 export interface ForgotPasswordViewProps {
   onSubmit?: (data: Auth.ResetParams) => void | Promise<void>;
-  openDashboard: () => void;
+  openLogin: () => void;
 }
 
 export default function ForgotPasswordView({
-  openDashboard,
+  openLogin,
   onSubmit,
 }: ForgotPasswordViewProps): React.ReactElement {
   const methods = useForm();
 
   const submitHandler = useCallback(onSubmit ?? Auth.getPasswordReset, [
     onSubmit,
-    openDashboard,
+    openLogin,
   ]);
 
   return (
@@ -31,10 +31,7 @@ export default function ForgotPasswordView({
         </p>
       </div>
       <FormProvider {...methods}>
-        <ForgotPasswordForm
-          onSubmit={submitHandler}
-          onSuccess={openDashboard}
-        />
+        <ForgotPasswordForm onSubmit={submitHandler} onSuccess={openLogin} />
       </FormProvider>
     </DashboardTemplate>
   );

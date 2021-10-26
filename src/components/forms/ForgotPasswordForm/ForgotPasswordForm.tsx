@@ -28,6 +28,15 @@ export default function ForgotPasswordForm({
     hideCancelButton: true,
   });
 
+  const [successModal, openSuccessModal] = useConfirmationModal({
+    title: 'Request Submitted!',
+    message:
+      'If you  provided a valid email address, you should receive an email with a reset link shortly.',
+    hideCancelButton: true,
+    confirmText: 'Okay',
+    onConfirm: onSuccess,
+  });
+
   // Error handler for submit function
   const errorHandler = useCallback(
     async (err: unknown) => {
@@ -39,22 +48,22 @@ export default function ForgotPasswordForm({
       // Create a form error object
       const formError = { type: 'manual', message };
       switch (message) {
+        case 'Email not found':
+          /**
+           * In the case of the user typing in an incorrect email, technically we don't want
+           * to tell them that it failed. We want it to appear successful if it fails because
+           * an invalid email was provided. They won't receive an email though.
+           */
+          openSuccessModal();
+          break;
         // Handle specific field errors here
         default:
           setError('form', formError);
+          openFailureModal();
       }
-      openFailureModal();
     },
     [onError],
   );
-
-  const [successModal, openSuccessModal] = useConfirmationModal({
-    title: 'Success!',
-    message: 'A password reset link has been sent to your email address.',
-    hideCancelButton: true,
-    confirmText: 'Okay',
-    onConfirm: onSuccess,
-  });
 
   const [submitForm, isSubmitting] = useAsync({
     run: async (data: Auth.ResetParams) => {
