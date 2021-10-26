@@ -84,7 +84,7 @@ const Tutorial = (): React.ReactElement => {
     if (id !== undefined && tutorialIsOpen) {
       const element = $(`#${id}`);
       if (element) {
-        element.scrollIntoView({ block: 'end' });
+        element.scrollIntoView({ block: 'end', behavior: 'smooth' });
         const { height, top } = element.getBoundingClientRect();
         return [{ height: height, top: top + window.scrollY }];
       }
