@@ -61,10 +61,7 @@ export default function ForgotPasswordForm({
       await onSubmit(data);
       openSuccessModal();
     },
-    onError: async (err) => {
-      await errorHandler(err);
-      open;
-    },
+    onError: errorHandler,
   });
 
   return (
