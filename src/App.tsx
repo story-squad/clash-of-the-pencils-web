@@ -1,11 +1,12 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { ActivationModal } from './components/modals';
-import { PrivateRoute } from './components/providers';
+import { LoginEmailRedirect, PrivateRoute } from './components/providers';
 import {
   CleverRedirectView,
   DashboardView,
   ErrorView,
+  ForgotCodenameView,
   ForgotPasswordView,
   LoginView,
   MyStoriesView,
@@ -51,8 +52,12 @@ const App = (): React.ReactElement => {
             <ForgotPasswordView openLogin={() => history.push('/login')} />
           )}
         />
+        <Route path="/forgot/codename" render={() => <ForgotCodenameView />} />
         <Route path="/reset/submit" render={() => <ResetPasswordView />} />
         <Route path="/oauth/clever" render={() => <CleverRedirectView />} />
+
+        {/* Redirects */}
+        <Route path="/auth/login" render={() => <LoginEmailRedirect />} />
 
         {/* Private Routes */}
         <PrivateRoute path="/stories" component={() => <MyStoriesView />} />
