@@ -17,6 +17,14 @@ export function stopPropagation<ElementType = unknown>(
 export const $: typeof document.querySelector =
   document.querySelector.bind(document);
 
+// $(`#${idString}`)
+
+// useEffect(() => {
+//   const element = $<HTMLTextAreaElement>(`#${FIELD_ID}`);
+//   if (element) {
+//    **  Do Stuff **
+//   }
+// });
 export function readError(err: unknown): string {
   if (Auth.isAxiosError(err)) {
     return (

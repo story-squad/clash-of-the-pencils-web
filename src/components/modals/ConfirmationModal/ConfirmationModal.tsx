@@ -64,12 +64,12 @@ function ConfirmationModalComponent({
       {title && <h2>{title}</h2>}
       {message && <p>{message}</p>}
       <div className="button-wrapper">
+        <Button onClick={confirmHandler}>{confirmText}</Button>
         {!hideCancelButton && (
           <Button onClick={cancelHandler} type="secondary">
             {cancelText}
           </Button>
         )}
-        <Button onClick={confirmHandler}>{confirmText}</Button>
       </div>
     </div>
   );

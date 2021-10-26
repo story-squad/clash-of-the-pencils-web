@@ -1,8 +1,12 @@
 @import '../../../../styles/newIndex.scss';
 
+.active-tutorial {
+  z-index: 3;
+}
 .stream-wrapper {
   background-color: $gray-9;
   padding: 2rem;
+
   .stream {
     @include safe-zone();
     display: flex;

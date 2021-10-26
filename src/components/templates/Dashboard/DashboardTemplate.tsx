@@ -1,5 +1,6 @@
 import { classnames, ErrorBoundary } from '@story-squad/react-utils';
 import React from 'react';
+import { Tutorial } from '../../atoms';
 import { Footer, Header, HeaderSwitcherProps } from '../../organisms';
 import DashboardErrorFallback from './DashboardErrorFallback';
 import './styles/index.scss';
@@ -15,6 +16,7 @@ export default function DashboardTemplate({
 >): React.ReactElement {
   return (
     <div className={classnames('dashboard-template', className)}>
+      <Tutorial />
       <Header useStorySquadHeader={useStorySquadHeader} />
       <div id="dashboard-content">
         <div className="dashboard-content-container">
