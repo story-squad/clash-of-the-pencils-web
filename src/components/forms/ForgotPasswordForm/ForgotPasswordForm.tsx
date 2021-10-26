@@ -2,10 +2,13 @@ import { useAsync } from '@story-squad/react-utils';
 import React, { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Auth } from '../../../api';
+import { dataConstraints } from '../../../config';
 import { useConfirmationModal } from '../../../hooks';
 import { readError } from '../../../utils';
 import { Button, LoadIcon } from '../../atoms';
+import { Input } from '../../molecules';
 import { FormProps } from '../formTypes';
+import './styles/index.scss';
 
 export type ForgotPasswordFormProps = FormProps<Auth.ResetEmailParams>;
 
@@ -45,21 +48,40 @@ export default function ForgotPasswordForm({
   });
 
   const [submitForm, isSubmitting] = useAsync({
-    run: handleSubmit(onSubmit),
+    run: async (data: Auth.ResetEmailParams) => {
+      await onSubmit(data);
+      openSuccessModal();
+    },
     onError: errorHandler,
-    onSuccess: openSuccessModal,
   });
 
   return (
-    <form className="forgot-password-form" onSubmit={submitForm}>
+    <>
       {modal}
-      <Button
-        onClick={clearFormError}
-        disabled={isSubmitting}
-        iconRight={isSubmitting && <LoadIcon />}
+      <form
+        className="forgot-password-form"
+        onSubmit={handleSubmit(submitForm)}
       >
-        Submit
-      </Button>
-    </form>
+        <Input
+          name="email"
+          label="Email Address"
+          placeholder="Enter your email address"
+          rules={{
+            required: 'Email is required!',
+            pattern: {
+              value: dataConstraints.emailPattern,
+              message: 'Must be a valid email address',
+            },
+          }}
+        />
+        <Button
+          onClick={clearFormError}
+          disabled={isSubmitting}
+          iconRight={isSubmitting && <LoadIcon />}
+        >
+          Submit
+        </Button>
+      </form>
+    </>
   );
 }

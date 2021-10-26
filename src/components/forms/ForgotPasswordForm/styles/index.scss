@@ -1,0 +1,13 @@
+@import '../../../../styles/newIndex.scss';
+
+.forgot-password-form {
+  @include safe-zone(420px);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  gap: 2rem;
+
+  .button {
+    align-self: flex-end;
+  }
+}
