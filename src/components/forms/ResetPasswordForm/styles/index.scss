@@ -1,6 +1,6 @@
 @import '../../../../styles/newIndex.scss';
 
-.reset-password-form {
+.password-form {
   @include safe-zone(420px);
   display: flex;
   flex-flow: column nowrap;

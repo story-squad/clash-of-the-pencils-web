@@ -1,2 +1,2 @@
-export * from './ResetPasswordForm';
-export { default as ResetPasswordForm } from './ResetPasswordForm';
+export * from './PasswordForm';
+export { default as PasswordForm } from './PasswordForm';

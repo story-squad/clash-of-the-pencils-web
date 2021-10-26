@@ -1,11 +1,11 @@
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { ResetPasswordForm, ResetPasswordFormProps } from '../../forms';
+import { PasswordForm, PasswordFormProps } from '../../forms';
 import { DashboardTemplate } from '../../templates';
 import './styles/index.scss';
 
 export interface ResetPasswordViewProps {
-  submitHandler: ResetPasswordFormProps['onSubmit'];
+  submitHandler: PasswordFormProps['onSubmit'];
   openLogin: () => void;
 }
 
@@ -24,7 +24,7 @@ export default function ResetPasswordView({
         </p>
       </div>
       <FormProvider {...methods}>
-        <ResetPasswordForm onSubmit={submitHandler} onSuccess={openLogin} />
+        <PasswordForm onSubmit={submitHandler} onSuccess={openLogin} />
       </FormProvider>
     </DashboardTemplate>
   );

@@ -1,6 +1,6 @@
 @import '../../../../styles/newIndex.scss';
 
-.forgot-password-form {
+.email-form {
   @include safe-zone(420px);
   display: flex;
   flex-flow: column nowrap;

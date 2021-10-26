@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import { Redirect, useHistory, useLocation } from 'react-router-dom';
 import { Auth } from '../../../api';
 import { parse } from '../../../utils';
-import { ResetPasswordFormProps } from '../../forms';
+import { PasswordFormProps } from '../../forms';
 import ResetPasswordView from './ResetPasswordView';
 
 export default function ResetPasswordViewContainer(): React.ReactElement {
@@ -14,7 +14,7 @@ export default function ResetPasswordViewContainer(): React.ReactElement {
   const { push } = useHistory();
   const openLogin = useCallback(() => push('/login'), [push]);
 
-  const submitHandler: ResetPasswordFormProps['onSubmit'] = useCallback(
+  const submitHandler: PasswordFormProps['onSubmit'] = useCallback(
     async ({ password }) => {
       if (email && code) {
         await Auth.updatePassword({ password, email, code });

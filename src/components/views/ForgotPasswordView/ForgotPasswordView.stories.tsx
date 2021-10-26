@@ -6,7 +6,7 @@ import ForgotPasswordView, {
   ForgotPasswordViewProps,
 } from './ForgotPasswordView';
 
-const Template: Story<ForgotPasswordViewProps> = () => {
+const Template: Story<Partial<ForgotPasswordViewProps>> = (props) => {
   const onSubmit = async () => {
     await sleep(2000);
   };
@@ -14,10 +14,20 @@ const Template: Story<ForgotPasswordViewProps> = () => {
     alert('Opening Dashboard');
   };
 
-  return <ForgotPasswordView openLogin={openDash} onSubmit={onSubmit} />;
+  return (
+    <ForgotPasswordView openLogin={openDash} onSubmit={onSubmit} {...props} />
+  );
 };
 
 export const Default = Template.bind({});
+
+export const Failure = Template.bind({});
+Failure.args = {
+  onSubmit: async () => {
+    await sleep(2000);
+    throw new Error();
+  },
+};
 
 export default {
   title: 'Views/ForgotPassword',

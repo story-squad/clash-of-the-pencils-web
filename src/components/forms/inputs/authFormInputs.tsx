@@ -1,4 +1,5 @@
 import React from 'react';
+import { dataConstraints } from '../../../config';
 import { Input } from '../../molecules';
 import { FormInputMapProps } from './types';
 
@@ -131,7 +132,14 @@ export default {
         name="email"
         label="Email Address"
         inputType="email"
-        rules={{ required: 'Email is required!', ...rules }}
+        rules={{
+          required: 'Email is required!',
+          pattern: {
+            value: dataConstraints.emailPattern,
+            message: 'Must be a valid email address',
+          },
+          ...rules,
+        }}
         placeholder="Email Address"
       />
     );

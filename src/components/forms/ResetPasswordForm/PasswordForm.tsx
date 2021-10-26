@@ -8,18 +8,18 @@ import { FormProps } from '../formTypes';
 import { authFormInputs } from '../inputs';
 import './styles/index.scss';
 
-export type ResetPasswordFormProps = FormProps<ResetPasswordFormFields>;
+export type PasswordFormProps = FormProps<PasswordFormFields>;
 
-export interface ResetPasswordFormFields {
+export interface PasswordFormFields {
   password: string;
   confirmPassword?: string;
 }
 
-export default function ResetPasswordForm({
+export default function PasswordForm({
   onSubmit,
   onError,
   onSuccess,
-}: ResetPasswordFormProps): React.ReactElement {
+}: PasswordFormProps): React.ReactElement {
   const { setError, handleSubmit, clearErrors, watch } = useFormContext();
   const clearFormError = useCallback(() => clearErrors('form'), [clearErrors]);
 
@@ -63,7 +63,7 @@ export default function ResetPasswordForm({
   );
 
   const [submitForm, isSubmitting] = useAsync({
-    run: async (data: ResetPasswordFormFields) => {
+    run: async (data: PasswordFormFields) => {
       await onSubmit({ password: data.password });
     },
     onError: errorHandler,
@@ -74,7 +74,7 @@ export default function ResetPasswordForm({
     <>
       {failureModal}
       {successModal}
-      <form className="reset-password-form" onSubmit={handleSubmit(submitForm)}>
+      <form className="password-form" onSubmit={handleSubmit(submitForm)}>
         {authFormInputs.password()}
         {authFormInputs.confirmPassword({
           rules: {

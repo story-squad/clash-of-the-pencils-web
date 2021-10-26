@@ -18,7 +18,7 @@ Default.args = {
 };
 
 export default {
-  title: 'Components/Forms/SignupForm',
+  title: 'Forms/SignupForm',
   component: SignupForm,
   parameters: { layout: 'fullscreen' },
   decorators: [

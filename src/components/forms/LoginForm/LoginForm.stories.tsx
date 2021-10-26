@@ -19,7 +19,7 @@ Default.args = {
 };
 
 export default {
-  title: 'Components/Forms/LoginForm',
+  title: 'Forms/LoginForm',
   component: LoginForm,
   parameters: { layout: 'fullscreen' },
   decorators: [
