@@ -20,11 +20,11 @@ export const updatePassword = async (
   await axiosWithoutAuth().post('/api/account/password', body);
 };
 
-export const getCodenameReminder = async ({
+export async function getCodenameReminder({
   email,
-}: ResetParams): Promise<{ message: string; recipient?: string }> => {
+}: ResetParams): Promise<{ message: string; recipient?: string }> {
   const { data } = await axiosWithoutAuth().get(
     `/api/account/codename?email=${email}&origin=Clash`,
   );
   return data;
-};
+}
