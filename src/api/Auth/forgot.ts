@@ -9,7 +9,7 @@ export const getPasswordReset = async ({
   email,
 }: ResetParams): Promise<{ message: string }> => {
   const { data } = await axiosWithoutAuth().get(
-    `/api/account/password?email=${email}`,
+    `/api/account/password?email=${email}&origin=Clash`,
   );
   return data;
 };
