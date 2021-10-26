@@ -1,6 +1,7 @@
 export * from './CleverRedirectView';
 export * from './DashboardView';
 export * from './ErrorView';
+export * from './ForgotPasswordView';
 export * from './LoginView';
 export * from './MyStoriesView';
 export * from './ScheduleView';
