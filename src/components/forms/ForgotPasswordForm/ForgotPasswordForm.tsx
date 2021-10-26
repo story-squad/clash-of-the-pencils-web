@@ -20,11 +20,19 @@ export default function ForgotPasswordForm({
   const { handleSubmit, setError, clearErrors } = useFormContext();
   const clearFormError = useCallback(() => clearErrors('form'), [clearErrors]);
 
+  // Error Handling
+  const [failureModal, openFailureModal] = useConfirmationModal({
+    title: 'Uh oh!',
+    message: 'The email could not be sent to the given address.',
+    confirmText: 'Okay',
+    hideCancelButton: true,
+  });
+
   // Error handler for submit function
   const errorHandler = useCallback(
-    (err: unknown) => {
+    async (err: unknown) => {
       // Run the onError function if one was passed in
-      onError?.(err);
+      await onError?.(err);
 
       // Read the relevant message string out of the error
       const message = readError(err);
@@ -35,11 +43,12 @@ export default function ForgotPasswordForm({
         default:
           setError('form', formError);
       }
+      openFailureModal();
     },
     [onError],
   );
 
-  const [modal, openSuccessModal] = useConfirmationModal({
+  const [successModal, openSuccessModal] = useConfirmationModal({
     title: 'Success!',
     message: 'A password reset link has been sent to your email address.',
     hideCancelButton: true,
@@ -52,12 +61,16 @@ export default function ForgotPasswordForm({
       await onSubmit(data);
       openSuccessModal();
     },
-    onError: errorHandler,
+    onError: async (err) => {
+      await errorHandler(err);
+      open;
+    },
   });
 
   return (
     <>
-      {modal}
+      {failureModal}
+      {successModal}
       <form
         className="forgot-password-form"
         onSubmit={handleSubmit(submitForm)}
