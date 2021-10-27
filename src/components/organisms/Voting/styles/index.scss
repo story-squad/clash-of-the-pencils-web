@@ -4,7 +4,7 @@ section.voting-wrapper {
   background-color: $brand-blue-0;
 
   .voting-container {
-    padding: 4rem 1.6rem;
+    padding: 1.6rem;
     display: flex;
     flex-flow: column nowrap;
     align-items: stretch;
@@ -12,6 +12,7 @@ section.voting-wrapper {
     gap: 1.6rem;
     @include bp(tablet) {
       gap: 3rem;
+      padding: 5rem 1.6rem;
     }
     @include safe-zone();
     & > h2,
