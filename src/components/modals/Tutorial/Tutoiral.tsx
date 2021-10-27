@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useRef } from 'react';
 import { useHistory } from 'react-router';
 import { useRecoilState } from 'recoil';
 import { PROMPT_BOX_ID } from '../../../config/tutorialSelectionIds';
-import { useConfirmationModal } from '../../../hooks';
+import { useConfirmationModal, useOpenDashboard } from '../../../hooks';
 import { app } from '../../../state';
 import { $ } from '../../../utils';
 import { Button } from '../../atoms/Button';
@@ -34,11 +34,14 @@ const Tutorial = (): React.ReactElement => {
     [tutorialMessages, currentMessage],
   );
 
+  const openDashboard = useOpenDashboard();
+
   const [modal, openModal] = useConfirmationModal({
     title: 'Hi Scribble Agent, welcome to Clash of the Pencils!',
     message:
       'Let’s get you started by going through your dashboard. Do you want to run the tutorial?',
     onConfirm: () => {
+      openDashboard();
       setTutorialIsOpen(true);
     },
     confirmText: 'Yes, Start',
