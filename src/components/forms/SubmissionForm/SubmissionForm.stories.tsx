@@ -25,7 +25,7 @@ Default.args = {
 };
 
 export default {
-  title: 'Components/Forms/SubmissionForm',
+  title: 'Forms/SubmissionForm',
   component: SubmissionForm,
   parameters: { layout: 'fullscreen' },
   decorators: [(story) => <RecoilRoot>{story()}</RecoilRoot>],

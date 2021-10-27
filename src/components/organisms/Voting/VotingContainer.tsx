@@ -63,7 +63,7 @@ function VotingSubscriber({
   );
 
   const [loadTop3, loading] = useAsync({
-    asyncFunction: Submissions.getTop3Subs,
+    run: Submissions.getTop3Subs,
     onSuccess: addTop3,
   });
 

@@ -1,0 +1,55 @@
+@import '../../../../styles/newIndex.scss';
+
+.account-activation {
+  @include safe-zone();
+  background-color: $brand-blue-6;
+  display: flex;
+  flex-flow: column nowrap;
+  border-radius: 1.6rem;
+  overflow: hidden;
+  box-shadow: 0 0 1rem #0004;
+
+  > h2 {
+    text-align: center;
+    font-family: $display-font;
+    color: $gray-0;
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+    padding: 2rem 0;
+    @include bp(tablet) {
+      padding: 2rem 0 0;
+    }
+  }
+  .activation-form {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 2rem;
+    flex-grow: 1;
+
+    padding: 1.6rem;
+    background-color: $brand-blue-0;
+
+    &.send-to-form {
+      background-color: $brand-orange-0;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+      line-height: 3.2rem;
+      font-family: $display-font;
+      color: $brand-blue-6;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      color: $gray-8;
+      font-family: $text-font;
+
+      em {
+        font-weight: 900;
+      }
+    }
+  }
+}

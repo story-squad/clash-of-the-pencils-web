@@ -5,7 +5,7 @@ import { file, preview } from '../appState/submissionModal';
 import { authToken, user } from '../authState';
 import { dropZone } from '../dndState';
 import { list } from '../pastSubsState';
-import { top3, userSubs } from '../submissionState';
+import { userSubs } from '../submissionState';
 import {
   dragonBankDropZoneKeys,
   hasReadSubInPosition,
@@ -26,7 +26,6 @@ export const all = selector<undefined>({
     reset(userVotes);
     reset(file);
     reset(preview);
-    reset(top3.list);
     reset(userSubs.list);
 
     // Reset Drop Zones to default

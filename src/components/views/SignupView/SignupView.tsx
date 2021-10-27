@@ -72,7 +72,7 @@ export default function SignupView({
         )}
       </div>
       <FormProvider {...methods}>
-        <SignupForm onSubmit={submitHandler} />
+        <SignupForm onSubmit={submitHandler} hideToS={isNew} />
       </FormProvider>
       <p className="form-footer">
         Already have an account? <span onClick={openLogin}>Sign In Here</span>
