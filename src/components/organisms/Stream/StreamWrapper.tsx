@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { Button } from '../../atoms';
 import './styles/index.scss';
 
 interface StreamWrapperProps {
@@ -11,9 +12,15 @@ export default function StreamWrapper({
   children,
   className,
 }: React.PropsWithChildren<unknown> & StreamWrapperProps): React.ReactElement {
+  const revealChampion = useCallback(() => {
+    window.location.assign('/winners');
+  }, []);
   return (
     <div className={`stream-wrapper ${className}`} id={id}>
-      <div className="stream">{children}</div>
+      <div className="stream">
+        {children}
+        <Button onClick={revealChampion}>Reveal Champion</Button>
+      </div>
     </div>
   );
 }
