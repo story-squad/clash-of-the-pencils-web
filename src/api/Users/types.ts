@@ -16,6 +16,7 @@ export interface INewUser extends IOAuthUser {
   isValidated?: boolean;
   parentEmail?: string;
   dob?: Date | string;
+  tos?: boolean;
 }
 
 export interface IOAuthUser {

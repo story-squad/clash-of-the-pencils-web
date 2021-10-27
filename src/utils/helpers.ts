@@ -1,3 +1,4 @@
+import { DateTime } from 'luxon';
 import React from 'react';
 import { Auth } from '../api';
 
@@ -48,4 +49,10 @@ export function debounce<
     clearTimeout(timer);
     timer = setTimeout(() => func(...args), timeout);
   };
+}
+
+export function getAge(dob: string): number {
+  return Math.floor(
+    Math.abs(DateTime.fromFormat(dob, 'yyyy-MM-dd').diffNow('years').years),
+  );
 }

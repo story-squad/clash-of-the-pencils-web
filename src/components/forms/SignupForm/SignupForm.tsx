@@ -1,10 +1,10 @@
 import { ErrorMessage } from '@hookform/error-message';
 import { useAsync } from '@story-squad/react-utils';
-import { DateTime } from 'luxon';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Auth, Users } from '../../../api';
 import { dataConstraints } from '../../../config';
+import { getAge, readError } from '../../../utils';
 import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import { authFormInputs } from '../inputs';
@@ -36,7 +36,7 @@ export default function SignupForm({
 
   useEffect(() => {
     if (dob.current) {
-      setParentNeeded(calculate_age(dob.current.toString()));
+      setParentNeeded(getAge(dob.current.toString()) < 13);
     }
   }, [dob.current]);
 
@@ -44,13 +44,18 @@ export default function SignupForm({
   const errorHandler = useCallback(
     onError ?? // If a custom error handler was provided, use it instead of our function
       ((error: unknown) => {
+        const message = readError(error);
+        const formError = { type: 'manual', message };
+
+        switch (message) {
+          case 'Could not create duplicate':
+          default:
+            setError('form', formError);
+        }
         if (error) {
           let message: string;
           if (Auth.isAxiosError(error) && error.response?.data) {
-            message =
-              error.response.data.message ??
-              error.response.data.error ??
-              error.message;
+            message = readError(error);
             if (
               message === 'Could not create duplicate' &&
               typeof error.response.data.field === 'string'
@@ -79,14 +84,6 @@ export default function SignupForm({
     run: handleSubmit(onSubmit),
     onError: errorHandler,
   });
-
-  // calculate age
-  function calculate_age(dob: string) {
-    const diff_ms = DateTime.local().toMillis() - new Date(dob).getTime();
-    const age_dt = new Date(diff_ms);
-    // return boolean to control display of parent email field
-    return Math.abs(age_dt.getUTCFullYear() - 1970) < 13;
-  }
 
   const goNext = async () => {
     const isValid = await trigger(
@@ -165,9 +162,6 @@ export default function SignupForm({
             },
           })}
           {!hideToS && authFormInputs.termsCheckbox()}
-          <Button onClick={goBack} htmlType="button" type="secondary">
-            Back
-          </Button>
           <ErrorMessage
             name="form"
             render={({ message }) => (
@@ -177,6 +171,9 @@ export default function SignupForm({
               </div>
             )}
           />
+          <Button onClick={goBack} htmlType="button" type="secondary">
+            Back
+          </Button>
           <Button
             disabled={isLoading}
             htmlType="submit"

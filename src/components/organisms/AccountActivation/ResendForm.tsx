@@ -4,15 +4,16 @@ import { Auth } from '../../../api';
 import { EmptyForm } from '../../forms';
 import { ActivationRequestFormProps } from './types';
 
-export function ResendForm(
-  formProps: ActivationRequestFormProps,
-): React.ReactElement {
+export function ResendForm({
+  // sendToParent,
+  ...formProps
+}: ActivationRequestFormProps): React.ReactElement {
   const methods = useForm();
   return (
     <div className="activation-form resend-form">
       <h2>Resend Email</h2>
       <p>
-        Click the button below to send another activation email to the same
+        Click the button below to resend another activation email to the same
         email address that the last email was sent to.
       </p>
       <p>
