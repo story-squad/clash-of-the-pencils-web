@@ -1,5 +1,15 @@
 import { createContext, useContext } from 'react';
-import { HeaderContextProps } from './types';
+import { Users } from '../../../api';
+
+export interface HeaderContextProps {
+  closeMenu: () => void;
+  toggleMenu: () => void;
+  menuIsOpen: boolean;
+  openDashboard: () => void;
+  user?: Users.IUser;
+  logout: () => void;
+  runTutorial: () => void;
+}
 
 const HeaderContext = createContext<HeaderContextProps>({
   closeMenu: () => undefined,
@@ -7,6 +17,7 @@ const HeaderContext = createContext<HeaderContextProps>({
   toggleMenu: () => undefined,
   openDashboard: () => undefined,
   logout: () => undefined,
+  runTutorial: () => undefined,
 });
 
 export const { Provider: HeaderContextProvider } = HeaderContext;

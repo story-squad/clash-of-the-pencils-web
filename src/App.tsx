@@ -69,12 +69,7 @@ const App = (): React.ReactElement => {
         <PrivateRoute path="/stories" component={() => <MyStoriesView />} />
 
         {/* Public Routes */}
-        <Route
-          path="/schedule"
-          render={({ history }) => (
-            <ScheduleView openDashboard={() => history.push('/')} />
-          )}
-        />
+        <Route path="/schedule" render={() => <ScheduleView />} />
         <Route path="/winners" render={WinnersView} />
         <Route path="/termsofservice" render={TermsView} />
 

@@ -3,6 +3,7 @@ import React from 'react';
 import AppNavItems from './AppNavItems';
 import AuthNavItems from './AuthNavItems';
 import NavLogout from './NavLogout';
+import NavTutorial from './NavTutorial';
 import './styles/headerMenu.scss';
 import useHeaderContext from './useHeaderContext';
 
@@ -17,6 +18,7 @@ export default function HeaderMenu(): React.ReactElement {
       <nav>
         <ul ref={clickRef}>
           <AuthNavItems />
+          <NavTutorial />
           <AppNavItems className="hide-on-tablet" />
           <NavLogout />
         </ul>

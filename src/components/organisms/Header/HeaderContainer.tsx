@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useOpenDashboard } from '../../../hooks';
 import { app, auth } from '../../../state';
 import Header from './Header';
 import StorySquadHeader from './StorySquadHeader';
@@ -16,6 +16,9 @@ function HeaderContainer(): React.ReactElement {
   const [menuIsOpen, setMenuIsOpen] = useRecoilState(app.header.menuIsOpen);
   const user = useRecoilValue(auth.user);
 
+  // runTutorial Recoil Selector
+  const runTutorial = useSetRecoilState(app.tutorial.runTutorial);
+
   // Setters
   const toggleMenu = useCallback(
     () => setMenuIsOpen((prev) => !prev),
@@ -24,8 +27,7 @@ function HeaderContainer(): React.ReactElement {
   const closeMenu = useCallback(() => setMenuIsOpen(false), [setMenuIsOpen]);
 
   // Navigation
-  const { push } = useHistory();
-  const openDashboard = () => push('/');
+  const openDashboard = useOpenDashboard();
 
   // Logout
   const logout = useSetRecoilState(auth.login);
@@ -43,6 +45,7 @@ function HeaderContainer(): React.ReactElement {
         openDashboard,
         user,
         logout: logoutAndCloseMenu,
+        runTutorial,
       }}
     >
       <Header />
