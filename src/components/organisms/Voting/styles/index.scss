@@ -10,6 +10,9 @@ section.voting-wrapper {
     align-items: stretch;
     justify-content: space-between;
     gap: 1.6rem;
+    @include bp(tablet) {
+      gap: 3rem;
+    }
     @include safe-zone();
     & > h2,
     & > h3 {
@@ -28,23 +31,26 @@ section.voting-wrapper {
       z-index: 4;
       border-radius: 15px;
     }
-    .instruction-card {
-      display: none;
-      &.active {
-        display: flex;
-      }
-      &.complete:nth-of-type(3) {
-        /* 
-        This is important! When all 3 steps are complete,
-        the cards all dissappear. This makes it so that the
-        third card will still be visible after the user
-        submits their votes successfully.
-        */
-        display: flex;
-      }
+    .instruction-card-list {
+      .instruction-card {
+        display: none;
+        &.active {
+          display: flex;
+        }
+        &.complete:nth-of-type(3) {
+          /* 
+          This is important! When all 3 steps are complete,
+          the cards all dissappear. This makes it so that the
+          third card will still be visible after the user
+          submits their votes successfully.
+          */
+          display: flex;
+        }
 
-      @include bp(tablet) {
-        display: flex;
+        @include bp(tablet) {
+          display: flex;
+          padding: 2rem;
+        }
       }
     }
 

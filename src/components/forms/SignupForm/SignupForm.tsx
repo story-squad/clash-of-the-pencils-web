@@ -171,9 +171,6 @@ export default function SignupForm({
               </div>
             )}
           />
-          <Button onClick={goBack} htmlType="button" type="secondary">
-            Back
-          </Button>
           <Button
             disabled={isLoading}
             htmlType="submit"
@@ -181,6 +178,9 @@ export default function SignupForm({
             onClick={clearFormError}
           >
             Sign Up
+          </Button>
+          <Button onClick={goBack} htmlType="button" type="secondary">
+            Back
           </Button>
         </>
       ) : null}

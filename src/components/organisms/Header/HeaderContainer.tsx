@@ -16,8 +16,15 @@ function HeaderContainer(): React.ReactElement {
   const [menuIsOpen, setMenuIsOpen] = useRecoilState(app.header.menuIsOpen);
   const user = useRecoilValue(auth.user);
 
+  // Navigation
+  const openDashboard = useOpenDashboard();
+
   // runTutorial Recoil Selector
-  const runTutorial = useSetRecoilState(app.tutorial.runTutorial);
+  const tutorialRunner = useSetRecoilState(app.tutorial.runTutorial);
+  const runTutorial = () => {
+    openDashboard();
+    tutorialRunner();
+  };
 
   // Setters
   const toggleMenu = useCallback(
@@ -25,9 +32,6 @@ function HeaderContainer(): React.ReactElement {
     [setMenuIsOpen],
   );
   const closeMenu = useCallback(() => setMenuIsOpen(false), [setMenuIsOpen]);
-
-  // Navigation
-  const openDashboard = useOpenDashboard();
 
   // Logout
   const logout = useSetRecoilState(auth.login);

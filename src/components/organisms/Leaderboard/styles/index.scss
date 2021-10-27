@@ -113,6 +113,9 @@ $lb-header-bg: $brand-blue-8;
         color: $lime-green;
         font-size: 1.6rem;
         line-height: 2.6rem;
+        @include bp(900px) {
+          font-size: 2rem;
+        }
       }
       p {
         font-size: 1.2rem;
