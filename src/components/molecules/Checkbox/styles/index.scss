@@ -1,0 +1,33 @@
+@import '../../../../styles/newIndex.scss';
+
+.checkbox-container {
+  .checkbox {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    label {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1.2rem;
+      line-height: 1.6rem;
+      font-family: $ui-font;
+      color: $gray-9;
+      a {
+        color: $brand-blue;
+        transition: all 0.15s ease;
+        &:hover {
+          transition: all 0.15s ease;
+          color: $brand-blue-7;
+        }
+      }
+    }
+  }
+
+  .error-message {
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+  }
+}

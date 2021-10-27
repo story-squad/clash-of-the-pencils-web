@@ -10,11 +10,12 @@ import { FormProps } from '../formTypes';
 import { authFormInputs } from '../inputs';
 import './styles/index.scss';
 
-export type SignupFormProps = FormProps<Users.INewUser>;
+export type SignupFormProps = FormProps<Users.INewUser> & { hideToS?: boolean };
 
 export default function SignupForm({
   onSubmit,
   onError,
+  hideToS = false,
 }: SignupFormProps): React.ReactElement {
   // Standard form handlers
   const { handleSubmit, setError, clearErrors, watch, trigger } =
@@ -163,6 +164,7 @@ export default function SignupForm({
               },
             },
           })}
+          {!hideToS && authFormInputs.termsCheckbox()}
           <Button onClick={goBack} htmlType="button" type="secondary">
             Back
           </Button>

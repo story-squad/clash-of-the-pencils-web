@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { dataConstraints } from '../../../config';
-import { Input } from '../../molecules';
-import { FormInputMapProps } from './types';
+import { Checkbox, Input } from '../../molecules';
+import { FormCheckboxProps, FormInputMapProps } from './types';
 
 export default {
   codename: function CodenameInput(
@@ -159,6 +160,29 @@ export default {
           ...rules,
         }}
         placeholder="Parent Email Address"
+      />
+    );
+  },
+  termsCheckbox: function TermsCheckbox({
+    rules,
+    ...props
+  }: FormCheckboxProps = {}): React.ReactElement {
+    return (
+      <Checkbox
+        name="tos"
+        rules={{
+          required: 'Terms of Service must be accepted!',
+          ...rules,
+        }}
+        label={
+          <>
+            I accept the{' '}
+            <Link to="/termsofservice" target="_blank">
+              Terms of Service
+            </Link>
+          </>
+        }
+        {...props}
       />
     );
   },
