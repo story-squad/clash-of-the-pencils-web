@@ -1,3 +1,4 @@
+import { useKey } from '@story-squad/react-utils';
 import React, { useEffect, useMemo, useRef } from 'react';
 import { useHistory } from 'react-router';
 import { useRecoilState } from 'recoil';
@@ -48,6 +49,14 @@ const Tutorial = (): React.ReactElement => {
   });
 
   useEffect(openModal, []);
+
+  const stopTutorial = () => {
+    setTutorialIsOpen(false);
+  };
+  useKey({
+    action: stopTutorial,
+    key: 'Escape',
+  });
 
   const nextItem = () => {
     if (
@@ -105,7 +114,15 @@ const Tutorial = (): React.ReactElement => {
   // REMEMBER LOOK FOR THE CHICKENNUGGET
   return (
     <>
-      {tutorialIsOpen && <div className="tutorial-screen" />}
+      {tutorialIsOpen && (
+        <div
+          className="tutorial-screen"
+          onClick={(e) => {
+            e.stopPropagation();
+            stopTutorial();
+          }}
+        />
+      )}
       {showTutorial && modal}
       {tutorialIsOpen && (
         <div className="tutorial-container">
