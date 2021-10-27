@@ -1,3 +1,4 @@
+export * from './AccountView';
 export * from './CleverRedirectView';
 export * from './DashboardView';
 export * from './ErrorView';

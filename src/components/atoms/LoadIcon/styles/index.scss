@@ -1,12 +1,5 @@
-.load-icon-spinner {
-  animation: spin 2s infinite linear;
-}
+@import '../../../../styles/animations.scss';
 
-@keyframes spin {
-  from {
-    transform: scale(1) rotate(0deg);
-  }
-  to {
-    transform: scale(1) rotate(360deg);
-  }
+.load-icon-spinner {
+  @include spin(2s);
 }

@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import { ActivationModal } from './components/modals';
 import { LoginEmailRedirect, PrivateRoute } from './components/providers';
 import {
+  AccountView,
   CleverRedirectView,
   DashboardView,
   ErrorView,
@@ -53,11 +54,16 @@ const App = (): React.ReactElement => {
           )}
         />
         <Route path="/forgot/codename" render={() => <ForgotCodenameView />} />
+        <Route path="/account" render={() => <AccountView />} />
         <Route path="/reset/submit" render={() => <ResetPasswordView />} />
         <Route path="/oauth/clever" render={() => <CleverRedirectView />} />
 
         {/* Redirects */}
         <Route path="/auth/login" render={() => <LoginEmailRedirect />} />
+        <Route
+          path="/activate"
+          render={(props) => <ActivationModal {...props} />}
+        />
 
         {/* Private Routes */}
         <PrivateRoute path="/stories" component={() => <MyStoriesView />} />
@@ -68,10 +74,6 @@ const App = (): React.ReactElement => {
           render={({ history }) => (
             <ScheduleView openDashboard={() => history.push('/')} />
           )}
-        />
-        <Route
-          path="/activate"
-          render={(props) => <ActivationModal {...props} />}
         />
         <Route path="/winners" render={WinnersView} />
         <Route path="/termsofservice" render={TermsView} />
