@@ -15,7 +15,7 @@ export default function InstructionCardList({
   canSubmit: boolean;
 }): React.ReactElement {
   return (
-    <CardList>
+    <CardList className="instruction-card-list">
       <InstructionCard
         step={1}
         active={phase === 'vote' && !hasReadAll && !userHasVoted}

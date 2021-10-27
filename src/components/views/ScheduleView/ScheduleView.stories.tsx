@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import ScheduleView from './ScheduleView';
 
-const Template: Story = () => <ScheduleView openDashboard={() => undefined} />;
+const Template: Story = () => <ScheduleView />;
 
 export const Default = Template.bind({});
 

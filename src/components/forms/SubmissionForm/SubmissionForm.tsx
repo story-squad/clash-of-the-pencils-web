@@ -85,12 +85,12 @@ export default function SubmissionForm({
   };
 
   const [exec, loading] = useAsync({
-    asyncFunction: submitHandler,
+    run: submitHandler,
     onError: errorHandler,
   });
 
   const [convertHEICImage, loadingHEIC] = useAsync({
-    asyncFunction: upload.heicToPng,
+    run: upload.heicToPng,
     onSuccess: async (pngImage) => {
       setFile(pngImage);
       setPreview(await upload.generatePreview(pngImage));

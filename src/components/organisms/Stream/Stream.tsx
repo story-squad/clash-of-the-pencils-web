@@ -1,6 +1,9 @@
 import { ErrorBoundary } from '@story-squad/react-utils';
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
+import { useRecoilValue } from 'recoil';
+import { TUTORIAL_IDS } from '../../../config';
+import { app } from '../../../state';
 import StreamFailureFallback from './StreamFailureFallback';
 import StreamWrapper from './StreamWrapper';
 
@@ -9,6 +12,8 @@ const streamURL = process.env.REACT_APP_LIVESTREAM_URL;
 function Stream(): React.ReactElement {
   const [playing, setPlaying] = useState(false);
   const [renderFallback, setRenderFallback] = useState(streamURL === undefined);
+  const currentMessage = useRecoilValue(app.tutorial.currentMessageIndex);
+
   const hidePlayer = () => {
     setRenderFallback(true);
   };
@@ -19,7 +24,10 @@ function Stream(): React.ReactElement {
   // if (renderFallback) return <OfflineStreamVideo />;
   // else {
   return (
-    <StreamWrapper>
+    <StreamWrapper
+      id={TUTORIAL_IDS.ID_STREAM}
+      className={currentMessage === 6 ? 'active-tutorial' : ''}
+    >
       {playing && (
         <h2>{renderFallback ? 'Latest Stream' : 'Streaming Now!'}</h2>
       )}

@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { Auth, Clever } from '../../../api';
+import { useOpenDashboard } from '../../../hooks';
 import { auth } from '../../../state';
 import { CleverButton } from '../../atoms';
 import { LoginForm } from '../../forms';
@@ -12,21 +12,28 @@ import './styles/index.scss';
 export interface LoginViewProps {
   onSubmit?: (data: Auth.ILoginBody) => void;
   openSignup?: () => void;
+  openForgotPassword?: () => void;
+  openForgotCodename?: () => void;
 }
 
 export default function LoginView({
   onSubmit,
-  openSignup,
+  // Clever Auth Params
   isMerge = false,
   cleverId,
   codename,
+  // Route Handling
+  openSignup,
+  openForgotCodename,
+  openForgotPassword,
 }: LoginViewProps & Clever.MergeRedirectState): React.ReactElement {
   // Get form methods for the provider
   const methods = useForm({ defaultValues: { codename } });
-  const { push } = useHistory();
 
   // Get login selector from Recoil
   const login = useSetRecoilState(auth.login);
+
+  const openDash = useOpenDashboard();
 
   // Memoize the passed in submit handler if there was one, else use our custom function
   const submitHandler = useCallback(
@@ -37,7 +44,7 @@ export default function LoginView({
           else return Auth.login(data);
         })();
         login(res);
-        push('/');
+        openDash();
       }),
     [login, onSubmit, isMerge, cleverId],
   );
@@ -69,7 +76,15 @@ export default function LoginView({
       </FormProvider>
       <p className="form-footer">
         Need to create an account?{' '}
-        <span onClick={openSignup}>Sign Up Here</span>
+        <span className="all-caps" onClick={openSignup}>
+          Sign&nbsp;Up&nbsp;Here
+        </span>
+      </p>
+      <p className="form-footer forgot">
+        <span onClick={openForgotCodename}>Forgot Codename?</span>
+      </p>
+      <p className="form-footer forgot">
+        <span onClick={openForgotPassword}>Forgot Password?</span>
       </p>
     </DashboardTemplate>
   );

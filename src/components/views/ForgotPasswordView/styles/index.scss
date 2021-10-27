@@ -1,0 +1,30 @@
+@import '../../../../styles/newIndex.scss';
+
+.forgot-password-view .dashboard-content-container {
+  padding: 2rem;
+
+  .forgot-password-header {
+    @include safe-zone(420px);
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 2.4rem;
+      line-height: 3rem;
+      font-family: $display-font;
+      text-align: center;
+      color: $brand-blue-6;
+    }
+
+    p {
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      font-family: $text-font;
+      text-align: center;
+      color: $gray-8;
+    }
+  }
+}

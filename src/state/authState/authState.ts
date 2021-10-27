@@ -1,6 +1,6 @@
 import { atom, DefaultValue, selector } from 'recoil';
 import { Auth, Users } from '../../api';
-import { token } from '../../utils';
+import { getAge, token } from '../../utils';
 import { all } from '../clearState';
 import { persist } from '../effects';
 
@@ -48,5 +48,14 @@ export const isLoggedIn = selector<boolean>({
     const u = get(user);
     const t = get(authToken);
     return u !== undefined && t !== undefined;
+  },
+});
+
+export const userIsUnderage = selector<boolean>({
+  key: 'userIsUnderageSelector',
+  get: ({ get }) => {
+    const u = get(user);
+    if (!u) return false;
+    else return getAge(u.dob) < 13;
   },
 });

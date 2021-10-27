@@ -1,6 +1,8 @@
 import React from 'react';
-import { Input } from '../../molecules';
-import { FormInputMapProps } from './types';
+import { Link } from 'react-router-dom';
+import { dataConstraints } from '../../../config';
+import { Checkbox, Input } from '../../molecules';
+import { FormCheckboxProps, FormInputMapProps } from './types';
 
 export default {
   codename: function CodenameInput(
@@ -131,7 +133,14 @@ export default {
         name="email"
         label="Email Address"
         inputType="email"
-        rules={{ required: 'Email is required!', ...rules }}
+        rules={{
+          required: 'Email is required!',
+          pattern: {
+            value: dataConstraints.emailPattern,
+            message: 'Must be a valid email address',
+          },
+          ...rules,
+        }}
         placeholder="Email Address"
       />
     );
@@ -151,6 +160,29 @@ export default {
           ...rules,
         }}
         placeholder="Parent Email Address"
+      />
+    );
+  },
+  termsCheckbox: function TermsCheckbox({
+    rules,
+    ...props
+  }: FormCheckboxProps = {}): React.ReactElement {
+    return (
+      <Checkbox
+        name="tos"
+        rules={{
+          required: 'Terms of Service must be accepted!',
+          ...rules,
+        }}
+        label={
+          <>
+            I accept the{' '}
+            <Link to="/termsofservice" target="_blank">
+              Terms of Service
+            </Link>
+          </>
+        }
+        {...props}
       />
     );
   },

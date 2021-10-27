@@ -4,12 +4,16 @@ section.voting-wrapper {
   background-color: $brand-blue-0;
 
   .voting-container {
-    padding: 4rem 1.6rem;
+    padding: 1.6rem;
     display: flex;
     flex-flow: column nowrap;
     align-items: stretch;
     justify-content: space-between;
     gap: 1.6rem;
+    @include bp(tablet) {
+      gap: 3rem;
+      padding: 5rem 1.6rem;
+    }
     @include safe-zone();
     & > h2,
     & > h3 {
@@ -24,24 +28,30 @@ section.voting-wrapper {
     & > h3 {
       color: $gray-7;
     }
+    .active-tutorial {
+      z-index: 4;
+      border-radius: 15px;
+    }
+    .instruction-card-list {
+      .instruction-card {
+        display: none;
+        &.active {
+          display: flex;
+        }
+        &.complete:nth-of-type(3) {
+          /* 
+          This is important! When all 3 steps are complete,
+          the cards all dissappear. This makes it so that the
+          third card will still be visible after the user
+          submits their votes successfully.
+          */
+          display: flex;
+        }
 
-    .instruction-card {
-      display: none;
-      &.active {
-        display: flex;
-      }
-      &.complete:nth-of-type(3) {
-        /* 
-        This is important! When all 3 steps are complete,
-        the cards all dissappear. This makes it so that the
-        third card will still be visible after the user
-        submits their votes successfully.
-        */
-        display: flex;
-      }
-
-      @include bp(tablet) {
-        display: flex;
+        @include bp(tablet) {
+          display: flex;
+          padding: 2rem;
+        }
       }
     }
 

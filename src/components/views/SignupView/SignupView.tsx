@@ -26,6 +26,9 @@ export default function SignupView({
 }: SignupViewProps & Clever.NewRedirectState): React.ReactElement {
   const methods = useForm({
     defaultValues: { firstname, lastname, email },
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
+    shouldFocusError: true,
   });
   const { push } = useHistory();
 
@@ -69,7 +72,7 @@ export default function SignupView({
         )}
       </div>
       <FormProvider {...methods}>
-        <SignupForm onSubmit={submitHandler} />
+        <SignupForm onSubmit={submitHandler} hideToS={isNew} />
       </FormProvider>
       <p className="form-footer">
         Already have an account? <span onClick={openLogin}>Sign In Here</span>

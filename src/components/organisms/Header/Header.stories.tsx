@@ -21,6 +21,7 @@ const Template: Story = ({ isLogged }: { isLogged?: boolean }) => {
         toggleMenu,
         user,
         logout: empty,
+        runTutorial: empty,
       }}
     >
       <Header />

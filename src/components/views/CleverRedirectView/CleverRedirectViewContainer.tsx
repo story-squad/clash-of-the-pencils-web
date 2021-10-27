@@ -49,7 +49,7 @@ export default function CleverRedirectViewContainer(): React.ReactElement {
   }, []);
 
   const [authorizeWithCode] = useAsync({
-    asyncFunction: authorizationHandler,
+    run: authorizationHandler,
   });
 
   useEffect(() => {

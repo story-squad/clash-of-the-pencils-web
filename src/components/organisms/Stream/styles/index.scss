@@ -1,8 +1,16 @@
 @import '../../../../styles/newIndex.scss';
 
+.active-tutorial {
+  z-index: 3;
+}
 .stream-wrapper {
   background-color: $gray-9;
   padding: 2rem;
+
+  @include bp(tablet) {
+    padding: 5rem 2rem;
+  }
+
   .stream {
     @include safe-zone();
     display: flex;
@@ -10,11 +18,20 @@
     align-items: center;
     gap: 2rem;
 
+    @include bp(tablet) {
+      gap: 3rem;
+    }
+
     h2 {
       font-family: $display-font;
       color: $lime-green;
       font-size: 2.4rem;
       line-height: 3.2rem;
+
+      @include bp(tablet) {
+        font-size: 2.8rem;
+        line-height: 3.6rem;
+      }
     }
 
     p {

@@ -1,3 +1,4 @@
+export * from './Checkbox';
 export * from './Countdown';
 export * from './DragonBank';
 export * from './DragonLoader';

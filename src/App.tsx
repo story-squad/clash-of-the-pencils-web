@@ -1,13 +1,17 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { ActivationModal } from './components/modals';
-import { PrivateRoute } from './components/providers';
+import { LoginEmailRedirect, PrivateRoute } from './components/providers';
 import {
+  AccountView,
   CleverRedirectView,
   DashboardView,
   ErrorView,
+  ForgotCodenameView,
+  ForgotPasswordView,
   LoginView,
   MyStoriesView,
+  ResetPasswordView,
   ScheduleView,
   SignupView,
   TermsView,
@@ -30,7 +34,11 @@ const App = (): React.ReactElement => {
         <Route
           path="/login"
           render={({ history }) => (
-            <LoginView openSignup={() => history.push('/signup')} />
+            <LoginView
+              openSignup={() => history.push('/signup')}
+              openForgotCodename={() => history.push('/forgot/codename')}
+              openForgotPassword={() => history.push('/forgot/password')}
+            />
           )}
         />
         <Route
@@ -39,22 +47,29 @@ const App = (): React.ReactElement => {
             <SignupView openLogin={() => history.push('/login')} />
           )}
         />
+        <Route
+          path="/forgot/password"
+          render={({ history }) => (
+            <ForgotPasswordView openLogin={() => history.push('/login')} />
+          )}
+        />
+        <Route path="/forgot/codename" render={() => <ForgotCodenameView />} />
+        <Route path="/account" render={() => <AccountView />} />
+        <Route path="/reset/submit" render={() => <ResetPasswordView />} />
         <Route path="/oauth/clever" render={() => <CleverRedirectView />} />
+
+        {/* Redirects */}
+        <Route path="/auth/login" render={() => <LoginEmailRedirect />} />
+        <Route
+          path="/activate"
+          render={(props) => <ActivationModal {...props} />}
+        />
 
         {/* Private Routes */}
         <PrivateRoute path="/stories" component={() => <MyStoriesView />} />
 
         {/* Public Routes */}
-        <Route
-          path="/schedule"
-          render={({ history }) => (
-            <ScheduleView openDashboard={() => history.push('/')} />
-          )}
-        />
-        <Route
-          path="/activate"
-          render={(props) => <ActivationModal {...props} />}
-        />
+        <Route path="/schedule" render={() => <ScheduleView />} />
         <Route path="/winners" render={WinnersView} />
         <Route path="/termsofservice" render={TermsView} />
 

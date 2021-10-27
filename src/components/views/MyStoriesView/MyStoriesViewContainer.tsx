@@ -14,7 +14,7 @@ function MyStoriesViewContainer(): React.ReactElement {
   const addUserSubs = useSetRecoilState(submissions.userSubs.add);
 
   const [loadSubs, loading, , err] = useAsync({
-    asyncFunction: Submissions.getMySubmissions,
+    run: Submissions.getMySubmissions,
     onSuccess: addUserSubs,
   });
 
