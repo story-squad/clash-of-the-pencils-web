@@ -35,6 +35,7 @@ export default function EncouragementButton(): React.ReactElement {
 }
 
 function getRandomSound() {
+  console.log('iran', encouragement);
   // Get an array of all sounds from encouragement
   const keys = Object.keys(encouragement);
   // Generate a random key from the encouragement module

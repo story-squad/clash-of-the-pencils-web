@@ -3,12 +3,11 @@ import React, { useEffect, useMemo, useRef } from 'react';
 import { useHistory } from 'react-router';
 import { useRecoilState } from 'recoil';
 import { PROMPT_BOX_ID } from '../../../config/tutorialSelectionIds';
-import { useConfirmationModal } from '../../../hooks';
-import { app } from '../../../state';
+import { useConfirmationModal, useOpenDashboard } from '../../../hooks';
+import { tutorial } from '../../../state';
 import { $ } from '../../../utils';
 import { Button } from '../../atoms/Button';
 import './styles/index.scss';
-import { tutorialMessages } from './tutorialMessages';
 
 export interface TutorialProps {
   noTutorial: () => void;
@@ -17,28 +16,27 @@ export interface TutorialProps {
 
 const Tutorial = (): React.ReactElement => {
   const [currentMessage, setCurrentmessage] = useRecoilState(
-    app.tutorial.currentMessageIndex,
+    tutorial.currentMessageIndex,
   );
   // This is whether the tutorial is running
-  const [tutorialIsOpen, setTutorialIsOpen] = useRecoilState(
-    app.tutorial.isOpen,
-  );
+  const [tutorialIsOpen, setTutorialIsOpen] = useRecoilState(tutorial.isOpen);
   // This is whether to run tutorial on app launch
-  const [showTutorial, setShowTutorial] = useRecoilState(
-    app.tutorial.showTutorial,
-  );
+  const [showTutorial, setShowTutorial] = useRecoilState(tutorial.showTutorial);
 
   const router = useHistory();
   const [{ message, arrow, classname, id, styleclass }] = useMemo(
-    () => [tutorialMessages[currentMessage]],
-    [tutorialMessages, currentMessage],
+    () => [tutorial.messages[currentMessage]],
+    [tutorial.messages, currentMessage],
   );
+
+  const openDashboard = useOpenDashboard();
 
   const [modal, openModal] = useConfirmationModal({
     title: 'Hi Scribble Agent, welcome to Clash of the Pencils!',
     message:
       'Let’s get you started by going through your dashboard. Do you want to run the tutorial?',
     onConfirm: () => {
+      openDashboard();
       setTutorialIsOpen(true);
     },
     confirmText: 'Yes, Start',
@@ -60,7 +58,7 @@ const Tutorial = (): React.ReactElement => {
 
   const nextItem = () => {
     if (
-      currentMessage < tutorialMessages.length - 1 &&
+      currentMessage < tutorial.messages.length - 1 &&
       styleclass !== 'special'
     ) {
       setCurrentmessage(currentMessage + 1);

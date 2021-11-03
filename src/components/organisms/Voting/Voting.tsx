@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil';
 import { Auth } from '../../../api';
 import { TUTORIAL_IDS } from '../../../config';
 import { useConfirmationModal } from '../../../hooks';
-import { app } from '../../../state';
+import { tutorial } from '../../../state';
 import { time } from '../../../utils';
 import { DragonBank } from '../../molecules';
 import InstructionCardList from './InstructionCardList';
@@ -31,7 +31,7 @@ export default function Voting({
   userHasVoted,
 }: VotingProps): React.ReactElement {
   const dragDisabled = phase !== 'vote';
-  const currentMessage = useRecoilValue(app.tutorial.currentMessageIndex);
+  const message = useRecoilValue(tutorial.currentMessage);
 
   const streamTime = useMemo(
     () => time.schedule.stream.start.toLocal().toFormat('h:mm a'),
@@ -84,7 +84,9 @@ export default function Voting({
         />
         <div
           id={TUTORIAL_IDS.ID_TOP_THREE}
-          className={` ${currentMessage === 5 ? 'active-tutorial' : ''}`}
+          className={` ${
+            message.id === TUTORIAL_IDS.ID_TOP_THREE ? 'active-tutorial' : ''
+          }`}
         >
           <VotingCardList
             hasReadAll={hasReadAll}

@@ -8,4 +8,5 @@ export * as pastSubs from './pastSubsState';
 export * as prompts from './promptState';
 export * as results from './resultsState';
 export * as submissions from './submissionState';
+export * as tutorial from './tutorialState';
 export * as voting from './votingState';

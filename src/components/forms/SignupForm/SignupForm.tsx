@@ -81,7 +81,7 @@ export default function SignupForm({
   );
   // Using useAsync for easier async render control
   const [asyncSubmitForm, isLoading] = useAsync({
-    run: handleSubmit(onSubmit),
+    run: onSubmit,
     onError: errorHandler,
   });
 
@@ -97,7 +97,11 @@ export default function SignupForm({
   };
 
   return (
-    <form className="signup-form" onSubmit={asyncSubmitForm} noValidate>
+    <form
+      className="signup-form"
+      onSubmit={handleSubmit(asyncSubmitForm)}
+      noValidate
+    >
       {/* First page */}
       {page === 1 ? (
         <>
