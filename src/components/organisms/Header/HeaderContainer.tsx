@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { useOpenDashboard } from '../../../hooks';
-import { app, auth } from '../../../state';
+import { app, auth, tutorial } from '../../../state';
 import Header from './Header';
 import StorySquadHeader from './StorySquadHeader';
 import { HeaderContextProvider } from './useHeaderContext';
@@ -20,7 +20,7 @@ function HeaderContainer(): React.ReactElement {
   const openDashboard = useOpenDashboard();
 
   // runTutorial Recoil Selector
-  const tutorialRunner = useSetRecoilState(app.tutorial.runTutorial);
+  const tutorialRunner = useSetRecoilState(tutorial.runTutorial);
   const runTutorial = () => {
     openDashboard();
     tutorialRunner();

@@ -1,4 +1,5 @@
 import { atom, selector } from 'recoil';
+import { messages, TutorialMessage } from '.';
 import { persist } from '../effects';
 
 const LOCAL_STORAGE_TUTOIRAL_KEY = 'tutorial-Key';
@@ -40,4 +41,9 @@ export const runTutorial = selector<void>({
     reset(currentMessageIndex);
     set(isOpen, true);
   },
+});
+
+export const currentMessage = selector<TutorialMessage>({
+  key: 'currentMessageSelector',
+  get: ({ get }) => messages[get(currentMessageIndex)],
 });

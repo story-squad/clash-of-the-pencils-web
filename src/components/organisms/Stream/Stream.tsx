@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
 import { useRecoilValue } from 'recoil';
 import { TUTORIAL_IDS } from '../../../config';
-import { app } from '../../../state';
+import { tutorial } from '../../../state';
 import StreamFailureFallback from './StreamFailureFallback';
 import StreamWrapper from './StreamWrapper';
 
@@ -12,7 +12,7 @@ const streamURL = process.env.REACT_APP_LIVESTREAM_URL;
 function Stream(): React.ReactElement {
   const [playing, setPlaying] = useState(false);
   const [renderFallback, setRenderFallback] = useState(streamURL === undefined);
-  const currentMessage = useRecoilValue(app.tutorial.currentMessageIndex);
+  const currentMessage = useRecoilValue(tutorial.currentMessageIndex);
 
   const hidePlayer = () => {
     setRenderFallback(true);
