@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { Submissions } from '../../../api';
 import { TUTORIAL_IDS } from '../../../config';
-import { app } from '../../../state';
+import { tutorial } from '../../../state';
 import { Toggle, ToggleOption } from '../../atoms';
 import { Table } from '../../molecules';
 import LeaderboardIcon from './LeaderboardIcon';
@@ -23,7 +23,7 @@ export default function Leaderboard({
   weekly,
   toggleLeaderboard,
 }: ILeaderboardProps): React.ReactElement {
-  const currentMessage = useRecoilValue(app.tutorial.currentMessageIndex);
+  const message = useRecoilValue(tutorial.currentMessage);
 
   const dailyItems = useMemo(
     () => daily.reduce(reduceDailyLeaderboardItemsToTableRows, []),
@@ -58,7 +58,9 @@ export default function Leaderboard({
   return (
     <section
       id={TUTORIAL_IDS.ID_LEADERBOARD}
-      className={`${currentMessage === 7 && 'active-tutorial'} leaderboard`}
+      className={`${
+        message.id === TUTORIAL_IDS.ID_LEADERBOARD && 'active-tutorial'
+      } leaderboard`}
     >
       <h1>Leaderboard</h1>
       <Toggle

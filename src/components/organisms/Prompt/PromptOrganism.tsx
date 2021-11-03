@@ -3,9 +3,9 @@ import { useRecoilValue } from 'recoil';
 import { Prompts } from '../../../api';
 import { TUTORIAL_IDS } from '../../../config';
 import { PROMPT_BOX_ID } from '../../../config/tutorialSelectionIds';
-import { app } from '../../../state';
+import { app, tutorial } from '../../../state';
 import { Button } from '../../atoms';
-import { Countdown, EncouragementButton } from '../../molecules';
+import { Countdown } from '../../molecules';
 import './styles/index.scss';
 
 export interface IPromptOrganismProps {
@@ -20,13 +20,15 @@ export default function PromptOrganism({
   openUploadModalOrSubmission,
   userHasSubmitted,
 }: IPromptOrganismProps): React.ReactElement {
-  const currentMessage = useRecoilValue(app.tutorial.currentMessageIndex);
+  const message = useRecoilValue(tutorial.currentMessage);
 
   return (
     <section id={PROMPT_BOX_ID} className="prompt">
       <div
         // Add these styles when its active during tutorial
-        className={`${currentMessage === 0 && 'active-tutorial'}`}
+        className={`${
+          message.id === TUTORIAL_IDS.ID_PROMPT && 'active-tutorial'
+        }`}
         id={TUTORIAL_IDS.ID_PROMPT}
       >
         <h1>Today&apos;s Writing Prompt</h1>
@@ -39,23 +41,23 @@ export default function PromptOrganism({
           {prompt.prompt}
         </p>
       </div>
-      <div
+      {/* <div
         className={`${
-          currentMessage === 1 && 'active-tutorial'
+          message.id === TUTORIAL_IDS.ID_ENCOURAGEMENT && 'active-tutorial'
         } button-wrapper`}
       >
         <EncouragementButton />
-      </div>
+      </div> */}
       <div
         className={`${
-          currentMessage === 3 && 'active-tutorial'
+          message.id === TUTORIAL_IDS.ID_TIMER && 'active-tutorial'
         } countdown-wrapper`}
       >
         <Countdown />
       </div>
       <div
         className={`${
-          currentMessage === 2 && 'active-tutorial'
+          message.id === TUTORIAL_IDS.ID_UPLOAD && 'active-tutorial'
         } button-wrapper`}
       >
         <PromptActionButton
