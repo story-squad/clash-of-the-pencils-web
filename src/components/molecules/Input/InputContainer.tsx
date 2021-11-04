@@ -12,6 +12,7 @@ export interface InputContainerProps
     | 'labelType'
     | 'placeholder'
     | 'tooltip'
+    | 'toolTipMessage'
   > {
   name: string;
   rules?: RegisterOptions;

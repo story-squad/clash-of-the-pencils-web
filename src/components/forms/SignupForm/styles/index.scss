@@ -3,6 +3,8 @@
 .signup-form {
   @include safe-zone(420px);
   display: flex;
+  position: relative;
+
   flex-flow: column nowrap;
   align-items: stretch;
 
