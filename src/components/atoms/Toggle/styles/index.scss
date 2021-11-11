@@ -77,6 +77,7 @@ $toggle-block-bg: $toggle-color;
       // Color transition for selection
       color: $toggle-color-dark;
       transition: color 0.15s ease-in-out;
+      color: $brand-orange;
       &.selected {
         color: $white;
         transition: color 0.15s ease-in-out;

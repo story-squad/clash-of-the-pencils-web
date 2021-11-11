@@ -16,6 +16,7 @@ function HeaderContainer(): React.ReactElement {
   const [menuIsOpen, setMenuIsOpen] = useRecoilState(app.header.menuIsOpen);
   const user = useRecoilValue(auth.user);
 
+  console.log(menuIsOpen);
   // Navigation
   const openDashboard = useOpenDashboard();
 
@@ -27,10 +28,7 @@ function HeaderContainer(): React.ReactElement {
   };
 
   // Setters
-  const toggleMenu = useCallback(
-    () => setMenuIsOpen((prev) => !prev),
-    [setMenuIsOpen],
-  );
+  const toggleMenu = () => setMenuIsOpen((prev) => !prev);
   const closeMenu = useCallback(() => setMenuIsOpen(false), [setMenuIsOpen]);
 
   // Logout
