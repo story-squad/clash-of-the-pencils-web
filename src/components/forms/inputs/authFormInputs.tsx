@@ -12,6 +12,10 @@ export default {
     return (
       <Input
         {...props}
+        tooltip
+        toolTipMessage={
+          'What is a codename? It’s a name used for someone to keep their identity secret. No names or other identifying indicators, please.Think of a codename as your story-writing alter-ego that uniquely identifies you to other players. Choose wisely! The codename will be case sensitive so please enter it exactly how you would for logging in.'
+        }
         name="codename"
         label={`Codename${orEmail ? ' or Email' : ''}`}
         rules={{ required: 'Please enter your codename or email!', ...rules }}

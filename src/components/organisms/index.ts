@@ -9,4 +9,3 @@ export * from './Schedule';
 export * from './Stream';
 export * from './TwoColumn';
 export * from './Voting';
-export * from './Winner';

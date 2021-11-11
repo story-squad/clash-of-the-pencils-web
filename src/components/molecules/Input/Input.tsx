@@ -7,6 +7,7 @@ import './input.scss';
 export interface InputProps extends IInputFieldProps, ILabelProps {}
 
 const Input = ({
+  toolTipMessage,
   label,
   labelType,
   tooltip,
@@ -14,7 +15,12 @@ const Input = ({
 }: InputProps): React.ReactElement => {
   return (
     <div className="form-input">
-      <InputLabel label={label} labelType={labelType} tooltip={tooltip} />
+      <InputLabel
+        label={label}
+        labelType={labelType}
+        tooltip={tooltip}
+        toolTipMessage={toolTipMessage}
+      />
       <InputField {...props} />
       <ErrorMessage
         name={props.name}

@@ -4,4 +4,5 @@ export interface ILabelProps {
   label?: string;
   labelType?: LabelTypes;
   tooltip?: boolean;
+  toolTipMessage?: string;
 }

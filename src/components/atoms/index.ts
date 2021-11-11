@@ -1,3 +1,4 @@
+export * from '../modals/Tutorial';
 export * from './Button';
 export * from './Card';
 export * from './CleverButton';
@@ -11,5 +12,3 @@ export * from './Picture';
 export * from './Sticker';
 export * from './Timer';
 export * from './Toggle';
-export * from '../modals/Tutorial';
-export * from './YoutubeEmbed';
