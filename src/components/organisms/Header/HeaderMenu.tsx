@@ -1,4 +1,4 @@
-import { classnames } from '@story-squad/react-utils';
+import { classnames, useClickOutside } from '@story-squad/react-utils';
 import React from 'react';
 import AppNavItems from './AppNavItems';
 import AuthNavItems from './AuthNavItems';
@@ -8,11 +8,16 @@ import './styles/headerMenu.scss';
 import useHeaderContext from './useHeaderContext';
 
 export default function HeaderMenu(): React.ReactElement {
-  const { menuIsOpen } = useHeaderContext();
+  const { menuIsOpen, closeMenu } = useHeaderContext();
+
+  const [ref] = useClickOutside({
+    onClick: closeMenu,
+    isActive: menuIsOpen,
+  });
 
   return (
     <div className={classnames('header-menu', !menuIsOpen && 'collapsed')}>
-      <nav>
+      <nav ref={ref}>
         <ul>
           <AuthNavItems />
           <NavTutorial />
