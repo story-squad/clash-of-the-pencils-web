@@ -1,0 +1,80 @@
+@import '../../../../styles/newIndex.scss';
+
+.account-card-wrapper {
+  background-color: $gray-1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  .title-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    .card-title {
+      font-family: Mulish;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 12px;
+      line-height: 20px;
+      /* identical to box height, or 167% */
+
+      display: flex;
+      align-items: center;
+      text-align: center;
+      text-transform: uppercase;
+
+      color: $gray-9;
+    }
+    .button {
+      padding: 0.8rem 2.5rem;
+    }
+  }
+  .card-items {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    .code-name-description {
+      font-family: Lato;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 1.2rem;
+      line-height: 2rem;
+      .description {
+        padding-top: 1rem;
+      }
+    }
+    .title-wrapper {
+      min-width: 150px;
+      .item-title {
+        font-family: $lato;
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+
+        display: flex;
+        align-items: center;
+        padding-top: 1rem;
+
+        color: $gray-9;
+      }
+    }
+    .item-wrapper {
+      justify-content: center;
+      width: 100%;
+      .item {
+        font-family: $lato;
+        font-size: 1.6rem;
+        font-weight: normal;
+        line-height: 2.4rem;
+
+        display: flex;
+        align-items: center;
+        padding-top: 1rem;
+
+        color: $gray-9;
+      }
+    }
+  }
+}

@@ -38,7 +38,6 @@ export default function AccountActivationContainer(): React.ReactElement {
         onSuccess={openSuccessModal}
         sendToParent={userIsUnderage}
       />
-      ;
     </>
   );
 }

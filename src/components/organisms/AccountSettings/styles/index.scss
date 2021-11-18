@@ -1,0 +1,13 @@
+@import '../../../../styles/newIndex.scss';
+
+.account-wrapper {
+  @include safe-zone;
+  h2 {
+    font-family: $lato;
+    font-size: 2rem;
+    line-height: 2.8rem;
+    font-weight: bold;
+    padding: 2rem 0;
+    color: $brand-blue-9;
+  }
+}

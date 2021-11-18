@@ -1,4 +1,5 @@
 export * from '../modals/Tutorial';
+export * from './AccountCard';
 export * from './Button';
 export * from './Card';
 export * from './CleverButton';

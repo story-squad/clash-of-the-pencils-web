@@ -16,7 +16,6 @@ function HeaderContainer(): React.ReactElement {
   const [menuIsOpen, setMenuIsOpen] = useRecoilState(app.header.menuIsOpen);
   const user = useRecoilValue(auth.user);
 
-  console.log(menuIsOpen);
   // Navigation
   const openDashboard = useOpenDashboard();
 
