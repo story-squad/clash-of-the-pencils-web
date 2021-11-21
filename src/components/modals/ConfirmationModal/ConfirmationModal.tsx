@@ -4,6 +4,7 @@ import { Modal, ModalComponentProps, ModalProps } from '../../organisms';
 import './styles/index.scss';
 
 export interface ConfirmationModalProps {
+  key?: number;
   onConfirm?: () => void | Promise<void>;
   onCancel?: () => void | Promise<void>;
   onError?: (err: unknown) => void;

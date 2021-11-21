@@ -2,7 +2,7 @@ import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
 import { useConfirmationModal } from '../../../hooks';
-import { auth } from '../../../state';
+import { account, auth } from '../../../state';
 import { EditPassword, PasswordFormProps } from '../../forms';
 import { AccountCards } from '../../molecules';
 import reformatDate from './reformatDate';
@@ -27,6 +27,7 @@ export function EditAccountTest({
 export default function AccountContainer({
   submitHandler,
 }: PasswordUpdateProps): React.ReactElement {
+  const submited = useRecoilValue(account.isSubmitted);
   const user = useRecoilValue(auth.user);
 
   const newDate = reformatDate(user?.dob);
@@ -41,11 +42,13 @@ export default function AccountContainer({
     onConfirm: () => {
       runSubmit();
     },
+
     hideConfirmButton: true,
     hideCancelButton: true,
   });
 
   const [personalModal, editPersonal] = useConfirmationModal({
+    key: 1,
     title: 'Edit Profile Info',
     message: 'Let’s get you started.',
     onConfirm: () => {
