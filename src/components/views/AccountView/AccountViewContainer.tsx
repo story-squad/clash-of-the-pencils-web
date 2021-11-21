@@ -10,9 +10,9 @@ export default function AccountViewContainer(): React.ReactElement {
   const user = useRecoilValue(auth.user);
 
   const submitHandler: EditProps['onSubmit'] = useCallback(
-    async ({ password, firstname, lastname, dob }) => {
+    async ({ password, firstname, lastname, dob, id }) => {
       console.log('run');
-      await Users.update({ password, firstname, lastname, dob });
+      await Users.update({ id, password, firstname, lastname, dob });
     },
     [],
   );

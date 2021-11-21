@@ -2,7 +2,7 @@ import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
 import { useConfirmationModal } from '../../../hooks';
-import { account, auth } from '../../../state';
+import { auth } from '../../../state';
 import { EditPassword, PasswordFormProps } from '../../forms';
 import { AccountCards } from '../../molecules';
 import reformatDate from './reformatDate';
@@ -10,38 +10,33 @@ import './styles/index.scss';
 
 interface PasswordUpdateProps {
   submitHandler: PasswordFormProps['onSubmit'];
+  id: number;
 }
 
 export function EditAccountTest({
+  id,
   submitHandler,
 }: PasswordUpdateProps): React.ReactElement {
   const methods = useForm();
 
   return (
     <FormProvider {...methods}>
-      <EditPassword onSubmit={submitHandler} />
+      <EditPassword onSubmit={submitHandler} id={id} />
     </FormProvider>
   );
 }
 
 export default function AccountContainer({
+  id,
   submitHandler,
 }: PasswordUpdateProps): React.ReactElement {
-  const submited = useRecoilValue(account.isSubmitted);
   const user = useRecoilValue(auth.user);
 
   const newDate = reformatDate(user?.dob);
 
-  const runSubmit = () => {
-    console.log('submit edit');
-  };
-
   const [accountModal, editInfo] = useConfirmationModal({
     title: 'Edit Account Info',
-    message: <EditAccountTest submitHandler={submitHandler} />,
-    onConfirm: () => {
-      runSubmit();
-    },
+    message: <EditAccountTest id={id} submitHandler={submitHandler} />,
 
     hideConfirmButton: true,
     hideCancelButton: true,
@@ -51,9 +46,7 @@ export default function AccountContainer({
     key: 1,
     title: 'Edit Profile Info',
     message: 'Let’s get you started.',
-    onConfirm: () => {
-      console.log('edit');
-    },
+
     confirmText: 'Confirm Changes',
     cancelText: 'Cancel',
   });

@@ -1,7 +1,7 @@
 import { useAsync } from '@story-squad/react-utils';
 import React, { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { account } from '../../../state';
 import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
@@ -11,6 +11,7 @@ import './styles/index.scss';
 export type EditProps = FormProps<AccountEditFields>;
 
 interface AccountEditFields {
+  id?: number;
   email?: string;
   password?: string;
   confirmPassword?: string;
@@ -19,23 +20,26 @@ interface AccountEditFields {
   dob?: string;
 }
 
-export type NewPasswordProps = FormProps<{ password: string }>;
+export type NewPasswordProps = FormProps<{ id: number; password: string }> &
+  AccountUpdateFormProps;
 
-export default function EmailForm({
+interface AccountUpdateFormProps {
+  id: number;
+}
+
+export default function AccountUpdateForm({
+  id,
   onSubmit,
-  onError,
-  onSuccess,
 }: NewPasswordProps): React.ReactElement {
   const { handleSubmit, watch, clearErrors } = useFormContext();
-  const [submited, setSubmited] = useRecoilState(account.isSubmitted);
+  const setSubmited = useSetRecoilState(account.isSubmitted);
 
   const clearFormError = useCallback(() => clearErrors('form'), [clearErrors]);
 
   const [submitForm, isSubmitting] = useAsync({
     run: async (data: AccountEditFields) => {
-      if (data.password && data.confirmPassword) {
-        console.log('Submit');
-        // await onSubmit({ password: data.password });
+      if (id && data.password && data.confirmPassword) {
+        await onSubmit({ id: id, password: data.password });
       }
     },
     onError: () => console.log('broke'),
