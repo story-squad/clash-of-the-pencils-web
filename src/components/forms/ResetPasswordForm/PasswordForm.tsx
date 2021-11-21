@@ -26,7 +26,7 @@ export default function PasswordForm({
   // Success Handling
   const [successModal, openSuccessModal] = useConfirmationModal({
     title: 'Success!',
-    message: 'Your password has been reset.',
+    message: <p>Your password has been reset.</p>,
     hideCancelButton: true,
     confirmText: 'Back to Login',
     onConfirm: onSuccess,

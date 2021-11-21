@@ -12,6 +12,7 @@ export interface ConfirmationModalProps {
   message?: React.ReactNode;
   title?: React.ReactNode;
   hideCancelButton?: boolean;
+  hideConfirmButton?: boolean;
 }
 
 export default function ConfirmationModal({
@@ -42,6 +43,7 @@ function ConfirmationModalComponent({
   onCancel,
   onError,
   hideCancelButton = false,
+  hideConfirmButton = false,
 }: ConfirmationModalProps & ModalComponentProps): React.ReactElement {
   const confirmHandler = async () => {
     try {
@@ -62,9 +64,11 @@ function ConfirmationModalComponent({
   return (
     <div className="confirmation-modal">
       {title && <h2>{title}</h2>}
-      {message && <p>{message}</p>}
+      {message && <div>{message}</div>}
       <div className="button-wrapper">
-        <Button onClick={confirmHandler}>{confirmText}</Button>
+        {!hideConfirmButton && (
+          <Button onClick={confirmHandler}>{confirmText}</Button>
+        )}
         {!hideCancelButton && (
           <Button onClick={cancelHandler} type="secondary">
             {cancelText}

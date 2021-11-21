@@ -4,6 +4,7 @@ import { editPencil } from '../../../assets';
 import './styles/index.scss';
 
 export default function AccountCard({
+  openEdit,
   codeNameDescription = false,
   edit = false,
   cardTitle,
@@ -18,6 +19,7 @@ export default function AccountCard({
           <Button
             type="secondary"
             iconLeft={<img style={{ paddingRight: 2 }} src={editPencil} />}
+            onClick={openEdit}
           >
             Edit
           </Button>
@@ -26,7 +28,7 @@ export default function AccountCard({
       <div className="card-items">
         <div className="title-wrapper">
           {itemTitle.map((item) => (
-            <p className="item-title" key={Math.random()}>
+            <p className="item-title" key={item}>
               {item}
             </p>
           ))}
@@ -43,7 +45,7 @@ export default function AccountCard({
         ) : (
           <div className="item-wrapper">
             {itemContent?.map((item) => (
-              <p className="item" key={Math.random()}>
+              <p className="item" key={item}>
                 {item}
               </p>
             ))}
@@ -60,4 +62,5 @@ interface AccountCardProps {
   edit?: boolean;
   itemTitle: string[];
   itemContent?: string[];
+  openEdit?: () => void;
 }

@@ -24,8 +24,13 @@ export default function ForgotPasswordView({
   // Success Handling
   const [successModal, openSuccessModal] = useConfirmationModal({
     title: 'Request Submitted!',
-    message:
-      'If you  provided a valid email address, you should receive an email with a reset link shortly.',
+    message: (
+      <p>
+        If you provided a valid email address, you should receive an email with
+        a reset link shortly.
+      </p>
+    ),
+
     hideCancelButton: true,
     confirmText: 'Okay',
     onConfirm: openLogin,
@@ -35,7 +40,9 @@ export default function ForgotPasswordView({
   const [errMessage, setErrMessage] = useState<string>();
   const [failureModal, openFailureModal] = useConfirmationModal({
     title: 'Uh oh!',
-    message: errMessage || 'The email could not be sent to the given address.',
+    message: errMessage || (
+      <p>The email could not be sent to the given address.</p>
+    ),
     confirmText: 'Okay',
     hideCancelButton: true,
   });
