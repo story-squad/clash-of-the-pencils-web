@@ -42,12 +42,7 @@ export default function Voting({
     title: 'Your votes have been received!',
     confirmText: 'Awesome!',
     hideCancelButton: true,
-    message: (
-      <p>
-        Tune into the Story Squad livestream at ${streamTime} to find out
-        today’s champion!
-      </p>
-    ),
+    message: `Tune into the Story Squad livestream at ${streamTime} to find out today’s champion!`,
   });
 
   const [errOverride, setError] = useState<string>();

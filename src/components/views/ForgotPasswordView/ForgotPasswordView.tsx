@@ -24,12 +24,8 @@ export default function ForgotPasswordView({
   // Success Handling
   const [successModal, openSuccessModal] = useConfirmationModal({
     title: 'Request Submitted!',
-    message: (
-      <p>
-        If you provided a valid email address, you should receive an email with
-        a reset link shortly.
-      </p>
-    ),
+    message:
+      'If you provided a valid email address, you should receive an email with a reset link shortly.',
 
     hideCancelButton: true,
     confirmText: 'Okay',

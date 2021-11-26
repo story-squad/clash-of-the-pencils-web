@@ -1,6 +1,7 @@
 @import '../../../../styles/newIndex.scss';
 
-.account-form {
+.account-form,
+.personal-form {
   @include safe-zone(420px);
   display: flex;
   flex-flow: column nowrap;

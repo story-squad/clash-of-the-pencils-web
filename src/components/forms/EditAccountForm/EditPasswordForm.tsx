@@ -1,5 +1,5 @@
 import { useAsync } from '@story-squad/react-utils';
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { account, auth } from '../../../state';
@@ -23,28 +23,32 @@ export interface AccountEditFields {
 export type NewPasswordProps = FormProps<{ id: number; password: string }> &
   AccountUpdateFormProps;
 
-interface AccountUpdateFormProps {
+export interface AccountUpdateFormProps {
   id: number;
-  closeModal: () => void;
+  onCancel: () => void;
 }
 
 export default function AccountUpdateForm({
-  closeModal,
+  onCancel,
   id,
   onSubmit,
 }: NewPasswordProps): React.ReactElement {
-  const { watch, clearErrors, handleSubmit, reset } = useFormContext();
+  const { watch, handleSubmit, reset } = useFormContext();
   const user = useRecoilValue(auth.user);
   const setSubmited = useSetRecoilState(account.isSubmitted);
 
-  const clearFormError = useCallback(() => clearErrors('form'), [clearErrors]);
+  // const clearFormError = () => clearErrors('form');
+
+  const cancel = () => {
+    onCancel();
+    reset();
+  };
 
   const [submitForm, isSubmitting] = useAsync({
     run: async (data: AccountEditFields) => {
       if (id && data.password && data.confirmPassword) {
         await onSubmit({ id: id, password: data.password });
-        reset();
-        closeModal();
+        cancel();
       }
     },
     onError: () => console.log('broke'),
@@ -55,6 +59,7 @@ export default function AccountUpdateForm({
     <>
       <form className="account-form" onSubmit={handleSubmit(submitForm)}>
         {authFormInputs.email({
+          defaultValue: user?.email,
           rules: {
             validate: {
               matches: () =>
@@ -73,11 +78,10 @@ export default function AccountUpdateForm({
           },
         })}
         <div className="button-row">
-          <Button type="secondary" onClick={closeModal}>
+          <Button type="secondary" onClick={cancel}>
             Cancel
           </Button>
           <Button
-            onClick={clearFormError}
             disabled={isSubmitting}
             iconRight={isSubmitting && <LoadIcon />}
           >

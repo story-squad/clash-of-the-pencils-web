@@ -1,11 +1,8 @@
-import { useClickOutside, useKey } from '@story-squad/react-utils';
 import React, { useCallback, useState } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
-import { orangeCloseButton } from '../../../assets';
 import { auth } from '../../../state';
-import { EditPassword } from '../../forms';
 import { AccountEditProps } from '../../forms/EditAccountForm/EditPasswordForm';
+import { EditAccountModal, EditPersonalModal } from '../../modals';
 import { AccountCards } from '../../molecules';
 import reformatDate from './reformatDate';
 import './styles/index.scss';
@@ -23,24 +20,15 @@ export default function AccountContainer({
   // reformats date for display
   const newDate = reformatDate(user?.dob);
   const [edit, setEdit] = useState<boolean>(false);
+  const [personal, setEditPersonal] = useState<boolean>(false);
 
-  const closeModal = useCallback(() => {
-    setEdit(false);
-  }, [setEdit]);
+  const accountInfo = useCallback(() => {
+    if (edit === false) setEdit(true);
+  }, [setEdit, edit]);
 
-  // const [errors, setErrors] = useRecoilState(account.errors);
-  const methods = useForm();
-
-  const [ref] = useClickOutside({
-    onClick: closeModal,
-    isActive: edit,
-  });
-
-  useKey({ action: closeModal, key: 'Escape' });
-
-  const editInfo = () => {
-    setEdit(true);
-  };
+  const personalInfo = useCallback(() => {
+    if (personal === false) setEditPersonal(true);
+  }, [setEdit, personal]);
 
   return (
     <div className="account-wrapper">
@@ -52,28 +40,22 @@ export default function AccountContainer({
           email={user.email}
           firstname={user.firstname}
           lastname={user.lastname}
-          // editPersonal={editPersonal}
-          editInfo={editInfo}
+          editPersonal={personalInfo}
+          editInfo={accountInfo}
         />
       )}
-      {edit && (
-        <div className="edit-info-container">
-          <div className="edit-info-modal" ref={ref}>
-            <FormProvider {...methods}>
-              <EditPassword
-                onSubmit={submitHandler}
-                id={id}
-                closeModal={closeModal}
-              />
-            </FormProvider>
-            <img
-              src={orangeCloseButton}
-              className="modal-close-button"
-              onClick={closeModal}
-            />
-          </div>
-        </div>
-      )}
+      <EditAccountModal
+        id={id}
+        submithandler={submitHandler}
+        isOpen={edit}
+        setIsOpen={setEdit}
+      />
+      <EditPersonalModal
+        id={id}
+        submithandler={submitHandler}
+        isOpen={personal}
+        setIsOpen={setEditPersonal}
+      />
     </div>
   );
 }

@@ -18,7 +18,7 @@ export default function AccountActivationContainer(): React.ReactElement {
   const [error, setError] = useState<string>();
   const [failureModal, openFailureModal] = useConfirmationModal({
     title: 'Uh oh!',
-    message: error || <p>Failed to send activation email.</p>,
+    message: error || 'Failed to send activation email.',
     confirmText: 'Okay',
     hideCancelButton: true,
   });
