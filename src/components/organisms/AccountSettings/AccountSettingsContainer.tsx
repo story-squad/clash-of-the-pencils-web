@@ -1,29 +1,18 @@
-import React from 'react';
+import { useClickOutside, useKey } from '@story-squad/react-utils';
+import React, { useCallback, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
-import { useConfirmationModal } from '../../../hooks';
+import { orangeCloseButton } from '../../../assets';
 import { auth } from '../../../state';
-import { EditPassword, PasswordFormProps } from '../../forms';
+import { EditPassword } from '../../forms';
+import { AccountEditProps } from '../../forms/EditAccountForm/EditPasswordForm';
 import { AccountCards } from '../../molecules';
 import reformatDate from './reformatDate';
 import './styles/index.scss';
 
 interface PasswordUpdateProps {
-  submitHandler: PasswordFormProps['onSubmit'];
+  submitHandler: AccountEditProps['onSubmit'];
   id: number;
-}
-
-export function EditAccountTest({
-  id,
-  submitHandler,
-}: PasswordUpdateProps): React.ReactElement {
-  const methods = useForm();
-
-  return (
-    <FormProvider {...methods}>
-      <EditPassword onSubmit={submitHandler} id={id} />
-    </FormProvider>
-  );
 }
 
 export default function AccountContainer({
@@ -31,25 +20,27 @@ export default function AccountContainer({
   submitHandler,
 }: PasswordUpdateProps): React.ReactElement {
   const user = useRecoilValue(auth.user);
-
+  // reformats date for display
   const newDate = reformatDate(user?.dob);
+  const [edit, setEdit] = useState<boolean>(false);
 
-  const [accountModal, editInfo] = useConfirmationModal({
-    title: 'Edit Account Info',
-    message: <EditAccountTest id={id} submitHandler={submitHandler} />,
+  const closeModal = useCallback(() => {
+    setEdit(false);
+  }, [setEdit]);
 
-    hideConfirmButton: true,
-    hideCancelButton: true,
+  // const [errors, setErrors] = useRecoilState(account.errors);
+  const methods = useForm();
+
+  const [ref] = useClickOutside({
+    onClick: closeModal,
+    isActive: edit,
   });
 
-  const [personalModal, editPersonal] = useConfirmationModal({
-    key: 1,
-    title: 'Edit Profile Info',
-    message: 'Let’s get you started.',
+  useKey({ action: closeModal, key: 'Escape' });
 
-    confirmText: 'Confirm Changes',
-    cancelText: 'Cancel',
-  });
+  const editInfo = () => {
+    setEdit(true);
+  };
 
   return (
     <div className="account-wrapper">
@@ -61,12 +52,28 @@ export default function AccountContainer({
           email={user.email}
           firstname={user.firstname}
           lastname={user.lastname}
-          editPersonal={editPersonal}
+          // editPersonal={editPersonal}
           editInfo={editInfo}
         />
       )}
-      {accountModal}
-      {personalModal}
+      {edit && (
+        <div className="edit-info-container">
+          <div className="edit-info-modal" ref={ref}>
+            <FormProvider {...methods}>
+              <EditPassword
+                onSubmit={submitHandler}
+                id={id}
+                closeModal={closeModal}
+              />
+            </FormProvider>
+            <img
+              src={orangeCloseButton}
+              className="modal-close-button"
+              onClick={closeModal}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

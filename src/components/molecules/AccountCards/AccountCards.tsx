@@ -42,6 +42,6 @@ interface AccountUserProps {
   firstname: string;
   lastname: string | undefined;
   dob: string | undefined;
-  editInfo: () => void;
-  editPersonal: () => void;
+  editInfo?: () => void;
+  editPersonal?: () => void;
 }

@@ -3,13 +3,13 @@ import { Redirect } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { Users } from '../../../api';
 import { auth } from '../../../state';
-import { EditProps } from '../../forms/EditAccountForm/EditPasswordForm';
+import { AccountEditProps } from '../../forms/EditAccountForm/EditPasswordForm';
 import AccountView from './AccountView';
 
 export default function AccountViewContainer(): React.ReactElement {
   const user = useRecoilValue(auth.user);
 
-  const submitHandler: EditProps['onSubmit'] = useCallback(
+  const submitHandler: AccountEditProps['onSubmit'] = useCallback(
     async ({ password, firstname, lastname, dob, id }) => {
       console.log('run');
       await Users.update({ id, password, firstname, lastname, dob });
