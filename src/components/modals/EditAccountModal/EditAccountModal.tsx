@@ -13,7 +13,11 @@ export default function EditAccountModal({
   id: number;
   onSuccess?: () => void;
 }): React.ReactElement {
-  const methods = useForm();
+  const methods = useForm({
+    mode: 'onBlur',
+    reValidateMode: 'onSubmit',
+    shouldFocusError: true,
+  });
 
   return (
     <Modal

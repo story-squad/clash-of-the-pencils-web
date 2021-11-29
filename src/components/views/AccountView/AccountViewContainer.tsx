@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { Users } from '../../../api';
 import { account, auth } from '../../../state';
 import { AccountEditProps } from '../../forms/EditAccountForm/EditPasswordForm';
 import AccountView from './AccountView';
 
 export default function AccountViewContainer(): React.ReactElement {
-  const user = useRecoilValue(auth.user);
+  const [user, setUser] = useRecoilState(auth.user);
   const [submitted, setSubmited] = useRecoilState(account.isSubmitted);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function AccountViewContainer(): React.ReactElement {
     async ({ password, firstname, lastname, dob, id }) => {
       await Users.update({ id, password, firstname, lastname, dob })
         .then((res) => {
-          if (res) setSubmited(true);
+          if (res) setSubmited(true), setUser(res);
         })
         .catch((err) => console.log(err));
     },

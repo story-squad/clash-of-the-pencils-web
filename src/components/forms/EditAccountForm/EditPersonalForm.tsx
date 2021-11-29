@@ -3,6 +3,7 @@ import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
 import { auth } from '../../../state';
+import { getAge } from '../../../utils';
 import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import { authFormInputs } from '../inputs';
@@ -23,6 +24,7 @@ export default function EditPersonalForm({
   onSubmit,
 }: UpdatePersonalProps): React.ReactElement {
   const user = useRecoilValue(auth.user);
+
   const { handleSubmit, reset } = useFormContext();
 
   const cancel = () => {
@@ -39,7 +41,7 @@ export default function EditPersonalForm({
           lastname: data.lastname,
           dob: data.dob,
         });
-        await cancel();
+        cancel();
       }
     },
   });
@@ -54,6 +56,14 @@ export default function EditPersonalForm({
       })}
       {authFormInputs.birthday({
         defaultValue: user?.dob,
+        rules: {
+          validate: {
+            younger: (value) =>
+              getAge(value) > 13 ||
+              'If you are under 13 you need parent permission.',
+            older: (value) => getAge(value) < 130 || 'Age is not valid.',
+          },
+        },
       })}
       <div className="button-row">
         <Button type="secondary">Cancel</Button>
