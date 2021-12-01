@@ -58,6 +58,7 @@ export default function EditPersonalForm({
         defaultValue: user?.dob,
         rules: {
           validate: {
+            // TODO: ? ADD MORE LOGIC TO REQUIRED PARENT EMAIL IF THEY END UP YOUNGER THEN 13?
             younger: (value) =>
               getAge(value) > 13 ||
               'If you are under 13 you need parent permission.',

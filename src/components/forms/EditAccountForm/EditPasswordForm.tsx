@@ -56,39 +56,37 @@ export default function AccountUpdateForm({
   });
 
   return (
-    <>
-      <form className="account-form" onSubmit={handleSubmit(submitForm)}>
-        {authFormInputs.email({
-          defaultValue: user?.email,
-          rules: {
-            validate: {
-              matches: () =>
-                watch('email') === user?.email ||
-                'Email does not match email on file.',
-            },
+    <form className="account-form" onSubmit={handleSubmit(submitForm)}>
+      {authFormInputs.email({
+        defaultValue: user?.email,
+        rules: {
+          validate: {
+            matches: () =>
+              watch('email') === user?.email ||
+              'Email does not match email on file.',
           },
-        })}
-        {authFormInputs.password()}
-        {authFormInputs.confirmPassword({
-          rules: {
-            validate: {
-              matches: (confirmValue) =>
-                watch('password') === confirmValue || 'Passwords must match!',
-            },
+        },
+      })}
+      {authFormInputs.password()}
+      {authFormInputs.confirmPassword({
+        rules: {
+          validate: {
+            matches: (confirmValue) =>
+              watch('password') === confirmValue || 'Passwords must match!',
           },
-        })}
-        <div className="button-row">
-          <Button type="secondary" onClick={cancel}>
-            Cancel
-          </Button>
-          <Button
-            disabled={isSubmitting}
-            iconRight={isSubmitting && <LoadIcon />}
-          >
-            Confirm Changes
-          </Button>
-        </div>
-      </form>
-    </>
+        },
+      })}
+      <div className="button-row">
+        <Button type="secondary" onClick={cancel}>
+          Cancel
+        </Button>
+        <Button
+          disabled={isSubmitting}
+          iconRight={isSubmitting && <LoadIcon />}
+        >
+          Confirm Changes
+        </Button>
+      </div>
+    </form>
   );
 }
