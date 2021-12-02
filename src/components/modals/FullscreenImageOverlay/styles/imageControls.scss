@@ -20,6 +20,15 @@
       transition: opacity 0.15s ease-in;
     }
   }
+  .howto {
+    background-color: #000;
+    text-align: center;
+    font-size: 2rem;
+    color: $white;
+    padding: 15px 20px 10px;
+    font-weight: 800;
+    line-height: 1.3em;
+  }
   .bottom-controls {
     background-color: #000;
     flex-grow: 1;
