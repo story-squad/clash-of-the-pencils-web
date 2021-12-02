@@ -1,0 +1,15 @@
+@import '../../../../styles/newIndex.scss';
+
+.account-form,
+.personal-form {
+  @include safe-zone(420px);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  gap: 2rem;
+  .button-row {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 2rem;
+  }
+}

@@ -4,10 +4,10 @@ import { editPencil } from '../../../assets';
 import './styles/index.scss';
 
 export default function AccountCard({
-  codeNameDescription = false,
+  openEdit,
+  desc = false,
   edit = false,
   cardTitle,
-  itemTitle,
   itemContent,
 }: AccountCardProps): React.ReactElement {
   return (
@@ -18,37 +18,21 @@ export default function AccountCard({
           <Button
             type="secondary"
             iconLeft={<img style={{ paddingRight: 2 }} src={editPencil} />}
+            onClick={openEdit}
           >
             Edit
           </Button>
         )}
       </div>
       <div className="card-items">
-        <div className="title-wrapper">
-          {itemTitle.map((item) => (
-            <p className="item-title" key={Math.random()}>
-              {item}
-            </p>
+        <div className="item-wrapper">
+          {itemContent?.map((item) => (
+            <div className="item-container" key={item.title}>
+              <p className="item-title">{item.title}</p>
+              <p className={`item ${desc && 'description'}`}>{item.content}</p>
+            </div>
           ))}
         </div>
-        {codeNameDescription ? (
-          <div className="code-name-description">
-            <p className="description">
-              Your codename is a name used to keep your identity secret. Think
-              of it as your story-writing alter-ego that uniquely identifies you
-              to other players. Your codename is case sensitive and you can’t
-              change it once your account has been created.
-            </p>
-          </div>
-        ) : (
-          <div className="item-wrapper">
-            {itemContent?.map((item) => (
-              <p className="item" key={Math.random()}>
-                {item}
-              </p>
-            ))}
-          </div>
-        )}
       </div>
     </div>
   );
@@ -56,8 +40,8 @@ export default function AccountCard({
 
 interface AccountCardProps {
   cardTitle: string;
-  codeNameDescription?: boolean;
   edit?: boolean;
-  itemTitle: string[];
-  itemContent?: string[];
+  desc?: boolean;
+  itemContent?: { title: string; content?: string }[];
+  openEdit?: () => void;
 }

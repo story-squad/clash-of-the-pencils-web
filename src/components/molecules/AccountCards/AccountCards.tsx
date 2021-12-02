@@ -2,6 +2,8 @@ import React from 'react';
 import { AccountCard } from '../../atoms';
 
 export default function AccountCards({
+  editInfo,
+  editPersonal,
   //Items must be passed in same order as the are in the item title
   codename,
   firstname,
@@ -13,20 +15,33 @@ export default function AccountCards({
     <>
       <AccountCard
         cardTitle={'codename'}
-        itemTitle={[`${codename}`]}
-        codeNameDescription
+        itemContent={[
+          {
+            title: `${codename}`,
+            content:
+              ' Your codename is a name used to keep your identity secret. Think of it as your story-writing alter-ego that uniquely identifies you to other players. Your codename is case sensitive and you can’t change it once your account has been created.',
+          },
+        ]}
+        desc
       />
       <AccountCard
-        // edit
+        edit
         cardTitle={'account info'}
-        itemTitle={['Email Address', 'Password']}
-        itemContent={[`${email}`, `• • • • • • • •`]}
+        itemContent={[
+          { title: 'Email Address', content: `${email}` },
+          { title: 'Password', content: '• • • • • • •' },
+        ]}
+        openEdit={editInfo}
       />
       <AccountCard
-        // edit
+        edit
         cardTitle={'personal info'}
-        itemTitle={['First Name', 'Last Name', 'Birthday']}
-        itemContent={[`${firstname}`, `${lastname}`, `${dob}`]}
+        itemContent={[
+          { title: 'First Name', content: `${firstname}` },
+          { title: 'Last Name', content: `${lastname}` },
+          { title: 'Birthday', content: `${dob}` },
+        ]}
+        openEdit={editPersonal}
       />
     </>
   );
@@ -38,4 +53,6 @@ interface AccountUserProps {
   firstname: string;
   lastname: string | undefined;
   dob: string | undefined;
+  editInfo?: () => void;
+  editPersonal?: () => void;
 }

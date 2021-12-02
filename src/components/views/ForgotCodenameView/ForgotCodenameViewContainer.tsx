@@ -15,7 +15,7 @@ export default function ForgotCodenameViewContainer({
   const [successModal, openSuccessModal] = useConfirmationModal({
     title: 'Request Submitted!',
     message:
-      'If you  provided a valid email address, you should receive an email with your codename shortly.',
+      'If you provided a valid email address, you should receive an email with your codename shortly.',
     hideCancelButton: true,
     confirmText: 'Okay',
     onConfirm: openLogin,
@@ -25,7 +25,9 @@ export default function ForgotCodenameViewContainer({
   const [errMessage, setErrMessage] = useState<string>();
   const [failureModal, openFailureModal] = useConfirmationModal({
     title: 'Uh oh!',
-    message: errMessage || 'The email could not be sent to the given address.',
+    message: errMessage || (
+      <p>The email could not be sent to the given address.</p>
+    ),
     confirmText: 'Okay',
     hideCancelButton: true,
   });

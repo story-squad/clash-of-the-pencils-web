@@ -34,7 +34,7 @@ const Tutorial = (): React.ReactElement => {
   const [modal, openModal] = useConfirmationModal({
     title: 'Hi Scribble Agent, welcome to Clash of the Pencils!',
     message:
-      'Let’s get you started by going through your dashboard. Do you want to run the tutorial?',
+      ' Let’s get you started by going through your dashboard. Do you want to run the tutorial?',
     onConfirm: () => {
       openDashboard();
       setTutorialIsOpen(true);
