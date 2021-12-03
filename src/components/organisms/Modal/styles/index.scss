@@ -1,18 +1,20 @@
-@import '../../../../styles/newIndex.scss';
+@import '../../../../styles/index.scss';
 
 .modal-wrapper {
+  // Layout
   position: fixed;
   z-index: 10;
   top: 0;
   left: 0;
   height: 100vh;
   width: 100vw;
-  background-color: #0004;
   padding: 0 2rem;
+  // Design
+  background-color: #0004;
   @include bp(tablet) {
     padding: 0 4rem;
   }
-
+  // Layout
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,6 +27,7 @@
   }
 
   .modal {
+    // Layout
     display: flex;
     flex-flow: column nowrap;
     position: relative;
@@ -36,21 +39,22 @@
     @include bp(tablet) {
       padding: 4rem;
     }
+    // Design
     background-color: #fff;
-
     border: 2px solid $brand-orange;
     text-align: center;
 
     .modal-close-button {
+      // Layout
       $close-button-offset: -2rem;
       position: absolute;
       right: $close-button-offset;
       top: $close-button-offset;
-      cursor: pointer;
-      z-index: 20;
       height: 40px;
+      z-index: 20;
       width: 40px;
-
+      // Design
+      cursor: pointer;
       transition: filter 0.05s ease-in;
 
       &:hover {

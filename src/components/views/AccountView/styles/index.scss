@@ -1,19 +1,22 @@
-@import '../../../../styles/newIndex.scss';
+@import '../../../../styles/index.scss';
 
 .account-view .dashboard-content-container {
+  // Layout
   padding: 2rem;
   position: relative;
   .success {
+    // Design
     background-color: $success;
+    font-family: $lato;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    // Layout
     text-align: center;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    font-family: $lato;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
     line-height: 22px;
     padding: 0.7rem 0rem;
   }

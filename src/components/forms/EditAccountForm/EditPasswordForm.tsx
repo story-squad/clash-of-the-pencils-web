@@ -29,15 +29,14 @@ export interface AccountUpdateFormProps {
 }
 
 export default function AccountUpdateForm({
-  onCancel,
   id,
+  onCancel,
   onSubmit,
+  onError,
 }: NewPasswordProps): React.ReactElement {
   const { watch, handleSubmit, reset } = useFormContext();
   const user = useRecoilValue(auth.user);
   const setSubmited = useSetRecoilState(account.isSubmitted);
-
-  // const clearFormError = () => clearErrors('form');
 
   const cancel = () => {
     onCancel();
@@ -51,7 +50,7 @@ export default function AccountUpdateForm({
         cancel();
       }
     },
-    onError: () => console.log('broke'),
+    onError,
     onSuccess: () => setSubmited(true),
   });
 

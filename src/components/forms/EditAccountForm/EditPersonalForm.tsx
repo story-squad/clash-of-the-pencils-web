@@ -19,9 +19,10 @@ export type UpdatePersonalProps = FormProps<{
   AccountUpdateFormProps;
 
 export default function EditPersonalForm({
-  onCancel,
   id,
+  onCancel,
   onSubmit,
+  onError,
 }: UpdatePersonalProps): React.ReactElement {
   const user = useRecoilValue(auth.user);
 
@@ -44,6 +45,7 @@ export default function EditPersonalForm({
         cancel();
       }
     },
+    onError,
   });
 
   return (
