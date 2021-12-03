@@ -54,7 +54,7 @@ export default function FullscreenImageOverlay(
             </TransformComponent>
           </div>
           <div className="controls">
-            <div className="howto">
+            <div className="how-to">
               <p>
                 Use your mouse&apos;s scrollwheel to zoom in/out. To move the
                 image click and drag.

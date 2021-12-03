@@ -30,24 +30,6 @@
     }
   }
 
-  .img-wrapper {
-    .react-transform-component {
-      cursor: grab;
-
-      &:active {
-        cursor: grabbing;
-      }
-
-      .react-transform-element {
-        cursor: grab;
-
-        &:active {
-          cursor: grabbing;
-        }
-      }
-    }
-  }
-
   @import './imageWrapper.scss';
   @import './imageInfo.scss';
   @import './imageControls.scss';

@@ -32,4 +32,20 @@
       }
     }
   }
+
+  .react-transform-component {
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    .react-transform-element {
+      cursor: grab;
+
+      &:active {
+        cursor: grabbing;
+      }
+    }
+  }
 }
