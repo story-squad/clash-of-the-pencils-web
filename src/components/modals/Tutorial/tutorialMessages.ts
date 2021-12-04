@@ -59,7 +59,7 @@ export const tutorialMessages: {
   },
   {
     message:
-      'Check the leaderboard each day to see where you rank amoung other players!',
+      'Check the leaderboard each day to see where you rank among other players!',
     arrow: greenArrow,
     id: IDS.ID_LEADERBOARD,
     classname: 'tutorial-leaderboard',
