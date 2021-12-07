@@ -64,7 +64,7 @@ export default function Leaderboard({
     >
       <h1>Leaderboard</h1>
       <Toggle
-        leftIsSelected={dailyIsOpen}
+        leftIsSelected={!dailyIsOpen}
         options={TOGGLE_OPTS}
         toggle={toggleLeaderboard}
       />
