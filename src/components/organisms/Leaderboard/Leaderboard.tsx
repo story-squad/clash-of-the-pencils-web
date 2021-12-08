@@ -15,7 +15,7 @@ export interface ILeaderboardProps {
   toggleLeaderboard: () => void;
 }
 
-const TOGGLE_OPTS: ToggleOption[] = [{ text: 'Daily' }, { text: 'Weekly' }];
+const TOGGLE_OPTS: ToggleOption[] = [{ text: 'Weekly' }, { text: 'Daily' }];
 
 export default function Leaderboard({
   dailyIsOpen,
