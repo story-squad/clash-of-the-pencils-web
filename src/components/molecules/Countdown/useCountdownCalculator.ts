@@ -13,8 +13,9 @@ export default function useCountdownCalculator({
   now = DateTime.utc().plus(APP_TIME_OFFSET),
 }: ICountdownProps): UseCountdownCalculatorReturn {
   const diffTotalInMS = Math.abs(startTime.diff(endTime).milliseconds);
-  const diffNowFromStartInMS = Math.abs(startTime.diff(now).milliseconds);
+  // this was used in ration it is now not because it was demmed necessary to flip it
+  // const diffNowFromStartInMS = Math.abs(startTime.diff(now).milliseconds);
   const diffNowFromEndInMS = Math.abs(endTime.diff(now).milliseconds);
-  const ratio = diffNowFromStartInMS / diffTotalInMS;
+  const ratio = diffNowFromEndInMS / diffTotalInMS;
   return [ratio, diffNowFromEndInMS];
 }
