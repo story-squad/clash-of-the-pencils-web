@@ -14,7 +14,6 @@ export interface IPromptOrganismProps {
   openUploadModalOrSubmission: () => void;
   userHasSubmitted: boolean;
 }
-//ChickenNugget I am using this to find stuff
 
 export default function PromptOrganism({
   prompt,
@@ -26,7 +25,6 @@ export default function PromptOrganism({
   return (
     <section id={PROMPT_BOX_ID} className="prompt">
       <div
-        // Add these styles when its active during tutorial
         className={classnames(
           message.id === TUTORIAL_IDS.ID_PROMPT && 'active-tutorial',
         )}
