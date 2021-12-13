@@ -3,7 +3,7 @@ import { AtomEffect } from 'recoil';
 export const recalculate: <DataType>(
   getter: () => DataType,
   seconds?: number,
-) => AtomEffect<DataType> = (getter, secondsToCheck = 1) => {
+) => AtomEffect<DataType> = (getter, secondsToCheck = 60) => {
   return function recalculateAtomEffect({ setSelf }) {
     const interval = setInterval(
       () => setSelf(getter()),

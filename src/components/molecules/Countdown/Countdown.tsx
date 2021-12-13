@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon';
-import React, { useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { ClockFaceLines } from '../../../assets';
 import { time } from '../../../utils';
 import { Dial, Timer } from '../../atoms';
@@ -13,10 +13,8 @@ export interface ICountdownProps {
   phase?: time.eventType;
 }
 
-export default function Countdown({
-  phase = 'vote',
-  ...props
-}: ICountdownProps): React.ReactElement {
+export default function Countdown(props: ICountdownProps): React.ReactElement {
+  const { phase = 'vote' } = props;
   const [ratio, millisLeft] = useCountdownCalculator(props);
 
   // This code aims to force a page refresh when stream time starts
@@ -30,8 +28,8 @@ export default function Countdown({
     }
   }, [phase]);
 
-  const countdownText = useMemo(() => {
-    switch (phase) {
+  const getCountdownText = useCallback((appPhase: string) => {
+    switch (appPhase) {
       case 'admin':
         return 'Until Voting Starts';
       case 'stream':
@@ -40,14 +38,16 @@ export default function Countdown({
         return 'Left to Submit';
       case 'vote':
         return 'Left to Vote';
+      case 'off':
+        return 'Until Game Reopens!';
     }
-  }, [phase]);
+  }, []);
 
   return (
     <div className="countdown">
       <div className="clock-display">
         <Timer displayTime={millisLeft} />
-        <span className="clock-display-text">{countdownText}</span>
+        <span className="clock-display-text">{getCountdownText(phase)}</span>
       </div>
       <Dial angle={360 * ratio}>
         <div className="clock-face">
