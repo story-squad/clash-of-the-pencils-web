@@ -1,3 +1,4 @@
+import { classnames } from '@story-squad/react-utils';
 import React, { useCallback } from 'react';
 import { Button } from '../../atoms';
 import './styles/index.scss';
@@ -16,7 +17,7 @@ export default function StreamWrapper({
     window.location.assign('/winners');
   }, []);
   return (
-    <div className={`stream-wrapper ${className}`} id={id}>
+    <div className={classnames('stream-wrapper', className)} id={id}>
       <div className="stream">
         {children}
         <Button onClick={revealChampion}>Reveal Champion</Button>

@@ -1,4 +1,4 @@
-import { useKey } from '@story-squad/react-utils';
+import { classnames, useKey } from '@story-squad/react-utils';
 import React, { useEffect, useMemo, useRef } from 'react';
 import { useHistory } from 'react-router';
 import { useRecoilState } from 'recoil';
@@ -143,7 +143,7 @@ const Tutorial = (): React.ReactElement => {
                       top: position && position?.top - tutorialHeight - 100,
                     }
               }
-              className={`${classname}`}
+              className={classnames(classname)}
             >
               {arrow && (
                 <div className={`${styleclass}`}>
