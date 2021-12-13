@@ -1,3 +1,4 @@
+import { classnames } from '@story-squad/react-utils';
 import React, { useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { Submissions } from '../../../api';
@@ -58,9 +59,10 @@ export default function Leaderboard({
   return (
     <section
       id={TUTORIAL_IDS.ID_LEADERBOARD}
-      className={`${
-        message.id === TUTORIAL_IDS.ID_LEADERBOARD && 'active-tutorial'
-      } leaderboard`}
+      className={classnames(
+        'leaderboard',
+        message.id === TUTORIAL_IDS.ID_LEADERBOARD && 'active-tutorial',
+      )}
     >
       <h1>Leaderboard</h1>
       <Toggle

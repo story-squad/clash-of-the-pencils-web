@@ -1,4 +1,4 @@
-import { ErrorBoundary } from '@story-squad/react-utils';
+import { classnames, ErrorBoundary } from '@story-squad/react-utils';
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
 import { useRecoilValue } from 'recoil';
@@ -26,9 +26,9 @@ function Stream(): React.ReactElement {
   return (
     <StreamWrapper
       id={TUTORIAL_IDS.ID_STREAM}
-      className={`${
-        message.id === TUTORIAL_IDS.ID_STREAM && 'active-tutorial'
-      }`}
+      className={classnames(
+        message.id === TUTORIAL_IDS.ID_STREAM && 'active-tutorial',
+      )}
     >
       {playing && (
         <h2>{renderFallback ? 'Latest Stream' : 'Streaming Now!'}</h2>
