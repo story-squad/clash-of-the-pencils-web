@@ -1,34 +1,37 @@
 import { DateTime } from 'luxon';
 import { APP_TIME_OFFSET } from '../../config';
-import { printSchedule, schedule } from './schedule';
-import { ClashPhases, eventType, TimeUntilItem } from './timeTypes';
+import { printSchedule, schedule, ScheduleItem } from './schedule';
+import {
+  ClashPhases,
+  eventType,
+  LuxonWeekdays,
+  TimeUntilItem,
+} from './timeTypes';
 
-/* Helper Functions */
-export function getCurrent(params?: {
+interface GetCurrentPhaseParams {
   now?: DateTime;
   enableLogs?: boolean;
-}): Exclude<eventType, 'off'> {
-  const { enableLogs = false, now = DateTime.now().plus(APP_TIME_OFFSET) } =
-    params || {};
+}
 
-  function isNowBetween({
-    start,
-    end,
-  }: {
-    start: DateTime;
-    end: DateTime;
-  }): boolean {
-    return now >= start && now < end;
-  }
+/* Helper Functions */
+export function getCurrent({
+  enableLogs = false,
+  now = DateTime.utc().plus(APP_TIME_OFFSET),
+}: GetCurrentPhaseParams = {}): eventType {
+  // Check our weekend condition
+  if (isWeekend(now)) return ClashPhases.off;
+
+  // Create a scoped function to pass in schedule items to compare to `now`
+  const isDuring = isDuringGen(now);
 
   const phase = (() => {
-    if (isNowBetween(schedule.submit)) {
+    if (isDuring(schedule.submit)) {
       return ClashPhases.submit;
-    } else if (isNowBetween(schedule.admin)) {
+    } else if (isDuring(schedule.admin)) {
       return ClashPhases.admin;
-    } else if (isNowBetween(schedule.vote)) {
+    } else if (isDuring(schedule.vote)) {
       return ClashPhases.vote;
-    } else if (isNowBetween(schedule.stream)) {
+    } else if (isDuring(schedule.stream)) {
       return ClashPhases.stream;
     } else return ClashPhases.submit;
   })();
@@ -80,3 +83,25 @@ export const secondsElapsed = (start: DateTime, end: DateTime): number => {
 
   return seconds;
 };
+
+/**
+ * TODO: Make sure that this works the whole weekend!
+ */
+function isWeekend(time: DateTime): boolean {
+  const day = time.plus(0).weekday; // plus(0) is a hack to fix a bug I promise
+  const isDuring = isDuringGen(time);
+  return (
+    day === LuxonWeekdays.Sunday ||
+    (day === LuxonWeekdays.Saturday && !isDuring(schedule.stream))
+  );
+}
+
+/**
+ * Pass in a time and it returns a function that takes a schedule item and returns
+ * a boolean on whether the original time is during the passed-in event.
+ */
+function isDuringGen(now: DateTime) {
+  return function isDuring({ end, start }: ScheduleItem) {
+    return now >= start && now < end;
+  };
+}
