@@ -6,7 +6,7 @@ import { TUTORIAL_IDS } from '../../../config';
 import { PROMPT_BOX_ID } from '../../../config/tutorialSelectionIds';
 import { app, tutorial } from '../../../state';
 import { Button } from '../../atoms';
-import { Countdown, EncouragementButton } from '../../molecules';
+import { Countdown } from '../../molecules';
 import './styles/index.scss';
 
 export interface IPromptOrganismProps {
@@ -33,14 +33,14 @@ export default function PromptOrganism({
         <h1>Today&apos;s Writing Prompt</h1>
         <p>{prompt.prompt}</p>
       </div>
-      <div
+      {/* <div
         className={classnames(
           'button-wrapper',
           message.id === TUTORIAL_IDS.ID_ENCOURAGEMENT && 'active-tutorial',
         )}
       >
         <EncouragementButton />
-      </div>
+      </div> */}
       <div
         className={classnames(
           'countdown-wrapper',
