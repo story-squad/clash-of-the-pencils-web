@@ -18,7 +18,6 @@ const Template: Story<Props> = ({ iconLeft, iconRight, ...props }) => (
 
 export const Interactive = Template.bind({});
 Interactive.args = { type: 'primary', size: 'lg' };
-// Interactive.argTypes = hideControls('disabled');
 
 export default {
   title: 'Components/Atoms/Button',

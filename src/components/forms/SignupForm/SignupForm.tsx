@@ -122,7 +122,7 @@ export default function SignupForm({
                 },
                 checkLength: (value) => {
                   return (
-                    value.length < 15 || 'Cannot be more than 15 characters!'
+                    value.length <= 32 || 'Cannot be more than 32 characters!'
                   );
                 },
               },

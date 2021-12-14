@@ -14,10 +14,10 @@ export const now = atom<DateTime>({
     key: 'appNowDefaultSelector',
     get: getCurrentTimeWithOffset,
   }),
-  effects_UNSTABLE: [recalculate(getCurrentTimeWithOffset)],
+  effects_UNSTABLE: [recalculate(getCurrentTimeWithOffset, 1)],
 });
 
-export const phase = selector<Exclude<time.eventType, 'off'>>({
+export const phase = selector<time.eventType>({
   key: 'appPhaseSelector',
   get: ({ get }) => {
     const curTime = get(now);

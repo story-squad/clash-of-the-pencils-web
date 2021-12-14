@@ -1,4 +1,4 @@
-@import '../../../../styles/newIndex.scss';
+@import '../../../../styles/index.scss';
 
 $lb-bg: $brand-blue-9;
 $lb-header-bg: $brand-blue-8;
@@ -45,6 +45,10 @@ $lb-header-bg: $brand-blue-8;
       .table-body {
         border-radius: 0;
       }
+    }
+
+    .spacer {
+      background-color: $brand-blue-7;
     }
 
     .leaderboard-icon,

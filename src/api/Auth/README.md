@@ -10,10 +10,6 @@ This function logs the user in.
 
 This sends a signup request to the API.
 
-## `formatSignupBody`
-
-This is used to translate the contents of the signup form into the proper values that the API is expecting for the request.
-
 ## `getResetEmail`
 
 This function triggers the API to send a password reset email for the email address passed in as a parameter.

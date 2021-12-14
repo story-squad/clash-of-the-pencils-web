@@ -1,3 +1,4 @@
+import { classnames } from '@story-squad/react-utils';
 import React, { useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { Submissions } from '../../../api';
@@ -15,7 +16,7 @@ export interface ILeaderboardProps {
   toggleLeaderboard: () => void;
 }
 
-const TOGGLE_OPTS: ToggleOption[] = [{ text: 'Daily' }, { text: 'Weekly' }];
+const TOGGLE_OPTS: ToggleOption[] = [{ text: 'Weekly' }, { text: 'Daily' }];
 
 export default function Leaderboard({
   dailyIsOpen,
@@ -58,13 +59,14 @@ export default function Leaderboard({
   return (
     <section
       id={TUTORIAL_IDS.ID_LEADERBOARD}
-      className={`${
-        message.id === TUTORIAL_IDS.ID_LEADERBOARD && 'active-tutorial'
-      } leaderboard`}
+      className={classnames(
+        'leaderboard',
+        message.id === TUTORIAL_IDS.ID_LEADERBOARD && 'active-tutorial',
+      )}
     >
       <h1>Leaderboard</h1>
       <Toggle
-        leftIsSelected={dailyIsOpen}
+        leftIsSelected={!dailyIsOpen}
         options={TOGGLE_OPTS}
         toggle={toggleLeaderboard}
       />

@@ -1,25 +1,29 @@
 import React from 'react';
 import { Users } from '../../../api';
-import { AccountActivation } from '../../organisms';
+import { AccountEditProps } from '../../forms/EditAccountForm/EditPasswordForm';
+import { AccountActivation, AccountSettings } from '../../organisms';
 import { DashboardTemplate } from '../../templates';
 import './styles/index.scss';
 
 export interface AccountViewProps {
+  submitHandler: AccountEditProps['onSubmit'];
   user: Users.IUser;
+  submitted?: boolean;
 }
 
 export default function AccountView({
+  submitHandler,
   user,
+  submitted,
 }: AccountViewProps): React.ReactElement {
   return (
     <DashboardTemplate className="account-view">
+      {submitted && (
+        <div className="success"> Your Changes Have Been Saved</div>
+      )}
       {/* Only show this if the user is not already validated! */}
       {!user.isValidated && <AccountActivation />}
-
-      {/* <p>More account tasks...</p> */}
-      <div className="coming-soon">
-        <p>More features coming&nbsp;soon...</p>
-      </div>
+      <AccountSettings id={user.id} submitHandler={submitHandler} />
     </DashboardTemplate>
   );
 }

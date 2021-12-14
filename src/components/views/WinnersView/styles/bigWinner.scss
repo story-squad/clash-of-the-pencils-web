@@ -1,17 +1,19 @@
-@import '../../../../styles/newIndex.scss';
+@import '../../../../styles/index.scss';
 
 .big-winner {
+  // Layout
   padding: 2rem;
   display: flex;
   flex-flow: column nowrap;
   align-items: stretch;
   justify-content: space-around;
   gap: 2rem;
-
+  // Design
   flex-grow: 1;
   background-color: $brand-blue-6;
 
   .center-grow {
+    // Layout
     flex-grow: 1;
     display: flex;
     align-items: center;
@@ -23,6 +25,7 @@
   }
 
   .winner-content {
+    // Layout
     display: flex;
     flex-flow: column nowrap;
     gap: 1rem;
@@ -30,6 +33,7 @@
       text-align: center;
       font-size: 2.4rem;
       line-height: 2.6rem;
+      // Design
       color: $white;
       font-family: $display-font;
     }
@@ -37,6 +41,7 @@
       font-family: $text-font;
       color: $white;
       font-size: 1.6rem;
+      // Layout
       text-align: center;
       line-height: 2.4rem;
     }

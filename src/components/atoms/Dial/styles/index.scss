@@ -1,10 +1,10 @@
-@import '../../../../styles/newIndex.scss';
+@import '../../../../styles/index.scss';
 
 .dial {
   background-color: $brand-blue;
   background: conic-gradient(
-    $brand-blue-5 0 var(--dial-angle),
-    $brand-blue-3 var(--dial-angle)
+    $brand-blue-3 0 var(--dial-angle),
+    $brand-blue-5 var(--dial-angle)
   );
   min-height: 10rem;
   min-width: 10rem;

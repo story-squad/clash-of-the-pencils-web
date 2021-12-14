@@ -1,42 +1,50 @@
-@import '../../../../styles/newIndex.scss';
+@import '../../../../styles/index.scss';
 
 .prompt {
-  background-color: $brand-blue-6;
+  // Layout
   padding: 2.5rem;
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
   align-items: stretch;
 
+  // Design
+  background-color: $brand-blue-6;
+
   .active-tutorial {
+    // Layout
     z-index: 3;
+    // Design
     border-radius: 15px;
     background-color: #006dc7;
   }
   > div {
     > h1 {
+      // Layout
+      text-align: center;
+      margin-bottom: 1.6rem;
+
+      // Design
       font-family: $display-font;
       color: $white;
       font-size: 2.4rem;
       line-height: 2.6rem;
-      text-align: center;
-
-      margin-bottom: 1.6rem;
     }
     > p {
+      // Design
       font-family: $text-font;
       color: $white;
       font-size: 1.8rem;
       line-height: 2.6rem;
+      text-align: 'center';
+      // Layout
       text-align: center;
       margin-bottom: 2.4rem;
-      @include bp(tablet) {
-        text-align: left;
-      }
     }
   }
 
   .button-wrapper {
+    // Layout
     flex-grow: 1;
     display: flex;
     flex-flow: column nowrap;
@@ -54,6 +62,7 @@
   }
 
   .countdown-wrapper {
+    // Layout
     display: flex;
     flex-flow: column nowrap;
     flex-grow: 1;

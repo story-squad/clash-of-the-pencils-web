@@ -9,7 +9,7 @@ export default function useConfirmationModal(
   const openConfirmationModal = () => setModalIsOpen(true);
   return [
     <ConfirmationModal
-      key={0}
+      key={modalProps.key || 0}
       isOpen={modalIsOpen}
       setIsOpen={setModalIsOpen}
       {...modalProps}

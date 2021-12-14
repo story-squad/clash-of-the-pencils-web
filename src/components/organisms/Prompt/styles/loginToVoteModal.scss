@@ -1,14 +1,17 @@
-@import '../../../../styles/newIndex.scss';
+@import '../../../../styles/index.scss';
 
 .must-login-to-vote {
   h2 {
-    font-family: $display-font;
+    // Layout
     font-size: 2rem;
     line-height: 2.8rem;
-    color: $gray-7;
     margin-bottom: 2rem;
+    // Design
+    font-family: $display-font;
+    color: $gray-7;
   }
   .button-wrapper {
+    // Layout
     display: flex;
     flex-flow: row nowrap;
     gap: 1rem;

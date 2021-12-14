@@ -1,4 +1,5 @@
 export * from './AccountActivation';
+export * from './AccountSettings';
 export * from './CardList';
 export * from './Footer';
 export * from './Header';
