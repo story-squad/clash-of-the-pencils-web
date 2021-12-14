@@ -5,7 +5,6 @@ import { EmptyForm } from '../../forms';
 import { ActivationRequestFormProps } from './types';
 
 export function ResendForm({
-  // sendToParent,
   ...formProps
 }: ActivationRequestFormProps): React.ReactElement {
   const methods = useForm();

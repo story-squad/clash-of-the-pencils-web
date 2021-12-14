@@ -36,9 +36,7 @@
       color: $white;
       font-size: 1.8rem;
       line-height: 2.6rem;
-      @include bp(tablet) {
-        text-align: left;
-      }
+      text-align: 'center';
       // Layout
       text-align: center;
       margin-bottom: 2.4rem;

@@ -1,4 +1,4 @@
-import { useAsync } from '@story-squad/react-utils';
+import { classnames, useAsync } from '@story-squad/react-utils';
 import React, { useMemo, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { Auth } from '../../../api';
@@ -84,9 +84,9 @@ export default function Voting({
         />
         <div
           id={TUTORIAL_IDS.ID_TOP_THREE}
-          className={` ${
-            message.id === TUTORIAL_IDS.ID_TOP_THREE ? 'active-tutorial' : ''
-          }`}
+          className={classnames(
+            message.id === TUTORIAL_IDS.ID_TOP_THREE && 'active-tutorial',
+          )}
         >
           <VotingCardList
             hasReadAll={hasReadAll}

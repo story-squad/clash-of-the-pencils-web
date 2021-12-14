@@ -16,7 +16,6 @@ export default function ActivationModalContainer({
   const login = useSetRecoilState(auth.login);
 
   const backToDashboard = () => push('/');
-  // const backToDashboard = () => console.log('GOING BACK');
   const setDashTimeout = () => {
     // Go back to dash after timeout
     setTimeout(backToDashboard, MODAL_STAYS_OPEN_ON_FAIL_FOR * 1000);

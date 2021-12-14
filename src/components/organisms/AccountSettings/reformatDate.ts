@@ -18,9 +18,7 @@ export default function reformatDate(
 ): string | undefined {
   if (dob) {
     const [year, month, day] = dob.split('-');
-    const newDate =
-      // adding a day becuase it is subracting a day somewhere so things work
-      monthNames[parseInt(month) - 1] + ' ' + day + ', ' + year;
+    const newDate = monthNames[parseInt(month) - 1] + ' ' + day + ', ' + year;
     return newDate;
   } else {
     console.log('Date of Birth is Undefined');

@@ -73,14 +73,6 @@ export const secondsElapsed = (start: DateTime, end: DateTime): number => {
 
   const seconds = msToS(diff.toMillis());
 
-  // console.log(
-  //   '[DIFF]',
-  //   diff.toFormat('HH:mm:ss'),
-  //   start.toFormat('HH:mm:ss'),
-  //   end.toFormat('HH:mm:ss'),
-  //   seconds
-  // );
-
   return seconds;
 };
 
