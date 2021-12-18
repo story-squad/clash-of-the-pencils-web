@@ -25,7 +25,7 @@ export async function getById(subId: number): Promise<ISubItem> {
   return data;
 }
 
-export const deleteSub = async (subId: number): Promise<void> => {
+export const deleteSubById = async (subId: number): Promise<void> => {
   const { data } = await axiosWithAuth().delete(`/api/submissions/${subId}`);
   return data;
 };

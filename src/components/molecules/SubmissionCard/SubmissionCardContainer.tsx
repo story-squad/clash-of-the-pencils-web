@@ -1,7 +1,8 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
+import { deleteSubById } from '../../../api/Submissions';
 import { submissions } from '../../../state';
-import { Card, Loader } from '../../atoms';
+import { Button, Card, Loader } from '../../atoms';
 import DroppableSubmissionCard, {
   DroppableSubmissionCardProps,
 } from './DroppableSubmissionCard';
@@ -22,7 +23,10 @@ function SubmissionCardContainer({
         {...(props as Omit<DroppableSubmissionCardProps, 'submission'>)}
       />
     ) : (
-      <SubmissionCard submission={submission} {...props} />
+      <div className="submission-wrapper">
+        <SubmissionCard submission={submission} {...props} />
+        <Button onClick={() => deleteSubById(submissionId)}>Delete</Button>
+      </div>
     )
   ) : (
     <Card className="submission-card-failure">
