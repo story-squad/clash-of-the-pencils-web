@@ -5,7 +5,6 @@ type InputVariants = 'default' | 'success' | 'error' | 'warning';
 type InputFieldTypes =
   | 'text'
   | 'email'
-  // | "phone"
   | 'date'
   | 'time'
   | 'textarea'

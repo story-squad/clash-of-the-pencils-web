@@ -1,3 +1,4 @@
+import { classnames } from '@story-squad/react-utils';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { Prompts } from '../../../api';
@@ -13,7 +14,6 @@ export interface IPromptOrganismProps {
   openUploadModalOrSubmission: () => void;
   userHasSubmitted: boolean;
 }
-//ChickenNugget I am using this to find stuff
 
 export default function PromptOrganism({
   prompt,
@@ -25,40 +25,35 @@ export default function PromptOrganism({
   return (
     <section id={PROMPT_BOX_ID} className="prompt">
       <div
-        // Add these styles when its active during tutorial
-        className={`${
-          message.id === TUTORIAL_IDS.ID_PROMPT && 'active-tutorial'
-        }`}
+        className={classnames(
+          message.id === TUTORIAL_IDS.ID_PROMPT && 'active-tutorial',
+        )}
         id={TUTORIAL_IDS.ID_PROMPT}
       >
         <h1>Today&apos;s Writing Prompt</h1>
-        <p
-          //Add this style when tutorial is active
-          style={{
-            textAlign: 'center',
-          }}
-        >
-          {prompt.prompt}
-        </p>
+        <p>{prompt.prompt}</p>
       </div>
       {/* <div
-        className={`${
-          message.id === TUTORIAL_IDS.ID_ENCOURAGEMENT && 'active-tutorial'
-        } button-wrapper`}
+        className={classnames(
+          'button-wrapper',
+          message.id === TUTORIAL_IDS.ID_ENCOURAGEMENT && 'active-tutorial',
+        )}
       >
         <EncouragementButton />
       </div> */}
       <div
-        className={`${
-          message.id === TUTORIAL_IDS.ID_TIMER && 'active-tutorial'
-        } countdown-wrapper`}
+        className={classnames(
+          'countdown-wrapper',
+          message.id === TUTORIAL_IDS.ID_TIMER && 'active-tutorial',
+        )}
       >
         <Countdown />
       </div>
       <div
-        className={`${
-          message.id === TUTORIAL_IDS.ID_UPLOAD && 'active-tutorial'
-        } button-wrapper`}
+        className={classnames(
+          'button-wrapper',
+          message.id === TUTORIAL_IDS.ID_UPLOAD && 'active-tutorial',
+        )}
       >
         <PromptActionButton
           onClick={openUploadModalOrSubmission}

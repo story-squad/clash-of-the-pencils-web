@@ -53,7 +53,6 @@
     @include bp($tablet) {
       width: unset !important;
       left: 50%;
-      // z-index: 5;
       transform: translate(-50%, 0%);
     }
     width: 100% !important;
@@ -73,7 +72,6 @@
       width: unset !important;
     }
     transform: translate(-50%, 0%);
-    // left: unset !important;
     width: 100% !important;
     position: absolute;
     display: flex;

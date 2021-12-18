@@ -1,4 +1,4 @@
-import { useKey } from '@story-squad/react-utils';
+import { classnames, useKey } from '@story-squad/react-utils';
 import React, { useEffect, useMemo, useRef } from 'react';
 import { useHistory } from 'react-router';
 import { useRecoilState } from 'recoil';
@@ -18,9 +18,9 @@ const Tutorial = (): React.ReactElement => {
   const [currentMessage, setCurrentmessage] = useRecoilState(
     tutorial.currentMessageIndex,
   );
-  // This is whether the tutorial is running
+  // This checks if the tutorial is running
   const [tutorialIsOpen, setTutorialIsOpen] = useRecoilState(tutorial.isOpen);
-  // This is whether to run tutorial on app launch
+  // This checks if to run tutorial on app launch
   const [showTutorial, setShowTutorial] = useRecoilState(tutorial.showTutorial);
 
   const router = useHistory();
@@ -64,21 +64,10 @@ const Tutorial = (): React.ReactElement => {
       setCurrentmessage(currentMessage + 1);
     } else {
       setTutorialIsOpen(false);
-      //This is little confusing but wont work other way maybe wording can be changed but brain is tired
       setShowTutorial(false);
       router.push('/schedule');
     }
   };
-  // console.log(currentMessage);
-  // const prevItem = () => {
-  //   setCurrentmessage((prev) => {
-  //     if (prev < tutorialMessages.length) {
-  //       return prev - 1;
-  //     } else {
-  //       return prev;
-  //     }
-  //   });
-  // };
 
   const tutorialRef = useRef<HTMLDivElement>(null);
   const tutorialHeight = useMemo(() => {
@@ -109,7 +98,6 @@ const Tutorial = (): React.ReactElement => {
     return [];
   }, [PROMPT_BOX_ID, tutorialIsOpen]);
 
-  // REMEMBER LOOK FOR THE CHICKENNUGGET
   return (
     <>
       {tutorialIsOpen && (
@@ -143,7 +131,7 @@ const Tutorial = (): React.ReactElement => {
                       top: position && position?.top - tutorialHeight - 100,
                     }
               }
-              className={`${classname}`}
+              className={classnames(classname)}
             >
               {arrow && (
                 <div className={`${styleclass}`}>
@@ -154,7 +142,6 @@ const Tutorial = (): React.ReactElement => {
                 <p>{message}</p>
                 <div>
                   <Button onClick={nextItem}>Next</Button>
-                  {/* <Button onClick={prevItem}>Prev</Button> */}
                 </div>
               </div>
             </div>

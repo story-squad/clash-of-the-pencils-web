@@ -1,4 +1,4 @@
-import { ErrorBoundary } from '@story-squad/react-utils';
+import { classnames, ErrorBoundary } from '@story-squad/react-utils';
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
 import { useRecoilValue } from 'recoil';
@@ -12,7 +12,7 @@ const streamURL = process.env.REACT_APP_LIVESTREAM_URL;
 function Stream(): React.ReactElement {
   const [playing, setPlaying] = useState(false);
   const [renderFallback, setRenderFallback] = useState(streamURL === undefined);
-  const currentMessage = useRecoilValue(tutorial.currentMessageIndex);
+  const message = useRecoilValue(tutorial.currentMessage);
 
   const hidePlayer = () => {
     setRenderFallback(true);
@@ -26,7 +26,9 @@ function Stream(): React.ReactElement {
   return (
     <StreamWrapper
       id={TUTORIAL_IDS.ID_STREAM}
-      className={currentMessage === 6 ? 'active-tutorial' : ''}
+      className={classnames(
+        message.id === TUTORIAL_IDS.ID_STREAM && 'active-tutorial',
+      )}
     >
       {playing && (
         <h2>{renderFallback ? 'Latest Stream' : 'Streaming Now!'}</h2>

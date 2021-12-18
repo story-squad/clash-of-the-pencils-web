@@ -9,9 +9,6 @@ export interface TutorialMessage {
   styleclass?: string;
 }
 
-//Only needed if using last message
-// const screenWith = window.innerWidth;
-
 export const messages: TutorialMessage[] = [
   {
     message: 'Each day a new prompt will be displayed on the dashboard.',
@@ -68,15 +65,3 @@ export const messages: TutorialMessage[] = [
     styleclass: 'arrow-sideways',
   },
 ];
-
-// const nonMobile = {
-//   message:
-//     'If you ever need to refresh your memory about how to play, you can access the tutorial any time by clicking here.',
-//   arrow: greenArrow,
-//   id: TUTORIAL_IDS.ID_REFRESH,
-//   classname: 'tutorial-redo',
-// };
-
-// if (screenWith >= 800) {
-//   tutorialMessages.push(nonMobile);
-// }

@@ -36,7 +36,6 @@ export default {
           date: 'date',
           text: 'text',
           email: 'email',
-          // phone: "phone",
           time: 'time',
           textarea: 'textarea',
         },

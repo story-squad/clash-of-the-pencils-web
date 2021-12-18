@@ -1,3 +1,4 @@
+import { classnames } from '@story-squad/react-utils';
 import React from 'react';
 import { Button } from '..';
 import { editPencil } from '../../../assets';
@@ -29,7 +30,9 @@ export default function AccountCard({
           {itemContent?.map((item) => (
             <div className="item-container" key={item.title}>
               <p className="item-title">{item.title}</p>
-              <p className={`item ${desc && 'description'}`}>{item.content}</p>
+              <p className={classnames('item', desc && 'description')}>
+                {item.content}
+              </p>
             </div>
           ))}
         </div>
