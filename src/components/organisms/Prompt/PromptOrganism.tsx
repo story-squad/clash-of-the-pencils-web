@@ -80,7 +80,7 @@ function PromptActionButton({
 
   if (userHasSubmitted) {
     message = 'View Submission';
-  } else if (phase !== 'submit') {
+  } else if (phase !== 'submit' && phase !== 'off') {
     disabled = true;
   }
   return (

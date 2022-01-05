@@ -83,8 +83,8 @@ function isWeekend(time: DateTime): boolean {
   const day = time.plus(0).weekday; // plus(0) is a hack to fix a bug I promise
   const isDuring = isDuringGen(time);
   return (
-    day === LuxonWeekdays.Sunday ||
-    (day === LuxonWeekdays.Saturday && !isDuring(schedule.stream))
+    day === LuxonWeekdays.Wednesday ||
+    (day === LuxonWeekdays.Thursday && !isDuring(schedule.stream))
   );
 }
 

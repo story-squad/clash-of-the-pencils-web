@@ -31,6 +31,8 @@ const SCHEDULE_VOTE_START_MIN = 30;
 const SCHEDULE_VOTE_END_HOUR = 24;
 const SCHEDULE_VOTE_END_MIN = 0;
 
+const voteStart = utcFrom(SCHEDULE_VOTE_START_HOUR, SCHEDULE_VOTE_START_MIN);
+
 // Memoize these as we use them twice
 const submitStart = utcFrom(
   SCHEDULE_SUBMIT_START_HOUR,
@@ -59,8 +61,8 @@ export const schedule: Record<eventType, ScheduleItem> = {
     end: utcFrom(SCHEDULE_VOTE_END_HOUR, SCHEDULE_VOTE_END_MIN),
   },
   off: {
-    start: streamEnd.set({ weekday: LuxonWeekdays.Saturday }),
-    end: submitStart.set({ weekday: LuxonWeekdays.Monday }),
+    start: streamEnd.set({ weekday: LuxonWeekdays.Wednesday }),
+    end: voteStart.set({ weekday: LuxonWeekdays.Friday }),
   },
 };
 export interface ScheduleItem {
