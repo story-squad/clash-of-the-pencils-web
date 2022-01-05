@@ -1,6 +1,12 @@
 import { classnames, useKey } from '@story-squad/react-utils';
-import React, { useCallback, useEffect } from 'react';
-import { FiMaximize, FiX, FiZoomIn, FiZoomOut } from 'react-icons/fi';
+import React, { useCallback, useEffect, useState } from 'react';
+import {
+  FiMaximize,
+  FiRotateCcw,
+  FiX,
+  FiZoomIn,
+  FiZoomOut,
+} from 'react-icons/fi';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import { useSetRecoilState } from 'recoil';
 import { app } from '../../../state';
@@ -10,6 +16,8 @@ const WRAPPER_ID = 'fullscreen-image=overlay';
 export default function FullscreenImageOverlay(
   content: app.imageView.ImageViewContent,
 ): React.ReactElement {
+  const [position, setPosition] = useState<number>();
+  const [click, setClick] = useState<number>(1);
   // Retrieve our close function
   const closeOverlay = useSetRecoilState(app.imageView.close);
   const memoizedCloseOverlay = useCallback(() => {
@@ -30,6 +38,22 @@ export default function FullscreenImageOverlay(
     return () => window.removeEventListener('resize', resizeHandler);
   }, []);
 
+  const rotateImg = () => {
+    if (click === 1) {
+      setPosition(90);
+      setClick(click + 1);
+    } else if (click === 2) {
+      setPosition(180);
+      setClick(click + 1);
+    } else if (click === 3) {
+      setPosition(270);
+      setClick(click + 1);
+    } else if (click === 4) {
+      setPosition(0);
+      setClick(1);
+    }
+  };
+
   return (
     <TransformWrapper
       options={{
@@ -49,26 +73,28 @@ export default function FullscreenImageOverlay(
                 alt={content.description}
                 className={classnames(
                   content.rotation && `rotate-${content.rotation}`,
+                  position && `rotate-${position}`,
                 )}
               />
             </TransformComponent>
           </div>
           <div className="controls">
-            <div className="how-to">
-              <p>
-                Use your mouse&apos;s scrollwheel to zoom in/out. To move the
-                image click and drag.
-              </p>
-            </div>
+            <p>
+              Use your mouse&apos;s scrollwheel to zoom in/out. To move the
+              image click and drag.
+            </p>
             <div className="bottom-controls">
               <button onClick={zoomOut} title="Zoom Out">
                 <FiZoomOut />
               </button>
+              <button onClick={zoomIn} title="Zoom In">
+                <FiZoomIn />
+              </button>
               <button onClick={resetTransform} title="Reset Zoom">
                 <FiMaximize />
               </button>
-              <button onClick={zoomIn} title="Zoom In">
-                <FiZoomIn />
+              <button onClick={rotateImg}>
+                <FiRotateCcw />
               </button>
             </div>
           </div>
