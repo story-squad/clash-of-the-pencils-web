@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { deleteSubById } from '../../../api/Submissions';
+import { useConfirmationModal } from '../../../hooks';
 import { submissions } from '../../../state';
 import { Button, Card, Loader } from '../../atoms';
 import DroppableSubmissionCard, {
@@ -16,6 +17,18 @@ function SubmissionCardContainer({
   ...props
 }: SubmissionCardContainerPropSwitcher): React.ReactElement {
   const submission = useRecoilValue(submissions.getById(submissionId));
+  const deleteSubmission = () => {
+    deleteSubById(submissionId);
+  };
+
+  const [modal, openModal] = useConfirmationModal({
+    title: 'Delete Story',
+    message: 'This action is irreversible. Are you sure you want to continue?.',
+    confirmText: 'Delete Story',
+    cancelText: 'Cancel',
+    onConfirm: deleteSubmission,
+  });
+
   return submission ? (
     droppable ? (
       <DroppableSubmissionCard
@@ -25,7 +38,8 @@ function SubmissionCardContainer({
     ) : (
       <div className="submission-wrapper">
         <SubmissionCard submission={submission} {...props} />
-        <Button onClick={() => deleteSubById(submissionId)}>Delete</Button>
+        <Button onClick={openModal}>Delete</Button>
+        {modal}
       </div>
     )
   ) : (
