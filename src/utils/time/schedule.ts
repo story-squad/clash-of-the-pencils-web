@@ -61,8 +61,8 @@ export const schedule: Record<eventType, ScheduleItem> = {
     end: utcFrom(SCHEDULE_VOTE_END_HOUR, SCHEDULE_VOTE_END_MIN),
   },
   off: {
-    start: streamEnd.set({ weekday: LuxonWeekdays.Wednesday }),
-    end: voteStart.set({ weekday: LuxonWeekdays.Friday }),
+    start: streamEnd.set({ weekday: LuxonWeekdays.Saturday }),
+    end: voteStart.set({ weekday: LuxonWeekdays.Monday }),
   },
 };
 export interface ScheduleItem {
