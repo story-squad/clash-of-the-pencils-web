@@ -1,6 +1,9 @@
 import React, { useCallback, useState } from 'react';
 import { useRecoilValue } from 'recoil';
+import { Users } from '../../../api';
+import { useConfirmationModal } from '../../../hooks';
 import { auth } from '../../../state';
+import { Button } from '../../atoms';
 import { AccountEditProps } from '../../forms/EditAccountForm/EditPasswordForm';
 import { EditAccountModal, EditPersonalModal } from '../../modals';
 import { AccountCards } from '../../molecules';
@@ -30,6 +33,19 @@ export default function AccountContainer({
     if (personal === false) setEditPersonal(true);
   }, [setEdit, personal]);
 
+  const onConfirm = () => {
+    if (user) {
+      Users.deleteUser({ id: user?.id });
+    }
+  };
+
+  const [openDelete, deleteModal] = useConfirmationModal({
+    title: 'Delete Account',
+    message: 'This will permantly dele.',
+    confirmText: 'Confirm Delete',
+    onConfirm: onConfirm,
+  });
+
   return (
     <div className="account-wrapper">
       <h2>Account Settings</h2>
@@ -56,6 +72,12 @@ export default function AccountContainer({
         isOpen={personal}
         setIsOpen={setEditPersonal}
       />
+      <div className="delete-wrapper">
+        <Button onClick={deleteModal} type="secondary">
+          Delete Account
+        </Button>
+      </div>
+      {openDelete}
     </div>
   );
 }
