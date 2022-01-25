@@ -5,12 +5,12 @@ export async function isCodenameAvailable(codename: string): Promise<boolean> {
   const { data } = await axiosWithoutAuth().get(
     `/api/users/availability?codename=${codename}`,
   );
-  return data.available;
+  return data.CodeNameorEmailavailable;
 }
 
 export async function isEmailAvailable(email: string): Promise<boolean> {
   const { data } = await axiosWithoutAuth().get(
     `/api/users/availability?email=${email}`,
   );
-  return data.available;
+  return data.CodeNameorEmailavailable;
 }
