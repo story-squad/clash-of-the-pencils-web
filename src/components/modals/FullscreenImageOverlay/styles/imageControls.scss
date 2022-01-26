@@ -4,6 +4,7 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: stretch;
+  background-color: #000;
   button {
     display: flex;
     align-items: center;
@@ -20,18 +21,16 @@
       transition: opacity 0.15s ease-in;
     }
   }
-  .how-to {
-    background-color: #000;
+  p {
+    padding-top: 1rem;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.7rem;
     color: $white;
-    padding: 15px 20px 10px;
     font-weight: 800;
     line-height: 1.3em;
     font-family: $lato;
   }
   .bottom-controls {
-    background-color: #000;
     flex-grow: 1;
     display: flex;
     flex-flow: row nowrap;
