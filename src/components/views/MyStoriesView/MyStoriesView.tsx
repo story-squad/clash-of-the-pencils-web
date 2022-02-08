@@ -12,6 +12,7 @@ export interface MyStoriesViewProps {
 export default function MyStoriesView({
   submissionIds,
 }: MyStoriesViewProps): React.ReactElement {
+  console.log(submissionIds);
   return (
     <DashboardTemplate className="my-submissions-view">
       <FullscreenImageOverlay />
