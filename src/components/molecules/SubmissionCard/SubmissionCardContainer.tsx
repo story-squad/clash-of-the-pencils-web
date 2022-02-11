@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { deleteSubById } from '../../../api/Submissions';
 import { useConfirmationModal } from '../../../hooks';
 import { submissions } from '../../../state';
@@ -17,9 +17,13 @@ function SubmissionCardContainer({
   ...props
 }: SubmissionCardContainerPropSwitcher): React.ReactElement {
   const submission = useRecoilValue(submissions.getById(submissionId));
+  const subDeleted = useSetRecoilState(submissions.forceUpdate);
 
   const deleteSubmission = () => {
+    // Deletes submission by ID
     deleteSubById(submissionId);
+    // is passed the id that was deleted
+    subDeleted(submissionId);
   };
 
   const [confirmDeleteModal, openModal] = useConfirmationModal({
