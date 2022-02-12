@@ -1,7 +1,9 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { deleteSubById } from '../../../api/Submissions';
+import { useConfirmationModal } from '../../../hooks';
 import { submissions } from '../../../state';
-import { Card, Loader } from '../../atoms';
+import { Button, Card, Loader } from '../../atoms';
 import DroppableSubmissionCard, {
   DroppableSubmissionCardProps,
 } from './DroppableSubmissionCard';
@@ -15,6 +17,23 @@ function SubmissionCardContainer({
   ...props
 }: SubmissionCardContainerPropSwitcher): React.ReactElement {
   const submission = useRecoilValue(submissions.getById(submissionId));
+  const subDeleted = useSetRecoilState(submissions.forceUpdate);
+
+  const deleteSubmission = () => {
+    // Deletes submission by ID
+    deleteSubById(submissionId);
+    // is passed the id that was deleted
+    subDeleted(submissionId);
+  };
+
+  const [confirmDeleteModal, openModal] = useConfirmationModal({
+    title: 'Delete Story',
+    message: 'This action is irreversible. Are you sure you want to continue?.',
+    confirmText: 'Delete Story',
+    cancelText: 'Cancel',
+    onConfirm: deleteSubmission,
+  });
+
   return submission ? (
     droppable ? (
       <DroppableSubmissionCard
@@ -22,7 +41,11 @@ function SubmissionCardContainer({
         {...(props as Omit<DroppableSubmissionCardProps, 'submission'>)}
       />
     ) : (
-      <SubmissionCard submission={submission} {...props} />
+      <div className="submission-wrapper">
+        <SubmissionCard submission={submission} {...props} />
+        <Button onClick={openModal}>Delete</Button>
+        {confirmDeleteModal}
+      </div>
     )
   ) : (
     <Card className="submission-card-failure">

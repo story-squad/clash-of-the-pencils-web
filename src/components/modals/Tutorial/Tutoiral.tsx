@@ -1,6 +1,6 @@
 import { classnames, useKey } from '@story-squad/react-utils';
 import React, { useEffect, useMemo, useRef } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { PROMPT_BOX_ID } from '../../../config/tutorialSelectionIds';
 import { useConfirmationModal, useOpenDashboard } from '../../../hooks';
