@@ -66,7 +66,8 @@ export default function LoginForm({
   }, [userIsDeleted]);
 
   const [onDelete, successDelete] = useConfirmationModal({
-    title: 'Account Deleted Successfully!',
+    title: 'We are sorry to see you go!',
+    message: 'Your account has been successfully deleted.',
     confirmText: 'Ok',
     hideCancelButton: true,
   });

@@ -46,9 +46,10 @@ export default function AccountContainer({
   };
 
   const [openDelete, deleteModal] = useConfirmationModal({
-    title: 'Delete Account',
-    message: 'This will permantly dele.',
-    confirmText: 'Confirm Delete',
+    title: 'Are you sure you want to delete your account?',
+    message:
+      'This action is permanent. If you would like to continue with this action, select Delete Account',
+    confirmText: 'Delete Account',
     onConfirm: onConfirm,
   });
 
