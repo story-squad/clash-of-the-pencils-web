@@ -59,3 +59,8 @@ export const userIsUnderage = selector<boolean>({
     else return getAge(u.dob) < 13;
   },
 });
+
+export const userIsDeleted = atom<boolean>({
+  key: 'userIsDeletedAtom',
+  default: false,
+});

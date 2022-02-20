@@ -1,8 +1,9 @@
 import React, { useCallback, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { Users } from '../../../api';
 import { useConfirmationModal } from '../../../hooks';
 import { auth } from '../../../state';
+import { token } from '../../../utils';
 import { Button } from '../../atoms';
 import { AccountEditProps } from '../../forms/EditAccountForm/EditPasswordForm';
 import { EditAccountModal, EditPersonalModal } from '../../modals';
@@ -24,6 +25,8 @@ export default function AccountContainer({
   const newDate = reformatDate(user?.dob);
   const [edit, setEdit] = useState<boolean>(false);
   const [personal, setEditPersonal] = useState<boolean>(false);
+  const logout = useSetRecoilState(auth.login);
+  const setUserIsDeleted = useSetRecoilState(auth.userIsDeleted);
 
   const accountInfo = useCallback(() => {
     if (edit === false) setEdit(true);
@@ -36,6 +39,9 @@ export default function AccountContainer({
   const onConfirm = () => {
     if (user) {
       Users.deleteUser({ id: user?.id });
+      token.clear();
+      logout();
+      setUserIsDeleted(true);
     }
   };
 
