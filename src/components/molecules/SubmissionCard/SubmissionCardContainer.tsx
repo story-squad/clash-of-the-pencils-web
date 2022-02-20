@@ -21,9 +21,16 @@ function SubmissionCardContainer({
 
   const deleteSubmission = () => {
     // Deletes submission by ID
-    deleteSubById(submissionId);
+    deleteSubById(submissionId)
+      .then((res) => {
+        if (res !== null) {
+          subDeleted(submissionId);
+        }
+      })
+      .catch(() => {
+        openError();
+      });
     // is passed the id that was deleted
-    subDeleted(submissionId);
   };
 
   const [confirmDeleteModal, openModal] = useConfirmationModal({
@@ -32,6 +39,12 @@ function SubmissionCardContainer({
     confirmText: 'Delete Story',
     cancelText: 'Cancel',
     onConfirm: deleteSubmission,
+  });
+
+  const [deleteError, openError] = useConfirmationModal({
+    key: 1,
+    title: 'There was an error deleting your story. Please try again later.',
+    confirmText: 'Confirm',
   });
 
   return submission ? (
@@ -45,6 +58,7 @@ function SubmissionCardContainer({
         <SubmissionCard submission={submission} {...props} />
         <Button onClick={openModal}>Delete</Button>
         {confirmDeleteModal}
+        {deleteError}
       </div>
     )
   ) : (
