@@ -39,7 +39,7 @@ export default function Countdown(props: ICountdownProps): React.ReactElement {
       case 'vote':
         return 'Left to Vote';
       case 'off':
-        return 'Until Game Reopens!';
+        return 'Left To Submit!';
     }
   }, []);
 

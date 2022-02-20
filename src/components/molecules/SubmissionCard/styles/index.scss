@@ -1,61 +1,71 @@
 @import '../../../../styles/index.scss';
-
-.submission-card {
-  .image {
-    background-color: $white;
-    display: none;
-    aspect-ratio: 1.3;
-    @include bp(tablet) {
-      display: flex;
-    }
-  }
-
-  &:hover {
-    .image.can-preview .image-inner {
-      transition: all 0.15s ease-out;
-      filter: brightness(0.8);
-      transform: scale(1.025);
-    }
-    .submission-card-footer {
-      transition: all 0.15s ease-in-out;
+.submission-wrapper {
+  .button {
+    margin-top: 1rem;
+    &:hover {
       background-color: $brand-orange-6;
     }
   }
-
-  .submission-card-footer {
-    // Layout
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.6rem;
-
-    // Design
-    cursor: pointer;
-    background-color: $brand-orange;
-    transition: all 0.15s ease-in-out;
-
-    .sticker {
-      &.read-me {
-        cursor: pointer;
-      }
-      &.dropZone {
-        cursor: default;
+  .submission-card {
+    @include bp($tablet) {
+      width: 100% !important;
+    }
+    .image {
+      background-color: $white;
+      display: none;
+      aspect-ratio: 1.3;
+      @include bp($tablet) {
+        display: flex;
       }
     }
 
-    .content-left {
-      color: $white;
-      h2 {
-        font-family: $display-font;
-        font-size: 1.6rem;
-        line-height: 2.6rem;
-        letter-spacing: 0.007rem;
+    &:hover {
+      .image.can-preview .image-inner {
+        transition: all 0.15s ease-out;
+        filter: brightness(0.8);
+        transform: scale(1.025);
       }
-      h3 {
-        font-family: $text-font;
-        font-size: 1.4rem;
-        line-height: 2.2rem;
+      .submission-card-footer {
+        transition: all 0.15s ease-in-out;
+        background-color: $brand-orange-6;
+      }
+    }
+
+    .submission-card-footer {
+      // Layout
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.6rem;
+
+      // Design
+      cursor: pointer;
+      background-color: $brand-orange;
+      transition: all 0.15s ease-in-out;
+
+      .sticker {
+        &.read-me {
+          cursor: pointer;
+        }
+        &.dropZone {
+          cursor: default;
+        }
+      }
+
+      .content-left {
+        color: $white;
+        h2 {
+          font-family: $display-font;
+          font-size: 1.6rem;
+          line-height: 2.6rem;
+          letter-spacing: 0.007rem;
+        }
+        h3 {
+          font-family: $text-font;
+          font-size: 1.4rem;
+          line-height: 2.2rem;
+        }
       }
     }
   }
