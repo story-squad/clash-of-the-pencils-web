@@ -10,6 +10,21 @@
     padding: 2rem 0;
     color: $brand-blue-9;
   }
+  .delete-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+    .button {
+      border-color: $dust-red;
+      background-color: $dust-red;
+      color: $gray-0;
+      &:hover {
+        background-color: $error;
+        opacity: 0.9;
+        color: $gray-2;
+      }
+    }
+  }
   .edit-info-container {
     position: fixed;
     z-index: 10;
