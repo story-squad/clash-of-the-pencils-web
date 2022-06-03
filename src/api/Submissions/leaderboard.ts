@@ -40,18 +40,12 @@ export const getWeeklyLeaderboard = async (
 export interface LeaderboardParams {
   limit?: number;
   offset?: number;
-  getBuffer?: boolean;
 }
 
-function getLbQuery({
-  limit = 10,
-  offset = 0,
-  getBuffer = false,
-}: LeaderboardParams): string {
+function getLbQuery({ limit = 10, offset = 0 }: LeaderboardParams): string {
   const query = new URLSearchParams({
     limit: `${limit}`,
     offset: `${offset}`,
-    getBuffer: `${getBuffer}`,
   });
   return query.toString();
 }
