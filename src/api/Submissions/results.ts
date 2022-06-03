@@ -19,6 +19,6 @@ export const getWinners = async ({
 };
 
 export const getTop3Subs = async (): Promise<ISubItem[]> => {
-  const { data } = await axiosWithAuth().get('/api/clash/top');
+  const { data } = await axiosWithAuth().get('/api/top');
   return data;
 };
