@@ -12,7 +12,7 @@ export const getWinners = async ({
 } = {}): Promise<ISubItem> => {
   const query = stringify({ limit, offset });
   const { data }: AxiosResponse<ISubItem> = await axiosWithAuth().get(
-    `/api/clash/winners?${query}`,
+    `/api/winners?${query}`,
   );
   console.log({ query, data });
   return data;
