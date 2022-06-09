@@ -18,6 +18,18 @@ export const update = async ({
   return data;
 };
 
+/** This is to delete User */
+export const deleteUser = async ({ id }: Partial<IUser>): Promise<void> => {
+  if (!id) {
+    console.error(
+      new Error(
+        "You did NOT pass in the ID to the user update function it won't work!",
+      ),
+    );
+  }
+  const { data } = await axiosWithAuth().delete(`/api/users/${id}`);
+  return data;
+};
 // DONT USE THESE
 // These need to be redone, the aren't intended for resets they are intended
 // to update a user's data, these endpoints are going to be changed to a new

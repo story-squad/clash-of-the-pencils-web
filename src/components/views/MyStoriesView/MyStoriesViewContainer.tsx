@@ -27,12 +27,12 @@ function MyStoriesViewContainer(): React.ReactElement {
   useEffect(() => {
     if (!subIds && !loading && user) {
       loadSubs(user.id);
-    } else if (user) {
+    } else if (user && subIdDeleted) {
       // removes the item from the id list that was deelted
       removeItem(subIdDeleted);
       // sets the id to 0 refreshing the id list
       setSubIdDeleted(0);
-    }
+    } else return;
   }, [subIdDeleted]);
 
   if (err) return <Redirect to={`/error?message=${readError(err)}`} />;

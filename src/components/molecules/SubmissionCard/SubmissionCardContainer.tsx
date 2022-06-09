@@ -34,8 +34,9 @@ function SubmissionCardContainer({
   };
 
   const [confirmDeleteModal, openModal] = useConfirmationModal({
-    title: 'Delete Story',
-    message: 'This action is irreversible. Are you sure you want to continue?.',
+    title: 'Delete this story',
+    message:
+      'This action is permanent. Are you sure you want to delete your story?',
     confirmText: 'Delete Story',
     cancelText: 'Cancel',
     onConfirm: deleteSubmission,

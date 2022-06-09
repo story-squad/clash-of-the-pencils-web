@@ -1,6 +1,10 @@
 import React, { useCallback, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { Users } from '../../../api';
+import { useConfirmationModal } from '../../../hooks';
 import { auth } from '../../../state';
+import { token } from '../../../utils';
+import { Button } from '../../atoms';
 import { AccountEditProps } from '../../forms/EditAccountForm/EditPasswordForm';
 import { EditAccountModal, EditPersonalModal } from '../../modals';
 import { AccountCards } from '../../molecules';
@@ -21,6 +25,8 @@ export default function AccountContainer({
   const newDate = reformatDate(user?.dob);
   const [edit, setEdit] = useState<boolean>(false);
   const [personal, setEditPersonal] = useState<boolean>(false);
+  const logout = useSetRecoilState(auth.login);
+  const setUserIsDeleted = useSetRecoilState(auth.userIsDeleted);
 
   const accountInfo = useCallback(() => {
     if (edit === false) setEdit(true);
@@ -29,6 +35,23 @@ export default function AccountContainer({
   const personalInfo = useCallback(() => {
     if (personal === false) setEditPersonal(true);
   }, [setEdit, personal]);
+
+  const onConfirm = () => {
+    if (user) {
+      Users.deleteUser({ id: user?.id });
+      token.clear();
+      logout();
+      setUserIsDeleted(true);
+    }
+  };
+
+  const [openDelete, deleteModal] = useConfirmationModal({
+    title: 'Are you sure you want to delete your account?',
+    message:
+      'This action is permanent. If you would like to continue with this action, select Delete Account',
+    confirmText: 'Delete Account',
+    onConfirm: onConfirm,
+  });
 
   return (
     <div className="account-wrapper">
@@ -56,6 +79,12 @@ export default function AccountContainer({
         isOpen={personal}
         setIsOpen={setEditPersonal}
       />
+      <div className="delete-wrapper">
+        <Button onClick={deleteModal} type="secondary">
+          Delete Account
+        </Button>
+      </div>
+      {openDelete}
     </div>
   );
 }
