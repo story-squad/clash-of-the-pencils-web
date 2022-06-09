@@ -4,7 +4,6 @@ import { useSetRecoilState } from 'recoil';
 import { Auth, Clever } from '../../../api';
 import { useOpenDashboard } from '../../../hooks';
 import { auth } from '../../../state';
-import { CleverButton } from '../../atoms';
 import { LoginForm } from '../../forms';
 import { DashboardTemplate } from '../../templates';
 import './styles/index.scss';
@@ -52,7 +51,8 @@ export default function LoginView({
   return (
     <DashboardTemplate useStorySquadHeader className="login-view">
       <div className="login-header">
-        {isMerge ? (
+        {/* TODO Clever button future reimplementation */}
+        {/* {isMerge ? (
           <>
             {codename && <h2>Hey, {codename}!</h2>}
             <p>
@@ -69,7 +69,7 @@ export default function LoginView({
             <p className="alt-font">or</p>
             <p>Sign In Using Story Squad Account</p>
           </>
-        )}
+        )} */}
       </div>
       <FormProvider {...methods}>
         <LoginForm onSubmit={submitHandler} />

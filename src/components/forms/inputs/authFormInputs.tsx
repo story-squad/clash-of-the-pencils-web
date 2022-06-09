@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { dataConstraints } from '../../../config';
 import { Checkbox, Input } from '../../molecules';
@@ -27,12 +28,14 @@ export default {
     rules,
     ...props
   }: FormInputMapProps = {}): React.ReactElement {
+    const [isShow, setShow] = useState(false);
+
     return (
       <Input
         {...props}
         name="password"
         label="Password"
-        inputType="password"
+        inputType={isShow ? 'text' : 'password'}
         rules={{
           required: 'Please enter a password!',
           minLength: {
@@ -66,6 +69,13 @@ export default {
           ...rules,
         }}
         placeholder="Password must be at least 8 characters"
+        iconRight={
+          isShow === true ? (
+            <FiEye onClick={() => setShow(false)} />
+          ) : (
+            <FiEyeOff onClick={() => setShow(true)} />
+          )
+        }
       />
     );
   },
