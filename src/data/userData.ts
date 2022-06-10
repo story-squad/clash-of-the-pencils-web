@@ -11,7 +11,7 @@ export default [
     dob: new Date(2000, 1, 1).toISOString(),
     created_at: new Date(),
     updated_at: new Date(),
-    id: 1,
+    user_id: 1,
   },
   {
     codename: 'CodenameTwo',
@@ -23,7 +23,7 @@ export default [
     dob: new Date(2000, 1, 1).toISOString(),
     created_at: new Date(),
     updated_at: new Date(),
-    id: 2,
+    user_id: 2,
   },
   {
     codename: 'CodenameThree',
@@ -35,6 +35,6 @@ export default [
     dob: new Date(2000, 1, 1).toISOString(),
     created_at: new Date(),
     updated_at: new Date(),
-    id: 3,
+    user_id: 3,
   },
 ] as Users.IUser[];

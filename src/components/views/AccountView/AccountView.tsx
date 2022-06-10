@@ -23,7 +23,7 @@ export default function AccountView({
       )}
       {/* Only show this if the user is not already validated! */}
       {!user.isValidated && <AccountActivation />}
-      <AccountSettings id={user.id} submitHandler={submitHandler} />
+      <AccountSettings id={user.user_id} submitHandler={submitHandler} />
     </DashboardTemplate>
   );
 }

@@ -4,30 +4,32 @@ import { IUser } from './types';
 
 /** Use this to update user data, make sure to pass in ID */
 export const update = async ({
-  id,
+  user_id,
   ...changes
 }: Partial<IUser>): Promise<IUser> => {
-  if (!id) {
+  if (!user_id) {
     console.error(
       new Error(
         "You did NOT pass in the ID to the user update function it won't work!",
       ),
     );
   }
-  const { data } = await axiosWithAuth().put(`/api/users/${id}`, changes);
+  const { data } = await axiosWithAuth().put(`/api/users/${user_id}`, changes);
   return data;
 };
 
 /** This is to delete User */
-export const deleteUser = async ({ id }: Partial<IUser>): Promise<void> => {
-  if (!id) {
+export const deleteUser = async ({
+  user_id,
+}: Partial<IUser>): Promise<void> => {
+  if (!user_id) {
     console.error(
       new Error(
         "You did NOT pass in the ID to the user update function it won't work!",
       ),
     );
   }
-  const { data } = await axiosWithAuth().delete(`/api/users/${id}`);
+  const { data } = await axiosWithAuth().delete(`/api/users/${user_id}`);
   return data;
 };
 // DONT USE THESE

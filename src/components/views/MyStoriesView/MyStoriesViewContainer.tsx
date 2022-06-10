@@ -23,10 +23,9 @@ function MyStoriesViewContainer(): React.ReactElement {
   const removeItem = (id: number) => {
     setSubIds((prev) => prev?.filter((el, i) => i !== id));
   };
-
   useEffect(() => {
     if (!subIds && !loading && user) {
-      loadSubs(user.id);
+      loadSubs(user.user_id);
     } else if (user && subIdDeleted) {
       // removes the item from the id list that was deelted
       removeItem(subIdDeleted);

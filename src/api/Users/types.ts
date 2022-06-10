@@ -1,5 +1,5 @@
 export interface IUser extends Omit<INewUser, 'parentEmail'> {
-  id: number;
+  user_id: number;
   isValidated: boolean;
   codename: string;
   password: string;
@@ -12,7 +12,7 @@ export interface IUser extends Omit<INewUser, 'parentEmail'> {
 
 export interface INewUser extends IOAuthUser {
   email?: string;
-  roleId: Roles & number;
+  role_id: Roles & number;
   isValidated?: boolean;
   parentEmail?: string;
   dob?: Date | string;

@@ -38,7 +38,7 @@ export default function AccountContainer({
 
   const onConfirm = () => {
     if (user) {
-      Users.deleteUser({ id: user?.id });
+      Users.deleteUser({ user_id: user?.user_id });
       token.clear();
       logout();
       setUserIsDeleted(true);
@@ -52,6 +52,7 @@ export default function AccountContainer({
     confirmText: 'Delete Account',
     onConfirm: onConfirm,
   });
+  console.log(user?.user_id);
 
   return (
     <div className="account-wrapper">

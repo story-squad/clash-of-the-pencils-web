@@ -11,7 +11,7 @@ import './styles/index.scss';
 export type AccountEditProps = FormProps<AccountEditFields>;
 
 export interface AccountEditFields {
-  id?: number;
+  user_id?: number;
   email?: string;
   password?: string;
   confirmPassword?: string;

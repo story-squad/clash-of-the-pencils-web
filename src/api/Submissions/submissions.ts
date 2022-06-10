@@ -16,7 +16,11 @@ export const uploadSubmission = async (
 };
 
 export const getUserSubForToday = async (): Promise<ISubItem | undefined> => {
-  const { data } = await axiosWithAuth().get('/api/submissions/today');
+  let data;
+  await axiosWithAuth()
+    .get('/api/submissions/today')
+    .then((res) => (data = res))
+    .catch((err) => console.log(err));
   return data;
 };
 

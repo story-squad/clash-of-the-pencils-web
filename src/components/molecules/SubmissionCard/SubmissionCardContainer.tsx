@@ -57,6 +57,7 @@ function SubmissionCardContainer({
     ) : (
       <div className="submission-wrapper">
         <SubmissionCard submission={submission} {...props} />
+        {/* TODO: FIX THIS FROM SHOWING UP ON ALL SubmissionCards */}
         <Button onClick={openModal}>Delete</Button>
         {confirmDeleteModal}
         {deleteError}
