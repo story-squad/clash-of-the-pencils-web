@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import Auth0LoginButton from './components/auth0/Auth0Login';
 import { ActivationModal } from './components/modals';
 import { LoginEmailRedirect, PrivateRoute } from './components/providers';
 import {
@@ -64,6 +65,7 @@ const App = (): React.ReactElement => {
           path="/activate"
           render={(props) => <ActivationModal {...props} />}
         />
+        <Route path="/auth/auth0login" render={() => <Auth0LoginButton />} />
 
         {/* Private Routes */}
         <PrivateRoute path="/stories" component={() => <MyStoriesView />} />
