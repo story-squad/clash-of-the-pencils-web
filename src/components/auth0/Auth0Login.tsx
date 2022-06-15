@@ -10,7 +10,7 @@ const Auth0Login = (): React.ReactElement => {
   };
 
   const handleLogoutClick = (): void => {
-    logout({ returnTo: window.location.origin });
+    logout({ returnTo: 'http://localhost:3000/auth0/auth0login' }); // must match the allowed logout URLs in Auth0 Dashboard
   };
 
   return (
