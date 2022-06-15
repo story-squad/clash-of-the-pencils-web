@@ -1,3 +1,4 @@
+import { Auth0Provider } from '@auth0/auth0-react';
 import { ErrorBoundary } from '@story-squad/react-utils';
 import { IErrorFallbackProps } from '@story-squad/react-utils/dist/utils/ErrorBoundary/types';
 import dotenv from 'dotenv';
@@ -13,13 +14,19 @@ dotenv.config();
 ReactDOM.render(
   <React.StrictMode>
     <HelmetProvider>
-      <RecoilRoot>
-        <Router>
-          <ErrorBoundary fallback={ErrorComponent}>
-            <App />
-          </ErrorBoundary>
-        </Router>
-      </RecoilRoot>
+      <Auth0Provider
+        domain={process.env.REACT_APP_AUTH0_DOMAIN || ''}
+        clientId={process.env.REACT_APP_AUTH0_CLIENT_ID || ''}
+        redirectUri="localhost:3000"
+      >
+        <RecoilRoot>
+          <Router>
+            <ErrorBoundary fallback={ErrorComponent}>
+              <App />
+            </ErrorBoundary>
+          </Router>
+        </RecoilRoot>
+      </Auth0Provider>
     </HelmetProvider>
   </React.StrictMode>,
   document.getElementById('root'),
