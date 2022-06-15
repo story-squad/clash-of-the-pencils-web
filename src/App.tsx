@@ -65,6 +65,7 @@ const App = (): React.ReactElement => {
           path="/activate"
           render={(props) => <ActivationModal {...props} />}
         />
+        {/* temporary route for testing purposes */}
         <Route path="/auth/auth0login" render={() => <Auth0LoginButton />} />
 
         {/* Private Routes */}
