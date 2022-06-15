@@ -1,1 +1,1 @@
-export { default as Auth0Button } from './Auth0Login';
+export { default as Auth0Login } from './Auth0Login';

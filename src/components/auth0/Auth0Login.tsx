@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
-const Auth0LoginButton = (): React.ReactElement => {
+const Auth0Login = (): React.ReactElement => {
   const { loginWithRedirect, logout } = useAuth0();
 
   const handleLoginClick = (): void => {
@@ -21,4 +21,4 @@ const Auth0LoginButton = (): React.ReactElement => {
   );
 };
 
-export default Auth0LoginButton;
+export default Auth0Login;
