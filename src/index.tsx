@@ -18,6 +18,9 @@ ReactDOM.render(
         domain={process.env.REACT_APP_AUTH0_DOMAIN || ''}
         clientId={process.env.REACT_APP_AUTH0_CLIENT_ID || ''}
         redirectUri="http://localhost:3000/auth/auth0profile" // must match the redirectUri in your Auth0 app dashboard
+        audience={process.env.REACT_APP_AUTH0_AUDIENCE}
+        scope={process.env.REACT_APP_AUTH0_SCOPE}
+        useRefreshTokens={true}
       >
         <RecoilRoot>
           <Router>
