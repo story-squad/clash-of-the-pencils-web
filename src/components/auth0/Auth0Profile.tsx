@@ -16,7 +16,7 @@ const Profile = (): React.ReactElement => {
         {
           email: user?.email,
         },
-        { headers: { Authorization: 'Bearer ' + accessToken } },
+        { headers: { Authorization: `Bearer: ${accessToken}` } },
       ) // need to attach JWT from Auth0 to the request as bearer token
       .then((res) => console.log(res.data));
   }, []);
