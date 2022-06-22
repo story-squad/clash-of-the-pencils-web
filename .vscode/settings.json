@@ -7,5 +7,17 @@
   "prettier.enable": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "typescript.tsdk": "node_modules\\typescript\\lib",
-  "files.exclude": {}
+  "files.exclude": {},
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "askForPassword": true,
+      "driver": "PostgreSQL",
+      "name": "postgres",
+      "database": "postgres",
+      "username": "postgres"
+    }
+  ]
 }
