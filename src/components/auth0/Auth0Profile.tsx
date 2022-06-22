@@ -8,6 +8,7 @@ const Profile = (): React.ReactElement => {
   const handleLogoutClick = (): void => {
     logout({ returnTo: 'http://localhost:3000/auth0/auth0login' }); // must match the allowed logout URLs in Auth0 Dashboard
   };
+  // currently working on this function to get the user's metadata from Auth0
   // useEffect(() => {
   //   const accessToken = getAccessTokenSilently();
   //   axios
