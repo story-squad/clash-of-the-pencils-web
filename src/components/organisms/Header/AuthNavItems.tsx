@@ -1,17 +1,32 @@
 import { classnames } from '@story-squad/react-utils';
+import axios, { AxiosInstance } from 'axios';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useHeaderContext from './useHeaderContext';
-
-const clientId = process.env.REACT_APP_FUSIONAUTH_CLIENT_ID;
-const baseUrl = process.env.REACT_APP_FUSIONAUTH_BASE_URL;
 
 export default function AuthNavItems({
   className,
 }: {
   className?: string;
 } = {}): React.ReactElement {
+  interface AxiosGeneratorProps {
+    timeoutInSeconds?: number;
+  }
   const { user, closeMenu } = useHeaderContext();
+  const baseURL = process.env.REACT_APP_BASE_URL || 'http://localhost:8000';
+  const fusionInstance = ({
+    timeoutInSeconds = 0,
+  }: AxiosGeneratorProps = {}): AxiosInstance =>
+    axios.create({
+      baseURL,
+      timeout: timeoutInSeconds * 1000,
+    });
+
+  const handleFusionLogin = async () => {
+    fusionInstance()
+      .get('/api/auth/login')
+      .then((res) => console.log(res));
+  };
   return user ? (
     <>
       <li className={classnames('auth-nav', className)}>
@@ -38,16 +53,12 @@ export default function AuthNavItems({
         </Link>
       </li>
       <li className={classnames('auth-nav', className)}>
-        <a
-          href={`${baseUrl}/oauth2/authorize?client_id=${clientId}&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000`}
-        >
-          Fusion Log In
-        </a>
-      </li>
-      <li className={classnames('auth-nav', className)}>
         <Link to="/signup" onClick={closeMenu}>
           Sign Up
         </Link>
+      </li>
+      <li className={classnames('auth-nav', className)}>
+        <button onClick={handleFusionLogin}>Fusion Login</button>
       </li>
     </>
   );
