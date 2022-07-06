@@ -9,9 +9,6 @@ export default function AuthNavItems({
 }: {
   className?: string;
 } = {}): React.ReactElement {
-  interface AxiosGeneratorProps {
-    timeoutInSeconds?: number;
-  }
   const { user, closeMenu } = useHeaderContext();
 
   const handleFusionLogin = async () => {
