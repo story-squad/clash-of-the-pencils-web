@@ -1,7 +1,7 @@
 import { classnames } from '@story-squad/react-utils';
-import axios, { AxiosInstance } from 'axios';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { axiosWithoutAuth } from '../../../api/axiosWithConfig';
 import useHeaderContext from './useHeaderContext';
 
 export default function AuthNavItems({
@@ -13,19 +13,14 @@ export default function AuthNavItems({
     timeoutInSeconds?: number;
   }
   const { user, closeMenu } = useHeaderContext();
-  const baseURL = process.env.REACT_APP_BASE_URL || 'http://localhost:8000';
-  const fusionInstance = ({
-    timeoutInSeconds = 0,
-  }: AxiosGeneratorProps = {}): AxiosInstance =>
-    axios.create({
-      baseURL,
-      timeout: timeoutInSeconds * 1000,
-    });
 
   const handleFusionLogin = async () => {
-    fusionInstance()
+    axiosWithoutAuth()
       .get('/api/auth/login')
-      .then((res) => console.log(res));
+      .then((res) => console.log(res))
+      .catch((err) => {
+        console.error(err);
+      });
   };
   return user ? (
     <>
