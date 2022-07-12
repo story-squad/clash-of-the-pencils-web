@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useSetRecoilState } from 'recoil';
+import { GoogleLoginButton } from 'ts-react-google-login-component';
 import { Auth, Clever } from '../../../api';
 import { useOpenDashboard } from '../../../hooks';
 import { auth } from '../../../state';
@@ -48,9 +49,31 @@ export default function LoginView({
     [login, onSubmit, isMerge, cleverId],
   );
 
+  const responseGoogle = (googleUser: any) => {
+    const id_token = googleUser.getAuthResponse(true).id_token;
+    const googleId = googleUser.getId();
+
+    console.log({ googleId });
+    console.log({ accessToken: id_token });
+  };
+
+  const clientConfig = {
+    client_id:
+      '759873873692-jtmpskq0ui41v77ajvtuv9tr9u8l0ff4.apps.googleusercontent.com',
+  };
+
+  const errorHandler = (error: string) => {
+    console.log('ERROR', error);
+  };
+
   return (
     <DashboardTemplate useStorySquadHeader className="login-view">
       <div className="login-header">
+        <GoogleLoginButton
+          responseHandler={responseGoogle}
+          clientConfig={clientConfig}
+          failureHandler={errorHandler}
+        />
         {/* TODO Clever button future reimplementation */}
         {/* {isMerge ? (
           <>
