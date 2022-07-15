@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useSetRecoilState } from 'recoil';
-import { GoogleLoginButton } from 'ts-react-google-login-component';
 import { Auth, Clever } from '../../../api';
 import { useOpenDashboard } from '../../../hooks';
 import { auth } from '../../../state';
@@ -49,31 +48,60 @@ export default function LoginView({
     [login, onSubmit, isMerge, cleverId],
   );
 
-  const responseGoogle = (googleUser: any) => {
-    const id_token = googleUser.getAuthResponse(true).id_token;
-    const googleId = googleUser.getId();
+  // const responseGoogle = (googleUser: any) => {
+  //   const id_token = googleUser.getAuthResponse(true).id_token;
+  //   const googleId = googleUser.getId();
 
-    console.log({ googleId });
-    console.log({ accessToken: id_token });
-  };
+  //   console.log({ googleId });
+  //   console.log({ accessToken: id_token });
+  // };
 
-  const clientConfig = {
-    client_id:
-      '759873873692-jtmpskq0ui41v77ajvtuv9tr9u8l0ff4.apps.googleusercontent.com',
-  };
+  // const clientConfig = {
+  //   client_id:
+  //     '759873873692-jtmpskq0ui41v77ajvtuv9tr9u8l0ff4.apps.googleusercontent.com',
+  // };
 
-  const errorHandler = (error: string) => {
-    console.log('ERROR', error);
+  // const errorHandler = (error: string) => {
+  //   console.log('ERROR', error);
+  // };
+
+  const onSignInCallback = (response: unknown) => {
+    // decodeJwtResponse() is a custom function defined by you
+    // to decode the credential response.
+    // const responsePayload = decodeJwtResponse(response.credential);
+
+    // console.log('ID: ' + responsePayload.sub);
+    // console.log('Full Name: ' + responsePayload.name);
+    // console.log('Given Name: ' + responsePayload.given_name);
+    // console.log('Family Name: ' + responsePayload.family_name);
+    // console.log('Image URL: ' + responsePayload.picture);
+    // console.log('Email: ' + responsePayload.email);
+    console.log(response);
   };
 
   return (
     <DashboardTemplate useStorySquadHeader className="login-view">
       <div className="login-header">
-        <GoogleLoginButton
-          responseHandler={responseGoogle}
-          clientConfig={clientConfig}
-          failureHandler={errorHandler}
-        />
+        {/* Generated Google Login Button */}
+        <div
+          id="g_id_onload"
+          data-client_id={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+          data-context="signin"
+          data-ux_mode="redirect"
+          data-login_uri="http://localhost:8000/api/auth/google-redirect"
+          data-auto_select="true"
+          data-callback={onSignInCallback}
+        ></div>
+
+        <div
+          className="g_id_signin"
+          data-type="standard"
+          data-shape="rectangular"
+          data-theme="outline"
+          data-text="signin_with"
+          data-size="large"
+          data-logo_alignment="left"
+        ></div>
         {/* TODO Clever button future reimplementation */}
         {/* {isMerge ? (
           <>
