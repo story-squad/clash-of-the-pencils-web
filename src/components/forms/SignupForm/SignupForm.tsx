@@ -24,7 +24,7 @@ export default function SignupForm({
   const clearFormError = () => clearErrors('form');
 
   const [parentNeeded, setParentNeeded] = useState(false);
-  const [page, setPage] = useState(1);
+  const [, setPage] = useState(1);
 
   // ref to password
   const password = useRef({});
