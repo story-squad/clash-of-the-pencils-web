@@ -103,91 +103,89 @@ export default function SignupForm({
       noValidate
     >
       {/* First page */}
-      {page === 1 ? (
-        <>
-          {authFormInputs.firstname()}
-          {authFormInputs.lastname()}
-          {authFormInputs.codename({
-            rules: {
-              validate: {
-                available: async (value) => {
-                  const available = await Users.isCodenameAvailable(value);
-                  return available || 'Codename is already taken';
-                },
-                checkCharacters: (value) => {
-                  return (
-                    dataConstraints.codenamePattern.test(value) ||
-                    'Only letters and numbers are allowed!'
-                  );
-                },
-                checkLength: (value) => {
-                  return (
-                    value.length <= 32 || 'Cannot be more than 32 characters!'
-                  );
-                },
+      {/* {page === 1 ? ( */}
+      <>
+        {authFormInputs.firstname()}
+        {authFormInputs.lastname()}
+        {authFormInputs.codename({
+          rules: {
+            validate: {
+              available: async (value) => {
+                const available = await Users.isCodenameAvailable(value);
+                return available || 'Codename is already taken';
+              },
+              checkCharacters: (value) => {
+                return (
+                  dataConstraints.codenamePattern.test(value) ||
+                  'Only letters and numbers are allowed!'
+                );
+              },
+              checkLength: (value) => {
+                return (
+                  value.length <= 32 || 'Cannot be more than 32 characters!'
+                );
               },
             },
-          })}
-          {authFormInputs.birthday()}
-          <Button onClick={goNext} htmlType="button">
-            Next
-          </Button>
-        </>
-      ) : null}
+          },
+        })}
+        {authFormInputs.birthday()}
+        <Button onClick={goNext} htmlType="button">
+          Next
+        </Button>
+      </>
+      {/* ) : null} */}
 
       {/* Second page */}
-      {page === 2 ? (
-        <>
-          {authFormInputs.email({
-            rules: {
-              validate: {
-                available: async (value) => {
-                  const available = await Users.isEmailAvailable(value);
-                  return available || 'Email is already taken';
-                },
-              },
-              pattern: {
-                value: dataConstraints.emailPattern,
-                message: 'Please enter a valid email address!',
+      {/* {page === 2 ? ( */}
+      <>
+        {authFormInputs.email({
+          rules: {
+            validate: {
+              available: async (value) => {
+                const available = await Users.isEmailAvailable(value);
+                return available || 'Email is already taken';
               },
             },
-          })}
-          {parentNeeded ? authFormInputs.parentEmail() : null}
-          {authFormInputs.password()}
-          {authFormInputs.confirmPassword({
-            rules: {
-              validate: {
-                checkPassword: (value) => {
-                  return (
-                    password.current === value || 'Passwords do not match.'
-                  );
-                },
+            pattern: {
+              value: dataConstraints.emailPattern,
+              message: 'Please enter a valid email address!',
+            },
+          },
+        })}
+        {parentNeeded ? authFormInputs.parentEmail() : null}
+        {authFormInputs.password()}
+        {authFormInputs.confirmPassword({
+          rules: {
+            validate: {
+              checkPassword: (value) => {
+                return password.current === value || 'Passwords do not match.';
               },
             },
-          })}
-          {!hideToS && authFormInputs.termsCheckbox()}
-          <ErrorMessage
-            name="form"
-            render={({ message }) => (
-              <div className="server-error">
-                <span className="red">*</span>
-                {message}
-              </div>
-            )}
-          />
-          <Button
-            disabled={isLoading}
-            htmlType="submit"
-            iconRight={isLoading && <LoadIcon />}
-            onClick={clearFormError}
-          >
-            Sign Up
-          </Button>
-          <Button onClick={goBack} htmlType="button" type="secondary">
-            Back
-          </Button>
-        </>
-      ) : null}
+          },
+        })}
+        {!hideToS && authFormInputs.termsCheckbox()}
+        <ErrorMessage
+          name="form"
+          render={({ message }) => (
+            <div className="server-error">
+              <span className="red">*</span>
+              {message}
+            </div>
+          )}
+        />
+        <Button
+          disabled={isLoading}
+          htmlType="submit"
+          iconRight={isLoading && <LoadIcon />}
+          onClick={clearFormError}
+        >
+          Sign Up
+        </Button>
+        <Button onClick={goBack} htmlType="button" type="secondary">
+          Back
+        </Button>
+      </>
+      {/* ) : null} */}
     </form>
   );
 }
