@@ -23,8 +23,9 @@ export default function DashboardView({
   }, [isLoading]);
   useEffect(() => {
     // no need to store the user in localStorage since user data is accessible via the Auth0 Provider
-    console.log(`isAuthenticated: ${isAuthenticated}`);
-    console.log(user || 'no user authenticated');
+    if (isAuthenticated) {
+      localStorage.setItem('user', JSON.stringify(user));
+    }
   }, [isAuthenticated, user]);
   return isLoading ? (
     <div>Loading..</div>
