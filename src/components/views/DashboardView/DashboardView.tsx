@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FullscreenImageOverlay } from '../../modals';
 import {
   Leaderboard,
@@ -8,6 +8,7 @@ import {
   VotingOrganism,
 } from '../../organisms';
 import { DashboardTemplate } from '../../templates';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export interface DashboardViewProps {
   submitVotes?: () => Promise<unknown>;
@@ -16,7 +17,18 @@ export interface DashboardViewProps {
 export default function DashboardView({
   submitVotes,
 }: DashboardViewProps): React.ReactElement {
-  return (
+  const { user, isLoading, isAuthenticated } = useAuth0();
+  useEffect(() => {
+    console.log(`isLoading: ${isLoading}`);
+  }, [isLoading]);
+  useEffect(() => {
+    // no need to store the user in localStorage since user data is accessible via the Auth0 Provider
+    console.log(`isAuthenticated: ${isAuthenticated}`);
+    console.log(user || 'no user authenticated');
+  }, [isAuthenticated, user]);
+  return isLoading ? (
+    <div>Loading..</div>
+  ) : (
     <DashboardTemplate>
       <FullscreenImageOverlay />
       <TwoColumn left={<Prompt />} right={<Leaderboard />} />
