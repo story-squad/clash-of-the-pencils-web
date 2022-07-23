@@ -19,12 +19,10 @@ export default function DashboardView({
 }: DashboardViewProps): React.ReactElement {
   const { user, isLoading, isAuthenticated } = useAuth0();
   useEffect(() => {
-    console.log(`isLoading: ${isLoading}`);
-  }, [isLoading]);
-  useEffect(() => {
     // no need to store the user in localStorage since user data is accessible via the Auth0 Provider
     if (isAuthenticated) {
-      localStorage.setItem('user', JSON.stringify(user));
+      console.log('Authenticated');
+      console.table(user);
     }
   }, [isAuthenticated, user]);
   return isLoading ? (
