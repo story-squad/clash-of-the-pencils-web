@@ -1,7 +1,5 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import Auth0Login from './components/auth0/Auth0Login';
-import Auth0Profile from './components/auth0/Auth0Profile';
 import { ActivationModal } from './components/modals';
 import { LoginEmailRedirect, PrivateRoute } from './components/providers';
 import {
@@ -66,9 +64,6 @@ const App = (): React.ReactElement => {
           path="/activate"
           render={(props) => <ActivationModal {...props} />}
         />
-        {/* temporary routes for testing purposes */}
-        <Route path="/auth/auth0login" render={() => <Auth0Login />} />
-        <Route path="/auth/auth0profile" render={() => <Auth0Profile />} />
 
         {/* Private Routes */}
         <PrivateRoute path="/stories" component={() => <MyStoriesView />} />
