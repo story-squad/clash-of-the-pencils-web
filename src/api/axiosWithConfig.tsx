@@ -2,9 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 import { token } from '../utils';
 
 // Attempts to read the API URL from your ENV, falls back to localhost
-const baseURL =
-  process.env.REACT_APP_API_URL ||
-  'https://clash-api-node-g5j39.ondigitalocean.app';
+const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
 interface AxiosGeneratorProps {
   timeoutInSeconds?: number;
