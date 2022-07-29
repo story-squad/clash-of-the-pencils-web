@@ -1,6 +1,6 @@
 export interface ISubItem {
   id: number;
-  userId: number;
+  user_id: number;
   codename: string;
   dob?: Date | string;
   src: string;
@@ -23,8 +23,8 @@ export interface INewSubmission {
   confidence: number;
   score: number;
   rotation: number;
-  userId: number;
-  promptId: number;
+  user_id: number;
+  prompt_id: number;
   sourceId?: number;
   rumbleId?: number;
 }

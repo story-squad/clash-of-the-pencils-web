@@ -36,6 +36,8 @@ function MyStoriesViewContainer(): React.ReactElement {
 
   if (err) return <Redirect to={`/error?message=${readError(err)}`} />;
 
+  console.log(subIds && subIds.length < 1 === !!subIds);
+
   return subIds ? (
     <MyStoriesView submissionIds={subIds} />
   ) : (

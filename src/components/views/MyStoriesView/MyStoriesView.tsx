@@ -17,14 +17,15 @@ export default function MyStoriesView({
       <FullscreenImageOverlay />
       <div className="my-submissions">
         <h2>My Stories</h2>
-        {submissionIds.length < 1 && (
+        {submissionIds.length < 1 ? (
           <p>You haven&apos;t submitted any stories&nbsp;yet!</p>
+        ) : (
+          <CardList className="my-submissions-card-list">
+            {submissionIds.map((id) => (
+              <SubmissionCard key={id} droppable={false} submissionId={id} />
+            ))}
+          </CardList>
         )}
-        <CardList className="my-submissions-card-list">
-          {submissionIds.map((id) => (
-            <SubmissionCard key={id} droppable={false} submissionId={id} />
-          ))}
-        </CardList>
       </div>
     </DashboardTemplate>
   );

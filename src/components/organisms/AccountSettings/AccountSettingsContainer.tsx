@@ -52,7 +52,6 @@ export default function AccountContainer({
     confirmText: 'Delete Account',
     onConfirm: onConfirm,
   });
-  console.log(user?.user_id);
 
   return (
     <div className="account-wrapper">

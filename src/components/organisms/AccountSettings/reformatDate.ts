@@ -12,12 +12,12 @@ const monthNames = [
   'November',
   'December',
 ];
-
+const pattern = /[/-]+/g;
 export default function reformatDate(
   dob: string | undefined,
 ): string | undefined {
   if (dob) {
-    const [year, month, day] = dob.split('-');
+    const [year, month, day] = dob.split(pattern);
     const newDate = monthNames[parseInt(month) - 1] + ' ' + day + ', ' + year;
     return newDate;
   } else {

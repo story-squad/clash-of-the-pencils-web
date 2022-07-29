@@ -133,7 +133,7 @@ import { user } from '../state';
 
 const Component = (): React.ReactElement => {
   // To call the Atom
-  const [userId, setUserId] = useRecoilState(user.userId);
+  const [userId, setUserId] = useRecoilState(user.user_id);
   // To read the Selector value
   const userIdSelector = useRecoilValue(user.userIdSelector);
 

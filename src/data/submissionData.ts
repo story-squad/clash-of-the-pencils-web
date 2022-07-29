@@ -12,7 +12,7 @@ export default [
     rotation: 0,
     score: 75,
     src: handwritingExample,
-    userId: 1,
+    user_id: 1,
     dob: DateTime.now().minus({ years: 18 }).toISO(),
   },
   {
@@ -23,7 +23,7 @@ export default [
     rotation: 90,
     score: 55,
     src: handwritingExampleRotated,
-    userId: 1,
+    user_id: 1,
     dob: DateTime.now().minus({ years: 18 }).toISO(),
   },
   {
@@ -34,7 +34,7 @@ export default [
     rotation: 0,
     score: 100,
     src: handwritingExample,
-    userId: 1,
+    user_id: 1,
     dob: DateTime.now().minus({ years: 18 }).toISO(),
   },
 ] as Submissions.ISubItem[];

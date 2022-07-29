@@ -83,14 +83,23 @@ export default {
     rules,
     ...props
   }: FormInputMapProps = {}): React.ReactElement {
+    const [isShow, setShow] = useState(false);
+
     return (
       <Input
         {...props}
         name="confirmPassword"
         label="Re-Enter Password"
-        inputType="password"
+        inputType={isShow ? 'text' : 'password'}
         rules={{ required: 'Please enter a password!', ...rules }}
         placeholder="Re-enter your password"
+        iconRight={
+          isShow === true ? (
+            <FiEye onClick={() => setShow(false)} />
+          ) : (
+            <FiEyeOff onClick={() => setShow(true)} />
+          )
+        }
       />
     );
   },

@@ -1,10 +1,14 @@
 import { axiosWithAuth } from '../axiosWithConfig';
 import { ISubItem } from './types';
 
-export const getMySubmissions = async (userId: number): Promise<ISubItem[]> => {
-  const { data } = await axiosWithAuth().get(
-    `/api/users/${userId}/submissions`,
-  );
+export const getMySubmissions = async (
+  user_id: number,
+): Promise<ISubItem[] | undefined> => {
+  let data;
+  await axiosWithAuth()
+    .get(`/api/users/${user_id}/submissions`)
+    .then((res) => (data = res))
+    .catch((err) => console.log(err));
   return data;
 };
 
@@ -20,7 +24,9 @@ export const getUserSubForToday = async (): Promise<ISubItem | undefined> => {
   await axiosWithAuth()
     .get('/api/submissions/today')
     .then((res) => (data = res))
-    .catch((err) => console.log(err));
+    .catch((err) =>
+      console.log('No submission or Can not get submission. ', err),
+    );
   return data;
 };
 
