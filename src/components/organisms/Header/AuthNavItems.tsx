@@ -3,22 +3,20 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useHeaderContext from './useHeaderContext';
 import { useAuth0 } from '@auth0/auth0-react';
-import createAuth0Client from '@auth0/auth0-spa-js';
 
 export default function AuthNavItems({
   className,
 }: {
   className?: string;
 } = {}): React.ReactElement {
-  const { user, closeMenu } = useHeaderContext();
-  const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
+  const { closeMenu } = useHeaderContext();
+  const { loginWithRedirect, isAuthenticated, logout, user, getIdTokenClaims } =
+    useAuth0();
   useEffect(() => {
-    createAuth0Client({
-      domain: process.env.REACT_APP_AUTH0_DOMAIN || '',
-      client_id: process.env.REACT_APP_AUTH0_CLIENT_ID || '',
-    }).then((auth0) => {
-      console.log(auth0);
-    });
+    if (isAuthenticated) {
+      getIdTokenClaims().then((claims) => console.log(claims));
+      console.log(user?.metadata);
+    }
   }, [isAuthenticated]);
   const handleLogoutClick = (): void => {
     logout({
@@ -27,25 +25,7 @@ export default function AuthNavItems({
         'http://localhost:3000/',
     });
   };
-  return user ? (
-    <>
-      <li className={classnames('auth-nav', className)}>
-        <span className="link">
-          Welcome, <span className="codename">{user.codename}</span>!
-        </span>
-      </li>
-      <li className={classnames('auth-nav', className)}>
-        <Link to="/account" onClick={closeMenu}>
-          My Account
-        </Link>
-      </li>
-      <li className={classnames('auth-nav', className)}>
-        <Link to="/stories" onClick={closeMenu}>
-          My Stories
-        </Link>
-      </li>
-    </>
-  ) : (
+  return (
     <>
       <li className={classnames('auth-nav', className)}>
         {isAuthenticated ? (
@@ -56,19 +36,39 @@ export default function AuthNavItems({
             Logout
           </button>
         ) : (
-          <p
+          <button
             className={classnames('auth-nav', className)}
             onClick={loginWithRedirect}
           >
             Log In
-          </p>
+          </button>
         )}
       </li>
-      <li className={classnames('auth-nav', className)}>
-        <Link to="/signup" onClick={closeMenu}>
-          Sign Up
-        </Link>
-      </li>
+      {user ? (
+        <>
+          <li className={classnames('auth-nav', className)}>
+            <span className="link">
+              Welcome, <span className="codename">{user.given_name}</span>!
+            </span>
+          </li>
+          <li className={classnames('auth-nav', className)}>
+            <Link to="/account" onClick={closeMenu}>
+              My Account
+            </Link>
+          </li>
+          <li className={classnames('auth-nav', className)}>
+            <Link to="/stories" onClick={closeMenu}>
+              My Stories
+            </Link>
+          </li>
+        </>
+      ) : (
+        <li className={classnames('auth-nav', className)}>
+          <Link to="/signup" onClick={closeMenu}>
+            Sign Up
+          </Link>
+        </li>
+      )}
     </>
   );
 }
