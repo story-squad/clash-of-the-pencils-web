@@ -1,8 +1,9 @@
 import { classnames } from '@story-squad/react-utils';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useHeaderContext from './useHeaderContext';
 import { useAuth0 } from '@auth0/auth0-react';
+import createAuth0Client from '@auth0/auth0-spa-js';
 
 export default function AuthNavItems({
   className,
@@ -11,6 +12,14 @@ export default function AuthNavItems({
 } = {}): React.ReactElement {
   const { user, closeMenu } = useHeaderContext();
   const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
+  useEffect(() => {
+    createAuth0Client({
+      domain: process.env.REACT_APP_AUTH0_DOMAIN || '',
+      client_id: process.env.REACT_APP_AUTH0_CLIENT_ID || '',
+    }).then((auth0) => {
+      console.log(auth0);
+    });
+  }, [isAuthenticated]);
   const handleLogoutClick = (): void => {
     logout({
       returnTo:
@@ -40,12 +49,12 @@ export default function AuthNavItems({
     <>
       <li className={classnames('auth-nav', className)}>
         {isAuthenticated ? (
-          <p
+          <button
             className={classnames('auth-nav', className)}
             onClick={handleLogoutClick}
           >
             Logout
-          </p>
+          </button>
         ) : (
           <p
             className={classnames('auth-nav', className)}
