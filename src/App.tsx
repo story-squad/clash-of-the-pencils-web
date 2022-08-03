@@ -9,7 +9,6 @@ import {
   ErrorView,
   ForgotCodenameView,
   ForgotPasswordView,
-  LoginView,
   MyStoriesView,
   ResetPasswordView,
   ScheduleView,
@@ -31,16 +30,6 @@ const App = (): React.ReactElement => {
         <Route path="/error" component={ErrorView} />
 
         {/* Auth Routes */}
-        <Route
-          path="/login"
-          render={({ history }) => (
-            <LoginView
-              openSignup={() => history.push('/signup')}
-              openForgotCodename={() => history.push('/forgot/codename')}
-              openForgotPassword={() => history.push('/forgot/password')}
-            />
-          )}
-        />
         <Route
           path="/signup"
           render={({ history }) => (

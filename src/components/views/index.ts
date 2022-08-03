@@ -4,7 +4,6 @@ export * from './DashboardView';
 export * from './ErrorView';
 export * from './ForgotCodenameView';
 export * from './ForgotPasswordView';
-export * from './LoginView';
 export * from './MyStoriesView';
 export * from './ResetPasswordView';
 export * from './ScheduleView';
