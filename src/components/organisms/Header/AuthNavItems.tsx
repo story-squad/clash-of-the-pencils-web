@@ -49,18 +49,6 @@ export default function AuthNavItems({
       });
     }
   }, [isAuthenticated]);
-  useEffect(() => {
-    if (userInfo !== undefined) {
-      console.groupCollapsed(
-        '%cUser metadata %c🡇',
-        'color: #F4BC1C',
-        'color: #007AAF',
-      );
-      console.table(userInfo);
-      console.groupEnd();
-    }
-    // set recoil state with metadata
-  }, [userInfo]);
   const handleLogoutClick = (): void => {
     logout({
       returnTo:
