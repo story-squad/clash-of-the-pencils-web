@@ -15,7 +15,6 @@ export default function AuthNavItems({
   useEffect(() => {
     if (isAuthenticated) {
       getIdTokenClaims().then((claims) => console.log(claims));
-      console.log(user?.metadata);
     }
   }, [isAuthenticated]);
   const handleLogoutClick = (): void => {
