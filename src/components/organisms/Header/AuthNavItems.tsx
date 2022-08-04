@@ -73,7 +73,11 @@ export default function AuthNavItems({
         <>
           <li className={classnames('auth-nav', className)}>
             <span className="link">
-              Welcome, <span className="codename">{user.given_name}</span>!
+              Welcome,{' '}
+              <span className="codename">
+                {userMetadata?.codename ? userMetadata.codename : user.name}
+              </span>
+              !
             </span>
           </li>
           <li className={classnames('auth-nav', className)}>
