@@ -1,8 +1,9 @@
 import { classnames } from '@story-squad/react-utils';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useHeaderContext from './useHeaderContext';
 import { useAuth0 } from '@auth0/auth0-react';
+import { IUser } from '../../../api/Users';
 
 export default function AuthNavItems({
   className,
@@ -12,11 +13,36 @@ export default function AuthNavItems({
   const { closeMenu } = useHeaderContext();
   const { loginWithRedirect, isAuthenticated, logout, user, getIdTokenClaims } =
     useAuth0();
+  const [userMetadata, setUserMetadata] = useState<IUser>();
   useEffect(() => {
     if (isAuthenticated) {
-      getIdTokenClaims().then((claims) => console.log(claims));
+      console.groupCollapsed('User is authenticated, getting user metadata');
+      getIdTokenClaims().then((claims) => {
+        console.log(claims);
+        const metadata: IUser = {
+          codename: claims?.codename,
+          created_at: claims?.created_at,
+          dob: claims?.dob,
+          email: claims?.email || '',
+          firstname: claims?.firstname,
+          isValidated: claims?.isValidated,
+          lastname: claims?.lastname,
+          roleId: claims?.role_id,
+          id: claims?.id,
+          updated_at: new Date(),
+          password: '',
+        };
+        console.groupEnd();
+        setUserMetadata(metadata);
+      });
     }
   }, [isAuthenticated]);
+  useEffect(() => {
+    if (userMetadata) {
+      console.table(userMetadata);
+    }
+    // set recoil state with metadata
+  }, [userMetadata]);
   const handleLogoutClick = (): void => {
     logout({
       returnTo:
