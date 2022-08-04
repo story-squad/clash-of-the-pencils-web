@@ -16,9 +16,18 @@ export default function AuthNavItems({
   const [userMetadata, setUserMetadata] = useState<IUser>();
   useEffect(() => {
     if (isAuthenticated) {
-      console.groupCollapsed('User is authenticated, getting user metadata');
+      console.log(
+        '%cUser is authenticated, getting user metadata...',
+        'color: #3BB143; font-weight: bold;',
+      );
       getIdTokenClaims().then((claims) => {
-        console.log(claims);
+        console.groupCollapsed(
+          '%cClaims %c🡇 ',
+          'color: #F9C70C',
+          'color: #007AAF',
+        );
+        console.table(claims);
+        console.groupEnd();
         const metadata: IUser = {
           codename: claims?.codename,
           created_at: claims?.created_at,
@@ -32,14 +41,19 @@ export default function AuthNavItems({
           updated_at: new Date(),
           password: '',
         };
-        console.groupEnd();
         setUserMetadata(metadata);
       });
     }
   }, [isAuthenticated]);
   useEffect(() => {
-    if (userMetadata) {
+    if (userMetadata !== undefined) {
+      console.groupCollapsed(
+        '%cUser metadata %c🡇',
+        'color: #F4BC1C',
+        'color: #007AAF',
+      );
       console.table(userMetadata);
+      console.groupEnd();
     }
     // set recoil state with metadata
   }, [userMetadata]);
