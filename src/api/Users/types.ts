@@ -29,6 +29,6 @@ export interface IOAuthUser {
 
 export enum Roles {
   user = 1,
-  teacher = 2,
-  admin = 3,
+  teacher,
+  admin,
 }
