@@ -1,9 +1,11 @@
 import { classnames } from '@story-squad/react-utils';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useHeaderContext from './useHeaderContext';
 import { useAuth0 } from '@auth0/auth0-react';
 import { IUser } from '../../../api/Users';
+import { user } from '../../../state/authState';
+import { useRecoilState } from 'recoil';
 
 export default function AuthNavItems({
   className,
@@ -11,9 +13,10 @@ export default function AuthNavItems({
   className?: string;
 } = {}): React.ReactElement {
   const { closeMenu } = useHeaderContext();
-  const { loginWithRedirect, isAuthenticated, logout, user, getIdTokenClaims } =
+  const { loginWithRedirect, isAuthenticated, logout, getIdTokenClaims } =
     useAuth0();
-  const [userMetadata, setUserMetadata] = useState<IUser>();
+  const auth0User = useAuth0().user;
+  const [userInfo, setUserInfo] = useRecoilState(user);
   useEffect(() => {
     if (isAuthenticated) {
       console.log(
@@ -28,6 +31,7 @@ export default function AuthNavItems({
         );
         console.table(claims);
         console.groupEnd();
+        // break out into separate function
         const metadata: IUser = {
           codename: claims?.codename,
           created_at: claims?.created_at,
@@ -41,22 +45,22 @@ export default function AuthNavItems({
           updated_at: new Date(),
           password: '',
         };
-        setUserMetadata(metadata);
+        setUserInfo(metadata);
       });
     }
   }, [isAuthenticated]);
   useEffect(() => {
-    if (userMetadata !== undefined) {
+    if (userInfo !== undefined) {
       console.groupCollapsed(
         '%cUser metadata %c🡇',
         'color: #F4BC1C',
         'color: #007AAF',
       );
-      console.table(userMetadata);
+      console.table(userInfo);
       console.groupEnd();
     }
     // set recoil state with metadata
-  }, [userMetadata]);
+  }, [userInfo]);
   const handleLogoutClick = (): void => {
     logout({
       returnTo:
@@ -83,13 +87,13 @@ export default function AuthNavItems({
           </button>
         )}
       </li>
-      {user ? (
+      {auth0User ? (
         <>
           <li className={classnames('auth-nav', className)}>
             <span className="link">
               Welcome,{' '}
               <span className="codename">
-                {userMetadata?.codename ? userMetadata.codename : user.name}
+                {userInfo?.codename ? userInfo.codename : auth0User.name}
               </span>
               !
             </span>
