@@ -2,7 +2,6 @@ export interface IUser extends Omit<INewUser, 'parentEmail'> {
   id: number;
   isValidated: boolean;
   codename: string;
-  password: string;
   email: string;
   roleId: number;
   dob: string;
