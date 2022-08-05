@@ -8,8 +8,36 @@ interface AxiosGeneratorProps {
   timeoutInSeconds?: number;
 }
 
-async function getAccessToken(): Promise<string> {
-  return await useAuth0().getAccessTokenSilently();
+const auth0Config: {
+  audience: string | undefined;
+  domain: string | undefined;
+} = {
+  audience: process.env.REACT_APP_AUTH0_AUDIENCE,
+  domain: process.env.REACT_APP_AUTH0_DOMAIN,
+};
+
+/**
+ * @title getAccessToken
+ * @description Calls the Auth0 getAccessTokenSilently method to retrieve the access token from Auth0 to attach to the request header (Authorization: Bearer + AccessToken) for use with protected API routes
+ * @param auth0Config - Auth0 config object: { audience, domain }
+ * @returns Auth0 access token
+ */
+
+async function getAccessToken(): Promise<string | unknown> {
+  try {
+    const accessToken = await useAuth0().getAccessTokenSilently(auth0Config);
+    return accessToken;
+  } catch (e: unknown) {
+    if (e instanceof Error) {
+      if (e.message === 'login_required' || e.message === 'consent_required') {
+        useAuth0().loginWithRedirect();
+      }
+    } else {
+      if (e instanceof Error) {
+        throw e;
+      }
+    }
+  }
 }
 
 export const axiosWithAuth = ({
