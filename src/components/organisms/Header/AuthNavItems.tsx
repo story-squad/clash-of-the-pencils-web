@@ -45,6 +45,13 @@ export default function AuthNavItems({
           updated_at: new Date(),
           password: '',
         };
+        console.groupCollapsed(
+          '%cMetadata %c🡇 ',
+          'color: #F9C70C',
+          'color: #007AAF',
+        );
+        console.table(metadata);
+        console.groupEnd();
         setUserInfo(metadata);
       });
     }
