@@ -4,3 +4,4 @@ export * as dataConstraints from './dataConstraints';
 export * as seoConfig from './seoConfig';
 export * as tooltips from './tooltips';
 export { IDS as TUTORIAL_IDS } from './tutorialSelectionIds';
+export { auth0Config } from './auth0';
