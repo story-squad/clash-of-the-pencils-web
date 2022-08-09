@@ -1,12 +1,10 @@
-import React, { useEffect, useMemo } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
-import { parse } from '../../utils';
+import { useAuth0 } from '@auth0/auth0-react';
+import React, { useEffect } from 'react';
 
 export default function LoginEmailRedirect(): React.ReactElement {
-  const { search } = useLocation();
-  const { codename } = useMemo(() => parse<'codename'>(search), [search]);
-  const { push } = useHistory();
-  const openLogin = () => push('/login', { codename });
-  useEffect(openLogin);
+  const { loginWithRedirect } = useAuth0();
+  useEffect(() => {
+    loginWithRedirect();
+  }, []);
   return <></>;
 }
