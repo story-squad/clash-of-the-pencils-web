@@ -1,22 +1,28 @@
 import axios, { AxiosInstance } from 'axios';
+import { token } from '../utils';
 
 // Attempts to read the API URL from your ENV, falls back to localhost
-const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+const baseURL = process.env.REACT_APP_API_URL || 'https://localhost:8000';
 
 interface AxiosGeneratorProps {
-  authToken?: string;
+  timeoutInSeconds?: number;
 }
 
 export const axiosWithAuth = ({
-  authToken,
-}: AxiosGeneratorProps): AxiosInstance => {
+  timeoutInSeconds = 0,
+}: AxiosGeneratorProps = {}): AxiosInstance => {
+  const Authorization = token.get();
   return axios.create({
     baseURL,
-    headers: { Authorization: `Bearer ${authToken}` },
+    headers: { Authorization },
+    timeout: timeoutInSeconds * 1000,
   });
 };
 
-export const axiosWithoutAuth = (): AxiosInstance =>
+export const axiosWithoutAuth = ({
+  timeoutInSeconds = 0,
+}: AxiosGeneratorProps = {}): AxiosInstance =>
   axios.create({
     baseURL,
+    timeout: timeoutInSeconds * 1000,
   });
