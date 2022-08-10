@@ -17,7 +17,6 @@ import {
   TermsView,
   WinnersView,
 } from './components/views';
-// import { auth0Config } from './config';
 
 const App = (): React.ReactElement => {
   const { isAuthenticated, getAccessTokenSilently, loginWithRedirect } =
