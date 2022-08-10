@@ -26,3 +26,16 @@ export const axiosWithoutAuth = ({
     baseURL,
     timeout: timeoutInSeconds * 1000,
   });
+/**
+ *
+ * @title axiosWithAuth0
+ * @param accessToken: obtained by calling getAccessTokenSilently from the useAuth0 hook in the calling component.
+ * @returns axios instance with Authorization header containing a fresh access token to use for authentication in the API request.
+ */
+export const axiosWithAuth0 = (accessToken: string): AxiosInstance =>
+  axios.create({
+    baseURL,
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
