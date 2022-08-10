@@ -1,5 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { ActivationModal } from './components/modals';
 import { LoginEmailRedirect, PrivateRoute } from './components/providers';
@@ -17,36 +17,17 @@ import {
   TermsView,
   WinnersView,
 } from './components/views';
-import { auth0Config } from './config';
+// import { auth0Config } from './config';
 
 const App = (): React.ReactElement => {
-  /**
-   * @title getAccessToken
-   * @description Calls the Auth0 getAccessTokenSilently method to retrieve the access token from Auth0 to attach to the request header (Authorization: Bearer + AccessToken) for use with protected API routes
-   * @param auth0Config - Auth0 config object: { audience, domain }
-   * @returns A promise that resolves to the access token
-   */
-
-  async function getAccessToken(): Promise<string | void> {
-    try {
-      const accessToken = await useAuth0().getAccessTokenSilently(auth0Config);
-      return accessToken;
-    } catch (e) {
-      if (e instanceof Error) {
-        if (
-          e.message === 'login_required' ||
-          e.message === 'consent_required'
-        ) {
-          useAuth0().loginWithRedirect();
-        }
-      } else {
-        if (e instanceof Error) {
-          console.log('Error getting access token');
-          throw e;
-        }
-      }
-    }
-  }
+  const { isAuthenticated, getAccessTokenSilently, loginWithRedirect } =
+    useAuth0();
+  useEffect(() => {
+    if (isAuthenticated)
+      getAccessTokenSilently()
+        .then((res) => console.log(res))
+        .catch(() => loginWithRedirect());
+  }, [isAuthenticated]);
 
   return (
     <div className="App">
