@@ -1,5 +1,4 @@
-import { useAuth0 } from '@auth0/auth0-react';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { ActivationModal } from './components/modals';
 import { LoginEmailRedirect, PrivateRoute } from './components/providers';
@@ -19,15 +18,6 @@ import {
 } from './components/views';
 
 const App = (): React.ReactElement => {
-  const { isAuthenticated, getAccessTokenSilently, loginWithRedirect } =
-    useAuth0();
-  useEffect(() => {
-    if (isAuthenticated)
-      getAccessTokenSilently()
-        .then((res) => console.log(res))
-        .catch(() => loginWithRedirect());
-  }, [isAuthenticated]);
-
   return (
     <div className="App">
       {/* <SEO /> */}
