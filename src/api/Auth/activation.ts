@@ -1,4 +1,4 @@
-import { axiosWithAuth } from '../axiosWithConfig';
+import { axiosWithAuth0 } from '../axiosWithConfig';
 
 /**
  * No parameters needed, but you need to be logged in. This will resend
@@ -6,7 +6,7 @@ import { axiosWithAuth } from '../axiosWithConfig';
  * account to receive one.
  */
 export async function resend(): Promise<void> {
-  await axiosWithAuth().put(`/api/auth/activation`);
+  await axiosWithAuth0().put(`/api/auth/activation`);
 }
 
 /**
@@ -18,5 +18,5 @@ export async function sendTo({
 }: {
   email: string;
 }): Promise<void> {
-  await axiosWithAuth().post(`/api/auth/activation`, { newEmail });
+  await axiosWithAuth0().post(`/api/auth/activation`, { newEmail });
 }

@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { axiosWithAuth } from '../axiosWithConfig';
+import { axiosWithAuth0 } from '../axiosWithConfig';
 import { IUser } from './types';
 
 /** Use this to update user data, make sure to pass in ID */
@@ -14,7 +14,7 @@ export const update = async ({
       ),
     );
   }
-  const { data } = await axiosWithAuth().put(`/api/users/${id}`, changes);
+  const { data } = await axiosWithAuth0().put(`/api/users/${id}`, changes);
   return data;
 };
 
@@ -27,7 +27,7 @@ export const deleteUser = async ({ id }: Partial<IUser>): Promise<void> => {
       ),
     );
   }
-  const { data } = await axiosWithAuth().delete(`/api/users/${id}`);
+  const { data } = await axiosWithAuth0().delete(`/api/users/${id}`);
   return data;
 };
 // DONT USE THESE
@@ -40,14 +40,14 @@ export const deleteUser = async ({ id }: Partial<IUser>): Promise<void> => {
 export const resetUsername = (
   body: UpdateUsernameBody,
 ): Promise<AxiosResponse<ResetReponse>> => {
-  return axiosWithAuth().post('/email/resetusername', body);
+  return axiosWithAuth0().post('/email/resetusername', body);
 };
 
 /** DONT USE */
 export const resetPassword = (
   body: UpdatePasswordBody,
 ): Promise<AxiosResponse<ResetReponse>> => {
-  return axiosWithAuth().post('/email/resetpassword', body);
+  return axiosWithAuth0().post('/email/resetpassword', body);
 };
 
 export interface ResetReponse {
