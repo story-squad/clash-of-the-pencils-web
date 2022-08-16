@@ -17,16 +17,12 @@ import {
   WinnersView,
 } from './components/views';
 import { useAuth0 } from '@auth0/auth0-react';
-import { auth } from './state';
-import { useRecoilState } from 'recoil';
 
 const App = (): React.ReactElement => {
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
-  const [, setAccessToken] = useRecoilState(auth.accessToken);
   useEffect(() => {
     if (isAuthenticated)
       getAccessTokenSilently().then((token) => {
-        setAccessToken(token);
         sessionStorage.setItem('token', token);
       });
   }, [isAuthenticated]);
