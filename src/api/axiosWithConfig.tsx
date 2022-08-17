@@ -29,11 +29,10 @@ export const axiosWithoutAuth = ({
 /**
  *
  * @title axiosWithAuth0
- * @param accessToken retrieved from Recoil state
- * @returns axios instance with Authorization header containing a fresh access token to use for authentication in the API request.
+ * @returns axios instance with Authorization header containing an access token retrieved from session storage to use for authentication in the API request.
  */
 export const axiosWithAuth0 = (): AxiosInstance => {
-  const accessToken = sessionStorage.getItem('token'); // Get this access token from Recoil state
+  const accessToken = sessionStorage.getItem('token');
   return axios.create({
     baseURL,
     headers: {
