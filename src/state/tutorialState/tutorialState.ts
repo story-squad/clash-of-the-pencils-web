@@ -2,7 +2,7 @@ import { atom, selector } from 'recoil';
 import { messages, TutorialMessage } from '.';
 import { persist } from '../effects';
 
-const LOCAL_STORAGE_TUTOIRAL_KEY = 'tutorial-Key';
+const LOCAL_STORAGE_TUTORIAL_KEY = 'tutorial-Key';
 
 /**
  * Whether or not to show the tutorial on app load. Value is
@@ -11,7 +11,7 @@ const LOCAL_STORAGE_TUTOIRAL_KEY = 'tutorial-Key';
 export const showTutorial = atom<boolean>({
   key: 'tutorial-key-atom',
   default: true,
-  effects_UNSTABLE: [persist(LOCAL_STORAGE_TUTOIRAL_KEY)],
+  effects_UNSTABLE: [persist(LOCAL_STORAGE_TUTORIAL_KEY)],
 });
 
 /**
