@@ -17,9 +17,11 @@ ReactDOM.render(
       <Auth0Provider
         domain={process.env.REACT_APP_AUTH0_DOMAIN || ''}
         clientId={process.env.REACT_APP_AUTH0_CLIENT_ID || ''}
-        redirectUri="http://localhost:3000/"
+        redirectUri={window.location.origin}
         useRefreshTokens={true}
-        cacheLocation="localstorage" // this is where the data returned from Auth0 will be stored
+        cacheLocation="localstorage"
+        audience="https://clash-api-auth0"
+        scope="read:current_user update_current_user_metadata"
       >
         <RecoilRoot>
           <Router>
