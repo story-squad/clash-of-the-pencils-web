@@ -36,7 +36,7 @@ export const axiosWithAuth0 = (): AxiosInstance => {
   return axios.create({
     baseURL,
     headers: {
-      Authorization: `Bearer ${accessToken}`,
+      authorization: `Bearer ${accessToken}`,
     },
   });
 };
