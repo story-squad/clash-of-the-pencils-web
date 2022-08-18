@@ -2,13 +2,14 @@ import React, { Suspense, useMemo, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { useConfirmationModal } from '../../../hooks';
-import { app, auth, prompts } from '../../../state';
+import { app, prompts } from '../../../state';
 import { time } from '../../../utils';
 import { SubmissionModal } from '../../modals';
 import { DragonLoader } from '../../molecules';
 import LoginToSubmitModal from './LoginToSubmitModal';
 import PromptOrganism from './PromptOrganism';
 import './styles/promptOrganismLoader.scss';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function PromptOrganismContainer(): React.ReactElement {
   // Handle submission form modal state
@@ -16,7 +17,8 @@ function PromptOrganismContainer(): React.ReactElement {
   // Async retrieve current prompt
   const prompt = useRecoilValue(prompts.currentPrompt);
   // If the user isn't logged in they can't submit!
-  const userIsLoggedIn = useRecoilValue(auth.isLoggedIn);
+  // const userIsLoggedIn = useRecoilValue(auth.isLoggedIn);
+  const { isAuthenticated } = useAuth0(); // Auth status comes from the Auth0 provider
 
   const userSubmission = useRecoilValue(app.userSubForToday);
   const openAnImage = useSetRecoilState(app.imageView.openImage);
@@ -59,7 +61,7 @@ function PromptOrganismContainer(): React.ReactElement {
   });
   return (
     <>
-      {userIsLoggedIn ? (
+      {isAuthenticated ? (
         // If they're logged in, they can submit!
         <SubmissionModal
           isOpen={modalIsOpen}
