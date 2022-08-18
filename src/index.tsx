@@ -20,8 +20,8 @@ ReactDOM.render(
         redirectUri={window.location.origin}
         useRefreshTokens={true}
         cacheLocation="localstorage"
-        audience="https://clash-api-auth0"
-        scope="read:current_user update_current_user_metadata"
+        audience="https://clash-api-auth0" // this is the identifier found in the Auth0 dashboard under Applications > APIs > Clash API
+        scope="read:data write:data" // these are the scopes listed in the Auth0 dashboard under Applications > APIs > Clash API
       >
         <RecoilRoot>
           <Router>
