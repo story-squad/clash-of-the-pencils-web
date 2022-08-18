@@ -22,10 +22,7 @@ const App = (): React.ReactElement => {
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
   useEffect(() => {
     if (isAuthenticated)
-      getAccessTokenSilently({
-        audience: `${process.env.REACT_APP_AUTH0_DOMAIN}/api/v2/`,
-        scope: 'read:data write:data',
-      }).then((token) => {
+      getAccessTokenSilently().then((token) => {
         sessionStorage.setItem('token', token);
       });
   }, [isAuthenticated]);
