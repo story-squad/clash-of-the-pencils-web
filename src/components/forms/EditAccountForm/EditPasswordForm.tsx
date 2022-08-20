@@ -36,7 +36,7 @@ export default function AccountUpdateForm({
 }: NewPasswordProps): React.ReactElement {
   const { watch, handleSubmit, reset } = useFormContext();
   const user = useRecoilValue(auth.user);
-  const setSubmited = useSetRecoilState(account.isSubmitted);
+  const setSubmitted = useSetRecoilState(account.isSubmitted);
 
   const cancel = () => {
     onCancel();
@@ -51,7 +51,7 @@ export default function AccountUpdateForm({
       }
     },
     onError,
-    onSuccess: () => setSubmited(true),
+    onSuccess: () => setSubmitted(true),
   });
 
   return (
