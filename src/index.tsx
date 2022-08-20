@@ -15,12 +15,12 @@ ReactDOM.render(
   <React.StrictMode>
     <HelmetProvider>
       <Auth0Provider
-        domain={process.env.REACT_APP_AUTH0_DOMAIN || ''}
+        domain={`https://${process.env.REACT_APP_AUTH0_DOMAIN}` || ''}
         clientId={process.env.REACT_APP_AUTH0_CLIENT_ID || ''}
         redirectUri={window.location.origin}
         useRefreshTokens={true}
         cacheLocation="localstorage"
-        audience="https://clash-api-auth0" // this is the identifier found in the Auth0 dashboard under Applications > APIs > Clash API
+        audience={process.env.REACT_APP_AUTH0_AUDIENCE} // this is the identifier found in the Auth0 dashboard under Applications > APIs > Clash API
         scope="read:data write:data" // these are the scopes listed in the Auth0 dashboard under Applications > APIs > Clash API
       >
         <RecoilRoot>
