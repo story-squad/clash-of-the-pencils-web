@@ -39,4 +39,24 @@ export const axiosWithAuth0 = (): AxiosInstance => {
       authorization: `Bearer ${accessToken}`,
     },
   });
+  // ALTERNATIVE APPROACH
+  // const tokenInstance = axios.create({
+  //   baseURL: 'https://dev-7oahzjpy.us.auth0.com/oauth',
+  //   headers: { 'content-type': 'application/json' },
+  // });
+  // const accessToken = tokenInstance
+  //   .post('/token', {
+  //     client_id: 'elB6hg4MrjVPZgjKHTLQBxeDFjUzraHx',
+  //     client_secret:
+  //       'z8P3VJxe8zbRwOEEulcqMuqfwmpyg51HZ1LUsEiUrmkwfFwUTYO_VxnDco1GW1HE',
+  //     audience: 'http://localhost:8000',
+  //     grant_type: 'client_credentials',
+  //   })
+  //   .then((response) => response.data.access_token);
+  // return axios.create({
+  //   baseURL,
+  //   headers: {
+  //     authorization: `Bearer ${accessToken}`,
+  //   },
+  // });
 };
