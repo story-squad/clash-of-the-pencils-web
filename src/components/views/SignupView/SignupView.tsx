@@ -8,6 +8,7 @@ import { CleverButton } from '../../atoms';
 import { SignupForm } from '../../forms';
 import { DashboardTemplate } from '../../templates';
 import './styles/index.scss';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export interface SignupViewProps {
   onSubmit?: (data: Users.INewUser) => void;
@@ -16,7 +17,6 @@ export interface SignupViewProps {
 
 export default function SignupView({
   onSubmit,
-  openLogin,
   cleverId,
   email,
   firstname,
@@ -31,9 +31,9 @@ export default function SignupView({
     shouldFocusError: true,
   });
   const { push } = useHistory();
-
+  // refactor to use loginWithRedirect from Auth0
   const login = useSetRecoilState(auth.login);
-
+  // needs to post user object to auth0 user database on submission
   const submitHandler = useCallback(
     onSubmit ??
       (async (data: Users.INewUser) => {
@@ -48,6 +48,7 @@ export default function SignupView({
       }),
     [login, onSubmit],
   );
+  const { loginWithRedirect } = useAuth0();
 
   return (
     <DashboardTemplate useStorySquadHeader className="signup-view">
@@ -75,7 +76,8 @@ export default function SignupView({
         <SignupForm onSubmit={submitHandler} hideToS={isNew} />
       </FormProvider>
       <p className="form-footer">
-        Already have an account? <span onClick={openLogin}>Sign In Here</span>
+        Already have an account?{' '}
+        <span onClick={() => loginWithRedirect()}>Sign In Here</span>
       </p>
     </DashboardTemplate>
   );
