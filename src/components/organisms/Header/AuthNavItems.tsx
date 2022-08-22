@@ -31,7 +31,7 @@ export default function AuthNavItems({
         );
         console.table(claims);
         console.groupEnd();
-        // break out into separate function
+        // This will very likely be scrapped in favor of adding user metadata during registration so this object will always be available
         const metadata: IUser = {
           codename: claims?.codename,
           created_at: claims?.created_at,
