@@ -117,6 +117,7 @@ export default function SignupForm({
                 checkCharacters: (value) => {
                   return (
                     dataConstraints.codenamePattern.test(value) ||
+                    dataConstraints.emailPattern.test(value) ||
                     'Only letters and numbers are allowed!'
                   );
                 },
