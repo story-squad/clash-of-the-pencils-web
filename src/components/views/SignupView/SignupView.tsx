@@ -10,6 +10,8 @@ import { DashboardTemplate } from '../../templates';
 import './styles/index.scss';
 import { useAuth0 } from '@auth0/auth0-react';
 
+// Rip out Clever per Graig
+
 export interface SignupViewProps {
   onSubmit?: (data: Users.INewUser) => void;
   openLogin?: () => void;
