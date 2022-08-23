@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { Auth, Clever, Users } from '../../../api';
 import { auth } from '../../../state';
-import { CleverButton } from '../../atoms';
 import { SignupForm } from '../../forms';
 import { DashboardTemplate } from '../../templates';
 import './styles/index.scss';
@@ -55,24 +54,7 @@ export default function SignupView({
   return (
     <DashboardTemplate useStorySquadHeader className="signup-view">
       <div className="signup-header">
-        {isNew ? (
-          <>
-            <h2>Hey, {firstname ? firstname : ''}!</h2>
-            <p>
-              <em>You&apos;ve been logged in to Clever!</em>
-            </p>
-            <p>
-              Fill out the following information to create your brand new Story
-              Squad account and we&apos;ll take care of the rest!
-            </p>
-          </>
-        ) : (
-          <>
-            <CleverButton htmlType="button" signUp />
-            <p className="alt-font">or</p>
-            <p>Sign Up Using Email Address</p>
-          </>
-        )}
+        <h2>Sign Up Using Email Address</h2>
       </div>
       <FormProvider {...methods}>
         <SignupForm onSubmit={submitHandler} hideToS={isNew} />
