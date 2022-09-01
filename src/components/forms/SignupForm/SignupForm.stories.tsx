@@ -3,15 +3,15 @@ import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { RecoilRoot } from 'recoil';
 import { sleep } from '../../../utils';
-import SignupForm, { SignupFormProps } from './SignupForm';
+import SignupForm from './SignupForm';
 
-const Template: Story<SignupFormProps> = (props) => {
-  return <SignupForm {...props} />;
+const Template: Story = () => {
+  return <SignupForm />;
 };
 
 export const Default = Template.bind({});
 Default.args = {
-  onSubmit: async (data) => {
+  onSubmit: async (data: unknown) => {
     console.log('[Form Data]', data);
     await sleep(2000);
   },

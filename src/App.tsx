@@ -4,7 +4,6 @@ import { ActivationModal } from './components/modals';
 import { LoginEmailRedirect, PrivateRoute } from './components/providers';
 import {
   AccountView,
-  CleverRedirectView,
   DashboardView,
   ErrorView,
   ForgotCodenameView,
@@ -38,12 +37,7 @@ const App = (): React.ReactElement => {
         <Route path="/error" component={ErrorView} />
 
         {/* Auth Routes */}
-        <Route
-          path="/signup"
-          render={({ history }) => (
-            <SignupView openLogin={() => history.push('/login')} />
-          )}
-        />
+        <Route path="/signup" render={() => <SignupView />} />
         <Route
           path="/forgot/password"
           render={({ history }) => (
@@ -53,7 +47,6 @@ const App = (): React.ReactElement => {
         <Route path="/forgot/codename" render={() => <ForgotCodenameView />} />
         <Route path="/account" render={() => <AccountView />} />
         <Route path="/reset/submit" render={() => <ResetPasswordView />} />
-        <Route path="/oauth/clever" render={() => <CleverRedirectView />} />
 
         {/* Redirects */}
         <Route path="/auth/login" render={() => <LoginEmailRedirect />} />

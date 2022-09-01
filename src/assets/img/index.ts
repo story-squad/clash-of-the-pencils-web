@@ -1,6 +1,5 @@
 export * as Badges from './badges';
 export { ReactComponent as ClashLogo } from './clash-logo.svg';
-export { default as cleverLogo } from './clever-logo.png';
 export { ReactComponent as ClockFaceLines } from './clock-face-lines.svg';
 export { default as editPencil } from './custom-pencil.svg';
 export { default as dragonBoi } from './dragon-boi.svg';
