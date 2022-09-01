@@ -1,5 +1,4 @@
 import React, { Suspense, useMemo, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { useConfirmationModal } from '../../../hooks';
 import { app, prompts } from '../../../state';
