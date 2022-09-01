@@ -18,7 +18,7 @@ function PromptOrganismContainer(): React.ReactElement {
   const prompt = useRecoilValue(prompts.currentPrompt);
   // If the user isn't logged in they can't submit!
   // const userIsLoggedIn = useRecoilValue(auth.isLoggedIn);
-  const { isAuthenticated } = useAuth0(); // Auth status comes from the Auth0 provider
+  const { isAuthenticated, loginWithRedirect } = useAuth0(); // Auth status comes from the Auth0 provider
 
   const userSubmission = useRecoilValue(app.userSubForToday);
   const openAnImage = useSetRecoilState(app.imageView.openImage);
@@ -37,10 +37,6 @@ function PromptOrganismContainer(): React.ReactElement {
       setModalIsOpen(true);
     }
   };
-
-  // Code to open the login page when not logged in
-  const { push } = useHistory();
-  const openLogin = () => push('/login');
 
   const votingTime = useMemo(
     () => time.schedule.vote.start.toLocal().toFormat('h:mm a'),
@@ -74,7 +70,7 @@ function PromptOrganismContainer(): React.ReactElement {
         <LoginToSubmitModal
           isOpen={modalIsOpen}
           setIsOpen={setModalIsOpen}
-          openLoginPage={openLogin}
+          openLoginPage={loginWithRedirect}
         />
       )}
       {successModal}
