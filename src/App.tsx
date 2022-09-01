@@ -61,7 +61,7 @@ const App = (): React.ReactElement => {
         {/* Public Routes */}
         <Route path="/schedule" render={() => <ScheduleView />} />
         <Route path="/winners" render={WinnersView} />
-        <Route path="/termsofservice" render={TermsView} />
+        <Route path="/terms-of-service" render={TermsView} />
 
         {/* Fallback Redirect to Dashboard */}
         <Route path="/" component={() => <Redirect to="/" />} />

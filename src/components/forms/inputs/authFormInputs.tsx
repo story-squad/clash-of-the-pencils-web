@@ -191,7 +191,7 @@ export default {
         label={
           <>
             I accept the{' '}
-            <Link to="/termsofservice" target="_blank">
+            <Link to="/terms-of-service" target="_blank">
               Terms of Service
             </Link>
           </>

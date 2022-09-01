@@ -9,7 +9,7 @@ export default function FooterNav(): React.ReactElement {
           <a>Contact</a>
         </li> */}
         <li>
-          <Link to="/termsofservice" target="_blank">
+          <Link to="/terms-of-service" target="_blank">
             Terms
           </Link>
         </li>
