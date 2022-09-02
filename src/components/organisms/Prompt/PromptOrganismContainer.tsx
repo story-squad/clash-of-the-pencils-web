@@ -17,7 +17,7 @@ function PromptOrganismContainer(): React.ReactElement {
   const prompt = useRecoilValue(prompts.currentPrompt);
   // If the user isn't logged in they can't submit!
   // const userIsLoggedIn = useRecoilValue(auth.isLoggedIn);
-  const { isAuthenticated, loginWithRedirect } = useAuth0(); // Auth status comes from the Auth0 provider
+  const { isAuthenticated } = useAuth0(); // Auth status comes from the Auth0 provider
 
   const userSubmission = useRecoilValue(app.userSubForToday);
   const openAnImage = useSetRecoilState(app.imageView.openImage);
@@ -69,7 +69,7 @@ function PromptOrganismContainer(): React.ReactElement {
         <LoginToSubmitModal
           isOpen={modalIsOpen}
           setIsOpen={setModalIsOpen}
-          openLoginPage={loginWithRedirect}
+          openLoginPage={() => console.log('login please')}
         />
       )}
       {successModal}
