@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { stringify } from 'query-string';
-import { axiosWithAuth0 } from '../axiosWithConfig';
+import { axiosWithAuth } from '../axiosWithConfig';
 import { ISubItem } from './types';
 
 export const getWinners = async ({
@@ -11,7 +11,7 @@ export const getWinners = async ({
   offset?: number;
 } = {}): Promise<ISubItem> => {
   const query = stringify({ limit, offset });
-  const { data }: AxiosResponse<ISubItem> = await axiosWithAuth0().get(
+  const { data }: AxiosResponse<ISubItem> = await axiosWithAuth().get(
     `/api/winners?${query}`,
   );
   console.log({ query, data });
@@ -19,6 +19,6 @@ export const getWinners = async ({
 };
 
 export const getTop3Subs = async (): Promise<ISubItem[]> => {
-  const { data } = await axiosWithAuth0().get('/api/top');
+  const { data } = await axiosWithAuth().get('/api/top');
   return data;
 };
