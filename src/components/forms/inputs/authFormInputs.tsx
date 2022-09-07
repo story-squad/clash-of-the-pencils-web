@@ -108,14 +108,14 @@ export default {
       />
     );
   },
-  lastname: function LastnameInput({
+  lastName: function lastNameInput({
     rules,
     ...props
   }: FormInputMapProps = {}): React.ReactElement {
     return (
       <Input
         {...props}
-        name="lastname"
+        name="lastName"
         label="Last Name"
         rules={{ required: 'Last name is required!', ...rules }}
         placeholder="Last Name"

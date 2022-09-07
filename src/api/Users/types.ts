@@ -21,7 +21,7 @@ export interface INewUser extends IOAuthUser {
 export interface IOAuthUser {
   codename: string;
   firstName: string;
-  lastname?: string;
+  lastName?: string;
   email?: string;
   password: string;
 }

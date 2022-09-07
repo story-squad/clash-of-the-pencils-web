@@ -13,7 +13,7 @@ import './styles/index.scss';
 export type UpdatePersonalProps = FormProps<{
   id: number;
   firstName: string;
-  lastname: string;
+  lastName: string;
   dob: string;
 }> &
   AccountUpdateFormProps;
@@ -35,11 +35,11 @@ export default function EditPersonalForm({
 
   const [submitForm, isSubmitting] = useAsync({
     run: async (data: AccountEditFields) => {
-      if (id && data.firstName && data.lastname && data.dob) {
+      if (id && data.firstName && data.lastName && data.dob) {
         await onSubmit({
           id: id,
           firstName: data.firstName,
-          lastname: data.lastname,
+          lastName: data.lastName,
           dob: data.dob,
         });
         cancel();
@@ -53,8 +53,8 @@ export default function EditPersonalForm({
       {authFormInputs.firstName({
         defaultValue: user?.firstName,
       })}
-      {authFormInputs.lastname({
-        defaultValue: user?.lastname,
+      {authFormInputs.lastName({
+        defaultValue: user?.lastName,
       })}
       {authFormInputs.birthday({
         defaultValue: user?.dob,

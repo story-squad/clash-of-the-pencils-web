@@ -9,7 +9,7 @@ export default function AccountCards({
   firstName,
   dob,
   email,
-  lastname,
+  lastName,
 }: AccountUserProps): React.ReactElement {
   return (
     <>
@@ -38,7 +38,7 @@ export default function AccountCards({
         cardTitle={'personal info'}
         itemContent={[
           { title: 'First Name', content: `${firstName}` },
-          { title: 'Last Name', content: `${lastname}` },
+          { title: 'Last Name', content: `${lastName}` },
           { title: 'Birthday', content: `${dob}` },
         ]}
         openEdit={editPersonal}
@@ -51,7 +51,7 @@ interface AccountUserProps {
   codename: string;
   email: string;
   firstName: string;
-  lastname: string | undefined;
+  lastName: string | undefined;
   dob: string | undefined;
   editInfo?: () => void;
   editPersonal?: () => void;
