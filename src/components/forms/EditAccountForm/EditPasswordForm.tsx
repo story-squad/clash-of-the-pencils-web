@@ -15,7 +15,7 @@ export interface AccountEditFields {
   email?: string;
   password?: string;
   confirmPassword?: string;
-  firstname?: string;
+  firstName?: string;
   lastname?: string;
   dob?: string;
 }

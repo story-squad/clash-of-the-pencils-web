@@ -19,8 +19,8 @@ export default function AccountViewContainer(): React.ReactElement {
   }, [submitted]);
 
   const submitHandler: AccountEditProps['onSubmit'] = useCallback(
-    async ({ password, firstname, lastname, dob, id }) => {
-      await Users.update({ id, password, firstname, lastname, dob })
+    async ({ password, firstName, lastname, dob, id }) => {
+      await Users.update({ id, password, firstName, lastname, dob })
         .then((res) => {
           if (res) setSubmited(true), setUser(res);
         })

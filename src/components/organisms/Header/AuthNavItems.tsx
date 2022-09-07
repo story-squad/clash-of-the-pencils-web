@@ -33,11 +33,11 @@ export default function AuthNavItems({
         console.groupEnd();
         // This will very likely be scrapped in favor of adding user metadata during registration so this object will always be available
         const metadata: IUser = {
-          codename: claims?.codename,
+          codename: claims?.nickname || '',
           created_at: claims?.created_at,
           dob: claims?.dob,
           email: claims?.email || '',
-          firstname: claims?.firstname,
+          firstName: claims?.firstName,
           isValidated: claims?.isValidated,
           lastname: claims?.lastname,
           roleId: claims?.role_id,

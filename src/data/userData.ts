@@ -4,7 +4,7 @@ export default [
   {
     codename: 'A Codename',
     email: 'anemail@email.com',
-    firstname: 'Firstname',
+    firstName: 'firstName',
     lastname: 'Lastname',
     isValidated: true,
     roleId: 1,
@@ -16,7 +16,7 @@ export default [
   {
     codename: 'CodenameTwo',
     email: 'anemawwww@email.com',
-    firstname: 'Firstname',
+    firstName: 'firstName',
     lastname: 'Lastname',
     isValidated: true,
     roleId: 2,
@@ -28,7 +28,7 @@ export default [
   {
     codename: 'CodenameThree',
     email: 'email@email.com',
-    firstname: 'Firstname3',
+    firstName: 'firstName3',
     lastname: 'Lastname3',
     isValidated: true,
     roleId: 3,

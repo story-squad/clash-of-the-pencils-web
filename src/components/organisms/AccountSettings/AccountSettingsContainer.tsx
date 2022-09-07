@@ -61,7 +61,7 @@ export default function AccountContainer({
           codename={user.codename}
           dob={newDate}
           email={user.email}
-          firstname={user.firstname}
+          firstName={user.firstName}
           lastname={user.lastname}
           editPersonal={personalInfo}
           editInfo={accountInfo}

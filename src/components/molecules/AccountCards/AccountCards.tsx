@@ -6,7 +6,7 @@ export default function AccountCards({
   editPersonal,
   //Items must be passed in same order as the are in the item title
   codename,
-  firstname,
+  firstName,
   dob,
   email,
   lastname,
@@ -37,7 +37,7 @@ export default function AccountCards({
         edit
         cardTitle={'personal info'}
         itemContent={[
-          { title: 'First Name', content: `${firstname}` },
+          { title: 'First Name', content: `${firstName}` },
           { title: 'Last Name', content: `${lastname}` },
           { title: 'Birthday', content: `${dob}` },
         ]}
@@ -50,7 +50,7 @@ export default function AccountCards({
 interface AccountUserProps {
   codename: string;
   email: string;
-  firstname: string;
+  firstName: string;
   lastname: string | undefined;
   dob: string | undefined;
   editInfo?: () => void;

@@ -72,7 +72,7 @@ export default function SignupForm(): React.ReactElement {
 
   // const goNext = async () => {
   //   const isValid = await trigger(
-  //     ['firstname', 'lastname', 'codename', 'dob'],
+  //     ['firstName', 'lastname', 'codename', 'dob'],
   //     { shouldFocus: true },
   //   );
   //   if (isValid) setPage((prev) => prev + 1);
@@ -85,7 +85,7 @@ export default function SignupForm(): React.ReactElement {
     <form className="signup-form" onSubmit={(e) => console.log(e)} noValidate>
       {/* {page === 1 ? (
         <>
-          {authFormInputs.firstname()}
+          {authFormInputs.firstName()}
           {authFormInputs.lastname()}
           {authFormInputs.codename({
             rules: {
