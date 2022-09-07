@@ -26,46 +26,78 @@ const SignupForm = (): React.ReactElement => {
   };
   console.log(errors);
   const watchBirthday = watch('birthday');
+  const watchTermsOfService = watch('termsOfService');
+  const watchCodeName = watch('codeName');
   const currentYear = new Date().getFullYear();
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {!user?.given_name && (
-        <input
-          type="text"
-          placeholder="First name"
-          {...register('firstName', { required: true, maxLength: 80 })}
-        />
+        <label htmlFor="firstName">
+          <input
+            id="firstName"
+            type="text"
+            placeholder="First name"
+            {...register('firstName', { required: true, maxLength: 80 })}
+          />
+        </label>
       )}
       {!user?.family_name && (
-        <input
-          type="text"
-          placeholder="Last name"
-          {...register('lastName', { required: true, maxLength: 100 })}
-        />
+        <label htmlFor="lastName">
+          Last Name
+          <input
+            id="lastName"
+            type="text"
+            placeholder="Last name"
+            {...register('lastName', { required: true, maxLength: 100 })}
+          />
+        </label>
       )}
       {/* codeName input */}
-      <input
-        type="text"
-        placeholder={user?.nickname || 'Code name'}
-        {...register('codeName', { required: true, maxLength: 100 })}
-      />
-      <input type="date" {...register('birthday', { required: true })} />
+      <label htmlFor="codeName">
+        Code Name
+        <input
+          id="codeName"
+          type="text"
+          placeholder="Code Name"
+          {...register('codeName', { required: true, maxLength: 100 })}
+        />
+      </label>
+      {/* birthday input */}
+      <label htmlFor="birthday">
+        Birthday
+        <input
+          id="birthday"
+          type="date"
+          {...register('birthday', { required: true })}
+        />
+      </label>
       {/* Displays parent email input if user is under 13 */}
       {Number(new Date(watchBirthday).getFullYear()) >
         Number(currentYear) - 13 && (
-        <input
-          type="email"
-          placeholder="Parent email"
-          {...register('parentEmail', { required: true })}
-        />
+        <label htmlFor="parentEmail">
+          Parent Email
+          <input
+            id="parentEmail"
+            type="email"
+            placeholder="Parent email"
+            {...register('parentEmail', { required: true })}
+          />
+        </label>
       )}
+      {/* terms of service checkbox */}
+      <label htmlFor="termsOfService">
+        <input
+          id="termsOfService"
+          type="checkbox"
+          placeholder="Terms of Service"
+          {...register('termsOfService', { required: true })}
+        />
+        I agree to the terms of service
+      </label>
       <input
-        type="checkbox"
-        placeholder="Terms of Service"
-        {...register('termsOfService', { required: true })}
+        type="submit"
+        disabled={!watchBirthday || !watchTermsOfService || !watchCodeName} // will need to add better validation
       />
-
-      <input type="submit" />
     </form>
   );
 };
