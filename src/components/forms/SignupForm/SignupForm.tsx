@@ -1,7 +1,8 @@
 import './styles/index.scss';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAuth0 } from '@auth0/auth0-react';
+import axios from 'axios';
 
 interface SignupFormValues {
   firstName: string;
@@ -14,7 +15,6 @@ interface SignupFormValues {
 
 const SignupForm = (): React.ReactElement => {
   const { user } = useAuth0();
-  console.log(user);
   const {
     register,
     handleSubmit,
@@ -22,9 +22,32 @@ const SignupForm = (): React.ReactElement => {
     watch,
   } = useForm<SignupFormValues>();
   const onSubmit = (data: SignupFormValues) => {
-    console.log(data);
+    console.groupCollapsed('Signup Form Submitted');
+    console.log('%cUser data from Auth0 Provider', 'color: #00b4d8');
+    console.table(user);
+    console.log('%cForm data', 'color: #00b4d8');
+    console.table(data);
+    console.groupEnd();
+    useEffect(() => {
+      if (Object.keys(errors).length > 0) console.warn(errors);
+    }, [errors]);
+    axios.patch(
+      `https://${process.env.REACT_APP_AUTH0_DOMAIN}/api/v2/users/${user?.sub}`,
+      {
+        user_metadata: {
+          codeName: data.codeName || user?.nickname,
+        },
+        app_metadata: {
+          lastName: data.lastName || user?.family_name,
+          firstName: data.firstName || user?.given_name,
+          parentEmail: data.parentEmail,
+          birthday: data.birthday,
+          termsOfService: data.termsOfService,
+        },
+      },
+    );
   };
-  console.log(errors);
+  // console.log(errors);
   const watchBirthday = watch('birthday');
   const watchTermsOfService = watch('termsOfService');
   const watchCodeName = watch('codeName');
@@ -36,7 +59,7 @@ const SignupForm = (): React.ReactElement => {
           <input
             id="firstName"
             type="text"
-            placeholder="First name"
+            value={user?.given_name}
             {...register('firstName', { required: true, maxLength: 80 })}
           />
         </label>
