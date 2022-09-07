@@ -1,12 +1,10 @@
 import { ErrorMessage } from '@hookform/error-message';
 import { useAsync } from '@story-squad/react-utils';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { useRecoilState } from 'recoil';
 import { Auth } from '../../../api';
 import { dataConstraints } from '../../../config';
-import { useConfirmationModal } from '../../../hooks';
-import { auth } from '../../../state';
+// import { useConfirmationModal } from '../../../hooks';
 import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import { authFormInputs } from '../inputs';
@@ -19,7 +17,6 @@ export default function LoginForm({
   onError,
 }: LoginFormProps): React.ReactElement {
   const { handleSubmit, setError, clearErrors } = useFormContext();
-  const [userIsDeleted, setUserIsDeleted] = useRecoilState(auth.userIsDeleted);
   const clearFormError = () => clearErrors('form');
 
   const errorHandler = useCallback(
@@ -56,21 +53,21 @@ export default function LoginForm({
     }
   };
 
-  useEffect(() => {
-    if (userIsDeleted) {
-      successDelete();
-      setUserIsDeleted(false);
-    } else {
-      return;
-    }
-  }, [userIsDeleted]);
+  // useEffect(() => {
+  //   if (userIsDeleted) {
+  //     successDelete();
+  //     setUserIsDeleted(false);
+  //   } else {
+  //     return;
+  //   }
+  // }, [userIsDeleted]);
 
-  const [onDelete, successDelete] = useConfirmationModal({
-    title: 'We are sorry to see you go!',
-    message: 'Your account has been successfully deleted.',
-    confirmText: 'Ok',
-    hideCancelButton: true,
-  });
+  // const [onDelete, successDelete] = useConfirmationModal({
+  //   title: 'We are sorry to see you go!',
+  //   message: 'Your account has been successfully deleted.',
+  //   confirmText: 'Ok',
+  //   hideCancelButton: true,
+  // });
 
   const [exec, isLoading] = useAsync({
     run: handleSubmit(submitHandler),
@@ -79,7 +76,7 @@ export default function LoginForm({
 
   return (
     <form className="login-form" onSubmit={exec}>
-      {onDelete}
+      {/* {onDelete} */}
       <ErrorMessage
         name="form"
         render={({ message }) => (

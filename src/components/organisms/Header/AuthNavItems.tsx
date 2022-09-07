@@ -3,9 +3,6 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useHeaderContext from './useHeaderContext';
 import { useAuth0 } from '@auth0/auth0-react';
-import { IUser } from '../../../api/Users';
-import { user } from '../../../state/authState';
-import { useRecoilState } from 'recoil';
 
 export default function AuthNavItems({
   className,
@@ -13,10 +10,8 @@ export default function AuthNavItems({
   className?: string;
 } = {}): React.ReactElement {
   const { closeMenu } = useHeaderContext();
-  const { loginWithRedirect, isAuthenticated, logout, getIdTokenClaims } =
+  const { user, loginWithRedirect, isAuthenticated, logout, getIdTokenClaims } =
     useAuth0();
-  const auth0User = useAuth0().user;
-  const [userInfo, setUserInfo] = useRecoilState(user);
   useEffect(() => {
     if (isAuthenticated) {
       console.log(
@@ -31,28 +26,6 @@ export default function AuthNavItems({
         );
         console.table(claims);
         console.groupEnd();
-        // This will very likely be scrapped in favor of adding user metadata during registration so this object will always be available
-        const metadata: IUser = {
-          codename: claims?.nickname || '',
-          created_at: claims?.created_at,
-          dob: claims?.dob,
-          email: claims?.email || '',
-          firstName: claims?.firstName,
-          isValidated: claims?.isValidated,
-          lastname: claims?.lastname,
-          roleId: claims?.role_id,
-          id: claims?.id,
-          updated_at: new Date(),
-          password: '',
-        };
-        console.groupCollapsed(
-          '%cMetadata %c🡇 ',
-          'color: #F9C70C',
-          'color: #007AAF',
-        );
-        console.table(metadata);
-        console.groupEnd();
-        setUserInfo(metadata);
       });
     }
   }, [isAuthenticated]);
@@ -82,13 +55,17 @@ export default function AuthNavItems({
           </button>
         )}
       </li>
-      {auth0User ? (
+      {user ? (
         <>
           <li className={classnames('auth-nav', className)}>
             <span className="link">
               Welcome,{' '}
               <span className="codename">
-                {userInfo?.codename ? userInfo.codename : auth0User.name}
+                {user.codename
+                  ? user.codename
+                  : user.nickname
+                  ? user.nickname
+                  : user.name}
               </span>
               !
             </span>
