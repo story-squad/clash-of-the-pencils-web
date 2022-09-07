@@ -8,12 +8,12 @@ import AccountView from './AccountView';
 
 export default function AccountViewContainer(): React.ReactElement {
   const [user, setUser] = useRecoilState(auth.user);
-  const [submitted, setSubmited] = useRecoilState(account.isSubmitted);
+  const [submitted, setSubmitted] = useRecoilState(account.isSubmitted);
 
   useEffect(() => {
     if (submitted === true) {
       setTimeout(() => {
-        setSubmited(false);
+        setSubmitted(false);
       }, 4000);
     } else return;
   }, [submitted]);
@@ -22,7 +22,7 @@ export default function AccountViewContainer(): React.ReactElement {
     async ({ password, firstName, lastname, dob, id }) => {
       await Users.update({ id, password, firstName, lastname, dob })
         .then((res) => {
-          if (res) setSubmited(true), setUser(res);
+          if (res) setSubmitted(true), setUser(res);
         })
         .catch((err) => console.log(err));
     },
