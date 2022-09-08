@@ -1,5 +1,5 @@
 import { classnames } from '@story-squad/react-utils';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import useHeaderContext from './useHeaderContext';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -9,26 +9,14 @@ export default function AuthNavItems({
 }: {
   className?: string;
 } = {}): React.ReactElement {
+  // Hooks
   const { closeMenu } = useHeaderContext();
-  const { user, loginWithRedirect, isAuthenticated, logout, getIdTokenClaims } =
-    useAuth0();
-  useEffect(() => {
-    if (isAuthenticated) {
-      console.log(
-        '%cUser is authenticated, getting user metadata...',
-        'color: #3BB143; font-weight: bold;',
-      );
-      getIdTokenClaims().then((claims) => {
-        console.groupCollapsed(
-          '%cClaims %c🡇 ',
-          'color: #F9C70C',
-          'color: #007AAF',
-        );
-        console.table(claims);
-        console.groupEnd();
-      });
-    }
-  }, [isAuthenticated]);
+  const { user, loginWithRedirect, isAuthenticated, logout } = useAuth0();
+  // Handlers
+  /**
+   * @title handleLogoutClick
+   * @description Uses the Auth0 logout function to log the user out of the application and redirect them to the home page.
+   */
   const handleLogoutClick = (): void => {
     logout({
       returnTo:
