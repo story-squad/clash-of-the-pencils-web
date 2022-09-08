@@ -21,7 +21,17 @@ ReactDOM.render(
         useRefreshTokens={true}
         cacheLocation="localstorage"
         audience={process.env.REACT_APP_AUTH0_AUDIENCE} // this is the identifier found in the Auth0 dashboard under Applications > APIs > Clash API
-        scope="read:data write:data" // these are the scopes listed in the Auth0 dashboard under Applications > APIs > Clash API
+        // these are the scopes listed in the Auth0 dashboard under Applications > APIs > Auth0 Management API > Permissions
+        scope="
+        read:users,
+        update:users,
+        delete:users,
+        create:users,
+        read: users_app_metadata,
+        update: users_app_metadata,
+        delete: users_app_metadata,
+        create: users_app_metadata,
+        "
       >
         <RecoilRoot>
           <Router>
