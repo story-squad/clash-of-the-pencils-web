@@ -75,12 +75,20 @@ const SignupForm = (): React.ReactElement => {
     axios.post(
       `https://${process.env.REACT_APP_AUTH0_DOMAIN}/continue?state=${authState}`,
       {
-        codename: data.codename,
-        lastName: data.lastName,
-        firstName: data.firstName,
-        parentEmail: data.parentEmail,
-        dob: data.dob,
-        termsOfService: data.termsOfService,
+        payload: {
+          user_metadata: {
+            codename: data.codename,
+          },
+          app_metadata: {
+            lastName: data.lastName || claims.family_name,
+            firstName: data.firstName || claims.given_name,
+            parentEmail: data.parentEmail,
+            dob: data.dob,
+            termsOfService: data.termsOfService,
+            voted: false,
+            role_id: 1, // Figure out how and when to determine the user's role
+          },
+        },
         headers: {
           Authorization: `Bearer ${sessionToken}`,
         },
