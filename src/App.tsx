@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { ActivationModal } from './components/modals';
 import { LoginEmailRedirect, PrivateRoute } from './components/providers';
@@ -15,19 +15,8 @@ import {
   TermsView,
   WinnersView,
 } from './components/views';
-import { useAuth0 } from '@auth0/auth0-react';
 
 const App = (): React.ReactElement => {
-  const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
-  useEffect(() => {
-    if (isAuthenticated) {
-      console.table(user);
-      // WIP Redirect user to signup page if metadata is not present
-      getAccessTokenSilently().then((token) => {
-        sessionStorage.setItem('token', token);
-      });
-    }
-  }, [isAuthenticated]);
   return (
     <div className="App">
       {/* <SEO /> */}
