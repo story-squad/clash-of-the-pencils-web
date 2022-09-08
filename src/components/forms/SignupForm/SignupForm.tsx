@@ -1,71 +1,95 @@
 import './styles/index.scss';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 interface SignupFormValues {
   firstName: string;
   lastName: string;
-  birthday: string;
+  dob: string;
   parentEmail: string;
   termsOfService: boolean;
   codename: string;
 }
-
+interface SessionToken {
+  app_metadata: unknown;
+  created_at: Date;
+  email: string;
+  exp: number;
+  family_name: string;
+  given_name: string;
+  iat: number;
+  identities: unknown[];
+  ip: string;
+  iss: string;
+  multifactor: unknown[];
+  name: string;
+  nickname: string;
+  picture: string;
+  sub: string;
+  updated_at: Date;
+  user_id: string;
+  user_metadata: unknown;
+}
 const SignupForm = (): React.ReactElement => {
-  const { user, getAccessTokenSilently } = useAuth0();
+  // Hooks
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
   } = useForm<SignupFormValues>();
+  // State
+  const [authState, setAuthState] = React.useState('');
+  const [claims, setClaims] = React.useState({} as SessionToken);
+  const [sessionToken, setSessionToken] = React.useState('');
+  // Effects
   useEffect(() => {
+    // without this, an empty object is logged with each render
     if (Object.keys(errors).length > 0) console.warn(errors);
   }, [errors]);
-  const onSubmit = (data: SignupFormValues) => {
-    console.groupCollapsed('Signup Form Submitted');
-    console.log('%cUser data from Auth0 Provider', 'color: #00b4d8');
-    console.table(user);
-    console.log('%cForm data', 'color: #00b4d8');
-    console.table(data);
-    console.groupEnd();
-    getAccessTokenSilently()
-      .then((token) => {
-        axios.patch(
-          `${process.env.REACT_APP_AUTH0_AUDIENCE}/users/${user?.sub}`,
-          {
-            user_metadata: {
-              codename: data.codename || user?.nickname,
-            },
-            app_metadata: {
-              lastName: data.lastName || user?.family_name,
-              firstName: data.firstName || user?.given_name,
-              parentEmail: data.parentEmail,
-              birthday: data.birthday,
-              termsOfService: data.termsOfService,
-            },
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-        );
-      })
-      .catch((err) => {
-        console.warn(err);
-      });
-  };
-  // console.log(errors);
-  const watchBirthday = watch('birthday');
+  useEffect(() => {
+    // Extract the state parameter from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const state = urlParams.get('state');
+    const token = urlParams.get('session_token') || '';
+    const decodedToken: SessionToken = jwt_decode(token);
+    // Set the state and claims in state
+    setAuthState(state || '');
+    setSessionToken(token);
+    setClaims(decodedToken);
+  }, []);
+  // Helpers
+  const watchBirthday = watch('dob');
   const watchTermsOfService = watch('termsOfService');
   const watchCodeName = watch('codename');
   const currentYear = new Date().getFullYear();
+  // Handlers
+  const onSubmit = (data: SignupFormValues) => {
+    console.groupCollapsed('Signup Form Submitted');
+    console.log('%cForm data', 'color: #00b4d8');
+    console.table(data);
+    console.groupEnd();
+
+    axios.post(
+      `https://${process.env.REACT_APP_AUTH0_DOMAIN}/continue?state=${authState}`,
+      {
+        codename: data.codename,
+        lastName: data.lastName,
+        firstName: data.firstName,
+        parentEmail: data.parentEmail,
+        dob: data.dob,
+        termsOfService: data.termsOfService,
+        headers: {
+          Authorization: `Bearer ${sessionToken}`,
+        },
+      },
+    );
+  };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {!user?.given_name && (
+      {!claims.given_name && (
         <label htmlFor="firstName">
           First Name
           <input
@@ -77,7 +101,7 @@ const SignupForm = (): React.ReactElement => {
           />
         </label>
       )}
-      {!user?.family_name && (
+      {!claims.family_name && (
         <label htmlFor="lastName">
           Last Name
           <input
@@ -97,17 +121,18 @@ const SignupForm = (): React.ReactElement => {
           type="text"
           placeholder="Codename"
           autoComplete="nickname"
+          defaultValue={claims.nickname}
           {...register('codename', { required: true, maxLength: 100 })}
         />
       </label>
       {/* birthday input */}
-      <label htmlFor="birthday">
+      <label htmlFor="dob">
         Birthday
         <input
-          id="birthday"
+          id="dob"
           type="date"
           autoComplete="bday"
-          {...register('birthday', { required: true })}
+          {...register('dob', { required: true })}
         />
       </label>
       {/* Displays parent email input if user is under 13 */}
