@@ -71,29 +71,30 @@ const SignupForm = (): React.ReactElement => {
     console.log('%cForm data', 'color: #00b4d8');
     console.table(data);
     console.groupEnd();
-
-    axios.post(
-      `https://${process.env.REACT_APP_AUTH0_DOMAIN}/continue?state=${authState}`,
-      {
-        payload: {
-          user_metadata: {
-            codename: data.codename,
-          },
-          app_metadata: {
-            lastName: data.lastName || claims.family_name,
-            firstName: data.firstName || claims.given_name,
-            parentEmail: data.parentEmail,
-            dob: data.dob,
-            termsOfService: data.termsOfService,
-            voted: false,
-            role_id: 1, // Figure out how and when to determine the user's role
-          },
+    /* Send this data to the API, which will redirect to the Auth0 /continue endpoint with the applicable data */
+    const targetURL =
+      process.env.REACT_APP_NODE_ENV === 'development'
+        ? 'http://localhost:8000'
+        : `https://${process.env.REACT_APP_API_CLASH_API_URL}`;
+    axios.post(`${targetURL}/continue?state=${authState}`, {
+      payload: {
+        user_metadata: {
+          codename: data.codename,
         },
-        headers: {
-          Authorization: `Bearer ${sessionToken}`,
+        app_metadata: {
+          lastName: data.lastName || claims.family_name,
+          firstName: data.firstName || claims.given_name,
+          parentEmail: data.parentEmail,
+          dob: data.dob,
+          termsOfService: data.termsOfService,
+          voted: false,
+          role_id: 1, // Figure out how and when to determine the user's role
         },
       },
-    );
+      headers: {
+        Authorization: `Bearer ${sessionToken}`,
+      },
+    });
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
