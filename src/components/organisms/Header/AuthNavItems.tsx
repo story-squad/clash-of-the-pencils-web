@@ -39,11 +39,11 @@ export default function AuthNavItems({
             className={classnames('auth-nav', className)}
             onClick={loginWithRedirect}
           >
-            Log In
+            Log In or Sign Up
           </button>
         )}
       </li>
-      {user ? (
+      {user && (
         <>
           <li className={classnames('auth-nav', className)}>
             <span className="link">
@@ -69,12 +69,6 @@ export default function AuthNavItems({
             </Link>
           </li>
         </>
-      ) : (
-        <li className={classnames('auth-nav', className)}>
-          <Link to="/signup" onClick={closeMenu}>
-            Sign Up
-          </Link>
-        </li>
       )}
     </>
   );
