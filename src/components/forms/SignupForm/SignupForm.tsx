@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { decode, JwtPayload, sign, verify } from 'jsonwebtoken';
 import { useAuth0 } from '@auth0/auth0-react';
+
 interface SignupFormValues {
   firstName: string;
   lastName: string;
@@ -12,14 +13,18 @@ interface SignupFormValues {
   termsOfService: boolean;
   codename: string;
 }
+interface UserMetadata {
+  codename?: string;
+}
+interface AppMetadata {
+  firstName?: string;
+  lastName?: string;
+  dob?: string;
+  parentEmail?: string;
+  termsOfService?: boolean;
+}
 interface DecodedToken {
-  app_metadata: {
-    firstName?: string;
-    lastName?: string;
-    dob?: string;
-    parentEmail?: string;
-    termsOfService?: boolean;
-  };
+  app_metadata: AppMetadata;
   created_at: string;
   email: string;
   email_verified: boolean;
@@ -37,10 +42,9 @@ interface DecodedToken {
   sub: string;
   updated_at: string;
   user_id: string;
-  user_metadata: {
-    codename?: string;
-  };
+  user_metadata: UserMetadata;
 }
+
 const SignupForm = (): React.ReactElement => {
   // Hooks
   const {
@@ -50,27 +54,65 @@ const SignupForm = (): React.ReactElement => {
     watch,
   } = useForm<SignupFormValues>();
   const { getAccessTokenSilently, loginWithRedirect } = useAuth0();
+
   // State
-  const [authState, setAuthState] = React.useState('');
-  const [claims, setClaims] = React.useState({});
+  const initialClaimsState = {
+    app_metadata: {
+      firstName: '',
+      lastName: '',
+      dob: '',
+      parentEmail: '',
+      termsOfService: false,
+    },
+    created_at: '',
+    email: '',
+    email_verified: false,
+    exp: 0,
+    family_name: '',
+    given_name: '',
+    iat: 0,
+    identities: [],
+    ip: '',
+    iss: '',
+    multifactor: [],
+    name: '',
+    nickname: '',
+    picture: '',
+    sub: '',
+    updated_at: '',
+    user_id: '',
+    user_metadata: {
+      codename: '',
+    },
+  };
+  const [authStateValue, setAuthStateValue] = React.useState('');
+  const [claims, setClaims] = React.useState(initialClaimsState);
   const [sessionToken, setSessionToken] = React.useState('');
+
   // Effects
   useEffect(() => {
-    // without this, an empty object is logged with each render
+    // without this, an empty object is logged with each render when there are no errors
     if (Object.keys(errors).length > 0) console.warn(errors);
   }, [errors]);
+  /**
+   * This effect is used to get the access token and decode it to get the claims
+   */
   useEffect(() => {
-    // Extract the state parameter from the URL
     const urlParams = new URLSearchParams(window.location.search);
-    const state = urlParams.get('state');
-    const token = urlParams.get('session_token') || '';
-    const decodedToken: DecodedToken = decode(token);
-    console.log(decodedToken);
-    // Set the state and claims in state
-    setAuthState(state || '');
-    setSessionToken(token);
-    setClaims(decodedToken);
-  }, []);
+    let decodedToken: DecodedToken = claims;
+    try {
+      const state = urlParams.get('state');
+      const token = urlParams.get('session_token');
+      decodedToken = decode(token);
+      // Set the state and claims in state
+      setAuthStateValue(state);
+      setSessionToken(token);
+      setClaims(decodedToken);
+    } catch (err) {
+      console.error(err);
+    }
+  }, [claims]);
+
   // Helpers
   const watchBirthday = watch('dob');
   const watchTermsOfService = watch('termsOfService');
@@ -113,6 +155,7 @@ const SignupForm = (): React.ReactElement => {
       },
     });
   };
+
   // Handlers
   const onSubmit = async (data: SignupFormValues) => {
     console.groupCollapsed('%cSignup Form Submitted 🚀', 'color: #00bfa5');
@@ -141,7 +184,7 @@ const SignupForm = (): React.ReactElement => {
     // create JWT from updated token
 
     axiosAuth0Instance
-      ?.post(`/continue?state=${authState}?token=${sessionToken}`)
+      ?.post(`/continue?state=${authStateValue}?token=${sessionToken}`)
       .then((res: unknown) => {
         console.log(res);
       })
@@ -149,6 +192,7 @@ const SignupForm = (): React.ReactElement => {
         console.error(err);
       });
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {!claims.given_name && (
