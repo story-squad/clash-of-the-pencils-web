@@ -2,8 +2,8 @@ import './styles/index.scss';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
-
+import { decode, JwtPayload, sign, verify } from 'jsonwebtoken';
+import { useAuth0 } from '@auth0/auth0-react';
 interface SignupFormValues {
   firstName: string;
   lastName: string;
@@ -12,25 +12,34 @@ interface SignupFormValues {
   termsOfService: boolean;
   codename: string;
 }
-interface SessionToken {
-  app_metadata: unknown;
-  created_at: Date;
+interface DecodedToken {
+  app_metadata: {
+    firstName?: string;
+    lastName?: string;
+    dob?: string;
+    parentEmail?: string;
+    termsOfService?: boolean;
+  };
+  created_at: string;
   email: string;
+  email_verified: boolean;
   exp: number;
   family_name: string;
   given_name: string;
   iat: number;
-  identities: unknown[];
+  identities: [];
   ip: string;
   iss: string;
-  multifactor: unknown[];
+  multifactor: [];
   name: string;
   nickname: string;
   picture: string;
   sub: string;
-  updated_at: Date;
+  updated_at: string;
   user_id: string;
-  user_metadata: unknown;
+  user_metadata: {
+    codename?: string;
+  };
 }
 const SignupForm = (): React.ReactElement => {
   // Hooks
@@ -40,9 +49,10 @@ const SignupForm = (): React.ReactElement => {
     formState: { errors },
     watch,
   } = useForm<SignupFormValues>();
+  const { getAccessTokenSilently, loginWithRedirect } = useAuth0();
   // State
   const [authState, setAuthState] = React.useState('');
-  const [claims, setClaims] = React.useState({} as SessionToken);
+  const [claims, setClaims] = React.useState({});
   const [sessionToken, setSessionToken] = React.useState('');
   // Effects
   useEffect(() => {
@@ -54,7 +64,8 @@ const SignupForm = (): React.ReactElement => {
     const urlParams = new URLSearchParams(window.location.search);
     const state = urlParams.get('state');
     const token = urlParams.get('session_token') || '';
-    const decodedToken: SessionToken = jwt_decode(token);
+    const decodedToken: DecodedToken = decode(token);
+    console.log(decodedToken);
     // Set the state and claims in state
     setAuthState(state || '');
     setSessionToken(token);
@@ -65,36 +76,78 @@ const SignupForm = (): React.ReactElement => {
   const watchTermsOfService = watch('termsOfService');
   const watchCodeName = watch('codename');
   const currentYear = new Date().getFullYear();
-  // Handlers
-  const onSubmit = (data: SignupFormValues) => {
-    console.groupCollapsed('Signup Form Submitted');
-    console.log('%cForm data', 'color: #00b4d8');
-    console.table(data);
-    console.groupEnd();
-    /* Send this data to the API, which will redirect to the Auth0 /continue endpoint with the applicable data */
+  /**
+   * @title createInstance
+   * @description Retrieves the Auth0 token from Session Storage and uses it to create an axios instance with the Auth0 token as the Authorization header.
+   * @returns Axios instance with the session token as the Authorization header
+   */
+  const createInstance = async () => {
     const targetURL =
       process.env.REACT_APP_NODE_ENV === 'development'
-        ? 'http://localhost:8000'
+        ? 'http://localhost:8000/api/auth'
         : `https://${process.env.REACT_APP_API_CLASH_API_URL}`;
-    axios.post(`${targetURL}/continue?state=${authState}`, {
-      payload: {
-        user_metadata: {
-          codename: data.codename,
-        },
-        app_metadata: {
-          lastName: data.lastName || claims.family_name,
-          firstName: data.firstName || claims.given_name,
-          parentEmail: data.parentEmail,
-          dob: data.dob,
-          termsOfService: data.termsOfService,
-          voted: false,
-          role_id: 1, // Figure out how and when to determine the user's role
-        },
-      },
+    const token = await getAccessTokenSilently({
+      audience: process.env.REACT_APP_AUTH0_AUDIENCE,
+      scope: 'update:users update:users_app_metadata',
+    })
+      .then((token) => token)
+      .catch((err) => {
+        if (err.error === 'login_required') {
+          // Usually means the token has expired
+          loginWithRedirect();
+        }
+        if (err.error === 'consent_required') {
+          // User is missing required consent
+          loginWithRedirect();
+        }
+        console.warn(err);
+      });
+    if (!token) {
+      console.error('No token found');
+      return;
+    }
+    return axios.create({
+      baseURL: targetURL,
       headers: {
-        Authorization: `Bearer ${sessionToken}`,
+        Authorization: `Bearer ${token}`,
       },
     });
+  };
+  // Handlers
+  const onSubmit = async (data: SignupFormValues) => {
+    console.groupCollapsed('%cSignup Form Submitted 🚀', 'color: #00bfa5');
+    console.log('%cForm data 🤓', 'color: #00b4d8');
+    console.table(data);
+    console.groupEnd();
+    const axiosAuth0Instance = await createInstance();
+    const userData = {
+      user_metadata: {
+        codename: data.codename,
+      },
+      app_metadata: {
+        lastName: data.lastName || claims.family_name,
+        firstName: data.firstName || claims.given_name,
+        parentEmail: data.parentEmail,
+        dob: data.dob,
+        termsOfService: data.termsOfService,
+        voted: false,
+        role_id: 1, // Figure out how and when to determine the user's role
+      },
+    };
+    // add userData to the session token
+    const updatedToken = { ...claims };
+    updatedToken.user_metadata = userData.user_metadata;
+    updatedToken.app_metadata = userData.app_metadata;
+    // create JWT from updated token
+
+    axiosAuth0Instance
+      ?.post(`/continue?state=${authState}?token=${sessionToken}`)
+      .then((res: unknown) => {
+        console.log(res);
+      })
+      .catch((err: unknown) => {
+        console.error(err);
+      });
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
