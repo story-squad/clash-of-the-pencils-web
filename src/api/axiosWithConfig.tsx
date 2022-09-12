@@ -18,7 +18,7 @@ interface AxiosGeneratorProps {
 export const axiosWithAuth = ({
   timeoutInSeconds = 0,
 }: AxiosGeneratorProps = {}): AxiosInstance => {
-  const Authorization = sessionStorage.getItem('token');
+  const Authorization = sessionStorage.getItem('token') || '';
   return axios.create({
     baseURL,
     headers: { Authorization },
