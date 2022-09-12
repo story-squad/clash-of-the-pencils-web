@@ -164,7 +164,7 @@ const SignupForm = (): React.ReactElement => {
       audience: process.env.REACT_APP_AUTH0_AUDIENCE,
       scope: 'update:users update:users_app_metadata',
     })
-      .then((token) => token)
+      .then((token: string) => token)
       .catch((err: { error?: string }) => {
         if (err.error === 'login_required') {
           // Usually means the token has expired
