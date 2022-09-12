@@ -2,7 +2,7 @@ import './styles/index.scss';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-import { decode, JwtPayload, sign, verify } from 'jsonwebtoken';
+import { decode, sign } from 'jsonwebtoken';
 import { useAuth0 } from '@auth0/auth0-react';
 
 interface SignupFormValues {
@@ -14,14 +14,15 @@ interface SignupFormValues {
   codename: string;
 }
 interface UserMetadata {
-  codename?: string;
+  codename: string;
 }
 interface AppMetadata {
-  firstName?: string;
-  lastName?: string;
-  dob?: string;
-  parentEmail?: string;
-  termsOfService?: boolean;
+  firstName: string;
+  lastName: string;
+  dob: string;
+  parentEmail: string;
+  termsOfService: boolean;
+  voted?: boolean;
 }
 interface DecodedToken {
   app_metadata: AppMetadata;
@@ -32,10 +33,10 @@ interface DecodedToken {
   family_name: string;
   given_name: string;
   iat: number;
-  identities: [];
+  identities: never[];
   ip: string;
   iss: string;
-  multifactor: [];
+  multifactor: never[];
   name: string;
   nickname: string;
   picture: string;
@@ -43,6 +44,11 @@ interface DecodedToken {
   updated_at: string;
   user_id: string;
   user_metadata: UserMetadata;
+}
+
+interface URLParams {
+  state: string;
+  token: string;
 }
 
 const SignupForm = (): React.ReactElement => {
@@ -87,37 +93,63 @@ const SignupForm = (): React.ReactElement => {
   };
   const [authStateValue, setAuthStateValue] = React.useState('');
   const [claims, setClaims] = React.useState(initialClaimsState);
-  const [sessionToken, setSessionToken] = React.useState('');
 
   // Effects
   useEffect(() => {
     // without this, an empty object is logged with each render when there are no errors
     if (Object.keys(errors).length > 0) console.warn(errors);
   }, [errors]);
-  /**
-   * This effect is used to get the access token and decode it to get the claims
-   */
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    let decodedToken: DecodedToken = claims;
-    try {
-      const state = urlParams.get('state');
-      const token = urlParams.get('session_token');
-      decodedToken = decode(token);
-      // Set the state and claims in state
-      setAuthStateValue(state);
-      setSessionToken(token);
-      setClaims(decodedToken);
-    } catch (err) {
-      console.error(err);
-    }
-  }, [claims]);
+    getURLParams()
+      .then((credentials) => setCredentials(credentials))
+      .catch((err) => console.warn(err));
+  }, []);
 
   // Helpers
   const watchBirthday = watch('dob');
   const watchTermsOfService = watch('termsOfService');
   const watchCodeName = watch('codename');
   const currentYear = new Date().getFullYear();
+  /**
+   * @title getURLParams
+   * @param url The URL to parse
+   * @returns {Object} An object containing the state and token values from the URL
+   */
+  const getURLParams = () => {
+    const params = new URLSearchParams(window.location.search);
+    const state = params.get('state');
+    const id_token = params.get('token');
+    if (!state || !id_token) throw new Error('Missing state or token in URL');
+    return Promise.resolve({ state, token: id_token });
+  };
+
+  /**
+   * @title getDecodedToken
+   * @param token The JWT token to decode
+   * @returns {Object} An object containing properties of the decoded token
+   * @description Decodes the JWT token and returns the decoded token as an object
+   * @see getURLParams
+   * @see initialClaimsState
+   */
+  const getDecodedToken = (token: string) => {
+    if (!token) throw new Error('Missing token');
+    return decode(token) as DecodedToken;
+  };
+
+  /**
+   * @title setCredentials
+   * @description Sets the authStateValue and sessionToken values. Decodes the JWT token and sets the claims state.
+   * @params {Object} An object containing the state and token values from the URL
+   * @see getURLParams
+   * @see getDecodedToken
+   * @see initialClaimsState
+   */
+  const setCredentials = async (credentials: URLParams) => {
+    const { state, token } = credentials;
+    const decodedToken = getDecodedToken(token);
+    setAuthStateValue(state);
+    setClaims(decodedToken);
+  };
   /**
    * @title createInstance
    * @description Retrieves the Auth0 token from Session Storage and uses it to create an axios instance with the Auth0 token as the Authorization header.
@@ -133,7 +165,7 @@ const SignupForm = (): React.ReactElement => {
       scope: 'update:users update:users_app_metadata',
     })
       .then((token) => token)
-      .catch((err) => {
+      .catch((err: { error?: string }) => {
         if (err.error === 'login_required') {
           // Usually means the token has expired
           loginWithRedirect();
@@ -145,7 +177,7 @@ const SignupForm = (): React.ReactElement => {
         console.warn(err);
       });
     if (!token) {
-      console.error('No token found');
+      console.warn('No token found');
       return;
     }
     return axios.create({
@@ -155,42 +187,68 @@ const SignupForm = (): React.ReactElement => {
       },
     });
   };
+  /**
+   * @title createJWT
+   * @param updatedToken
+   * @returns {string} A JWT token
+   * @description Creates a JWT token using the updated token and the session token
+   */
+  const createJWT = (updatedToken: DecodedToken) => {
+    const secret = process.env.REACT_APP_AUTH0_CLIENT_SECRET; // this value needs to match the secret in the Auth0 post-login action
+    if (!secret) throw new Error('Missing Auth0 client secret');
+    return sign(updatedToken, secret, {
+      algorithm: 'HS256',
+      expiresIn: '1h',
+    });
+  };
+  /**
+   * @title updateClaims
+   * @description Updates claims state with the additional properties from the form
+   * @param data The data to update the claims with
+   * @returns {Object} The updated claims, resolved as a promise
+   */
+  const updateClaims = async (data: SignupFormValues) => {
+    const app_metadata: AppMetadata = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      dob: data.dob,
+      parentEmail: data.parentEmail,
+      termsOfService: data.termsOfService,
+      voted: false,
+    };
+    const user_metadata: UserMetadata = {
+      codename: data.codename,
+    };
+    setClaims({
+      ...claims,
+      app_metadata,
+      user_metadata,
+    });
+    return Promise.resolve();
+  };
 
   // Handlers
+  /**
+   * @title onSubmit
+   * @description Handles the form submission. Creates an axios instance with the Auth0 token as the Authorization header. Sends the form data to the API.
+   * @param {Object} The form data
+   * @see createInstance
+   * @see getURLParams
+   * @see getDecodedToken
+   */
   const onSubmit = async (data: SignupFormValues) => {
     console.groupCollapsed('%cSignup Form Submitted 🚀', 'color: #00bfa5');
     console.log('%cForm data 🤓', 'color: #00b4d8');
     console.table(data);
     console.groupEnd();
     const axiosAuth0Instance = await createInstance();
-    const userData = {
-      user_metadata: {
-        codename: data.codename,
-      },
-      app_metadata: {
-        lastName: data.lastName || claims.family_name,
-        firstName: data.firstName || claims.given_name,
-        parentEmail: data.parentEmail,
-        dob: data.dob,
-        termsOfService: data.termsOfService,
-        voted: false,
-        role_id: 1, // Figure out how and when to determine the user's role
-      },
-    };
-    // add userData to the session token
-    const updatedToken = { ...claims };
-    updatedToken.user_metadata = userData.user_metadata;
-    updatedToken.app_metadata = userData.app_metadata;
-    // create JWT from updated token
-
-    axiosAuth0Instance
-      ?.post(`/continue?state=${authStateValue}?token=${sessionToken}`)
-      .then((res: unknown) => {
-        console.log(res);
-      })
-      .catch((err: unknown) => {
-        console.error(err);
+    updateClaims(data).then(() => {
+      const jwt = createJWT(claims);
+      axiosAuth0Instance?.post('/continue', {
+        state: authStateValue,
+        token: jwt,
       });
+    });
   };
 
   return (
