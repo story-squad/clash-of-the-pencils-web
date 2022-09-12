@@ -25,17 +25,15 @@ export default function EmailForm({
   });
 
   return (
-    <>
-      <form className="email-form" onSubmit={handleSubmit(submitForm)}>
-        {authFormInputs.email()}
-        <Button
-          onClick={clearFormError}
-          disabled={isSubmitting}
-          iconRight={isSubmitting && <LoadIcon />}
-        >
-          Submit
-        </Button>
-      </form>
-    </>
+    <form className="email-form" onSubmit={handleSubmit(submitForm)}>
+      {authFormInputs.email()}
+      <Button
+        onClick={clearFormError}
+        disabled={isSubmitting}
+        iconRight={isSubmitting && <LoadIcon />}
+      >
+        Submit
+      </Button>
+    </form>
   );
 }
