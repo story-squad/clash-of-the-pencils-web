@@ -36,7 +36,10 @@ const App = (): React.ReactElement => {
             <ForgotPasswordView openLogin={() => history.push('/login')} />
           )}
         />
-        <Route path="/forgot/codename" render={() => <ForgotCodenameView />} />
+        <Route
+          path="/forgot/codename"
+          render={() => <ForgotCodenameView onSubmit={undefined} />}
+        />
         <Route path="/account" render={() => <AccountView />} />
         <Route path="/reset/submit" render={() => <ResetPasswordView />} />
 
