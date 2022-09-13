@@ -52,7 +52,7 @@ interface URLParams {
 }
 
 const SignupForm = (): React.ReactElement => {
-  // Hooks
+  // HOOKS
   const {
     register,
     handleSubmit,
@@ -61,40 +61,11 @@ const SignupForm = (): React.ReactElement => {
   } = useForm<SignupFormValues>();
   const { getAccessTokenSilently, loginWithRedirect } = useAuth0();
 
-  // State
-  const initialClaimsState = {
-    app_metadata: {
-      firstName: '',
-      lastName: '',
-      dob: '',
-      parentEmail: '',
-      termsOfService: false,
-    },
-    created_at: '',
-    email: '',
-    email_verified: false,
-    exp: 0,
-    family_name: '',
-    given_name: '',
-    iat: 0,
-    identities: [],
-    ip: '',
-    iss: '',
-    multifactor: [],
-    name: '',
-    nickname: '',
-    picture: '',
-    sub: '',
-    updated_at: '',
-    user_id: '',
-    user_metadata: {
-      codename: '',
-    },
-  };
+  // STATE
   const [authStateValue, setAuthStateValue] = React.useState('');
-  const [claims, setClaims] = React.useState(initialClaimsState);
+  const [claims, setClaims] = React.useState<DecodedToken>({} as DecodedToken);
 
-  // Effects
+  // EFFECTS
   useEffect(() => {
     // without this, an empty object is logged with each render when there are no errors
     if (Object.keys(errors).length > 0) console.warn(errors);
@@ -105,7 +76,7 @@ const SignupForm = (): React.ReactElement => {
       .catch((err) => console.warn(err));
   }, []);
 
-  // Helpers
+  // HELPERS
   const watchBirthday = watch('dob');
   const watchTermsOfService = watch('termsOfService');
   const watchCodeName = watch('codename');
@@ -227,11 +198,11 @@ const SignupForm = (): React.ReactElement => {
     return Promise.resolve();
   };
 
-  // Handlers
+  // HANDLERS
   /**
    * @title onSubmit
    * @description Handles the form submission. Creates an axios instance with the Auth0 token as the Authorization header. Sends the form data to the API.
-   * @param {Object} The form data
+   * @param {Object} data The form data
    * @see createInstance
    * @see getURLParams
    * @see getDecodedToken
