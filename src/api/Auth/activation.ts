@@ -10,13 +10,11 @@ export async function resend(): Promise<void> {
 }
 
 /**
- * Must be logged in. Pass in an email address to send a new activation
- * email to.
- */
-export async function sendTo({
-  email: newEmail,
-}: {
-  email: string;
-}): Promise<void> {
-  await axiosWithAuth().post(`/api/auth/activation`, { newEmail });
-}
+ * @title sendTo
+ * @param email The email address to send the activation email to.
+ * @description No parameters needed, but you need to be logged in.
+ * @returns {Promise<void>} No response body.
+ * */
+export const sendTo = async (email: string): Promise<void> => {
+  await axiosWithAuth().post(`/api/auth/activation`, { email });
+};
