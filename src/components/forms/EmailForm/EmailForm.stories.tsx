@@ -3,9 +3,10 @@ import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useConfirmationModal } from '../../../hooks';
 import { sleep } from '../../../utils';
-import EmailForm, { EmailFormProps } from './EmailForm';
+import { FormProps } from '../formTypes';
+import EmailForm from './EmailForm';
 
-const Template: Story<Partial<EmailFormProps>> = ({ onSuccess, ...props }) => {
+const Template: Story<Partial<FormProps>> = ({ onSuccess, ...props }) => {
   const [modal, openModal] = useConfirmationModal({
     title: 'Success',
     message: 'Your email form has been submitted successfully.',

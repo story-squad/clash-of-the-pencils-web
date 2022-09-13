@@ -4,14 +4,9 @@ import { useFormContext } from 'react-hook-form';
 import { Button, LoadIcon } from '../../atoms';
 import { authFormInputs } from '../inputs';
 import './styles/index.scss';
+import { FormProps } from '../formTypes';
 
-export type EmailFormProps = {
-  onSubmit: (data: Record<string, unknown>) => Promise<void>;
-  onError: (error: unknown) => void;
-  onSuccess: () => void;
-};
-
-const EmailForm = (props: EmailFormProps): React.ReactElement => {
+const EmailForm = (props: FormProps): React.ReactElement => {
   const { onSubmit, onError, onSuccess } = props;
   const { handleSubmit, clearErrors } = useFormContext();
   const clearFormError = useCallback(() => clearErrors('form'), [clearErrors]);

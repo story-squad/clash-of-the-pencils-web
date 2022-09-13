@@ -10,13 +10,7 @@ import { authFormInputs } from '../inputs';
 import { AccountEditFields, AccountUpdateFormProps } from './EditPasswordForm';
 import './styles/index.scss';
 
-export type UpdatePersonalProps = FormProps<{
-  id: number;
-  firstName: string;
-  lastName: string;
-  dob: string;
-}> &
-  AccountUpdateFormProps;
+export type UpdatePersonalProps = FormProps & AccountUpdateFormProps;
 
 export default function EditPersonalForm({
   id,

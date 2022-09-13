@@ -4,11 +4,11 @@ import { useFormContext } from 'react-hook-form';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { account, auth } from '../../../state';
 import { Button, LoadIcon } from '../../atoms';
-import { FormProps } from '../formTypes';
 import { authFormInputs } from '../inputs';
 import './styles/index.scss';
+import { FormProps } from '../formTypes';
 
-export type AccountEditProps = FormProps<AccountEditFields>;
+export type AccountEditProps = FormProps & AccountEditFields;
 
 export interface AccountEditFields {
   id?: number;
@@ -20,8 +20,10 @@ export interface AccountEditFields {
   dob?: string;
 }
 
-export type NewPasswordProps = FormProps<{ id: number; password: string }> &
-  AccountUpdateFormProps;
+export type NewPasswordProps = FormProps & {
+  id: number;
+  onCancel: () => void;
+};
 
 export interface AccountUpdateFormProps {
   id: number;

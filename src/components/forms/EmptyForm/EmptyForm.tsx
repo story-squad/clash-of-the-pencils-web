@@ -5,7 +5,7 @@ import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import './styles/index.scss';
 
-export type EmptyFormProps = FormProps<void>;
+export type EmptyFormProps = FormProps;
 
 export default function EmptyForm({
   onSubmit,
