@@ -24,7 +24,7 @@ interface AppMetadata {
   termsOfService: boolean;
   voted?: boolean;
 }
-interface DecodedToken {
+interface AuthToken {
   app_metadata: AppMetadata;
   created_at: string;
   email: string;
@@ -63,7 +63,7 @@ const SignupForm = (): React.ReactElement => {
 
   // STATE
   const [authStateValue, setAuthStateValue] = React.useState('');
-  const [claims, setClaims] = React.useState<DecodedToken>({} as DecodedToken);
+  const [claims, setClaims] = React.useState<AuthToken>({} as AuthToken);
 
   // EFFECTS
   useEffect(() => {
@@ -83,8 +83,10 @@ const SignupForm = (): React.ReactElement => {
   const currentYear = new Date().getFullYear();
   /**
    * @title getURLParams
+   * @description Parses the URL for the `state` and `token` parameters
    * @param url The URL to parse
-   * @returns {Object} An object containing the state and token values from the URL
+   * @returns {Object} An object containing the `state` and `token` values
+   * @throws {Error} If the URL is missing the `state` or `token` values
    */
   const getURLParams = () => {
     const params = new URLSearchParams(window.location.search);
@@ -96,24 +98,23 @@ const SignupForm = (): React.ReactElement => {
 
   /**
    * @title getDecodedToken
+   * @description Decodes the JWT token and returns the decoded token as an object
    * @param token The JWT token to decode
    * @returns {Object} An object containing properties of the decoded token
-   * @description Decodes the JWT token and returns the decoded token as an object
-   * @see getURLParams
-   * @see initialClaimsState
+   * @see {@linkcode getURLParams}
+   * @throws {Error} If the token is undefined
    */
   const getDecodedToken = (token: string) => {
     if (!token) throw new Error('Missing token');
-    return decode(token) as DecodedToken;
+    return decode(token) as AuthToken;
   };
 
   /**
    * @title setCredentials
-   * @description Sets the authStateValue and sessionToken values. Decodes the JWT token and sets the claims state.
-   * @params {Object} An object containing the state and token values from the URL
-   * @see getURLParams
-   * @see getDecodedToken
-   * @see initialClaimsState
+   * @description Sets the `authStateValue` and `sessionToken` values. Decodes the JWT token and sets the `claims` state.
+   * @params {Object} An object containing the `state` and `token` values extracted from the URL
+   * @see {@linkcode getURLParams}
+   * @see {@linkcode getDecodedToken}
    */
   const setCredentials = async (credentials: URLParams) => {
     const { state, token } = credentials;
@@ -125,6 +126,7 @@ const SignupForm = (): React.ReactElement => {
    * @title createInstance
    * @description Retrieves the Auth0 token from Session Storage and uses it to create an axios instance with the Auth0 token as the Authorization header.
    * @returns Axios instance with the session token as the Authorization header
+   * @throws {Error} If an unhandled error occurs
    */
   const createInstance = async () => {
     const targetURL =
@@ -146,6 +148,7 @@ const SignupForm = (): React.ReactElement => {
           loginWithRedirect();
         }
         console.warn(err);
+        throw new Error(err ? err.error : 'Error retrieving token');
       });
     if (!token) {
       console.warn('No token found');
@@ -163,8 +166,9 @@ const SignupForm = (): React.ReactElement => {
    * @param updatedToken
    * @returns {string} A JWT token
    * @description Creates a JWT token using the updated token and the session token
+   * @throws {Error} If the Auth0 client secret is undefined
    */
-  const createJWT = (updatedToken: DecodedToken) => {
+  const createJWT = (updatedToken: AuthToken) => {
     const secret = process.env.REACT_APP_AUTH0_CLIENT_SECRET; // this value needs to match the secret in the Auth0 post-login action
     if (!secret) throw new Error('Missing Auth0 client secret');
     return sign(updatedToken, secret, {
@@ -175,8 +179,8 @@ const SignupForm = (): React.ReactElement => {
   /**
    * @title updateClaims
    * @description Updates claims state with the additional properties from the form
-   * @param data The data to update the claims with
-   * @returns {Object} The updated claims, resolved as a promise
+   * @param {Object} data The data to update the claims with
+   * @returns {Object} Promise.resolve() if successful
    */
   const updateClaims = async (data: SignupFormValues) => {
     const app_metadata: AppMetadata = {
@@ -201,11 +205,11 @@ const SignupForm = (): React.ReactElement => {
   // HANDLERS
   /**
    * @title onSubmit
-   * @description Handles the form submission. Creates an axios instance with the Auth0 token as the Authorization header. Sends the form data to the API.
+   * @description Creates an axios instance with the Auth0 token as the Authorization header then sends the form data to the API.
    * @param {Object} data The form data
-   * @see createInstance
-   * @see getURLParams
-   * @see getDecodedToken
+   * @see {@linkcode createInstance}
+   * @see {@linkcode getURLParams}
+   * @see {@linkcode getDecodedToken}
    */
   const onSubmit = async (data: SignupFormValues) => {
     console.groupCollapsed('%cSignup Form Submitted 🚀', 'color: #00bfa5');
