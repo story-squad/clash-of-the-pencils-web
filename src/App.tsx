@@ -9,7 +9,6 @@ import {
   ForgotCodenameView,
   ForgotPasswordView,
   MyStoriesView,
-  ResetPasswordView,
   ScheduleView,
   SignupView,
   TermsView,
@@ -41,7 +40,6 @@ const App = (): React.ReactElement => {
           render={() => <ForgotCodenameView onSubmit={undefined} />}
         />
         <Route path="/account" render={() => <AccountView />} />
-        <Route path="/reset/submit" render={() => <ResetPasswordView />} />
 
         {/* Redirects */}
         <Route path="/auth/login" render={() => <LoginEmailRedirect />} />
