@@ -10,7 +10,7 @@ import { DragonLoader } from '../../molecules';
 import { FormProps } from '../formTypes';
 import './styles/index.scss';
 
-export type SubmissionFormProps = FormProps<FormData> & {
+export type SubmissionFormProps = FormProps & {
   enableLogs?: boolean;
   onCancel?: () => void;
   currentPrompt: Prompts.IPrompt;
