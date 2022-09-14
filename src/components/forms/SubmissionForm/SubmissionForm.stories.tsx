@@ -11,7 +11,7 @@ const Template: Story<SubmissionFormProps> = (props) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  onSubmit: async (data) => {
+  onSubmit: async (data: Record<string, unknown>) => {
     console.log('[Form Data]', data);
     await sleep(2000);
     console.log('[DONE]');
