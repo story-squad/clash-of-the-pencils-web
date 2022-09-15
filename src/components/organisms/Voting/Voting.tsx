@@ -50,20 +50,24 @@ export default function Voting({
     run: submitVotes,
     onSuccess: openSuccessModal,
     onError: (error) => {
-      if (Auth.isAxiosError(error) && error.response?.data) {
-        const message =
-          error.response.data.message ??
-          error.response.data.error ??
-          error.message;
+      /**
+       * @WIP This is a hack to get around TS Errors that hours have been spent trying to figure out
+       */
+      // if (Auth.isAxiosError(error) && error.response?.data) {
+      //   const message =
+      //     error.response.data.message ??
+      //     error.response.data.error ??
+      //     error.message;
 
-        switch (message) {
-          case 'Could not access this resource again so soon!':
-            setError("It's too soon to vote again!");
-            break;
-          default:
-            setError(message);
-        }
-      }
+      //   switch (message) {
+      //     case 'Could not access this resource again so soon!':
+      //       setError("It's too soon to vote again!");
+      //       break;
+      //     default:
+      //       setError(message);
+      //   }
+      // }
+      console.log(error);
     },
   });
 
