@@ -1,16 +1,13 @@
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { Auth } from '../../../api';
 import { EmailForm } from '../../forms';
-import { FormProps } from '../../forms/formTypes';
-
-declare type SendToFormProps = FormProps & {
-  sendToParent: boolean;
-};
+import { ActivationRequestFormProps } from './types';
 
 export function SendToForm({
   sendToParent = false,
   ...formProps
-}: SendToFormProps): React.ReactElement {
+}: ActivationRequestFormProps): React.ReactElement {
   const methods = useForm();
   return (
     <div className="activation-form send-to-form">
@@ -20,7 +17,7 @@ export function SendToForm({
         button below to request a new new activation email.
       </p>
       <FormProvider {...methods}>
-        <EmailForm {...formProps} />
+        <EmailForm onSubmit={Auth.activation.sendTo} {...formProps} />
       </FormProvider>
     </div>
   );
