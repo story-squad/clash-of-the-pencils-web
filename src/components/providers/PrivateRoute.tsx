@@ -30,12 +30,9 @@ export default function PrivateRoute({
       );
   }, [user, allowRole]);
 
-  return (
-    <Route
-      {...routeProps}
-      render={(props) =>
-        canAccess ? <Component {...props} /> : <Redirect to="/login" />
-      }
-    />
-  );
+  const RouteComponent = (props: RouteComponentProps) => {
+    return canAccess ? <Component {...props} /> : <Redirect to="/login" />;
+  };
+
+  return <Route {...routeProps} component={RouteComponent} />;
 }
