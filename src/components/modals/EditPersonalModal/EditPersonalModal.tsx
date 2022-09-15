@@ -11,7 +11,6 @@ export default function EditAccountModal({
 }: Omit<ModalProps, 'component'> & {
   submithandler: AccountEditProps['onSubmit'];
   id: number;
-  onSuccess?: () => void;
 }): React.ReactElement {
   const methods = useForm({
     mode: 'onBlur',
@@ -27,6 +26,7 @@ export default function EditAccountModal({
             onSubmit={submithandler}
             id={id}
             onCancel={closeModal}
+            onSuccess={closeModal}
           />
         </FormProvider>
       )}
