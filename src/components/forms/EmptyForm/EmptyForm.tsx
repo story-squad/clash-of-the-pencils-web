@@ -17,7 +17,7 @@ export default function EmptyForm({
 
   const [submitForm, isSubmitting] = useAsync({
     run: async () => {
-      await onSubmit();
+      await onSubmit(null);
     },
     onError,
     onSuccess,
