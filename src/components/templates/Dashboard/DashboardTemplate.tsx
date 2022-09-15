@@ -17,7 +17,7 @@ export default function DashboardTemplate({
 >): React.ReactElement {
   return (
     <div className={classnames('dashboard-template', className)}>
-      <Route exact path="/" render={() => <Tutorial />} />
+      <Route exact path="/" component={() => <Tutorial />} />
       <Header useStorySquadHeader={useStorySquadHeader} />
       <div id="dashboard-content">
         <div className="dashboard-content-container">

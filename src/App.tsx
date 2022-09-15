@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import { ActivationModal } from './components/modals';
 import { LoginEmailRedirect, PrivateRoute } from './components/providers';
 import {
@@ -15,6 +15,8 @@ import {
   WinnersView,
 } from './components/views';
 
+const history = useHistory();
+
 const App = (): React.ReactElement => {
   return (
     <div className="App">
@@ -28,33 +30,33 @@ const App = (): React.ReactElement => {
         <Route path="/error" component={ErrorView} />
 
         {/* Auth Routes */}
-        <Route path="/signup" render={() => <SignupView />} />
+        <Route path="/signup" component={() => <SignupView />} />
         <Route
           path="/forgot/password"
-          render={({ history }) => (
+          component={() => (
             <ForgotPasswordView openLogin={() => history.push('/login')} />
           )}
         />
         <Route
           path="/forgot/codename"
-          render={() => <ForgotCodenameView onSubmit={undefined} />}
+          component={() => <ForgotCodenameView onSubmit={undefined} />}
         />
-        <Route path="/account" render={() => <AccountView />} />
+        <Route path="/account" component={() => <AccountView />} />
 
         {/* Redirects */}
-        <Route path="/auth/login" render={() => <LoginEmailRedirect />} />
+        <Route path="/auth/login" component={() => <LoginEmailRedirect />} />
         <Route
           path="/activate"
-          render={(props) => <ActivationModal {...props} />}
+          component={(props: any) => <ActivationModal {...props} />}
         />
 
         {/* Private Routes */}
         <PrivateRoute path="/stories" component={() => <MyStoriesView />} />
 
         {/* Public Routes */}
-        <Route path="/schedule" render={() => <ScheduleView />} />
-        <Route path="/winners" render={WinnersView} />
-        <Route path="/terms-of-service" render={TermsView} />
+        <Route path="/schedule" component={() => <ScheduleView />} />
+        <Route path="/winners" component={() => <WinnersView />} />
+        <Route path="/terms-of-service" component={() => <TermsView />} />
 
         {/* Fallback Redirect to Dashboard */}
         <Route path="/" component={() => <Redirect to="/" />} />
