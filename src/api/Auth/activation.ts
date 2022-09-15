@@ -15,6 +15,6 @@ export async function resend(): Promise<void> {
  * @description No parameters needed, but you need to be logged in.
  * @returns {Promise<void>} No response body.
  * */
-export const sendTo = async (email: string): Promise<void> => {
-  await axiosWithAuth().post(`/api/auth/activation`, { email });
+export const sendTo = async (payload: { email: string }): Promise<void> => {
+  await axiosWithAuth().post(`/api/auth/activation`, payload.email);
 };
