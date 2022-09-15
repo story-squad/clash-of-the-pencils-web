@@ -22,13 +22,14 @@ export default function EditAccountModal({
   return (
     <Modal
       component={({ closeModal }) => (
-        <FormProvider {...methods}>
-          <EditPassword
-            onSubmit={submithandler}
-            id={id}
-            onCancel={closeModal}
-          />
-        </FormProvider>
+        // <FormProvider {...methods}>
+        //   <EditPassword
+        //     onSubmit={submithandler}
+        //     id={id}
+        //     onCancel={closeModal}
+        //   />
+        // </FormProvider>
+        <h2>Coming Soon!</h2>
       )}
       {...props}
     />
