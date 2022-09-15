@@ -4,12 +4,12 @@ import ReactPlayer from 'react-player';
 import { useRecoilValue } from 'recoil';
 import { TUTORIAL_IDS } from '../../../config';
 import { tutorial } from '../../../state';
-import StreamFailureFallback from './StreamFailureFallback';
+// import StreamFailureFallback from './StreamFailureFallback';
 import StreamWrapper from './StreamWrapper';
 
 const streamURL = process.env.REACT_APP_LIVESTREAM_URL;
 
-function Stream(): React.ReactElement {
+const Stream = (): React.ReactElement => {
   const [playing, setPlaying] = useState(false);
   const [renderFallback, setRenderFallback] = useState(streamURL === undefined);
   const message = useRecoilValue(tutorial.currentMessage);
@@ -46,12 +46,9 @@ function Stream(): React.ReactElement {
     </StreamWrapper>
   );
   // }
-}
+};
 
-export default function StreamErrorBound(): React.ReactElement {
-  return (
-    <ErrorBoundary fallback={StreamFailureFallback}>
-      <Stream />
-    </ErrorBoundary>
-  );
-}
+// export default function StreamErrorBound(): React.ReactElement {
+//   return <ErrorBoundary fallback={StreamFailureFallback} />;
+// }
+export default Stream;
