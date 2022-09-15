@@ -6,13 +6,18 @@ import { authFormInputs } from '../inputs';
 import './styles/index.scss';
 import { FormProps } from '../formTypes';
 
-const EmailForm = (props: FormProps): React.ReactElement => {
-  const { onSubmit, onError, onSuccess } = props;
+type EmailFormProps = FormProps<{ email: string }>;
+
+const EmailForm = ({
+  onSubmit,
+  onError,
+  onSuccess,
+}: EmailFormProps): React.ReactElement => {
   const { handleSubmit, clearErrors } = useFormContext();
   const clearFormError = useCallback(() => clearErrors('form'), [clearErrors]);
 
   const [submitForm, isSubmitting] = useAsync({
-    run: async (data: Record<string, string>) => {
+    run: async (data: any) => {
       await onSubmit(data);
     },
     onError,
