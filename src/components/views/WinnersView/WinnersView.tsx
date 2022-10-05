@@ -28,7 +28,12 @@ export default function WinnersView({
         )}
         <CardList className="winners-submission-card-list">
           {winnerIds.map((id) => (
-            <SubmissionCard key={id} droppable={false} submissionId={id} />
+            <SubmissionCard
+              showDelete={false}
+              key={id}
+              droppable={false}
+              submissionId={id}
+            />
           ))}
         </CardList>
       </div>

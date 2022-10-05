@@ -17,7 +17,11 @@ export default function BigWinner({
         </p>
       </div>
       <div className="center-grow">
-        <SubmissionCard droppable={false} submissionId={winnerId} />
+        <SubmissionCard
+          showDelete={false}
+          droppable={false}
+          submissionId={winnerId}
+        />
       </div>
     </div>
   );

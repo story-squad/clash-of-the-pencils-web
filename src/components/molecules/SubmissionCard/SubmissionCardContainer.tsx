@@ -14,11 +14,11 @@ import { SubmissionCardContainerPropSwitcher } from './types';
 function SubmissionCardContainer({
   submissionId,
   droppable,
+  showDelete,
   ...props
 }: SubmissionCardContainerPropSwitcher): React.ReactElement {
   const submission = useRecoilValue(submissions.getById(submissionId));
   const subDeleted = useSetRecoilState(submissions.forceUpdate);
-
   const deleteSubmission = () => {
     // Deletes submission by ID
     deleteSubById(submissionId)
@@ -57,8 +57,7 @@ function SubmissionCardContainer({
     ) : (
       <div className="submission-wrapper">
         <SubmissionCard submission={submission} {...props} />
-        {/* TODO: FIX THIS FROM SHOWING UP ON ALL SubmissionCards */}
-        <Button onClick={openModal}>Delete</Button>
+        {showDelete && <Button onClick={openModal}>Delete</Button>}
         {confirmDeleteModal}
         {deleteError}
       </div>

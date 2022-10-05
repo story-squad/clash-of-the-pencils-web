@@ -29,10 +29,12 @@ type SubmissionCardContainerProps = Omit<
   BaseSubmissionCardContainerProps,
   'position' | 'userHasVoted'
 > & {
+  showDelete: boolean;
   droppable: false;
 };
 
 type DroppableSubmissionCardProps = BaseSubmissionCardContainerProps & {
+  showDelete: boolean;
   droppable?: true;
 };
 

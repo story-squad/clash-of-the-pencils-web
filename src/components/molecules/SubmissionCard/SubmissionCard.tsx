@@ -1,6 +1,5 @@
 import { classnames } from '@story-squad/react-utils';
-import { DateTime } from 'luxon';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useSetRecoilState } from 'recoil';
 import { app } from '../../../state';
 import { Card, Picture, Sticker } from '../../atoms';
@@ -25,15 +24,15 @@ export default function SubmissionCard({
     if (!disablePreview) openSubmission();
   };
 
-  const age = useMemo(
-    () =>
-      Math.abs(
-        Math.round(
-          DateTime.fromISO(submission.dob as string).diffNow('years').years,
-        ),
-      ),
-    [submission.dob],
-  );
+  // const age = useMemo(
+  //   () =>
+  //     Math.abs(
+  //       Math.round(
+  //         DateTime.fromISO(submission.dob as string).diffNow('years').years,
+  //       ),
+  //     ),
+  //   [submission.dob],
+  // );
 
   return (
     <Card
@@ -50,7 +49,7 @@ export default function SubmissionCard({
       <div className="submission-card-footer">
         <div className="content-left">
           <h2>{submission.codename}</h2>
-          <h3>Age: {age > 18 ? '18+' : age}</h3>
+          {/* <h3>Age: {age > 18 ? '18+' : age}</h3> */}
         </div>
         <Sticker type="readMe" className="read-me" />
       </div>

@@ -22,7 +22,12 @@ export default function MyStoriesView({
         ) : (
           <CardList className="my-submissions-card-list">
             {submissionIds.map((id) => (
-              <SubmissionCard key={id} droppable={false} submissionId={id} />
+              <SubmissionCard
+                showDelete={true}
+                key={id}
+                droppable={false}
+                submissionId={id}
+              />
             ))}
           </CardList>
         )}
