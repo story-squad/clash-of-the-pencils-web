@@ -32,9 +32,10 @@ export default function EditPersonalForm({
     onCancel();
     reset();
   };
-
   const [submitForm, isSubmitting] = useAsync({
     run: async (data: AccountEditFields) => {
+      console.log(id);
+
       if (id && data.firstname && data.lastname && data.dob) {
         await onSubmit({
           id: id,

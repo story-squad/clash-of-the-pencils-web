@@ -51,7 +51,9 @@ export default function AccountUpdateForm({
       }
     },
     onError,
-    onSuccess: () => setSubmited(true),
+    onSuccess: () => {
+      setSubmited(true);
+    },
   });
 
   return (

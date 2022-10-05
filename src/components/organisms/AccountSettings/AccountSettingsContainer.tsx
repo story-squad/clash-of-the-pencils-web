@@ -17,7 +17,6 @@ interface PasswordUpdateProps {
 }
 
 export default function AccountContainer({
-  id,
   submitHandler,
 }: PasswordUpdateProps): React.ReactElement {
   const user = useRecoilValue(auth.user);
@@ -52,7 +51,7 @@ export default function AccountContainer({
     confirmText: 'Delete Account',
     onConfirm: onConfirm,
   });
-
+  console.log(user);
   return (
     <div className="account-wrapper">
       <h2>Account Settings</h2>
@@ -67,23 +66,27 @@ export default function AccountContainer({
           editInfo={accountInfo}
         />
       )}
-      <EditAccountModal
-        id={id}
-        submithandler={submitHandler}
-        isOpen={edit}
-        setIsOpen={setEdit}
-      />
-      <EditPersonalModal
-        id={id}
-        submithandler={submitHandler}
-        isOpen={personal}
-        setIsOpen={setEditPersonal}
-      />
-      <div className="delete-wrapper">
-        <Button onClick={deleteModal} type="secondary">
-          Delete Account
-        </Button>
-      </div>
+      {user && (
+        <>
+          <EditAccountModal
+            id={user?.user_id}
+            submithandler={submitHandler}
+            isOpen={edit}
+            setIsOpen={setEdit}
+          />
+          <EditPersonalModal
+            id={user?.user_id}
+            submithandler={submitHandler}
+            isOpen={personal}
+            setIsOpen={setEditPersonal}
+          />
+          <div className="delete-wrapper">
+            <Button onClick={deleteModal} type="secondary">
+              Delete Account
+            </Button>
+          </div>
+        </>
+      )}
       {openDelete}
     </div>
   );
