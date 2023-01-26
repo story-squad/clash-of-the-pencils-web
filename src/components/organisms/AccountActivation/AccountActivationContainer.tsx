@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useRecoilValue } from 'recoil';
+import { ErrorMessageType } from '../../../api/Auth';
 import { useConfirmationModal } from '../../../hooks';
 import { auth } from '../../../state';
 import { readError } from '../../../utils';
@@ -23,11 +24,14 @@ export default function AccountActivationContainer(): React.ReactElement {
     hideCancelButton: true,
   });
 
-  const onError: FormTypes.FormOnError<unknown> = useCallback((err) => {
-    const message = readError(err);
-    setError(message);
-    openFailureModal();
-  }, []);
+  const onError: FormTypes.FormOnError<ErrorMessageType> = useCallback(
+    (err) => {
+      const message = readError(err);
+      setError(message);
+      openFailureModal();
+    },
+    [],
+  );
 
   return (
     <>

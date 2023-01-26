@@ -1,5 +1,5 @@
 import React, { Suspense, useMemo, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { useConfirmationModal } from '../../../hooks';
 import { app, auth, prompts } from '../../../state';
@@ -37,8 +37,8 @@ function PromptOrganismContainer(): React.ReactElement {
   };
 
   // Code to open the login page when not logged in
-  const { push } = useHistory();
-  const openLogin = () => push('/login');
+  const navigate = useNavigate();
+  const openLogin = () => navigate('/login');
 
   const votingTime = useMemo(
     () => time.schedule.vote.start.toLocal().toFormat('h:mm a'),

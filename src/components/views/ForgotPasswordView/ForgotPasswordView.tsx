@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Auth } from '../../../api';
+import { ErrorMessageType } from '../../../api/Auth';
 import { useConfirmationModal } from '../../../hooks';
 import { readError } from '../../../utils';
 import { EmailForm } from '../../forms';
@@ -45,7 +46,7 @@ export default function ForgotPasswordView({
 
   // Error handler for submit function
   const errorHandler = useCallback(
-    async (err: unknown) => {
+    async (err: ErrorMessageType) => {
       // Read the relevant message string out of the error
       const message = readError(err);
       switch (message) {

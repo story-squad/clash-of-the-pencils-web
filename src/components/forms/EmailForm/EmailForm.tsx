@@ -1,6 +1,6 @@
-import { useAsync } from '@story-squad/react-utils';
 import React, { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
+import useAsync from '../../../hooks/useAsync';
 import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import { authFormInputs } from '../inputs';
@@ -17,7 +17,7 @@ export default function EmailForm({
   const clearFormError = useCallback(() => clearErrors('form'), [clearErrors]);
 
   const [submitForm, isSubmitting] = useAsync({
-    run: async (data: { email: string }) => {
+    asyncFunction: async (data: { email: string }) => {
       await onSubmit(data);
     },
     onError,
@@ -26,7 +26,14 @@ export default function EmailForm({
 
   return (
     <>
-      <form className="email-form" onSubmit={handleSubmit(submitForm)}>
+      <form
+        className="email-form"
+        onSubmit={handleSubmit((data) => {
+          const userData = { email: data.email };
+
+          submitForm(userData);
+        })}
+      >
         {authFormInputs.email()}
         <Button
           onClick={clearFormError}

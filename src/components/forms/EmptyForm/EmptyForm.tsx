@@ -1,6 +1,6 @@
-import { useAsync } from '@story-squad/react-utils';
 import React, { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
+import useAsync from '../../../hooks/useAsync';
 import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import './styles/index.scss';
@@ -16,7 +16,7 @@ export default function EmptyForm({
   const clearFormError = useCallback(() => clearErrors('form'), [clearErrors]);
 
   const [submitForm, isSubmitting] = useAsync({
-    run: async () => {
+    asyncFunction: async () => {
       await onSubmit();
     },
     onError,

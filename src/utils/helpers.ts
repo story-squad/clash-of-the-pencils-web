@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon';
 import React from 'react';
 import { Auth } from '../api';
+import { ErrorMessageType } from '../api/Auth';
 
 /** Use this to stop mouse events from propagating */
 export function stopPropagation<ElementType = unknown>(
@@ -22,7 +23,7 @@ export const $: typeof document.querySelector =
  * This function will consistently process errors from our API, pulling out the
  * most important string data and returning a default if none is found
  */
-export function readError(err: unknown): string {
+export function readError(err: ErrorMessageType): string {
   if (Auth.isAxiosError(err)) {
     return (
       err.response?.data?.message ?? err.response?.data?.error ?? err.message

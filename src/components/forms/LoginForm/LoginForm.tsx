@@ -1,9 +1,10 @@
 import { ErrorMessage } from '@hookform/error-message';
-import { useAsync } from '@story-squad/react-utils';
 import React, { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Auth } from '../../../api';
+import { ErrorMessageType } from '../../../api/Auth';
 import { dataConstraints } from '../../../config';
+import useAsync from '../../../hooks/useAsync';
 import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
 import { authFormInputs } from '../inputs';
@@ -21,7 +22,7 @@ export default function LoginForm({
 
   const errorHandler = useCallback(
     onError ?? // If a custom error handler was provided, use it instead of our function
-      ((error: unknown) => {
+      ((error: ErrorMessageType) => {
         if (error) {
           let message: string;
           if (Auth.isAxiosError(error) && error.response?.data?.message) {
@@ -54,7 +55,11 @@ export default function LoginForm({
   };
 
   const [exec, isLoading] = useAsync({
-    run: handleSubmit(submitHandler),
+    asyncFunction: handleSubmit((data) => {
+      const userData = { codename: data.codename, password: data.password };
+
+      submitHandler(userData);
+    }),
     onError: errorHandler,
   });
 

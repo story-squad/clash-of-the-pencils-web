@@ -96,9 +96,9 @@ export default function DroppableSubmissionCard({
             contents={contents}
             isDraggingOver={isDraggingOver}
             isEmpty={isEmpty}
-            placeholder={placeholder}
+            // placeholder={placeholder}
             isUsingPlaceholder={isUsingPlaceholder}
-            draggingFromThisWith={draggingFromThisWith}
+            // draggingFromThisWith={draggingFromThisWith}
           />
         </Card>
       )}

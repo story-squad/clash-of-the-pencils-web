@@ -1,12 +1,13 @@
 import { ReactElement, useCallback, useEffect, useMemo } from 'react';
 import { useSetRecoilState } from 'recoil';
+import { ErrorMessageType } from '../api/Auth';
 import { auth } from '../state';
 import { readError } from '../utils';
 import { useConfirmationModal } from './useConfirmationModal';
 import useOpen from './useOpen';
 
 export default function useExpiredAuthHandlerModal(
-  err: unknown,
+  err: ErrorMessageType,
 ): [ModalElement: ReactElement, errorMessage: string] {
   const logout = useSetRecoilState(auth.login);
   const openDash = useOpen('/');

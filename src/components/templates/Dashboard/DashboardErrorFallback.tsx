@@ -1,7 +1,7 @@
-import { IErrorFallbackProps } from '@story-squad/react-utils/dist/utils/ErrorBoundary/types';
 import React from 'react';
 import { errorDragon } from '../../../assets';
 import { useExpiredAuthHandlerModal } from '../../../hooks';
+import { IErrorFallbackProps } from '../../../utils/ErrorBoundary/types';
 import { Button, Picture } from '../../atoms';
 import './styles/dashboardErrorFallback.scss';
 

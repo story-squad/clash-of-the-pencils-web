@@ -27,3 +27,10 @@ export enum Roles {
   'teacher' = 2,
   'admin' = 3,
 }
+
+export type ErrorMessageType = {
+  message?: string;
+  response: {
+    data: any;
+  };
+};

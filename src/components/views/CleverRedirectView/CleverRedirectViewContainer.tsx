@@ -1,6 +1,6 @@
 import { useAsync } from '@story-squad/react-utils';
 import React, { useCallback, useEffect, useMemo } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { Clever } from '../../../api';
 import { auth } from '../../../state';
@@ -12,7 +12,7 @@ export default function CleverRedirectViewContainer(): React.ReactElement {
   const { search } = useLocation();
   const [{ code }] = useMemo(() => [parse<'code'>(search)], [search]);
   // Get push command to redirect
-  const { push } = useHistory();
+  const navigate = useNavigate();
   // Get login function
   const login = useSetRecoilState(auth.login);
 
@@ -27,7 +27,7 @@ export default function CleverRedirectViewContainer(): React.ReactElement {
        * in to the application and push them to the dashboard.
        */
       login({ token: res.body.token, user: res.body.user }); // Log them in
-      push('/'); // Go to dashboard
+      navigate('/'); // Go to dashboard
     } else if (Clever.isMerge(res)) {
       /**
        * On a merge action, we find that the user's Clever account email
@@ -36,7 +36,7 @@ export default function CleverRedirectViewContainer(): React.ReactElement {
        * successful login, we link the two accounts.
        */
       const state = Clever.getMergeState(res);
-      push(`/login`, state); // Route them to login with filled codename
+      navigate(`/login`, { state: { state } }); // Route them to login with filled codename
     } else if (Clever.isNew(res)) {
       /**
        * On a new action, the user does not have a Story Squad account yet.
@@ -44,7 +44,7 @@ export default function CleverRedirectViewContainer(): React.ReactElement {
        * email address, and merge the two accounts on successful signup.
        */
       const state = Clever.getNewState(res);
-      push(`/signup`, state); // Route them to signup with given info
+      navigate(`/signup`, { state: { state } }); // Route them to signup with given info
     }
   }, []);
 

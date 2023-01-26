@@ -1,6 +1,6 @@
 import { classnames, useKey } from '@story-squad/react-utils';
 import React, { useEffect, useMemo, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { PROMPT_BOX_ID } from '../../../config/tutorialSelectionIds';
 import { useConfirmationModal, useOpenDashboard } from '../../../hooks';
@@ -23,7 +23,7 @@ const Tutorial = (): React.ReactElement => {
   // This checks if to run tutorial on app launch
   const [showTutorial, setShowTutorial] = useRecoilState(tutorial.showTutorial);
 
-  const router = useHistory();
+  const navigate = useNavigate();
   const [{ message, arrow, classname, id, styleclass }] = useMemo(
     () => [tutorial.messages[currentMessage]],
     [tutorial.messages, currentMessage],
@@ -65,7 +65,7 @@ const Tutorial = (): React.ReactElement => {
     } else {
       setTutorialIsOpen(false);
       setShowTutorial(false);
-      router.push('/schedule');
+      navigate('/schedule');
     }
   };
 

@@ -1,7 +1,8 @@
-import { useAsync } from '@story-squad/react-utils';
 import React, { useCallback, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { ErrorMessageType } from '../../../api/Auth';
 import { useConfirmationModal } from '../../../hooks';
+import useAsync from '../../../hooks/useAsync';
 import { readError } from '../../../utils';
 import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
@@ -43,7 +44,7 @@ export default function PasswordForm({
   });
 
   const errorHandler = useCallback(
-    async (err: unknown) => {
+    async (err: ErrorMessageType) => {
       // Run the passed-in error function
       await onError?.(err);
 
@@ -63,7 +64,7 @@ export default function PasswordForm({
   );
 
   const [submitForm, isSubmitting] = useAsync({
-    run: async (data: PasswordFormFields) => {
+    asyncFunction: async (data: PasswordFormFields) => {
       await onSubmit({ password: data.password });
     },
     onError: errorHandler,
@@ -74,7 +75,14 @@ export default function PasswordForm({
     <>
       {failureModal}
       {successModal}
-      <form className="password-form" onSubmit={handleSubmit(submitForm)}>
+      <form
+        className="password-form"
+        onSubmit={handleSubmit((data) => {
+          const userData = { password: data.password };
+
+          submitForm(userData);
+        })}
+      >
         {authFormInputs.password()}
         {authFormInputs.confirmPassword({
           rules: {
