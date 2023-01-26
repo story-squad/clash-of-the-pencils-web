@@ -51,7 +51,7 @@ function getLbQuery({
   const query = new URLSearchParams({
     limit: `${limit}`,
     offset: `${offset}`,
-    getBuffer: `${getBuffer}`,
+    // getBuffer: `${getBuffer}`,
   });
   return query.toString();
 }
