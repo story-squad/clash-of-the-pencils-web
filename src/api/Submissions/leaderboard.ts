@@ -13,7 +13,7 @@ export const getDailyLeaderboard = async (
 ): Promise<ILeaderboardItem[]> => {
   const query = getLbQuery(params);
   const { data } = await axiosWithoutAuth().get(
-    `/api/clash/leaderboard/daily?${query}`,
+    `/api/leaderboard/daily?${query}`,
   );
   return data;
 };
@@ -30,7 +30,7 @@ export const getWeeklyLeaderboard = async (
 ): Promise<WeeklyLeaderboardItem[]> => {
   const query = getLbQuery(params);
   const { data } = await axiosWithoutAuth().get(
-    `/api/clash/leaderboard/weekly?${query}`,
+    `/api/leaderboard/weekly?${query}`,
   );
   return data;
 };
