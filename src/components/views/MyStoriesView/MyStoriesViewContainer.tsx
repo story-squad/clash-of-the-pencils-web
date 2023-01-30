@@ -1,8 +1,8 @@
-import { useAsync } from '@story-squad/react-utils';
 import React, { Suspense, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { Submissions } from '../../../api';
+import useAsync from '../../../hooks/useAsync';
 import { auth, submissions } from '../../../state';
 import { readError } from '../../../utils';
 import MyStoriesLoader from './MyStoriesLoader';
@@ -16,7 +16,7 @@ function MyStoriesViewContainer(): React.ReactElement {
     submissions.forceUpdate,
   );
   const [loadSubs, loading, , err] = useAsync({
-    run: Submissions.getMySubmissions,
+    asyncFunction: Submissions.getMySubmissions,
     onSuccess: addUserSubs,
   });
 
@@ -35,7 +35,7 @@ function MyStoriesViewContainer(): React.ReactElement {
     }
   }, [subIdDeleted]);
 
-  if (err) return <Redirect to={`/error?message=${readError(err)}`} />;
+  if (err) return <Navigate to={`/error?message=${readError(err)}`} replace />;
 
   return subIds ? (
     <MyStoriesView submissionIds={subIds} />

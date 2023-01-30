@@ -8,8 +8,8 @@ export interface SubmissionCardDropZoneProps {
   isEmpty: boolean;
   isDraggingOver: boolean;
   isUsingPlaceholder: boolean;
-  draggingFromThisWith?: string;
-  placeholder?: React.ReactElement | null;
+  draggingFromThisWith?: string | null | undefined;
+  placeholder?: React.ReactNode | null;
 }
 
 export default function SubmissionCardDropZone({

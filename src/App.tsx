@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { ActivationModal } from './components/modals';
 import { LoginEmailRedirect, PrivateRoute } from './components/providers';
 import {
@@ -19,63 +19,62 @@ import {
 } from './components/views';
 
 const App = (): React.ReactElement => {
+  const navigate = useNavigate();
+
   return (
     <div className="App">
       {/* <SEO /> */}
       {/* <CookiePopup /> */}
-      <Switch>
+      <Routes>
         {/* Dashboard Route */}
-        <Route exact path="/" component={DashboardView} />
+        <Route path="/" element={<DashboardView />} />
 
         {/* Error Handler Route */}
-        <Route path="/error" component={ErrorView} />
+        <Route path="/error" element={<ErrorView />} />
 
         {/* Auth Routes */}
         <Route
           path="/login"
-          render={({ history }) => (
+          element={
             <LoginView
-              openSignup={() => history.push('/signup')}
-              openForgotCodename={() => history.push('/forgot/codename')}
-              openForgotPassword={() => history.push('/forgot/password')}
+              openSignup={() => navigate('/signup')}
+              openForgotCodename={() => navigate('/forgot/codename')}
+              openForgotPassword={() => navigate('/forgot/password')}
             />
-          )}
+          }
         />
         <Route
           path="/signup"
-          render={({ history }) => (
-            <SignupView openLogin={() => history.push('/login')} />
-          )}
+          element={<SignupView openLogin={() => navigate('/login')} />}
         />
         <Route
           path="/forgot/password"
-          render={({ history }) => (
-            <ForgotPasswordView openLogin={() => history.push('/login')} />
-          )}
+          element={<ForgotPasswordView openLogin={() => navigate('/login')} />}
         />
-        <Route path="/forgot/codename" render={() => <ForgotCodenameView />} />
-        <Route path="/account" render={() => <AccountView />} />
-        <Route path="/reset/submit" render={() => <ResetPasswordView />} />
-        <Route path="/oauth/clever" render={() => <CleverRedirectView />} />
+        <Route path="/forgot/codename" element={<ForgotCodenameView />} />
+        <Route path="/account" element={<AccountView />} />
+        <Route path="/reset/submit" element={<ResetPasswordView />} />
+        <Route path="/oauth/clever" element={<CleverRedirectView />} />
 
         {/* Redirects */}
-        <Route path="/auth/login" render={() => <LoginEmailRedirect />} />
-        <Route
-          path="/activate"
-          render={(props) => <ActivationModal {...props} />}
-        />
+        <Route path="/auth/login" element={<LoginEmailRedirect />} />
+        <Route path="/activate" element={<ActivationModal />} />
 
         {/* Private Routes */}
-        <PrivateRoute path="/stories" component={() => <MyStoriesView />} />
+        <Route
+          path="/stories"
+          element={<PrivateRoute outlet={<MyStoriesView />} />}
+        />
+        {/* <PrivateRoute path="/stories" component={() => <MyStoriesView />} /> */}
 
         {/* Public Routes */}
-        <Route path="/schedule" render={() => <ScheduleView />} />
-        <Route path="/winners" render={WinnersView} />
-        <Route path="/termsofservice" render={TermsView} />
+        <Route path="/schedule" element={<ScheduleView />} />
+        <Route path="/winners" element={<WinnersView />} />
+        <Route path="/termsofservice" element={<TermsView />} />
 
         {/* Fallback Redirect to Dashboard */}
-        <Route path="/" component={() => <Redirect to="/" />} />
-      </Switch>
+        <Route path="*" element={<DashboardView />} />
+      </Routes>
     </div>
   );
 };

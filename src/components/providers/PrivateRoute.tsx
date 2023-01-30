@@ -1,23 +1,18 @@
 import React, { useMemo } from 'react';
-import {
-  Redirect,
-  Route,
-  RouteComponentProps,
-  RouteProps,
-} from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { Auth } from '../../api';
 import { auth } from '../../state';
 
-export interface PrivateRouteProps extends RouteProps {
-  component: React.ComponentType<RouteComponentProps>;
+export interface PrivateRouteProps {
+  // children: React.ComponentType<RouteComponentProps>;
   allowRole?: Auth.Roles;
+  outlet: JSX.Element;
 }
 
 export default function PrivateRoute({
-  component: Component,
+  outlet,
   allowRole,
-  ...routeProps
 }: PrivateRouteProps): React.ReactElement {
   const isLoggedIn = useRecoilValue(auth.isLoggedIn);
   const user = useRecoilValue(auth.user);
@@ -30,12 +25,19 @@ export default function PrivateRoute({
       );
   }, [user, allowRole]);
 
-  return (
-    <Route
-      {...routeProps}
-      render={(props) =>
-        canAccess ? <Component {...props} /> : <Redirect to="/login" />
-      }
-    />
-  );
+  if (canAccess) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return outlet;
+
+  // return (
+  //   <Navigate to={`/?redirect=${redirectURL}`} replace />
+  //   <Route
+  //     {...routeProps}
+  //     render={(props) =>
+  //       canAccess ? <Component {...props} /> : <Redirect to="/login" />
+  //     }
+  //   />
+  // );
 }

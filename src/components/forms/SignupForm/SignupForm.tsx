@@ -1,9 +1,11 @@
 import { ErrorMessage } from '@hookform/error-message';
-import { useAsync } from '@story-squad/react-utils';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { Auth, Users } from '../../../api';
+import { ErrorMessageType } from '../../../api/Auth';
+import { INewUser } from '../../../api/Users';
 import { dataConstraints } from '../../../config';
+import useAsync from '../../../hooks/useAsync';
 import { getAge, readError } from '../../../utils';
 import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
@@ -43,7 +45,7 @@ export default function SignupForm({
   // Custom error handler
   const errorHandler = useCallback(
     onError ?? // If a custom error handler was provided, use it instead of our function
-      ((error: unknown) => {
+      ((error: ErrorMessageType) => {
         const message = readError(error);
         const formError = { type: 'manual', message };
 
@@ -81,7 +83,7 @@ export default function SignupForm({
   );
   // Using useAsync for easier async render control
   const [asyncSubmitForm, isLoading] = useAsync({
-    run: onSubmit,
+    asyncFunction: async (data: INewUser) => onSubmit(data),
     onError: errorHandler,
   });
 
@@ -99,7 +101,17 @@ export default function SignupForm({
   return (
     <form
       className="signup-form"
-      onSubmit={handleSubmit(asyncSubmitForm)}
+      onSubmit={handleSubmit((data) => {
+        const userData = {
+          ...data,
+          password: data.password,
+          codename: data.codename,
+          firstname: data.firstname,
+          roleId: data.roleId,
+        };
+
+        asyncSubmitForm(userData);
+      })}
       noValidate
     >
       {/* First page */}

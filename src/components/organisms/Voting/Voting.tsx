@@ -1,9 +1,10 @@
-import { classnames, useAsync } from '@story-squad/react-utils';
+import { classnames } from '@story-squad/react-utils';
 import React, { useMemo, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { Auth } from '../../../api';
 import { TUTORIAL_IDS } from '../../../config';
 import { useConfirmationModal } from '../../../hooks';
+import useAsync from '../../../hooks/useAsync';
 import { tutorial } from '../../../state';
 import { time } from '../../../utils';
 import { DragonBank } from '../../molecules';
@@ -47,7 +48,7 @@ export default function Voting({
 
   const [errOverride, setError] = useState<string>();
   const [submitVotesHandler, loading, , err] = useAsync({
-    run: submitVotes,
+    asyncFunction: submitVotes,
     onSuccess: openSuccessModal,
     onError: (error) => {
       if (Auth.isAxiosError(error) && error.response?.data) {

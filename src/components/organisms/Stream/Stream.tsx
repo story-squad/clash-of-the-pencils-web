@@ -1,9 +1,10 @@
-import { classnames, ErrorBoundary } from '@story-squad/react-utils';
+import { classnames } from '@story-squad/react-utils';
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
 import { useRecoilValue } from 'recoil';
 import { TUTORIAL_IDS } from '../../../config';
 import { tutorial } from '../../../state';
+import { ErrorBoundary } from '../../../utils/ErrorBoundary';
 import StreamFailureFallback from './StreamFailureFallback';
 import StreamWrapper from './StreamWrapper';
 

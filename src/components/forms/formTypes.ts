@@ -1,3 +1,5 @@
+import { ErrorMessageType } from '../../api/Auth';
+
 export type FormOnSubmit<FormData = unknown, Response = unknown> = (
   data: FormData,
 ) => Response | Promise<Response>;
@@ -6,9 +8,9 @@ export type FormOnSuccess<Response> = (
   response?: Response,
 ) => void | Promise<void>;
 export interface FormProps<
-  FormData extends unknown = unknown,
+  FormData = unknown,
   Response = unknown,
-  Error = unknown,
+  Error = ErrorMessageType,
 > {
   onSubmit: FormOnSubmit<FormData, Response>;
   onSuccess?: FormOnSuccess<Response>;

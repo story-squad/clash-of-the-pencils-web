@@ -1,7 +1,7 @@
-import { useAsync } from '@story-squad/react-utils';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
+import useAsync from '../../../hooks/useAsync';
 import { auth } from '../../../state';
 import { getAge } from '../../../utils';
 import { Button, LoadIcon } from '../../atoms';
@@ -34,7 +34,7 @@ export default function EditPersonalForm({
   };
 
   const [submitForm, isSubmitting] = useAsync({
-    run: async (data: AccountEditFields) => {
+    asyncFunction: async (data: AccountEditFields) => {
       if (id && data.firstname && data.lastname && data.dob) {
         await onSubmit({
           id: id,

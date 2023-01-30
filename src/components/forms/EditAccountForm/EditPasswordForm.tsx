@@ -1,7 +1,7 @@
-import { useAsync } from '@story-squad/react-utils';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
+import useAsync from '../../../hooks/useAsync';
 import { account, auth } from '../../../state';
 import { Button, LoadIcon } from '../../atoms';
 import { FormProps } from '../formTypes';
@@ -44,7 +44,7 @@ export default function AccountUpdateForm({
   };
 
   const [submitForm, isSubmitting] = useAsync({
-    run: async (data: AccountEditFields) => {
+    asyncFunction: async (data: AccountEditFields) => {
       if (id && data.password && data.confirmPassword) {
         await onSubmit({ id: id, password: data.password });
         cancel();

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { Auth, Clever, Users } from '../../../api';
 import { auth } from '../../../state';
@@ -30,7 +30,7 @@ export default function SignupView({
     reValidateMode: 'onChange',
     shouldFocusError: true,
   });
-  const { push } = useHistory();
+  const navigate = useNavigate();
 
   const login = useSetRecoilState(auth.login);
 
@@ -44,7 +44,7 @@ export default function SignupView({
           return Auth.signup(data);
         })();
         login(res);
-        push('/');
+        navigate('/');
       }),
     [login, onSubmit],
   );

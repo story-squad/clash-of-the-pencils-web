@@ -1,4 +1,4 @@
-import { parse } from 'query-string';
+import queryString from 'query-string';
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { DashboardTemplate } from '../../templates';
@@ -7,7 +7,7 @@ function ErrorView(): React.ReactElement {
   const { search } = useLocation();
 
   useEffect(() => {
-    const parsedParams = parse(search);
+    const parsedParams = queryString.parse(search);
     const e = parsedParams.message;
     throw new Error(e && typeof e === 'string' ? e : 'An error occurred.');
   }, []);

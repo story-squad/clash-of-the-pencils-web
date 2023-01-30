@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { Auth } from '../../../api';
+import { ErrorMessageType } from '../../../api/Auth';
 import { useConfirmationModal, useOpen } from '../../../hooks';
 import { readError } from '../../../utils';
 import ForgotCodenameView, {
@@ -34,7 +35,7 @@ export default function ForgotCodenameViewContainer({
 
   // Error handler for submit function
   const onError = useCallback(
-    async (err: unknown) => {
+    async (err: ErrorMessageType) => {
       // Read the relevant message string out of the error
       const message = readError(err);
       switch (message) {

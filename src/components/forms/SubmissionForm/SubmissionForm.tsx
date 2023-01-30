@@ -1,8 +1,10 @@
-import { classnames, useAsync } from '@story-squad/react-utils';
+import { classnames } from '@story-squad/react-utils';
 import React, { SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import { FiUploadCloud } from 'react-icons/fi';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { Auth, Prompts, Submissions } from '../../../api';
+import { ErrorMessageType } from '../../../api/Auth';
+import useAsync from '../../../hooks/useAsync';
 import { app } from '../../../state';
 import { stopPropagation, upload } from '../../../utils';
 import { Button, LoadIcon } from '../../atoms';
@@ -37,7 +39,7 @@ export default function SubmissionForm({
   const clearError = () => setError(undefined);
 
   const errorHandler = useCallback(
-    (err: unknown) => {
+    (err: ErrorMessageType) => {
       // If there's an onError function, call it with our error object
       onError?.(err);
 
@@ -78,19 +80,19 @@ export default function SubmissionForm({
         // On success, store it in state!
         setUserSubForToday(sub);
         onSuccess?.();
-      } catch (err) {
+      } catch (err: any) {
         errorHandler(err);
       }
     }
   };
 
   const [exec, loading] = useAsync({
-    run: submitHandler,
+    asyncFunction: submitHandler,
     onError: errorHandler,
   });
 
   const [convertHEICImage, loadingHEIC] = useAsync({
-    run: upload.heicToPng,
+    asyncFunction: upload.heicToPng,
     onSuccess: async (pngImage) => {
       setFile(pngImage);
       setPreview(await upload.generatePreview(pngImage));

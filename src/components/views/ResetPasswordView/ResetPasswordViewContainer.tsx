@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import { Redirect, useHistory, useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { Auth } from '../../../api';
 import { parse } from '../../../utils';
 import { PasswordFormProps } from '../../forms';
@@ -11,8 +11,8 @@ export default function ResetPasswordViewContainer(): React.ReactElement {
     () => parse<'code' | 'email'>(search),
     [search],
   );
-  const { push } = useHistory();
-  const openLogin = useCallback(() => push('/login'), [push]);
+  const navigate = useNavigate();
+  const openLogin = useCallback(() => navigate('/login'), [navigate]);
 
   const submitHandler: PasswordFormProps['onSubmit'] = useCallback(
     async ({ password }) => {
@@ -24,7 +24,7 @@ export default function ResetPasswordViewContainer(): React.ReactElement {
   );
 
   if (!code || !email) {
-    return <Redirect to="/" />;
+    return <Navigate to="/" replace />;
   } else
     return (
       <ResetPasswordView submitHandler={submitHandler} openLogin={openLogin} />

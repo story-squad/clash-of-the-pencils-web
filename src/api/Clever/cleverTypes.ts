@@ -19,7 +19,7 @@ export type CleverNewResponse = CleverAuthResponseBuilder<'NEW', CleverUser>;
 export type CleverAuthResponseTypes = 'SUCCESS' | 'MERGE' | 'NEW';
 type CleverAuthResponseBuilder<
   Type extends CleverAuthResponseTypes,
-  BodyType extends unknown,
+  BodyType,
 > = {
   actionType: Type;
   body: BodyType;

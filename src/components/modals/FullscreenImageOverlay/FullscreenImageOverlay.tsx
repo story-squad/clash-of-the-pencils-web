@@ -55,12 +55,7 @@ export default function FullscreenImageOverlay(
   };
 
   return (
-    <TransformWrapper
-      options={{
-        limitToBounds: false,
-        centerContent: true,
-      }}
-    >
+    <TransformWrapper limitToBounds={false} centerOnInit={true}>
       {({ resetTransform, zoomIn, zoomOut }: TransformProps) => (
         <div className="fullscreen-image" id={WRAPPER_ID}>
           <div className="close-button" onClick={closeOverlay}>
